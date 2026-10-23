@@ -53,99 +53,99 @@ Expand — збільшуватися в розмірі або об’ємі. Th
 <!-- interaction_id: en:lesson-25:session-24:word:brightened; family: word_card -->
 > **brightened** — Посвітлішало. Brighten — ставати світлішим; brightened — третя форма.
 
-**2 · Скажіть: «Небо посвітлішало до того, як ми вийшли з дому.»**
-<!-- interaction_id: en:lesson-25:session-24:i01; family: phrase_builder -->
-Плитки: `house` `the` `left` `we` `before` `brightened` `had` `sky` `The` → **The sky had brightened before we left the house.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-24:i01; family: listen_choose -->
+🔊 *The sky had brightened before we started our walk.* → **The sky had brightened before we started our walk.** · The sky had brightened before they started their walk. · The sky had darkened before we started our walk.
+- The sky had brightened before they started their walk. — *У записі звучить The sky had brightened before we started our walk.*
+- The sky had darkened before we started our walk. — *У записі звучить The sky had brightened before we started our walk.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-24:i02; family: context_gap_grammar -->
-The sky ___ brightened before we left the house. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Дощ закінчився. Запропонуйте: «Давай вийдемо надвір».**
+<!-- interaction_id: en:lesson-25:session-24:i02; family: scripted_repeat_compare -->
+🎙 **Let us go outside.**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-24:i03; family: listen_choose -->
-🔊 *The sky had brightened before we left the house.* → **The sky had brightened before we left the house.** · The sky had brightened before they left the house. · The sky had brightened before we left the hotel.
-- The sky had brightened before they left the house. — *У записі звучить The sky had brightened before we left the house.*
-- The sky had brightened before we left the hotel. — *У записі звучить The sky had brightened before we left the house.*
-
-**5 · Картка слова — widened**
+**4 · Картка слова — widened**
 <!-- interaction_id: en:lesson-25:session-24:word:widened; family: word_card -->
 > **widened** — Розширили. Widen — робити ширшим; widened — третя форма.
 
-**6 · Скажіть: «Вони розширили дорогу до того, як ми сюди переїхали.»**
-<!-- interaction_id: en:lesson-25:session-24:i04; family: phrase_builder -->
-Плитки: `here` `moved` `we` `before` `road` `the` `widened` `had` `They` → **They had widened the road before we moved here.**
+**5 · Вузьку доріжку змінили до відкриття парку: «Вони розширили доріжку до відкриття парку».**
+<!-- interaction_id: en:lesson-25:session-24:i03; family: phrase_builder -->
+Плитки: `opened` `park` `the` `before` `path` `the` `widened` `had` `They` → **They had widened the path before the park opened.**
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-24:i05; family: context_gap_grammar -->
-They ___ widened the road before we moved here. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-24:i06; family: listen_choose -->
-🔊 *They had widened the road before we moved here.* → **They had widened the road before we moved here.** · We had widened the road before they moved here. · They had widened the path before we moved here.
-- We had widened the road before they moved here. — *У записі звучить They had widened the road before we moved here.*
-- They had widened the path before we moved here. — *У записі звучить They had widened the road before we moved here.*
-
-**9 · Картка слова — deepened**
+**6 · Картка слова — deepened**
 <!-- interaction_id: en:lesson-25:session-24:word:deepened; family: word_card -->
 > **deepened** — Поглибив. Deepen — робити глибшим; deepened — третя форма.
 
-**10 · Скажіть: «Він поглибив ставок до того, як ми запустили рибу.»**
-<!-- interaction_id: en:lesson-25:session-24:i07; family: phrase_builder -->
-Плитки: `fish` `the` `added` `we` `before` `pond` `the` `deepened` `had` `He` → **He had deepened the pond before we added the fish.**
+**7 · Ставок став глибшим, а не ширшим. Виберіть потрібну зміну.**
+<!-- interaction_id: en:lesson-25:session-24:i04; family: context_gap_grammar -->
+They had ___ the pond before they added the fish. → **deepened** · widened · painted
+- widened — *Widened — зробили ширшим, а йдеться про глибину.*
+- painted — *Painted — пофарбували; тут збільшили глибину ставка.*
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-24:i08; family: context_gap_grammar -->
-He ___ deepened the pond before we added the fish. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-24:i05; family: listen_choose -->
+🔊 *Is the path wide enough?* → **Is the path wide enough?** · Is the pond deep enough? · Is the path long enough?
+- Is the pond deep enough? — *У записі звучить Is the path wide enough?*
+- Is the path long enough? — *У записі звучить Is the path wide enough?*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-24:i09; family: listen_choose -->
-🔊 *He had deepened the pond before we added the fish.* → **He had deepened the pond before we added the fish.** · She had deepened the pond before we added the fish. · He had deepened the pond before they added the fish.
-- She had deepened the pond before we added the fish. — *У записі звучить He had deepened the pond before we added the fish.*
-- He had deepened the pond before they added the fish. — *У записі звучить He had deepened the pond before we added the fish.*
+**9 · Почуйте колишній маршрут.**
+<!-- interaction_id: en:lesson-25:session-24:i06; family: listen_build_dictation -->
+🔊 *We used to walk around the pond.* Плитки: `pond` `the` `around` `walk` `to` `used` `We` → **We used to walk around the pond.**
 
-**13 · Картка слова — expanded**
+**10 · Картка слова — expanded**
 <!-- interaction_id: en:lesson-25:session-24:word:expanded; family: word_card -->
 > **expanded** — Збільшилося в об’ємі. Expand — збільшуватися в розмірі або об’ємі; expanded — третя форма.
 
-**14 · Скажіть: «Тісто збільшилося в об’ємі до того, як вона поставила його в духовку.»**
-<!-- interaction_id: en:lesson-25:session-24:i10; family: phrase_builder -->
-Плитки: `oven` `the` `in` `it` `put` `she` `before` `expanded` `had` `dough` `The` → **The dough had expanded before she put it in the oven.**
+**11 · Опишіть тісто: «Тісто збільшилося в об’ємі до того, як я повернувся».**
+<!-- interaction_id: en:lesson-25:session-24:i07; family: phrase_builder -->
+Плитки: `back` `came` `I` `before` `expanded` `had` `dough` `The` → **The dough had expanded before I came back.**
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-24:i11; family: context_gap_grammar -->
-The dough ___ expanded before she put it in the oven. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**12 · Хліб уже спекли до вашого повернення. Доповніть Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-24:i08; family: context_gap_grammar -->
+She ___ baked the bread before I returned. → **had** · has · was
+- has — *Has baked пов’язане з теперішнім; тут повернення вже в минулому.*
+- was — *Для завершеної ранішої дії потрібна форма had baked.*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-24:i12; family: listen_choose -->
-🔊 *The dough had expanded before she put it in the oven.* → **The dough had expanded before she put it in the oven.** · The dough had expanded before he put it in the oven. · The dough had expanded before she put it in the fridge.
-- The dough had expanded before he put it in the oven. — *У записі звучить The dough had expanded before she put it in the oven.*
-- The dough had expanded before she put it in the fridge. — *У записі звучить The dough had expanded before she put it in the oven.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-24:i13; family: speed_match -->
+**13 · Розрізніть зміни світла й розміру**
+<!-- interaction_id: en:lesson-25:session-24:i09; family: speed_match -->
 brightened — посвітлішало · widened — розширили · deepened — поглибив · expanded — збільшилося в об’ємі
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-24:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Попросіть показати колишній вигляд місця: «У тебе є стара фотографія?»**
+<!-- interaction_id: en:lesson-25:session-24:i10; family: scripted_repeat_compare -->
+🎙 **Do you have an old photo?**
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-24:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-24:i11; family: listen_choose -->
+🔊 *In those days we would feed the ducks after school.* → **In those days we would feed the ducks after school.** · In those days we would watch the ducks after school. · In those days they would feed the ducks after school.
+- In those days we would watch the ducks after school. — *У записі звучить In those days we would feed the ducks after school.*
+- In those days they would feed the ducks after school. — *У записі звучить In those days we would feed the ducks after school.*
 
-**20 · Скажіть: «Небо посвітлішало до того, як я вийшов із дому».**
-<!-- interaction_id: en:lesson-25:session-24:i16; family: scripted_repeat_compare -->
-🎙 **The sky had brightened before I left the house.**
+**16 · Ви відвідали парк один раз учора.**
+<!-- interaction_id: en:lesson-25:session-24:i12; family: context_gap_grammar -->
+We ___ the park yesterday. → **visited** · have visited · would visit
+- have visited — *Yesterday потребує Past Simple visited.*
+- would visit — *Would visit описує повторюваність, не одну вчорашню прогулянку.*
 
-**21 · Скажіть: «Ми поглибили ставок до того, як вони запустили рибу».**
-<!-- interaction_id: en:lesson-25:session-24:i17; family: scripted_repeat_compare -->
-🎙 **We had deepened the pond before they added the fish.**
+**17 · Почуйте, чому лавка виявилася сухою.**
+<!-- interaction_id: en:lesson-25:session-24:i13; family: listen_build_dictation -->
+🔊 *The rain had stopped before we sat down.* Плитки: `down` `sat` `we` `before` `stopped` `had` `rain` `The` → **The rain had stopped before we sat down.**
+
+**18 · Запропонуйте інший шлях додому: «Давай підемо іншою дорогою».**
+<!-- interaction_id: en:lesson-25:session-24:i14; family: scripted_repeat_compare -->
+🎙 **Let us take another road.**
+
+**19 · Покажіть розташування другого входу: «Інший вхід поруч із річкою».**
+<!-- interaction_id: en:lesson-25:session-24:i15; family: phrase_builder -->
+Плитки: `river` `the` `near` `is` `entrance` `other` `The` → **The other entrance is near the river.**
+
+**20 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-24:i16; family: listen_choose -->
+🔊 *I have already taken a photo.* → **I have already taken a photo.** · I have already sent a photo. · She has already taken a photo.
+- I have already sent a photo. — *У записі звучить I have already taken a photo.*
+- She has already taken a photo. — *У записі звучить I have already taken a photo.*
+
+**21 · За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-24:i17; family: context_gap_grammar -->
+The park has ___ a lot. → **changed** · change · changing
+- change — *Після has потрібна форма changed.*
+- changing — *Has changing неправильно; потрібно has changed.*
 

@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-25:session-22:word:accused",
+        "interactionId": "en:lesson-25:session-22:word:applauded",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — accused",
+        "prompt": "Карточка слова — applauded",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:word:accused:audio"
+          "en:lesson-25:session-22:word:applauded:audio"
         ],
-        "accessibilityLabel": "Карточка слова — accused",
+        "accessibilityLabel": "Карточка слова — applauded",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:word:accused:audio",
-            "transcript": "accused"
+            "audioTargetId": "en:lesson-25:session-22:word:applauded:audio",
+            "transcript": "applauded"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:word:accused:r1",
-              "targetText": "accused",
+              "responseId": "en:lesson-25:session-22:word:applauded:r1",
+              "targetText": "applauded",
               "meaningByLocale": {
-                "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
-                "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
+                "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
+                "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "accused",
+            "word": "applauded",
             "definitionByLocale": {
-              "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
-              "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
+              "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
+              "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
             }
           }
         },
@@ -50,179 +50,70 @@
         "interactionId": "en:lesson-25:session-22:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Они обвинили его во лжи до того, как он показал письмо.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Они обвинили его во лжи до того, как он показал письмо.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "They had accused him of lying before he showed the letter.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Они обвинили его во лжи до того, как он показал письмо.»",
-            "uk": "Скажіть: «Вони звинуватили його в брехні до того, як він показав лист.»"
-          },
-          "orderedTokens": [
-            "They",
-            "had",
-            "accused",
-            "him",
-            "of",
-            "lying",
-            "before",
-            "he",
-            "showed",
-            "the",
-            "letter"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о прошлом.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i02:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i02:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i02:r3",
-            "text": "were"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о прошлом.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
-          },
-          "gappedTargetPhrase": "They ___ accused him of lying before he showed the letter.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-22:i02:r1",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i02:r2",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i02:r3",
-              "text": "were"
-            }
-          ],
-          "testedDimension": "Дополните рассказ о прошлом.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i02:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i02:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i03:r1",
-            "text": "They had accused him of lying before he showed the letter."
+            "responseId": "en:lesson-25:session-22:i01:r1",
+            "text": "We had applauded the children before we left the hall."
           },
           {
-            "responseId": "en:lesson-25:session-22:i03:r2",
-            "text": "We had accused him of lying before he showed the letter."
+            "responseId": "en:lesson-25:session-22:i01:r2",
+            "text": "We had applauded the musicians before we left the hall."
           },
           {
-            "responseId": "en:lesson-25:session-22:i03:r3",
-            "text": "They had accused her of lying before she showed the letter."
+            "responseId": "en:lesson-25:session-22:i01:r3",
+            "text": "They had applauded the children before they left the hall."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i03:audio"
+          "en:lesson-25:session-22:i01:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i03:audio",
-            "transcript": "They had accused him of lying before he showed the letter."
+            "audioTargetId": "en:lesson-25:session-22:i01:audio",
+            "transcript": "We had applauded the children before we left the hall."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:i03:r1",
-              "targetText": "They had accused him of lying before he showed the letter.",
+              "responseId": "en:lesson-25:session-22:i01:r1",
+              "targetText": "We had applauded the children before we left the hall.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i03:r2",
-              "targetText": "We had accused him of lying before he showed the letter.",
+              "responseId": "en:lesson-25:session-22:i01:r2",
+              "targetText": "We had applauded the musicians before we left the hall.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i03:r3",
-              "targetText": "They had accused her of lying before she showed the letter.",
+              "responseId": "en:lesson-25:session-22:i01:r3",
+              "targetText": "They had applauded the children before they left the hall.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i03:r2",
+              "responseId": "en:lesson-25:session-22:i01:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит They had accused him of lying before he showed the letter.",
-                "uk": "У записі звучить They had accused him of lying before he showed the letter."
+                "ru": "В записи звучит We had applauded the children before we left the hall.",
+                "uk": "У записі звучить We had applauded the children before we left the hall."
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i03:r3",
+              "responseId": "en:lesson-25:session-22:i01:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит They had accused him of lying before he showed the letter.",
-                "uk": "У записі звучить They had accused him of lying before he showed the letter."
+                "ru": "В записи звучит We had applauded the children before we left the hall.",
+                "uk": "У записі звучить We had applauded the children before we left the hall."
               }
             }
           ],
@@ -232,8 +123,41 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-22:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Похвалите друга после выступления: «Ты отлично выступил».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Похвалите друга после выступления: «Ты отлично выступил».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i02:audio",
+            "transcript": "You did really well."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You did really well.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-22:word:forbidden",
-        "ordinal": 8,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -275,34 +199,33 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i04",
-        "ordinal": 9,
+        "interactionId": "en:lesson-25:session-22:i03",
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Мама запретила перекусы до того, как я открыл шкаф.»",
+        "prompt": "В школе было правило: «Учитель запретил телефоны до начала урока».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Мама запретила перекусы до того, как я открыл шкаф.»",
+        "accessibilityLabel": "В школе было правило: «Учитель запретил телефоны до начала урока».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "My mother had forbidden snacks before I opened the cupboard.",
+          "targetPhrase": "The teacher had forbidden phones before the lesson started.",
           "localizedMeaning": {
-            "ru": "Скажите: «Мама запретила перекусы до того, как я открыл шкаф.»",
-            "uk": "Скажіть: «Мама заборонила перекуси до того, як я відчинив шафу.»"
+            "ru": "В школе было правило: «Учитель запретил телефоны до начала урока».",
+            "uk": "У школі було правило: «Учитель заборонив телефони до початку уроку»."
           },
           "orderedTokens": [
-            "My",
-            "mother",
+            "The",
+            "teacher",
             "had",
             "forbidden",
-            "snacks",
+            "phones",
             "before",
-            "I",
-            "opened",
             "the",
-            "cupboard"
+            "lesson",
+            "started"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -314,68 +237,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i05",
-        "ordinal": 10,
+        "interactionId": "en:lesson-25:session-22:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о прошлом.",
+        "prompt": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i05:r1",
-            "text": "had"
+            "responseId": "en:lesson-25:session-22:i04:r1",
+            "text": "forbidden"
           },
           {
-            "responseId": "en:lesson-25:session-22:i05:r2",
-            "text": "has"
+            "responseId": "en:lesson-25:session-22:i04:r2",
+            "text": "forbade"
           },
           {
-            "responseId": "en:lesson-25:session-22:i05:r3",
-            "text": "was"
+            "responseId": "en:lesson-25:session-22:i04:r3",
+            "text": "forbid"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "accessibilityLabel": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
+            "ru": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
+            "uk": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму."
           },
-          "gappedTargetPhrase": "My mother ___ forbidden snacks before I opened the cupboard.",
+          "gappedTargetPhrase": "The teacher had ___ photos before we came in.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-22:i05:r1",
-              "text": "had"
+              "responseId": "en:lesson-25:session-22:i04:r1",
+              "text": "forbidden"
             },
             {
-              "responseId": "en:lesson-25:session-22:i05:r2",
-              "text": "has"
+              "responseId": "en:lesson-25:session-22:i04:r2",
+              "text": "forbade"
             },
             {
-              "responseId": "en:lesson-25:session-22:i05:r3",
-              "text": "was"
+              "responseId": "en:lesson-25:session-22:i04:r3",
+              "text": "forbid"
             }
           ],
-          "testedDimension": "Дополните рассказ о прошлом.",
+          "testedDimension": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i05:r2",
+              "responseId": "en:lesson-25:session-22:i04:r2",
               "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
+              "testedDimension": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+                "ru": "Forbade — Past Simple; после had нужна форма forbidden.",
+                "uk": "Forbade — Past Simple; після had потрібна форма forbidden."
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i05:r3",
+              "responseId": "en:lesson-25:session-22:i04:r3",
               "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
+              "testedDimension": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+                "ru": "Forbid — базовая форма; после had нужна forbidden.",
+                "uk": "Forbid — базова форма; після had потрібна forbidden."
               }
             }
           ]
@@ -383,73 +306,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "interactionId": "en:lesson-25:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i06:r1",
-            "text": "My mother had forbidden snacks before I opened the cupboard."
+            "responseId": "en:lesson-25:session-22:i05:r1",
+            "text": "Can I use my phone outside?"
           },
           {
-            "responseId": "en:lesson-25:session-22:i06:r2",
-            "text": "My father had forbidden snacks before I opened the cupboard."
+            "responseId": "en:lesson-25:session-22:i05:r2",
+            "text": "Can I use my phone inside?"
           },
           {
-            "responseId": "en:lesson-25:session-22:i06:r3",
-            "text": "My mother had forbidden sweets before I opened the cupboard."
+            "responseId": "en:lesson-25:session-22:i05:r3",
+            "text": "Can she use her phone outside?"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i06:audio"
+          "en:lesson-25:session-22:i05:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i06:audio",
-            "transcript": "My mother had forbidden snacks before I opened the cupboard."
+            "audioTargetId": "en:lesson-25:session-22:i05:audio",
+            "transcript": "Can I use my phone outside?"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:i06:r1",
-              "targetText": "My mother had forbidden snacks before I opened the cupboard.",
+              "responseId": "en:lesson-25:session-22:i05:r1",
+              "targetText": "Can I use my phone outside?",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i06:r2",
-              "targetText": "My father had forbidden snacks before I opened the cupboard.",
+              "responseId": "en:lesson-25:session-22:i05:r2",
+              "targetText": "Can I use my phone inside?",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i06:r3",
-              "targetText": "My mother had forbidden sweets before I opened the cupboard.",
+              "responseId": "en:lesson-25:session-22:i05:r3",
+              "targetText": "Can she use her phone outside?",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i06:r2",
+              "responseId": "en:lesson-25:session-22:i05:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит My mother had forbidden snacks before I opened the cupboard.",
-                "uk": "У записі звучить My mother had forbidden snacks before I opened the cupboard."
+                "ru": "В записи звучит Can I use my phone outside?",
+                "uk": "У записі звучить Can I use my phone outside?"
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i06:r3",
+              "responseId": "en:lesson-25:session-22:i05:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит My mother had forbidden snacks before I opened the cupboard.",
-                "uk": "У записі звучить My mother had forbidden snacks before I opened the cupboard."
+                "ru": "В записи звучит Can I use my phone outside?",
+                "uk": "У записі звучить Can I use my phone outside?"
               }
             }
           ],
@@ -460,7 +383,7 @@
       },
       {
         "interactionId": "en:lesson-25:session-22:word:begged",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -502,33 +425,39 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i07",
-        "ordinal": 13,
+        "interactionId": "en:lesson-25:session-22:i06",
+        "ordinal": 12,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Он умолял дать ему ещё один шанс до того, как она ответила.»",
+        "prompt": "Услышьте рассказ о просьбе ребёнка.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Он умолял дать ему ещё один шанс до того, как она ответила.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i06:audio"
+        ],
+        "accessibilityLabel": "Услышьте рассказ о просьбе ребёнка.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "He had begged for another chance before she answered.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Он умолял дать ему ещё один шанс до того, как она ответила.»",
-            "uk": "Скажіть: «Він благав дати йому ще один шанс до того, як вона відповіла.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i06:audio",
+            "transcript": "My son had begged for a dog before we visited the shelter."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My son had begged for a dog before we visited the shelter.",
           "orderedTokens": [
-            "He",
+            "My",
+            "son",
             "had",
             "begged",
             "for",
-            "another",
-            "chance",
+            "a",
+            "dog",
             "before",
-            "she",
-            "answered"
+            "we",
+            "visited",
+            "the",
+            "shelter"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -540,177 +469,65 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i08",
-        "ordinal": 14,
+        "interactionId": "en:lesson-25:session-22:i07",
+        "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о прошлом.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i08:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i08:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i08:r3",
-            "text": "was"
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите дать ещё одну возможность: «Пожалуйста, дай мне ещё один шанс».",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Попросите дать ещё одну возможность: «Пожалуйста, дай мне ещё один шанс».",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i07:audio",
+            "transcript": "Please give me another chance."
           },
-          "gappedTargetPhrase": "He ___ begged for another chance before she answered.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-22:i08:r1",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i08:r2",
-              "text": "has"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i08:r3",
-              "text": "was"
-            }
-          ],
-          "testedDimension": "Дополните рассказ о прошлом.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please give me another chance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-22:word:accused",
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i09:r1",
-            "text": "He had begged for another chance before she answered."
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i09:r2",
-            "text": "She had begged for another chance before he answered."
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i09:r3",
-            "text": "He had begged for more time before she answered."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-22:i09:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i09:audio",
-            "transcript": "He had begged for another chance before she answered."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-22:i09:r1",
-              "targetText": "He had begged for another chance before she answered.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i09:r2",
-              "targetText": "She had begged for another chance before he answered.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i09:r3",
-              "targetText": "He had begged for more time before she answered.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i09:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He had begged for another chance before she answered.",
-                "uk": "У записі звучить He had begged for another chance before she answered."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i09:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He had begged for another chance before she answered.",
-                "uk": "У записі звучить He had begged for another chance before she answered."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:word:applauded",
-        "ordinal": 16,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — applauded",
+        "prompt": "Карточка слова — accused",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:word:applauded:audio"
+          "en:lesson-25:session-22:word:accused:audio"
         ],
-        "accessibilityLabel": "Карточка слова — applauded",
+        "accessibilityLabel": "Карточка слова — accused",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:word:applauded:audio",
-            "transcript": "applauded"
+            "audioTargetId": "en:lesson-25:session-22:word:accused:audio",
+            "transcript": "accused"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:word:applauded:r1",
-              "targetText": "applauded",
+              "responseId": "en:lesson-25:session-22:word:accused:r1",
+              "targetText": "accused",
               "meaningByLocale": {
-                "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
-                "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
+                "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
+                "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
               }
             }
           ],
@@ -718,191 +535,83 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "applauded",
+            "word": "accused",
             "definitionByLocale": {
-              "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
-              "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
+              "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
+              "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Мы поаплодировали певцу до того, как погас свет.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Мы поаплодировали певцу до того, как погас свет.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We had applauded the singer before the lights went out.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Мы поаплодировали певцу до того, как погас свет.»",
-            "uk": "Скажіть: «Ми поаплодували співакові до того, як згасло світло.»"
-          },
-          "orderedTokens": [
-            "We",
-            "had",
-            "applauded",
-            "the",
-            "singer",
-            "before",
-            "the",
-            "lights",
-            "went",
-            "out"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о прошлом.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i11:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i11:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i11:r3",
-            "text": "were"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о прошлом.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
-          },
-          "gappedTargetPhrase": "We ___ applauded the singer before the lights went out.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-22:i11:r1",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i11:r2",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i11:r3",
-              "text": "were"
-            }
-          ],
-          "testedDimension": "Дополните рассказ о прошлом.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о прошлом.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-22:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i12:r1",
-            "text": "We had applauded the singer before the lights went out."
+            "responseId": "en:lesson-25:session-22:i08:r1",
+            "text": "They had accused me of lying before they read the message."
           },
           {
-            "responseId": "en:lesson-25:session-22:i12:r2",
-            "text": "They had applauded the singer before the lights went out."
+            "responseId": "en:lesson-25:session-22:i08:r2",
+            "text": "They had accused her of lying before they read the message."
           },
           {
-            "responseId": "en:lesson-25:session-22:i12:r3",
-            "text": "We had applauded the dancer before the lights went out."
+            "responseId": "en:lesson-25:session-22:i08:r3",
+            "text": "They had accused me of lying before they heard the message."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i12:audio"
+          "en:lesson-25:session-22:i08:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i12:audio",
-            "transcript": "We had applauded the singer before the lights went out."
+            "audioTargetId": "en:lesson-25:session-22:i08:audio",
+            "transcript": "They had accused me of lying before they read the message."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:i12:r1",
-              "targetText": "We had applauded the singer before the lights went out.",
+              "responseId": "en:lesson-25:session-22:i08:r1",
+              "targetText": "They had accused me of lying before they read the message.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i12:r2",
-              "targetText": "They had applauded the singer before the lights went out.",
+              "responseId": "en:lesson-25:session-22:i08:r2",
+              "targetText": "They had accused her of lying before they read the message.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i12:r3",
-              "targetText": "We had applauded the dancer before the lights went out.",
+              "responseId": "en:lesson-25:session-22:i08:r3",
+              "targetText": "They had accused me of lying before they heard the message.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i12:r2",
+              "responseId": "en:lesson-25:session-22:i08:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We had applauded the singer before the lights went out.",
-                "uk": "У записі звучить We had applauded the singer before the lights went out."
+                "ru": "В записи звучит They had accused me of lying before they read the message.",
+                "uk": "У записі звучить They had accused me of lying before they read the message."
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i12:r3",
+              "responseId": "en:lesson-25:session-22:i08:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We had applauded the singer before the lights went out.",
-                "uk": "У записі звучить We had applauded the singer before the lights went out."
+                "ru": "В записи звучит They had accused me of lying before they read the message.",
+                "uk": "У записі звучить They had accused me of lying before they read the message."
               }
             }
           ],
@@ -912,21 +621,90 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-22:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вас обвинили во лжи, а не поблагодарили. Дополните предлог после accused.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i09:r1",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i09:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i09:r3",
+            "text": "to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас обвинили во лжи, а не поблагодарили. Дополните предлог после accused.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вас обвинили во лжи, а не поблагодарили. Дополните предлог после accused.",
+            "uk": "Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused."
+          },
+          "gappedTargetPhrase": "They had accused me ___ lying.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-22:i09:r1",
+              "text": "of"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i09:r2",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i09:r3",
+              "text": "to"
+            }
+          ],
+          "testedDimension": "Вас обвинили во лжи, а не поблагодарили. Дополните предлог после accused.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Вас обвинили во лжи, а не поблагодарили. Дополните предлог после accused.",
+              "feedbackByLocale": {
+                "ru": "Accuse someone of something — обвинять кого-то в чём-то.",
+                "uk": "Accuse someone of something — звинувачувати когось у чомусь."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Вас обвинили во лжи, а не поблагодарили. Дополните предлог после accused.",
+              "feedbackByLocale": {
+                "ru": "После accused me нужен of, не to.",
+                "uk": "Після accused me потрібне of, не to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-22:i10",
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините формы с переводом",
+        "prompt": "Различите запрет, обвинение, просьбу и поддержку",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините формы с переводом",
+        "accessibilityLabel": "Различите запрет, обвинение, просьбу и поддержку",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-22:i13:p1",
+              "pairId": "en:lesson-25:session-22:i10:p1",
               "target": "accused",
               "meaningByLocale": {
                 "ru": "обвинили",
@@ -934,7 +712,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-22:i13:p2",
+              "pairId": "en:lesson-25:session-22:i10:p2",
               "target": "forbidden",
               "meaningByLocale": {
                 "ru": "запретила",
@@ -942,7 +720,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-22:i13:p3",
+              "pairId": "en:lesson-25:session-22:i10:p3",
               "target": "begged",
               "meaningByLocale": {
                 "ru": "умолял",
@@ -950,7 +728,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-22:i13:p4",
+              "pairId": "en:lesson-25:session-22:i10:p4",
               "target": "applauded",
               "meaningByLocale": {
                 "ru": "аплодировали",
@@ -985,33 +763,64 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Уже закончил",
+        "interactionId": "en:lesson-25:session-22:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите сначала выслушать вас: «Пожалуйста, дай мне объяснить».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i14:audio"
+          "en:lesson-25:session-22:i11:audio"
         ],
-        "accessibilityLabel": "Уже закончил",
+        "accessibilityLabel": "Попросите сначала выслушать вас: «Пожалуйста, дай мне объяснить».",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i14:audio",
-            "transcript": "She had finished before I called."
+            "audioTargetId": "en:lesson-25:session-22:i11:audio",
+            "transcript": "Please let me explain."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She had finished before I called.",
+          "targetPhrase": "Please let me explain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вспомните старое школьное правило: «Раньше нам приходилось ждать снаружи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните старое школьное правило: «Раньше нам приходилось ждать снаружи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to have to wait outside.",
+          "localizedMeaning": {
+            "ru": "Вспомните старое школьное правило: «Раньше нам приходилось ждать снаружи».",
+            "uk": "Згадайте старе шкільне правило: «Раніше нам доводилося чекати надворі»."
+          },
           "orderedTokens": [
-            "She",
-            "had",
-            "finished",
-            "before",
-            "I",
-            "called"
+            "We",
+            "used",
+            "to",
+            "have",
+            "to",
+            "wait",
+            "outside"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1023,34 +832,181 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i13:r1",
+            "text": "At school we would clap after every performance."
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i13:r2",
+            "text": "At school we would sing after every performance."
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i13:r3",
+            "text": "At home we would clap after every performance."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i13:audio",
+            "transcript": "At school we would clap after every performance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-22:i13:r1",
+              "targetText": "At school we would clap after every performance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i13:r2",
+              "targetText": "At school we would sing after every performance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i13:r3",
+              "targetText": "At home we would clap after every performance.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i13:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would clap after every performance.",
+                "uk": "У записі звучить At school we would clap after every performance."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i13:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would clap after every performance.",
+                "uk": "У записі звучить At school we would clap after every performance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Один концерт закончился вчера. Вы поаплодировали тогда.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i14:r1",
+            "text": "applauded"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i14:r2",
+            "text": "have applauded"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i14:r3",
+            "text": "would applaud"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один концерт закончился вчера. Вы поаплодировали тогда.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Один концерт закончился вчера. Вы поаплодировали тогда.",
+            "uk": "Один концерт закінчився вчора. Ви поаплодували тоді."
+          },
+          "gappedTargetPhrase": "We ___ the singer yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-22:i14:r1",
+              "text": "applauded"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i14:r2",
+              "text": "have applauded"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i14:r3",
+              "text": "would applaud"
+            }
+          ],
+          "testedDimension": "Один концерт закончился вчера. Вы поаплодировали тогда.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Один концерт закончился вчера. Вы поаплодировали тогда.",
+              "feedbackByLocale": {
+                "ru": "Yesterday требует Past Simple applauded.",
+                "uk": "Yesterday потребує Past Simple applauded."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Один концерт закончился вчера. Вы поаплодировали тогда.",
+              "feedbackByLocale": {
+                "ru": "Would applaud описывает прежнюю привычку; здесь один концерт.",
+                "uk": "Would applaud описує колишню звичку; тут один концерт."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-22:i15",
         "ordinal": 22,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Поезд уже ушёл",
+        "prompt": "Услышьте, почему зритель опоздал.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-22:i15:audio"
         ],
-        "accessibilityLabel": "Поезд уже ушёл",
+        "accessibilityLabel": "Услышьте, почему зритель опоздал.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-22:i15:audio",
-            "transcript": "The train had left when we arrived."
+            "transcript": "The show had started before I found my seat."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "hiddenTargetPhrase": "The show had started before I found my seat.",
           "orderedTokens": [
             "The",
-            "train",
+            "show",
             "had",
-            "left",
-            "when",
-            "we",
-            "arrived"
+            "started",
+            "before",
+            "I",
+            "found",
+            "my",
+            "seat"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1064,32 +1020,68 @@
       {
         "interactionId": "en:lesson-25:session-22:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Я умолял дать мне ещё один шанс до того, как она ответила».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-22:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Я умолял дать мне ещё один шанс до того, как она ответила».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i16:audio",
-            "transcript": "I had begged for another chance before she answered."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уже извинились. Дополните Present Perfect.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i16:r1",
+            "text": "said"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "I had begged for another chance before she answered.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-22:i16:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i16:r3",
+            "text": "saying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уже извинились. Дополните Present Perfect.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже извинились. Дополните Present Perfect.",
+            "uk": "Ви вже вибачилися. Доповніть Present Perfect."
+          },
+          "gappedTargetPhrase": "I have already ___ sorry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-22:i16:r1",
+              "text": "said"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i16:r2",
+              "text": "say"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i16:r3",
+              "text": "saying"
+            }
+          ],
+          "testedDimension": "Вы уже извинились. Дополните Present Perfect.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы уже извинились. Дополните Present Perfect.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма said.",
+                "uk": "Після have потрібна форма said."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы уже извинились. Дополните Present Perfect.",
+              "feedbackByLocale": {
+                "ru": "Have saying не образует Present Perfect.",
+                "uk": "Have saying не утворює Present Perfect."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1097,111 +1089,30 @@
       {
         "interactionId": "en:lesson-25:session-22:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Они поаплодировали танцору до того, как погас свет».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-22:i17:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Они поаплодировали танцору до того, как погас свет».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i17:audio",
-            "transcript": "They had applauded the dancer before the lights went out."
-          },
-          "slowReferenceAudio": null,
-          "targetPhrase": "They had applauded the dancer before the lights went out.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
-        },
-        "scriptedAlternate": null
-      }
-    ],
-    "uk": [
-      {
-        "interactionId": "en:lesson-25:session-22:word:accused",
-        "ordinal": 4,
-        "purpose": "supported_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — accused",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-22:word:accused:audio"
-        ],
-        "accessibilityLabel": "Картка слова — accused",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:word:accused:audio",
-            "transcript": "accused"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-22:word:accused:r1",
-              "targetText": "accused",
-              "meaningByLocale": {
-                "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
-                "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "accused",
-            "definitionByLocale": {
-              "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
-              "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:i01",
-        "ordinal": 5,
-        "purpose": "supported_practice",
+        "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Вони звинуватили його в брехні до того, як він показав лист.»",
+        "prompt": "Укажите, где остальные дети: «Другие дети ждут у двери».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Вони звинуватили його в брехні до того, як він показав лист.»",
+        "accessibilityLabel": "Укажите, где остальные дети: «Другие дети ждут у двери».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "They had accused him of lying before he showed the letter.",
+          "targetPhrase": "The other children are waiting by the door.",
           "localizedMeaning": {
-            "ru": "Скажите: «Они обвинили его во лжи до того, как он показал письмо.»",
-            "uk": "Скажіть: «Вони звинуватили його в брехні до того, як він показав лист.»"
+            "ru": "Укажите, где остальные дети: «Другие дети ждут у двери».",
+            "uk": "Укажіть, де решта дітей: «Інші діти чекають біля дверей»."
           },
           "orderedTokens": [
-            "They",
-            "had",
-            "accused",
-            "him",
-            "of",
-            "lying",
-            "before",
-            "he",
-            "showed",
+            "The",
+            "other",
+            "children",
+            "are",
+            "waiting",
+            "by",
             "the",
-            "letter"
+            "door"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1211,144 +1122,120 @@
           }
         },
         "scriptedAlternate": null
-      },
+      }
+    ],
+    "uk": [
       {
-        "interactionId": "en:lesson-25:session-22:i02",
-        "ordinal": 6,
+        "interactionId": "en:lesson-25:session-22:word:applauded",
+        "ordinal": 4,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
+        "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про минуле.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i02:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i02:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i02:r3",
-            "text": "were"
-          }
-        ],
+        "prompt": "Картка слова — applauded",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "audioTargetIds": [
+          "en:lesson-25:session-22:word:applauded:audio"
+        ],
+        "accessibilityLabel": "Картка слова — applauded",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:word:applauded:audio",
+            "transcript": "applauded"
           },
-          "gappedTargetPhrase": "They ___ accused him of lying before he showed the letter.",
-          "gapOptions": [
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:i02:r1",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i02:r2",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i02:r3",
-              "text": "were"
+              "responseId": "en:lesson-25:session-22:word:applauded:r1",
+              "targetText": "applauded",
+              "meaningByLocale": {
+                "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
+                "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
+              }
             }
           ],
-          "testedDimension": "Доповніть розповідь про минуле.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i02:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i02:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "applauded",
+            "definitionByLocale": {
+              "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
+              "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
             }
-          ]
+          }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i03",
-        "ordinal": 7,
+        "interactionId": "en:lesson-25:session-22:i01",
+        "ordinal": 5,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i03:r1",
-            "text": "They had accused him of lying before he showed the letter."
+            "responseId": "en:lesson-25:session-22:i01:r1",
+            "text": "We had applauded the children before we left the hall."
           },
           {
-            "responseId": "en:lesson-25:session-22:i03:r2",
-            "text": "We had accused him of lying before he showed the letter."
+            "responseId": "en:lesson-25:session-22:i01:r2",
+            "text": "We had applauded the musicians before we left the hall."
           },
           {
-            "responseId": "en:lesson-25:session-22:i03:r3",
-            "text": "They had accused her of lying before she showed the letter."
+            "responseId": "en:lesson-25:session-22:i01:r3",
+            "text": "They had applauded the children before they left the hall."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i03:audio"
+          "en:lesson-25:session-22:i01:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i03:audio",
-            "transcript": "They had accused him of lying before he showed the letter."
+            "audioTargetId": "en:lesson-25:session-22:i01:audio",
+            "transcript": "We had applauded the children before we left the hall."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:i03:r1",
-              "targetText": "They had accused him of lying before he showed the letter.",
+              "responseId": "en:lesson-25:session-22:i01:r1",
+              "targetText": "We had applauded the children before we left the hall.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i03:r2",
-              "targetText": "We had accused him of lying before he showed the letter.",
+              "responseId": "en:lesson-25:session-22:i01:r2",
+              "targetText": "We had applauded the musicians before we left the hall.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i03:r3",
-              "targetText": "They had accused her of lying before she showed the letter.",
+              "responseId": "en:lesson-25:session-22:i01:r3",
+              "targetText": "They had applauded the children before they left the hall.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i03:r2",
+              "responseId": "en:lesson-25:session-22:i01:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит They had accused him of lying before he showed the letter.",
-                "uk": "У записі звучить They had accused him of lying before he showed the letter."
+                "ru": "В записи звучит We had applauded the children before we left the hall.",
+                "uk": "У записі звучить We had applauded the children before we left the hall."
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i03:r3",
+              "responseId": "en:lesson-25:session-22:i01:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит They had accused him of lying before he showed the letter.",
-                "uk": "У записі звучить They had accused him of lying before he showed the letter."
+                "ru": "В записи звучит We had applauded the children before we left the hall.",
+                "uk": "У записі звучить We had applauded the children before we left the hall."
               }
             }
           ],
@@ -1358,8 +1245,41 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-22:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Похваліть друга після виступу: «Ти чудово виступив».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Похваліть друга після виступу: «Ти чудово виступив».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i02:audio",
+            "transcript": "You did really well."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "You did really well.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-22:word:forbidden",
-        "ordinal": 8,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1401,34 +1321,33 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i04",
-        "ordinal": 9,
+        "interactionId": "en:lesson-25:session-22:i03",
+        "ordinal": 8,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Мама заборонила перекуси до того, як я відчинив шафу.»",
+        "prompt": "У школі було правило: «Учитель заборонив телефони до початку уроку».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Мама заборонила перекуси до того, як я відчинив шафу.»",
+        "accessibilityLabel": "У школі було правило: «Учитель заборонив телефони до початку уроку».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "My mother had forbidden snacks before I opened the cupboard.",
+          "targetPhrase": "The teacher had forbidden phones before the lesson started.",
           "localizedMeaning": {
-            "ru": "Скажите: «Мама запретила перекусы до того, как я открыл шкаф.»",
-            "uk": "Скажіть: «Мама заборонила перекуси до того, як я відчинив шафу.»"
+            "ru": "В школе было правило: «Учитель запретил телефоны до начала урока».",
+            "uk": "У школі було правило: «Учитель заборонив телефони до початку уроку»."
           },
           "orderedTokens": [
-            "My",
-            "mother",
+            "The",
+            "teacher",
             "had",
             "forbidden",
-            "snacks",
+            "phones",
             "before",
-            "I",
-            "opened",
             "the",
-            "cupboard"
+            "lesson",
+            "started"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1440,68 +1359,68 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i05",
-        "ordinal": 10,
+        "interactionId": "en:lesson-25:session-22:i04",
+        "ordinal": 9,
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про минуле.",
+        "prompt": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i05:r1",
-            "text": "had"
+            "responseId": "en:lesson-25:session-22:i04:r1",
+            "text": "forbidden"
           },
           {
-            "responseId": "en:lesson-25:session-22:i05:r2",
-            "text": "has"
+            "responseId": "en:lesson-25:session-22:i04:r2",
+            "text": "forbade"
           },
           {
-            "responseId": "en:lesson-25:session-22:i05:r3",
-            "text": "was"
+            "responseId": "en:lesson-25:session-22:i04:r3",
+            "text": "forbid"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "accessibilityLabel": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
+            "ru": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
+            "uk": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму."
           },
-          "gappedTargetPhrase": "My mother ___ forbidden snacks before I opened the cupboard.",
+          "gappedTargetPhrase": "The teacher had ___ photos before we came in.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-22:i05:r1",
-              "text": "had"
+              "responseId": "en:lesson-25:session-22:i04:r1",
+              "text": "forbidden"
             },
             {
-              "responseId": "en:lesson-25:session-22:i05:r2",
-              "text": "has"
+              "responseId": "en:lesson-25:session-22:i04:r2",
+              "text": "forbade"
             },
             {
-              "responseId": "en:lesson-25:session-22:i05:r3",
-              "text": "was"
+              "responseId": "en:lesson-25:session-22:i04:r3",
+              "text": "forbid"
             }
           ],
-          "testedDimension": "Доповніть розповідь про минуле.",
+          "testedDimension": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i05:r2",
+              "responseId": "en:lesson-25:session-22:i04:r2",
               "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
+              "testedDimension": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
               "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+                "ru": "Forbade — Past Simple; после had нужна форма forbidden.",
+                "uk": "Forbade — Past Simple; після had потрібна форма forbidden."
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i05:r3",
+              "responseId": "en:lesson-25:session-22:i04:r3",
               "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
+              "testedDimension": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
               "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+                "ru": "Forbid — базовая форма; после had нужна forbidden.",
+                "uk": "Forbid — базова форма; після had потрібна forbidden."
               }
             }
           ]
@@ -1509,73 +1428,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
+        "interactionId": "en:lesson-25:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i06:r1",
-            "text": "My mother had forbidden snacks before I opened the cupboard."
+            "responseId": "en:lesson-25:session-22:i05:r1",
+            "text": "Can I use my phone outside?"
           },
           {
-            "responseId": "en:lesson-25:session-22:i06:r2",
-            "text": "My father had forbidden snacks before I opened the cupboard."
+            "responseId": "en:lesson-25:session-22:i05:r2",
+            "text": "Can I use my phone inside?"
           },
           {
-            "responseId": "en:lesson-25:session-22:i06:r3",
-            "text": "My mother had forbidden sweets before I opened the cupboard."
+            "responseId": "en:lesson-25:session-22:i05:r3",
+            "text": "Can she use her phone outside?"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i06:audio"
+          "en:lesson-25:session-22:i05:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i06:audio",
-            "transcript": "My mother had forbidden snacks before I opened the cupboard."
+            "audioTargetId": "en:lesson-25:session-22:i05:audio",
+            "transcript": "Can I use my phone outside?"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:i06:r1",
-              "targetText": "My mother had forbidden snacks before I opened the cupboard.",
+              "responseId": "en:lesson-25:session-22:i05:r1",
+              "targetText": "Can I use my phone outside?",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i06:r2",
-              "targetText": "My father had forbidden snacks before I opened the cupboard.",
+              "responseId": "en:lesson-25:session-22:i05:r2",
+              "targetText": "Can I use my phone inside?",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i06:r3",
-              "targetText": "My mother had forbidden sweets before I opened the cupboard.",
+              "responseId": "en:lesson-25:session-22:i05:r3",
+              "targetText": "Can she use her phone outside?",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i06:r2",
+              "responseId": "en:lesson-25:session-22:i05:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит My mother had forbidden snacks before I opened the cupboard.",
-                "uk": "У записі звучить My mother had forbidden snacks before I opened the cupboard."
+                "ru": "В записи звучит Can I use my phone outside?",
+                "uk": "У записі звучить Can I use my phone outside?"
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i06:r3",
+              "responseId": "en:lesson-25:session-22:i05:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит My mother had forbidden snacks before I opened the cupboard.",
-                "uk": "У записі звучить My mother had forbidden snacks before I opened the cupboard."
+                "ru": "В записи звучит Can I use my phone outside?",
+                "uk": "У записі звучить Can I use my phone outside?"
               }
             }
           ],
@@ -1586,7 +1505,7 @@
       },
       {
         "interactionId": "en:lesson-25:session-22:word:begged",
-        "ordinal": 12,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1628,33 +1547,39 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i07",
-        "ordinal": 13,
+        "interactionId": "en:lesson-25:session-22:i06",
+        "ordinal": 12,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Він благав дати йому ще один шанс до того, як вона відповіла.»",
+        "prompt": "Почуйте розповідь про прохання дитини.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Він благав дати йому ще один шанс до того, як вона відповіла.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i06:audio"
+        ],
+        "accessibilityLabel": "Почуйте розповідь про прохання дитини.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "He had begged for another chance before she answered.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Он умолял дать ему ещё один шанс до того, как она ответила.»",
-            "uk": "Скажіть: «Він благав дати йому ще один шанс до того, як вона відповіла.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i06:audio",
+            "transcript": "My son had begged for a dog before we visited the shelter."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My son had begged for a dog before we visited the shelter.",
           "orderedTokens": [
-            "He",
+            "My",
+            "son",
             "had",
             "begged",
             "for",
-            "another",
-            "chance",
+            "a",
+            "dog",
             "before",
-            "she",
-            "answered"
+            "we",
+            "visited",
+            "the",
+            "shelter"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1666,177 +1591,65 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i08",
-        "ordinal": 14,
+        "interactionId": "en:lesson-25:session-22:i07",
+        "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про минуле.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i08:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i08:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i08:r3",
-            "text": "was"
-          }
-        ],
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть дати ще одну можливість: «Будь ласка, дай мені ще один шанс».",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Попросіть дати ще одну можливість: «Будь ласка, дай мені ще один шанс».",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i07:audio",
+            "transcript": "Please give me another chance."
           },
-          "gappedTargetPhrase": "He ___ begged for another chance before she answered.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-22:i08:r1",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i08:r2",
-              "text": "has"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i08:r3",
-              "text": "was"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь про минуле.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            }
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please give me another chance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-22:word:accused",
+        "ordinal": 14,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i09:r1",
-            "text": "He had begged for another chance before she answered."
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i09:r2",
-            "text": "She had begged for another chance before he answered."
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i09:r3",
-            "text": "He had begged for more time before she answered."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-22:i09:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i09:audio",
-            "transcript": "He had begged for another chance before she answered."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-22:i09:r1",
-              "targetText": "He had begged for another chance before she answered.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i09:r2",
-              "targetText": "She had begged for another chance before he answered.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i09:r3",
-              "targetText": "He had begged for more time before she answered.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i09:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He had begged for another chance before she answered.",
-                "uk": "У записі звучить He had begged for another chance before she answered."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i09:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит He had begged for another chance before she answered.",
-                "uk": "У записі звучить He had begged for another chance before she answered."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:word:applauded",
-        "ordinal": 16,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — applauded",
+        "prompt": "Картка слова — accused",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:word:applauded:audio"
+          "en:lesson-25:session-22:word:accused:audio"
         ],
-        "accessibilityLabel": "Картка слова — applauded",
+        "accessibilityLabel": "Картка слова — accused",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:word:applauded:audio",
-            "transcript": "applauded"
+            "audioTargetId": "en:lesson-25:session-22:word:accused:audio",
+            "transcript": "accused"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:word:applauded:r1",
-              "targetText": "applauded",
+              "responseId": "en:lesson-25:session-22:word:accused:r1",
+              "targetText": "accused",
               "meaningByLocale": {
-                "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
-                "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
+                "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
+                "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
               }
             }
           ],
@@ -1844,191 +1657,83 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "applauded",
+            "word": "accused",
             "definitionByLocale": {
-              "ru": "Аплодировали. Applaud — аплодировать; applauded — третья форма.",
-              "uk": "Аплодували. Applaud — аплодувати; applauded — третя форма."
+              "ru": "Обвинили. Accuse — обвинять; accused — третья форма.",
+              "uk": "Звинуватили. Accuse — звинувачувати; accused — третя форма."
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Ми поаплодували співакові до того, як згасло світло.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Ми поаплодували співакові до того, як згасло світло.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We had applauded the singer before the lights went out.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Мы поаплодировали певцу до того, как погас свет.»",
-            "uk": "Скажіть: «Ми поаплодували співакові до того, як згасло світло.»"
-          },
-          "orderedTokens": [
-            "We",
-            "had",
-            "applauded",
-            "the",
-            "singer",
-            "before",
-            "the",
-            "lights",
-            "went",
-            "out"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про минуле.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-22:i11:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i11:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-22:i11:r3",
-            "text": "were"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про минуле.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о прошлом.",
-            "uk": "Доповніть розповідь про минуле."
-          },
-          "gappedTargetPhrase": "We ___ applauded the singer before the lights went out.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-22:i11:r1",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i11:r2",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i11:r3",
-              "text": "were"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь про минуле.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-22:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-22:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про минуле.",
-              "feedbackByLocale": {
-                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-22:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-22:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-22:i12:r1",
-            "text": "We had applauded the singer before the lights went out."
+            "responseId": "en:lesson-25:session-22:i08:r1",
+            "text": "They had accused me of lying before they read the message."
           },
           {
-            "responseId": "en:lesson-25:session-22:i12:r2",
-            "text": "They had applauded the singer before the lights went out."
+            "responseId": "en:lesson-25:session-22:i08:r2",
+            "text": "They had accused her of lying before they read the message."
           },
           {
-            "responseId": "en:lesson-25:session-22:i12:r3",
-            "text": "We had applauded the dancer before the lights went out."
+            "responseId": "en:lesson-25:session-22:i08:r3",
+            "text": "They had accused me of lying before they heard the message."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i12:audio"
+          "en:lesson-25:session-22:i08:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i12:audio",
-            "transcript": "We had applauded the singer before the lights went out."
+            "audioTargetId": "en:lesson-25:session-22:i08:audio",
+            "transcript": "They had accused me of lying before they read the message."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-22:i12:r1",
-              "targetText": "We had applauded the singer before the lights went out.",
+              "responseId": "en:lesson-25:session-22:i08:r1",
+              "targetText": "They had accused me of lying before they read the message.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i12:r2",
-              "targetText": "They had applauded the singer before the lights went out.",
+              "responseId": "en:lesson-25:session-22:i08:r2",
+              "targetText": "They had accused her of lying before they read the message.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-22:i12:r3",
-              "targetText": "We had applauded the dancer before the lights went out.",
+              "responseId": "en:lesson-25:session-22:i08:r3",
+              "targetText": "They had accused me of lying before they heard the message.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-22:i12:r2",
+              "responseId": "en:lesson-25:session-22:i08:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We had applauded the singer before the lights went out.",
-                "uk": "У записі звучить We had applauded the singer before the lights went out."
+                "ru": "В записи звучит They had accused me of lying before they read the message.",
+                "uk": "У записі звучить They had accused me of lying before they read the message."
               }
             },
             {
-              "responseId": "en:lesson-25:session-22:i12:r3",
+              "responseId": "en:lesson-25:session-22:i08:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We had applauded the singer before the lights went out.",
-                "uk": "У записі звучить We had applauded the singer before the lights went out."
+                "ru": "В записи звучит They had accused me of lying before they read the message.",
+                "uk": "У записі звучить They had accused me of lying before they read the message."
               }
             }
           ],
@@ -2038,21 +1743,90 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-22:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i09:r1",
+            "text": "of"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i09:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i09:r3",
+            "text": "to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вас обвинили во лжи, а не поблагодарили. Дополните предлог после accused.",
+            "uk": "Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused."
+          },
+          "gappedTargetPhrase": "They had accused me ___ lying.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-22:i09:r1",
+              "text": "of"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i09:r2",
+              "text": "at"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i09:r3",
+              "text": "to"
+            }
+          ],
+          "testedDimension": "Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused.",
+              "feedbackByLocale": {
+                "ru": "Accuse someone of something — обвинять кого-то в чём-то.",
+                "uk": "Accuse someone of something — звинувачувати когось у чомусь."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused.",
+              "feedbackByLocale": {
+                "ru": "После accused me нужен of, не to.",
+                "uk": "Після accused me потрібне of, не to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-22:i10",
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте форми з перекладом",
+        "prompt": "Розрізніть заборону, звинувачення, прохання й підтримку",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "accessibilityLabel": "Розрізніть заборону, звинувачення, прохання й підтримку",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-22:i13:p1",
+              "pairId": "en:lesson-25:session-22:i10:p1",
               "target": "accused",
               "meaningByLocale": {
                 "ru": "обвинили",
@@ -2060,7 +1834,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-22:i13:p2",
+              "pairId": "en:lesson-25:session-22:i10:p2",
               "target": "forbidden",
               "meaningByLocale": {
                 "ru": "запретила",
@@ -2068,7 +1842,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-22:i13:p3",
+              "pairId": "en:lesson-25:session-22:i10:p3",
               "target": "begged",
               "meaningByLocale": {
                 "ru": "умолял",
@@ -2076,7 +1850,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-22:i13:p4",
+              "pairId": "en:lesson-25:session-22:i10:p4",
               "target": "applauded",
               "meaningByLocale": {
                 "ru": "аплодировали",
@@ -2111,33 +1885,64 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-22:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Уже закінчив",
+        "interactionId": "en:lesson-25:session-22:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть спочатку вислухати вас: «Будь ласка, дай мені пояснити».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-22:i14:audio"
+          "en:lesson-25:session-22:i11:audio"
         ],
-        "accessibilityLabel": "Уже закінчив",
+        "accessibilityLabel": "Попросіть спочатку вислухати вас: «Будь ласка, дай мені пояснити».",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i14:audio",
-            "transcript": "She had finished before I called."
+            "audioTargetId": "en:lesson-25:session-22:i11:audio",
+            "transcript": "Please let me explain."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She had finished before I called.",
+          "targetPhrase": "Please let me explain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Згадайте старе шкільне правило: «Раніше нам доводилося чекати надворі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Згадайте старе шкільне правило: «Раніше нам доводилося чекати надворі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to have to wait outside.",
+          "localizedMeaning": {
+            "ru": "Вспомните старое школьное правило: «Раньше нам приходилось ждать снаружи».",
+            "uk": "Згадайте старе шкільне правило: «Раніше нам доводилося чекати надворі»."
+          },
           "orderedTokens": [
-            "She",
-            "had",
-            "finished",
-            "before",
-            "I",
-            "called"
+            "We",
+            "used",
+            "to",
+            "have",
+            "to",
+            "wait",
+            "outside"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2149,34 +1954,181 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i13:r1",
+            "text": "At school we would clap after every performance."
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i13:r2",
+            "text": "At school we would sing after every performance."
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i13:r3",
+            "text": "At home we would clap after every performance."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-22:i13:audio",
+            "transcript": "At school we would clap after every performance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-22:i13:r1",
+              "targetText": "At school we would clap after every performance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i13:r2",
+              "targetText": "At school we would sing after every performance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i13:r3",
+              "targetText": "At home we would clap after every performance.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i13:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would clap after every performance.",
+                "uk": "У записі звучить At school we would clap after every performance."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i13:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At school we would clap after every performance.",
+                "uk": "У записі звучить At school we would clap after every performance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Один концерт закінчився вчора. Ви поаплодували тоді.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i14:r1",
+            "text": "applauded"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i14:r2",
+            "text": "have applauded"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i14:r3",
+            "text": "would applaud"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один концерт закінчився вчора. Ви поаплодували тоді.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Один концерт закончился вчера. Вы поаплодировали тогда.",
+            "uk": "Один концерт закінчився вчора. Ви поаплодували тоді."
+          },
+          "gappedTargetPhrase": "We ___ the singer yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-22:i14:r1",
+              "text": "applauded"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i14:r2",
+              "text": "have applauded"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i14:r3",
+              "text": "would applaud"
+            }
+          ],
+          "testedDimension": "Один концерт закінчився вчора. Ви поаплодували тоді.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Один концерт закінчився вчора. Ви поаплодували тоді.",
+              "feedbackByLocale": {
+                "ru": "Yesterday требует Past Simple applauded.",
+                "uk": "Yesterday потребує Past Simple applauded."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Один концерт закінчився вчора. Ви поаплодували тоді.",
+              "feedbackByLocale": {
+                "ru": "Would applaud описывает прежнюю привычку; здесь один концерт.",
+                "uk": "Would applaud описує колишню звичку; тут один концерт."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-22:i15",
         "ordinal": 22,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Потяг уже поїхав",
+        "prompt": "Почуйте, чому глядач запізнився.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-22:i15:audio"
         ],
-        "accessibilityLabel": "Потяг уже поїхав",
+        "accessibilityLabel": "Почуйте, чому глядач запізнився.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-22:i15:audio",
-            "transcript": "The train had left when we arrived."
+            "transcript": "The show had started before I found my seat."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "hiddenTargetPhrase": "The show had started before I found my seat.",
           "orderedTokens": [
             "The",
-            "train",
+            "show",
             "had",
-            "left",
-            "when",
-            "we",
-            "arrived"
+            "started",
+            "before",
+            "I",
+            "found",
+            "my",
+            "seat"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2190,32 +2142,68 @@
       {
         "interactionId": "en:lesson-25:session-22:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Я благав дати мені ще один шанс до того, як вона відповіла».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-22:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Я благав дати мені ще один шанс до того, як вона відповіла».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i16:audio",
-            "transcript": "I had begged for another chance before she answered."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вже вибачилися. Доповніть Present Perfect.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-22:i16:r1",
+            "text": "said"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "I had begged for another chance before she answered.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-22:i16:r2",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-25:session-22:i16:r3",
+            "text": "saying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вже вибачилися. Доповніть Present Perfect.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже извинились. Дополните Present Perfect.",
+            "uk": "Ви вже вибачилися. Доповніть Present Perfect."
+          },
+          "gappedTargetPhrase": "I have already ___ sorry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-22:i16:r1",
+              "text": "said"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i16:r2",
+              "text": "say"
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i16:r3",
+              "text": "saying"
+            }
+          ],
+          "testedDimension": "Ви вже вибачилися. Доповніть Present Perfect.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-22:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви вже вибачилися. Доповніть Present Perfect.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма said.",
+                "uk": "Після have потрібна форма said."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-22:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви вже вибачилися. Доповніть Present Perfect.",
+              "feedbackByLocale": {
+                "ru": "Have saying не образует Present Perfect.",
+                "uk": "Have saying не утворює Present Perfect."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -2223,33 +2211,37 @@
       {
         "interactionId": "en:lesson-25:session-22:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Вони поаплодували танцівникові до того, як згасло світло».",
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Укажіть, де решта дітей: «Інші діти чекають біля дверей».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-22:i17:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Вони поаплодували танцівникові до того, як згасло світло».",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Укажіть, де решта дітей: «Інші діти чекають біля дверей».",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-22:i17:audio",
-            "transcript": "They had applauded the dancer before the lights went out."
+          "family": "phrase_builder",
+          "targetPhrase": "The other children are waiting by the door.",
+          "localizedMeaning": {
+            "ru": "Укажите, где остальные дети: «Другие дети ждут у двери».",
+            "uk": "Укажіть, де решта дітей: «Інші діти чекають біля дверей»."
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "They had applauded the dancer before the lights went out.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "The",
+            "other",
+            "children",
+            "are",
+            "waiting",
+            "by",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       }
@@ -2257,24 +2249,19 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-25:session-22:word:accused",
-      "correctText": "accused",
+      "interactionId": "en:lesson-25:session-22:word:applauded",
+      "correctText": "applauded",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-22:i01",
-      "correctText": "They had accused him of lying before he showed the letter.",
-      "correctResponseId": null
+      "correctText": "We had applauded the children before we left the hall.",
+      "correctResponseId": "en:lesson-25:session-22:i01:r1"
     },
     {
       "interactionId": "en:lesson-25:session-22:i02",
-      "correctText": "had",
-      "correctResponseId": "en:lesson-25:session-22:i02:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-22:i03",
-      "correctText": "They had accused him of lying before he showed the letter.",
-      "correctResponseId": "en:lesson-25:session-22:i03:r1"
+      "correctText": "You did really well.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-22:word:forbidden",
@@ -2282,19 +2269,19 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-22:i04",
-      "correctText": "My mother had forbidden snacks before I opened the cupboard.",
+      "interactionId": "en:lesson-25:session-22:i03",
+      "correctText": "The teacher had forbidden phones before the lesson started.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-22:i05",
-      "correctText": "had",
-      "correctResponseId": "en:lesson-25:session-22:i05:r1"
+      "interactionId": "en:lesson-25:session-22:i04",
+      "correctText": "forbidden",
+      "correctResponseId": "en:lesson-25:session-22:i04:r1"
     },
     {
-      "interactionId": "en:lesson-25:session-22:i06",
-      "correctText": "My mother had forbidden snacks before I opened the cupboard.",
-      "correctResponseId": "en:lesson-25:session-22:i06:r1"
+      "interactionId": "en:lesson-25:session-22:i05",
+      "correctText": "Can I use my phone outside?",
+      "correctResponseId": "en:lesson-25:session-22:i05:r1"
     },
     {
       "interactionId": "en:lesson-25:session-22:word:begged",
@@ -2302,63 +2289,68 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-22:i06",
+      "correctText": "My son had begged for a dog before we visited the shelter.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-25:session-22:i07",
-      "correctText": "He had begged for another chance before she answered.",
+      "correctText": "Please give me another chance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-22:word:accused",
+      "correctText": "accused",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-22:i08",
-      "correctText": "had",
+      "correctText": "They had accused me of lying before they read the message.",
       "correctResponseId": "en:lesson-25:session-22:i08:r1"
     },
     {
       "interactionId": "en:lesson-25:session-22:i09",
-      "correctText": "He had begged for another chance before she answered.",
+      "correctText": "of",
       "correctResponseId": "en:lesson-25:session-22:i09:r1"
     },
     {
-      "interactionId": "en:lesson-25:session-22:word:applauded",
-      "correctText": "applauded",
-      "correctResponseId": null
-    },
-    {
       "interactionId": "en:lesson-25:session-22:i10",
-      "correctText": "We had applauded the singer before the lights went out.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-22:i11",
-      "correctText": "had",
-      "correctResponseId": "en:lesson-25:session-22:i11:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-22:i12",
-      "correctText": "We had applauded the singer before the lights went out.",
-      "correctResponseId": "en:lesson-25:session-22:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-22:i13",
       "correctText": "",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-22:i14",
-      "correctText": "She had finished before I called.",
+      "interactionId": "en:lesson-25:session-22:i11",
+      "correctText": "Please let me explain.",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-22:i12",
+      "correctText": "We used to have to wait outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-22:i13",
+      "correctText": "At school we would clap after every performance.",
+      "correctResponseId": "en:lesson-25:session-22:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-22:i14",
+      "correctText": "applauded",
+      "correctResponseId": "en:lesson-25:session-22:i14:r1"
+    },
+    {
       "interactionId": "en:lesson-25:session-22:i15",
-      "correctText": "The train had left when we arrived.",
+      "correctText": "The show had started before I found my seat.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-22:i16",
-      "correctText": "I had begged for another chance before she answered.",
-      "correctResponseId": null
+      "correctText": "said",
+      "correctResponseId": "en:lesson-25:session-22:i16:r1"
     },
     {
       "interactionId": "en:lesson-25:session-22:i17",
-      "correctText": "They had applauded the dancer before the lights went out.",
+      "correctText": "The other children are waiting by the door.",
       "correctResponseId": null
     }
   ]

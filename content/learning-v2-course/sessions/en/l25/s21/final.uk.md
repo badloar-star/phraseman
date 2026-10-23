@@ -49,103 +49,103 @@ Lengthen — подовжувати, робити довшим. She had lengthen
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — curled**
-<!-- interaction_id: en:lesson-25:session-21:word:curled; family: word_card -->
-> **curled** — Завила. Curl — завивати; curled — третя форма.
-
-**2 · Скажіть: «Вона завила волосся до приходу гостей.»**
-<!-- interaction_id: en:lesson-25:session-21:i01; family: phrase_builder -->
-Плитки: `arrived` `guests` `the` `before` `hair` `her` `curled` `had` `She` → **She had curled her hair before the guests arrived.**
-
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-21:i02; family: context_gap_grammar -->
-She ___ curled her hair before the guests arrived. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-21:i03; family: listen_choose -->
-🔊 *She had curled her hair before the guests arrived.* → **She had curled her hair before the guests arrived.** · He had curled his hair before the guests arrived. · She had curled her hair before her friends arrived.
-- He had curled his hair before the guests arrived. — *У записі звучить She had curled her hair before the guests arrived.*
-- She had curled her hair before her friends arrived. — *У записі звучить She had curled her hair before the guests arrived.*
-
-**5 · Картка слова — wrinkled**
+**1 · Картка слова — wrinkled**
 <!-- interaction_id: en:lesson-25:session-21:word:wrinkled; family: word_card -->
 > **wrinkled** — Пом’ялася. Wrinkle — м’ятися; wrinkled — третя форма.
 
-**6 · Скажіть: «Моя сорочка пом’ялася до того, як я дістався станції.»**
-<!-- interaction_id: en:lesson-25:session-21:i04; family: phrase_builder -->
-Плитки: `station` `the` `reached` `I` `before` `wrinkled` `had` `shirt` `My` → **My shirt had wrinkled before I reached the station.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-21:i01; family: listen_choose -->
+🔊 *My dress had wrinkled before the party started.* → **My dress had wrinkled before the party started.** · My shirt had wrinkled before the party started. · My dress had wrinkled before the party ended.
+- My shirt had wrinkled before the party started. — *У записі звучить My dress had wrinkled before the party started.*
+- My dress had wrinkled before the party ended. — *У записі звучить My dress had wrinkled before the party started.*
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-21:i05; family: context_gap_grammar -->
-My shirt ___ wrinkled before I reached the station. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Ви шукаєте праску. Запитайте: «Де праска?»**
+<!-- interaction_id: en:lesson-25:session-21:i02; family: scripted_repeat_compare -->
+🎙 **Where is the iron?**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-21:i06; family: listen_choose -->
-🔊 *My shirt had wrinkled before I reached the station.* → **My shirt had wrinkled before I reached the station.** · Her shirt had wrinkled before she reached the station. · My shirt had wrinkled before I reached the office.
-- Her shirt had wrinkled before she reached the station. — *У записі звучить My shirt had wrinkled before I reached the station.*
-- My shirt had wrinkled before I reached the office. — *У записі звучить My shirt had wrinkled before I reached the station.*
-
-**9 · Картка слова — shortened**
+**4 · Картка слова — shortened**
 <!-- interaction_id: en:lesson-25:session-21:word:shortened; family: word_card -->
 > **shortened** — Укоротив. Shorten — укорочувати; shortened — третя форма.
 
-**10 · Скажіть: «Він укоротив штани до того, як я їх приміряв.»**
-<!-- interaction_id: en:lesson-25:session-21:i07; family: phrase_builder -->
-Плитки: `on` `them` `tried` `I` `before` `trousers` `the` `shortened` `had` `He` → **He had shortened the trousers before I tried them on.**
+**5 · Рукави виправили до примірки: «Вона вкоротила рукави до того, як я приміряв пальто».**
+<!-- interaction_id: en:lesson-25:session-21:i03; family: phrase_builder -->
+Плитки: `coat` `the` `on` `tried` `I` `before` `sleeves` `the` `shortened` `had` `She` → **She had shortened the sleeves before I tried on the coat.**
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-21:i08; family: context_gap_grammar -->
-He ___ shortened the trousers before I tried them on. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-21:i09; family: listen_choose -->
-🔊 *He had shortened the trousers before I tried them on.* → **He had shortened the trousers before I tried them on.** · She had shortened the trousers before I tried them on. · He had shortened the sleeves before I tried them on.
-- She had shortened the trousers before I tried them on. — *У записі звучить He had shortened the trousers before I tried them on.*
-- He had shortened the sleeves before I tried them on. — *У записі звучить He had shortened the trousers before I tried them on.*
-
-**13 · Картка слова — lengthened**
+**6 · Картка слова — lengthened**
 <!-- interaction_id: en:lesson-25:session-21:word:lengthened; family: word_card -->
 > **lengthened** — Подовжила. Lengthen — подовжувати; lengthened — третя форма.
 
-**14 · Скажіть: «Вона подовжила спідницю до того, як донька її вдягнула.»**
-<!-- interaction_id: en:lesson-25:session-21:i10; family: phrase_builder -->
-Плитки: `it` `wore` `daughter` `her` `before` `skirt` `the` `lengthened` `had` `She` → **She had lengthened the skirt before her daughter wore it.**
+**7 · Штани були надто короткими. Їх зробили довшими до примірки.**
+<!-- interaction_id: en:lesson-25:session-21:i04; family: context_gap_grammar -->
+She had ___ the trousers before I tried them on. → **lengthened** · shortened · washed
+- shortened — *Shortened — вкоротила; тут, навпаки, додали довжину.*
+- washed — *Washed — випрала; тут потрібне слово про збільшення довжини.*
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-21:i11; family: context_gap_grammar -->
-She ___ lengthened the skirt before her daughter wore it. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-21:i05; family: listen_choose -->
+🔊 *Does this jacket fit you?* → **Does this jacket fit you?** · Does this skirt fit you? · Does this jacket fit her?
+- Does this skirt fit you? — *У записі звучить Does this jacket fit you?*
+- Does this jacket fit her? — *У записі звучить Does this jacket fit you?*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-21:i12; family: listen_choose -->
-🔊 *She had lengthened the skirt before her daughter wore it.* → **She had lengthened the skirt before her daughter wore it.** · He had lengthened the skirt before his daughter wore it. · She had lengthened the dress before her daughter wore it.
-- He had lengthened the skirt before his daughter wore it. — *У записі звучить She had lengthened the skirt before her daughter wore it.*
-- She had lengthened the dress before her daughter wore it. — *У записі звучить She had lengthened the skirt before her daughter wore it.*
+**9 · Почуйте результат примірки.**
+<!-- interaction_id: en:lesson-25:session-21:i06; family: listen_build_dictation -->
+🔊 *The sleeves are still too long.* Плитки: `long` `too` `still` `are` `sleeves` `The` → **The sleeves are still too long.**
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-21:i13; family: speed_match -->
+**10 · Картка слова — curled**
+<!-- interaction_id: en:lesson-25:session-21:word:curled; family: word_card -->
+> **curled** — Завила. Curl — завивати; curled — третя форма.
+
+**11 · Ви готувалися до зустрічі: «Я завила волосся до приходу друзів».**
+<!-- interaction_id: en:lesson-25:session-21:i07; family: phrase_builder -->
+Плитки: `arrived` `friends` `my` `before` `hair` `my` `curled` `had` `I` → **I had curled my hair before my friends arrived.**
+
+**12 · Запитайте думку подруги: «Як тобі моя зачіска?»**
+<!-- interaction_id: en:lesson-25:session-21:i08; family: scripted_repeat_compare -->
+🎙 **Do you like my hair?**
+
+**13 · Зіставте зміни з перекладом**
+<!-- interaction_id: en:lesson-25:session-21:i09; family: speed_match -->
 curled — завила · wrinkled — пом’ялася · shortened — укоротив · lengthened — подовжила
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-21:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Сумку зібрали раніше, ніж приїхало таксі. Доповніть Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-21:i10; family: context_gap_grammar -->
+I ___ packed my bag before the taxi arrived. → **had** · have · was
+- have — *Have packed стосується теперішнього; тут точка відліку — приїзд таксі в минулому.*
+- was — *Потрібно had packed для дії до приїзду таксі.*
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-21:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-21:i11; family: listen_choose -->
+🔊 *I used to wear my hair short.* → **I used to wear my hair short.** · I used to wear my hair long. · She used to wear her hair short.
+- I used to wear my hair long. — *У записі звучить I used to wear my hair short.*
+- She used to wear her hair short. — *У записі звучить I used to wear my hair short.*
 
-**20 · Скажіть: «Я завила волосся до приходу гостей».**
-<!-- interaction_id: en:lesson-25:session-21:i16; family: scripted_repeat_compare -->
-🎙 **I had curled my hair before the guests arrived.**
+**16 · Почуйте колишній звичай перед виходом.**
+<!-- interaction_id: en:lesson-25:session-21:i12; family: listen_build_dictation -->
+🔊 *Before parties we would help each other choose clothes.* Плитки: `clothes` `choose` `other` `each` `help` `would` `we` `parties` `Before` → **Before parties we would help each other choose clothes.**
 
-**21 · Скажіть: «Вони укоротили штани до того, як він їх приміряв».**
-<!-- interaction_id: en:lesson-25:session-21:i17; family: scripted_repeat_compare -->
-🎙 **They had shortened the trousers before he tried them on.**
+**17 · Ви купили одну конкретну сорочку вчора.**
+<!-- interaction_id: en:lesson-25:session-21:i13; family: context_gap_grammar -->
+I ___ this shirt yesterday. → **bought** · have bought · would buy
+- have bought — *Yesterday потребує Past Simple bought.*
+- would buy — *Would buy описує повторюваність, а тут одна вчорашня покупка.*
+
+**18 · Цей розмір не підійшов. Попросіть: «Можна приміряти інший розмір?»**
+<!-- interaction_id: en:lesson-25:session-21:i14; family: scripted_repeat_compare -->
+🎙 **Can I try another size?**
+
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-21:i15; family: listen_choose -->
+🔊 *I have already ironed your shirt.* → **I have already ironed your shirt.** · I have already washed your shirt. · She has already ironed your shirt.
+- I have already washed your shirt. — *У записі звучить I have already ironed your shirt.*
+- She has already ironed your shirt. — *У записі звучить I have already ironed your shirt.*
+
+**20 · Одні туфлі тут, другі біля дверей. Скажіть: «Інші туфлі біля дверей».**
+<!-- interaction_id: en:lesson-25:session-21:i16; family: phrase_builder -->
+Плитки: `door` `the` `by` `are` `shoes` `other` `The` → **The other shoes are by the door.**
+
+**21 · Ви вже вибрали одяг. Доповніть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-21:i17; family: context_gap_grammar -->
+I have already ___ my clothes. → **chosen** · chose · choose
+- chose — *Після have потрібна третя форма chosen.*
+- choose — *Have choose неправильно; потрібно have chosen.*
 

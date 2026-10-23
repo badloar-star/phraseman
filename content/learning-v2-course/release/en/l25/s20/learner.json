@@ -4,8 +4,197 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-25:session-20:word:blended",
+      "interactionId": "en:lesson-25:session-20:i01",
       "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-20:i01:r1",
+          "text": "Have you started cooking yet?"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i01:r2",
+          "text": "Have you finished cooking yet?"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i01:r3",
+          "text": "Have they started cooking yet?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-20:i01:audio",
+          "transcript": "Have you started cooking yet?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-20:i01:r1",
+            "targetText": "Have you started cooking yet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i01:r2",
+            "targetText": "Have you finished cooking yet?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i01:r3",
+            "targetText": "Have they started cooking yet?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-20:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you started cooking yet?",
+              "uk": "У записі звучить Have you started cooking yet?"
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Have you started cooking yet?",
+              "uk": "У записі звучить Have you started cooking yet?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:word:shredded",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shredded",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-20:word:shredded:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shredded",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-20:word:shredded:audio",
+          "transcript": "shredded"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-20:word:shredded:r1",
+            "targetText": "shredded",
+            "meaningByLocale": {
+              "ru": "нашинковал. Shred — нарезать тонкими полосками; shredded — третья форма.",
+              "uk": "нашаткував. Shred — нарізати тонкими смужками; shredded — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shredded",
+          "definitionByLocale": {
+            "ru": "нашинковал. Shred — нарезать тонкими полосками; shredded — третья форма.",
+            "uk": "нашаткував. Shred — нарізати тонкими смужками; shredded — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Капуста уже была готова к вашему приходу: «Я нашинковал капусту до твоего прихода».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Капуста уже была готова к вашему приходу: «Я нашинковал капусту до твоего прихода».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I had shredded the cabbage before you arrived.",
+        "localizedMeaning": {
+          "ru": "Капуста уже была готова к вашему приходу: «Я нашинковал капусту до твоего прихода».",
+          "uk": "Капуста вже була готова до вашого приходу: «Я нашаткував капусту до твого приходу»."
+        },
+        "orderedTokens": [
+          "I",
+          "had",
+          "shredded",
+          "the",
+          "cabbage",
+          "before",
+          "you",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:i03",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотите помочь на кухне. Спросите: «Что мне делать дальше?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-20:i03:audio"
+      ],
+      "accessibilityLabel": "Вы хотите помочь на кухне. Спросите: «Что мне делать дальше?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-20:i03:audio",
+          "transcript": "What should I do next?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What should I do next?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:word:blended",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -28,8 +217,8 @@
             "responseId": "en:lesson-25:session-20:word:blended:r1",
             "targetText": "blended",
             "meaningByLocale": {
-              "ru": "смешала до однородности. Blend — смешивать до однородности; blended — третья форма.",
-              "uk": "змішала до однорідності. Blend — змішувати до однорідності; blended — третя форма."
+              "ru": "смешал до однородности. Blend — смешивать; blended — третья форма.",
+              "uk": "змішав до однорідності. Blend — змішувати; blended — третя форма."
             }
           }
         ],
@@ -39,189 +228,81 @@
         "wordCard": {
           "word": "blended",
           "definitionByLocale": {
-            "ru": "смешала до однородности. Blend — смешивать до однородности; blended — третья форма.",
-            "uk": "змішала до однорідності. Blend — змішувати до однорідності; blended — третя форма."
+            "ru": "смешал до однородности. Blend — смешивать; blended — третья форма.",
+            "uk": "змішав до однорідності. Blend — змішувати; blended — третя форма."
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-20:i01",
-      "ordinal": 5,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Она смешала фрукты до однородности до того, как я добавил молоко.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Она смешала фрукты до однородности до того, как я добавил молоко.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She had blended the fruit before I added the milk.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Она смешала фрукты до однородности до того, как я добавил молоко.»",
-          "uk": "Скажіть: «Вона змішала фрукти до однорідності до того, як я додав молоко.»"
-        },
-        "orderedTokens": [
-          "She",
-          "had",
-          "blended",
-          "the",
-          "fruit",
-          "before",
-          "I",
-          "added",
-          "the",
-          "milk"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-20:i02:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i02:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i02:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "She ___ blended the fruit before I added the milk.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-20:i02:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i02:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i02:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-20:i02:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i02:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i03",
-      "ordinal": 7,
+      "interactionId": "en:lesson-25:session-20:i04",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-20:i03:r1",
-          "text": "She had blended the fruit before I added the milk."
+          "responseId": "en:lesson-25:session-20:i04:r1",
+          "text": "I had blended the bananas before I added the yoghurt."
         },
         {
-          "responseId": "en:lesson-25:session-20:i03:r2",
-          "text": "He had blended the fruit before I added the milk."
+          "responseId": "en:lesson-25:session-20:i04:r2",
+          "text": "I had blended the berries before I added the yoghurt."
         },
         {
-          "responseId": "en:lesson-25:session-20:i03:r3",
-          "text": "She had blended the fruit before I added the yoghurt."
+          "responseId": "en:lesson-25:session-20:i04:r3",
+          "text": "I had blended the bananas before I added the milk."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-20:i03:audio"
+        "en:lesson-25:session-20:i04:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:i03:audio",
-          "transcript": "She had blended the fruit before I added the milk."
+          "audioTargetId": "en:lesson-25:session-20:i04:audio",
+          "transcript": "I had blended the bananas before I added the yoghurt."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-20:i03:r1",
-            "targetText": "She had blended the fruit before I added the milk.",
+            "responseId": "en:lesson-25:session-20:i04:r1",
+            "targetText": "I had blended the bananas before I added the yoghurt.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-20:i03:r2",
-            "targetText": "He had blended the fruit before I added the milk.",
+            "responseId": "en:lesson-25:session-20:i04:r2",
+            "targetText": "I had blended the berries before I added the yoghurt.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-20:i03:r3",
-            "targetText": "She had blended the fruit before I added the yoghurt.",
+            "responseId": "en:lesson-25:session-20:i04:r3",
+            "targetText": "I had blended the bananas before I added the milk.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-20:i03:r2",
+            "responseId": "en:lesson-25:session-20:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She had blended the fruit before I added the milk.",
-              "uk": "У записі звучить She had blended the fruit before I added the milk."
+              "ru": "В записи звучит I had blended the bananas before I added the yoghurt.",
+              "uk": "У записі звучить I had blended the bananas before I added the yoghurt."
             }
           },
           {
-            "responseId": "en:lesson-25:session-20:i03:r3",
+            "responseId": "en:lesson-25:session-20:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She had blended the fruit before I added the milk.",
-              "uk": "У записі звучить She had blended the fruit before I added the milk."
+              "ru": "В записи звучит I had blended the bananas before I added the yoghurt.",
+              "uk": "У записі звучить I had blended the bananas before I added the yoghurt."
             }
           }
         ],
@@ -231,9 +312,78 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-20:word:dissolved",
-      "ordinal": 8,
+      "interactionId": "en:lesson-25:session-20:i05",
+      "ordinal": 10,
       "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фрукты измельчили и смешали до однородности, а не только нарезали полосками.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-20:i05:r1",
+          "text": "blended"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i05:r2",
+          "text": "shredded"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i05:r3",
+          "text": "bought"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фрукты измельчили и смешали до однородности, а не только нарезали полосками.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Фрукты измельчили и смешали до однородности, а не только нарезали полосками.",
+          "uk": "Фрукти подрібнили й змішали до однорідності, а не лише нарізали смужками."
+        },
+        "gappedTargetPhrase": "She had ___ the fruit before she poured it into glasses.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-20:i05:r1",
+            "text": "blended"
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i05:r2",
+            "text": "shredded"
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i05:r3",
+            "text": "bought"
+          }
+        ],
+        "testedDimension": "Фрукты измельчили и смешали до однородности, а не только нарезали полосками.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Фрукты измельчили и смешали до однородности, а не только нарезали полосками.",
+            "feedbackByLocale": {
+              "ru": "Shredded — нарезала полосками; здесь сделали однородную смесь.",
+              "uk": "Shredded — нарізала смужками; тут зробили однорідну суміш."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Фрукты измельчили и смешали до однородности, а не только нарезали полосками.",
+            "feedbackByLocale": {
+              "ru": "Bought — купила; здесь описан способ приготовления.",
+              "uk": "Bought — купила; тут описано спосіб приготування."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:word:dissolved",
+      "ordinal": 11,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Карточка слова — dissolved",
@@ -274,34 +424,36 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-20:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-25:session-20:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Я растворил сахар до того, как она попробовала чай.»",
+      "prompt": "Услышьте, что произошло с сахаром.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Я растворил сахар до того, как она попробовала чай.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-20:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что произошло с сахаром.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I had dissolved the sugar before she tasted the tea.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Я растворил сахар до того, как она попробовала чай.»",
-          "uk": "Скажіть: «Я розчинив цукор до того, як вона скуштувала чай.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-20:i06:audio",
+          "transcript": "The sugar had dissolved before I tasted the drink."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The sugar had dissolved before I tasted the drink.",
         "orderedTokens": [
-          "I",
+          "The",
+          "sugar",
           "had",
           "dissolved",
-          "the",
-          "sugar",
           "before",
-          "she",
+          "I",
           "tasted",
           "the",
-          "tea"
+          "drink"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,142 +465,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-20:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-20:i05:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i05:r2",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i05:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "I ___ dissolved the sugar before she tasted the tea.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-20:i05:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i05:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i05:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-20:i05:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i05:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i06",
-      "ordinal": 11,
+      "interactionId": "en:lesson-25:session-20:i07",
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-20:i06:r1",
-          "text": "I had dissolved the sugar before she tasted the tea."
+          "responseId": "en:lesson-25:session-20:i07:r1",
+          "text": "Would you like some more tea?"
         },
         {
-          "responseId": "en:lesson-25:session-20:i06:r2",
-          "text": "He had dissolved the sugar before she tasted the tea."
+          "responseId": "en:lesson-25:session-20:i07:r2",
+          "text": "Would you like some more soup?"
         },
         {
-          "responseId": "en:lesson-25:session-20:i06:r3",
-          "text": "I had dissolved the sugar before she tasted the coffee."
+          "responseId": "en:lesson-25:session-20:i07:r3",
+          "text": "Would they like some more tea?"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-20:i06:audio"
+        "en:lesson-25:session-20:i07:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:i06:audio",
-          "transcript": "I had dissolved the sugar before she tasted the tea."
+          "audioTargetId": "en:lesson-25:session-20:i07:audio",
+          "transcript": "Would you like some more tea?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-20:i06:r1",
-            "targetText": "I had dissolved the sugar before she tasted the tea.",
+            "responseId": "en:lesson-25:session-20:i07:r1",
+            "targetText": "Would you like some more tea?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-20:i06:r2",
-            "targetText": "He had dissolved the sugar before she tasted the tea.",
+            "responseId": "en:lesson-25:session-20:i07:r2",
+            "targetText": "Would you like some more soup?",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-20:i06:r3",
-            "targetText": "I had dissolved the sugar before she tasted the coffee.",
+            "responseId": "en:lesson-25:session-20:i07:r3",
+            "targetText": "Would they like some more tea?",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-20:i06:r2",
+            "responseId": "en:lesson-25:session-20:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I had dissolved the sugar before she tasted the tea.",
-              "uk": "У записі звучить I had dissolved the sugar before she tasted the tea."
+              "ru": "В записи звучит Would you like some more tea?",
+              "uk": "У записі звучить Would you like some more tea?"
             }
           },
           {
-            "responseId": "en:lesson-25:session-20:i06:r3",
+            "responseId": "en:lesson-25:session-20:i07:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I had dissolved the sugar before she tasted the tea.",
-              "uk": "У записі звучить I had dissolved the sugar before she tasted the tea."
+              "ru": "В записи звучит Would you like some more tea?",
+              "uk": "У записі звучить Would you like some more tea?"
             }
           }
         ],
@@ -459,7 +542,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-20:word:thickened",
-      "ordinal": 12,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -501,22 +584,22 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-20:i07",
-      "ordinal": 13,
+      "interactionId": "en:lesson-25:session-20:i08",
+      "ordinal": 15,
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Соус загустел до того, как я выключил нагрев.»",
+      "prompt": "Объясните, когда соус стал густым: «Соус загустел до того, как мы сели».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Соус загустел до того, как я выключил нагрев.»",
+      "accessibilityLabel": "Объясните, когда соус стал густым: «Соус загустел до того, как мы сели».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The sauce had thickened before I turned off the heat.",
+        "targetPhrase": "The sauce had thickened before we sat down.",
         "localizedMeaning": {
-          "ru": "Скажите: «Соус загустел до того, как я выключил нагрев.»",
-          "uk": "Скажіть: «Соус загус до того, як я вимкнув нагрівання.»"
+          "ru": "Объясните, когда соус стал густым: «Соус загустел до того, как мы сели».",
+          "uk": "Поясніть, коли соус став густим: «Соус загус до того, як ми сіли»."
         },
         "orderedTokens": [
           "The",
@@ -524,11 +607,9 @@
           "had",
           "thickened",
           "before",
-          "I",
-          "turned",
-          "off",
-          "the",
-          "heat"
+          "we",
+          "sat",
+          "down"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -540,190 +621,71 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-20:i08",
-      "ordinal": 14,
+      "interactionId": "en:lesson-25:session-20:i09",
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
+      "prompt": "Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-20:i08:r1",
+          "responseId": "en:lesson-25:session-20:i09:r1",
           "text": "had"
         },
         {
-          "responseId": "en:lesson-25:session-20:i08:r2",
-          "text": "has"
+          "responseId": "en:lesson-25:session-20:i09:r2",
+          "text": "have"
         },
         {
-          "responseId": "en:lesson-25:session-20:i08:r3",
-          "text": "was"
+          "responseId": "en:lesson-25:session-20:i09:r3",
+          "text": "were"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "accessibilityLabel": "Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
+          "ru": "Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.",
+          "uk": "Стіл накрили раніше, ніж прийшли гості. Виберіть Past Perfect."
         },
-        "gappedTargetPhrase": "The sauce ___ thickened before I turned off the heat.",
+        "gappedTargetPhrase": "We ___ set the table before our guests came.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-20:i08:r1",
+            "responseId": "en:lesson-25:session-20:i09:r1",
             "text": "had"
           },
           {
-            "responseId": "en:lesson-25:session-20:i08:r2",
-            "text": "has"
+            "responseId": "en:lesson-25:session-20:i09:r2",
+            "text": "have"
           },
           {
-            "responseId": "en:lesson-25:session-20:i08:r3",
-            "text": "was"
+            "responseId": "en:lesson-25:session-20:i09:r3",
+            "text": "were"
           }
         ],
-        "testedDimension": "Дополните рассказ о прошлом.",
+        "testedDimension": "Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-20:i08:r2",
+            "responseId": "en:lesson-25:session-20:i09:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
+            "testedDimension": "Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.",
             "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              "ru": "Have set связано с настоящим; здесь накрыли стол до прошлой встречи.",
+              "uk": "Have set пов’язане з теперішнім; тут накрили стіл до минулої зустрічі."
             }
           },
           {
-            "responseId": "en:lesson-25:session-20:i08:r3",
+            "responseId": "en:lesson-25:session-20:i09:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
+            "testedDimension": "Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.",
             "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              "ru": "Нужно had set для более раннего действия.",
+              "uk": "Потрібно had set для ранішої дії."
             }
           }
         ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-20:i09:r1",
-          "text": "The sauce had thickened before I turned off the heat."
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i09:r2",
-          "text": "The soup had thickened before I turned off the heat."
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i09:r3",
-          "text": "The sauce had thickened before she turned off the heat."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-20:i09:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:i09:audio",
-          "transcript": "The sauce had thickened before I turned off the heat."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-20:i09:r1",
-            "targetText": "The sauce had thickened before I turned off the heat.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i09:r2",
-            "targetText": "The soup had thickened before I turned off the heat.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i09:r3",
-            "targetText": "The sauce had thickened before she turned off the heat.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-20:i09:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The sauce had thickened before I turned off the heat.",
-              "uk": "У записі звучить The sauce had thickened before I turned off the heat."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i09:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The sauce had thickened before I turned off the heat.",
-              "uk": "У записі звучить The sauce had thickened before I turned off the heat."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:word:shredded",
-      "ordinal": 16,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — shredded",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-20:word:shredded:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — shredded",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:word:shredded:audio",
-          "transcript": "shredded"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-20:word:shredded:r1",
-            "targetText": "shredded",
-            "meaningByLocale": {
-              "ru": "нашинковали. Shred — нарезать тонкими полосками; shredded — третья форма.",
-              "uk": "нашаткували. Shred — нарізати тонкими смужками; shredded — третя форма."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "shredded",
-          "definitionByLocale": {
-            "ru": "нашинковали. Shred — нарезать тонкими полосками; shredded — третья форма.",
-            "uk": "нашаткували. Shred — нарізати тонкими смужками; shredded — третя форма."
-          }
-        }
       },
       "scriptedAlternate": null
     },
@@ -731,202 +693,18 @@
       "interactionId": "en:lesson-25:session-20:i10",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Мы нашинковали капусту до того, как сделали салат.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Мы нашинковали капусту до того, как сделали салат.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We had shredded the cabbage before we made the salad.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Мы нашинковали капусту до того, как сделали салат.»",
-          "uk": "Скажіть: «Ми нашаткували капусту до того, як зробили салат.»"
-        },
-        "orderedTokens": [
-          "We",
-          "had",
-          "shredded",
-          "the",
-          "cabbage",
-          "before",
-          "we",
-          "made",
-          "the",
-          "salad"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-20:i11:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i11:r2",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i11:r3",
-          "text": "were"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "We ___ shredded the cabbage before we made the salad.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-20:i11:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i11:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i11:r3",
-            "text": "were"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-20:i11:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i11:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-20:i12:r1",
-          "text": "We had shredded the cabbage before we made the salad."
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i12:r2",
-          "text": "They had shredded the cabbage before they made the salad."
-        },
-        {
-          "responseId": "en:lesson-25:session-20:i12:r3",
-          "text": "We had shredded the lettuce before we made the salad."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-20:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:i12:audio",
-          "transcript": "We had shredded the cabbage before we made the salad."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-20:i12:r1",
-            "targetText": "We had shredded the cabbage before we made the salad.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i12:r2",
-            "targetText": "They had shredded the cabbage before they made the salad.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i12:r3",
-            "targetText": "We had shredded the lettuce before we made the salad.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-20:i12:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We had shredded the cabbage before we made the salad.",
-              "uk": "У записі звучить We had shredded the cabbage before we made the salad."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-20:i12:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We had shredded the cabbage before we made the salad.",
-              "uk": "У записі звучить We had shredded the cabbage before we made the salad."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините формы с переводом",
+      "prompt": "Различите четыре изменения продуктов",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините формы с переводом",
+      "accessibilityLabel": "Различите четыре изменения продуктов",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-20:i13:p1",
+            "pairId": "en:lesson-25:session-20:i10:p1",
             "target": "blended",
             "meaningByLocale": {
               "ru": "смешала до однородности",
@@ -934,7 +712,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-20:i13:p2",
+            "pairId": "en:lesson-25:session-20:i10:p2",
             "target": "dissolved",
             "meaningByLocale": {
               "ru": "растворил",
@@ -942,7 +720,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-20:i13:p3",
+            "pairId": "en:lesson-25:session-20:i10:p3",
             "target": "thickened",
             "meaningByLocale": {
               "ru": "загустел",
@@ -950,7 +728,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-20:i13:p4",
+            "pairId": "en:lesson-25:session-20:i10:p4",
             "target": "shredded",
             "meaningByLocale": {
               "ru": "нашинковали",
@@ -985,103 +763,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-20:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Уже закончил",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-20:i14:audio"
-      ],
-      "accessibilityLabel": "Уже закончил",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:i14:audio",
-          "transcript": "She had finished before I called."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She had finished before I called.",
-        "orderedTokens": [
-          "She",
-          "had",
-          "finished",
-          "before",
-          "I",
-          "called"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поезд уже ушёл",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-20:i15:audio"
-      ],
-      "accessibilityLabel": "Поезд уже ушёл",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:i15:audio",
-          "transcript": "The train had left when we arrived."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The train had left when we arrived.",
-        "orderedTokens": [
-          "The",
-          "train",
-          "had",
-          "left",
-          "when",
-          "we",
-          "arrived"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-20:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-25:session-20:i11",
+      "ordinal": 18,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Они смешали фрукты до однородности до того, как мы добавили молоко».",
+      "prompt": "Попросите попробовать блюдо: «Попробуй соус, пожалуйста».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-20:i16:audio"
+        "en:lesson-25:session-20:i11:audio"
       ],
-      "accessibilityLabel": "Скажите: «Они смешали фрукты до однородности до того, как мы добавили молоко».",
+      "accessibilityLabel": "Попросите попробовать блюдо: «Попробуй соус, пожалуйста».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-20:i16:audio",
-          "transcript": "They had blended the fruit before we added the milk."
+          "audioTargetId": "en:lesson-25:session-20:i11:audio",
+          "transcript": "Please taste the sauce."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They had blended the fruit before we added the milk.",
+        "targetPhrase": "Please taste the sauce.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1095,26 +796,314 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-20:i12:r1",
+          "text": "We used to cook together on Sundays."
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i12:r2",
+          "text": "We used to eat together on Sundays."
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i12:r3",
+          "text": "They used to cook together on Sundays."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-20:i12:audio",
+          "transcript": "We used to cook together on Sundays."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-20:i12:r1",
+            "targetText": "We used to cook together on Sundays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i12:r2",
+            "targetText": "We used to eat together on Sundays.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i12:r3",
+            "targetText": "They used to cook together on Sundays.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to cook together on Sundays.",
+              "uk": "У записі звучить We used to cook together on Sundays."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to cook together on Sundays.",
+              "uk": "У записі звучить We used to cook together on Sundays."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте прежнее семейное занятие.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Услышьте прежнее семейное занятие.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-20:i13:audio",
+          "transcript": "In those days we would bake bread every weekend."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "In those days we would bake bread every weekend.",
+        "orderedTokens": [
+          "In",
+          "those",
+          "days",
+          "we",
+          "would",
+          "bake",
+          "bread",
+          "every",
+          "weekend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера вы приготовили один конкретный ужин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-20:i14:r1",
+          "text": "cooked"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i14:r2",
+          "text": "have cooked"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i14:r3",
+          "text": "would cook"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера вы приготовили один конкретный ужин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вы приготовили один конкретный ужин.",
+          "uk": "Учора ви приготували одну конкретну вечерю."
+        },
+        "gappedTargetPhrase": "I ___ dinner yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-20:i14:r1",
+            "text": "cooked"
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i14:r2",
+            "text": "have cooked"
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i14:r3",
+            "text": "would cook"
+          }
+        ],
+        "testedDimension": "Вчера вы приготовили один конкретный ужин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-20:i14:r2",
+            "correct": false,
+            "testedDimension": "Вчера вы приготовили один конкретный ужин.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple cooked.",
+              "uk": "Yesterday потребує Past Simple cooked."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i14:r3",
+            "correct": false,
+            "testedDimension": "Вчера вы приготовили один конкретный ужин.",
+            "feedbackByLocale": {
+              "ru": "Would cook описывает привычку; здесь один вчерашний ужин.",
+              "uk": "Would cook описує звичку; тут одна вчорашня вечеря."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Одну миску вы уже заняли. Попросите: «Мне нужна ещё одна миска».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одну миску вы уже заняли. Попросите: «Мне нужна ещё одна миска».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need another bowl.",
+        "localizedMeaning": {
+          "ru": "Одну миску вы уже заняли. Попросите: «Мне нужна ещё одна миска».",
+          "uk": "Одну миску ви вже зайняли. Попросіть: «Мені потрібна ще одна миска»."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "another",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-20:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Один нож здесь, остальные — в ящике.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-20:i16:r1",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i16:r2",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-20:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Один нож здесь, остальные — в ящике.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Один нож здесь, остальные — в ящике.",
+          "uk": "Один ніж тут, решта — у шухляді."
+        },
+        "gappedTargetPhrase": "The ___ knives are in the drawer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-20:i16:r1",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Один нож здесь, остальные — в ящике.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-20:i16:r2",
+            "correct": false,
+            "testedDimension": "Один нож здесь, остальные — в ящике.",
+            "feedbackByLocale": {
+              "ru": "Another употребляется с единственным числом, не knives.",
+              "uk": "Another вживається з одниною, не knives."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-20:i16:r3",
+            "correct": false,
+            "testedDimension": "Один нож здесь, остальные — в ящике.",
+            "feedbackByLocale": {
+              "ru": "Перед knives нужно other без -s.",
+              "uk": "Перед knives потрібно other без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-20:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Я нашинковал капусту до того, как сделал салат».",
+      "prompt": "Вы уже убрали кухню. Скажите: «Я уже помыл посуду».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-20:i17:audio"
       ],
-      "accessibilityLabel": "Скажите: «Я нашинковал капусту до того, как сделал салат».",
+      "accessibilityLabel": "Вы уже убрали кухню. Скажите: «Я уже помыл посуду».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-20:i17:audio",
-          "transcript": "I had shredded the cabbage before I made the salad."
+          "transcript": "I have already washed the dishes."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I had shredded the cabbage before I made the salad.",
+        "targetPhrase": "I have already washed the dishes.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1134,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "88e35e65e0e261771f83c3c77d67898ad540b97cd4c3e9742c3963cf10bdad1e"
+  "learnerFingerprint": "aa18fb9276edee86608b2111177746e6f0d8db0c2015ff922fe7a174a7492275"
 }

@@ -50,415 +50,115 @@
       "interactionId": "en:lesson-25:session-19:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Инструкции запутали меня до того, как я попросил о помощи.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Инструкции запутали меня до того, как я попросил о помощи.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The instructions had confused me before I asked for help.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Инструкции запутали меня до того, как я попросил о помощи.»",
-          "uk": "Скажіть: «Інструкції заплутали мене до того, як я попросив про допомогу.»"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-19:i01:r1",
+          "text": "The map had confused me before I asked for directions."
         },
-        "orderedTokens": [
-          "The",
-          "instructions",
-          "had",
-          "confused",
-          "me",
-          "before",
-          "I",
-          "asked",
-          "for",
-          "help"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        {
+          "responseId": "en:lesson-25:session-19:i01:r2",
+          "text": "The map had confused her before she asked for directions."
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i01:r3",
+          "text": "The message had confused me before I asked for directions."
         }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-19:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-19:i01:audio",
+          "transcript": "The map had confused me before I asked for directions."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-19:i01:r1",
+            "targetText": "The map had confused me before I asked for directions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i01:r2",
+            "targetText": "The map had confused her before she asked for directions.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i01:r3",
+            "targetText": "The message had confused me before I asked for directions.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-19:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The map had confused me before I asked for directions.",
+              "uk": "У записі звучить The map had confused me before I asked for directions."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The map had confused me before I asked for directions.",
+              "uk": "У записі звучить The map had confused me before I asked for directions."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-19:i02",
       "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-19:i02:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i02:r2",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i02:r3",
-          "text": "were"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "The instructions ___ confused me before I asked for help.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-19:i02:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i02:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i02:r3",
-            "text": "were"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-19:i02:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i02:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-19:i03:r1",
-          "text": "The instructions had confused me before I asked for help."
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i03:r2",
-          "text": "The instructions had confused her before she asked for help."
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i03:r3",
-          "text": "The instructions had confused me before I called for help."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-19:i03:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:i03:audio",
-          "transcript": "The instructions had confused me before I asked for help."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-19:i03:r1",
-            "targetText": "The instructions had confused me before I asked for help.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i03:r2",
-            "targetText": "The instructions had confused her before she asked for help.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i03:r3",
-            "targetText": "The instructions had confused me before I called for help.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-19:i03:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The instructions had confused me before I asked for help.",
-              "uk": "У записі звучить The instructions had confused me before I asked for help."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i03:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The instructions had confused me before I asked for help.",
-              "uk": "У записі звучить The instructions had confused me before I asked for help."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:word:embarrassed",
-      "ordinal": 8,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — embarrassed",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-19:word:embarrassed:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — embarrassed",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:word:embarrassed:audio",
-          "transcript": "embarrassed"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-19:word:embarrassed:r1",
-            "targetText": "embarrassed",
-            "meaningByLocale": {
-              "ru": "поставил в неловкое положение. Embarrass — поставить в неловкое положение; embarrassed — третья форма.",
-              "uk": "поставив у незручне становище. Embarrass — поставити в незручне становище; embarrassed — третя форма."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "embarrassed",
-          "definitionByLocale": {
-            "ru": "поставил в неловкое положение. Embarrass — поставить в неловкое положение; embarrassed — третья форма.",
-            "uk": "поставив у незручне становище. Embarrass — поставити в незручне становище; embarrassed — третя форма."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Шутка поставила его в неловкое положение до того, как он ушёл.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Шутка поставила его в неловкое положение до того, как он ушёл.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The joke had embarrassed him before he left.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Шутка поставила его в неловкое положение до того, как он ушёл.»",
-          "uk": "Скажіть: «Жарт поставив його в незручне становище до того, як він пішов.»"
-        },
-        "orderedTokens": [
-          "The",
-          "joke",
-          "had",
-          "embarrassed",
-          "him",
-          "before",
-          "he",
-          "left"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-19:i05:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i05:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i05:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "The joke ___ embarrassed him before he left.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-19:i05:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i05:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i05:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-19:i05:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i05:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:i06",
-      "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-19:i06:r1",
-          "text": "The joke had embarrassed him before he left."
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i06:r2",
-          "text": "The joke had embarrassed her before she left."
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i06:r3",
-          "text": "The question had embarrassed him before he left."
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы не поняли объяснение. Попросите: «Можешь показать мне?»",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-19:i06:audio"
+        "en:lesson-25:session-19:i02:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Вы не поняли объяснение. Попросите: «Можешь показать мне?»",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:i06:audio",
-          "transcript": "The joke had embarrassed him before he left."
+          "audioTargetId": "en:lesson-25:session-19:i02:audio",
+          "transcript": "Can you show me?"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-19:i06:r1",
-            "targetText": "The joke had embarrassed him before he left.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i06:r2",
-            "targetText": "The joke had embarrassed her before she left.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i06:r3",
-            "targetText": "The question had embarrassed him before he left.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-19:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The joke had embarrassed him before he left.",
-              "uk": "У записі звучить The joke had embarrassed him before he left."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The joke had embarrassed him before he left.",
-              "uk": "У записі звучить The joke had embarrassed him before he left."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "Can you show me?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-19:word:scared",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 7,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Карточка слова — scared",
@@ -499,35 +199,35 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-19:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-19:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Шум напугал малыша до того, как мы закрыли окно.»",
+      "prompt": "Объясните, почему вы включили свет: «Шум напугал меня до того, как я включил свет».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Шум напугал малыша до того, как мы закрыли окно.»",
+      "accessibilityLabel": "Объясните, почему вы включили свет: «Шум напугал меня до того, как я включил свет».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The noise had scared the baby before we closed the window.",
+        "targetPhrase": "The noise had scared me before I turned on the light.",
         "localizedMeaning": {
-          "ru": "Скажите: «Шум напугал малыша до того, как мы закрыли окно.»",
-          "uk": "Скажіть: «Шум налякав малюка до того, як ми зачинили вікно.»"
+          "ru": "Объясните, почему вы включили свет: «Шум напугал меня до того, как я включил свет».",
+          "uk": "Поясніть, чому ви ввімкнули світло: «Шум налякав мене до того, як я ввімкнув світло»."
         },
         "orderedTokens": [
           "The",
           "noise",
           "had",
           "scared",
-          "the",
-          "baby",
+          "me",
           "before",
-          "we",
-          "closed",
+          "I",
+          "turned",
+          "on",
           "the",
-          "window"
+          "light"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -539,68 +239,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-19:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-19:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
+      "prompt": "Вы испугались громкого звука, а не запутались в объяснении.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-19:i08:r1",
-          "text": "had"
+          "responseId": "en:lesson-25:session-19:i04:r1",
+          "text": "scared"
         },
         {
-          "responseId": "en:lesson-25:session-19:i08:r2",
-          "text": "has"
+          "responseId": "en:lesson-25:session-19:i04:r2",
+          "text": "confused"
         },
         {
-          "responseId": "en:lesson-25:session-19:i08:r3",
-          "text": "was"
+          "responseId": "en:lesson-25:session-19:i04:r3",
+          "text": "helped"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "accessibilityLabel": "Вы испугались громкого звука, а не запутались в объяснении.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
+          "ru": "Вы испугались громкого звука, а не запутались в объяснении.",
+          "uk": "Ви злякалися гучного звуку, а не заплуталися в поясненні."
         },
-        "gappedTargetPhrase": "The noise ___ scared the baby before we closed the window.",
+        "gappedTargetPhrase": "The sudden bang had ___ me before I saw the cat.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-19:i08:r1",
-            "text": "had"
+            "responseId": "en:lesson-25:session-19:i04:r1",
+            "text": "scared"
           },
           {
-            "responseId": "en:lesson-25:session-19:i08:r2",
-            "text": "has"
+            "responseId": "en:lesson-25:session-19:i04:r2",
+            "text": "confused"
           },
           {
-            "responseId": "en:lesson-25:session-19:i08:r3",
-            "text": "was"
+            "responseId": "en:lesson-25:session-19:i04:r3",
+            "text": "helped"
           }
         ],
-        "testedDimension": "Дополните рассказ о прошлом.",
+        "testedDimension": "Вы испугались громкого звука, а не запутались в объяснении.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-19:i08:r2",
+            "responseId": "en:lesson-25:session-19:i04:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
+            "testedDimension": "Вы испугались громкого звука, а не запутались в объяснении.",
             "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              "ru": "Confused — запутал; ситуация описывает испуг.",
+              "uk": "Confused — заплутав; ситуація описує переляк."
             }
           },
           {
-            "responseId": "en:lesson-25:session-19:i08:r3",
+            "responseId": "en:lesson-25:session-19:i04:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
+            "testedDimension": "Вы испугались громкого звука, а не запутались в объяснении.",
             "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              "ru": "Helped — помог; здесь звук напугал человека.",
+              "uk": "Helped — допоміг; тут звук налякав людину."
             }
           }
         ]
@@ -608,73 +308,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-19:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-25:session-19:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-19:i09:r1",
-          "text": "The noise had scared the baby before we closed the window."
+          "responseId": "en:lesson-25:session-19:i05:r1",
+          "text": "It was only the cat."
         },
         {
-          "responseId": "en:lesson-25:session-19:i09:r2",
-          "text": "The noise had scared the puppy before we closed the window."
+          "responseId": "en:lesson-25:session-19:i05:r2",
+          "text": "It was only the wind."
         },
         {
-          "responseId": "en:lesson-25:session-19:i09:r3",
-          "text": "The noise had scared the baby before we closed the door."
+          "responseId": "en:lesson-25:session-19:i05:r3",
+          "text": "It was only the dog."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-19:i09:audio"
+        "en:lesson-25:session-19:i05:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:i09:audio",
-          "transcript": "The noise had scared the baby before we closed the window."
+          "audioTargetId": "en:lesson-25:session-19:i05:audio",
+          "transcript": "It was only the cat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-19:i09:r1",
-            "targetText": "The noise had scared the baby before we closed the window.",
+            "responseId": "en:lesson-25:session-19:i05:r1",
+            "targetText": "It was only the cat.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-19:i09:r2",
-            "targetText": "The noise had scared the puppy before we closed the window.",
+            "responseId": "en:lesson-25:session-19:i05:r2",
+            "targetText": "It was only the wind.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-19:i09:r3",
-            "targetText": "The noise had scared the baby before we closed the door.",
+            "responseId": "en:lesson-25:session-19:i05:r3",
+            "targetText": "It was only the dog.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-19:i09:r2",
+            "responseId": "en:lesson-25:session-19:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The noise had scared the baby before we closed the window.",
-              "uk": "У записі звучить The noise had scared the baby before we closed the window."
+              "ru": "В записи звучит It was only the cat.",
+              "uk": "У записі звучить It was only the cat."
             }
           },
           {
-            "responseId": "en:lesson-25:session-19:i09:r3",
+            "responseId": "en:lesson-25:session-19:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The noise had scared the baby before we closed the window.",
-              "uk": "У записі звучить The noise had scared the baby before we closed the window."
+              "ru": "В записи звучит It was only the cat.",
+              "uk": "У записі звучить It was only the cat."
             }
           }
         ],
@@ -684,8 +384,125 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-19:word:embarrassed",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — embarrassed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-19:word:embarrassed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — embarrassed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-19:word:embarrassed:audio",
+          "transcript": "embarrassed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-19:word:embarrassed:r1",
+            "targetText": "embarrassed",
+            "meaningByLocale": {
+              "ru": "поставил в неловкое положение. Embarrass — смутить; embarrassed — третья форма.",
+              "uk": "поставив у незручне становище. Embarrass — збентежити; embarrassed — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "embarrassed",
+          "definitionByLocale": {
+            "ru": "поставил в неловкое положение. Embarrass — смутить; embarrassed — третья форма.",
+            "uk": "поставив у незручне становище. Embarrass — збентежити; embarrassed — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте причину извинения.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-19:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте причину извинения.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-19:i06:audio",
+          "transcript": "My question had embarrassed my friend before I apologised."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "My question had embarrassed my friend before I apologised.",
+        "orderedTokens": [
+          "My",
+          "question",
+          "had",
+          "embarrassed",
+          "my",
+          "friend",
+          "before",
+          "I",
+          "apologised"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы задали слишком личный вопрос. Скажите: «Прости, это был личный вопрос».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Вы задали слишком личный вопрос. Скажите: «Прости, это был личный вопрос».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-19:i07:audio",
+          "transcript": "Sorry, that was a personal question."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sorry, that was a personal question.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-19:word:satisfied",
-      "ordinal": 16,
+      "ordinal": 14,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -727,181 +544,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-19:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Её ответ удовлетворил меня до того, как я подписал бланк.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Её ответ удовлетворил меня до того, как я подписал бланк.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Her answer had satisfied me before I signed the form.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Её ответ удовлетворил меня до того, как я подписал бланк.»",
-          "uk": "Скажіть: «Її відповідь задовольнила мене до того, як я підписав бланк.»"
-        },
-        "orderedTokens": [
-          "Her",
-          "answer",
-          "had",
-          "satisfied",
-          "me",
-          "before",
-          "I",
-          "signed",
-          "the",
-          "form"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-19:i11:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i11:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-19:i11:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "Her answer ___ satisfied me before I signed the form.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-19:i11:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i11:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i11:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-19:i11:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-19:i11:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-19:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-19:i12:r1",
-          "text": "Her answer had satisfied me before I signed the form."
+          "responseId": "en:lesson-25:session-19:i08:r1",
+          "text": "The explanation had satisfied me before I agreed."
         },
         {
-          "responseId": "en:lesson-25:session-19:i12:r2",
-          "text": "His answer had satisfied me before I signed the form."
+          "responseId": "en:lesson-25:session-19:i08:r2",
+          "text": "The explanation had satisfied her before she agreed."
         },
         {
-          "responseId": "en:lesson-25:session-19:i12:r3",
-          "text": "Her answer had satisfied me before I signed the letter."
+          "responseId": "en:lesson-25:session-19:i08:r3",
+          "text": "The explanation had confused me before I agreed."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-19:i12:audio"
+        "en:lesson-25:session-19:i08:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:i12:audio",
-          "transcript": "Her answer had satisfied me before I signed the form."
+          "audioTargetId": "en:lesson-25:session-19:i08:audio",
+          "transcript": "The explanation had satisfied me before I agreed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-19:i12:r1",
-            "targetText": "Her answer had satisfied me before I signed the form.",
+            "responseId": "en:lesson-25:session-19:i08:r1",
+            "targetText": "The explanation had satisfied me before I agreed.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-19:i12:r2",
-            "targetText": "His answer had satisfied me before I signed the form.",
+            "responseId": "en:lesson-25:session-19:i08:r2",
+            "targetText": "The explanation had satisfied her before she agreed.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-19:i12:r3",
-            "targetText": "Her answer had satisfied me before I signed the letter.",
+            "responseId": "en:lesson-25:session-19:i08:r3",
+            "targetText": "The explanation had confused me before I agreed.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-19:i12:r2",
+            "responseId": "en:lesson-25:session-19:i08:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Her answer had satisfied me before I signed the form.",
-              "uk": "У записі звучить Her answer had satisfied me before I signed the form."
+              "ru": "В записи звучит The explanation had satisfied me before I agreed.",
+              "uk": "У записі звучить The explanation had satisfied me before I agreed."
             }
           },
           {
-            "responseId": "en:lesson-25:session-19:i12:r3",
+            "responseId": "en:lesson-25:session-19:i08:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Her answer had satisfied me before I signed the form.",
-              "uk": "У записі звучить Her answer had satisfied me before I signed the form."
+              "ru": "В записи звучит The explanation had satisfied me before I agreed.",
+              "uk": "У записі звучить The explanation had satisfied me before I agreed."
             }
           }
         ],
@@ -911,21 +620,90 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-19:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-25:session-19:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-19:i09:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i09:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i09:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+          "uk": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect."
+        },
+        "gappedTargetPhrase": "The answer ___ satisfied me before I agreed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-19:i09:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i09:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i09:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+            "feedbackByLocale": {
+              "ru": "Has satisfied связано с настоящим; здесь согласие уже в прошлом.",
+              "uk": "Has satisfied пов’язане з теперішнім; тут згода вже в минулому."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+            "feedbackByLocale": {
+              "ru": "Для более раннего события нужна форма had satisfied.",
+              "uk": "Для ранішої події потрібна форма had satisfied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:i10",
+      "ordinal": 17,
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините формы с переводом",
+      "prompt": "Различите причины реакций",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините формы с переводом",
+      "accessibilityLabel": "Различите причины реакций",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-19:i13:p1",
+            "pairId": "en:lesson-25:session-19:i10:p1",
             "target": "confused",
             "meaningByLocale": {
               "ru": "запутали",
@@ -933,7 +711,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-19:i13:p2",
+            "pairId": "en:lesson-25:session-19:i10:p2",
             "target": "embarrassed",
             "meaningByLocale": {
               "ru": "поставила в неловкое положение",
@@ -941,7 +719,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-19:i13:p3",
+            "pairId": "en:lesson-25:session-19:i10:p3",
             "target": "scared",
             "meaningByLocale": {
               "ru": "напугал",
@@ -949,7 +727,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-19:i13:p4",
+            "pairId": "en:lesson-25:session-19:i10:p4",
             "target": "satisfied",
             "meaningByLocale": {
               "ru": "удовлетворил",
@@ -984,33 +762,213 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-19:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Нужно другое объяснение. Скажите: «Покажи мне другой пример».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нужно другое объяснение. Скажите: «Покажи мне другой пример».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Show me another example.",
+        "localizedMeaning": {
+          "ru": "Нужно другое объяснение. Скажите: «Покажи мне другой пример».",
+          "uk": "Потрібне інше пояснення. Скажіть: «Покажи мені інший приклад»."
+        },
+        "orderedTokens": [
+          "Show",
+          "me",
+          "another",
+          "example"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-19:i12:r1",
+          "text": "I used to be afraid of loud noises."
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i12:r2",
+          "text": "I used to be afraid of the dark."
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i12:r3",
+          "text": "She used to be afraid of loud noises."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-19:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-19:i12:audio",
+          "transcript": "I used to be afraid of loud noises."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-19:i12:r1",
+            "targetText": "I used to be afraid of loud noises.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i12:r2",
+            "targetText": "I used to be afraid of the dark.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i12:r3",
+            "targetText": "She used to be afraid of loud noises.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be afraid of loud noises.",
+              "uk": "У записі звучить I used to be afraid of loud noises."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be afraid of loud noises.",
+              "uk": "У записі звучить I used to be afraid of loud noises."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы спросили дорогу вчера. Это один завершённый случай.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-19:i13:r1",
+          "text": "asked"
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i13:r2",
+          "text": "have asked"
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i13:r3",
+          "text": "would ask"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы спросили дорогу вчера. Это один завершённый случай.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы спросили дорогу вчера. Это один завершённый случай.",
+          "uk": "Ви запитали дорогу вчора. Це один завершений випадок."
+        },
+        "gappedTargetPhrase": "I ___ for directions yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-19:i13:r1",
+            "text": "asked"
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i13:r2",
+            "text": "have asked"
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i13:r3",
+            "text": "would ask"
+          }
+        ],
+        "testedDimension": "Вы спросили дорогу вчера. Это один завершённый случай.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-19:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы спросили дорогу вчера. Это один завершённый случай.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple asked.",
+              "uk": "Yesterday потребує Past Simple asked."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы спросили дорогу вчера. Это один завершённый случай.",
+            "feedbackByLocale": {
+              "ru": "Would ask описывает прежнюю привычку, не один вчерашний случай.",
+              "uk": "Would ask описує колишню звичку, не один учорашній випадок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-19:i14",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Уже закончил",
+      "prompt": "Услышьте, как раньше помогал учитель.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-19:i14:audio"
       ],
-      "accessibilityLabel": "Уже закончил",
+      "accessibilityLabel": "Услышьте, как раньше помогал учитель.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-19:i14:audio",
-          "transcript": "She had finished before I called."
+          "transcript": "At school our teacher would explain things slowly."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She had finished before I called.",
+        "hiddenTargetPhrase": "At school our teacher would explain things slowly.",
         "orderedTokens": [
-          "She",
-          "had",
-          "finished",
-          "before",
-          "I",
-          "called"
+          "At",
+          "school",
+          "our",
+          "teacher",
+          "would",
+          "explain",
+          "things",
+          "slowly"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1024,63 +982,24 @@
     {
       "interactionId": "en:lesson-25:session-19:i15",
       "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поезд уже ушёл",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь вы разобрались. Скажите: «Теперь я понял, спасибо».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-19:i15:audio"
       ],
-      "accessibilityLabel": "Поезд уже ушёл",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:i15:audio",
-          "transcript": "The train had left when we arrived."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The train had left when we arrived.",
-        "orderedTokens": [
-          "The",
-          "train",
-          "had",
-          "left",
-          "when",
-          "we",
-          "arrived"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-19:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Шум напугал собаку до того, как я закрыл окно».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-19:i16:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Шум напугал собаку до того, как я закрыл окно».",
+      "accessibilityLabel": "Теперь вы разобрались. Скажите: «Теперь я понял, спасибо».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:i16:audio",
-          "transcript": "The noise had scared the dog before I closed the window."
+          "audioTargetId": "en:lesson-25:session-19:i15:audio",
+          "transcript": "I understand now, thank you."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The noise had scared the dog before I closed the window.",
+        "targetPhrase": "I understand now, thank you.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1089,6 +1008,75 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-19:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Один вопрос уже разобран, остальные ещё остались.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-19:i16:r1",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i16:r2",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-19:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Один вопрос уже разобран, остальные ещё остались.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Один вопрос уже разобран, остальные ещё остались.",
+          "uk": "Одне запитання вже розібрали, решта ще залишилася."
+        },
+        "gappedTargetPhrase": "I still have ___ questions.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-19:i16:r1",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Один вопрос уже разобран, остальные ещё остались.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-19:i16:r2",
+            "correct": false,
+            "testedDimension": "Один вопрос уже разобран, остальные ещё остались.",
+            "feedbackByLocale": {
+              "ru": "Another используется с единственным числом, а questions — множественное.",
+              "uk": "Another використовується з одниною, а questions — множина."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-19:i16:r3",
+            "correct": false,
+            "testedDimension": "Один вопрос уже разобран, остальные ещё остались.",
+            "feedbackByLocale": {
+              "ru": "Перед существительным questions нужно other без -s.",
+              "uk": "Перед іменником questions потрібно other без -s."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1096,33 +1084,36 @@
     {
       "interactionId": "en:lesson-25:session-19:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Его ответ удовлетворил её до того, как она подписала бланк».",
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы уже попросили помощи. Сообщите: «Я уже поговорил с учителем».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-19:i17:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Его ответ удовлетворил её до того, как она подписала бланк».",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже попросили помощи. Сообщите: «Я уже поговорил с учителем».",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-19:i17:audio",
-          "transcript": "His answer had satisfied her before she signed the form."
+        "family": "phrase_builder",
+        "targetPhrase": "I have already spoken to the teacher.",
+        "localizedMeaning": {
+          "ru": "Вы уже попросили помощи. Сообщите: «Я уже поговорил с учителем».",
+          "uk": "Ви вже попросили допомоги. Повідомте: «Я вже поговорив з учителем»."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "His answer had satisfied her before she signed the form.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "spoken",
+          "to",
+          "the",
+          "teacher"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1133,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3374fca4be2f0431deec37deceef0863133eda68f0c48e8ae539a3542f3dbe23"
+  "learnerFingerprint": "8ddf6acad2944889f08fce1600067d81397fe0782125f8704d08002d4bf81032"
 }

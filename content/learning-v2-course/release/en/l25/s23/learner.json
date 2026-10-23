@@ -50,33 +50,181 @@
       "interactionId": "en:lesson-25:session-23:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-23:i01:r1",
+          "text": "The plane had landed before I checked my phone."
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i01:r2",
+          "text": "The plane had landed before she checked her phone."
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i01:r3",
+          "text": "The plane had left before I checked my phone."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:i01:audio",
+          "transcript": "The plane had landed before I checked my phone."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-23:i01:r1",
+            "targetText": "The plane had landed before I checked my phone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i01:r2",
+            "targetText": "The plane had landed before she checked her phone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i01:r3",
+            "targetText": "The plane had left before I checked my phone.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-23:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plane had landed before I checked my phone.",
+              "uk": "У записі звучить The plane had landed before I checked my phone."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plane had landed before I checked my phone.",
+              "uk": "У записі звучить The plane had landed before I checked my phone."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы ждёте близкого человека. Спросите: «Твой самолёт уже приземлился?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Вы ждёте близкого человека. Спросите: «Твой самолёт уже приземлился?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:i02:audio",
+          "transcript": "Has your plane landed yet?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Has your plane landed yet?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:word:released",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — released",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-23:word:released:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — released",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:word:released:audio",
+          "transcript": "released"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-23:word:released:r1",
+            "targetText": "released",
+            "meaningByLocale": {
+              "ru": "Выпустили. Release — выпускать на свободу; released — третья форма.",
+              "uk": "Випустили. Release — випускати на волю; released — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "released",
+          "definitionByLocale": {
+            "ru": "Выпустили. Release — выпускать на свободу; released — третья форма.",
+            "uk": "Випустили. Release — випускати на волю; released — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Птица приземлилась на крышу до того, как я открыл окно.»",
+      "prompt": "Птица уже была на свободе: «Мы выпустили птицу до твоего прихода».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Птица приземлилась на крышу до того, как я открыл окно.»",
+      "accessibilityLabel": "Птица уже была на свободе: «Мы выпустили птицу до твоего прихода».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bird had landed on the roof before I opened the window.",
+        "targetPhrase": "We had released the bird before you arrived.",
         "localizedMeaning": {
-          "ru": "Скажите: «Птица приземлилась на крышу до того, как я открыл окно.»",
-          "uk": "Скажіть: «Птах приземлився на дах до того, як я відчинив вікно.»"
+          "ru": "Птица уже была на свободе: «Мы выпустили птицу до твоего прихода».",
+          "uk": "Птах уже був на волі: «Ми випустили птаха до твого приходу»."
         },
         "orderedTokens": [
-          "The",
-          "bird",
+          "We",
           "had",
-          "landed",
-          "on",
+          "released",
           "the",
-          "roof",
+          "bird",
           "before",
-          "I",
-          "opened",
-          "the",
-          "window"
+          "you",
+          "arrived"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -88,142 +236,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-23:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-23:i02:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i02:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i02:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "The bird ___ landed on the roof before I opened the window.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-23:i02:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i02:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i02:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-23:i02:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i02:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i03",
-      "ordinal": 7,
+      "interactionId": "en:lesson-25:session-23:i04",
+      "ordinal": 9,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-23:i03:r1",
-          "text": "The bird had landed on the roof before I opened the window."
+          "responseId": "en:lesson-25:session-23:i04:r1",
+          "text": "The bird flew towards the trees."
         },
         {
-          "responseId": "en:lesson-25:session-23:i03:r2",
-          "text": "The bird had landed on the wall before I opened the window."
+          "responseId": "en:lesson-25:session-23:i04:r2",
+          "text": "The bird flew towards the house."
         },
         {
-          "responseId": "en:lesson-25:session-23:i03:r3",
-          "text": "The bird had landed on the roof before she opened the window."
+          "responseId": "en:lesson-25:session-23:i04:r3",
+          "text": "The butterfly flew towards the trees."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-23:i03:audio"
+        "en:lesson-25:session-23:i04:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:i03:audio",
-          "transcript": "The bird had landed on the roof before I opened the window."
+          "audioTargetId": "en:lesson-25:session-23:i04:audio",
+          "transcript": "The bird flew towards the trees."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-23:i03:r1",
-            "targetText": "The bird had landed on the roof before I opened the window.",
+            "responseId": "en:lesson-25:session-23:i04:r1",
+            "targetText": "The bird flew towards the trees.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-23:i03:r2",
-            "targetText": "The bird had landed on the wall before I opened the window.",
+            "responseId": "en:lesson-25:session-23:i04:r2",
+            "targetText": "The bird flew towards the house.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-23:i03:r3",
-            "targetText": "The bird had landed on the roof before she opened the window.",
+            "responseId": "en:lesson-25:session-23:i04:r3",
+            "targetText": "The butterfly flew towards the trees.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-23:i03:r2",
+            "responseId": "en:lesson-25:session-23:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The bird had landed on the roof before I opened the window.",
-              "uk": "У записі звучить The bird had landed on the roof before I opened the window."
+              "ru": "В записи звучит The bird flew towards the trees.",
+              "uk": "У записі звучить The bird flew towards the trees."
             }
           },
           {
-            "responseId": "en:lesson-25:session-23:i03:r3",
+            "responseId": "en:lesson-25:session-23:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The bird had landed on the roof before I opened the window.",
-              "uk": "У записі звучить The bird had landed on the roof before I opened the window."
+              "ru": "В записи звучит The bird flew towards the trees.",
+              "uk": "У записі звучить The bird flew towards the trees."
             }
           }
         ],
@@ -234,7 +313,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-23:word:fled",
-      "ordinal": 8,
+      "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -276,34 +355,105 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-23:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Мышь убежала до того, как кошка вошла в комнату.»",
-      "responseOptions": [],
+      "interactionId": "en:lesson-25:session-23:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-23:i05:r1",
+          "text": "fled"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i05:r2",
+          "text": "flee"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i05:r3",
+          "text": "fleeing"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Мышь убежала до того, как кошка вошла в комнату.»",
+      "accessibilityLabel": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The mouse had fled before the cat entered the room.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Мышь убежала до того, как кошка вошла в комнату.»",
-          "uk": "Скажіть: «Миша втекла до того, як кішка увійшла до кімнати.»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+          "uk": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть третю форму."
         },
+        "gappedTargetPhrase": "The rabbit had ___ before I opened the gate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-23:i05:r1",
+            "text": "fled"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i05:r2",
+            "text": "flee"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i05:r3",
+            "text": "fleeing"
+          }
+        ],
+        "testedDimension": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После had нужна третья форма fled.",
+              "uk": "Після had потрібна третя форма fled."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Had fleeing не образует Past Perfect.",
+              "uk": "Had fleeing не утворює Past Perfect."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, что произошло ещё до появления собаки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что произошло ещё до появления собаки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:i06:audio",
+          "transcript": "The birds had flown away before the dog arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The birds had flown away before the dog arrived.",
         "orderedTokens": [
           "The",
-          "mouse",
+          "birds",
           "had",
-          "fled",
+          "flown",
+          "away",
           "before",
           "the",
-          "cat",
-          "entered",
-          "the",
-          "room"
+          "dog",
+          "arrived"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -315,153 +465,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-23:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-23:i05:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i05:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i05:r3",
-          "text": "was"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "The mouse ___ fled before the cat entered the room.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-23:i05:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i05:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i05:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-23:i05:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i05:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-23:i06:r1",
-          "text": "The mouse had fled before the cat entered the room."
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i06:r2",
-          "text": "The rabbit had fled before the cat entered the room."
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i06:r3",
-          "text": "The mouse had fled before the dog entered the room."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-23:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:i06:audio",
-          "transcript": "The mouse had fled before the cat entered the room."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-23:i06:r1",
-            "targetText": "The mouse had fled before the cat entered the room.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i06:r2",
-            "targetText": "The rabbit had fled before the cat entered the room.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i06:r3",
-            "targetText": "The mouse had fled before the dog entered the room.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-23:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The mouse had fled before the cat entered the room.",
-              "uk": "У записі звучить The mouse had fled before the cat entered the room."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The mouse had fled before the cat entered the room.",
-              "uk": "У записі звучить The mouse had fled before the cat entered the room."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-23:word:hunted",
-      "ordinal": 12,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -504,430 +509,129 @@
     },
     {
       "interactionId": "en:lesson-25:session-23:i07",
-      "ordinal": 13,
+      "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Кошка охотилась на мышей до того, как мы принесли её домой.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Кошка охотилась на мышей до того, как мы принесли её домой.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The cat had hunted mice before we brought it home.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Кошка охотилась на мышей до того, как мы принесли её домой.»",
-          "uk": "Скажіть: «Кішка полювала на мишей до того, як ми принесли її додому.»"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-23:i07:r1",
+          "text": "The cat had hunted mice before we adopted it."
         },
-        "orderedTokens": [
-          "The",
-          "cat",
-          "had",
-          "hunted",
-          "mice",
-          "before",
-          "we",
-          "brought",
-          "it",
-          "home"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        {
+          "responseId": "en:lesson-25:session-23:i07:r2",
+          "text": "The cat had hunted birds before we adopted it."
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i07:r3",
+          "text": "The dog had hunted mice before we adopted it."
         }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:i07:audio",
+          "transcript": "The cat had hunted mice before we adopted it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-23:i07:r1",
+            "targetText": "The cat had hunted mice before we adopted it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i07:r2",
+            "targetText": "The cat had hunted birds before we adopted it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i07:r3",
+            "targetText": "The dog had hunted mice before we adopted it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-23:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat had hunted mice before we adopted it.",
+              "uk": "У записі звучить The cat had hunted mice before we adopted it."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cat had hunted mice before we adopted it.",
+              "uk": "У записі звучить The cat had hunted mice before we adopted it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-23:i08",
-      "ordinal": 14,
+      "ordinal": 15,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-23:i08:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i08:r2",
-          "text": "has"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i08:r3",
-          "text": "was"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите о домашнем животном: «Где сейчас твоя кошка?»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "audioTargetIds": [
+        "en:lesson-25:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Спросите о домашнем животном: «Где сейчас твоя кошка?»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:i08:audio",
+          "transcript": "Where is your cat now?"
         },
-        "gappedTargetPhrase": "The cat ___ hunted mice before we brought it home.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-23:i08:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i08:r2",
-            "text": "has"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i08:r3",
-            "text": "was"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-23:i08:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i08:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is your cat now?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-23:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-23:i09:r1",
-          "text": "The cat had hunted mice before we brought it home."
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i09:r2",
-          "text": "The cat had hunted mice before they brought it home."
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i09:r3",
-          "text": "The cat had hunted birds before we brought it home."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-23:i09:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:i09:audio",
-          "transcript": "The cat had hunted mice before we brought it home."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-23:i09:r1",
-            "targetText": "The cat had hunted mice before we brought it home.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i09:r2",
-            "targetText": "The cat had hunted mice before they brought it home.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i09:r3",
-            "targetText": "The cat had hunted birds before we brought it home.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-23:i09:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The cat had hunted mice before we brought it home.",
-              "uk": "У записі звучить The cat had hunted mice before we brought it home."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i09:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The cat had hunted mice before we brought it home.",
-              "uk": "У записі звучить The cat had hunted mice before we brought it home."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:word:released",
       "ordinal": 16,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Карточка слова — released",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-23:word:released:audio"
-      ],
-      "accessibilityLabel": "Карточка слова — released",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:word:released:audio",
-          "transcript": "released"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-23:word:released:r1",
-            "targetText": "released",
-            "meaningByLocale": {
-              "ru": "Выпустили. Release — выпускать на свободу; released — третья форма.",
-              "uk": "Випустили. Release — випускати на волю; released — третя форма."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "released",
-          "definitionByLocale": {
-            "ru": "Выпустили. Release — выпускать на свободу; released — третья форма.",
-            "uk": "Випустили. Release — випускати на волю; released — третя форма."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Мы выпустили птицу до начала дождя.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Мы выпустили птицу до начала дождя.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We had released the bird before the rain began.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Мы выпустили птицу до начала дождя.»",
-          "uk": "Скажіть: «Ми випустили птаха до початку дощу.»"
-        },
-        "orderedTokens": [
-          "We",
-          "had",
-          "released",
-          "the",
-          "bird",
-          "before",
-          "the",
-          "rain",
-          "began"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлом.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-23:i11:r1",
-          "text": "had"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i11:r2",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i11:r3",
-          "text": "were"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлом.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлом.",
-          "uk": "Доповніть розповідь про минуле."
-        },
-        "gappedTargetPhrase": "We ___ released the bird before the rain began.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-23:i11:r1",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i11:r2",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i11:r3",
-            "text": "were"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлом.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-23:i11:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i11:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлом.",
-            "feedbackByLocale": {
-              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
-              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-23:i12:r1",
-          "text": "We had released the bird before the rain began."
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i12:r2",
-          "text": "They had released the bird before the rain began."
-        },
-        {
-          "responseId": "en:lesson-25:session-23:i12:r3",
-          "text": "We had released the butterfly before the rain began."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-23:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:i12:audio",
-          "transcript": "We had released the bird before the rain began."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-23:i12:r1",
-            "targetText": "We had released the bird before the rain began.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i12:r2",
-            "targetText": "They had released the bird before the rain began.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i12:r3",
-            "targetText": "We had released the butterfly before the rain began.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-23:i12:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We had released the bird before the rain began.",
-              "uk": "У записі звучить We had released the bird before the rain began."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-23:i12:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We had released the bird before the rain began.",
-              "uk": "У записі звучить We had released the bird before the rain began."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините формы с переводом",
+      "prompt": "Различите прилёт, побег, охоту и освобождение",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините формы с переводом",
+      "accessibilityLabel": "Различите прилёт, побег, охоту и освобождение",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-23:i13:p1",
+            "pairId": "en:lesson-25:session-23:i09:p1",
             "target": "landed",
             "meaningByLocale": {
               "ru": "приземлилась",
@@ -935,7 +639,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-23:i13:p2",
+            "pairId": "en:lesson-25:session-23:i09:p2",
             "target": "fled",
             "meaningByLocale": {
               "ru": "убежала",
@@ -943,7 +647,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-23:i13:p3",
+            "pairId": "en:lesson-25:session-23:i09:p3",
             "target": "hunted",
             "meaningByLocale": {
               "ru": "охотилась",
@@ -951,7 +655,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-23:i13:p4",
+            "pairId": "en:lesson-25:session-23:i09:p4",
             "target": "released",
             "meaningByLocale": {
               "ru": "выпустили",
@@ -986,103 +690,276 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-23:i10:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i10:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i10:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+          "uk": "Ворота зачинили раніше, ніж собака вибіг у двір. Виберіть Past Perfect."
+        },
+        "gappedTargetPhrase": "I ___ closed the gate before the dog came outside.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-23:i10:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i10:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i10:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-23:i10:r2",
+            "correct": false,
+            "testedDimension": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+            "feedbackByLocale": {
+              "ru": "Have closed связано с настоящим, а здесь одно прошлое действие предшествует другому.",
+              "uk": "Have closed пов’язане з теперішнім, а тут одна минула дія передує іншій."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i10:r3",
+            "correct": false,
+            "testedDimension": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+            "feedbackByLocale": {
+              "ru": "Для более раннего действия нужно had closed.",
+              "uk": "Для ранішої дії потрібне had closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вспомните прежнее место проживания: «Раньше мы жили рядом с лесом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните прежнее место проживания: «Раньше мы жили рядом с лесом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used to live near a forest.",
+        "localizedMeaning": {
+          "ru": "Вспомните прежнее место проживания: «Раньше мы жили рядом с лесом».",
+          "uk": "Згадайте колишнє місце проживання: «Раніше ми жили поруч із лісом»."
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "live",
+          "near",
+          "a",
+          "forest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-23:i12:r1",
+          "text": "In those days we would watch birds from the kitchen."
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i12:r2",
+          "text": "In those days we would watch birds from the garden."
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i12:r3",
+          "text": "In those days they would watch birds from the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:i12:audio",
+          "transcript": "In those days we would watch birds from the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-23:i12:r1",
+            "targetText": "In those days we would watch birds from the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i12:r2",
+            "targetText": "In those days we would watch birds from the garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i12:r3",
+            "targetText": "In those days they would watch birds from the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days we would watch birds from the kitchen.",
+              "uk": "У записі звучить In those days we would watch birds from the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит In those days we would watch birds from the kitchen.",
+              "uk": "У записі звучить In those days we would watch birds from the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера вы увидели одну лису.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-23:i13:r1",
+          "text": "saw"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i13:r2",
+          "text": "have seen"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i13:r3",
+          "text": "would see"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера вы увидели одну лису.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вы увидели одну лису.",
+          "uk": "Учора ви побачили одну лисицю."
+        },
+        "gappedTargetPhrase": "I ___ a fox yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-23:i13:r1",
+            "text": "saw"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i13:r2",
+            "text": "have seen"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i13:r3",
+            "text": "would see"
+          }
+        ],
+        "testedDimension": "Вчера вы увидели одну лису.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-23:i13:r2",
+            "correct": false,
+            "testedDimension": "Вчера вы увидели одну лису.",
+            "feedbackByLocale": {
+              "ru": "Yesterday требует Past Simple saw.",
+              "uk": "Yesterday потребує Past Simple saw."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i13:r3",
+            "correct": false,
+            "testedDimension": "Вчера вы увидели одну лису.",
+            "feedbackByLocale": {
+              "ru": "Would see описывало бы повторяемость, здесь один вчерашний случай.",
+              "uk": "Would see описувало б повторюваність, тут один учорашній випадок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-23:i14",
       "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Уже закончил",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы хотите лучше рассмотреть птицу. Попросите: «Покажи мне другую фотографию».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-23:i14:audio"
       ],
-      "accessibilityLabel": "Уже закончил",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:i14:audio",
-          "transcript": "She had finished before I called."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She had finished before I called.",
-        "orderedTokens": [
-          "She",
-          "had",
-          "finished",
-          "before",
-          "I",
-          "called"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поезд уже ушёл",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-23:i15:audio"
-      ],
-      "accessibilityLabel": "Поезд уже ушёл",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:i15:audio",
-          "transcript": "The train had left when we arrived."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The train had left when we arrived.",
-        "orderedTokens": [
-          "The",
-          "train",
-          "had",
-          "left",
-          "when",
-          "we",
-          "arrived"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-23:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Я выпустил птицу до начала дождя».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-23:i16:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Я выпустил птицу до начала дождя».",
+      "accessibilityLabel": "Вы хотите лучше рассмотреть птицу. Попросите: «Покажи мне другую фотографию».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-23:i16:audio",
-          "transcript": "I had released the bird before the rain began."
+          "audioTargetId": "en:lesson-25:session-23:i14:audio",
+          "transcript": "Show me another photo."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I had released the bird before the rain began.",
+        "targetPhrase": "Show me another photo.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1096,26 +973,138 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте рассказ о подготовке к прогулке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Услышьте рассказ о подготовке к прогулке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-23:i15:audio",
+          "transcript": "We had packed our bags before we left for the park."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We had packed our bags before we left for the park.",
+        "orderedTokens": [
+          "We",
+          "had",
+          "packed",
+          "our",
+          "bags",
+          "before",
+          "we",
+          "left",
+          "for",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-23:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одни животные на этой фотографии, остальные — на следующей.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-23:i16:r1",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i16:r2",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-23:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одни животные на этой фотографии, остальные — на следующей.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одни животные на этой фотографии, остальные — на следующей.",
+          "uk": "Одні тварини на цій фотографії, решта — на наступній."
+        },
+        "gappedTargetPhrase": "The ___ animals are in the next photo.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-23:i16:r1",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i16:r2",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Одни животные на этой фотографии, остальные — на следующей.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-23:i16:r2",
+            "correct": false,
+            "testedDimension": "Одни животные на этой фотографии, остальные — на следующей.",
+            "feedbackByLocale": {
+              "ru": "Another относится к единственному числу; animals — множественное.",
+              "uk": "Another стосується однини; animals — множина."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-23:i16:r3",
+            "correct": false,
+            "testedDimension": "Одни животные на этой фотографии, остальные — на следующей.",
+            "feedbackByLocale": {
+              "ru": "Перед animals нужно other без -s.",
+              "uk": "Перед animals потрібно other без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-23:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Птица приземлилась на крышу до того, как мы открыли окно».",
+      "prompt": "Вы уже покормили питомца. Скажите: «Я уже покормил кошку».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-23:i17:audio"
       ],
-      "accessibilityLabel": "Скажите: «Птица приземлилась на крышу до того, как мы открыли окно».",
+      "accessibilityLabel": "Вы уже покормили питомца. Скажите: «Я уже покормил кошку».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-23:i17:audio",
-          "transcript": "The bird had landed on the roof before we opened the window."
+          "transcript": "I have already fed the cat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The bird had landed on the roof before we opened the window.",
+        "targetPhrase": "I have already fed the cat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1135,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "032e2642609d203fdef75486208293eb51eb6486b0f9431c564c4ba0601e53cc"
+  "learnerFingerprint": "81b0c40f0c74047208f7aa93cb4d4c720733e6ca2fbe563b2fb508f1193979b0"
 }

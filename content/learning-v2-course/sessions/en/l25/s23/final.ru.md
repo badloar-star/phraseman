@@ -53,99 +53,99 @@ Release — выпускать на свободу. We had released the bird bef
 <!-- interaction_id: en:lesson-25:session-23:word:landed; family: word_card -->
 > **landed** — Приземлилась. Land — приземляться; landed — третья форма.
 
-**2 · Скажите: «Птица приземлилась на крышу до того, как я открыл окно.»**
-<!-- interaction_id: en:lesson-25:session-23:i01; family: phrase_builder -->
-Плитки: `window` `the` `opened` `I` `before` `roof` `the` `on` `landed` `had` `bird` `The` → **The bird had landed on the roof before I opened the window.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-23:i01; family: listen_choose -->
+🔊 *The plane had landed before I checked my phone.* → **The plane had landed before I checked my phone.** · The plane had landed before she checked her phone. · The plane had left before I checked my phone.
+- The plane had landed before she checked her phone. — *В записи звучит The plane had landed before I checked my phone.*
+- The plane had left before I checked my phone. — *В записи звучит The plane had landed before I checked my phone.*
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-23:i02; family: context_gap_grammar -->
-The bird ___ landed on the roof before I opened the window. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**3 · Вы ждёте близкого человека. Спросите: «Твой самолёт уже приземлился?»**
+<!-- interaction_id: en:lesson-25:session-23:i02; family: scripted_repeat_compare -->
+🎙 **Has your plane landed yet?**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-23:i03; family: listen_choose -->
-🔊 *The bird had landed on the roof before I opened the window.* → **The bird had landed on the roof before I opened the window.** · The bird had landed on the wall before I opened the window. · The bird had landed on the roof before she opened the window.
-- The bird had landed on the wall before I opened the window. — *В записи звучит The bird had landed on the roof before I opened the window.*
-- The bird had landed on the roof before she opened the window. — *В записи звучит The bird had landed on the roof before I opened the window.*
-
-**5 · Карточка слова — fled**
-<!-- interaction_id: en:lesson-25:session-23:word:fled; family: word_card -->
-> **fled** — Убежала. Flee — убегать от опасности; fled — третья форма.
-
-**6 · Скажите: «Мышь убежала до того, как кошка вошла в комнату.»**
-<!-- interaction_id: en:lesson-25:session-23:i04; family: phrase_builder -->
-Плитки: `room` `the` `entered` `cat` `the` `before` `fled` `had` `mouse` `The` → **The mouse had fled before the cat entered the room.**
-
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-23:i05; family: context_gap_grammar -->
-The mouse ___ fled before the cat entered the room. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-23:i06; family: listen_choose -->
-🔊 *The mouse had fled before the cat entered the room.* → **The mouse had fled before the cat entered the room.** · The rabbit had fled before the cat entered the room. · The mouse had fled before the dog entered the room.
-- The rabbit had fled before the cat entered the room. — *В записи звучит The mouse had fled before the cat entered the room.*
-- The mouse had fled before the dog entered the room. — *В записи звучит The mouse had fled before the cat entered the room.*
-
-**9 · Карточка слова — hunted**
-<!-- interaction_id: en:lesson-25:session-23:word:hunted; family: word_card -->
-> **hunted** — Охотилась. Hunt — охотиться; hunted — третья форма.
-
-**10 · Скажите: «Кошка охотилась на мышей до того, как мы принесли её домой.»**
-<!-- interaction_id: en:lesson-25:session-23:i07; family: phrase_builder -->
-Плитки: `home` `it` `brought` `we` `before` `mice` `hunted` `had` `cat` `The` → **The cat had hunted mice before we brought it home.**
-
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-23:i08; family: context_gap_grammar -->
-The cat ___ hunted mice before we brought it home. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
-
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-23:i09; family: listen_choose -->
-🔊 *The cat had hunted mice before we brought it home.* → **The cat had hunted mice before we brought it home.** · The cat had hunted mice before they brought it home. · The cat had hunted birds before we brought it home.
-- The cat had hunted mice before they brought it home. — *В записи звучит The cat had hunted mice before we brought it home.*
-- The cat had hunted birds before we brought it home. — *В записи звучит The cat had hunted mice before we brought it home.*
-
-**13 · Карточка слова — released**
+**4 · Карточка слова — released**
 <!-- interaction_id: en:lesson-25:session-23:word:released; family: word_card -->
 > **released** — Выпустили. Release — выпускать на свободу; released — третья форма.
 
-**14 · Скажите: «Мы выпустили птицу до начала дождя.»**
-<!-- interaction_id: en:lesson-25:session-23:i10; family: phrase_builder -->
-Плитки: `began` `rain` `the` `before` `bird` `the` `released` `had` `We` → **We had released the bird before the rain began.**
+**5 · Птица уже была на свободе: «Мы выпустили птицу до твоего прихода».**
+<!-- interaction_id: en:lesson-25:session-23:i03; family: phrase_builder -->
+Плитки: `arrived` `you` `before` `bird` `the` `released` `had` `We` → **We had released the bird before you arrived.**
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-23:i11; family: context_gap_grammar -->
-We ___ released the bird before the rain began. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-23:i04; family: listen_choose -->
+🔊 *The bird flew towards the trees.* → **The bird flew towards the trees.** · The bird flew towards the house. · The butterfly flew towards the trees.
+- The bird flew towards the house. — *В записи звучит The bird flew towards the trees.*
+- The butterfly flew towards the trees. — *В записи звучит The bird flew towards the trees.*
+
+**7 · Карточка слова — fled**
+<!-- interaction_id: en:lesson-25:session-23:word:fled; family: word_card -->
+> **fled** — Убежала. Flee — убегать от опасности; fled — третья форма.
+
+**8 · Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.**
+<!-- interaction_id: en:lesson-25:session-23:i05; family: context_gap_grammar -->
+The rabbit had ___ before I opened the gate. → **fled** · flee · fleeing
+- flee — *После had нужна третья форма fled.*
+- fleeing — *Had fleeing не образует Past Perfect.*
+
+**9 · Услышьте, что произошло ещё до появления собаки.**
+<!-- interaction_id: en:lesson-25:session-23:i06; family: listen_build_dictation -->
+🔊 *The birds had flown away before the dog arrived.* Плитки: `arrived` `dog` `the` `before` `away` `flown` `had` `birds` `The` → **The birds had flown away before the dog arrived.**
+
+**10 · Карточка слова — hunted**
+<!-- interaction_id: en:lesson-25:session-23:word:hunted; family: word_card -->
+> **hunted** — Охотилась. Hunt — охотиться; hunted — третья форма.
+
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-23:i07; family: listen_choose -->
+🔊 *The cat had hunted mice before we adopted it.* → **The cat had hunted mice before we adopted it.** · The cat had hunted birds before we adopted it. · The dog had hunted mice before we adopted it.
+- The cat had hunted birds before we adopted it. — *В записи звучит The cat had hunted mice before we adopted it.*
+- The dog had hunted mice before we adopted it. — *В записи звучит The cat had hunted mice before we adopted it.*
+
+**12 · Спросите о домашнем животном: «Где сейчас твоя кошка?»**
+<!-- interaction_id: en:lesson-25:session-23:i08; family: scripted_repeat_compare -->
+🎙 **Where is your cat now?**
+
+**13 · Различите прилёт, побег, охоту и освобождение**
+<!-- interaction_id: en:lesson-25:session-23:i09; family: speed_match -->
+landed — приземлилась · fled — убежала · hunted — охотилась · released — выпустили
+
+**14 · Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-23:i10; family: context_gap_grammar -->
+I ___ closed the gate before the dog came outside. → **had** · have · was
+- have — *Have closed связано с настоящим, а здесь одно прошлое действие предшествует другому.*
+- was — *Для более раннего действия нужно had closed.*
+
+**15 · Вспомните прежнее место проживания: «Раньше мы жили рядом с лесом».**
+<!-- interaction_id: en:lesson-25:session-23:i11; family: phrase_builder -->
+Плитки: `forest` `a` `near` `live` `to` `used` `We` → **We used to live near a forest.**
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-23:i12; family: listen_choose -->
-🔊 *We had released the bird before the rain began.* → **We had released the bird before the rain began.** · They had released the bird before the rain began. · We had released the butterfly before the rain began.
-- They had released the bird before the rain began. — *В записи звучит We had released the bird before the rain began.*
-- We had released the butterfly before the rain began. — *В записи звучит We had released the bird before the rain began.*
+🔊 *In those days we would watch birds from the kitchen.* → **In those days we would watch birds from the kitchen.** · In those days we would watch birds from the garden. · In those days they would watch birds from the kitchen.
+- In those days we would watch birds from the garden. — *В записи звучит In those days we would watch birds from the kitchen.*
+- In those days they would watch birds from the kitchen. — *В записи звучит In those days we would watch birds from the kitchen.*
 
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-23:i13; family: speed_match -->
-landed — приземлилась · fled — убежала · hunted — охотилась · released — выпустили
+**17 · Вчера вы увидели одну лису.**
+<!-- interaction_id: en:lesson-25:session-23:i13; family: context_gap_grammar -->
+I ___ a fox yesterday. → **saw** · have seen · would see
+- have seen — *Yesterday требует Past Simple saw.*
+- would see — *Would see описывало бы повторяемость, здесь один вчерашний случай.*
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-23:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Вы хотите лучше рассмотреть птицу. Попросите: «Покажи мне другую фотографию».**
+<!-- interaction_id: en:lesson-25:session-23:i14; family: scripted_repeat_compare -->
+🎙 **Show me another photo.**
 
-**19 · Поезд уже ушёл**
+**19 · Услышьте рассказ о подготовке к прогулке.**
 <!-- interaction_id: en:lesson-25:session-23:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *We had packed our bags before we left for the park.* Плитки: `park` `the` `for` `left` `we` `before` `bags` `our` `packed` `had` `We` → **We had packed our bags before we left for the park.**
 
-**20 · Скажите: «Я выпустил птицу до начала дождя».**
-<!-- interaction_id: en:lesson-25:session-23:i16; family: scripted_repeat_compare -->
-🎙 **I had released the bird before the rain began.**
+**20 · Одни животные на этой фотографии, остальные — на следующей.**
+<!-- interaction_id: en:lesson-25:session-23:i16; family: context_gap_grammar -->
+The ___ animals are in the next photo. → **other** · another · others
+- another — *Another относится к единственному числу; animals — множественное.*
+- others — *Перед animals нужно other без -s.*
 
-**21 · Скажите: «Птица приземлилась на крышу до того, как мы открыли окно».**
+**21 · Вы уже покормили питомца. Скажите: «Я уже покормил кошку».**
 <!-- interaction_id: en:lesson-25:session-23:i17; family: scripted_repeat_compare -->
-🎙 **The bird had landed on the roof before we opened the window.**
+🎙 **I have already fed the cat.**
 

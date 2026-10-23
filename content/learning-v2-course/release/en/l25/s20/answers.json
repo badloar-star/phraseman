@@ -1,63 +1,8 @@
 [
   {
-    "interactionId": "en:lesson-25:session-20:word:blended",
-    "correctText": "blended",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-25:session-20:i01",
-    "correctText": "She had blended the fruit before I added the milk.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i02",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-20:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i03",
-    "correctText": "She had blended the fruit before I added the milk.",
-    "correctResponseId": "en:lesson-25:session-20:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:word:dissolved",
-    "correctText": "dissolved",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i04",
-    "correctText": "I had dissolved the sugar before she tasted the tea.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i05",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-20:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i06",
-    "correctText": "I had dissolved the sugar before she tasted the tea.",
-    "correctResponseId": "en:lesson-25:session-20:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:word:thickened",
-    "correctText": "thickened",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i07",
-    "correctText": "The sauce had thickened before I turned off the heat.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i08",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-20:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-20:i09",
-    "correctText": "The sauce had thickened before I turned off the heat.",
-    "correctResponseId": "en:lesson-25:session-20:i09:r1"
+    "correctText": "Have you started cooking yet?",
+    "correctResponseId": "en:lesson-25:session-20:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-20:word:shredded",
@@ -65,43 +10,98 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-20:i02",
+    "correctText": "I had shredded the cabbage before you arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:i03",
+    "correctText": "What should I do next?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:word:blended",
+    "correctText": "blended",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:i04",
+    "correctText": "I had blended the bananas before I added the yoghurt.",
+    "correctResponseId": "en:lesson-25:session-20:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:i05",
+    "correctText": "blended",
+    "correctResponseId": "en:lesson-25:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:word:dissolved",
+    "correctText": "dissolved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:i06",
+    "correctText": "The sugar had dissolved before I tasted the drink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:i07",
+    "correctText": "Would you like some more tea?",
+    "correctResponseId": "en:lesson-25:session-20:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:word:thickened",
+    "correctText": "thickened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:i08",
+    "correctText": "The sauce had thickened before we sat down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-20:i09",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-20:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-20:i10",
-    "correctText": "We had shredded the cabbage before we made the salad.",
+    "correctText": "en:lesson-25:session-20:i10:p1=blended\nen:lesson-25:session-20:i10:p2=dissolved\nen:lesson-25:session-20:i10:p3=thickened\nen:lesson-25:session-20:i10:p4=shredded",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-20:i11",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-20:i11:r1"
+    "correctText": "Please taste the sauce.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-20:i12",
-    "correctText": "We had shredded the cabbage before we made the salad.",
+    "correctText": "We used to cook together on Sundays.",
     "correctResponseId": "en:lesson-25:session-20:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-20:i13",
-    "correctText": "en:lesson-25:session-20:i13:p1=blended\nen:lesson-25:session-20:i13:p2=dissolved\nen:lesson-25:session-20:i13:p3=thickened\nen:lesson-25:session-20:i13:p4=shredded",
+    "correctText": "In those days we would bake bread every weekend.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-20:i14",
-    "correctText": "She had finished before I called.",
-    "correctResponseId": null
+    "correctText": "cooked",
+    "correctResponseId": "en:lesson-25:session-20:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-20:i15",
-    "correctText": "The train had left when we arrived.",
+    "correctText": "I need another bowl.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-20:i16",
-    "correctText": "They had blended the fruit before we added the milk.",
-    "correctResponseId": null
+    "correctText": "other",
+    "correctResponseId": "en:lesson-25:session-20:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-20:i17",
-    "correctText": "I had shredded the cabbage before I made the salad.",
+    "correctText": "I have already washed the dishes.",
     "correctResponseId": null
   }
 ]

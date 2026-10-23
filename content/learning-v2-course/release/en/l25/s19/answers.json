@@ -6,38 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-19:i01",
-    "correctText": "The instructions had confused me before I asked for help.",
-    "correctResponseId": null
+    "correctText": "The map had confused me before I asked for directions.",
+    "correctResponseId": "en:lesson-25:session-19:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-19:i02",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-19:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-19:i03",
-    "correctText": "The instructions had confused me before I asked for help.",
-    "correctResponseId": "en:lesson-25:session-19:i03:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-19:word:embarrassed",
-    "correctText": "embarrassed",
+    "correctText": "Can you show me?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-19:i04",
-    "correctText": "The joke had embarrassed him before he left.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-19:i05",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-19:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-19:i06",
-    "correctText": "The joke had embarrassed him before he left.",
-    "correctResponseId": "en:lesson-25:session-19:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-19:word:scared",
@@ -45,19 +20,34 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-19:i07",
-    "correctText": "The noise had scared the baby before we closed the window.",
+    "interactionId": "en:lesson-25:session-19:i03",
+    "correctText": "The noise had scared me before I turned on the light.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-19:i08",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-19:i08:r1"
+    "interactionId": "en:lesson-25:session-19:i04",
+    "correctText": "scared",
+    "correctResponseId": "en:lesson-25:session-19:i04:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-19:i09",
-    "correctText": "The noise had scared the baby before we closed the window.",
-    "correctResponseId": "en:lesson-25:session-19:i09:r1"
+    "interactionId": "en:lesson-25:session-19:i05",
+    "correctText": "It was only the cat.",
+    "correctResponseId": "en:lesson-25:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-19:word:embarrassed",
+    "correctText": "embarrassed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-19:i06",
+    "correctText": "My question had embarrassed my friend before I apologised.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-19:i07",
+    "correctText": "Sorry, that was a personal question.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-19:word:satisfied",
@@ -65,43 +55,53 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-19:i08",
+    "correctText": "The explanation had satisfied me before I agreed.",
+    "correctResponseId": "en:lesson-25:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-19:i09",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-19:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-19:i10",
-    "correctText": "Her answer had satisfied me before I signed the form.",
+    "correctText": "en:lesson-25:session-19:i10:p1=confused\nen:lesson-25:session-19:i10:p2=embarrassed\nen:lesson-25:session-19:i10:p3=scared\nen:lesson-25:session-19:i10:p4=satisfied",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-19:i11",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-19:i11:r1"
+    "correctText": "Show me another example.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-19:i12",
-    "correctText": "Her answer had satisfied me before I signed the form.",
+    "correctText": "I used to be afraid of loud noises.",
     "correctResponseId": "en:lesson-25:session-19:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-19:i13",
-    "correctText": "en:lesson-25:session-19:i13:p1=confused\nen:lesson-25:session-19:i13:p2=embarrassed\nen:lesson-25:session-19:i13:p3=scared\nen:lesson-25:session-19:i13:p4=satisfied",
-    "correctResponseId": null
+    "correctText": "asked",
+    "correctResponseId": "en:lesson-25:session-19:i13:r1"
   },
   {
     "interactionId": "en:lesson-25:session-19:i14",
-    "correctText": "She had finished before I called.",
+    "correctText": "At school our teacher would explain things slowly.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-19:i15",
-    "correctText": "The train had left when we arrived.",
+    "correctText": "I understand now, thank you.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-19:i16",
-    "correctText": "The noise had scared the dog before I closed the window.",
-    "correctResponseId": null
+    "correctText": "other",
+    "correctResponseId": "en:lesson-25:session-19:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-19:i17",
-    "correctText": "His answer had satisfied her before she signed the form.",
+    "correctText": "I have already spoken to the teacher.",
     "correctResponseId": null
   }
 ]

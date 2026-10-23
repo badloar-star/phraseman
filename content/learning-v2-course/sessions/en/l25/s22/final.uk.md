@@ -49,103 +49,103 @@ Applaud — аплодувати, плескати на знак схвален�
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — accused**
-<!-- interaction_id: en:lesson-25:session-22:word:accused; family: word_card -->
-> **accused** — Звинуватили. Accuse — звинувачувати; accused — третя форма.
-
-**2 · Скажіть: «Вони звинуватили його в брехні до того, як він показав лист.»**
-<!-- interaction_id: en:lesson-25:session-22:i01; family: phrase_builder -->
-Плитки: `letter` `the` `showed` `he` `before` `lying` `of` `him` `accused` `had` `They` → **They had accused him of lying before he showed the letter.**
-
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-22:i02; family: context_gap_grammar -->
-They ___ accused him of lying before he showed the letter. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-22:i03; family: listen_choose -->
-🔊 *They had accused him of lying before he showed the letter.* → **They had accused him of lying before he showed the letter.** · We had accused him of lying before he showed the letter. · They had accused her of lying before she showed the letter.
-- We had accused him of lying before he showed the letter. — *У записі звучить They had accused him of lying before he showed the letter.*
-- They had accused her of lying before she showed the letter. — *У записі звучить They had accused him of lying before he showed the letter.*
-
-**5 · Картка слова — forbidden**
-<!-- interaction_id: en:lesson-25:session-22:word:forbidden; family: word_card -->
-> **forbidden** — Заборонила. Forbid — забороняти; forbidden — третя форма.
-
-**6 · Скажіть: «Мама заборонила перекуси до того, як я відчинив шафу.»**
-<!-- interaction_id: en:lesson-25:session-22:i04; family: phrase_builder -->
-Плитки: `cupboard` `the` `opened` `I` `before` `snacks` `forbidden` `had` `mother` `My` → **My mother had forbidden snacks before I opened the cupboard.**
-
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-22:i05; family: context_gap_grammar -->
-My mother ___ forbidden snacks before I opened the cupboard. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-22:i06; family: listen_choose -->
-🔊 *My mother had forbidden snacks before I opened the cupboard.* → **My mother had forbidden snacks before I opened the cupboard.** · My father had forbidden snacks before I opened the cupboard. · My mother had forbidden sweets before I opened the cupboard.
-- My father had forbidden snacks before I opened the cupboard. — *У записі звучить My mother had forbidden snacks before I opened the cupboard.*
-- My mother had forbidden sweets before I opened the cupboard. — *У записі звучить My mother had forbidden snacks before I opened the cupboard.*
-
-**9 · Картка слова — begged**
-<!-- interaction_id: en:lesson-25:session-22:word:begged; family: word_card -->
-> **begged** — Благав. Beg — благати, дуже наполегливо просити; begged — третя форма.
-
-**10 · Скажіть: «Він благав дати йому ще один шанс до того, як вона відповіла.»**
-<!-- interaction_id: en:lesson-25:session-22:i07; family: phrase_builder -->
-Плитки: `answered` `she` `before` `chance` `another` `for` `begged` `had` `He` → **He had begged for another chance before she answered.**
-
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-22:i08; family: context_gap_grammar -->
-He ___ begged for another chance before she answered. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-22:i09; family: listen_choose -->
-🔊 *He had begged for another chance before she answered.* → **He had begged for another chance before she answered.** · She had begged for another chance before he answered. · He had begged for more time before she answered.
-- She had begged for another chance before he answered. — *У записі звучить He had begged for another chance before she answered.*
-- He had begged for more time before she answered. — *У записі звучить He had begged for another chance before she answered.*
-
-**13 · Картка слова — applauded**
+**1 · Картка слова — applauded**
 <!-- interaction_id: en:lesson-25:session-22:word:applauded; family: word_card -->
 > **applauded** — Аплодували. Applaud — аплодувати; applauded — третя форма.
 
-**14 · Скажіть: «Ми поаплодували співакові до того, як згасло світло.»**
-<!-- interaction_id: en:lesson-25:session-22:i10; family: phrase_builder -->
-Плитки: `out` `went` `lights` `the` `before` `singer` `the` `applauded` `had` `We` → **We had applauded the singer before the lights went out.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-22:i01; family: listen_choose -->
+🔊 *We had applauded the children before we left the hall.* → **We had applauded the children before we left the hall.** · We had applauded the musicians before we left the hall. · They had applauded the children before they left the hall.
+- We had applauded the musicians before we left the hall. — *У записі звучить We had applauded the children before we left the hall.*
+- They had applauded the children before they left the hall. — *У записі звучить We had applauded the children before we left the hall.*
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-22:i11; family: context_gap_grammar -->
-We ___ applauded the singer before the lights went out. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Похваліть друга після виступу: «Ти чудово виступив».**
+<!-- interaction_id: en:lesson-25:session-22:i02; family: scripted_repeat_compare -->
+🎙 **You did really well.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-22:i12; family: listen_choose -->
-🔊 *We had applauded the singer before the lights went out.* → **We had applauded the singer before the lights went out.** · They had applauded the singer before the lights went out. · We had applauded the dancer before the lights went out.
-- They had applauded the singer before the lights went out. — *У записі звучить We had applauded the singer before the lights went out.*
-- We had applauded the dancer before the lights went out. — *У записі звучить We had applauded the singer before the lights went out.*
+**4 · Картка слова — forbidden**
+<!-- interaction_id: en:lesson-25:session-22:word:forbidden; family: word_card -->
+> **forbidden** — Заборонила. Forbid — забороняти; forbidden — третя форма.
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-22:i13; family: speed_match -->
+**5 · У школі було правило: «Учитель заборонив телефони до початку уроку».**
+<!-- interaction_id: en:lesson-25:session-22:i03; family: phrase_builder -->
+Плитки: `started` `lesson` `the` `before` `phones` `forbidden` `had` `teacher` `The` → **The teacher had forbidden phones before the lesson started.**
+
+**6 · Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.**
+<!-- interaction_id: en:lesson-25:session-22:i04; family: context_gap_grammar -->
+The teacher had ___ photos before we came in. → **forbidden** · forbade · forbid
+- forbade — *Forbade — Past Simple; після had потрібна форма forbidden.*
+- forbid — *Forbid — базова форма; після had потрібна forbidden.*
+
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-22:i05; family: listen_choose -->
+🔊 *Can I use my phone outside?* → **Can I use my phone outside?** · Can I use my phone inside? · Can she use her phone outside?
+- Can I use my phone inside? — *У записі звучить Can I use my phone outside?*
+- Can she use her phone outside? — *У записі звучить Can I use my phone outside?*
+
+**8 · Картка слова — begged**
+<!-- interaction_id: en:lesson-25:session-22:word:begged; family: word_card -->
+> **begged** — Благав. Beg — благати, дуже наполегливо просити; begged — третя форма.
+
+**9 · Почуйте розповідь про прохання дитини.**
+<!-- interaction_id: en:lesson-25:session-22:i06; family: listen_build_dictation -->
+🔊 *My son had begged for a dog before we visited the shelter.* Плитки: `shelter` `the` `visited` `we` `before` `dog` `a` `for` `begged` `had` `son` `My` → **My son had begged for a dog before we visited the shelter.**
+
+**10 · Попросіть дати ще одну можливість: «Будь ласка, дай мені ще один шанс».**
+<!-- interaction_id: en:lesson-25:session-22:i07; family: scripted_repeat_compare -->
+🎙 **Please give me another chance.**
+
+**11 · Картка слова — accused**
+<!-- interaction_id: en:lesson-25:session-22:word:accused; family: word_card -->
+> **accused** — Звинуватили. Accuse — звинувачувати; accused — третя форма.
+
+**12 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-22:i08; family: listen_choose -->
+🔊 *They had accused me of lying before they read the message.* → **They had accused me of lying before they read the message.** · They had accused her of lying before they read the message. · They had accused me of lying before they heard the message.
+- They had accused her of lying before they read the message. — *У записі звучить They had accused me of lying before they read the message.*
+- They had accused me of lying before they heard the message. — *У записі звучить They had accused me of lying before they read the message.*
+
+**13 · Вас звинуватили в брехні, а не подякували. Доповніть прийменник після accused.**
+<!-- interaction_id: en:lesson-25:session-22:i09; family: context_gap_grammar -->
+They had accused me ___ lying. → **of** · at · to
+- at — *Accuse someone of something — звинувачувати когось у чомусь.*
+- to — *Після accused me потрібне of, не to.*
+
+**14 · Розрізніть заборону, звинувачення, прохання й підтримку**
+<!-- interaction_id: en:lesson-25:session-22:i10; family: speed_match -->
 accused — звинуватили · forbidden — заборонила · begged — благав · applauded — аплодували
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-22:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**15 · Попросіть спочатку вислухати вас: «Будь ласка, дай мені пояснити».**
+<!-- interaction_id: en:lesson-25:session-22:i11; family: scripted_repeat_compare -->
+🎙 **Please let me explain.**
 
-**19 · Потяг уже поїхав**
+**16 · Згадайте старе шкільне правило: «Раніше нам доводилося чекати надворі».**
+<!-- interaction_id: en:lesson-25:session-22:i12; family: phrase_builder -->
+Плитки: `outside` `wait` `to` `have` `to` `used` `We` → **We used to have to wait outside.**
+
+**17 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-22:i13; family: listen_choose -->
+🔊 *At school we would clap after every performance.* → **At school we would clap after every performance.** · At school we would sing after every performance. · At home we would clap after every performance.
+- At school we would sing after every performance. — *У записі звучить At school we would clap after every performance.*
+- At home we would clap after every performance. — *У записі звучить At school we would clap after every performance.*
+
+**18 · Один концерт закінчився вчора. Ви поаплодували тоді.**
+<!-- interaction_id: en:lesson-25:session-22:i14; family: context_gap_grammar -->
+We ___ the singer yesterday. → **applauded** · have applauded · would applaud
+- have applauded — *Yesterday потребує Past Simple applauded.*
+- would applaud — *Would applaud описує колишню звичку; тут один концерт.*
+
+**19 · Почуйте, чому глядач запізнився.**
 <!-- interaction_id: en:lesson-25:session-22:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *The show had started before I found my seat.* Плитки: `seat` `my` `found` `I` `before` `started` `had` `show` `The` → **The show had started before I found my seat.**
 
-**20 · Скажіть: «Я благав дати мені ще один шанс до того, як вона відповіла».**
-<!-- interaction_id: en:lesson-25:session-22:i16; family: scripted_repeat_compare -->
-🎙 **I had begged for another chance before she answered.**
+**20 · Ви вже вибачилися. Доповніть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-22:i16; family: context_gap_grammar -->
+I have already ___ sorry. → **said** · say · saying
+- say — *Після have потрібна форма said.*
+- saying — *Have saying не утворює Present Perfect.*
 
-**21 · Скажіть: «Вони поаплодували танцівникові до того, як згасло світло».**
-<!-- interaction_id: en:lesson-25:session-22:i17; family: scripted_repeat_compare -->
-🎙 **They had applauded the dancer before the lights went out.**
+**21 · Укажіть, де решта дітей: «Інші діти чекають біля дверей».**
+<!-- interaction_id: en:lesson-25:session-22:i17; family: phrase_builder -->
+Плитки: `door` `the` `by` `waiting` `are` `children` `other` `The` → **The other children are waiting by the door.**
 

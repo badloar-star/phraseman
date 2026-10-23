@@ -49,103 +49,103 @@ Shred — нарезать или разорвать на тонкие поло�
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — blended**
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-20:i01; family: listen_choose -->
+🔊 *Have you started cooking yet?* → **Have you started cooking yet?** · Have you finished cooking yet? · Have they started cooking yet?
+- Have you finished cooking yet? — *В записи звучит Have you started cooking yet?*
+- Have they started cooking yet? — *В записи звучит Have you started cooking yet?*
+
+**2 · Карточка слова — shredded**
+<!-- interaction_id: en:lesson-25:session-20:word:shredded; family: word_card -->
+> **shredded** — нашинковал. Shred — нарезать тонкими полосками; shredded — третья форма.
+
+**3 · Капуста уже была готова к вашему приходу: «Я нашинковал капусту до твоего прихода».**
+<!-- interaction_id: en:lesson-25:session-20:i02; family: phrase_builder -->
+Плитки: `arrived` `you` `before` `cabbage` `the` `shredded` `had` `I` → **I had shredded the cabbage before you arrived.**
+
+**4 · Вы хотите помочь на кухне. Спросите: «Что мне делать дальше?»**
+<!-- interaction_id: en:lesson-25:session-20:i03; family: scripted_repeat_compare -->
+🎙 **What should I do next?**
+
+**5 · Карточка слова — blended**
 <!-- interaction_id: en:lesson-25:session-20:word:blended; family: word_card -->
-> **blended** — смешала до однородности. Blend — смешивать до однородности; blended — третья форма.
+> **blended** — смешал до однородности. Blend — смешивать; blended — третья форма.
 
-**2 · Скажите: «Она смешала фрукты до однородности до того, как я добавил молоко.»**
-<!-- interaction_id: en:lesson-25:session-20:i01; family: phrase_builder -->
-Плитки: `milk` `the` `added` `I` `before` `fruit` `the` `blended` `had` `She` → **She had blended the fruit before I added the milk.**
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-20:i04; family: listen_choose -->
+🔊 *I had blended the bananas before I added the yoghurt.* → **I had blended the bananas before I added the yoghurt.** · I had blended the berries before I added the yoghurt. · I had blended the bananas before I added the milk.
+- I had blended the berries before I added the yoghurt. — *В записи звучит I had blended the bananas before I added the yoghurt.*
+- I had blended the bananas before I added the milk. — *В записи звучит I had blended the bananas before I added the yoghurt.*
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-20:i02; family: context_gap_grammar -->
-She ___ blended the fruit before I added the milk. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**7 · Фрукты измельчили и смешали до однородности, а не только нарезали полосками.**
+<!-- interaction_id: en:lesson-25:session-20:i05; family: context_gap_grammar -->
+She had ___ the fruit before she poured it into glasses. → **blended** · shredded · bought
+- shredded — *Shredded — нарезала полосками; здесь сделали однородную смесь.*
+- bought — *Bought — купила; здесь описан способ приготовления.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-20:i03; family: listen_choose -->
-🔊 *She had blended the fruit before I added the milk.* → **She had blended the fruit before I added the milk.** · He had blended the fruit before I added the milk. · She had blended the fruit before I added the yoghurt.
-- He had blended the fruit before I added the milk. — *В записи звучит She had blended the fruit before I added the milk.*
-- She had blended the fruit before I added the yoghurt. — *В записи звучит She had blended the fruit before I added the milk.*
-
-**5 · Карточка слова — dissolved**
+**8 · Карточка слова — dissolved**
 <!-- interaction_id: en:lesson-25:session-20:word:dissolved; family: word_card -->
 > **dissolved** — растворил. Dissolve — растворять; dissolved — третья форма.
 
-**6 · Скажите: «Я растворил сахар до того, как она попробовала чай.»**
-<!-- interaction_id: en:lesson-25:session-20:i04; family: phrase_builder -->
-Плитки: `tea` `the` `tasted` `she` `before` `sugar` `the` `dissolved` `had` `I` → **I had dissolved the sugar before she tasted the tea.**
+**9 · Услышьте, что произошло с сахаром.**
+<!-- interaction_id: en:lesson-25:session-20:i06; family: listen_build_dictation -->
+🔊 *The sugar had dissolved before I tasted the drink.* Плитки: `drink` `the` `tasted` `I` `before` `dissolved` `had` `sugar` `The` → **The sugar had dissolved before I tasted the drink.**
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-20:i05; family: context_gap_grammar -->
-I ___ dissolved the sugar before she tasted the tea. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**10 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-20:i07; family: listen_choose -->
+🔊 *Would you like some more tea?* → **Would you like some more tea?** · Would you like some more soup? · Would they like some more tea?
+- Would you like some more soup? — *В записи звучит Would you like some more tea?*
+- Would they like some more tea? — *В записи звучит Would you like some more tea?*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-20:i06; family: listen_choose -->
-🔊 *I had dissolved the sugar before she tasted the tea.* → **I had dissolved the sugar before she tasted the tea.** · He had dissolved the sugar before she tasted the tea. · I had dissolved the sugar before she tasted the coffee.
-- He had dissolved the sugar before she tasted the tea. — *В записи звучит I had dissolved the sugar before she tasted the tea.*
-- I had dissolved the sugar before she tasted the coffee. — *В записи звучит I had dissolved the sugar before she tasted the tea.*
-
-**9 · Карточка слова — thickened**
+**11 · Карточка слова — thickened**
 <!-- interaction_id: en:lesson-25:session-20:word:thickened; family: word_card -->
 > **thickened** — загустел. Thicken — густеть; thickened — третья форма.
 
-**10 · Скажите: «Соус загустел до того, как я выключил нагрев.»**
-<!-- interaction_id: en:lesson-25:session-20:i07; family: phrase_builder -->
-Плитки: `heat` `the` `off` `turned` `I` `before` `thickened` `had` `sauce` `The` → **The sauce had thickened before I turned off the heat.**
+**12 · Объясните, когда соус стал густым: «Соус загустел до того, как мы сели».**
+<!-- interaction_id: en:lesson-25:session-20:i08; family: phrase_builder -->
+Плитки: `down` `sat` `we` `before` `thickened` `had` `sauce` `The` → **The sauce had thickened before we sat down.**
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-20:i08; family: context_gap_grammar -->
-The sauce ___ thickened before I turned off the heat. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**13 · Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-20:i09; family: context_gap_grammar -->
+We ___ set the table before our guests came. → **had** · have · were
+- have — *Have set связано с настоящим; здесь накрыли стол до прошлой встречи.*
+- were — *Нужно had set для более раннего действия.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-20:i09; family: listen_choose -->
-🔊 *The sauce had thickened before I turned off the heat.* → **The sauce had thickened before I turned off the heat.** · The soup had thickened before I turned off the heat. · The sauce had thickened before she turned off the heat.
-- The soup had thickened before I turned off the heat. — *В записи звучит The sauce had thickened before I turned off the heat.*
-- The sauce had thickened before she turned off the heat. — *В записи звучит The sauce had thickened before I turned off the heat.*
+**14 · Различите четыре изменения продуктов**
+<!-- interaction_id: en:lesson-25:session-20:i10; family: speed_match -->
+blended — смешала до однородности · dissolved — растворил · thickened — загустел · shredded — нашинковали
 
-**13 · Карточка слова — shredded**
-<!-- interaction_id: en:lesson-25:session-20:word:shredded; family: word_card -->
-> **shredded** — нашинковали. Shred — нарезать тонкими полосками; shredded — третья форма.
-
-**14 · Скажите: «Мы нашинковали капусту до того, как сделали салат.»**
-<!-- interaction_id: en:lesson-25:session-20:i10; family: phrase_builder -->
-Плитки: `salad` `the` `made` `we` `before` `cabbage` `the` `shredded` `had` `We` → **We had shredded the cabbage before we made the salad.**
-
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-20:i11; family: context_gap_grammar -->
-We ___ shredded the cabbage before we made the salad. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**15 · Попросите попробовать блюдо: «Попробуй соус, пожалуйста».**
+<!-- interaction_id: en:lesson-25:session-20:i11; family: scripted_repeat_compare -->
+🎙 **Please taste the sauce.**
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-20:i12; family: listen_choose -->
-🔊 *We had shredded the cabbage before we made the salad.* → **We had shredded the cabbage before we made the salad.** · They had shredded the cabbage before they made the salad. · We had shredded the lettuce before we made the salad.
-- They had shredded the cabbage before they made the salad. — *В записи звучит We had shredded the cabbage before we made the salad.*
-- We had shredded the lettuce before we made the salad. — *В записи звучит We had shredded the cabbage before we made the salad.*
+🔊 *We used to cook together on Sundays.* → **We used to cook together on Sundays.** · We used to eat together on Sundays. · They used to cook together on Sundays.
+- We used to eat together on Sundays. — *В записи звучит We used to cook together on Sundays.*
+- They used to cook together on Sundays. — *В записи звучит We used to cook together on Sundays.*
 
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-20:i13; family: speed_match -->
-blended — смешала до однородности · dissolved — растворил · thickened — загустел · shredded — нашинковали
+**17 · Услышьте прежнее семейное занятие.**
+<!-- interaction_id: en:lesson-25:session-20:i13; family: listen_build_dictation -->
+🔊 *In those days we would bake bread every weekend.* Плитки: `weekend` `every` `bread` `bake` `would` `we` `days` `those` `In` → **In those days we would bake bread every weekend.**
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-20:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Вчера вы приготовили один конкретный ужин.**
+<!-- interaction_id: en:lesson-25:session-20:i14; family: context_gap_grammar -->
+I ___ dinner yesterday. → **cooked** · have cooked · would cook
+- have cooked — *Yesterday требует Past Simple cooked.*
+- would cook — *Would cook описывает привычку; здесь один вчерашний ужин.*
 
-**19 · Поезд уже ушёл**
-<!-- interaction_id: en:lesson-25:session-20:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**19 · Одну миску вы уже заняли. Попросите: «Мне нужна ещё одна миска».**
+<!-- interaction_id: en:lesson-25:session-20:i15; family: phrase_builder -->
+Плитки: `bowl` `another` `need` `I` → **I need another bowl.**
 
-**20 · Скажите: «Они смешали фрукты до однородности до того, как мы добавили молоко».**
-<!-- interaction_id: en:lesson-25:session-20:i16; family: scripted_repeat_compare -->
-🎙 **They had blended the fruit before we added the milk.**
+**20 · Один нож здесь, остальные — в ящике.**
+<!-- interaction_id: en:lesson-25:session-20:i16; family: context_gap_grammar -->
+The ___ knives are in the drawer. → **other** · another · others
+- another — *Another употребляется с единственным числом, не knives.*
+- others — *Перед knives нужно other без -s.*
 
-**21 · Скажите: «Я нашинковал капусту до того, как сделал салат».**
+**21 · Вы уже убрали кухню. Скажите: «Я уже помыл посуду».**
 <!-- interaction_id: en:lesson-25:session-20:i17; family: scripted_repeat_compare -->
-🎙 **I had shredded the cabbage before I made the salad.**
+🎙 **I have already washed the dishes.**
 

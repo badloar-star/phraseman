@@ -53,99 +53,99 @@ Satisfy — задовольнити, виявитися достатнім дл
 <!-- interaction_id: en:lesson-25:session-19:word:confused; family: word_card -->
 > **confused** — заплутав. Confuse — заплутати; confused — третя форма.
 
-**2 · Скажіть: «Інструкції заплутали мене до того, як я попросив про допомогу.»**
-<!-- interaction_id: en:lesson-25:session-19:i01; family: phrase_builder -->
-Плитки: `help` `for` `asked` `I` `before` `me` `confused` `had` `instructions` `The` → **The instructions had confused me before I asked for help.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-19:i01; family: listen_choose -->
+🔊 *The map had confused me before I asked for directions.* → **The map had confused me before I asked for directions.** · The map had confused her before she asked for directions. · The message had confused me before I asked for directions.
+- The map had confused her before she asked for directions. — *У записі звучить The map had confused me before I asked for directions.*
+- The message had confused me before I asked for directions. — *У записі звучить The map had confused me before I asked for directions.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-19:i02; family: context_gap_grammar -->
-The instructions ___ confused me before I asked for help. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Ви не зрозуміли пояснення. Попросіть: «Можеш показати мені?»**
+<!-- interaction_id: en:lesson-25:session-19:i02; family: scripted_repeat_compare -->
+🎙 **Can you show me?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-19:i03; family: listen_choose -->
-🔊 *The instructions had confused me before I asked for help.* → **The instructions had confused me before I asked for help.** · The instructions had confused her before she asked for help. · The instructions had confused me before I called for help.
-- The instructions had confused her before she asked for help. — *У записі звучить The instructions had confused me before I asked for help.*
-- The instructions had confused me before I called for help. — *У записі звучить The instructions had confused me before I asked for help.*
-
-**5 · Картка слова — embarrassed**
-<!-- interaction_id: en:lesson-25:session-19:word:embarrassed; family: word_card -->
-> **embarrassed** — поставив у незручне становище. Embarrass — поставити в незручне становище; embarrassed — третя форма.
-
-**6 · Скажіть: «Жарт поставив його в незручне становище до того, як він пішов.»**
-<!-- interaction_id: en:lesson-25:session-19:i04; family: phrase_builder -->
-Плитки: `left` `he` `before` `him` `embarrassed` `had` `joke` `The` → **The joke had embarrassed him before he left.**
-
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-19:i05; family: context_gap_grammar -->
-The joke ___ embarrassed him before he left. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-19:i06; family: listen_choose -->
-🔊 *The joke had embarrassed him before he left.* → **The joke had embarrassed him before he left.** · The joke had embarrassed her before she left. · The question had embarrassed him before he left.
-- The joke had embarrassed her before she left. — *У записі звучить The joke had embarrassed him before he left.*
-- The question had embarrassed him before he left. — *У записі звучить The joke had embarrassed him before he left.*
-
-**9 · Картка слова — scared**
+**4 · Картка слова — scared**
 <!-- interaction_id: en:lesson-25:session-19:word:scared; family: word_card -->
 > **scared** — налякав. Scare — налякати; scared — третя форма.
 
-**10 · Скажіть: «Шум налякав малюка до того, як ми зачинили вікно.»**
-<!-- interaction_id: en:lesson-25:session-19:i07; family: phrase_builder -->
-Плитки: `window` `the` `closed` `we` `before` `baby` `the` `scared` `had` `noise` `The` → **The noise had scared the baby before we closed the window.**
+**5 · Поясніть, чому ви ввімкнули світло: «Шум налякав мене до того, як я ввімкнув світло».**
+<!-- interaction_id: en:lesson-25:session-19:i03; family: phrase_builder -->
+Плитки: `light` `the` `on` `turned` `I` `before` `me` `scared` `had` `noise` `The` → **The noise had scared me before I turned on the light.**
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-19:i08; family: context_gap_grammar -->
-The noise ___ scared the baby before we closed the window. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**6 · Ви злякалися гучного звуку, а не заплуталися в поясненні.**
+<!-- interaction_id: en:lesson-25:session-19:i04; family: context_gap_grammar -->
+The sudden bang had ___ me before I saw the cat. → **scared** · confused · helped
+- confused — *Confused — заплутав; ситуація описує переляк.*
+- helped — *Helped — допоміг; тут звук налякав людину.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-19:i09; family: listen_choose -->
-🔊 *The noise had scared the baby before we closed the window.* → **The noise had scared the baby before we closed the window.** · The noise had scared the puppy before we closed the window. · The noise had scared the baby before we closed the door.
-- The noise had scared the puppy before we closed the window. — *У записі звучить The noise had scared the baby before we closed the window.*
-- The noise had scared the baby before we closed the door. — *У записі звучить The noise had scared the baby before we closed the window.*
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-19:i05; family: listen_choose -->
+🔊 *It was only the cat.* → **It was only the cat.** · It was only the wind. · It was only the dog.
+- It was only the wind. — *У записі звучить It was only the cat.*
+- It was only the dog. — *У записі звучить It was only the cat.*
 
-**13 · Картка слова — satisfied**
+**8 · Картка слова — embarrassed**
+<!-- interaction_id: en:lesson-25:session-19:word:embarrassed; family: word_card -->
+> **embarrassed** — поставив у незручне становище. Embarrass — збентежити; embarrassed — третя форма.
+
+**9 · Почуйте причину вибачення.**
+<!-- interaction_id: en:lesson-25:session-19:i06; family: listen_build_dictation -->
+🔊 *My question had embarrassed my friend before I apologised.* Плитки: `apologised` `I` `before` `friend` `my` `embarrassed` `had` `question` `My` → **My question had embarrassed my friend before I apologised.**
+
+**10 · Ви поставили надто особисте запитання. Скажіть: «Вибач, це було особисте запитання».**
+<!-- interaction_id: en:lesson-25:session-19:i07; family: scripted_repeat_compare -->
+🎙 **Sorry, that was a personal question.**
+
+**11 · Картка слова — satisfied**
 <!-- interaction_id: en:lesson-25:session-19:word:satisfied; family: word_card -->
 > **satisfied** — задовольнив. Satisfy — задовольнити; satisfied — третя форма.
 
-**14 · Скажіть: «Її відповідь задовольнила мене до того, як я підписав бланк.»**
-<!-- interaction_id: en:lesson-25:session-19:i10; family: phrase_builder -->
-Плитки: `form` `the` `signed` `I` `before` `me` `satisfied` `had` `answer` `Her` → **Her answer had satisfied me before I signed the form.**
+**12 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-19:i08; family: listen_choose -->
+🔊 *The explanation had satisfied me before I agreed.* → **The explanation had satisfied me before I agreed.** · The explanation had satisfied her before she agreed. · The explanation had confused me before I agreed.
+- The explanation had satisfied her before she agreed. — *У записі звучить The explanation had satisfied me before I agreed.*
+- The explanation had confused me before I agreed. — *У записі звучить The explanation had satisfied me before I agreed.*
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-19:i11; family: context_gap_grammar -->
-Her answer ___ satisfied me before I signed the form. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**13 · Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect.**
+<!-- interaction_id: en:lesson-25:session-19:i09; family: context_gap_grammar -->
+The answer ___ satisfied me before I agreed. → **had** · has · was
+- has — *Has satisfied пов’язане з теперішнім; тут згода вже в минулому.*
+- was — *Для ранішої події потрібна форма had satisfied.*
+
+**14 · Розрізніть причини реакцій**
+<!-- interaction_id: en:lesson-25:session-19:i10; family: speed_match -->
+confused — заплутали · embarrassed — поставив у незручне становище · scared — налякав · satisfied — задовольнила
+
+**15 · Потрібне інше пояснення. Скажіть: «Покажи мені інший приклад».**
+<!-- interaction_id: en:lesson-25:session-19:i11; family: phrase_builder -->
+Плитки: `example` `another` `me` `Show` → **Show me another example.**
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-19:i12; family: listen_choose -->
-🔊 *Her answer had satisfied me before I signed the form.* → **Her answer had satisfied me before I signed the form.** · His answer had satisfied me before I signed the form. · Her answer had satisfied me before I signed the letter.
-- His answer had satisfied me before I signed the form. — *У записі звучить Her answer had satisfied me before I signed the form.*
-- Her answer had satisfied me before I signed the letter. — *У записі звучить Her answer had satisfied me before I signed the form.*
+🔊 *I used to be afraid of loud noises.* → **I used to be afraid of loud noises.** · I used to be afraid of the dark. · She used to be afraid of loud noises.
+- I used to be afraid of the dark. — *У записі звучить I used to be afraid of loud noises.*
+- She used to be afraid of loud noises. — *У записі звучить I used to be afraid of loud noises.*
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-19:i13; family: speed_match -->
-confused — заплутали · embarrassed — поставив у незручне становище · scared — налякав · satisfied — задовольнила
+**17 · Ви запитали дорогу вчора. Це один завершений випадок.**
+<!-- interaction_id: en:lesson-25:session-19:i13; family: context_gap_grammar -->
+I ___ for directions yesterday. → **asked** · have asked · would ask
+- have asked — *Yesterday потребує Past Simple asked.*
+- would ask — *Would ask описує колишню звичку, не один учорашній випадок.*
 
-**18 · Уже закінчив**
+**18 · Почуйте, як раніше допомагав учитель.**
 <!-- interaction_id: en:lesson-25:session-19:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+🔊 *At school our teacher would explain things slowly.* Плитки: `slowly` `things` `explain` `would` `teacher` `our` `school` `At` → **At school our teacher would explain things slowly.**
 
-**19 · Потяг уже поїхав**
-<!-- interaction_id: en:lesson-25:session-19:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+**19 · Тепер ви розібралися. Скажіть: «Тепер я зрозумів, дякую».**
+<!-- interaction_id: en:lesson-25:session-19:i15; family: scripted_repeat_compare -->
+🎙 **I understand now, thank you.**
 
-**20 · Скажіть: «Шум налякав собаку до того, як я зачинив вікно».**
-<!-- interaction_id: en:lesson-25:session-19:i16; family: scripted_repeat_compare -->
-🎙 **The noise had scared the dog before I closed the window.**
+**20 · Одне запитання вже розібрали, решта ще залишилася.**
+<!-- interaction_id: en:lesson-25:session-19:i16; family: context_gap_grammar -->
+I still have ___ questions. → **other** · another · others
+- another — *Another використовується з одниною, а questions — множина.*
+- others — *Перед іменником questions потрібно other без -s.*
 
-**21 · Скажіть: «Його відповідь задовольнила її до того, як вона підписала бланк».**
-<!-- interaction_id: en:lesson-25:session-19:i17; family: scripted_repeat_compare -->
-🎙 **His answer had satisfied her before she signed the form.**
+**21 · Ви вже попросили допомоги. Повідомте: «Я вже поговорив з учителем».**
+<!-- interaction_id: en:lesson-25:session-19:i17; family: phrase_builder -->
+Плитки: `teacher` `the` `to` `spoken` `already` `have` `I` → **I have already spoken to the teacher.**
 

@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-51:word:karate",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — karate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:word:karate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — karate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:word:karate:audio",
+          "transcript": "karate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:word:karate:r1",
+            "targetText": "karate",
+            "meaningByLocale": {
+              "ru": "карате.",
+              "uk": "карате."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "karate",
+          "definitionByLocale": {
+            "ru": "карате.",
+            "uk": "карате."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я пробовал заниматься карате.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я пробовал заниматься карате.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have tried karate.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я пробовал заниматься карате.»",
+          "uk": "Розкажіть про досвід: «Я пробував займатися карате.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "tried",
+          "karate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i02:r1",
+          "text": "I have tried karate."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i02:r2",
+          "text": "You have tried karate."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i02:r3",
+          "text": "They have tried karate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i02:audio",
+          "transcript": "I have tried karate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:i02:r1",
+            "targetText": "I have tried karate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i02:r2",
+            "targetText": "You have tried karate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i02:r3",
+            "targetText": "They have tried karate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried karate.",
+              "uk": "У записі звучить I have tried karate."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried karate.",
+              "uk": "У записі звучить I have tried karate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i03:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i03:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i03:r3",
+          "text": "tries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ karate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-51:i03:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i03:r2",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i03:r3",
+            "text": "tries"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:word:judo",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — judo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:word:judo:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — judo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:word:judo:audio",
+          "transcript": "judo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:word:judo:r1",
+            "targetText": "judo",
+            "meaningByLocale": {
+              "ru": "дзюдо.",
+              "uk": "дзюдо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "judo",
+          "definitionByLocale": {
+            "ru": "дзюдо.",
+            "uk": "дзюдо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Она пробовала заниматься дзюдо.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Она пробовала заниматься дзюдо.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has tried judo.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она пробовала заниматься дзюдо.»",
+          "uk": "Розкажіть про досвід: «Вона пробувала займатися дзюдо.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "tried",
+          "judo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i05:r1",
+          "text": "She has tried judo."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i05:r2",
+          "text": "You have tried judo."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i05:r3",
+          "text": "They have tried judo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i05:audio",
+          "transcript": "She has tried judo."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:i05:r1",
+            "targetText": "She has tried judo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i05:r2",
+            "targetText": "You have tried judo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i05:r3",
+            "targetText": "They have tried judo.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has tried judo.",
+              "uk": "У записі звучить She has tried judo."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has tried judo.",
+              "uk": "У записі звучить She has tried judo."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i06:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i06:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i06:r3",
+          "text": "tries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ judo.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-51:i06:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i06:r2",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i06:r3",
+            "text": "tries"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:word:gymnastics",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gymnastics",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:word:gymnastics:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gymnastics",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:word:gymnastics:audio",
+          "transcript": "gymnastics"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:word:gymnastics:r1",
+            "targetText": "gymnastics",
+            "meaningByLocale": {
+              "ru": "гимнастика.",
+              "uk": "гімнастика."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gymnastics",
+          "definitionByLocale": {
+            "ru": "гимнастика.",
+            "uk": "гімнастика."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы смотрели гимнастику.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы смотрели гимнастику.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have watched gymnastics.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы смотрели гимнастику.»",
+          "uk": "Розкажіть про досвід: «Ми дивилися гімнастику.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "watched",
+          "gymnastics"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i08:r1",
+          "text": "We have watched gymnastics."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i08:r2",
+          "text": "You have watched gymnastics."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i08:r3",
+          "text": "They have watched gymnastics."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i08:audio",
+          "transcript": "We have watched gymnastics."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:i08:r1",
+            "targetText": "We have watched gymnastics.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i08:r2",
+            "targetText": "You have watched gymnastics.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i08:r3",
+            "targetText": "They have watched gymnastics.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have watched gymnastics.",
+              "uk": "У записі звучить We have watched gymnastics."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have watched gymnastics.",
+              "uk": "У записі звучить We have watched gymnastics."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i09:r1",
+          "text": "watched"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i09:r2",
+          "text": "watch"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i09:r3",
+          "text": "watches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ gymnastics.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-51:i09:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i09:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i09:r3",
+            "text": "watches"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: watched.",
+              "uk": "Потрібна третя форма: watched."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: watched.",
+              "uk": "Потрібна третя форма: watched."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:word:wrestling",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wrestling",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:word:wrestling:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wrestling",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:word:wrestling:audio",
+          "transcript": "wrestling"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:word:wrestling:r1",
+            "targetText": "wrestling",
+            "meaningByLocale": {
+              "ru": "борьба.",
+              "uk": "боротьба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrestling",
+          "definitionByLocale": {
+            "ru": "борьба.",
+            "uk": "боротьба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он смотрел борьбу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он смотрел борьбу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has watched wrestling.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он смотрел борьбу.»",
+          "uk": "Розкажіть про досвід: «Він дивився боротьбу.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "watched",
+          "wrestling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i11:r1",
+          "text": "He has watched wrestling."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i11:r2",
+          "text": "You have watched wrestling."
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i11:r3",
+          "text": "They have watched wrestling."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i11:audio",
+          "transcript": "He has watched wrestling."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-51:i11:r1",
+            "targetText": "He has watched wrestling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i11:r2",
+            "targetText": "You have watched wrestling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i11:r3",
+            "targetText": "They have watched wrestling.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has watched wrestling.",
+              "uk": "У записі звучить He has watched wrestling."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has watched wrestling.",
+              "uk": "У записі звучить He has watched wrestling."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-51:i12:r1",
+          "text": "watched"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i12:r2",
+          "text": "watch"
+        },
+        {
+          "responseId": "en:lesson-23:session-51:i12:r3",
+          "text": "watches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ wrestling.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-51:i12:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i12:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i12:r3",
+            "text": "watches"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: watched.",
+              "uk": "Потрібна третя форма: watched."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: watched.",
+              "uk": "Потрібна третя форма: watched."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-51:i13:p1",
+            "target": "karate",
+            "meaningByLocale": {
+              "ru": "карате",
+              "uk": "карате"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-51:i13:p2",
+            "target": "judo",
+            "meaningByLocale": {
+              "ru": "дзюдо",
+              "uk": "дзюдо"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-51:i13:p3",
+            "target": "gymnastics",
+            "meaningByLocale": {
+              "ru": "гимнастика",
+              "uk": "гімнастика"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-51:i13:p4",
+            "target": "wrestling",
+            "meaningByLocale": {
+              "ru": "борьба",
+              "uk": "боротьба"
+            }
+          }
+        ],
+        "leftColumn": [
+          "karate",
+          "judo",
+          "gymnastics",
+          "wrestling"
+        ],
+        "rightColumn": [
+          "карате",
+          "дзюдо",
+          "гимнастика",
+          "борьба"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой вариант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой вариант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я пробовал заниматься дзюдо.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я пробовал заниматься дзюдо.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i16:audio",
+          "transcript": "I have tried judo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have tried judo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она смотрела гимнастику.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она смотрела гимнастику.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-51:i17:audio",
+          "transcript": "She has watched gymnastics."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has watched gymnastics.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "515a056aa0d7651ea5b4635601b31ad3cf39f0d3590926403dde59a6c4d96d26"
+}

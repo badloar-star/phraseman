@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-53:word:village",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — village",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:word:village:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — village",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:word:village:audio",
+          "transcript": "village"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:word:village:r1",
+            "targetText": "village",
+            "meaningByLocale": {
+              "ru": "деревня, село.",
+              "uk": "село."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "village",
+          "definitionByLocale": {
+            "ru": "деревня, село.",
+            "uk": "село."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я побывал в маленькой деревне.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я побывал в маленькой деревне.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have visited a small village.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я побывал в маленькой деревне.»",
+          "uk": "Розкажіть про досвід: «Я побував у маленькому селі.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "visited",
+          "a",
+          "small",
+          "village"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i02:r1",
+          "text": "I have visited a small village."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i02:r2",
+          "text": "You have visited a small village."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i02:r3",
+          "text": "They have visited a small village."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i02:audio",
+          "transcript": "I have visited a small village."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:i02:r1",
+            "targetText": "I have visited a small village.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i02:r2",
+            "targetText": "You have visited a small village.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i02:r3",
+            "targetText": "They have visited a small village.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have visited a small village.",
+              "uk": "У записі звучить I have visited a small village."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have visited a small village.",
+              "uk": "У записі звучить I have visited a small village."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i03:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i03:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i03:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ a small village.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-53:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: visited.",
+              "uk": "Потрібна третя форма: visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: visited.",
+              "uk": "Потрібна третя форма: visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:word:border",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — border",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:word:border:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — border",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:word:border:audio",
+          "transcript": "border"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:word:border:r1",
+            "targetText": "border",
+            "meaningByLocale": {
+              "ru": "граница.",
+              "uk": "кордон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "border",
+          "definitionByLocale": {
+            "ru": "граница.",
+            "uk": "кордон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Она пересекла границу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Она пересекла границу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has crossed the border.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она пересекла границу.»",
+          "uk": "Розкажіть про досвід: «Вона перетнула кордон.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "crossed",
+          "the",
+          "border"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i05:r1",
+          "text": "She has crossed the border."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i05:r2",
+          "text": "You have crossed the border."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i05:r3",
+          "text": "They have crossed the border."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i05:audio",
+          "transcript": "She has crossed the border."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:i05:r1",
+            "targetText": "She has crossed the border.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i05:r2",
+            "targetText": "You have crossed the border.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i05:r3",
+            "targetText": "They have crossed the border.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has crossed the border.",
+              "uk": "У записі звучить She has crossed the border."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has crossed the border.",
+              "uk": "У записі звучить She has crossed the border."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i06:r1",
+          "text": "crossed"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i06:r2",
+          "text": "cross"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i06:r3",
+          "text": "crosses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ the border.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-53:i06:r1",
+            "text": "crossed"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i06:r2",
+            "text": "cross"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i06:r3",
+            "text": "crosses"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: crossed.",
+              "uk": "Потрібна третя форма: crossed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: crossed.",
+              "uk": "Потрібна третя форма: crossed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:word:population",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — population",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:word:population:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — population",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:word:population:audio",
+          "transcript": "population"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:word:population:r1",
+            "targetText": "population",
+            "meaningByLocale": {
+              "ru": "население.",
+              "uk": "населення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "population",
+          "definitionByLocale": {
+            "ru": "население.",
+            "uk": "населення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы узнали о местном населении.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы узнали о местном населении.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have learned about the local population.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы узнали о местном населении.»",
+          "uk": "Розкажіть про досвід: «Ми дізналися про місцеве населення.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "learned",
+          "about",
+          "the",
+          "local",
+          "population"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i08:r1",
+          "text": "We have learned about the local population."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i08:r2",
+          "text": "You have learned about the local population."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i08:r3",
+          "text": "They have learned about the local population."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i08:audio",
+          "transcript": "We have learned about the local population."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:i08:r1",
+            "targetText": "We have learned about the local population.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i08:r2",
+            "targetText": "You have learned about the local population.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i08:r3",
+            "targetText": "They have learned about the local population.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have learned about the local population.",
+              "uk": "У записі звучить We have learned about the local population."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have learned about the local population.",
+              "uk": "У записі звучить We have learned about the local population."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i09:r1",
+          "text": "learned"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i09:r2",
+          "text": "learn"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i09:r3",
+          "text": "learns"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ about the local population.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-53:i09:r1",
+            "text": "learned"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i09:r2",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i09:r3",
+            "text": "learns"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: learned.",
+              "uk": "Потрібна третя форма: learned."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: learned.",
+              "uk": "Потрібна третя форма: learned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:word:continent",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — continent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:word:continent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — continent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:word:continent:audio",
+          "transcript": "continent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:word:continent:r1",
+            "targetText": "continent",
+            "meaningByLocale": {
+              "ru": "континент.",
+              "uk": "континент."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "continent",
+          "definitionByLocale": {
+            "ru": "континент.",
+            "uk": "континент."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он путешествовал на другой континент.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он путешествовал на другой континент.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has travelled to another continent.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он путешествовал на другой континент.»",
+          "uk": "Розкажіть про досвід: «Він подорожував на інший континент.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "travelled",
+          "to",
+          "another",
+          "continent"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i11:r1",
+          "text": "He has travelled to another continent."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i11:r2",
+          "text": "You have travelled to another continent."
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i11:r3",
+          "text": "They have travelled to another continent."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i11:audio",
+          "transcript": "He has travelled to another continent."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-53:i11:r1",
+            "targetText": "He has travelled to another continent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i11:r2",
+            "targetText": "You have travelled to another continent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i11:r3",
+            "targetText": "They have travelled to another continent.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has travelled to another continent.",
+              "uk": "У записі звучить He has travelled to another continent."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has travelled to another continent.",
+              "uk": "У записі звучить He has travelled to another continent."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-53:i12:r1",
+          "text": "travelled"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i12:r2",
+          "text": "travel"
+        },
+        {
+          "responseId": "en:lesson-23:session-53:i12:r3",
+          "text": "travels"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ to another continent.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-53:i12:r1",
+            "text": "travelled"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i12:r2",
+            "text": "travel"
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i12:r3",
+            "text": "travels"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: travelled.",
+              "uk": "Потрібна третя форма: travelled."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: travelled.",
+              "uk": "Потрібна третя форма: travelled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-53:i13:p1",
+            "target": "village",
+            "meaningByLocale": {
+              "ru": "деревня, село",
+              "uk": "село"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-53:i13:p2",
+            "target": "border",
+            "meaningByLocale": {
+              "ru": "граница",
+              "uk": "кордон"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-53:i13:p3",
+            "target": "population",
+            "meaningByLocale": {
+              "ru": "население",
+              "uk": "населення"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-53:i13:p4",
+            "target": "continent",
+            "meaningByLocale": {
+              "ru": "континент",
+              "uk": "континент"
+            }
+          }
+        ],
+        "leftColumn": [
+          "village",
+          "border",
+          "population",
+          "continent"
+        ],
+        "rightColumn": [
+          "деревня, село",
+          "граница",
+          "население",
+          "континент"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой вариант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой вариант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я пересёк границу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я пересёк границу.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i16:audio",
+          "transcript": "I have crossed the border."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have crossed the border.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она побывала в маленькой деревне.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она побывала в маленькой деревне.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-53:i17:audio",
+          "transcript": "She has visited a small village."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has visited a small village.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4462e37244c5dcbdd0966a5130753adf9488065f9c546155edd00250b203d806"
+}

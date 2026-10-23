@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Illness — болезнь. I have recovered from an illness — я оправился от болезни. Recovered — форма знакомого recover после have. После recovered здесь нужно from: recovered from an illness. Фраза сообщает о нынешнем результате — выздоровлении.",
+        "uk": "Illness — хвороба. I have recovered from an illness — я одужав після хвороби. Recovered — форма знайомого recover після have. Після recovered тут потрібно from: recovered from an illness. Фраза повідомляє про теперішній результат — одужання."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-56:intro1:r1",
+              "text": "I have recovered from an illness."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro1:r2",
+              "text": "I has recovered from an illness."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro1:r3",
+              "text": "I have recover from an illness."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-56:intro1:r1",
+              "text": "I have recovered from an illness."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro1:r2",
+              "text": "I has recovered from an illness."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro1:r3",
+              "text": "I have recover from an illness."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Operation — хирургическое вмешательство. В разговоре о здоровье She has had an operation означает ей сделали операцию. Она могла быть пациенткой, не хирургом: has had не означает сама сделала. Infection — инфекция. We have asked about the infection — мы спросили об инфекции.",
+        "uk": "Operation — хірургічне втручання. У розмові про здоров’я She has had an operation означає їй зробили операцію. Вона могла бути пацієнткою, не хірургом: has had не означає сама зробила. Infection — інфекція. We have asked about the infection — ми запитали про інфекцію."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-56:intro2:r1",
+              "text": "We have asked about the infection."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro2:r2",
+              "text": "We has asked about the infection."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro2:r3",
+              "text": "We have ask about the infection."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-56:intro2:r1",
+              "text": "We have asked about the infection."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro2:r2",
+              "text": "We has asked about the infection."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro2:r3",
+              "text": "We have ask about the infection."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Injury — травма, например после падения. He has recovered from an injury — он восстановился после травмы. Illness говорит о болезни, injury — о повреждении тела. На примере учимся рассказывать о травме; получать её для практики, к счастью, не нужно.",
+        "uk": "Injury — травма, наприклад після падіння. He has recovered from an injury — він відновився після травми. Illness говорить про хворобу, injury — про пошкодження тіла. На прикладі вчимося розповідати про травму; отримувати її для практики, на щастя, не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-56:intro3:r1",
+              "text": "He has recovered from an injury."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro3:r2",
+              "text": "He have recovered from an injury."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro3:r3",
+              "text": "He has recover from an injury."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-56:intro3:r1",
+              "text": "He has recovered from an injury."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro3:r2",
+              "text": "He have recovered from an injury."
+            },
+            {
+              "responseId": "en:lesson-23:session-56:intro3:r3",
+              "text": "He has recover from an injury."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "55f61e2ce5a190ee3808d960149049cdeb305328ba3eb546aa31254262727c81"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-54:word:librarian",
+    "correctText": "librarian",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i01",
+    "correctText": "I have asked the librarian.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i02",
+    "correctText": "I have asked the librarian.",
+    "correctResponseId": "en:lesson-23:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i03",
+    "correctText": "asked",
+    "correctResponseId": "en:lesson-23:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:word:translator",
+    "correctText": "translator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i04",
+    "correctText": "She has found a translator.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i05",
+    "correctText": "She has found a translator.",
+    "correctResponseId": "en:lesson-23:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i06",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-23:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:word:interpreter",
+    "correctText": "interpreter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i07",
+    "correctText": "We have spoken to an interpreter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i08",
+    "correctText": "We have spoken to an interpreter.",
+    "correctResponseId": "en:lesson-23:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i09",
+    "correctText": "spoken",
+    "correctResponseId": "en:lesson-23:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:word:accountant",
+    "correctText": "accountant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i10",
+    "correctText": "He has called an accountant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i11",
+    "correctText": "He has called an accountant.",
+    "correctResponseId": "en:lesson-23:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i12",
+    "correctText": "called",
+    "correctResponseId": "en:lesson-23:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i13",
+    "correctText": "en:lesson-23:session-54:i13:p1=librarian\nen:lesson-23:session-54:i13:p2=translator\nen:lesson-23:session-54:i13:p3=interpreter\nen:lesson-23:session-54:i13:p4=accountant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i16",
+    "correctText": "I have called an accountant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-54:i17",
+    "correctText": "She has asked the librarian.",
+    "correctResponseId": null
+  }
+]

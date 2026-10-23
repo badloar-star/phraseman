@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-53:word:village",
+    "correctText": "village",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i01",
+    "correctText": "I have visited a small village.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i02",
+    "correctText": "I have visited a small village.",
+    "correctResponseId": "en:lesson-23:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i03",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:word:border",
+    "correctText": "border",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i04",
+    "correctText": "She has crossed the border.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i05",
+    "correctText": "She has crossed the border.",
+    "correctResponseId": "en:lesson-23:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i06",
+    "correctText": "crossed",
+    "correctResponseId": "en:lesson-23:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:word:population",
+    "correctText": "population",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i07",
+    "correctText": "We have learned about the local population.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i08",
+    "correctText": "We have learned about the local population.",
+    "correctResponseId": "en:lesson-23:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i09",
+    "correctText": "learned",
+    "correctResponseId": "en:lesson-23:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:word:continent",
+    "correctText": "continent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i10",
+    "correctText": "He has travelled to another continent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i11",
+    "correctText": "He has travelled to another continent.",
+    "correctResponseId": "en:lesson-23:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i12",
+    "correctText": "travelled",
+    "correctResponseId": "en:lesson-23:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i13",
+    "correctText": "en:lesson-23:session-53:i13:p1=village\nen:lesson-23:session-53:i13:p2=border\nen:lesson-23:session-53:i13:p3=population\nen:lesson-23:session-53:i13:p4=continent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i16",
+    "correctText": "I have crossed the border.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-53:i17",
+    "correctText": "She has visited a small village.",
+    "correctResponseId": null
+  }
+]

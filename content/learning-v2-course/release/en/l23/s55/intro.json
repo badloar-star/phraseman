@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Flu — грипп. I have had flu — я болел гриппом. Первое have помогает рассказать об опыте, а had — форма второго have. Получается have had, и это не опечатка. В этой фразе перед flu нет a; вариант the flu тоже употребляется.",
+        "uk": "Flu — грип. I have had flu — я хворів на грип. Перше have допомагає розповісти про досвід, а had — форма другого have. Виходить have had, і це не друкарська помилка. У цій фразі перед flu немає a; варіант the flu теж уживається."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-55:intro1:r1",
+              "text": "I have had flu."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro1:r2",
+              "text": "I has had flu."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro1:r3",
+              "text": "I have have flu."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-55:intro1:r1",
+              "text": "I have had flu."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro1:r2",
+              "text": "I has had flu."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro1:r3",
+              "text": "I have have flu."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Virus — вирус. She has caught a virus — она подхватила вирус. Caught — форма catch после has. Вирус здесь не ловят руками: catch a virus означает заразиться. Symptoms — симптомы. We have described the symptoms — мы описали симптомы. Один симптом — a symptom.",
+        "uk": "Virus — вірус. She has caught a virus — вона підхопила вірус. Caught — форма catch після has. Вірус тут не ловлять руками: catch a virus означає заразитися. Symptoms — симптоми. We have described the symptoms — ми описали симптоми. Один симптом — a symptom."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-55:intro2:r1",
+              "text": "We have described the symptoms."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro2:r2",
+              "text": "We has described the symptoms."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro2:r3",
+              "text": "We have describe the symptoms."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-55:intro2:r1",
+              "text": "We have described the symptoms."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro2:r2",
+              "text": "We has described the symptoms."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro2:r3",
+              "text": "We have describe the symptoms."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Vaccine — вакцина. He has asked about the vaccine — он спросил о вакцине. Asked about — спросил о чём-то. Фраза говорит о вопросе, а не о том, что прививка уже сделана. Врач мог ответить на десять вопросов, а одиннадцатый вспомнится уже у двери.",
+        "uk": "Vaccine — вакцина. He has asked about the vaccine — він запитав про вакцину. Asked about — запитав про щось. Фраза говорить про запитання, а не про те, що щеплення вже зроблено. Лікар міг відповісти на десять запитань, а одинадцяте згадається вже біля дверей."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-55:intro3:r1",
+              "text": "He has asked about the vaccine."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro3:r2",
+              "text": "He have asked about the vaccine."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro3:r3",
+              "text": "He has ask about the vaccine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-55:intro3:r1",
+              "text": "He has asked about the vaccine."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro3:r2",
+              "text": "He have asked about the vaccine."
+            },
+            {
+              "responseId": "en:lesson-23:session-55:intro3:r3",
+              "text": "He has ask about the vaccine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "383d549e5e5ba2842942f203c3173b4c545d6ead9efb1189f6a094ef8221e37b"
+}

@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-54:word:librarian",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — librarian",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:word:librarian:audio"
+      ],
+      "accessibilityLabel": "Картка слова — librarian",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:word:librarian:audio",
+          "transcript": "librarian"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:word:librarian:r1",
+            "targetText": "librarian",
+            "meaningByLocale": {
+              "ru": "библиотекарь.",
+              "uk": "бібліотекар."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "librarian",
+          "definitionByLocale": {
+            "ru": "библиотекарь.",
+            "uk": "бібліотекар."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я запитав у бібліотекаря.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я запитав у бібліотекаря.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have asked the librarian.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я спросил у библиотекаря.»",
+          "uk": "Розкажіть про досвід: «Я запитав у бібліотекаря.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "asked",
+          "the",
+          "librarian"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i02:r1",
+          "text": "I have asked the librarian."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i02:r2",
+          "text": "You have asked the librarian."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i02:r3",
+          "text": "They have asked the librarian."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i02:audio",
+          "transcript": "I have asked the librarian."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:i02:r1",
+            "targetText": "I have asked the librarian.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i02:r2",
+            "targetText": "You have asked the librarian.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i02:r3",
+            "targetText": "They have asked the librarian.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have asked the librarian.",
+              "uk": "У записі звучить I have asked the librarian."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have asked the librarian.",
+              "uk": "У записі звучить I have asked the librarian."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i03:r1",
+          "text": "asked"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i03:r2",
+          "text": "ask"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i03:r3",
+          "text": "asks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ the librarian.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-54:i03:r1",
+            "text": "asked"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i03:r2",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i03:r3",
+            "text": "asks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: asked.",
+              "uk": "Потрібна третя форма: asked."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: asked.",
+              "uk": "Потрібна третя форма: asked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:word:translator",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — translator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:word:translator:audio"
+      ],
+      "accessibilityLabel": "Картка слова — translator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:word:translator:audio",
+          "transcript": "translator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:word:translator:r1",
+            "targetText": "translator",
+            "meaningByLocale": {
+              "ru": "письменный переводчик.",
+              "uk": "письмовий перекладач."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "translator",
+          "definitionByLocale": {
+            "ru": "письменный переводчик.",
+            "uk": "письмовий перекладач."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона знайшла письмового перекладача.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона знайшла письмового перекладача.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has found a translator.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она нашла письменного переводчика.»",
+          "uk": "Розкажіть про досвід: «Вона знайшла письмового перекладача.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "found",
+          "a",
+          "translator"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i05:r1",
+          "text": "She has found a translator."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i05:r2",
+          "text": "You have found a translator."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i05:r3",
+          "text": "They have found a translator."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i05:audio",
+          "transcript": "She has found a translator."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:i05:r1",
+            "targetText": "She has found a translator.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i05:r2",
+            "targetText": "You have found a translator.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i05:r3",
+            "targetText": "They have found a translator.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has found a translator.",
+              "uk": "У записі звучить She has found a translator."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has found a translator.",
+              "uk": "У записі звучить She has found a translator."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i06:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i06:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i06:r3",
+          "text": "finds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a translator.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-54:i06:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i06:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i06:r3",
+            "text": "finds"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:word:interpreter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — interpreter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:word:interpreter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — interpreter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:word:interpreter:audio",
+          "transcript": "interpreter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:word:interpreter:r1",
+            "targetText": "interpreter",
+            "meaningByLocale": {
+              "ru": "устный переводчик.",
+              "uk": "усний перекладач."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interpreter",
+          "definitionByLocale": {
+            "ru": "устный переводчик.",
+            "uk": "усний перекладач."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми поговорили з усним перекладачем.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми поговорили з усним перекладачем.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have spoken to an interpreter.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы поговорили с устным переводчиком.»",
+          "uk": "Розкажіть про досвід: «Ми поговорили з усним перекладачем.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "spoken",
+          "to",
+          "an",
+          "interpreter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i08:r1",
+          "text": "We have spoken to an interpreter."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i08:r2",
+          "text": "You have spoken to an interpreter."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i08:r3",
+          "text": "They have spoken to an interpreter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i08:audio",
+          "transcript": "We have spoken to an interpreter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:i08:r1",
+            "targetText": "We have spoken to an interpreter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i08:r2",
+            "targetText": "You have spoken to an interpreter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i08:r3",
+            "targetText": "They have spoken to an interpreter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have spoken to an interpreter.",
+              "uk": "У записі звучить We have spoken to an interpreter."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have spoken to an interpreter.",
+              "uk": "У записі звучить We have spoken to an interpreter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i09:r1",
+          "text": "spoken"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i09:r2",
+          "text": "speak"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i09:r3",
+          "text": "speaks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ to an interpreter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-54:i09:r1",
+            "text": "spoken"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i09:r2",
+            "text": "speak"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i09:r3",
+            "text": "speaks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: spoken.",
+              "uk": "Потрібна третя форма: spoken."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: spoken.",
+              "uk": "Потрібна третя форма: spoken."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:word:accountant",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — accountant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:word:accountant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — accountant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:word:accountant:audio",
+          "transcript": "accountant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:word:accountant:r1",
+            "targetText": "accountant",
+            "meaningByLocale": {
+              "ru": "бухгалтер.",
+              "uk": "бухгалтер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "accountant",
+          "definitionByLocale": {
+            "ru": "бухгалтер.",
+            "uk": "бухгалтер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він зателефонував бухгалтеру.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він зателефонував бухгалтеру.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has called an accountant.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он позвонил бухгалтеру.»",
+          "uk": "Розкажіть про досвід: «Він зателефонував бухгалтеру.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "called",
+          "an",
+          "accountant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i11:r1",
+          "text": "He has called an accountant."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i11:r2",
+          "text": "You have called an accountant."
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i11:r3",
+          "text": "They have called an accountant."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i11:audio",
+          "transcript": "He has called an accountant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-54:i11:r1",
+            "targetText": "He has called an accountant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i11:r2",
+            "targetText": "You have called an accountant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i11:r3",
+            "targetText": "They have called an accountant.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has called an accountant.",
+              "uk": "У записі звучить He has called an accountant."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has called an accountant.",
+              "uk": "У записі звучить He has called an accountant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-54:i12:r1",
+          "text": "called"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i12:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-23:session-54:i12:r3",
+          "text": "calls"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ an accountant.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-54:i12:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i12:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i12:r3",
+            "text": "calls"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: called.",
+              "uk": "Потрібна третя форма: called."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: called.",
+              "uk": "Потрібна третя форма: called."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-54:i13:p1",
+            "target": "librarian",
+            "meaningByLocale": {
+              "ru": "библиотекарь",
+              "uk": "бібліотекар"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-54:i13:p2",
+            "target": "translator",
+            "meaningByLocale": {
+              "ru": "письменный переводчик",
+              "uk": "письмовий перекладач"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-54:i13:p3",
+            "target": "interpreter",
+            "meaningByLocale": {
+              "ru": "устный переводчик",
+              "uk": "усний перекладач"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-54:i13:p4",
+            "target": "accountant",
+            "meaningByLocale": {
+              "ru": "бухгалтер",
+              "uk": "бухгалтер"
+            }
+          }
+        ],
+        "leftColumn": [
+          "librarian",
+          "translator",
+          "interpreter",
+          "accountant"
+        ],
+        "rightColumn": [
+          "бібліотекар",
+          "письмовий перекладач",
+          "усний перекладач",
+          "бухгалтер"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я зателефонував бухгалтеру.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я зателефонував бухгалтеру.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i16:audio",
+          "transcript": "I have called an accountant."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have called an accountant.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона запитала у бібліотекаря.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона запитала у бібліотекаря.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-54:i17:audio",
+          "transcript": "She has asked the librarian."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has asked the librarian.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1b03d5836672d58070abdad380e9fbcb5e970e0fe122d33189e9d003752a4a74"
+}

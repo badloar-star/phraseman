@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-52:word:election",
+    "correctText": "election",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i01",
+    "correctText": "I have voted in an election.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i02",
+    "correctText": "I have voted in an election.",
+    "correctResponseId": "en:lesson-23:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i03",
+    "correctText": "voted",
+    "correctResponseId": "en:lesson-23:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:word:mayor",
+    "correctText": "mayor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i04",
+    "correctText": "She has met the mayor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i05",
+    "correctText": "She has met the mayor.",
+    "correctResponseId": "en:lesson-23:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i06",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:word:government",
+    "correctText": "government",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i07",
+    "correctText": "We have read about the government.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i08",
+    "correctText": "We have read about the government.",
+    "correctResponseId": "en:lesson-23:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i09",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-23:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:word:president",
+    "correctText": "president",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i10",
+    "correctText": "He has seen the president on TV.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i11",
+    "correctText": "He has seen the president on TV.",
+    "correctResponseId": "en:lesson-23:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i12",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i13",
+    "correctText": "en:lesson-23:session-52:i13:p1=election\nen:lesson-23:session-52:i13:p2=mayor\nen:lesson-23:session-52:i13:p3=government\nen:lesson-23:session-52:i13:p4=president",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i16",
+    "correctText": "I have met the mayor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-52:i17",
+    "correctText": "She has voted in an election.",
+    "correctResponseId": null
+  }
+]

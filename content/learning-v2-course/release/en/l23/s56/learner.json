@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-56:word:illness",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — illness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:word:illness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — illness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:word:illness:audio",
+          "transcript": "illness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:word:illness:r1",
+            "targetText": "illness",
+            "meaningByLocale": {
+              "ru": "болезнь.",
+              "uk": "хвороба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "illness",
+          "definitionByLocale": {
+            "ru": "болезнь.",
+            "uk": "хвороба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я оправился от болезни.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я оправился от болезни.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have recovered from an illness.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я оправился от болезни.»",
+          "uk": "Розкажіть про досвід: «Я одужав після хвороби.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "recovered",
+          "from",
+          "an",
+          "illness"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i02:r1",
+          "text": "I have recovered from an illness."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i02:r2",
+          "text": "You have recovered from an illness."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i02:r3",
+          "text": "They have recovered from an illness."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i02:audio",
+          "transcript": "I have recovered from an illness."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:i02:r1",
+            "targetText": "I have recovered from an illness.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i02:r2",
+            "targetText": "You have recovered from an illness.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i02:r3",
+            "targetText": "They have recovered from an illness.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have recovered from an illness.",
+              "uk": "У записі звучить I have recovered from an illness."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have recovered from an illness.",
+              "uk": "У записі звучить I have recovered from an illness."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i03:r1",
+          "text": "recovered"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i03:r2",
+          "text": "recover"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i03:r3",
+          "text": "recovers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ from an illness.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-56:i03:r1",
+            "text": "recovered"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i03:r2",
+            "text": "recover"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i03:r3",
+            "text": "recovers"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: recovered.",
+              "uk": "Потрібна третя форма: recovered."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: recovered.",
+              "uk": "Потрібна третя форма: recovered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:word:operation",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — operation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:word:operation:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — operation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:word:operation:audio",
+          "transcript": "operation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:word:operation:r1",
+            "targetText": "operation",
+            "meaningByLocale": {
+              "ru": "хирургическое вмешательство.",
+              "uk": "хірургічне втручання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "operation",
+          "definitionByLocale": {
+            "ru": "хирургическое вмешательство.",
+            "uk": "хірургічне втручання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Ей сделали операцию.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Ей сделали операцию.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has had an operation.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Ей сделали операцию.»",
+          "uk": "Розкажіть про досвід: «Їй зробили операцію.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "had",
+          "an",
+          "operation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i05:r1",
+          "text": "She has had an operation."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i05:r2",
+          "text": "You have had an operation."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i05:r3",
+          "text": "They have had an operation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i05:audio",
+          "transcript": "She has had an operation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:i05:r1",
+            "targetText": "She has had an operation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i05:r2",
+            "targetText": "You have had an operation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i05:r3",
+            "targetText": "They have had an operation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has had an operation.",
+              "uk": "У записі звучить She has had an operation."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has had an operation.",
+              "uk": "У записі звучить She has had an operation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i06:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i06:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i06:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ an operation.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-56:i06:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i06:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i06:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: had.",
+              "uk": "Потрібна третя форма: had."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: had.",
+              "uk": "Потрібна третя форма: had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:word:infection",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — infection",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:word:infection:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — infection",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:word:infection:audio",
+          "transcript": "infection"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:word:infection:r1",
+            "targetText": "infection",
+            "meaningByLocale": {
+              "ru": "инфекция.",
+              "uk": "інфекція."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "infection",
+          "definitionByLocale": {
+            "ru": "инфекция.",
+            "uk": "інфекція."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы спросили об инфекции.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы спросили об инфекции.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have asked about the infection.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы спросили об инфекции.»",
+          "uk": "Розкажіть про досвід: «Ми запитали про інфекцію.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "asked",
+          "about",
+          "the",
+          "infection"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i08:r1",
+          "text": "We have asked about the infection."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i08:r2",
+          "text": "You have asked about the infection."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i08:r3",
+          "text": "They have asked about the infection."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i08:audio",
+          "transcript": "We have asked about the infection."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:i08:r1",
+            "targetText": "We have asked about the infection.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i08:r2",
+            "targetText": "You have asked about the infection.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i08:r3",
+            "targetText": "They have asked about the infection.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have asked about the infection.",
+              "uk": "У записі звучить We have asked about the infection."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have asked about the infection.",
+              "uk": "У записі звучить We have asked about the infection."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i09:r1",
+          "text": "asked"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i09:r2",
+          "text": "ask"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i09:r3",
+          "text": "asks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ about the infection.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-56:i09:r1",
+            "text": "asked"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i09:r2",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i09:r3",
+            "text": "asks"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: asked.",
+              "uk": "Потрібна третя форма: asked."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: asked.",
+              "uk": "Потрібна третя форма: asked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:word:injury",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — injury",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:word:injury:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — injury",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:word:injury:audio",
+          "transcript": "injury"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:word:injury:r1",
+            "targetText": "injury",
+            "meaningByLocale": {
+              "ru": "травма.",
+              "uk": "травма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "injury",
+          "definitionByLocale": {
+            "ru": "травма.",
+            "uk": "травма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он восстановился после травмы.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он восстановился после травмы.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has recovered from an injury.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он восстановился после травмы.»",
+          "uk": "Розкажіть про досвід: «Він відновився після травми.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "recovered",
+          "from",
+          "an",
+          "injury"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i11:r1",
+          "text": "He has recovered from an injury."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i11:r2",
+          "text": "You have recovered from an injury."
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i11:r3",
+          "text": "They have recovered from an injury."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i11:audio",
+          "transcript": "He has recovered from an injury."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-56:i11:r1",
+            "targetText": "He has recovered from an injury.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i11:r2",
+            "targetText": "You have recovered from an injury.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i11:r3",
+            "targetText": "They have recovered from an injury.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has recovered from an injury.",
+              "uk": "У записі звучить He has recovered from an injury."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has recovered from an injury.",
+              "uk": "У записі звучить He has recovered from an injury."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-56:i12:r1",
+          "text": "recovered"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i12:r2",
+          "text": "recover"
+        },
+        {
+          "responseId": "en:lesson-23:session-56:i12:r3",
+          "text": "recovers"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ from an injury.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-56:i12:r1",
+            "text": "recovered"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i12:r2",
+            "text": "recover"
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i12:r3",
+            "text": "recovers"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: recovered.",
+              "uk": "Потрібна третя форма: recovered."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: recovered.",
+              "uk": "Потрібна третя форма: recovered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-56:i13:p1",
+            "target": "illness",
+            "meaningByLocale": {
+              "ru": "болезнь",
+              "uk": "хвороба"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-56:i13:p2",
+            "target": "operation",
+            "meaningByLocale": {
+              "ru": "хирургическое вмешательство",
+              "uk": "хірургічне втручання"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-56:i13:p3",
+            "target": "infection",
+            "meaningByLocale": {
+              "ru": "инфекция",
+              "uk": "інфекція"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-56:i13:p4",
+            "target": "injury",
+            "meaningByLocale": {
+              "ru": "травма",
+              "uk": "травма"
+            }
+          }
+        ],
+        "leftColumn": [
+          "illness",
+          "operation",
+          "infection",
+          "injury"
+        ],
+        "rightColumn": [
+          "болезнь",
+          "хирургическое вмешательство",
+          "инфекция",
+          "травма"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой вариант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой вариант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я восстановился после травмы.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я восстановился после травмы.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i16:audio",
+          "transcript": "I have recovered from an injury."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have recovered from an injury.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она оправилась от болезни.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она оправилась от болезни.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-56:i17:audio",
+          "transcript": "She has recovered from an illness."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has recovered from an illness.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a2571f6ce463b9998db32a6b833f4ed04da82f0d78a32525c842985fb6e08fa3"
+}

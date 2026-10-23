@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-55:word:flu",
+    "correctText": "flu",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i01",
+    "correctText": "I have had flu.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i02",
+    "correctText": "I have had flu.",
+    "correctResponseId": "en:lesson-23:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i03",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-23:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:word:virus",
+    "correctText": "virus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i04",
+    "correctText": "She has caught a virus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i05",
+    "correctText": "She has caught a virus.",
+    "correctResponseId": "en:lesson-23:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i06",
+    "correctText": "caught",
+    "correctResponseId": "en:lesson-23:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:word:symptoms",
+    "correctText": "symptoms",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i07",
+    "correctText": "We have described the symptoms.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i08",
+    "correctText": "We have described the symptoms.",
+    "correctResponseId": "en:lesson-23:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i09",
+    "correctText": "described",
+    "correctResponseId": "en:lesson-23:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:word:vaccine",
+    "correctText": "vaccine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i10",
+    "correctText": "He has asked about the vaccine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i11",
+    "correctText": "He has asked about the vaccine.",
+    "correctResponseId": "en:lesson-23:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i12",
+    "correctText": "asked",
+    "correctResponseId": "en:lesson-23:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i13",
+    "correctText": "en:lesson-23:session-55:i13:p1=flu\nen:lesson-23:session-55:i13:p2=virus\nen:lesson-23:session-55:i13:p3=symptoms\nen:lesson-23:session-55:i13:p4=vaccine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i16",
+    "correctText": "I have asked about the vaccine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-55:i17",
+    "correctText": "She has described the symptoms.",
+    "correctResponseId": null
+  }
+]

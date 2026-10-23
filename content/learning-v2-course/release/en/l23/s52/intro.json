@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Election — выборы. По-русски говорим во множественном числе, а по-английски одно событие можно назвать an election. I have voted in an election — я голосовал на выборах. Voted — форма знакомого vote после have.",
+        "uk": "Election — вибори. Українською кажемо у множині, а англійською одну подію можна назвати an election. I have voted in an election — я голосував на виборах. Voted — форма знайомого vote після have."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-52:intro1:r1",
+              "text": "I have voted in an election."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro1:r2",
+              "text": "I has voted in an election."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro1:r3",
+              "text": "I have vote in an election."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-52:intro1:r1",
+              "text": "I have voted in an election."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro1:r2",
+              "text": "I has voted in an election."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro1:r3",
+              "text": "I have vote in an election."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Mayor — мэр, руководитель города. She has met the mayor — она встречалась с мэром. Government — правительство. We have read about the government — мы прочитали о правительстве. Read после have пишется как начальная форма, но звучит как red.",
+        "uk": "Mayor — мер, керівник міста. She has met the mayor — вона зустрічалася з мером. Government — уряд. We have read about the government — ми прочитали про уряд. Read після have пишеться як початкова форма, але звучить як red."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-52:intro2:r1",
+              "text": "We have read about the government."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro2:r2",
+              "text": "We has read about the government."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro2:r3",
+              "text": "We have reads about the government."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-52:intro2:r1",
+              "text": "We have read about the government."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro2:r2",
+              "text": "We has read about the government."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro2:r3",
+              "text": "We have reads about the government."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "President — президент. He has seen the president on TV — он видел президента по телевизору. On TV — по телевизору. Это не означает личную встречу: иначе после вечерних новостей у нас было бы очень много важных знакомых.",
+        "uk": "President — президент. He has seen the president on TV — він бачив президента по телевізору. On TV — по телевізору. Це не означає особистої зустрічі: інакше після вечірніх новин у нас було б дуже багато важливих знайомих."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-52:intro3:r1",
+              "text": "He has seen the president on TV."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro3:r2",
+              "text": "He have seen the president on TV."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro3:r3",
+              "text": "He has see the president on TV."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-52:intro3:r1",
+              "text": "He has seen the president on TV."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro3:r2",
+              "text": "He have seen the president on TV."
+            },
+            {
+              "responseId": "en:lesson-23:session-52:intro3:r3",
+              "text": "He has see the president on TV."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3249bd0ec6521813c4c8f5ebc29867db11f8ec4f4cc7281d092d861817dc329b"
+}

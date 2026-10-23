@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-52:word:election",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — election",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:word:election:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — election",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:word:election:audio",
+          "transcript": "election"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:word:election:r1",
+            "targetText": "election",
+            "meaningByLocale": {
+              "ru": "выборы.",
+              "uk": "вибори."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "election",
+          "definitionByLocale": {
+            "ru": "выборы.",
+            "uk": "вибори."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я голосовал на выборах.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я голосовал на выборах.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have voted in an election.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я голосовал на выборах.»",
+          "uk": "Розкажіть про досвід: «Я голосував на виборах.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "voted",
+          "in",
+          "an",
+          "election"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i02:r1",
+          "text": "I have voted in an election."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i02:r2",
+          "text": "You have voted in an election."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i02:r3",
+          "text": "They have voted in an election."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i02:audio",
+          "transcript": "I have voted in an election."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:i02:r1",
+            "targetText": "I have voted in an election.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i02:r2",
+            "targetText": "You have voted in an election.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i02:r3",
+            "targetText": "They have voted in an election.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have voted in an election.",
+              "uk": "У записі звучить I have voted in an election."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have voted in an election.",
+              "uk": "У записі звучить I have voted in an election."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i03:r1",
+          "text": "voted"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i03:r2",
+          "text": "vote"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i03:r3",
+          "text": "votes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ in an election.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-52:i03:r1",
+            "text": "voted"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i03:r2",
+            "text": "vote"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i03:r3",
+            "text": "votes"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: voted.",
+              "uk": "Потрібна третя форма: voted."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: voted.",
+              "uk": "Потрібна третя форма: voted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:word:mayor",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mayor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:word:mayor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mayor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:word:mayor:audio",
+          "transcript": "mayor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:word:mayor:r1",
+            "targetText": "mayor",
+            "meaningByLocale": {
+              "ru": "мэр.",
+              "uk": "мер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mayor",
+          "definitionByLocale": {
+            "ru": "мэр.",
+            "uk": "мер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Она встречалась с мэром.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Она встречалась с мэром.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has met the mayor.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она встречалась с мэром.»",
+          "uk": "Розкажіть про досвід: «Вона зустрічалася з мером.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "met",
+          "the",
+          "mayor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i05:r1",
+          "text": "She has met the mayor."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i05:r2",
+          "text": "You have met the mayor."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i05:r3",
+          "text": "They have met the mayor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i05:audio",
+          "transcript": "She has met the mayor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:i05:r1",
+            "targetText": "She has met the mayor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i05:r2",
+            "targetText": "You have met the mayor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i05:r3",
+            "targetText": "They have met the mayor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has met the mayor.",
+              "uk": "У записі звучить She has met the mayor."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has met the mayor.",
+              "uk": "У записі звучить She has met the mayor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i06:r1",
+          "text": "met"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i06:r2",
+          "text": "meet"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i06:r3",
+          "text": "meets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ the mayor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-52:i06:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i06:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i06:r3",
+            "text": "meets"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: met.",
+              "uk": "Потрібна третя форма: met."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: met.",
+              "uk": "Потрібна третя форма: met."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:word:government",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — government",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:word:government:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — government",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:word:government:audio",
+          "transcript": "government"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:word:government:r1",
+            "targetText": "government",
+            "meaningByLocale": {
+              "ru": "правительство.",
+              "uk": "уряд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "government",
+          "definitionByLocale": {
+            "ru": "правительство.",
+            "uk": "уряд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы прочитали о правительстве.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы прочитали о правительстве.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have read about the government.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы прочитали о правительстве.»",
+          "uk": "Розкажіть про досвід: «Ми прочитали про уряд.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "read",
+          "about",
+          "the",
+          "government"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i08:r1",
+          "text": "We have read about the government."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i08:r2",
+          "text": "You have read about the government."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i08:r3",
+          "text": "They have read about the government."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i08:audio",
+          "transcript": "We have read about the government."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:i08:r1",
+            "targetText": "We have read about the government.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i08:r2",
+            "targetText": "You have read about the government.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i08:r3",
+            "targetText": "They have read about the government.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have read about the government.",
+              "uk": "У записі звучить We have read about the government."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have read about the government.",
+              "uk": "У записі звучить We have read about the government."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i09:r1",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i09:r2",
+          "text": "reads"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i09:r3",
+          "text": "reading"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ about the government.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-52:i09:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i09:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i09:r3",
+            "text": "reading"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: read.",
+              "uk": "Потрібна третя форма: read."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: read.",
+              "uk": "Потрібна третя форма: read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:word:president",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — president",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:word:president:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — president",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:word:president:audio",
+          "transcript": "president"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:word:president:r1",
+            "targetText": "president",
+            "meaningByLocale": {
+              "ru": "президент.",
+              "uk": "президент."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "president",
+          "definitionByLocale": {
+            "ru": "президент.",
+            "uk": "президент."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он видел президента по телевизору.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он видел президента по телевизору.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has seen the president on TV.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он видел президента по телевизору.»",
+          "uk": "Розкажіть про досвід: «Він бачив президента по телевізору.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "seen",
+          "the",
+          "president",
+          "on",
+          "TV"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i11:r1",
+          "text": "He has seen the president on TV."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i11:r2",
+          "text": "You have seen the president on TV."
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i11:r3",
+          "text": "They have seen the president on TV."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i11:audio",
+          "transcript": "He has seen the president on TV."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-52:i11:r1",
+            "targetText": "He has seen the president on TV.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i11:r2",
+            "targetText": "You have seen the president on TV.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i11:r3",
+            "targetText": "They have seen the president on TV.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has seen the president on TV.",
+              "uk": "У записі звучить He has seen the president on TV."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has seen the president on TV.",
+              "uk": "У записі звучить He has seen the president on TV."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-52:i12:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i12:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-52:i12:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ the president on TV.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-52:i12:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i12:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i12:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-52:i13:p1",
+            "target": "election",
+            "meaningByLocale": {
+              "ru": "выборы",
+              "uk": "вибори"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-52:i13:p2",
+            "target": "mayor",
+            "meaningByLocale": {
+              "ru": "мэр",
+              "uk": "мер"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-52:i13:p3",
+            "target": "government",
+            "meaningByLocale": {
+              "ru": "правительство",
+              "uk": "уряд"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-52:i13:p4",
+            "target": "president",
+            "meaningByLocale": {
+              "ru": "президент",
+              "uk": "президент"
+            }
+          }
+        ],
+        "leftColumn": [
+          "election",
+          "mayor",
+          "government",
+          "president"
+        ],
+        "rightColumn": [
+          "выборы",
+          "мэр",
+          "правительство",
+          "президент"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой вариант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой вариант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я встречался с мэром.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я встречался с мэром.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i16:audio",
+          "transcript": "I have met the mayor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have met the mayor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-52:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она голосовала на выборах.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она голосовала на выборах.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-52:i17:audio",
+          "transcript": "She has voted in an election."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has voted in an election.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9ba95cfb3294670fea5d030d2782e40120d240b5c7b9e635b36787da5bea32ea"
+}

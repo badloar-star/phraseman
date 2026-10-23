@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Librarian — библиотекарь, человек, который работает в библиотеке. I have asked the librarian — я спросил у библиотекаря. Asked — форма ask после have. Название книги не обязательно помнить точно, но «та синяя» всё-таки может оказаться недостаточной подсказкой.",
+        "uk": "Librarian — бібліотекар, людина, яка працює в бібліотеці. I have asked the librarian — я запитав у бібліотекаря. Asked — форма ask після have. Назву книжки не обов’язково пам’ятати точно, але «та синя» все-таки може виявитися недостатньою підказкою."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-54:intro1:r1",
+              "text": "I have asked the librarian."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro1:r2",
+              "text": "I has asked the librarian."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro1:r3",
+              "text": "I have ask the librarian."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-54:intro1:r1",
+              "text": "I have asked the librarian."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro1:r2",
+              "text": "I has asked the librarian."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro1:r3",
+              "text": "I have ask the librarian."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Translator обычно переводит письменные тексты, interpreter — устную речь. She has found a translator — она нашла письменного переводчика. We have spoken to an interpreter — мы поговорили с устным переводчиком. Встреча может требовать interpreter, а перевод документа — translator.",
+        "uk": "Translator зазвичай перекладає письмові тексти, interpreter — усне мовлення. She has found a translator — вона знайшла письмового перекладача. We have spoken to an interpreter — ми поговорили з усним перекладачем. Зустріч може потребувати interpreter, а переклад документа — translator."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-54:intro2:r1",
+              "text": "We have spoken to an interpreter."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro2:r2",
+              "text": "We has spoken to an interpreter."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro2:r3",
+              "text": "We have speak to an interpreter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-54:intro2:r1",
+              "text": "We have spoken to an interpreter."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro2:r2",
+              "text": "We has spoken to an interpreter."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro2:r3",
+              "text": "We have speak to an interpreter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Accountant — бухгалтер. He has called an accountant — он позвонил бухгалтеру. Перед accountant нужно an. После has стоит called. Здесь call означает позвонить человеку; номер телефона в самой фразе не нужен.",
+        "uk": "Accountant — бухгалтер. He has called an accountant — він зателефонував бухгалтеру. Перед accountant потрібно an. Після has стоїть called. Тут call означає зателефонувати людині; номер телефону в самій фразі не потрібен."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-54:intro3:r1",
+              "text": "He has called an accountant."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro3:r2",
+              "text": "He have called an accountant."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro3:r3",
+              "text": "He has call an accountant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-54:intro3:r1",
+              "text": "He has called an accountant."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro3:r2",
+              "text": "He have called an accountant."
+            },
+            {
+              "responseId": "en:lesson-23:session-54:intro3:r3",
+              "text": "He has call an accountant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b4b380afaff3f4191e64d99debbd9ed6f29939c954b747068e5aa8e5fdba45b3"
+}

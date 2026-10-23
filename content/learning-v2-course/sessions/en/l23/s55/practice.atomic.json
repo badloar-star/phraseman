@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-55:word:flu",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flu",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:flu:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flu",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:flu:audio",
+            "transcript": "flu"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:flu:r1",
+              "targetText": "flu",
+              "meaningByLocale": {
+                "ru": "грипп.",
+                "uk": "грип."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flu",
+            "definitionByLocale": {
+              "ru": "грипп.",
+              "uk": "грип."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Я болел гриппом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Я болел гриппом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have had flu.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я болел гриппом.»",
+            "uk": "Розкажіть про досвід: «Я хворів на грип.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "had",
+            "flu"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i02:r1",
+            "text": "I have had flu."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i02:r2",
+            "text": "You have had flu."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i02:r3",
+            "text": "They have had flu."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i02:audio",
+            "transcript": "I have had flu."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i02:r1",
+              "targetText": "I have had flu.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i02:r2",
+              "targetText": "You have had flu.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i02:r3",
+              "targetText": "They have had flu.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have had flu.",
+                "uk": "У записі звучить I have had flu."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have had flu.",
+                "uk": "У записі звучить I have had flu."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i03:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i03:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ flu.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i03:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i03:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: had.",
+                "uk": "Потрібна третя форма: had."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: had.",
+                "uk": "Потрібна третя форма: had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:word:virus",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — virus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:virus:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — virus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:virus:audio",
+            "transcript": "virus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:virus:r1",
+              "targetText": "virus",
+              "meaningByLocale": {
+                "ru": "вирус.",
+                "uk": "вірус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "virus",
+            "definitionByLocale": {
+              "ru": "вирус.",
+              "uk": "вірус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Она подхватила вирус.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Она подхватила вирус.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has caught a virus.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она подхватила вирус.»",
+            "uk": "Розкажіть про досвід: «Вона підхопила вірус.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "caught",
+            "a",
+            "virus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i05:r1",
+            "text": "She has caught a virus."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i05:r2",
+            "text": "You have caught a virus."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i05:r3",
+            "text": "They have caught a virus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i05:audio",
+            "transcript": "She has caught a virus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i05:r1",
+              "targetText": "She has caught a virus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i05:r2",
+              "targetText": "You have caught a virus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i05:r3",
+              "targetText": "They have caught a virus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has caught a virus.",
+                "uk": "У записі звучить She has caught a virus."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has caught a virus.",
+                "uk": "У записі звучить She has caught a virus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i06:r1",
+            "text": "caught"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i06:r2",
+            "text": "catch"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i06:r3",
+            "text": "catches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a virus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i06:r1",
+              "text": "caught"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i06:r2",
+              "text": "catch"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i06:r3",
+              "text": "catches"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: caught.",
+                "uk": "Потрібна третя форма: caught."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: caught.",
+                "uk": "Потрібна третя форма: caught."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:word:symptoms",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — symptoms",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:symptoms:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — symptoms",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:symptoms:audio",
+            "transcript": "symptoms"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:symptoms:r1",
+              "targetText": "symptoms",
+              "meaningByLocale": {
+                "ru": "симптомы.",
+                "uk": "симптоми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "symptoms",
+            "definitionByLocale": {
+              "ru": "симптомы.",
+              "uk": "симптоми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Мы описали симптомы.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Мы описали симптомы.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have described the symptoms.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы описали симптомы.»",
+            "uk": "Розкажіть про досвід: «Ми описали симптоми.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "described",
+            "the",
+            "symptoms"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i08:r1",
+            "text": "We have described the symptoms."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i08:r2",
+            "text": "You have described the symptoms."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i08:r3",
+            "text": "They have described the symptoms."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i08:audio",
+            "transcript": "We have described the symptoms."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i08:r1",
+              "targetText": "We have described the symptoms.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i08:r2",
+              "targetText": "You have described the symptoms.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i08:r3",
+              "targetText": "They have described the symptoms.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have described the symptoms.",
+                "uk": "У записі звучить We have described the symptoms."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have described the symptoms.",
+                "uk": "У записі звучить We have described the symptoms."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i09:r1",
+            "text": "described"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i09:r2",
+            "text": "describe"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i09:r3",
+            "text": "describes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ the symptoms.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i09:r1",
+              "text": "described"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i09:r2",
+              "text": "describe"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i09:r3",
+              "text": "describes"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: described.",
+                "uk": "Потрібна третя форма: described."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: described.",
+                "uk": "Потрібна третя форма: described."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:word:vaccine",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vaccine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:vaccine:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vaccine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:vaccine:audio",
+            "transcript": "vaccine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:vaccine:r1",
+              "targetText": "vaccine",
+              "meaningByLocale": {
+                "ru": "вакцина.",
+                "uk": "вакцина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vaccine",
+            "definitionByLocale": {
+              "ru": "вакцина.",
+              "uk": "вакцина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Он спросил о вакцине.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Он спросил о вакцине.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has asked about the vaccine.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он спросил о вакцине.»",
+            "uk": "Розкажіть про досвід: «Він запитав про вакцину.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "asked",
+            "about",
+            "the",
+            "vaccine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i11:r1",
+            "text": "He has asked about the vaccine."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i11:r2",
+            "text": "You have asked about the vaccine."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i11:r3",
+            "text": "They have asked about the vaccine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i11:audio",
+            "transcript": "He has asked about the vaccine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i11:r1",
+              "targetText": "He has asked about the vaccine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i11:r2",
+              "targetText": "You have asked about the vaccine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i11:r3",
+              "targetText": "They have asked about the vaccine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has asked about the vaccine.",
+                "uk": "У записі звучить He has asked about the vaccine."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has asked about the vaccine.",
+                "uk": "У записі звучить He has asked about the vaccine."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i12:r1",
+            "text": "asked"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i12:r2",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i12:r3",
+            "text": "asks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ about the vaccine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i12:r1",
+              "text": "asked"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i12:r2",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i12:r3",
+              "text": "asks"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: asked.",
+                "uk": "Потрібна третя форма: asked."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: asked.",
+                "uk": "Потрібна третя форма: asked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-55:i13:p1",
+              "target": "flu",
+              "meaningByLocale": {
+                "ru": "грипп",
+                "uk": "грип"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-55:i13:p2",
+              "target": "virus",
+              "meaningByLocale": {
+                "ru": "вирус",
+                "uk": "вірус"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-55:i13:p3",
+              "target": "symptoms",
+              "meaningByLocale": {
+                "ru": "симптомы",
+                "uk": "симптоми"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-55:i13:p4",
+              "target": "vaccine",
+              "meaningByLocale": {
+                "ru": "вакцина",
+                "uk": "вакцина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "flu",
+            "virus",
+            "symptoms",
+            "vaccine"
+          ],
+          "rightColumn": [
+            "грипп",
+            "вирус",
+            "симптомы",
+            "вакцина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой вариант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой вариант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i14:audio",
+            "transcript": "We can choose another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i15:audio",
+            "transcript": "You mustn't leave the door open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the door open.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я спросил о вакцине.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я спросил о вакцине.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i16:audio",
+            "transcript": "I have asked about the vaccine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have asked about the vaccine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она описала симптомы.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она описала симптомы.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i17:audio",
+            "transcript": "She has described the symptoms."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has described the symptoms.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-55:word:flu",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flu",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:flu:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flu",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:flu:audio",
+            "transcript": "flu"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:flu:r1",
+              "targetText": "flu",
+              "meaningByLocale": {
+                "ru": "грипп.",
+                "uk": "грип."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flu",
+            "definitionByLocale": {
+              "ru": "грипп.",
+              "uk": "грип."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Я хворів на грип.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Я хворів на грип.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have had flu.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я болел гриппом.»",
+            "uk": "Розкажіть про досвід: «Я хворів на грип.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "had",
+            "flu"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i02:r1",
+            "text": "I have had flu."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i02:r2",
+            "text": "You have had flu."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i02:r3",
+            "text": "They have had flu."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i02:audio",
+            "transcript": "I have had flu."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i02:r1",
+              "targetText": "I have had flu.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i02:r2",
+              "targetText": "You have had flu.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i02:r3",
+              "targetText": "They have had flu.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have had flu.",
+                "uk": "У записі звучить I have had flu."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have had flu.",
+                "uk": "У записі звучить I have had flu."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i03:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i03:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ flu.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i03:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i03:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: had.",
+                "uk": "Потрібна третя форма: had."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: had.",
+                "uk": "Потрібна третя форма: had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:word:virus",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — virus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:virus:audio"
+        ],
+        "accessibilityLabel": "Картка слова — virus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:virus:audio",
+            "transcript": "virus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:virus:r1",
+              "targetText": "virus",
+              "meaningByLocale": {
+                "ru": "вирус.",
+                "uk": "вірус."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "virus",
+            "definitionByLocale": {
+              "ru": "вирус.",
+              "uk": "вірус."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Вона підхопила вірус.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Вона підхопила вірус.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has caught a virus.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она подхватила вирус.»",
+            "uk": "Розкажіть про досвід: «Вона підхопила вірус.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "caught",
+            "a",
+            "virus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i05:r1",
+            "text": "She has caught a virus."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i05:r2",
+            "text": "You have caught a virus."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i05:r3",
+            "text": "They have caught a virus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i05:audio",
+            "transcript": "She has caught a virus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i05:r1",
+              "targetText": "She has caught a virus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i05:r2",
+              "targetText": "You have caught a virus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i05:r3",
+              "targetText": "They have caught a virus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has caught a virus.",
+                "uk": "У записі звучить She has caught a virus."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has caught a virus.",
+                "uk": "У записі звучить She has caught a virus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i06:r1",
+            "text": "caught"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i06:r2",
+            "text": "catch"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i06:r3",
+            "text": "catches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a virus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i06:r1",
+              "text": "caught"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i06:r2",
+              "text": "catch"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i06:r3",
+              "text": "catches"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: caught.",
+                "uk": "Потрібна третя форма: caught."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: caught.",
+                "uk": "Потрібна третя форма: caught."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:word:symptoms",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — symptoms",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:symptoms:audio"
+        ],
+        "accessibilityLabel": "Картка слова — symptoms",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:symptoms:audio",
+            "transcript": "symptoms"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:symptoms:r1",
+              "targetText": "symptoms",
+              "meaningByLocale": {
+                "ru": "симптомы.",
+                "uk": "симптоми."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "symptoms",
+            "definitionByLocale": {
+              "ru": "симптомы.",
+              "uk": "симптоми."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Ми описали симптоми.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Ми описали симптоми.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have described the symptoms.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы описали симптомы.»",
+            "uk": "Розкажіть про досвід: «Ми описали симптоми.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "described",
+            "the",
+            "symptoms"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i08:r1",
+            "text": "We have described the symptoms."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i08:r2",
+            "text": "You have described the symptoms."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i08:r3",
+            "text": "They have described the symptoms."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i08:audio",
+            "transcript": "We have described the symptoms."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i08:r1",
+              "targetText": "We have described the symptoms.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i08:r2",
+              "targetText": "You have described the symptoms.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i08:r3",
+              "targetText": "They have described the symptoms.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have described the symptoms.",
+                "uk": "У записі звучить We have described the symptoms."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have described the symptoms.",
+                "uk": "У записі звучить We have described the symptoms."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i09:r1",
+            "text": "described"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i09:r2",
+            "text": "describe"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i09:r3",
+            "text": "describes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ the symptoms.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i09:r1",
+              "text": "described"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i09:r2",
+              "text": "describe"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i09:r3",
+              "text": "describes"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: described.",
+                "uk": "Потрібна третя форма: described."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: described.",
+                "uk": "Потрібна третя форма: described."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:word:vaccine",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vaccine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:word:vaccine:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vaccine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:word:vaccine:audio",
+            "transcript": "vaccine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:word:vaccine:r1",
+              "targetText": "vaccine",
+              "meaningByLocale": {
+                "ru": "вакцина.",
+                "uk": "вакцина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vaccine",
+            "definitionByLocale": {
+              "ru": "вакцина.",
+              "uk": "вакцина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Він запитав про вакцину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Він запитав про вакцину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has asked about the vaccine.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он спросил о вакцине.»",
+            "uk": "Розкажіть про досвід: «Він запитав про вакцину.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "asked",
+            "about",
+            "the",
+            "vaccine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i11:r1",
+            "text": "He has asked about the vaccine."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i11:r2",
+            "text": "You have asked about the vaccine."
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i11:r3",
+            "text": "They have asked about the vaccine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i11:audio",
+            "transcript": "He has asked about the vaccine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-55:i11:r1",
+              "targetText": "He has asked about the vaccine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i11:r2",
+              "targetText": "You have asked about the vaccine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i11:r3",
+              "targetText": "They have asked about the vaccine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has asked about the vaccine.",
+                "uk": "У записі звучить He has asked about the vaccine."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has asked about the vaccine.",
+                "uk": "У записі звучить He has asked about the vaccine."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-55:i12:r1",
+            "text": "asked"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i12:r2",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-23:session-55:i12:r3",
+            "text": "asks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ about the vaccine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-55:i12:r1",
+              "text": "asked"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i12:r2",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i12:r3",
+              "text": "asks"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: asked.",
+                "uk": "Потрібна третя форма: asked."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: asked.",
+                "uk": "Потрібна третя форма: asked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-55:i13:p1",
+              "target": "flu",
+              "meaningByLocale": {
+                "ru": "грипп",
+                "uk": "грип"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-55:i13:p2",
+              "target": "virus",
+              "meaningByLocale": {
+                "ru": "вирус",
+                "uk": "вірус"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-55:i13:p3",
+              "target": "symptoms",
+              "meaningByLocale": {
+                "ru": "симптомы",
+                "uk": "симптоми"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-55:i13:p4",
+              "target": "vaccine",
+              "meaningByLocale": {
+                "ru": "вакцина",
+                "uk": "вакцина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "flu",
+            "virus",
+            "symptoms",
+            "vaccine"
+          ],
+          "rightColumn": [
+            "грип",
+            "вірус",
+            "симптоми",
+            "вакцина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший варіант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший варіант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i14:audio",
+            "transcript": "We can choose another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i15:audio",
+            "transcript": "You mustn't leave the door open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the door open.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я запитав про вакцину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я запитав про вакцину.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i16:audio",
+            "transcript": "I have asked about the vaccine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have asked about the vaccine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона описала симптоми.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона описала симптоми.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-55:i17:audio",
+            "transcript": "She has described the symptoms."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has described the symptoms.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-55:word:flu",
+      "correctText": "flu",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i01",
+      "correctText": "I have had flu.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i02",
+      "correctText": "I have had flu.",
+      "correctResponseId": "en:lesson-23:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i03",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-23:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:word:virus",
+      "correctText": "virus",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i04",
+      "correctText": "She has caught a virus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i05",
+      "correctText": "She has caught a virus.",
+      "correctResponseId": "en:lesson-23:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i06",
+      "correctText": "caught",
+      "correctResponseId": "en:lesson-23:session-55:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:word:symptoms",
+      "correctText": "symptoms",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i07",
+      "correctText": "We have described the symptoms.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i08",
+      "correctText": "We have described the symptoms.",
+      "correctResponseId": "en:lesson-23:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i09",
+      "correctText": "described",
+      "correctResponseId": "en:lesson-23:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:word:vaccine",
+      "correctText": "vaccine",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i10",
+      "correctText": "He has asked about the vaccine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i11",
+      "correctText": "He has asked about the vaccine.",
+      "correctResponseId": "en:lesson-23:session-55:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i12",
+      "correctText": "asked",
+      "correctResponseId": "en:lesson-23:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i14",
+      "correctText": "We can choose another place.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i15",
+      "correctText": "You mustn't leave the door open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i16",
+      "correctText": "I have asked about the vaccine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-55:i17",
+      "correctText": "She has described the symptoms.",
+      "correctResponseId": null
+    }
+  ]
+}

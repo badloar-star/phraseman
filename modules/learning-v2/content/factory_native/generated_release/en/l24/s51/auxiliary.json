@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-51:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-51:intro1:r3": {
+          "ru": "После have нужна форма adopted.",
+          "uk": "Після have потрібна форма adopted."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-51:intro2:r2": {
+          "ru": "С yesterday нужно rescued без has.",
+          "uk": "Із yesterday потрібне rescued без has."
+        },
+        "en:lesson-24:session-51:intro2:r3": {
+          "ru": "Для прошлого нужна форма rescued.",
+          "uk": "Для минулого потрібна форма rescued."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-51:intro3:r2": {
+          "ru": "С yesterday нужно found без has.",
+          "uk": "Із yesterday потрібне found без has."
+        },
+        "en:lesson-24:session-51:intro3:r3": {
+          "ru": "Прошедшая форма find — found.",
+          "uk": "Минула форма find — found."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "81572dc96ca8ed206bd970d7cdb0c562c83d3e00913b717a9b80b8ed8fcebcaa"
+}

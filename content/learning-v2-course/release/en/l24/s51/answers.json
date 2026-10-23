@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-51:word:male",
+    "correctText": "male",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i01",
+    "correctText": "I have adopted a male cat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i03",
+    "correctText": "I have adopted a male cat.",
+    "correctResponseId": "en:lesson-24:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:word:female",
+    "correctText": "female",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i04",
+    "correctText": "She rescued a female dog yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i05",
+    "correctText": "rescued",
+    "correctResponseId": "en:lesson-24:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i06",
+    "correctText": "She rescued a female dog yesterday.",
+    "correctResponseId": "en:lesson-24:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:word:human",
+    "correctText": "human",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i07",
+    "correctText": "We have drawn a human face.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i09",
+    "correctText": "We have drawn a human face.",
+    "correctResponseId": "en:lesson-24:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:word:insect",
+    "correctText": "insect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i10",
+    "correctText": "He found an insect on the window yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i11",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-24:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i12",
+    "correctText": "He found an insect on the window yesterday.",
+    "correctResponseId": "en:lesson-24:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i13",
+    "correctText": "en:lesson-24:session-51:i13:p1=male\nen:lesson-24:session-51:i13:p2=female\nen:lesson-24:session-51:i13:p3=human\nen:lesson-24:session-51:i13:p4=insect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i16",
+    "correctText": "We drew a human face yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-51:i17",
+    "correctText": "She found an insect on the window yesterday.",
+    "correctResponseId": null
+  }
+]

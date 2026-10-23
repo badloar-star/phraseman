@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какая полка",
+        "uk": "Яка полиця"
+      },
+      "bodyByLocale": {
+        "ru": "Upper — верхний. I have cleaned the upper shelf — я вытер верхнюю полку. Слово upper помогает уточнить, какую полку: ту, что находится сверху. Ставим его перед shelf. Полка уже чистая, поэтому сообщаем результат через have cleaned.",
+        "uk": "Upper — верхній. I have cleaned the upper shelf — я витер верхню полицю. Слово upper допомагає уточнити, яку полицю: ту, що розташована зверху. Ставимо його перед shelf. Полиця вже чиста, тому повідомляємо результат через have cleaned."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-50:intro1:r1",
+              "text": "I have cleaned the upper shelf."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro1:r2",
+              "text": "I has cleaned the upper shelf."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro1:r3",
+              "text": "I have clean the upper shelf."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-50:intro1:r1",
+              "text": "I have cleaned the upper shelf."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro1:r2",
+              "text": "I has cleaned the upper shelf."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro1:r3",
+              "text": "I have clean the upper shelf."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Какой ящик",
+        "uk": "Яка шухляда"
+      },
+      "bodyByLocale": {
+        "ru": "Lower — нижний. She opened the lower drawer yesterday — вчера она открыла нижний ящик. Upper и lower здесь описывают положение предметов: верхняя полка, нижний ящик. Yesterday требует opened без has. В нижнем ящике снова нашлась вещь, которую искали на всех верхних полках.",
+        "uk": "Lower — нижній. She opened the lower drawer yesterday — учора вона відкрила нижню шухляду. Upper і lower тут описують розташування предметів: верхня полиця, нижня шухляда. Yesterday потребує opened без has. У нижній шухляді знову знайшлася річ, яку шукали на всіх верхніх полицях."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-50:intro2:r1",
+              "text": "She opened the lower drawer yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro2:r2",
+              "text": "She has opened the lower drawer yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro2:r3",
+              "text": "She open the lower drawer yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-50:intro2:r1",
+              "text": "She opened the lower drawer yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro2:r2",
+              "text": "She has opened the lower drawer yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro2:r3",
+              "text": "She open the lower drawer yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Внутри и снаружи",
+        "uk": "Усередині й зовні"
+      },
+      "bodyByLocale": {
+        "ru": "Inner — внутренний, outer — наружный. We have checked the inner pocket — мы проверили внутренний карман. He painted the outer door yesterday — вчера он покрасил наружную дверь. Оба слова стоят перед существительным и уточняют, где расположен предмет: внутри или снаружи. С yesterday нужен painted без has.",
+        "uk": "Inner — внутрішній, outer — зовнішній. We have checked the inner pocket — ми перевірили внутрішню кишеню. He painted the outer door yesterday — учора він пофарбував зовнішні двері. Обидва слова стоять перед іменником і уточнюють, де розташований предмет: усередині чи зовні. Із yesterday потрібне painted без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-50:intro3:r1",
+              "text": "He painted the outer door yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro3:r2",
+              "text": "He has painted the outer door yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro3:r3",
+              "text": "He paint the outer door yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-50:intro3:r1",
+              "text": "He painted the outer door yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro3:r2",
+              "text": "He has painted the outer door yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-50:intro3:r3",
+              "text": "He paint the outer door yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bac95131dc0d856b3ad1403c0eb2f3a6d7a7dc4c5b24e3b9572d214f4332a095"
+}

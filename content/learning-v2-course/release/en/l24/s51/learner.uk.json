@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-51:word:male",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — male",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:word:male:audio"
+      ],
+      "accessibilityLabel": "Картка слова — male",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:word:male:audio",
+          "transcript": "male"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:word:male:r1",
+            "targetText": "male",
+            "meaningByLocale": {
+              "ru": "мужского пола.",
+              "uk": "чоловічої статі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "male",
+          "definitionByLocale": {
+            "ru": "мужского пола.",
+            "uk": "чоловічої статі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я взяв кота з притулку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я взяв кота з притулку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have adopted a male cat.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я взял кота из приюта.»",
+          "uk": "Скажіть: «Я взяв кота з притулку.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "adopted",
+          "a",
+          "male",
+          "cat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей і тварин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей і тварин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях и животных.",
+          "uk": "Доповніть розповідь про людей і тварин."
+        },
+        "gappedTargetPhrase": "I ___ adopted a male cat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-51:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей і тварин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед adopted.",
+              "uk": "Із I потрібно have перед adopted."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед adopted.",
+              "uk": "Із I потрібно have перед adopted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i03:r1",
+          "text": "I have adopted a male cat."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i03:r2",
+          "text": "We have adopted a male cat."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i03:r3",
+          "text": "I have adopted a male dog."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i03:audio",
+          "transcript": "I have adopted a male cat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:i03:r1",
+            "targetText": "I have adopted a male cat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i03:r2",
+            "targetText": "We have adopted a male cat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i03:r3",
+            "targetText": "I have adopted a male dog.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have adopted a male cat.",
+              "uk": "У записі звучить I have adopted a male cat."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have adopted a male cat.",
+              "uk": "У записі звучить I have adopted a male cat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:word:female",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — female",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:word:female:audio"
+      ],
+      "accessibilityLabel": "Картка слова — female",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:word:female:audio",
+          "transcript": "female"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:word:female:r1",
+            "targetText": "female",
+            "meaningByLocale": {
+              "ru": "женского пола.",
+              "uk": "жіночої статі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "female",
+          "definitionByLocale": {
+            "ru": "женского пола.",
+            "uk": "жіночої статі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона врятувала собаку-самицю.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона врятувала собаку-самицю.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She rescued a female dog yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она спасла собаку-самку.»",
+          "uk": "Скажіть: «Учора вона врятувала собаку-самицю.»"
+        },
+        "orderedTokens": [
+          "She",
+          "rescued",
+          "a",
+          "female",
+          "dog",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей і тварин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i05:r1",
+          "text": "rescued"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i05:r2",
+          "text": "has rescued"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i05:r3",
+          "text": "rescue"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей і тварин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях и животных.",
+          "uk": "Доповніть розповідь про людей і тварин."
+        },
+        "gappedTargetPhrase": "She ___ a female dog yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-51:i05:r1",
+            "text": "rescued"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i05:r2",
+            "text": "has rescued"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i05:r3",
+            "text": "rescue"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей і тварин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма rescued без has.",
+              "uk": "Із yesterday потрібна форма rescued без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма rescued без has.",
+              "uk": "Із yesterday потрібна форма rescued без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i06:r1",
+          "text": "She rescued a female dog yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i06:r2",
+          "text": "He rescued a female dog yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i06:r3",
+          "text": "She rescued a female dog last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i06:audio",
+          "transcript": "She rescued a female dog yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:i06:r1",
+            "targetText": "She rescued a female dog yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i06:r2",
+            "targetText": "He rescued a female dog yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i06:r3",
+            "targetText": "She rescued a female dog last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She rescued a female dog yesterday.",
+              "uk": "У записі звучить She rescued a female dog yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She rescued a female dog yesterday.",
+              "uk": "У записі звучить She rescued a female dog yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:word:human",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — human",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:word:human:audio"
+      ],
+      "accessibilityLabel": "Картка слова — human",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:word:human:audio",
+          "transcript": "human"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:word:human:r1",
+            "targetText": "human",
+            "meaningByLocale": {
+              "ru": "человеческий.",
+              "uk": "людський."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "human",
+          "definitionByLocale": {
+            "ru": "человеческий.",
+            "uk": "людський."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми намалювали людське обличчя.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми намалювали людське обличчя.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have drawn a human face.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы нарисовали человеческое лицо.»",
+          "uk": "Скажіть: «Ми намалювали людське обличчя.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "drawn",
+          "a",
+          "human",
+          "face"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей і тварин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей і тварин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях и животных.",
+          "uk": "Доповніть розповідь про людей і тварин."
+        },
+        "gappedTargetPhrase": "We ___ drawn a human face.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-51:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей і тварин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед drawn.",
+              "uk": "Із we потрібно have перед drawn."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед drawn.",
+              "uk": "Із we потрібно have перед drawn."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i09:r1",
+          "text": "We have drawn a human face."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i09:r2",
+          "text": "They have drawn a human face."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i09:r3",
+          "text": "We have drawn a human hand."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i09:audio",
+          "transcript": "We have drawn a human face."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:i09:r1",
+            "targetText": "We have drawn a human face.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i09:r2",
+            "targetText": "They have drawn a human face.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i09:r3",
+            "targetText": "We have drawn a human hand.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have drawn a human face.",
+              "uk": "У записі звучить We have drawn a human face."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have drawn a human face.",
+              "uk": "У записі звучить We have drawn a human face."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:word:insect",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — insect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:word:insect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — insect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:word:insect:audio",
+          "transcript": "insect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:word:insect:r1",
+            "targetText": "insect",
+            "meaningByLocale": {
+              "ru": "насекомое.",
+              "uk": "комаха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "insect",
+          "definitionByLocale": {
+            "ru": "насекомое.",
+            "uk": "комаха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора він знайшов комаху на вікні.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора він знайшов комаху на вікні.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He found an insect on the window yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера он нашёл насекомое на окне.»",
+          "uk": "Скажіть: «Учора він знайшов комаху на вікні.»"
+        },
+        "orderedTokens": [
+          "He",
+          "found",
+          "an",
+          "insect",
+          "on",
+          "the",
+          "window",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про людей і тварин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i11:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i11:r2",
+          "text": "has found"
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i11:r3",
+          "text": "find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про людей і тварин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о людях и животных.",
+          "uk": "Доповніть розповідь про людей і тварин."
+        },
+        "gappedTargetPhrase": "He ___ an insect on the window yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-51:i11:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i11:r2",
+            "text": "has found"
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i11:r3",
+            "text": "find"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про людей і тварин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма found без has.",
+              "uk": "Із yesterday потрібна форма found без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про людей і тварин.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма found без has.",
+              "uk": "Із yesterday потрібна форма found без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-51:i12:r1",
+          "text": "He found an insect on the window yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i12:r2",
+          "text": "She found an insect on the window yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-51:i12:r3",
+          "text": "He found an insect on the window last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i12:audio",
+          "transcript": "He found an insect on the window yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-51:i12:r1",
+            "targetText": "He found an insect on the window yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i12:r2",
+            "targetText": "She found an insect on the window yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i12:r3",
+            "targetText": "He found an insect on the window last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He found an insect on the window yesterday.",
+              "uk": "У записі звучить He found an insect on the window yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He found an insect on the window yesterday.",
+              "uk": "У записі звучить He found an insect on the window yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-51:i13:p1",
+            "target": "male",
+            "meaningByLocale": {
+              "ru": "мужского пола",
+              "uk": "чоловічої статі"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-51:i13:p2",
+            "target": "female",
+            "meaningByLocale": {
+              "ru": "женского пола",
+              "uk": "жіночої статі"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-51:i13:p3",
+            "target": "human",
+            "meaningByLocale": {
+              "ru": "человеческий",
+              "uk": "людський"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-51:i13:p4",
+            "target": "insect",
+            "meaningByLocale": {
+              "ru": "насекомое",
+              "uk": "комаха"
+            }
+          }
+        ],
+        "leftColumn": [
+          "male",
+          "female",
+          "human",
+          "insect"
+        ],
+        "rightColumn": [
+          "чоловічої статі",
+          "жіночої статі",
+          "людський",
+          "комаха"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми намалювали людське обличчя вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми намалювали людське обличчя вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i16:audio",
+          "transcript": "We drew a human face yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We drew a human face yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона знайшла комаху на вікні вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона знайшла комаху на вікні вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-51:i17:audio",
+          "transcript": "She found an insect on the window yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She found an insect on the window yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0b3f8a4d8d43bb3afb8c59b05a30dc2e03d4e35b31cf0c6987cf24223ee8f6a7"
+}

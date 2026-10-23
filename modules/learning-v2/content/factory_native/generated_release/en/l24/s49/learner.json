@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-49:word:breathe",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — breathe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:word:breathe:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — breathe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:word:breathe:audio",
+          "transcript": "breathe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:word:breathe:r1",
+            "targetText": "breathe",
+            "meaningByLocale": {
+              "ru": "дышать.",
+              "uk": "дихати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breathe",
+          "definitionByLocale": {
+            "ru": "дышать.",
+            "uk": "дихати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я дышу медленно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я дышу медленно.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I breathe slowly.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я дышу медленно.»",
+          "uk": "Скажіть: «Я дихаю повільно.»"
+        },
+        "orderedTokens": [
+          "I",
+          "breathe",
+          "slowly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i02:r1",
+          "text": "breathe"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i02:r2",
+          "text": "breathes"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i02:r3",
+          "text": "breathing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание действия.",
+          "uk": "Доповніть опис дії."
+        },
+        "gappedTargetPhrase": "I ___ slowly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-49:i02:r1",
+            "text": "breathe"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i02:r2",
+            "text": "breathes"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i02:r3",
+            "text": "breathing"
+          }
+        ],
+        "testedDimension": "Дополните описание действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "С I нужно breathe без s.",
+              "uk": "Із I потрібно breathe без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "С I нужно breathe без s.",
+              "uk": "Із I потрібно breathe без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i03:r1",
+          "text": "I breathe slowly."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i03:r2",
+          "text": "We breathe slowly."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i03:r3",
+          "text": "I breathe quietly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i03:audio",
+          "transcript": "I breathe slowly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:i03:r1",
+            "targetText": "I breathe slowly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i03:r2",
+            "targetText": "We breathe slowly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i03:r3",
+            "targetText": "I breathe quietly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I breathe slowly.",
+              "uk": "У записі звучить I breathe slowly."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I breathe slowly.",
+              "uk": "У записі звучить I breathe slowly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:word:lick",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:word:lick:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:word:lick:audio",
+          "transcript": "lick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:word:lick:r1",
+            "targetText": "lick",
+            "meaningByLocale": {
+              "ru": "лизать.",
+              "uk": "лизати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lick",
+          "definitionByLocale": {
+            "ru": "лизать.",
+            "uk": "лизати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Собаки лижут свои лапы.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Собаки лижут свои лапы.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Dogs lick their paws.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Собаки лижут свои лапы.»",
+          "uk": "Скажіть: «Собаки лижуть свої лапи.»"
+        },
+        "orderedTokens": [
+          "Dogs",
+          "lick",
+          "their",
+          "paws"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i05:r1",
+          "text": "lick"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i05:r2",
+          "text": "licks"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i05:r3",
+          "text": "licking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание действия.",
+          "uk": "Доповніть опис дії."
+        },
+        "gappedTargetPhrase": "Dogs ___ their paws.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-49:i05:r1",
+            "text": "lick"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i05:r2",
+            "text": "licks"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i05:r3",
+            "text": "licking"
+          }
+        ],
+        "testedDimension": "Дополните описание действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "С dogs нужна форма lick без s.",
+              "uk": "Із dogs потрібна форма lick без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "С dogs нужна форма lick без s.",
+              "uk": "Із dogs потрібна форма lick без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i06:r1",
+          "text": "Dogs lick their paws."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i06:r2",
+          "text": "Cats lick their paws."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i06:r3",
+          "text": "Dogs lick their noses."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i06:audio",
+          "transcript": "Dogs lick their paws."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:i06:r1",
+            "targetText": "Dogs lick their paws.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i06:r2",
+            "targetText": "Cats lick their paws.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i06:r3",
+            "targetText": "Dogs lick their noses.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Dogs lick their paws.",
+              "uk": "У записі звучить Dogs lick their paws."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Dogs lick their paws.",
+              "uk": "У записі звучить Dogs lick their paws."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:word:suck",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — suck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:word:suck:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — suck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:word:suck:audio",
+          "transcript": "suck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:word:suck:r1",
+            "targetText": "suck",
+            "meaningByLocale": {
+              "ru": "сосать.",
+              "uk": "смоктати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suck",
+          "definitionByLocale": {
+            "ru": "сосать.",
+            "uk": "смоктати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Некоторые младенцы сосут большие пальцы.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Некоторые младенцы сосут большие пальцы.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Some babies suck their thumbs.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Некоторые младенцы сосут большие пальцы.»",
+          "uk": "Скажіть: «Деякі немовлята смокчуть великі пальці.»"
+        },
+        "orderedTokens": [
+          "Some",
+          "babies",
+          "suck",
+          "their",
+          "thumbs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i08:r1",
+          "text": "suck"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i08:r2",
+          "text": "sucks"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i08:r3",
+          "text": "sucking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание действия.",
+          "uk": "Доповніть опис дії."
+        },
+        "gappedTargetPhrase": "Some babies ___ their thumbs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-49:i08:r1",
+            "text": "suck"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i08:r2",
+            "text": "sucks"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i08:r3",
+            "text": "sucking"
+          }
+        ],
+        "testedDimension": "Дополните описание действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "С babies нужна форма suck без s.",
+              "uk": "Із babies потрібна форма suck без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "С babies нужна форма suck без s.",
+              "uk": "Із babies потрібна форма suck без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i09:r1",
+          "text": "Some babies suck their thumbs."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i09:r2",
+          "text": "Some babies suck their fingers."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i09:r3",
+          "text": "Some children suck their thumbs."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i09:audio",
+          "transcript": "Some babies suck their thumbs."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:i09:r1",
+            "targetText": "Some babies suck their thumbs.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i09:r2",
+            "targetText": "Some babies suck their fingers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i09:r3",
+            "targetText": "Some children suck their thumbs.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Some babies suck their thumbs.",
+              "uk": "У записі звучить Some babies suck their thumbs."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Some babies suck their thumbs.",
+              "uk": "У записі звучить Some babies suck their thumbs."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:word:spit",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:word:spit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:word:spit:audio",
+          "transcript": "spit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:word:spit:r1",
+            "targetText": "spit",
+            "meaningByLocale": {
+              "ru": "плевать, выплёвывать.",
+              "uk": "плювати, випльовувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spit",
+          "definitionByLocale": {
+            "ru": "плевать, выплёвывать.",
+            "uk": "плювати, випльовувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Пожалуйста, выплюньте воду.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Пожалуйста, выплюньте воду.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please spit out the water.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Пожалуйста, выплюньте воду.»",
+          "uk": "Скажіть: «Будь ласка, виплюньте воду.»"
+        },
+        "orderedTokens": [
+          "Please",
+          "spit",
+          "out",
+          "the",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните описание действия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i11:r1",
+          "text": "spit"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i11:r2",
+          "text": "spits"
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i11:r3",
+          "text": "spitting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните описание действия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните описание действия.",
+          "uk": "Доповніть опис дії."
+        },
+        "gappedTargetPhrase": "Please ___ out the water.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-49:i11:r1",
+            "text": "spit"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i11:r2",
+            "text": "spits"
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i11:r3",
+            "text": "spitting"
+          }
+        ],
+        "testedDimension": "Дополните описание действия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "В просьбе после please нужна форма spit.",
+              "uk": "У проханні після please потрібна форма spit."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните описание действия.",
+            "feedbackByLocale": {
+              "ru": "В просьбе после please нужна форма spit.",
+              "uk": "У проханні після please потрібна форма spit."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-49:i12:r1",
+          "text": "Please spit out the water."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i12:r2",
+          "text": "Please spit out the juice."
+        },
+        {
+          "responseId": "en:lesson-24:session-49:i12:r3",
+          "text": "Please pour out the water."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i12:audio",
+          "transcript": "Please spit out the water."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-49:i12:r1",
+            "targetText": "Please spit out the water.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i12:r2",
+            "targetText": "Please spit out the juice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i12:r3",
+            "targetText": "Please pour out the water.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please spit out the water.",
+              "uk": "У записі звучить Please spit out the water."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Please spit out the water.",
+              "uk": "У записі звучить Please spit out the water."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-49:i13:p1",
+            "target": "breathe",
+            "meaningByLocale": {
+              "ru": "дышать",
+              "uk": "дихати"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-49:i13:p2",
+            "target": "lick",
+            "meaningByLocale": {
+              "ru": "лизать",
+              "uk": "лизати"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-49:i13:p3",
+            "target": "suck",
+            "meaningByLocale": {
+              "ru": "сосать",
+              "uk": "смоктати"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-49:i13:p4",
+            "target": "spit",
+            "meaningByLocale": {
+              "ru": "плевать, выплёвывать",
+              "uk": "плювати, випльовувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "breathe",
+          "lick",
+          "suck",
+          "spit"
+        ],
+        "rightColumn": [
+          "дышать",
+          "лизать",
+          "сосать",
+          "плевать, выплёвывать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я дышу медленно уже минуту».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я дышу медленно уже минуту».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i16:audio",
+          "transcript": "I have been breathing slowly for a minute."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have been breathing slowly for a minute.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Собака лизнула мою руку вчера».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Собака лизнула мою руку вчера».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-49:i17:audio",
+          "transcript": "The dog licked my hand yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dog licked my hand yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2df1a2f3e1b88ee7a9329bc39bdb8a32326f98549866db543014a3c755553e5e"
+}

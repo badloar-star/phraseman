@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-49:word:breathe",
+    "correctText": "breathe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i01",
+    "correctText": "I breathe slowly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i02",
+    "correctText": "breathe",
+    "correctResponseId": "en:lesson-24:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i03",
+    "correctText": "I breathe slowly.",
+    "correctResponseId": "en:lesson-24:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:word:lick",
+    "correctText": "lick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i04",
+    "correctText": "Dogs lick their paws.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i05",
+    "correctText": "lick",
+    "correctResponseId": "en:lesson-24:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i06",
+    "correctText": "Dogs lick their paws.",
+    "correctResponseId": "en:lesson-24:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:word:suck",
+    "correctText": "suck",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i07",
+    "correctText": "Some babies suck their thumbs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i08",
+    "correctText": "suck",
+    "correctResponseId": "en:lesson-24:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i09",
+    "correctText": "Some babies suck their thumbs.",
+    "correctResponseId": "en:lesson-24:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:word:spit",
+    "correctText": "spit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i10",
+    "correctText": "Please spit out the water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i11",
+    "correctText": "spit",
+    "correctResponseId": "en:lesson-24:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i12",
+    "correctText": "Please spit out the water.",
+    "correctResponseId": "en:lesson-24:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i13",
+    "correctText": "en:lesson-24:session-49:i13:p1=breathe\nen:lesson-24:session-49:i13:p2=lick\nen:lesson-24:session-49:i13:p3=suck\nen:lesson-24:session-49:i13:p4=spit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i16",
+    "correctText": "I have been breathing slowly for a minute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-49:i17",
+    "correctText": "The dog licked my hand yesterday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-50:word:upper",
+    "correctText": "upper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i01",
+    "correctText": "I have cleaned the upper shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i03",
+    "correctText": "I have cleaned the upper shelf.",
+    "correctResponseId": "en:lesson-24:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:word:lower",
+    "correctText": "lower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i04",
+    "correctText": "She opened the lower drawer yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i05",
+    "correctText": "opened",
+    "correctResponseId": "en:lesson-24:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i06",
+    "correctText": "She opened the lower drawer yesterday.",
+    "correctResponseId": "en:lesson-24:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:word:inner",
+    "correctText": "inner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i07",
+    "correctText": "We have checked the inner pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i09",
+    "correctText": "We have checked the inner pocket.",
+    "correctResponseId": "en:lesson-24:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:word:outer",
+    "correctText": "outer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i10",
+    "correctText": "He painted the outer door yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i11",
+    "correctText": "painted",
+    "correctResponseId": "en:lesson-24:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i12",
+    "correctText": "He painted the outer door yesterday.",
+    "correctResponseId": "en:lesson-24:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i13",
+    "correctText": "en:lesson-24:session-50:i13:p1=upper\nen:lesson-24:session-50:i13:p2=lower\nen:lesson-24:session-50:i13:p3=inner\nen:lesson-24:session-50:i13:p4=outer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i16",
+    "correctText": "We checked the inner pocket yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-50:i17",
+    "correctText": "She painted the outer door yesterday.",
+    "correctResponseId": null
+  }
+]

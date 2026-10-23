@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-50:word:upper",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — upper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:word:upper:audio"
+      ],
+      "accessibilityLabel": "Картка слова — upper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:word:upper:audio",
+          "transcript": "upper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:word:upper:r1",
+            "targetText": "upper",
+            "meaningByLocale": {
+              "ru": "верхний.",
+              "uk": "верхній."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "upper",
+          "definitionByLocale": {
+            "ru": "верхний.",
+            "uk": "верхній."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я витер верхню полицю.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я витер верхню полицю.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have cleaned the upper shelf.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я вытер верхнюю полку.»",
+          "uk": "Скажіть: «Я витер верхню полицю.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "cleaned",
+          "the",
+          "upper",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про предмети.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про предмети.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о предметах.",
+          "uk": "Доповніть розповідь про предмети."
+        },
+        "gappedTargetPhrase": "I ___ cleaned the upper shelf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-50:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про предмети.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед cleaned.",
+              "uk": "Із I потрібно have перед cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед cleaned.",
+              "uk": "Із I потрібно have перед cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i03:r1",
+          "text": "I have cleaned the upper shelf."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i03:r2",
+          "text": "We have cleaned the upper shelf."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i03:r3",
+          "text": "I have cleaned the upper window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i03:audio",
+          "transcript": "I have cleaned the upper shelf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:i03:r1",
+            "targetText": "I have cleaned the upper shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i03:r2",
+            "targetText": "We have cleaned the upper shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i03:r3",
+            "targetText": "I have cleaned the upper window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have cleaned the upper shelf.",
+              "uk": "У записі звучить I have cleaned the upper shelf."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have cleaned the upper shelf.",
+              "uk": "У записі звучить I have cleaned the upper shelf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:word:lower",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:word:lower:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:word:lower:audio",
+          "transcript": "lower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:word:lower:r1",
+            "targetText": "lower",
+            "meaningByLocale": {
+              "ru": "нижний.",
+              "uk": "нижній."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lower",
+          "definitionByLocale": {
+            "ru": "нижний.",
+            "uk": "нижній."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона відкрила нижню шухляду.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона відкрила нижню шухляду.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She opened the lower drawer yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она открыла нижний ящик.»",
+          "uk": "Скажіть: «Учора вона відкрила нижню шухляду.»"
+        },
+        "orderedTokens": [
+          "She",
+          "opened",
+          "the",
+          "lower",
+          "drawer",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про предмети.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i05:r1",
+          "text": "opened"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i05:r2",
+          "text": "has opened"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i05:r3",
+          "text": "open"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про предмети.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о предметах.",
+          "uk": "Доповніть розповідь про предмети."
+        },
+        "gappedTargetPhrase": "She ___ the lower drawer yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-50:i05:r1",
+            "text": "opened"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i05:r2",
+            "text": "has opened"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i05:r3",
+            "text": "open"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про предмети.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма opened без has.",
+              "uk": "Із yesterday потрібна форма opened без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма opened без has.",
+              "uk": "Із yesterday потрібна форма opened без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i06:r1",
+          "text": "She opened the lower drawer yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i06:r2",
+          "text": "He opened the lower drawer yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i06:r3",
+          "text": "She opened the lower drawer last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i06:audio",
+          "transcript": "She opened the lower drawer yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:i06:r1",
+            "targetText": "She opened the lower drawer yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i06:r2",
+            "targetText": "He opened the lower drawer yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i06:r3",
+            "targetText": "She opened the lower drawer last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She opened the lower drawer yesterday.",
+              "uk": "У записі звучить She opened the lower drawer yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She opened the lower drawer yesterday.",
+              "uk": "У записі звучить She opened the lower drawer yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:word:inner",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:word:inner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:word:inner:audio",
+          "transcript": "inner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:word:inner:r1",
+            "targetText": "inner",
+            "meaningByLocale": {
+              "ru": "внутренний.",
+              "uk": "внутрішній."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inner",
+          "definitionByLocale": {
+            "ru": "внутренний.",
+            "uk": "внутрішній."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми перевірили внутрішню кишеню.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми перевірили внутрішню кишеню.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have checked the inner pocket.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы проверили внутренний карман.»",
+          "uk": "Скажіть: «Ми перевірили внутрішню кишеню.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "checked",
+          "the",
+          "inner",
+          "pocket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про предмети.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про предмети.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о предметах.",
+          "uk": "Доповніть розповідь про предмети."
+        },
+        "gappedTargetPhrase": "We ___ checked the inner pocket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-50:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про предмети.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед checked.",
+              "uk": "Із we потрібно have перед checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед checked.",
+              "uk": "Із we потрібно have перед checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i09:r1",
+          "text": "We have checked the inner pocket."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i09:r2",
+          "text": "They have checked the inner pocket."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i09:r3",
+          "text": "We have checked the inner door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i09:audio",
+          "transcript": "We have checked the inner pocket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:i09:r1",
+            "targetText": "We have checked the inner pocket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i09:r2",
+            "targetText": "They have checked the inner pocket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i09:r3",
+            "targetText": "We have checked the inner door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have checked the inner pocket.",
+              "uk": "У записі звучить We have checked the inner pocket."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have checked the inner pocket.",
+              "uk": "У записі звучить We have checked the inner pocket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:word:outer",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — outer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:word:outer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — outer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:word:outer:audio",
+          "transcript": "outer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:word:outer:r1",
+            "targetText": "outer",
+            "meaningByLocale": {
+              "ru": "наружный, внешний.",
+              "uk": "зовнішній."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outer",
+          "definitionByLocale": {
+            "ru": "наружный, внешний.",
+            "uk": "зовнішній."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора він пофарбував зовнішні двері.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора він пофарбував зовнішні двері.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He painted the outer door yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера он покрасил наружную дверь.»",
+          "uk": "Скажіть: «Учора він пофарбував зовнішні двері.»"
+        },
+        "orderedTokens": [
+          "He",
+          "painted",
+          "the",
+          "outer",
+          "door",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про предмети.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i11:r1",
+          "text": "painted"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i11:r2",
+          "text": "has painted"
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i11:r3",
+          "text": "paint"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про предмети.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о предметах.",
+          "uk": "Доповніть розповідь про предмети."
+        },
+        "gappedTargetPhrase": "He ___ the outer door yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-50:i11:r1",
+            "text": "painted"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i11:r2",
+            "text": "has painted"
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i11:r3",
+            "text": "paint"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про предмети.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма painted без has.",
+              "uk": "Із yesterday потрібна форма painted без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про предмети.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма painted без has.",
+              "uk": "Із yesterday потрібна форма painted без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-50:i12:r1",
+          "text": "He painted the outer door yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i12:r2",
+          "text": "She painted the outer door yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-50:i12:r3",
+          "text": "He painted the outer door last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i12:audio",
+          "transcript": "He painted the outer door yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-50:i12:r1",
+            "targetText": "He painted the outer door yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i12:r2",
+            "targetText": "She painted the outer door yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i12:r3",
+            "targetText": "He painted the outer door last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He painted the outer door yesterday.",
+              "uk": "У записі звучить He painted the outer door yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He painted the outer door yesterday.",
+              "uk": "У записі звучить He painted the outer door yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-50:i13:p1",
+            "target": "upper",
+            "meaningByLocale": {
+              "ru": "верхний",
+              "uk": "верхній"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-50:i13:p2",
+            "target": "lower",
+            "meaningByLocale": {
+              "ru": "нижний",
+              "uk": "нижній"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-50:i13:p3",
+            "target": "inner",
+            "meaningByLocale": {
+              "ru": "внутренний",
+              "uk": "внутрішній"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-50:i13:p4",
+            "target": "outer",
+            "meaningByLocale": {
+              "ru": "наружный, внешний",
+              "uk": "зовнішній"
+            }
+          }
+        ],
+        "leftColumn": [
+          "upper",
+          "lower",
+          "inner",
+          "outer"
+        ],
+        "rightColumn": [
+          "верхній",
+          "нижній",
+          "внутрішній",
+          "зовнішній"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми перевірили внутрішню кишеню вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми перевірили внутрішню кишеню вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i16:audio",
+          "transcript": "We checked the inner pocket yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We checked the inner pocket yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона пофарбувала зовнішні двері вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона пофарбувала зовнішні двері вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-50:i17:audio",
+          "transcript": "She painted the outer door yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She painted the outer door yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0a412ff580b2abe29b1977b81aef7bba611fd4a81d326d44391bbe21a26e9f49"
+}

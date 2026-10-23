@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-49:intro1:r2": {
+          "ru": "С I нужно breathe без s.",
+          "uk": "Із I потрібно breathe без s."
+        },
+        "en:lesson-24:session-49:intro1:r3": {
+          "ru": "Здесь нужна личная форма breathe.",
+          "uk": "Тут потрібна особова форма breathe."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-49:intro2:r2": {
+          "ru": "С dogs нужно lick без s.",
+          "uk": "Із dogs потрібно lick без s."
+        },
+        "en:lesson-24:session-49:intro2:r3": {
+          "ru": "Здесь нужна форма lick.",
+          "uk": "Тут потрібна форма lick."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-49:intro3:r2": {
+          "ru": "В просьбе нужна базовая форма spit.",
+          "uk": "У проханні потрібна базова форма spit."
+        },
+        "en:lesson-24:session-49:intro3:r3": {
+          "ru": "После please здесь нужно spit.",
+          "uk": "Після please тут потрібне spit."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8284c78599292c6638bf35f3ca68dee80297abfd86825e6efc93d52ebf339f3d"
+}

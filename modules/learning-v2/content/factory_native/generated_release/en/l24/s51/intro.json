@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кот из приюта",
+        "uk": "Кіт із притулку"
+      },
+      "bodyByLocale": {
+        "ru": "Male — мужского пола. A male cat — кот, а не кошка-самка. I have adopted a male cat — я взял кота из приюта. Male стоит перед названием животного и уточняет пол. Для результата без даты используем have adopted.",
+        "uk": "Male — чоловічої статі. A male cat — кіт, а не кішка-самиця. I have adopted a male cat — я взяв кота з притулку. Male стоїть перед назвою тварини й уточнює стать. Для результату без дати використовуємо have adopted."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-51:intro1:r1",
+              "text": "I have adopted a male cat."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro1:r2",
+              "text": "I has adopted a male cat."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro1:r3",
+              "text": "I have adopt a male cat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-51:intro1:r1",
+              "text": "I have adopted a male cat."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro1:r2",
+              "text": "I has adopted a male cat."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro1:r3",
+              "text": "I have adopt a male cat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточняем пол животного",
+        "uk": "Уточнюємо стать тварини"
+      },
+      "bodyByLocale": {
+        "ru": "Female — женского пола. A female dog — собака-самка. She rescued a female dog yesterday — вчера она спасла собаку-самку. В русском часто достаточно «собака», но female в английской фразе прямо уточняет пол. С yesterday нужна форма rescued без has.",
+        "uk": "Female — жіночої статі. A female dog — собака-самиця. She rescued a female dog yesterday — учора вона врятувала собаку-самицю. В українській часто достатньо «собака», але female в англійській фразі прямо уточнює стать. Із yesterday потрібна форма rescued без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-51:intro2:r1",
+              "text": "She rescued a female dog yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro2:r2",
+              "text": "She has rescued a female dog yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro2:r3",
+              "text": "She rescue a female dog yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-51:intro2:r1",
+              "text": "She rescued a female dog yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro2:r2",
+              "text": "She has rescued a female dog yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro2:r3",
+              "text": "She rescue a female dog yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Люди и насекомые",
+        "uk": "Люди та комахи"
+      },
+      "bodyByLocale": {
+        "ru": "Human — человеческий. We have drawn a human face — мы нарисовали человеческое лицо. Drawn — форма draw после have. Insect — насекомое: например, знакомый ant, муравей. He found an insect on the window yesterday — вчера он нашёл насекомое на окне. Перед insect используем an, а с yesterday — found без has.",
+        "uk": "Human — людський. We have drawn a human face — ми намалювали людське обличчя. Drawn — форма draw після have. Insect — комаха: наприклад, знайоме ant, мураха. He found an insect on the window yesterday — учора він знайшов комаху на вікні. Перед insect використовуємо an, а із yesterday — found без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-51:intro3:r1",
+              "text": "He found an insect on the window yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro3:r2",
+              "text": "He has found an insect on the window yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro3:r3",
+              "text": "He find an insect on the window yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-51:intro3:r1",
+              "text": "He found an insect on the window yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro3:r2",
+              "text": "He has found an insect on the window yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-51:intro3:r3",
+              "text": "He find an insect on the window yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "17d5e4aa297cfe13b318a138f4644f8fa9cc05bfbacbc28beab06437978077eb"
+}

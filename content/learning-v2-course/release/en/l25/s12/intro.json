@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "За занавеской",
+        "uk": "За фіранкою"
+      },
+      "bodyByLocale": {
+        "ru": "Peek — быстро выглянуть или заглянуть, иногда украдкой. As children we would peek through the curtains — в детстве мы часто выглядывали сквозь занавески. Through the curtains — сквозь занавески. As children задаёт прошлое время рассказа, would peek передаёт повторявшуюся привычку. После would оставляем peek без окончания.",
+        "uk": "Peek — швидко визирнути або зазирнути, іноді крадькома. As children we would peek through the curtains — у дитинстві ми часто визирали крізь фіранки. Through the curtains — крізь фіранки. As children задає минулий час розповіді, would peek передає звичку, що повторювалася. Після would залишаємо peek без закінчення."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-12:intro1:r1",
+              "text": "As children we would peek through the curtains."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro1:r2",
+              "text": "As children we would peeked through the curtains."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro1:r3",
+              "text": "As children we would peeking through the curtains."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-12:intro1:r1",
+              "text": "As children we would peek through the curtains."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro1:r2",
+              "text": "As children we would peeked through the curtains."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro1:r3",
+              "text": "As children we would peeking through the curtains."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Палка и верёвка",
+        "uk": "Палиця й мотузка"
+      },
+      "bodyByLocale": {
+        "ru": "Poke — тыкать пальцем или предметом. In those days we would poke the sand with a stick — в те времена мы часто тыкали палкой в песок. With a stick показывает, чем это делали. Tug — дёргать, тянуть рывком. As a child I would tug at the rope — в детстве я часто дёргал верёвку. Tug at the rope описывает попытку потянуть верёвку, не обязательно сдвинуть её. После would используем poke и tug.",
+        "uk": "Poke — тикати пальцем або предметом. In those days we would poke the sand with a stick — у ті часи ми часто тикали палицею в пісок. With a stick показує, чим це робили. Tug — смикати, тягнути ривком. As a child I would tug at the rope — у дитинстві я часто смикав мотузку. Tug at the rope описує спробу потягнути мотузку, не обов’язково зрушити її. Після would використовуємо poke і tug."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-12:intro2:r1",
+              "text": "In those days we would poke the sand with a stick."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro2:r2",
+              "text": "In those days we would poked the sand with a stick."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro2:r3",
+              "text": "In those days we would poking the sand with a stick."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-12:intro2:r1",
+              "text": "In those days we would poke the sand with a stick."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro2:r2",
+              "text": "In those days we would poked the sand with a stick."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro2:r3",
+              "text": "In those days we would poking the sand with a stick."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Привлечь внимание",
+        "uk": "Привернути увагу"
+      },
+      "bodyByLocale": {
+        "ru": "Nudge — слегка подтолкнуть, например локтем, чтобы привлечь внимание. At school I would nudge my brother during lunch — в школе я часто слегка толкал брата во время обеда. Мы вспоминаем школьные годы и повторявшееся действие. Would nudge здесь не просьба и не условие. During lunch означает «во время обеда».",
+        "uk": "Nudge — легенько підштовхнути, наприклад ліктем, щоб привернути увагу. At school I would nudge my brother during lunch — у школі я часто легенько штовхав брата під час обіду. Згадуємо шкільні роки й дію, що повторювалася. Would nudge тут не прохання й не умова. During lunch означає «під час обіду»."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-12:intro3:r1",
+              "text": "At school I would nudge my brother during lunch."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro3:r2",
+              "text": "At school I would nudged my brother during lunch."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro3:r3",
+              "text": "At school I would nudging my brother during lunch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-12:intro3:r1",
+              "text": "At school I would nudge my brother during lunch."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro3:r2",
+              "text": "At school I would nudged my brother during lunch."
+            },
+            {
+              "responseId": "en:lesson-25:session-12:intro3:r3",
+              "text": "At school I would nudging my brother during lunch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "07392e54a9857f31b2d050628dbae62e92eedf313e036bbe1fbbc9a953e609d9"
+}

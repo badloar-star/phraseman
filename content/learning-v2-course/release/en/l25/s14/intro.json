@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Утренняя привычка",
+        "uk": "Ранкова звичка"
+      },
+      "bodyByLocale": {
+        "ru": "Gargle — полоскать горло. In those days I would gargle with water every morning — в те времена я обычно полоскал горло водой каждое утро. With water означает «водой». In those days показывает, что это воспоминание о прежней привычке. После would используем gargle.",
+        "uk": "Gargle — полоскати горло. In those days I would gargle with water every morning — у ті часи я зазвичай полоскав горло водою щоранку. With water означає «водою». In those days показує, що це спогад про колишню звичку. Після would використовуємо gargle."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-14:intro1:r1",
+              "text": "In those days I would gargle with water every morning."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro1:r2",
+              "text": "In those days I would gargled with water every morning."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro1:r3",
+              "text": "In those days I would gargling with water every morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-14:intro1:r1",
+              "text": "In those days I would gargle with water every morning."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro1:r2",
+              "text": "In those days I would gargled with water every morning."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro1:r3",
+              "text": "In those days I would gargling with water every morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уход за собой",
+        "uk": "Догляд за собою"
+      },
+      "bodyByLocale": {
+        "ru": "Вспоминаем прежнюю работу. Massage — массировать. After work she would massage her shoulders — после работы она обычно массировала себе плечи. Her shoulders — её собственные плечи. Pluck — выщипывать. In those days she would pluck her eyebrows — в те времена она обычно выщипывала брови. После would оставляем massage и pluck без окончания.",
+        "uk": "Згадуємо колишню роботу. Massage — масажувати. After work she would massage her shoulders — після роботи вона зазвичай масажувала собі плечі. Her shoulders — її власні плечі. Pluck — вищипувати. In those days she would pluck her eyebrows — у ті часи вона зазвичай вищипувала брови. Після would залишаємо massage і pluck без закінчення."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-14:intro2:r1",
+              "text": "After work she would massage her shoulders."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro2:r2",
+              "text": "After work she would massaged her shoulders."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro2:r3",
+              "text": "After work she would massaging her shoulders."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-14:intro2:r1",
+              "text": "After work she would massage her shoulders."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro2:r2",
+              "text": "After work she would massaged her shoulders."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro2:r3",
+              "text": "After work she would massaging her shoulders."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Красили волосы дома",
+        "uk": "Фарбували волосся вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Dye — красить волосы или ткань. In those days we would dye our hair at home — в те времена мы обычно красили волосы дома. Our hair — наши волосы; в этом значении hair не получает окончание -s. Would dye описывает то, что делали время от времени в прошлом. Dye пишется с y и e; это не die — «умирать».",
+        "uk": "Dye — фарбувати волосся або тканину. In those days we would dye our hair at home — у ті часи ми зазвичай фарбували волосся вдома. Our hair — наше волосся; у цьому значенні hair не отримує закінчення -s. Would dye описує те, що робили час від часу в минулому. Dye пишеться з y та e; це не die — «помирати»."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-14:intro3:r1",
+              "text": "In those days we would dye our hair at home."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro3:r2",
+              "text": "In those days we would dyed our hair at home."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro3:r3",
+              "text": "In those days we would dyeing our hair at home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-14:intro3:r1",
+              "text": "In those days we would dye our hair at home."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro3:r2",
+              "text": "In those days we would dyed our hair at home."
+            },
+            {
+              "responseId": "en:lesson-25:session-14:intro3:r3",
+              "text": "In those days we would dyeing our hair at home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c47613c3e7d5453a8d00b8cfb5243431a9e9021ef8df03f57da2f6d2916ee5bc"
+}

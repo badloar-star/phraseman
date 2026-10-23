@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-14:intro1:r2": {
+          "ru": "После would нужна форма gargle.",
+          "uk": "Після would потрібна форма gargle."
+        },
+        "en:lesson-25:session-14:intro1:r3": {
+          "ru": "Используйте базовую форму gargle.",
+          "uk": "Використайте базову форму gargle."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-14:intro2:r2": {
+          "ru": "После would нужна форма massage.",
+          "uk": "Після would потрібна форма massage."
+        },
+        "en:lesson-25:session-14:intro2:r3": {
+          "ru": "Используйте базовую форму massage.",
+          "uk": "Використайте базову форму massage."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-14:intro3:r2": {
+          "ru": "После would нужна форма dye.",
+          "uk": "Після would потрібна форма dye."
+        },
+        "en:lesson-25:session-14:intro3:r3": {
+          "ru": "Используйте базовую форму dye.",
+          "uk": "Використайте базову форму dye."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1c4daf403e8199bfcd5bd2af36095704fda9f3b3f82fe3317fb615bf54d4ca64"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-12:word:peek",
+    "correctText": "peek",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i01",
+    "correctText": "As children we would peek through the curtains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i02",
+    "correctText": "peek",
+    "correctResponseId": "en:lesson-25:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i03",
+    "correctText": "As children we would peek through the curtains.",
+    "correctResponseId": "en:lesson-25:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:word:poke",
+    "correctText": "poke",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i04",
+    "correctText": "In those days we would poke the sand with a stick.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i05",
+    "correctText": "poke",
+    "correctResponseId": "en:lesson-25:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i06",
+    "correctText": "In those days we would poke the sand with a stick.",
+    "correctResponseId": "en:lesson-25:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:word:tug",
+    "correctText": "tug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i07",
+    "correctText": "As a child I would tug at the rope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i08",
+    "correctText": "tug",
+    "correctResponseId": "en:lesson-25:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i09",
+    "correctText": "As a child I would tug at the rope.",
+    "correctResponseId": "en:lesson-25:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:word:nudge",
+    "correctText": "nudge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i10",
+    "correctText": "At school I would nudge my brother during lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i11",
+    "correctText": "nudge",
+    "correctResponseId": "en:lesson-25:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i12",
+    "correctText": "At school I would nudge my brother during lunch.",
+    "correctResponseId": "en:lesson-25:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i13",
+    "correctText": "en:lesson-25:session-12:i13:p1=peek\nen:lesson-25:session-12:i13:p2=poke\nen:lesson-25:session-12:i13:p3=tug\nen:lesson-25:session-12:i13:p4=nudge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i14",
+    "correctText": "I used to live by the lake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i15",
+    "correctText": "I used to be shy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i16",
+    "correctText": "As a child she would tug at the rope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-12:i17",
+    "correctText": "At school he would nudge his brother during lunch.",
+    "correctResponseId": null
+  }
+]

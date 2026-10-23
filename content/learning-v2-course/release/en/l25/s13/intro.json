@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После школы",
+        "uk": "Після школи"
+      },
+      "bodyByLocale": {
+        "ru": "Grab — схватить, быстро взять. As children we would grab our bags after school — в детстве мы обычно хватали свои сумки после школы. Мы вспоминаем привычное действие, а не один случай. Would grab показывает повторяемость; as children задаёт время в прошлом. После would не добавляем -ed.",
+        "uk": "Grab — схопити, швидко взяти. As children we would grab our bags after school — у дитинстві ми зазвичай хапали свої сумки після школи. Згадуємо звичну дію, а не один випадок. Would grab показує повторюваність; as children задає час у минулому. Після would не додаємо -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-13:intro1:r1",
+              "text": "As children we would grab our bags after school."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro1:r2",
+              "text": "As children we would grabbed our bags after school."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro1:r3",
+              "text": "As children we would grabbing our bags after school."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-13:intro1:r1",
+              "text": "As children we would grab our bags after school."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro1:r2",
+              "text": "As children we would grabbed our bags after school."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro1:r3",
+              "text": "As children we would grabbing our bags after school."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тихо пройти и посмеяться",
+        "uk": "Тихо пройти й посміятися"
+      },
+      "bodyByLocale": {
+        "ru": "Tiptoe — идти на цыпочках, например чтобы никого не разбудить. In those days I would tiptoe past the bedroom — в те времена я обычно проходил на цыпочках мимо спальни. Past the bedroom означает «мимо спальни». Chuckle — тихо смеяться. As a child he would chuckle at our jokes — в детстве он часто тихо смеялся над нашими шутками. Chuckle at a joke — тихо смеяться над шуткой. После would используем tiptoe и chuckle.",
+        "uk": "Tiptoe — іти навшпиньки, наприклад щоб нікого не розбудити. In those days I would tiptoe past the bedroom — у ті часи я зазвичай проходив навшпиньки повз спальню. Past the bedroom означає «повз спальню». Chuckle — тихо сміятися. As a child he would chuckle at our jokes — у дитинстві він часто тихо сміявся з наших жартів. Chuckle at a joke — тихо сміятися з жарту. Після would використовуємо tiptoe і chuckle."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-13:intro2:r1",
+              "text": "In those days I would tiptoe past the bedroom."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro2:r2",
+              "text": "In those days I would tiptoed past the bedroom."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro2:r3",
+              "text": "In those days I would tiptoeing past the bedroom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-13:intro2:r1",
+              "text": "In those days I would tiptoe past the bedroom."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro2:r2",
+              "text": "In those days I would tiptoed past the bedroom."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro2:r3",
+              "text": "In those days I would tiptoeing past the bedroom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Изображаем животных",
+        "uk": "Зображуємо тварин"
+      },
+      "bodyByLocale": {
+        "ru": "Imitate — подражать, воспроизводить чьи-то звуки или движения. At school we would imitate animal sounds — в школе мы часто подражали звукам животных. Например, на занятиях изображали, как мяукает кошка или лает собака. В воспоминании would imitate описывает повторявшуюся игру. После imitate здесь сразу стоит animal sounds, без предлога.",
+        "uk": "Imitate — наслідувати, відтворювати чиїсь звуки або рухи. At school we would imitate animal sounds — у школі ми часто наслідували звуки тварин. Наприклад, на заняттях зображували, як нявкає кішка або гавкає собака. У спогаді would imitate описує гру, що повторювалася. Після imitate тут відразу стоїть animal sounds, без прийменника."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-13:intro3:r1",
+              "text": "At school we would imitate animal sounds."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro3:r2",
+              "text": "At school we would imitated animal sounds."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro3:r3",
+              "text": "At school we would imitating animal sounds."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-13:intro3:r1",
+              "text": "At school we would imitate animal sounds."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro3:r2",
+              "text": "At school we would imitated animal sounds."
+            },
+            {
+              "responseId": "en:lesson-25:session-13:intro3:r3",
+              "text": "At school we would imitating animal sounds."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8140640e3015ee17d839bb2c0b2ae6500b2b363513318bb8683213bc4c55fe6c"
+}

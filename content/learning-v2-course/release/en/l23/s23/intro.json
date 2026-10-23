@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Bacon — бекон, который часто подают ломтиками. I have tried bacon — я пробовал бекон. Tried — третья форма try. Так можно рассказать о еде, которую вы уже пробовали; точную дату не называем.",
+        "uk": "Bacon — бекон, який часто подають скибочками. I have tried bacon — я куштував бекон. Tried — третя форма try. Так можна розповісти про їжу, яку ви вже куштували; точної дати не називаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-23:intro1:r1",
+              "text": "I have tried bacon."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro1:r2",
+              "text": "I has tried bacon."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro1:r3",
+              "text": "I have try bacon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-23:intro1:r1",
+              "text": "I have tried bacon."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro1:r2",
+              "text": "I has tried bacon."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro1:r3",
+              "text": "I have try bacon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Beef — говядина, а pork — свинина. Это названия мяса, которые помогут понять меню. She has cooked beef — она готовила говядину. Cooked — третья форма cook. В этой фразе перед beef нет артикля a.",
+        "uk": "Beef — яловичина, а pork — свинина. Це назви м’яса, які допоможуть зрозуміти меню. She has cooked beef — вона готувала яловичину. Cooked — третя форма cook. У цій фразі перед beef немає артикля a."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-23:intro2:r1",
+              "text": "She has cooked beef."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro2:r2",
+              "text": "She have cooked beef."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro2:r3",
+              "text": "She has cook beef."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-23:intro2:r1",
+              "text": "She has cooked beef."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro2:r2",
+              "text": "She have cooked beef."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro2:r3",
+              "text": "She has cook beef."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Salami — салями, вид колбасы. He has bought salami — он покупал салями. Bought — третья форма buy. Здесь salami — название продукта без артикля a. Если вы не едите мясо, эти слова помогут объяснить, какие продукты вам не подходят.",
+        "uk": "Salami — салямі, вид ковбаси. He has bought salami — він купував салямі. Bought — третя форма buy. Тут salami — назва продукту без артикля a. Якщо ви не їсте м’яса, ці слова допоможуть пояснити, які продукти вам не підходять."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-23:intro3:r1",
+              "text": "He has bought salami."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro3:r2",
+              "text": "He have bought salami."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro3:r3",
+              "text": "He has buy salami."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-23:intro3:r1",
+              "text": "He has bought salami."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro3:r2",
+              "text": "He have bought salami."
+            },
+            {
+              "responseId": "en:lesson-23:session-23:intro3:r3",
+              "text": "He has buy salami."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "04cd1bb14aff7c11e7650b4f9701f794507471a4d2dc09b44072bab25e7787f2"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-24:word:wrist",
+    "correctText": "wrist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i01",
+    "correctText": "I have hurt my wrist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i02",
+    "correctText": "I have hurt my wrist.",
+    "correctResponseId": "en:lesson-23:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i03",
+    "correctText": "hurt",
+    "correctResponseId": "en:lesson-23:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:word:tongue",
+    "correctText": "tongue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i04",
+    "correctText": "She has burnt her tongue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i05",
+    "correctText": "She has burnt her tongue.",
+    "correctResponseId": "en:lesson-23:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i06",
+    "correctText": "burnt",
+    "correctResponseId": "en:lesson-23:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:word:palm",
+    "correctText": "palm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i07",
+    "correctText": "I have cut my palm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i08",
+    "correctText": "I have cut my palm.",
+    "correctResponseId": "en:lesson-23:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i09",
+    "correctText": "cut",
+    "correctResponseId": "en:lesson-23:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:word:jaw",
+    "correctText": "jaw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i10",
+    "correctText": "He has hurt his jaw.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i11",
+    "correctText": "He has hurt his jaw.",
+    "correctResponseId": "en:lesson-23:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i12",
+    "correctText": "hurt",
+    "correctResponseId": "en:lesson-23:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i13",
+    "correctText": "en:lesson-23:session-24:i13:p1=wrist\nen:lesson-23:session-24:i13:p2=tongue\nen:lesson-23:session-24:i13:p3=palm\nen:lesson-23:session-24:i13:p4=jaw",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i14",
+    "correctText": "We can ask another doctor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i15",
+    "correctText": "You mustn't touch the hot pan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i16",
+    "correctText": "I have burnt my tongue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-24:i17",
+    "correctText": "She has hurt her wrist.",
+    "correctResponseId": null
+  }
+]

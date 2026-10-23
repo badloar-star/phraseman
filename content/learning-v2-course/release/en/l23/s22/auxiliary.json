@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-22:intro1:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-22:intro1:r3": {
+          "ru": "После have или has нужна третья форма: heard.",
+          "uk": "Після have або has потрібна третя форма: heard."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-22:intro2:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-22:intro2:r3": {
+          "ru": "После have или has нужна третья форма: seen.",
+          "uk": "Після have або has потрібна третя форма: seen."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-22:intro3:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-22:intro3:r3": {
+          "ru": "После have или has нужна третья форма: felt.",
+          "uk": "Після have або has потрібна третя форма: felt."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7a625101a5531fc36fca3caeeec51d27f0e8c43e4a44a3713dd780f62a00ba05"
+}

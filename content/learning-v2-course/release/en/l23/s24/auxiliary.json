@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-24:intro1:r2": {
+          "ru": "С I используем have.",
+          "uk": "З I використовуємо have."
+        },
+        "en:lesson-23:session-24:intro1:r3": {
+          "ru": "Третья форма — hurt.",
+          "uk": "Третя форма — hurt."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-24:intro2:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-23:session-24:intro2:r3": {
+          "ru": "После has нужна третья форма burnt.",
+          "uk": "Після has потрібна третя форма burnt."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-24:intro3:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-24:intro3:r3": {
+          "ru": "Третья форма — cut без s.",
+          "uk": "Третя форма — cut без s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3db8aab838dfda4487dcaeac1050cb19f5aabc1bf6633d27bb4a0dca667e023f"
+}

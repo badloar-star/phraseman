@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где болит",
+        "uk": "Де болить"
+      },
+      "bodyByLocale": {
+        "ru": "Wrist — запястье, часть руки рядом с кистью. I have hurt my wrist — я повредил запястье. Случившееся важно сейчас: запястье болит. У hurt третья форма тоже hurt. Перед названием части тела здесь используем my: речь о моём запястье.",
+        "uk": "Wrist — зап’ясток, частина руки поруч із кистю. I have hurt my wrist — я пошкодив зап’ясток. Те, що сталося, важливе зараз: зап’ясток болить. У hurt третя форма теж hurt. Перед назвою частини тіла тут використовуємо my: ідеться про мій зап’ясток."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-24:intro1:r1",
+              "text": "I have hurt my wrist."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro1:r2",
+              "text": "I has hurt my wrist."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro1:r3",
+              "text": "I have hurts my wrist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-24:intro1:r1",
+              "text": "I have hurt my wrist."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro1:r2",
+              "text": "I has hurt my wrist."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro1:r3",
+              "text": "I have hurts my wrist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Горячий напиток",
+        "uk": "Гарячий напій"
+      },
+      "bodyByLocale": {
+        "ru": "Tongue — язык во рту. Это не language, то есть язык общения. She has burnt her tongue — она обожгла язык. Burnt — третья форма burn; также употребляется burned. Her tongue означает «её язык».",
+        "uk": "Tongue — язик у роті. Це не language, тобто мова спілкування. She has burnt her tongue — вона обпекла язик. Burnt — третя форма burn; також уживається burned. Her tongue означає «її язик»."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-24:intro2:r1",
+              "text": "She has burnt her tongue."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro2:r2",
+              "text": "She have burnt her tongue."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro2:r3",
+              "text": "She has burn her tongue."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-24:intro2:r1",
+              "text": "She has burnt her tongue."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro2:r2",
+              "text": "She have burnt her tongue."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro2:r3",
+              "text": "She has burn her tongue."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ладонь и челюсть",
+        "uk": "Долоня й щелепа"
+      },
+      "bodyByLocale": {
+        "ru": "Palm — ладонь, внутренняя сторона кисти. Jaw — челюсть. I have cut my palm — я порезал ладонь. Третья форма cut совпадает с начальной. He has hurt his jaw — он повредил челюсть. Эти слова помогают назвать место травмы.",
+        "uk": "Palm — долоня, внутрішній бік кисті. Jaw — щелепа. I have cut my palm — я порізав долоню. Третя форма cut збігається з початковою. He has hurt his jaw — він пошкодив щелепу. Ці слова допомагають назвати місце травми."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-24:intro3:r1",
+              "text": "I have cut my palm."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro3:r2",
+              "text": "I has cut my palm."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro3:r3",
+              "text": "I have cuts my palm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-24:intro3:r1",
+              "text": "I have cut my palm."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro3:r2",
+              "text": "I has cut my palm."
+            },
+            {
+              "responseId": "en:lesson-23:session-24:intro3:r3",
+              "text": "I have cuts my palm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd1c5d14d3a08fef047593f91419ba6762b466ea4aea2799e1656e32eb682d3b"
+}

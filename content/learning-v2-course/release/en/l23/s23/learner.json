@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-23:word:bacon",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bacon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:word:bacon:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bacon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:word:bacon:audio",
+          "transcript": "bacon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:word:bacon:r1",
+            "targetText": "bacon",
+            "meaningByLocale": {
+              "ru": "бекон.",
+              "uk": "бекон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bacon",
+          "definitionByLocale": {
+            "ru": "бекон.",
+            "uk": "бекон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я пробовал бекон.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я пробовал бекон.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have tried bacon.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я пробовал бекон.»",
+          "uk": "Розкажіть про досвід: «Я куштував бекон.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "tried",
+          "bacon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i02:r1",
+          "text": "I have tried bacon."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i02:r2",
+          "text": "You have tried bacon."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i02:r3",
+          "text": "They have tried bacon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i02:audio",
+          "transcript": "I have tried bacon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:i02:r1",
+            "targetText": "I have tried bacon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i02:r2",
+            "targetText": "You have tried bacon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i02:r3",
+            "targetText": "They have tried bacon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried bacon.",
+              "uk": "У записі звучить I have tried bacon."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried bacon.",
+              "uk": "У записі звучить I have tried bacon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i03:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i03:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i03:r3",
+          "text": "tries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ bacon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-23:i03:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i03:r2",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i03:r3",
+            "text": "tries"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:word:beef",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — beef",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:word:beef:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — beef",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:word:beef:audio",
+          "transcript": "beef"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:word:beef:r1",
+            "targetText": "beef",
+            "meaningByLocale": {
+              "ru": "говядина.",
+              "uk": "яловичина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beef",
+          "definitionByLocale": {
+            "ru": "говядина.",
+            "uk": "яловичина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Она готовила говядину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Она готовила говядину.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has cooked beef.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она готовила говядину.»",
+          "uk": "Розкажіть про досвід: «Вона готувала яловичину.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "cooked",
+          "beef"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i05:r1",
+          "text": "She has cooked beef."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i05:r2",
+          "text": "You have cooked beef."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i05:r3",
+          "text": "They have cooked beef."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i05:audio",
+          "transcript": "She has cooked beef."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:i05:r1",
+            "targetText": "She has cooked beef.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i05:r2",
+            "targetText": "You have cooked beef.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i05:r3",
+            "targetText": "They have cooked beef.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has cooked beef.",
+              "uk": "У записі звучить She has cooked beef."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has cooked beef.",
+              "uk": "У записі звучить She has cooked beef."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i06:r1",
+          "text": "cooked"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i06:r2",
+          "text": "cook"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i06:r3",
+          "text": "cooks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ beef.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-23:i06:r1",
+            "text": "cooked"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i06:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i06:r3",
+            "text": "cooks"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cooked.",
+              "uk": "Потрібна третя форма: cooked."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cooked.",
+              "uk": "Потрібна третя форма: cooked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:word:pork",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pork",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:word:pork:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pork",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:word:pork:audio",
+          "transcript": "pork"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:word:pork:r1",
+            "targetText": "pork",
+            "meaningByLocale": {
+              "ru": "свинина.",
+              "uk": "свинина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pork",
+          "definitionByLocale": {
+            "ru": "свинина.",
+            "uk": "свинина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы пробовали свинину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы пробовали свинину.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have tried pork.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы пробовали свинину.»",
+          "uk": "Розкажіть про досвід: «Ми куштували свинину.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "tried",
+          "pork"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i08:r1",
+          "text": "We have tried pork."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i08:r2",
+          "text": "You have tried pork."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i08:r3",
+          "text": "They have tried pork."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i08:audio",
+          "transcript": "We have tried pork."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:i08:r1",
+            "targetText": "We have tried pork.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i08:r2",
+            "targetText": "You have tried pork.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i08:r3",
+            "targetText": "They have tried pork.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have tried pork.",
+              "uk": "У записі звучить We have tried pork."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have tried pork.",
+              "uk": "У записі звучить We have tried pork."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i09:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i09:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i09:r3",
+          "text": "tries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ pork.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-23:i09:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i09:r2",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i09:r3",
+            "text": "tries"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: tried.",
+              "uk": "Потрібна третя форма: tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:word:salami",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — salami",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:word:salami:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — salami",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:word:salami:audio",
+          "transcript": "salami"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:word:salami:r1",
+            "targetText": "salami",
+            "meaningByLocale": {
+              "ru": "салями.",
+              "uk": "салямі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salami",
+          "definitionByLocale": {
+            "ru": "салями.",
+            "uk": "салямі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он покупал салями.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он покупал салями.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has bought salami.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он покупал салями.»",
+          "uk": "Розкажіть про досвід: «Він купував салямі.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "bought",
+          "salami"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i11:r1",
+          "text": "He has bought salami."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i11:r2",
+          "text": "You have bought salami."
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i11:r3",
+          "text": "They have bought salami."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i11:audio",
+          "transcript": "He has bought salami."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-23:i11:r1",
+            "targetText": "He has bought salami.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i11:r2",
+            "targetText": "You have bought salami.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i11:r3",
+            "targetText": "They have bought salami.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has bought salami.",
+              "uk": "У записі звучить He has bought salami."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has bought salami.",
+              "uk": "У записі звучить He has bought salami."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-23:i12:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i12:r2",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-23:session-23:i12:r3",
+          "text": "buys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ salami.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-23:i12:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i12:r2",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i12:r3",
+            "text": "buys"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-23:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: bought.",
+              "uk": "Потрібна третя форма: bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-23:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: bought.",
+              "uk": "Потрібна третя форма: bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-23:i13:p1",
+            "target": "bacon",
+            "meaningByLocale": {
+              "ru": "бекон",
+              "uk": "бекон"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-23:i13:p2",
+            "target": "beef",
+            "meaningByLocale": {
+              "ru": "говядина",
+              "uk": "яловичина"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-23:i13:p3",
+            "target": "pork",
+            "meaningByLocale": {
+              "ru": "свинина",
+              "uk": "свинина"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-23:i13:p4",
+            "target": "salami",
+            "meaningByLocale": {
+              "ru": "салями",
+              "uk": "салямі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bacon",
+          "beef",
+          "pork",
+          "salami"
+        ],
+        "rightColumn": [
+          "бекон",
+          "говядина",
+          "свинина",
+          "салями"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой вариант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой вариант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я пробовал свинину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я пробовал свинину.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i16:audio",
+          "transcript": "I have tried pork."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have tried pork.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-23:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы готовили говядину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-23:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы готовили говядину.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-23:i17:audio",
+          "transcript": "We have cooked beef."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have cooked beef.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "15448084a19916456b1dd5a7b266e33976fa2e8e3da7b22b8885ce278b391960"
+}

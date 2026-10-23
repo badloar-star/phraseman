@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-12:word:opera",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — opera",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:word:opera:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — opera",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:word:opera:audio",
+          "transcript": "opera"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:word:opera:r1",
+            "targetText": "opera",
+            "meaningByLocale": {
+              "ru": "опера.",
+              "uk": "опера."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "opera",
+          "definitionByLocale": {
+            "ru": "опера.",
+            "uk": "опера."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я смотрел оперу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я смотрел оперу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have seen an opera.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я смотрел оперу».",
+          "uk": "Розкажіть про досвід: «Я дивився оперу»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "seen",
+          "an",
+          "opera"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i02:r1",
+          "text": "I have seen an opera."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i02:r2",
+          "text": "You have seen an opera."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i02:r3",
+          "text": "They have seen an opera."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i02:audio",
+          "transcript": "I have seen an opera."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:i02:r1",
+            "targetText": "I have seen an opera.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i02:r2",
+            "targetText": "You have seen an opera.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i02:r3",
+            "targetText": "They have seen an opera.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen an opera.",
+              "uk": "У записі звучить I have seen an opera."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen an opera.",
+              "uk": "У записі звучить I have seen an opera."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i03:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i03:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i03:r3",
+          "text": "saw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для рассказа об опыте.",
+          "uk": "Виберіть третю форму для розповіді про досвід."
+        },
+        "gappedTargetPhrase": "I have ___ an opera.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-12:i03:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i03:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i03:r3",
+            "text": "saw"
+          }
+        ],
+        "testedDimension": "Выберите третью форму для рассказа об опыте.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:word:orchestra",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — orchestra",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:word:orchestra:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — orchestra",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:word:orchestra:audio",
+          "transcript": "orchestra"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:word:orchestra:r1",
+            "targetText": "orchestra",
+            "meaningByLocale": {
+              "ru": "оркестр.",
+              "uk": "оркестр."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "orchestra",
+          "definitionByLocale": {
+            "ru": "оркестр.",
+            "uk": "оркестр."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о её опыте: «Она слышала оркестр».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о её опыте: «Она слышала оркестр».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has heard an orchestra.",
+        "localizedMeaning": {
+          "ru": "Расскажите о её опыте: «Она слышала оркестр».",
+          "uk": "Розкажіть про її досвід: «Вона чула оркестр»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "heard",
+          "an",
+          "orchestra"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i05:r1",
+          "text": "She has heard an orchestra."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i05:r2",
+          "text": "You have heard an orchestra."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i05:r3",
+          "text": "They have heard an orchestra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i05:audio",
+          "transcript": "She has heard an orchestra."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:i05:r1",
+            "targetText": "She has heard an orchestra.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i05:r2",
+            "targetText": "You have heard an orchestra.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i05:r3",
+            "targetText": "They have heard an orchestra.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has heard an orchestra.",
+              "uk": "У записі звучить She has heard an orchestra."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has heard an orchestra.",
+              "uk": "У записі звучить She has heard an orchestra."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i06:r1",
+          "text": "heard"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i06:r2",
+          "text": "hear"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i06:r3",
+          "text": "hears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для рассказа об опыте.",
+          "uk": "Виберіть третю форму для розповіді про досвід."
+        },
+        "gappedTargetPhrase": "She has ___ an orchestra.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-12:i06:r1",
+            "text": "heard"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i06:r2",
+            "text": "hear"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i06:r3",
+            "text": "hears"
+          }
+        ],
+        "testedDimension": "Выберите третью форму для рассказа об опыте.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:word:circus",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — circus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:word:circus:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — circus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:word:circus:audio",
+          "transcript": "circus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:word:circus:r1",
+            "targetText": "circus",
+            "meaningByLocale": {
+              "ru": "цирк.",
+              "uk": "цирк."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "circus",
+          "definitionByLocale": {
+            "ru": "цирк.",
+            "uk": "цирк."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы бывали в цирке».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы бывали в цирке».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have been to a circus.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы бывали в цирке».",
+          "uk": "Розкажіть про досвід: «Ми бували в цирку»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "been",
+          "to",
+          "a",
+          "circus"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i08:r1",
+          "text": "We have been to a circus."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i08:r2",
+          "text": "You have been to a circus."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i08:r3",
+          "text": "They have been to a circus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i08:audio",
+          "transcript": "We have been to a circus."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:i08:r1",
+            "targetText": "We have been to a circus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i08:r2",
+            "targetText": "You have been to a circus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i08:r3",
+            "targetText": "They have been to a circus.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have been to a circus.",
+              "uk": "У записі звучить We have been to a circus."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have been to a circus.",
+              "uk": "У записі звучить We have been to a circus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i09:r1",
+          "text": "been"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i09:r2",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i09:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для рассказа об опыте.",
+          "uk": "Виберіть третю форму для розповіді про досвід."
+        },
+        "gappedTargetPhrase": "We have ___ to a circus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-12:i09:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i09:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i09:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Выберите третью форму для рассказа об опыте.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:word:exhibition",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exhibition",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:word:exhibition:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exhibition",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:word:exhibition:audio",
+          "transcript": "exhibition"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:word:exhibition:r1",
+            "targetText": "exhibition",
+            "meaningByLocale": {
+              "ru": "выставка.",
+              "uk": "виставка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exhibition",
+          "definitionByLocale": {
+            "ru": "выставка.",
+            "uk": "виставка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о его опыте: «Он бывал на выставке».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о его опыте: «Он бывал на выставке».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has visited an exhibition.",
+        "localizedMeaning": {
+          "ru": "Расскажите о его опыте: «Он бывал на выставке».",
+          "uk": "Розкажіть про його досвід: «Він бував на виставці»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "visited",
+          "an",
+          "exhibition"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i11:r1",
+          "text": "He has visited an exhibition."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i11:r2",
+          "text": "You have visited an exhibition."
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i11:r3",
+          "text": "They have visited an exhibition."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i11:audio",
+          "transcript": "He has visited an exhibition."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-12:i11:r1",
+            "targetText": "He has visited an exhibition.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i11:r2",
+            "targetText": "You have visited an exhibition.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i11:r3",
+            "targetText": "They have visited an exhibition.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has visited an exhibition.",
+              "uk": "У записі звучить He has visited an exhibition."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has visited an exhibition.",
+              "uk": "У записі звучить He has visited an exhibition."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-12:i12:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i12:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-23:session-12:i12:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму для рассказа об опыте.",
+          "uk": "Виберіть третю форму для розповіді про досвід."
+        },
+        "gappedTargetPhrase": "He has ___ an exhibition.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-12:i12:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i12:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i12:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Выберите третью форму для рассказа об опыте.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму для рассказа об опыте.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-12:i13:p1",
+            "target": "opera",
+            "meaningByLocale": {
+              "ru": "опера",
+              "uk": "опера"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-12:i13:p2",
+            "target": "orchestra",
+            "meaningByLocale": {
+              "ru": "оркестр",
+              "uk": "оркестр"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-12:i13:p3",
+            "target": "circus",
+            "meaningByLocale": {
+              "ru": "цирк",
+              "uk": "цирк"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-12:i13:p4",
+            "target": "exhibition",
+            "meaningByLocale": {
+              "ru": "выставка",
+              "uk": "виставка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "opera",
+          "orchestra",
+          "circus",
+          "exhibition"
+        ],
+        "rightColumn": [
+          "опера",
+          "оркестр",
+          "цирк",
+          "выставка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другие билеты",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другие билеты",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i14:audio",
+          "transcript": "The other tickets are in my bag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The other tickets are in my bag.",
+        "orderedTokens": [
+          "The",
+          "other",
+          "tickets",
+          "are",
+          "in",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i15:audio",
+          "transcript": "You mustn't touch the paintings."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't touch the paintings.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "touch",
+          "the",
+          "paintings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я бывал в цирке».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я бывал в цирке».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i16:audio",
+          "transcript": "I have been to a circus."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have been to a circus.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы бывали на выставке».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы бывали на выставке».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-12:i17:audio",
+          "transcript": "We have visited an exhibition."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have visited an exhibition.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8bb35deff1ea1a9f01b688375718ce9983d3cdc974566a2d44f18443b7522f13"
+}

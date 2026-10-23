@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-10:word:canoe",
+    "correctText": "canoe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i01",
+    "correctText": "I have travelled in a canoe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i02",
+    "correctText": "I have travelled in a canoe.",
+    "correctResponseId": "en:lesson-23:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i03",
+    "correctText": "travelled",
+    "correctResponseId": "en:lesson-23:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:word:safari",
+    "correctText": "safari",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i04",
+    "correctText": "She has been on a safari.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i05",
+    "correctText": "She has been on a safari.",
+    "correctResponseId": "en:lesson-23:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i06",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-23:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:word:carnival",
+    "correctText": "carnival",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i07",
+    "correctText": "We have visited a carnival.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i08",
+    "correctText": "We have visited a carnival.",
+    "correctResponseId": "en:lesson-23:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i09",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:word:campsite",
+    "correctText": "campsite",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i10",
+    "correctText": "He has stayed at a campsite.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i11",
+    "correctText": "He has stayed at a campsite.",
+    "correctResponseId": "en:lesson-23:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i12",
+    "correctText": "stayed",
+    "correctResponseId": "en:lesson-23:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i13",
+    "correctText": "en:lesson-23:session-10:i13:p1=canoe\nen:lesson-23:session-10:i13:p2=safari\nen:lesson-23:session-10:i13:p3=carnival\nen:lesson-23:session-10:i13:p4=campsite",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i14",
+    "correctText": "We can stay at another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i15",
+    "correctText": "You mustn't feed the animals.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i16",
+    "correctText": "I have been on a safari.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-10:i17",
+    "correctText": "We have stayed at a campsite.",
+    "correctResponseId": null
+  }
+]

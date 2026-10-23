@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-07:word:bride",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bride",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:word:bride:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bride",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:word:bride:audio",
+          "transcript": "bride"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:word:bride:r1",
+            "targetText": "bride",
+            "meaningByLocale": {
+              "ru": "невеста.",
+              "uk": "наречена."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bride",
+          "definitionByLocale": {
+            "ru": "невеста.",
+            "uk": "наречена."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Наречена вже тут. Скажіть: «Наречена приїхала».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Наречена вже тут. Скажіть: «Наречена приїхала».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bride has arrived.",
+        "localizedMeaning": {
+          "ru": "Невеста уже здесь. Скажите: «Невеста приехала».",
+          "uk": "Наречена вже тут. Скажіть: «Наречена приїхала»."
+        },
+        "orderedTokens": [
+          "The",
+          "bride",
+          "has",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i02:r1",
+          "text": "The bride has arrived."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i02:r2",
+          "text": "The bride has called."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i02:r3",
+          "text": "The bride has left."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i02:audio",
+          "transcript": "The bride has arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:i02:r1",
+            "targetText": "The bride has arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i02:r2",
+            "targetText": "The bride has called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i02:r3",
+            "targetText": "The bride has left.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bride has arrived.",
+              "uk": "У записі звучить The bride has arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bride has arrived.",
+              "uk": "У записі звучить The bride has arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i03:r1",
+          "text": "arrived"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i03:r2",
+          "text": "arrive"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i03:r3",
+          "text": "arrives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "The bride has ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-07:i03:r1",
+            "text": "arrived"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i03:r2",
+            "text": "arrive"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i03:r3",
+            "text": "arrives"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:word:groom",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — groom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:word:groom:audio"
+      ],
+      "accessibilityLabel": "Картка слова — groom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:word:groom:audio",
+          "transcript": "groom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:word:groom:r1",
+            "targetText": "groom",
+            "meaningByLocale": {
+              "ru": "жених.",
+              "uk": "наречений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "groom",
+          "definitionByLocale": {
+            "ru": "жених.",
+            "uk": "наречений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На нареченому тепер інший піджак. Скажіть: «Наречений змінив піджак».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На нареченому тепер інший піджак. Скажіть: «Наречений змінив піджак».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The groom has changed his jacket.",
+        "localizedMeaning": {
+          "ru": "На женихе теперь другой пиджак. Скажите: «Жених сменил пиджак».",
+          "uk": "На нареченому тепер інший піджак. Скажіть: «Наречений змінив піджак»."
+        },
+        "orderedTokens": [
+          "The",
+          "groom",
+          "has",
+          "changed",
+          "his",
+          "jacket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i05:r1",
+          "text": "The groom has changed his jacket."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i05:r2",
+          "text": "The groom has changed his shirt."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i05:r3",
+          "text": "The groom has changed his shoes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i05:audio",
+          "transcript": "The groom has changed his jacket."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:i05:r1",
+            "targetText": "The groom has changed his jacket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i05:r2",
+            "targetText": "The groom has changed his shirt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i05:r3",
+            "targetText": "The groom has changed his shoes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The groom has changed his jacket.",
+              "uk": "У записі звучить The groom has changed his jacket."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The groom has changed his jacket.",
+              "uk": "У записі звучить The groom has changed his jacket."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i06:r1",
+          "text": "changed"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i06:r2",
+          "text": "change"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i06:r3",
+          "text": "changes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "The groom has ___ his jacket.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-07:i06:r1",
+            "text": "changed"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i06:r2",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i06:r3",
+            "text": "changes"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:word:bouquet",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bouquet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:word:bouquet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bouquet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:word:bouquet:audio",
+          "transcript": "bouquet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:word:bouquet:r1",
+            "targetText": "bouquet",
+            "meaningByLocale": {
+              "ru": "букет.",
+              "uk": "букет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bouquet",
+          "definitionByLocale": {
+            "ru": "букет.",
+            "uk": "букет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Квіти вже замовлені. Скажіть: «Я замовив букет».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Квіти вже замовлені. Скажіть: «Я замовив букет».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have ordered a bouquet.",
+        "localizedMeaning": {
+          "ru": "Цветы уже заказаны. Скажите: «Я заказал букет».",
+          "uk": "Квіти вже замовлені. Скажіть: «Я замовив букет»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "ordered",
+          "a",
+          "bouquet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i08:r1",
+          "text": "I have ordered a bouquet."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i08:r2",
+          "text": "I have received a bouquet."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i08:r3",
+          "text": "I have bought a bouquet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i08:audio",
+          "transcript": "I have ordered a bouquet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:i08:r1",
+            "targetText": "I have ordered a bouquet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i08:r2",
+            "targetText": "I have received a bouquet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i08:r3",
+            "targetText": "I have bought a bouquet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have ordered a bouquet.",
+              "uk": "У записі звучить I have ordered a bouquet."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have ordered a bouquet.",
+              "uk": "У записі звучить I have ordered a bouquet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i09:r1",
+          "text": "ordered"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i09:r2",
+          "text": "order"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i09:r3",
+          "text": "orders"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ a bouquet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-07:i09:r1",
+            "text": "ordered"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i09:r2",
+            "text": "order"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i09:r3",
+            "text": "orders"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:word:honeymoon",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — honeymoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:word:honeymoon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — honeymoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:word:honeymoon:audio",
+          "transcript": "honeymoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:word:honeymoon:r1",
+            "targetText": "honeymoon",
+            "meaningByLocale": {
+              "ru": "медовый месяц.",
+              "uk": "медовий місяць."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "honeymoon",
+          "definitionByLocale": {
+            "ru": "медовый месяц.",
+            "uk": "медовий місяць."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Весільну подорож уже заброньовано. Скажіть: «Ми забронювали поїздку на медовий місяць».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Весільну подорож уже заброньовано. Скажіть: «Ми забронювали поїздку на медовий місяць».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have booked our honeymoon.",
+        "localizedMeaning": {
+          "ru": "Свадебное путешествие уже забронировано. Скажите: «Мы забронировали поездку на медовый месяц».",
+          "uk": "Весільну подорож уже заброньовано. Скажіть: «Ми забронювали поїздку на медовий місяць»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "booked",
+          "our",
+          "honeymoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i11:r1",
+          "text": "We have booked our honeymoon."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i11:r2",
+          "text": "We have planned our honeymoon."
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i11:r3",
+          "text": "We have cancelled our honeymoon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i11:audio",
+          "transcript": "We have booked our honeymoon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-07:i11:r1",
+            "targetText": "We have booked our honeymoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i11:r2",
+            "targetText": "We have planned our honeymoon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i11:r3",
+            "targetText": "We have cancelled our honeymoon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have booked our honeymoon.",
+              "uk": "У записі звучить We have booked our honeymoon."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have booked our honeymoon.",
+              "uk": "У записі звучить We have booked our honeymoon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-07:i12:r1",
+          "text": "booked"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i12:r2",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-23:session-07:i12:r3",
+          "text": "books"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ our honeymoon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-07:i12:r1",
+            "text": "booked"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i12:r2",
+            "text": "book"
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i12:r3",
+            "text": "books"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-07:i13:p1",
+            "target": "bride",
+            "meaningByLocale": {
+              "ru": "невеста",
+              "uk": "наречена"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-07:i13:p2",
+            "target": "groom",
+            "meaningByLocale": {
+              "ru": "жених",
+              "uk": "наречений"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-07:i13:p3",
+            "target": "bouquet",
+            "meaningByLocale": {
+              "ru": "букет",
+              "uk": "букет"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-07:i13:p4",
+            "target": "honeymoon",
+            "meaningByLocale": {
+              "ru": "медовый месяц",
+              "uk": "медовий місяць"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bride",
+          "groom",
+          "bouquet",
+          "honeymoon"
+        ],
+        "rightColumn": [
+          "наречена",
+          "наречений",
+          "букет",
+          "медовий місяць"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інше фото",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інше фото",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i14:audio",
+          "transcript": "Could you take another photo?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you take another photo?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "take",
+          "another",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i15:audio",
+          "transcript": "You mustn't park at the entrance."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't park at the entrance.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "park",
+          "at",
+          "the",
+          "entrance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми замовили букет».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми замовили букет».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i16:audio",
+          "transcript": "We have ordered a bouquet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have ordered a bouquet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Наречений приїхав».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Наречений приїхав».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-07:i17:audio",
+          "transcript": "The groom has arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The groom has arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fd678f5ef4d6f83fe42e82b7aff8b2b8c3d85599711ba1456adda8097216e562"
+}

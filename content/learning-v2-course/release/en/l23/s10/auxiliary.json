@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-10:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-10:intro1:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-10:intro2:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-23:session-10:intro2:r3": {
+          "ru": "Нужна третья форма been.",
+          "uk": "Потрібна третя форма been."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-10:intro3:r2": {
+          "ru": "С he нужно has.",
+          "uk": "Із he потрібно has."
+        },
+        "en:lesson-23:session-10:intro3:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "386255f9361e3507827ef4b34fe04036bf05ee6b8218ef95160d8e48f331ab84"
+}

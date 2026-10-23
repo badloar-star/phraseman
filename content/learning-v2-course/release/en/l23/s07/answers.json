@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-07:word:bride",
+    "correctText": "bride",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i01",
+    "correctText": "The bride has arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i02",
+    "correctText": "The bride has arrived.",
+    "correctResponseId": "en:lesson-23:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i03",
+    "correctText": "arrived",
+    "correctResponseId": "en:lesson-23:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:word:groom",
+    "correctText": "groom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i04",
+    "correctText": "The groom has changed his jacket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i05",
+    "correctText": "The groom has changed his jacket.",
+    "correctResponseId": "en:lesson-23:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i06",
+    "correctText": "changed",
+    "correctResponseId": "en:lesson-23:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:word:bouquet",
+    "correctText": "bouquet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i07",
+    "correctText": "I have ordered a bouquet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i08",
+    "correctText": "I have ordered a bouquet.",
+    "correctResponseId": "en:lesson-23:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i09",
+    "correctText": "ordered",
+    "correctResponseId": "en:lesson-23:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:word:honeymoon",
+    "correctText": "honeymoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i10",
+    "correctText": "We have booked our honeymoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i11",
+    "correctText": "We have booked our honeymoon.",
+    "correctResponseId": "en:lesson-23:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i12",
+    "correctText": "booked",
+    "correctResponseId": "en:lesson-23:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i13",
+    "correctText": "en:lesson-23:session-07:i13:p1=bride\nen:lesson-23:session-07:i13:p2=groom\nen:lesson-23:session-07:i13:p3=bouquet\nen:lesson-23:session-07:i13:p4=honeymoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i14",
+    "correctText": "Could you take another photo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i15",
+    "correctText": "You mustn't park at the entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i16",
+    "correctText": "We have ordered a bouquet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-07:i17",
+    "correctText": "The groom has arrived.",
+    "correctResponseId": null
+  }
+]

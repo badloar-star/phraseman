@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-11:word:seafood",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — seafood",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:word:seafood:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — seafood",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:word:seafood:audio",
+          "transcript": "seafood"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:word:seafood:r1",
+            "targetText": "seafood",
+            "meaningByLocale": {
+              "ru": "морепродукты, в том числе рыба.",
+              "uk": "морепродукти, зокрема риба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seafood",
+          "definitionByLocale": {
+            "ru": "морепродукты, в том числе рыба.",
+            "uk": "морепродукти, зокрема риба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я пробовал морепродукты».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я пробовал морепродукты».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have tried seafood.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я пробовал морепродукты».",
+          "uk": "Розкажіть про досвід: «Я куштував морепродукти»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "tried",
+          "seafood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i02:r1",
+          "text": "I have tried seafood."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i02:r2",
+          "text": "You have tried seafood."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i02:r3",
+          "text": "They have tried seafood."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i02:audio",
+          "transcript": "I have tried seafood."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:i02:r1",
+            "targetText": "I have tried seafood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i02:r2",
+            "targetText": "You have tried seafood.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i02:r3",
+            "targetText": "They have tried seafood.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried seafood.",
+              "uk": "У записі звучить I have tried seafood."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have tried seafood.",
+              "uk": "У записі звучить I have tried seafood."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i03:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i03:r2",
+          "text": "try"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i03:r3",
+          "text": "tries"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ seafood.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-11:i03:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i03:r2",
+            "text": "try"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i03:r3",
+            "text": "tries"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:word:shellfish",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shellfish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:word:shellfish:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shellfish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:word:shellfish:audio",
+          "transcript": "shellfish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:word:shellfish:r1",
+            "targetText": "shellfish",
+            "meaningByLocale": {
+              "ru": "моллюски и ракообразные, употребляемые в пищу.",
+              "uk": "молюски й ракоподібні, яких вживають у їжу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shellfish",
+          "definitionByLocale": {
+            "ru": "моллюски и ракообразные, употребляемые в пищу.",
+            "uk": "молюски й ракоподібні, яких вживають у їжу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о её опыте: «Она готовила моллюсков и ракообразных».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о её опыте: «Она готовила моллюсков и ракообразных».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has cooked shellfish.",
+        "localizedMeaning": {
+          "ru": "Расскажите о её опыте: «Она готовила моллюсков и ракообразных».",
+          "uk": "Розкажіть про її досвід: «Вона готувала молюсків і ракоподібних»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "cooked",
+          "shellfish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i05:r1",
+          "text": "She has cooked shellfish."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i05:r2",
+          "text": "You have cooked shellfish."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i05:r3",
+          "text": "They have cooked shellfish."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i05:audio",
+          "transcript": "She has cooked shellfish."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:i05:r1",
+            "targetText": "She has cooked shellfish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i05:r2",
+            "targetText": "You have cooked shellfish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i05:r3",
+            "targetText": "They have cooked shellfish.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has cooked shellfish.",
+              "uk": "У записі звучить She has cooked shellfish."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has cooked shellfish.",
+              "uk": "У записі звучить She has cooked shellfish."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i06:r1",
+          "text": "cooked"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i06:r2",
+          "text": "cook"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i06:r3",
+          "text": "cooks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ shellfish.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-11:i06:r1",
+            "text": "cooked"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i06:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i06:r3",
+            "text": "cooks"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:word:lobster",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lobster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:word:lobster:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lobster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:word:lobster:audio",
+          "transcript": "lobster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:word:lobster:r1",
+            "targetText": "lobster",
+            "meaningByLocale": {
+              "ru": "омар.",
+              "uk": "омар."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lobster",
+          "definitionByLocale": {
+            "ru": "омар.",
+            "uk": "омар."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы ели омара».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы ели омара».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have eaten lobster.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы ели омара».",
+          "uk": "Розкажіть про досвід: «Ми їли омара»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "eaten",
+          "lobster"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i08:r1",
+          "text": "We have eaten lobster."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i08:r2",
+          "text": "You have eaten lobster."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i08:r3",
+          "text": "They have eaten lobster."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i08:audio",
+          "transcript": "We have eaten lobster."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:i08:r1",
+            "targetText": "We have eaten lobster.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i08:r2",
+            "targetText": "You have eaten lobster.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i08:r3",
+            "targetText": "They have eaten lobster.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have eaten lobster.",
+              "uk": "У записі звучить We have eaten lobster."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have eaten lobster.",
+              "uk": "У записі звучить We have eaten lobster."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i09:r1",
+          "text": "eaten"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i09:r2",
+          "text": "eat"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i09:r3",
+          "text": "ate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ lobster.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-11:i09:r1",
+            "text": "eaten"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i09:r2",
+            "text": "eat"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i09:r3",
+            "text": "ate"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:word:crab",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crab",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:word:crab:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crab",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:word:crab:audio",
+          "transcript": "crab"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:word:crab:r1",
+            "targetText": "crab",
+            "meaningByLocale": {
+              "ru": "краб.",
+              "uk": "краб."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crab",
+          "definitionByLocale": {
+            "ru": "краб.",
+            "uk": "краб."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите о его опыте в ресторане: «Он заказывал краба».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о его опыте в ресторане: «Он заказывал краба».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has ordered crab.",
+        "localizedMeaning": {
+          "ru": "Расскажите о его опыте в ресторане: «Он заказывал краба».",
+          "uk": "Розкажіть про його досвід у ресторані: «Він замовляв краба»."
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "ordered",
+          "crab"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i11:r1",
+          "text": "He has ordered crab."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i11:r2",
+          "text": "You have ordered crab."
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i11:r3",
+          "text": "They have ordered crab."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i11:audio",
+          "transcript": "He has ordered crab."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-11:i11:r1",
+            "targetText": "He has ordered crab.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i11:r2",
+            "targetText": "You have ordered crab.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i11:r3",
+            "targetText": "They have ordered crab.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has ordered crab.",
+              "uk": "У записі звучить He has ordered crab."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has ordered crab.",
+              "uk": "У записі звучить He has ordered crab."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-11:i12:r1",
+          "text": "ordered"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i12:r2",
+          "text": "order"
+        },
+        {
+          "responseId": "en:lesson-23:session-11:i12:r3",
+          "text": "orders"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ crab.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-11:i12:r1",
+            "text": "ordered"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i12:r2",
+            "text": "order"
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i12:r3",
+            "text": "orders"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма.",
+              "uk": "Після have або has потрібна третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-11:i13:p1",
+            "target": "seafood",
+            "meaningByLocale": {
+              "ru": "морепродукты, в том числе рыба",
+              "uk": "морепродукти, зокрема риба"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-11:i13:p2",
+            "target": "shellfish",
+            "meaningByLocale": {
+              "ru": "моллюски и ракообразные, употребляемые в пищу",
+              "uk": "молюски й ракоподібні, яких вживають у їжу"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-11:i13:p3",
+            "target": "lobster",
+            "meaningByLocale": {
+              "ru": "омар",
+              "uk": "омар"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-11:i13:p4",
+            "target": "crab",
+            "meaningByLocale": {
+              "ru": "краб",
+              "uk": "краб"
+            }
+          }
+        ],
+        "leftColumn": [
+          "seafood",
+          "shellfish",
+          "lobster",
+          "crab"
+        ],
+        "rightColumn": [
+          "морепродукты, в том числе рыба",
+          "моллюски и ракообразные, употребляемые в пищу",
+          "омар",
+          "краб"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другое блюдо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другое блюдо",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i14:audio",
+          "transcript": "I would like another dish."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I would like another dish.",
+        "orderedTokens": [
+          "I",
+          "would",
+          "like",
+          "another",
+          "dish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i15:audio",
+          "transcript": "You mustn't touch the hot plate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't touch the hot plate.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "touch",
+          "the",
+          "hot",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я ел омара».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я ел омара».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i16:audio",
+          "transcript": "I have eaten lobster."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have eaten lobster.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы заказывали краба».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы заказывали краба».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-11:i17:audio",
+          "transcript": "We have ordered crab."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have ordered crab.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "25dbed5070324fb67cfad080bb053d26c812972c4beadb26febac4031587a6b2"
+}

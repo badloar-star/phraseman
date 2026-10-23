@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-09:intro1:r2": {
+          "ru": "С I используем have.",
+          "uk": "З I використовуємо have."
+        },
+        "en:lesson-23:session-09:intro1:r3": {
+          "ru": "Для этого опыта нужны have/has и третья форма.",
+          "uk": "Для цього досвіду потрібні have/has і третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-09:intro2:r2": {
+          "ru": "С she используем has.",
+          "uk": "Із she використовуємо has."
+        },
+        "en:lesson-23:session-09:intro2:r3": {
+          "ru": "После has нужна третья форма seen.",
+          "uk": "Після has потрібна третя форма seen."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-09:intro3:r2": {
+          "ru": "С he используем has.",
+          "uk": "Із he використовуємо has."
+        },
+        "en:lesson-23:session-09:intro3:r3": {
+          "ru": "После has нужна третья форма been.",
+          "uk": "Після has потрібна третя форма been."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2c9e3e0b0edcff5c8b90437496811a32d418a8bde9a7e7c05bc52ec0ae5c0ed3"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Самые маленькие",
+        "uk": "Найменші"
+      },
+      "bodyByLocale": {
+        "ru": "Newborn — новорождённый ребёнок. Toddler — малыш, который учится ходить или недавно начал ходить; обычно это возраст примерно от одного до трёх лет. I have met their newborn: я уже познакомился с их новорождённым. Третья форма meet — met.",
+        "uk": "Newborn — новонароджена дитина. Toddler — малюк, який вчиться ходити або нещодавно почав ходити; зазвичай це вік приблизно від одного до трьох років. I have met their newborn: я вже познайомився з їхньою новонародженою дитиною. Третя форма meet — met."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-08:intro1:r1",
+              "text": "I have met their newborn."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro1:r2",
+              "text": "I has met their newborn."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro1:r3",
+              "text": "I have meet their newborn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-08:intro1:r1",
+              "text": "I have met their newborn."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro1:r2",
+              "text": "I has met their newborn."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro1:r3",
+              "text": "I have meet their newborn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нашли, куда пойти",
+        "uk": "Знайшли, куди піти"
+      },
+      "bodyByLocale": {
+        "ru": "Playgroup — группа, где маленькие дети вместе играют. Это не спортивная команда. We have found a playgroup: подходящая группа найдена, теперь можно туда пойти. Третья форма find — found.",
+        "uk": "Playgroup — група, де маленькі діти грають разом. Це не спортивна команда. We have found a playgroup: відповідну групу знайдено, тепер можна туди піти. Третя форма find — found."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-08:intro2:r1",
+              "text": "We have found a playgroup."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro2:r2",
+              "text": "We has found a playgroup."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro2:r3",
+              "text": "We have find a playgroup."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-08:intro2:r1",
+              "text": "We have found a playgroup."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro2:r2",
+              "text": "We has found a playgroup."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro2:r3",
+              "text": "We have find a playgroup."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться о присмотре",
+        "uk": "Домовитися про догляд"
+      },
+      "bodyByLocale": {
+        "ru": "Childminder — в британском английском няня, которая за плату присматривает за детьми у себя дома. Это более точное слово, чем знакомое babysitter. She has called the childminder: она уже позвонила этой няне. С she и с the toddler ставим has.",
+        "uk": "Childminder — у британській англійській няня, яка за плату доглядає дітей у себе вдома. Це точніше слово, ніж знайоме babysitter. She has called the childminder: вона вже зателефонувала цій няні. Із she та з the toddler ставимо has."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-08:intro3:r1",
+              "text": "She has called the childminder."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro3:r2",
+              "text": "She have called the childminder."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro3:r3",
+              "text": "She has call the childminder."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-08:intro3:r1",
+              "text": "She has called the childminder."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro3:r2",
+              "text": "She have called the childminder."
+            },
+            {
+              "responseId": "en:lesson-23:session-08:intro3:r3",
+              "text": "She has call the childminder."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "07dd6417d8512aca835566b52b3152a49db926b1f8d56a418b89bbb6d0b9e72a"
+}

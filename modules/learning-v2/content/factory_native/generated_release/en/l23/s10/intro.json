@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Путешествовать по воде",
+        "uk": "Подорожувати водою"
+      },
+      "bodyByLocale": {
+        "ru": "Canoe — каноэ, узкая лодка с вёслами. I have travelled in a canoe — я путешествовал на каноэ. Мы говорим об опыте без даты. Travelled — британское написание; американское traveled тоже правильно.",
+        "uk": "Canoe — каное, вузький човен із веслами. I have travelled in a canoe — я подорожував на каное. Ми говоримо про досвід без дати. Travelled — британське написання; американське traveled теж правильне."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-10:intro1:r1",
+              "text": "I have travelled in a canoe."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro1:r2",
+              "text": "I has travelled in a canoe."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro1:r3",
+              "text": "I have travel in a canoe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-10:intro1:r1",
+              "text": "I have travelled in a canoe."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro1:r2",
+              "text": "I has travelled in a canoe."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro1:r3",
+              "text": "I have travel in a canoe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Увидеть животных или праздник",
+        "uk": "Побачити тварин чи свято"
+      },
+      "bodyByLocale": {
+        "ru": "Safari здесь — туристическая поездка для наблюдения за дикими животными. On a safari — на сафари. Carnival — карнавал, праздник с костюмами, музыкой и шествием. She has been on a safari сообщает об опыте; been — третья форма be.",
+        "uk": "Safari тут — туристична поїздка для спостереження за дикими тваринами. On a safari — на сафарі. Carnival — карнавал, свято з костюмами, музикою та ходою. She has been on a safari повідомляє про досвід; been — третя форма be."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-10:intro2:r1",
+              "text": "She has been on a safari."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro2:r2",
+              "text": "She have been on a safari."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro2:r3",
+              "text": "She has was on a safari."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-10:intro2:r1",
+              "text": "She has been on a safari."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro2:r2",
+              "text": "She have been on a safari."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro2:r3",
+              "text": "She has was on a safari."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ночевать в кемпинге",
+        "uk": "Ночувати в кемпінгу"
+      },
+      "bodyByLocale": {
+        "ru": "Campsite — место для палаток или кемпинг. Stay at a campsite — остановиться в кемпинге. He has stayed at a campsite: у него есть такой опыт. Не добавляем yesterday или last summer: тогда рассказ был бы о конкретном законченном времени в Past Simple.",
+        "uk": "Campsite — місце для наметів або кемпінг. Stay at a campsite — зупинитися в кемпінгу. He has stayed at a campsite: він має такий досвід. Не додаємо yesterday або last summer: тоді розповідь була б про конкретний завершений час у Past Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-10:intro3:r1",
+              "text": "He has stayed at a campsite."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro3:r2",
+              "text": "He have stayed at a campsite."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro3:r3",
+              "text": "He has stay at a campsite."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-10:intro3:r1",
+              "text": "He has stayed at a campsite."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro3:r2",
+              "text": "He have stayed at a campsite."
+            },
+            {
+              "responseId": "en:lesson-23:session-10:intro3:r3",
+              "text": "He has stay at a campsite."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "27e3534a3dcc43ec94e06f8b3f238a9a1bfc319b9801933a7ad6c138b7e8dd62"
+}

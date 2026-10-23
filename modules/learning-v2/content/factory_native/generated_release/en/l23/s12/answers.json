@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-12:word:opera",
+    "correctText": "opera",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i01",
+    "correctText": "I have seen an opera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i02",
+    "correctText": "I have seen an opera.",
+    "correctResponseId": "en:lesson-23:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i03",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:word:orchestra",
+    "correctText": "orchestra",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i04",
+    "correctText": "She has heard an orchestra.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i05",
+    "correctText": "She has heard an orchestra.",
+    "correctResponseId": "en:lesson-23:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i06",
+    "correctText": "heard",
+    "correctResponseId": "en:lesson-23:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:word:circus",
+    "correctText": "circus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i07",
+    "correctText": "We have been to a circus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i08",
+    "correctText": "We have been to a circus.",
+    "correctResponseId": "en:lesson-23:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i09",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-23:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:word:exhibition",
+    "correctText": "exhibition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i10",
+    "correctText": "He has visited an exhibition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i11",
+    "correctText": "He has visited an exhibition.",
+    "correctResponseId": "en:lesson-23:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i12",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i13",
+    "correctText": "en:lesson-23:session-12:i13:p1=opera\nen:lesson-23:session-12:i13:p2=orchestra\nen:lesson-23:session-12:i13:p3=circus\nen:lesson-23:session-12:i13:p4=exhibition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i14",
+    "correctText": "The other tickets are in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i15",
+    "correctText": "You mustn't touch the paintings.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i16",
+    "correctText": "I have been to a circus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-12:i17",
+    "correctText": "We have visited an exhibition.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-10",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-10:word:canoe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — canoe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:canoe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — canoe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:canoe:audio",
+            "transcript": "canoe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:canoe:r1",
+              "targetText": "canoe",
+              "meaningByLocale": {
+                "ru": "каноэ.",
+                "uk": "каное."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "canoe",
+            "definitionByLocale": {
+              "ru": "каноэ.",
+              "uk": "каное."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Я путешествовал на каноэ».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Я путешествовал на каноэ».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have travelled in a canoe.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я путешествовал на каноэ».",
+            "uk": "Розкажіть про досвід: «Я подорожував на каное»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "travelled",
+            "in",
+            "a",
+            "canoe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i02:r1",
+            "text": "I have travelled in a canoe."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i02:r2",
+            "text": "You have travelled in a canoe."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i02:r3",
+            "text": "They have travelled in a canoe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i02:audio",
+            "transcript": "I have travelled in a canoe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i02:r1",
+              "targetText": "I have travelled in a canoe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i02:r2",
+              "targetText": "You have travelled in a canoe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i02:r3",
+              "targetText": "They have travelled in a canoe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have travelled in a canoe.",
+                "uk": "У записі звучить I have travelled in a canoe."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have travelled in a canoe.",
+                "uk": "У записі звучить I have travelled in a canoe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i03:r1",
+            "text": "travelled"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i03:r2",
+            "text": "travel"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i03:r3",
+            "text": "travels"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "I have ___ in a canoe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i03:r1",
+              "text": "travelled"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i03:r2",
+              "text": "travel"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i03:r3",
+              "text": "travels"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:word:safari",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — safari",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:safari:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — safari",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:safari:audio",
+            "transcript": "safari"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:safari:r1",
+              "targetText": "safari",
+              "meaningByLocale": {
+                "ru": "сафари.",
+                "uk": "сафарі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "safari",
+            "definitionByLocale": {
+              "ru": "сафари.",
+              "uk": "сафарі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о её опыте: «Она бывала на сафари».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о её опыте: «Она бывала на сафари».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been on a safari.",
+          "localizedMeaning": {
+            "ru": "Расскажите о её опыте: «Она бывала на сафари».",
+            "uk": "Розкажіть про її досвід: «Вона бувала на сафарі»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "on",
+            "a",
+            "safari"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i05:r1",
+            "text": "She has been on a safari."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i05:r2",
+            "text": "You have been on a safari."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i05:r3",
+            "text": "They have been on a safari."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i05:audio",
+            "transcript": "She has been on a safari."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i05:r1",
+              "targetText": "She has been on a safari.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i05:r2",
+              "targetText": "You have been on a safari.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i05:r3",
+              "targetText": "They have been on a safari.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been on a safari.",
+                "uk": "У записі звучить She has been on a safari."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been on a safari.",
+                "uk": "У записі звучить She has been on a safari."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i06:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i06:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i06:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "She has ___ on a safari.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i06:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i06:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i06:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:word:carnival",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — carnival",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:carnival:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — carnival",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:carnival:audio",
+            "transcript": "carnival"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:carnival:r1",
+              "targetText": "carnival",
+              "meaningByLocale": {
+                "ru": "карнавал.",
+                "uk": "карнавал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carnival",
+            "definitionByLocale": {
+              "ru": "карнавал.",
+              "uk": "карнавал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Мы бывали на карнавале».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Мы бывали на карнавале».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have visited a carnival.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы бывали на карнавале».",
+            "uk": "Розкажіть про досвід: «Ми бували на карнавалі»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "visited",
+            "a",
+            "carnival"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i08:r1",
+            "text": "We have visited a carnival."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i08:r2",
+            "text": "You have visited a carnival."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i08:r3",
+            "text": "They have visited a carnival."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i08:audio",
+            "transcript": "We have visited a carnival."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i08:r1",
+              "targetText": "We have visited a carnival.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i08:r2",
+              "targetText": "You have visited a carnival.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i08:r3",
+              "targetText": "They have visited a carnival.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have visited a carnival.",
+                "uk": "У записі звучить We have visited a carnival."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have visited a carnival.",
+                "uk": "У записі звучить We have visited a carnival."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i09:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i09:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i09:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "We have ___ a carnival.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i09:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i09:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i09:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:word:campsite",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — campsite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:campsite:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — campsite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:campsite:audio",
+            "transcript": "campsite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:campsite:r1",
+              "targetText": "campsite",
+              "meaningByLocale": {
+                "ru": "место для палаток, кемпинг.",
+                "uk": "місце для наметів, кемпінг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "campsite",
+            "definitionByLocale": {
+              "ru": "место для палаток, кемпинг.",
+              "uk": "місце для наметів, кемпінг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о его опыте: «Он останавливался в кемпинге».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о его опыте: «Он останавливался в кемпинге».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has stayed at a campsite.",
+          "localizedMeaning": {
+            "ru": "Расскажите о его опыте: «Он останавливался в кемпинге».",
+            "uk": "Розкажіть про його досвід: «Він зупинявся в кемпінгу»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "stayed",
+            "at",
+            "a",
+            "campsite"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i11:r1",
+            "text": "He has stayed at a campsite."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i11:r2",
+            "text": "You have stayed at a campsite."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i11:r3",
+            "text": "They have stayed at a campsite."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i11:audio",
+            "transcript": "He has stayed at a campsite."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i11:r1",
+              "targetText": "He has stayed at a campsite.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i11:r2",
+              "targetText": "You have stayed at a campsite.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i11:r3",
+              "targetText": "They have stayed at a campsite.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has stayed at a campsite.",
+                "uk": "У записі звучить He has stayed at a campsite."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has stayed at a campsite.",
+                "uk": "У записі звучить He has stayed at a campsite."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i12:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i12:r2",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i12:r3",
+            "text": "stays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "He has ___ at a campsite.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i12:r1",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i12:r2",
+              "text": "stay"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i12:r3",
+              "text": "stays"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-10:i13:p1",
+              "target": "canoe",
+              "meaningByLocale": {
+                "ru": "каноэ",
+                "uk": "каное"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-10:i13:p2",
+              "target": "safari",
+              "meaningByLocale": {
+                "ru": "сафари",
+                "uk": "сафарі"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-10:i13:p3",
+              "target": "carnival",
+              "meaningByLocale": {
+                "ru": "карнавал",
+                "uk": "карнавал"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-10:i13:p4",
+              "target": "campsite",
+              "meaningByLocale": {
+                "ru": "место для палаток, кемпинг",
+                "uk": "місце для наметів, кемпінг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "canoe",
+            "safari",
+            "carnival",
+            "campsite"
+          ],
+          "rightColumn": [
+            "каноэ",
+            "сафари",
+            "карнавал",
+            "место для палаток, кемпинг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другое место",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другое место",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i14:audio",
+            "transcript": "We can stay at another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can stay at another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "stay",
+            "at",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i15:audio",
+            "transcript": "You mustn't feed the animals."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't feed the animals.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "feed",
+            "the",
+            "animals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я бывал на сафари».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я бывал на сафари».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i16:audio",
+            "transcript": "I have been on a safari."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have been on a safari.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы останавливались в кемпинге».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы останавливались в кемпинге».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i17:audio",
+            "transcript": "We have stayed at a campsite."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have stayed at a campsite.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-10:word:canoe",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — canoe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:canoe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — canoe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:canoe:audio",
+            "transcript": "canoe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:canoe:r1",
+              "targetText": "canoe",
+              "meaningByLocale": {
+                "ru": "каноэ.",
+                "uk": "каное."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "canoe",
+            "definitionByLocale": {
+              "ru": "каноэ.",
+              "uk": "каное."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Я подорожував на каное».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Я подорожував на каное».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have travelled in a canoe.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я путешествовал на каноэ».",
+            "uk": "Розкажіть про досвід: «Я подорожував на каное»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "travelled",
+            "in",
+            "a",
+            "canoe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i02:r1",
+            "text": "I have travelled in a canoe."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i02:r2",
+            "text": "You have travelled in a canoe."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i02:r3",
+            "text": "They have travelled in a canoe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i02:audio",
+            "transcript": "I have travelled in a canoe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i02:r1",
+              "targetText": "I have travelled in a canoe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i02:r2",
+              "targetText": "You have travelled in a canoe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i02:r3",
+              "targetText": "They have travelled in a canoe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have travelled in a canoe.",
+                "uk": "У записі звучить I have travelled in a canoe."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have travelled in a canoe.",
+                "uk": "У записі звучить I have travelled in a canoe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i03:r1",
+            "text": "travelled"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i03:r2",
+            "text": "travel"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i03:r3",
+            "text": "travels"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "I have ___ in a canoe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i03:r1",
+              "text": "travelled"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i03:r2",
+              "text": "travel"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i03:r3",
+              "text": "travels"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:word:safari",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — safari",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:safari:audio"
+        ],
+        "accessibilityLabel": "Картка слова — safari",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:safari:audio",
+            "transcript": "safari"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:safari:r1",
+              "targetText": "safari",
+              "meaningByLocale": {
+                "ru": "сафари.",
+                "uk": "сафарі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "safari",
+            "definitionByLocale": {
+              "ru": "сафари.",
+              "uk": "сафарі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про її досвід: «Вона бувала на сафарі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про її досвід: «Вона бувала на сафарі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been on a safari.",
+          "localizedMeaning": {
+            "ru": "Расскажите о её опыте: «Она бывала на сафари».",
+            "uk": "Розкажіть про її досвід: «Вона бувала на сафарі»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "on",
+            "a",
+            "safari"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i05:r1",
+            "text": "She has been on a safari."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i05:r2",
+            "text": "You have been on a safari."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i05:r3",
+            "text": "They have been on a safari."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i05:audio",
+            "transcript": "She has been on a safari."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i05:r1",
+              "targetText": "She has been on a safari.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i05:r2",
+              "targetText": "You have been on a safari.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i05:r3",
+              "targetText": "They have been on a safari.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been on a safari.",
+                "uk": "У записі звучить She has been on a safari."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been on a safari.",
+                "uk": "У записі звучить She has been on a safari."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i06:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i06:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i06:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "She has ___ on a safari.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i06:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i06:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i06:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:word:carnival",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — carnival",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:carnival:audio"
+        ],
+        "accessibilityLabel": "Картка слова — carnival",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:carnival:audio",
+            "transcript": "carnival"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:carnival:r1",
+              "targetText": "carnival",
+              "meaningByLocale": {
+                "ru": "карнавал.",
+                "uk": "карнавал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carnival",
+            "definitionByLocale": {
+              "ru": "карнавал.",
+              "uk": "карнавал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Ми бували на карнавалі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Ми бували на карнавалі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have visited a carnival.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы бывали на карнавале».",
+            "uk": "Розкажіть про досвід: «Ми бували на карнавалі»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "visited",
+            "a",
+            "carnival"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i08:r1",
+            "text": "We have visited a carnival."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i08:r2",
+            "text": "You have visited a carnival."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i08:r3",
+            "text": "They have visited a carnival."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i08:audio",
+            "transcript": "We have visited a carnival."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i08:r1",
+              "targetText": "We have visited a carnival.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i08:r2",
+              "targetText": "You have visited a carnival.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i08:r3",
+              "targetText": "They have visited a carnival.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have visited a carnival.",
+                "uk": "У записі звучить We have visited a carnival."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have visited a carnival.",
+                "uk": "У записі звучить We have visited a carnival."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i09:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i09:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i09:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "We have ___ a carnival.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i09:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i09:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i09:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:word:campsite",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — campsite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:word:campsite:audio"
+        ],
+        "accessibilityLabel": "Картка слова — campsite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:word:campsite:audio",
+            "transcript": "campsite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:word:campsite:r1",
+              "targetText": "campsite",
+              "meaningByLocale": {
+                "ru": "место для палаток, кемпинг.",
+                "uk": "місце для наметів, кемпінг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "campsite",
+            "definitionByLocale": {
+              "ru": "место для палаток, кемпинг.",
+              "uk": "місце для наметів, кемпінг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про його досвід: «Він зупинявся в кемпінгу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про його досвід: «Він зупинявся в кемпінгу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has stayed at a campsite.",
+          "localizedMeaning": {
+            "ru": "Расскажите о его опыте: «Он останавливался в кемпинге».",
+            "uk": "Розкажіть про його досвід: «Він зупинявся в кемпінгу»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "stayed",
+            "at",
+            "a",
+            "campsite"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i11:r1",
+            "text": "He has stayed at a campsite."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i11:r2",
+            "text": "You have stayed at a campsite."
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i11:r3",
+            "text": "They have stayed at a campsite."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i11:audio",
+            "transcript": "He has stayed at a campsite."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-10:i11:r1",
+              "targetText": "He has stayed at a campsite.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i11:r2",
+              "targetText": "You have stayed at a campsite.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i11:r3",
+              "targetText": "They have stayed at a campsite.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has stayed at a campsite.",
+                "uk": "У записі звучить He has stayed at a campsite."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has stayed at a campsite.",
+                "uk": "У записі звучить He has stayed at a campsite."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-10:i12:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i12:r2",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-23:session-10:i12:r3",
+            "text": "stays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "He has ___ at a campsite.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-10:i12:r1",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i12:r2",
+              "text": "stay"
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i12:r3",
+              "text": "stays"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-10:i13:p1",
+              "target": "canoe",
+              "meaningByLocale": {
+                "ru": "каноэ",
+                "uk": "каное"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-10:i13:p2",
+              "target": "safari",
+              "meaningByLocale": {
+                "ru": "сафари",
+                "uk": "сафарі"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-10:i13:p3",
+              "target": "carnival",
+              "meaningByLocale": {
+                "ru": "карнавал",
+                "uk": "карнавал"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-10:i13:p4",
+              "target": "campsite",
+              "meaningByLocale": {
+                "ru": "место для палаток, кемпинг",
+                "uk": "місце для наметів, кемпінг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "canoe",
+            "safari",
+            "carnival",
+            "campsite"
+          ],
+          "rightColumn": [
+            "каное",
+            "сафарі",
+            "карнавал",
+            "місце для наметів, кемпінг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інше місце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інше місце",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i14:audio",
+            "transcript": "We can stay at another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can stay at another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "stay",
+            "at",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i15:audio",
+            "transcript": "You mustn't feed the animals."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't feed the animals.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "feed",
+            "the",
+            "animals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я бував на сафарі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я бував на сафарі».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i16:audio",
+            "transcript": "I have been on a safari."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have been on a safari.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-10:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми зупинялися в кемпінгу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-10:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми зупинялися в кемпінгу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-10:i17:audio",
+            "transcript": "We have stayed at a campsite."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have stayed at a campsite.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-10:word:canoe",
+      "correctText": "canoe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i01",
+      "correctText": "I have travelled in a canoe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i02",
+      "correctText": "I have travelled in a canoe.",
+      "correctResponseId": "en:lesson-23:session-10:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i03",
+      "correctText": "travelled",
+      "correctResponseId": "en:lesson-23:session-10:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:word:safari",
+      "correctText": "safari",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i04",
+      "correctText": "She has been on a safari.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i05",
+      "correctText": "She has been on a safari.",
+      "correctResponseId": "en:lesson-23:session-10:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i06",
+      "correctText": "been",
+      "correctResponseId": "en:lesson-23:session-10:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:word:carnival",
+      "correctText": "carnival",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i07",
+      "correctText": "We have visited a carnival.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i08",
+      "correctText": "We have visited a carnival.",
+      "correctResponseId": "en:lesson-23:session-10:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i09",
+      "correctText": "visited",
+      "correctResponseId": "en:lesson-23:session-10:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:word:campsite",
+      "correctText": "campsite",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i10",
+      "correctText": "He has stayed at a campsite.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i11",
+      "correctText": "He has stayed at a campsite.",
+      "correctResponseId": "en:lesson-23:session-10:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i12",
+      "correctText": "stayed",
+      "correctResponseId": "en:lesson-23:session-10:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i14",
+      "correctText": "We can stay at another place.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i15",
+      "correctText": "You mustn't feed the animals.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i16",
+      "correctText": "I have been on a safari.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-10:i17",
+      "correctText": "We have stayed at a campsite.",
+      "correctResponseId": null
+    }
+  ]
+}

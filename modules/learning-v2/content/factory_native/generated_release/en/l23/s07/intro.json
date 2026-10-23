@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Невеста уже здесь",
+        "uk": "Наречена вже тут"
+      },
+      "bodyByLocale": {
+        "ru": "Bride — невеста в день свадьбы или незадолго до неё. Groom — жених. Вместо he или she можно назвать человека: The bride has arrived. После одного человека ставим has; после we — have.",
+        "uk": "Bride — наречена в день весілля або незадовго до нього. Groom — наречений. Замість he або she можна назвати людину: The bride has arrived. Після однієї людини ставимо has; після we — have."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-07:intro1:r1",
+              "text": "The bride has arrived."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro1:r2",
+              "text": "The bride have arrived."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro1:r3",
+              "text": "The bride has arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-07:intro1:r1",
+              "text": "The bride has arrived."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro1:r2",
+              "text": "The bride have arrived."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro1:r3",
+              "text": "The bride has arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Цветы заказаны",
+        "uk": "Квіти замовлені"
+      },
+      "bodyByLocale": {
+        "ru": "Bouquet — букет: несколько цветов, собранных вместе. I have ordered a bouquet: заказ уже сделан. A bouquet — один букет, поэтому нужен артикль a. Букет можно подарить и на день рождения, не только на свадьбу.",
+        "uk": "Bouquet — букет: кілька квітів, зібраних разом. I have ordered a bouquet: замовлення вже зроблено. A bouquet — один букет, тому потрібен артикль a. Букет можна подарувати й на день народження, не лише на весілля."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-07:intro2:r1",
+              "text": "I have ordered a bouquet."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro2:r2",
+              "text": "I has ordered a bouquet."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro2:r3",
+              "text": "I have order a bouquet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-07:intro2:r1",
+              "text": "I have ordered a bouquet."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro2:r2",
+              "text": "I has ordered a bouquet."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro2:r3",
+              "text": "I have order a bouquet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поездка после свадьбы",
+        "uk": "Подорож після весілля"
+      },
+      "bodyByLocale": {
+        "ru": "Honeymoon — медовый месяц, часто путешествие молодожёнов. Book our honeymoon здесь значит забронировать свадебное путешествие. Our уже указывает, чья это поездка: перед ним не нужен the.",
+        "uk": "Honeymoon — медовий місяць, часто подорож молодят. Book our honeymoon тут означає забронювати весільну подорож. Our уже вказує, чия це поїздка: перед ним не потрібен the."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-07:intro3:r1",
+              "text": "We have booked our honeymoon."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro3:r2",
+              "text": "We has booked our honeymoon."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro3:r3",
+              "text": "We have book our honeymoon."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-07:intro3:r1",
+              "text": "We have booked our honeymoon."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro3:r2",
+              "text": "We has booked our honeymoon."
+            },
+            {
+              "responseId": "en:lesson-23:session-07:intro3:r3",
+              "text": "We have book our honeymoon."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b00758fcaacd3ebb9ab09fbcfd18da96dcca84727110be7d875c098c0936a53c"
+}

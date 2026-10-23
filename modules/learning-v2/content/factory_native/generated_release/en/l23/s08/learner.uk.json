@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-08:word:newborn",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — newborn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:word:newborn:audio"
+      ],
+      "accessibilityLabel": "Картка слова — newborn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:word:newborn:audio",
+          "transcript": "newborn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:word:newborn:r1",
+            "targetText": "newborn",
+            "meaningByLocale": {
+              "ru": "новорождённый ребёнок.",
+              "uk": "новонароджена дитина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "newborn",
+          "definitionByLocale": {
+            "ru": "новорождённый ребёнок.",
+            "uk": "новонароджена дитина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вже познайомилися з їхнім малюком. Скажіть: «Я познайомився з їхньою новонародженою дитиною».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже познайомилися з їхнім малюком. Скажіть: «Я познайомився з їхньою новонародженою дитиною».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have met their newborn.",
+        "localizedMeaning": {
+          "ru": "Вы уже познакомились с их малышом. Скажите: «Я познакомился с их новорождённым ребёнком».",
+          "uk": "Ви вже познайомилися з їхнім малюком. Скажіть: «Я познайомився з їхньою новонародженою дитиною»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "met",
+          "their",
+          "newborn"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i02:r1",
+          "text": "I have met their newborn."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i02:r2",
+          "text": "We have met their newborn."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i02:r3",
+          "text": "They have met their newborn."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i02:audio",
+          "transcript": "I have met their newborn."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:i02:r1",
+            "targetText": "I have met their newborn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i02:r2",
+            "targetText": "We have met their newborn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i02:r3",
+            "targetText": "They have met their newborn.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have met their newborn.",
+              "uk": "У записі звучить I have met their newborn."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have met their newborn.",
+              "uk": "У записі звучить I have met their newborn."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i03:r1",
+          "text": "met"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i03:r2",
+          "text": "meet"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i03:r3",
+          "text": "meets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ their newborn.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-08:i03:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i03:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i03:r3",
+            "text": "meets"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:word:toddler",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — toddler",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:word:toddler:audio"
+      ],
+      "accessibilityLabel": "Картка слова — toddler",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:word:toddler:audio",
+          "transcript": "toddler"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:word:toddler:r1",
+            "targetText": "toddler",
+            "meaningByLocale": {
+              "ru": "маленький ребёнок, который учится ходить или недавно начал ходить.",
+              "uk": "маленька дитина, яка вчиться ходити або нещодавно почала ходити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toddler",
+          "definitionByLocale": {
+            "ru": "маленький ребёнок, который учится ходить или недавно начал ходить.",
+            "uk": "маленька дитина, яка вчиться ходити або нещодавно почала ходити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Малюк уже поїв. Скажіть: «Малюк закінчив сніданок».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Малюк уже поїв. Скажіть: «Малюк закінчив сніданок».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The toddler has finished breakfast.",
+        "localizedMeaning": {
+          "ru": "Малыш уже поел. Скажите: «Малыш закончил завтрак».",
+          "uk": "Малюк уже поїв. Скажіть: «Малюк закінчив сніданок»."
+        },
+        "orderedTokens": [
+          "The",
+          "toddler",
+          "has",
+          "finished",
+          "breakfast"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i05:r1",
+          "text": "The toddler has finished breakfast."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i05:r2",
+          "text": "The toddler has finished lunch."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i05:r3",
+          "text": "The toddler has finished dinner."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i05:audio",
+          "transcript": "The toddler has finished breakfast."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:i05:r1",
+            "targetText": "The toddler has finished breakfast.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i05:r2",
+            "targetText": "The toddler has finished lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i05:r3",
+            "targetText": "The toddler has finished dinner.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The toddler has finished breakfast.",
+              "uk": "У записі звучить The toddler has finished breakfast."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The toddler has finished breakfast.",
+              "uk": "У записі звучить The toddler has finished breakfast."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i06:r1",
+          "text": "finished"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i06:r2",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i06:r3",
+          "text": "finishes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "The toddler has ___ breakfast.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-08:i06:r1",
+            "text": "finished"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i06:r2",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i06:r3",
+            "text": "finishes"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:word:playgroup",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — playgroup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:word:playgroup:audio"
+      ],
+      "accessibilityLabel": "Картка слова — playgroup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:word:playgroup:audio",
+          "transcript": "playgroup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:word:playgroup:r1",
+            "targetText": "playgroup",
+            "meaningByLocale": {
+              "ru": "группа для игр маленьких детей.",
+              "uk": "група для ігор маленьких дітей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "playgroup",
+          "definitionByLocale": {
+            "ru": "группа для игр маленьких детей.",
+            "uk": "група для ігор маленьких дітей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Тепер ви знаєте, куди водити малюка на ігри. Скажіть: «Ми знайшли ігрову групу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тепер ви знаєте, куди водити малюка на ігри. Скажіть: «Ми знайшли ігрову групу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have found a playgroup.",
+        "localizedMeaning": {
+          "ru": "Теперь вы знаете, куда водить малыша на игры. Скажите: «Мы нашли игровую группу».",
+          "uk": "Тепер ви знаєте, куди водити малюка на ігри. Скажіть: «Ми знайшли ігрову групу»."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "found",
+          "a",
+          "playgroup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i08:r1",
+          "text": "We have found a playgroup."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i08:r2",
+          "text": "You have found a playgroup."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i08:r3",
+          "text": "They have found a playgroup."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i08:audio",
+          "transcript": "We have found a playgroup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:i08:r1",
+            "targetText": "We have found a playgroup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i08:r2",
+            "targetText": "You have found a playgroup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i08:r3",
+            "targetText": "They have found a playgroup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have found a playgroup.",
+              "uk": "У записі звучить We have found a playgroup."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have found a playgroup.",
+              "uk": "У записі звучить We have found a playgroup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i09:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i09:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i09:r3",
+          "text": "finds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a playgroup.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-08:i09:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i09:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i09:r3",
+            "text": "finds"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:word:childminder",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — childminder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:word:childminder:audio"
+      ],
+      "accessibilityLabel": "Картка слова — childminder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:word:childminder:audio",
+          "transcript": "childminder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:word:childminder:r1",
+            "targetText": "childminder",
+            "meaningByLocale": {
+              "ru": "няня, присматривающая за детьми у себя дома.",
+              "uk": "няня, яка доглядає дітей у себе вдома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "childminder",
+          "definitionByLocale": {
+            "ru": "няня, присматривающая за детьми у себя дома.",
+            "uk": "няня, яка доглядає дітей у себе вдома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дзвінок няні вже зроблено. Скажіть: «Вона зателефонувала няні».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дзвінок няні вже зроблено. Скажіть: «Вона зателефонувала няні».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has called the childminder.",
+        "localizedMeaning": {
+          "ru": "Звонок няне уже сделан. Скажите: «Она позвонила няне».",
+          "uk": "Дзвінок няні вже зроблено. Скажіть: «Вона зателефонувала няні»."
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "called",
+          "the",
+          "childminder"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i11:r1",
+          "text": "She has called the childminder."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i11:r2",
+          "text": "He has called the childminder."
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i11:r3",
+          "text": "We have called the childminder."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i11:audio",
+          "transcript": "She has called the childminder."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-08:i11:r1",
+            "targetText": "She has called the childminder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i11:r2",
+            "targetText": "He has called the childminder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i11:r3",
+            "targetText": "We have called the childminder.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has called the childminder.",
+              "uk": "У записі звучить She has called the childminder."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has called the childminder.",
+              "uk": "У записі звучить She has called the childminder."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-08:i12:r1",
+          "text": "called"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i12:r2",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-23:session-08:i12:r3",
+          "text": "calls"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ the childminder.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-08:i12:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i12:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i12:r3",
+            "text": "calls"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-08:i13:p1",
+            "target": "newborn",
+            "meaningByLocale": {
+              "ru": "новорождённый ребёнок",
+              "uk": "новонароджена дитина"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-08:i13:p2",
+            "target": "toddler",
+            "meaningByLocale": {
+              "ru": "маленький ребёнок, который учится ходить или недавно начал ходить",
+              "uk": "маленька дитина, яка вчиться ходити або нещодавно почала ходити"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-08:i13:p3",
+            "target": "playgroup",
+            "meaningByLocale": {
+              "ru": "группа для игр маленьких детей",
+              "uk": "група для ігор маленьких дітей"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-08:i13:p4",
+            "target": "childminder",
+            "meaningByLocale": {
+              "ru": "няня, присматривающая за детьми у себя дома",
+              "uk": "няня, яка доглядає дітей у себе вдома"
+            }
+          }
+        ],
+        "leftColumn": [
+          "newborn",
+          "toddler",
+          "playgroup",
+          "childminder"
+        ],
+        "rightColumn": [
+          "новонароджена дитина",
+          "маленька дитина, яка вчиться ходити або нещодавно почала ходити",
+          "група для ігор маленьких дітей",
+          "няня, яка доглядає дітей у себе вдома"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інші діти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інші діти",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i14:audio",
+          "transcript": "The other children are outside."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The other children are outside.",
+        "orderedTokens": [
+          "The",
+          "other",
+          "children",
+          "are",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я знайшов ігрову групу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я знайшов ігрову групу».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i16:audio",
+          "transcript": "I have found a playgroup."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have found a playgroup.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вони зателефонували няні».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вони зателефонували няні».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-08:i17:audio",
+          "transcript": "They have called the childminder."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They have called the childminder.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "baf75adf97ed9ff69365c56ff76df3f1960dec6bcd8c3c16e6d2f8acd0d07951"
+}

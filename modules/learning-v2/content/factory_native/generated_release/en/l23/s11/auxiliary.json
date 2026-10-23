@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-11:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-11:intro1:r3": {
+          "ru": "После have или has нужна третья форма.",
+          "uk": "Після have або has потрібна третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-11:intro2:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-23:session-11:intro2:r3": {
+          "ru": "После have или has нужна третья форма.",
+          "uk": "Після have або has потрібна третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-11:intro3:r2": {
+          "ru": "С we нужно have.",
+          "uk": "Із we потрібно have."
+        },
+        "en:lesson-23:session-11:intro3:r3": {
+          "ru": "После have нужна eaten, не ate.",
+          "uk": "Після have потрібна eaten, не ate."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b8bce3019eb4aab99c676f2bc0c9b9a41856b8c0c8e4ca444d8a1381c91a39be"
+}

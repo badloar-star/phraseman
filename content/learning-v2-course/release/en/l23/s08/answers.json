@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-08:word:newborn",
+    "correctText": "newborn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i01",
+    "correctText": "I have met their newborn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i02",
+    "correctText": "I have met their newborn.",
+    "correctResponseId": "en:lesson-23:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i03",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:word:toddler",
+    "correctText": "toddler",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i04",
+    "correctText": "The toddler has finished breakfast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i05",
+    "correctText": "The toddler has finished breakfast.",
+    "correctResponseId": "en:lesson-23:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i06",
+    "correctText": "finished",
+    "correctResponseId": "en:lesson-23:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:word:playgroup",
+    "correctText": "playgroup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i07",
+    "correctText": "We have found a playgroup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i08",
+    "correctText": "We have found a playgroup.",
+    "correctResponseId": "en:lesson-23:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i09",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-23:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:word:childminder",
+    "correctText": "childminder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i10",
+    "correctText": "She has called the childminder.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i11",
+    "correctText": "She has called the childminder.",
+    "correctResponseId": "en:lesson-23:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i12",
+    "correctText": "called",
+    "correctResponseId": "en:lesson-23:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i13",
+    "correctText": "en:lesson-23:session-08:i13:p1=newborn\nen:lesson-23:session-08:i13:p2=toddler\nen:lesson-23:session-08:i13:p3=playgroup\nen:lesson-23:session-08:i13:p4=childminder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i14",
+    "correctText": "The other children are outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i16",
+    "correctText": "I have found a playgroup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-08:i17",
+    "correctText": "They have called the childminder.",
+    "correctResponseId": null
+  }
+]

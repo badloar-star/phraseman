@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На сцене",
+        "uk": "На сцені"
+      },
+      "bodyByLocale": {
+        "ru": "Opera — опера, спектакль, в котором роли исполняют певцы. I have seen an opera: я смотрел оперу, у меня есть такой опыт. Seen — третья форма see. Перед opera ставим an, потому что слово начинается с гласного звука.",
+        "uk": "Opera — опера, вистава, у якій ролі виконують співаки. I have seen an opera: я дивився оперу, маю такий досвід. Seen — третя форма see. Перед opera ставимо an, бо слово починається з голосного звука."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-12:intro1:r1",
+              "text": "I have seen an opera."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro1:r2",
+              "text": "I has seen an opera."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro1:r3",
+              "text": "I have saw an opera."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-12:intro1:r1",
+              "text": "I have seen an opera."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro1:r2",
+              "text": "I has seen an opera."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro1:r3",
+              "text": "I have saw an opera."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Услышать оркестр",
+        "uk": "Почути оркестр"
+      },
+      "bodyByLocale": {
+        "ru": "Orchestra — оркестр, группа музыкантов, играющих вместе на разных инструментах. She has heard an orchestra: она слышала, как играет оркестр. Heard — третья форма hear. Здесь тоже an: an orchestra.",
+        "uk": "Orchestra — оркестр, група музикантів, які грають разом на різних інструментах. She has heard an orchestra: вона чула, як грає оркестр. Heard — третя форма hear. Тут теж an: an orchestra."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-12:intro2:r1",
+              "text": "She has heard an orchestra."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro2:r2",
+              "text": "She have heard an orchestra."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro2:r3",
+              "text": "She has hear an orchestra."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-12:intro2:r1",
+              "text": "She has heard an orchestra."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro2:r2",
+              "text": "She have heard an orchestra."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro2:r3",
+              "text": "She has hear an orchestra."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Куда вы ходили",
+        "uk": "Куди ви ходили"
+      },
+      "bodyByLocale": {
+        "ru": "Circus — цирк. Exhibition — выставка, например картин или фотографий. We have been to a circus — мы бывали в цирке. Have been to говорит о посещении места, а не о том, что мы всё ещё там. An exhibition — одна выставка.",
+        "uk": "Circus — цирк. Exhibition — виставка, наприклад картин або фотографій. We have been to a circus — ми бували в цирку. Have been to говорить про відвідування місця, а не про те, що ми досі там. An exhibition — одна виставка."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-12:intro3:r1",
+              "text": "We have been to a circus."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro3:r2",
+              "text": "We has been to a circus."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro3:r3",
+              "text": "We have was to a circus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-12:intro3:r1",
+              "text": "We have been to a circus."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro3:r2",
+              "text": "We has been to a circus."
+            },
+            {
+              "responseId": "en:lesson-23:session-12:intro3:r3",
+              "text": "We have was to a circus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2641c4d287fb25d9c783682e9debb2d4fd35a3a480821eef9c77fd06cde5a33c"
+}

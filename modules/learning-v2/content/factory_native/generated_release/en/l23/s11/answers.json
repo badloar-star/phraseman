@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-11:word:seafood",
+    "correctText": "seafood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i01",
+    "correctText": "I have tried seafood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i02",
+    "correctText": "I have tried seafood.",
+    "correctResponseId": "en:lesson-23:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i03",
+    "correctText": "tried",
+    "correctResponseId": "en:lesson-23:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:word:shellfish",
+    "correctText": "shellfish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i04",
+    "correctText": "She has cooked shellfish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i05",
+    "correctText": "She has cooked shellfish.",
+    "correctResponseId": "en:lesson-23:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i06",
+    "correctText": "cooked",
+    "correctResponseId": "en:lesson-23:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:word:lobster",
+    "correctText": "lobster",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i07",
+    "correctText": "We have eaten lobster.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i08",
+    "correctText": "We have eaten lobster.",
+    "correctResponseId": "en:lesson-23:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i09",
+    "correctText": "eaten",
+    "correctResponseId": "en:lesson-23:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:word:crab",
+    "correctText": "crab",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i10",
+    "correctText": "He has ordered crab.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i11",
+    "correctText": "He has ordered crab.",
+    "correctResponseId": "en:lesson-23:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i12",
+    "correctText": "ordered",
+    "correctResponseId": "en:lesson-23:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i13",
+    "correctText": "en:lesson-23:session-11:i13:p1=seafood\nen:lesson-23:session-11:i13:p2=shellfish\nen:lesson-23:session-11:i13:p3=lobster\nen:lesson-23:session-11:i13:p4=crab",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i14",
+    "correctText": "I would like another dish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i15",
+    "correctText": "You mustn't touch the hot plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i16",
+    "correctText": "I have eaten lobster.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-11:i17",
+    "correctText": "We have ordered crab.",
+    "correctResponseId": null
+  }
+]

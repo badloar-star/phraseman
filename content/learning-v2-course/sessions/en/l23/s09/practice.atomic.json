@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-09:word:desert",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — desert",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:desert:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — desert",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:desert:audio",
+            "transcript": "desert"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:desert:r1",
+              "targetText": "desert",
+              "meaningByLocale": {
+                "ru": "пустыня.",
+                "uk": "пустеля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "desert",
+            "definitionByLocale": {
+              "ru": "пустыня.",
+              "uk": "пустеля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте путешествий, не называя дату: «Я бывал в пустыне».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте путешествий, не называя дату: «Я бывал в пустыне».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have visited a desert.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте путешествий, не называя дату: «Я бывал в пустыне».",
+            "uk": "Розкажіть про досвід подорожей, не називаючи дату: «Я бував у пустелі»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "visited",
+            "a",
+            "desert"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i02:r1",
+            "text": "I have visited a desert."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i02:r2",
+            "text": "You have visited a desert."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i02:r3",
+            "text": "They have visited a desert."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i02:audio",
+            "transcript": "I have visited a desert."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i02:r1",
+              "targetText": "I have visited a desert.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i02:r2",
+              "targetText": "You have visited a desert.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i02:r3",
+              "targetText": "They have visited a desert.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have visited a desert.",
+                "uk": "У записі звучить I have visited a desert."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have visited a desert.",
+                "uk": "У записі звучить I have visited a desert."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "I have ___ a desert.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i03:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i03:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i03:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:word:volcano",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — volcano",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:volcano:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — volcano",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:volcano:audio",
+            "transcript": "volcano"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:volcano:r1",
+              "targetText": "volcano",
+              "meaningByLocale": {
+                "ru": "вулкан.",
+                "uk": "вулкан."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "volcano",
+            "definitionByLocale": {
+              "ru": "вулкан.",
+              "uk": "вулкан."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о её опыте: «Она видела вулкан».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о её опыте: «Она видела вулкан».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has seen a volcano.",
+          "localizedMeaning": {
+            "ru": "Расскажите о её опыте: «Она видела вулкан».",
+            "uk": "Розкажіть про її досвід: «Вона бачила вулкан»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "seen",
+            "a",
+            "volcano"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i05:r1",
+            "text": "She has seen a volcano."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i05:r2",
+            "text": "You have seen a volcano."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i05:r3",
+            "text": "They have seen a volcano."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i05:audio",
+            "transcript": "She has seen a volcano."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i05:r1",
+              "targetText": "She has seen a volcano.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i05:r2",
+              "targetText": "You have seen a volcano.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i05:r3",
+              "targetText": "They have seen a volcano.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has seen a volcano.",
+                "uk": "У записі звучить She has seen a volcano."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has seen a volcano.",
+                "uk": "У записі звучить She has seen a volcano."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i06:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i06:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i06:r3",
+            "text": "saw"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "She has ___ a volcano.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i06:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i06:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i06:r3",
+              "text": "saw"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:word:jungle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — jungle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:jungle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — jungle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:jungle:audio",
+            "transcript": "jungle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:jungle:r1",
+              "targetText": "jungle",
+              "meaningByLocale": {
+                "ru": "джунгли.",
+                "uk": "джунглі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jungle",
+            "definitionByLocale": {
+              "ru": "джунгли.",
+              "uk": "джунглі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте путешествий: «Мы ходили по джунглям».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте путешествий: «Мы ходили по джунглям».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have walked through the jungle.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте путешествий: «Мы ходили по джунглям».",
+            "uk": "Розкажіть про досвід подорожей: «Ми ходили джунглями»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "walked",
+            "through",
+            "the",
+            "jungle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i08:r1",
+            "text": "We have walked through the jungle."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i08:r2",
+            "text": "You have walked through the jungle."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i08:r3",
+            "text": "They have walked through the jungle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i08:audio",
+            "transcript": "We have walked through the jungle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i08:r1",
+              "targetText": "We have walked through the jungle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i08:r2",
+              "targetText": "You have walked through the jungle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i08:r3",
+              "targetText": "They have walked through the jungle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have walked through the jungle.",
+                "uk": "У записі звучить We have walked through the jungle."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have walked through the jungle.",
+                "uk": "У записі звучить We have walked through the jungle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i09:r1",
+            "text": "walked"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i09:r2",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i09:r3",
+            "text": "walks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "We have ___ through the jungle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i09:r1",
+              "text": "walked"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i09:r2",
+              "text": "walk"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i09:r3",
+              "text": "walks"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:word:cruise",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cruise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:cruise:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cruise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:cruise:audio",
+            "transcript": "cruise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:cruise:r1",
+              "targetText": "cruise",
+              "meaningByLocale": {
+                "ru": "круиз.",
+                "uk": "круїз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cruise",
+            "definitionByLocale": {
+              "ru": "круиз.",
+              "uk": "круїз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о его опыте: «Он бывал в круизе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о его опыте: «Он бывал в круизе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has been on a cruise.",
+          "localizedMeaning": {
+            "ru": "Расскажите о его опыте: «Он бывал в круизе».",
+            "uk": "Розкажіть про його досвід: «Він бував у круїзі»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "been",
+            "on",
+            "a",
+            "cruise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i11:r1",
+            "text": "He has been on a cruise."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i11:r2",
+            "text": "You have been on a cruise."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i11:r3",
+            "text": "They have been on a cruise."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i11:audio",
+            "transcript": "He has been on a cruise."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i11:r1",
+              "targetText": "He has been on a cruise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i11:r2",
+              "targetText": "You have been on a cruise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i11:r3",
+              "targetText": "They have been on a cruise.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been on a cruise.",
+                "uk": "У записі звучить He has been on a cruise."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been on a cruise.",
+                "uk": "У записі звучить He has been on a cruise."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму для рассказа об опыте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i12:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i12:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i12:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "He has ___ on a cruise.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i12:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i12:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i12:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Выберите третью форму для рассказа об опыте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму для рассказа об опыте.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-09:i13:p1",
+              "target": "desert",
+              "meaningByLocale": {
+                "ru": "пустыня",
+                "uk": "пустеля"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-09:i13:p2",
+              "target": "volcano",
+              "meaningByLocale": {
+                "ru": "вулкан",
+                "uk": "вулкан"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-09:i13:p3",
+              "target": "jungle",
+              "meaningByLocale": {
+                "ru": "джунгли",
+                "uk": "джунглі"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-09:i13:p4",
+              "target": "cruise",
+              "meaningByLocale": {
+                "ru": "круиз",
+                "uk": "круїз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "desert",
+            "volcano",
+            "jungle",
+            "cruise"
+          ],
+          "rightColumn": [
+            "пустыня",
+            "вулкан",
+            "джунгли",
+            "круиз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой маршрут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой маршрут",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i14:audio",
+            "transcript": "We can try another route."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can try another route.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "try",
+            "another",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i15:audio",
+            "transcript": "You mustn't leave the path."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the path.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "path"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я видел вулкан».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я видел вулкан».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i16:audio",
+            "transcript": "I have seen a volcano."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have seen a volcano.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы бывали в круизе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы бывали в круизе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i17:audio",
+            "transcript": "We have been on a cruise."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been on a cruise.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-09:word:desert",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — desert",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:desert:audio"
+        ],
+        "accessibilityLabel": "Картка слова — desert",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:desert:audio",
+            "transcript": "desert"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:desert:r1",
+              "targetText": "desert",
+              "meaningByLocale": {
+                "ru": "пустыня.",
+                "uk": "пустеля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "desert",
+            "definitionByLocale": {
+              "ru": "пустыня.",
+              "uk": "пустеля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід подорожей, не називаючи дату: «Я бував у пустелі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід подорожей, не називаючи дату: «Я бував у пустелі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have visited a desert.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте путешествий, не называя дату: «Я бывал в пустыне».",
+            "uk": "Розкажіть про досвід подорожей, не називаючи дату: «Я бував у пустелі»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "visited",
+            "a",
+            "desert"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i02:r1",
+            "text": "I have visited a desert."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i02:r2",
+            "text": "You have visited a desert."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i02:r3",
+            "text": "They have visited a desert."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i02:audio",
+            "transcript": "I have visited a desert."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i02:r1",
+              "targetText": "I have visited a desert.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i02:r2",
+              "targetText": "You have visited a desert.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i02:r3",
+              "targetText": "They have visited a desert.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have visited a desert.",
+                "uk": "У записі звучить I have visited a desert."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have visited a desert.",
+                "uk": "У записі звучить I have visited a desert."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "I have ___ a desert.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i03:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i03:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i03:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:word:volcano",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — volcano",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:volcano:audio"
+        ],
+        "accessibilityLabel": "Картка слова — volcano",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:volcano:audio",
+            "transcript": "volcano"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:volcano:r1",
+              "targetText": "volcano",
+              "meaningByLocale": {
+                "ru": "вулкан.",
+                "uk": "вулкан."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "volcano",
+            "definitionByLocale": {
+              "ru": "вулкан.",
+              "uk": "вулкан."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про її досвід: «Вона бачила вулкан».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про її досвід: «Вона бачила вулкан».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has seen a volcano.",
+          "localizedMeaning": {
+            "ru": "Расскажите о её опыте: «Она видела вулкан».",
+            "uk": "Розкажіть про її досвід: «Вона бачила вулкан»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "seen",
+            "a",
+            "volcano"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i05:r1",
+            "text": "She has seen a volcano."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i05:r2",
+            "text": "You have seen a volcano."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i05:r3",
+            "text": "They have seen a volcano."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i05:audio",
+            "transcript": "She has seen a volcano."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i05:r1",
+              "targetText": "She has seen a volcano.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i05:r2",
+              "targetText": "You have seen a volcano.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i05:r3",
+              "targetText": "They have seen a volcano.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has seen a volcano.",
+                "uk": "У записі звучить She has seen a volcano."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has seen a volcano.",
+                "uk": "У записі звучить She has seen a volcano."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i06:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i06:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i06:r3",
+            "text": "saw"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "She has ___ a volcano.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i06:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i06:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i06:r3",
+              "text": "saw"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:word:jungle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — jungle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:jungle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — jungle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:jungle:audio",
+            "transcript": "jungle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:jungle:r1",
+              "targetText": "jungle",
+              "meaningByLocale": {
+                "ru": "джунгли.",
+                "uk": "джунглі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "jungle",
+            "definitionByLocale": {
+              "ru": "джунгли.",
+              "uk": "джунглі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід подорожей: «Ми ходили джунглями».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід подорожей: «Ми ходили джунглями».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have walked through the jungle.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте путешествий: «Мы ходили по джунглям».",
+            "uk": "Розкажіть про досвід подорожей: «Ми ходили джунглями»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "walked",
+            "through",
+            "the",
+            "jungle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i08:r1",
+            "text": "We have walked through the jungle."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i08:r2",
+            "text": "You have walked through the jungle."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i08:r3",
+            "text": "They have walked through the jungle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i08:audio",
+            "transcript": "We have walked through the jungle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i08:r1",
+              "targetText": "We have walked through the jungle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i08:r2",
+              "targetText": "You have walked through the jungle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i08:r3",
+              "targetText": "They have walked through the jungle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have walked through the jungle.",
+                "uk": "У записі звучить We have walked through the jungle."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have walked through the jungle.",
+                "uk": "У записі звучить We have walked through the jungle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i09:r1",
+            "text": "walked"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i09:r2",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i09:r3",
+            "text": "walks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "We have ___ through the jungle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i09:r1",
+              "text": "walked"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i09:r2",
+              "text": "walk"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i09:r3",
+              "text": "walks"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:word:cruise",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cruise",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:word:cruise:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cruise",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:word:cruise:audio",
+            "transcript": "cruise"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:word:cruise:r1",
+              "targetText": "cruise",
+              "meaningByLocale": {
+                "ru": "круиз.",
+                "uk": "круїз."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cruise",
+            "definitionByLocale": {
+              "ru": "круиз.",
+              "uk": "круїз."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про його досвід: «Він бував у круїзі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про його досвід: «Він бував у круїзі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has been on a cruise.",
+          "localizedMeaning": {
+            "ru": "Расскажите о его опыте: «Он бывал в круизе».",
+            "uk": "Розкажіть про його досвід: «Він бував у круїзі»."
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "been",
+            "on",
+            "a",
+            "cruise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i11:r1",
+            "text": "He has been on a cruise."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i11:r2",
+            "text": "You have been on a cruise."
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i11:r3",
+            "text": "They have been on a cruise."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i11:audio",
+            "transcript": "He has been on a cruise."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-09:i11:r1",
+              "targetText": "He has been on a cruise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i11:r2",
+              "targetText": "You have been on a cruise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i11:r3",
+              "targetText": "They have been on a cruise.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been on a cruise.",
+                "uk": "У записі звучить He has been on a cruise."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been on a cruise.",
+                "uk": "У записі звучить He has been on a cruise."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму для розповіді про досвід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-09:i12:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i12:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-23:session-09:i12:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму для рассказа об опыте.",
+            "uk": "Виберіть третю форму для розповіді про досвід."
+          },
+          "gappedTargetPhrase": "He has ___ on a cruise.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-09:i12:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i12:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i12:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму для розповіді про досвід.",
+              "feedbackByLocale": {
+                "ru": "Для этого опыта нужны have/has и третья форма.",
+                "uk": "Для цього досвіду потрібні have/has і третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-09:i13:p1",
+              "target": "desert",
+              "meaningByLocale": {
+                "ru": "пустыня",
+                "uk": "пустеля"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-09:i13:p2",
+              "target": "volcano",
+              "meaningByLocale": {
+                "ru": "вулкан",
+                "uk": "вулкан"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-09:i13:p3",
+              "target": "jungle",
+              "meaningByLocale": {
+                "ru": "джунгли",
+                "uk": "джунглі"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-09:i13:p4",
+              "target": "cruise",
+              "meaningByLocale": {
+                "ru": "круиз",
+                "uk": "круїз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "desert",
+            "volcano",
+            "jungle",
+            "cruise"
+          ],
+          "rightColumn": [
+            "пустеля",
+            "вулкан",
+            "джунглі",
+            "круїз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший маршрут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший маршрут",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i14:audio",
+            "transcript": "We can try another route."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can try another route.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "try",
+            "another",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i15:audio",
+            "transcript": "You mustn't leave the path."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the path.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "path"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я бачив вулкан».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я бачив вулкан».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i16:audio",
+            "transcript": "I have seen a volcano."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have seen a volcano.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми бували в круїзі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми бували в круїзі».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-09:i17:audio",
+            "transcript": "We have been on a cruise."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been on a cruise.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-09:word:desert",
+      "correctText": "desert",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i01",
+      "correctText": "I have visited a desert.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i02",
+      "correctText": "I have visited a desert.",
+      "correctResponseId": "en:lesson-23:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i03",
+      "correctText": "visited",
+      "correctResponseId": "en:lesson-23:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:word:volcano",
+      "correctText": "volcano",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i04",
+      "correctText": "She has seen a volcano.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i05",
+      "correctText": "She has seen a volcano.",
+      "correctResponseId": "en:lesson-23:session-09:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i06",
+      "correctText": "seen",
+      "correctResponseId": "en:lesson-23:session-09:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:word:jungle",
+      "correctText": "jungle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i07",
+      "correctText": "We have walked through the jungle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i08",
+      "correctText": "We have walked through the jungle.",
+      "correctResponseId": "en:lesson-23:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i09",
+      "correctText": "walked",
+      "correctResponseId": "en:lesson-23:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:word:cruise",
+      "correctText": "cruise",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i10",
+      "correctText": "He has been on a cruise.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i11",
+      "correctText": "He has been on a cruise.",
+      "correctResponseId": "en:lesson-23:session-09:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i12",
+      "correctText": "been",
+      "correctResponseId": "en:lesson-23:session-09:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i14",
+      "correctText": "We can try another route.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i15",
+      "correctText": "You mustn't leave the path.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i16",
+      "correctText": "I have seen a volcano.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-09:i17",
+      "correctText": "We have been on a cruise.",
+      "correctResponseId": null
+    }
+  ]
+}

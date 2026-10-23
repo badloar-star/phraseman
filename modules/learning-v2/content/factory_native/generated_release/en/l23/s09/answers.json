@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-09:word:desert",
+    "correctText": "desert",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i01",
+    "correctText": "I have visited a desert.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i02",
+    "correctText": "I have visited a desert.",
+    "correctResponseId": "en:lesson-23:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i03",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-23:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:word:volcano",
+    "correctText": "volcano",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i04",
+    "correctText": "She has seen a volcano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i05",
+    "correctText": "She has seen a volcano.",
+    "correctResponseId": "en:lesson-23:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i06",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:word:jungle",
+    "correctText": "jungle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i07",
+    "correctText": "We have walked through the jungle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i08",
+    "correctText": "We have walked through the jungle.",
+    "correctResponseId": "en:lesson-23:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i09",
+    "correctText": "walked",
+    "correctResponseId": "en:lesson-23:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:word:cruise",
+    "correctText": "cruise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i10",
+    "correctText": "He has been on a cruise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i11",
+    "correctText": "He has been on a cruise.",
+    "correctResponseId": "en:lesson-23:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i12",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-23:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i13",
+    "correctText": "en:lesson-23:session-09:i13:p1=desert\nen:lesson-23:session-09:i13:p2=volcano\nen:lesson-23:session-09:i13:p3=jungle\nen:lesson-23:session-09:i13:p4=cruise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i14",
+    "correctText": "We can try another route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i15",
+    "correctText": "You mustn't leave the path.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i16",
+    "correctText": "I have seen a volcano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-09:i17",
+    "correctText": "We have been on a cruise.",
+    "correctResponseId": null
+  }
+]

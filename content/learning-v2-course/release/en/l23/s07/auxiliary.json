@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-07:intro1:r2": {
+          "ru": "The bride — один человек, нужно has.",
+          "uk": "The bride — одна людина, потрібно has."
+        },
+        "en:lesson-23:session-07:intro1:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-07:intro2:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-07:intro2:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-07:intro3:r2": {
+          "ru": "С we нужно have.",
+          "uk": "Із we потрібно have."
+        },
+        "en:lesson-23:session-07:intro3:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "172acfc53d3806eb06a9b9c1baad01372520c61c0610f1e7ea56a8a6edbc2547"
+}

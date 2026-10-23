@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-02:word:squeak",
+    "correctText": "squeak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i01",
+    "correctText": "My shoes squeak when the floor is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i02",
+    "correctText": "squeak",
+    "correctResponseId": "en:lesson-26:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i03",
+    "correctText": "My shoes squeak when the floor is wet.",
+    "correctResponseId": "en:lesson-26:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:word:rustle",
+    "correctText": "rustle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i04",
+    "correctText": "The leaves rustle when the wind blows.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i05",
+    "correctText": "rustle",
+    "correctResponseId": "en:lesson-26:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i06",
+    "correctText": "The leaves rustle when the wind blows.",
+    "correctResponseId": "en:lesson-26:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:word:squeal",
+    "correctText": "squeal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i07",
+    "correctText": "My children squeal when they get excited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i08",
+    "correctText": "squeal",
+    "correctResponseId": "en:lesson-26:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i09",
+    "correctText": "My children squeal when they get excited.",
+    "correctResponseId": "en:lesson-26:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:word:roars",
+    "correctText": "roars",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i10",
+    "correctText": "The engine roars when I press the pedal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i11",
+    "correctText": "roars",
+    "correctResponseId": "en:lesson-26:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i12",
+    "correctText": "The engine roars when I press the pedal.",
+    "correctResponseId": "en:lesson-26:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i13",
+    "correctText": "en:lesson-26:session-02:i13:p1=squeak\nen:lesson-26:session-02:i13:p2=rustle\nen:lesson-26:session-02:i13:p3=squeal\nen:lesson-26:session-02:i13:p4=roars",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i14",
+    "correctText": "I rest when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i15",
+    "correctText": "I stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i16",
+    "correctText": "Her shoes squeak when the floor is dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-02:i17",
+    "correctText": "The engine roars when he presses the pedal.",
+    "correctResponseId": null
+  }
+]

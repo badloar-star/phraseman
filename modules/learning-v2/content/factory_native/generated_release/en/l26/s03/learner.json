@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-03:word:vibrates",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vibrates",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:word:vibrates:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vibrates",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:word:vibrates:audio",
+          "transcript": "vibrates"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:word:vibrates:r1",
+            "targetText": "vibrates",
+            "meaningByLocale": {
+              "ru": "Вибрирует. Vibrate — быстро и мелко дрожать.",
+              "uk": "Вібрує. Vibrate — швидко й дрібно тремтіти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vibrates",
+          "definitionByLocale": {
+            "ru": "Вибрирует. Vibrate — быстро и мелко дрожать.",
+            "uk": "Вібрує. Vibrate — швидко й дрібно тремтіти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мой телефон вибрирует, когда кто-нибудь звонит.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мой телефон вибрирует, когда кто-нибудь звонит.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My phone vibrates when someone calls.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мой телефон вибрирует, когда кто-нибудь звонит.»",
+          "uk": "Скажіть: «Мій телефон вібрує, коли хтось телефонує.»"
+        },
+        "orderedTokens": [
+          "My",
+          "phone",
+          "vibrates",
+          "when",
+          "someone",
+          "calls"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i02:r1",
+          "text": "vibrates"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i02:r2",
+          "text": "vibrate"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i02:r3",
+          "text": "vibrating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "My phone ___ when someone calls.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-03:i02:r1",
+            "text": "vibrates"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i02:r2",
+            "text": "vibrate"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i02:r3",
+            "text": "vibrating"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма vibrates.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма vibrates."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма vibrates.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма vibrates."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i03:r1",
+          "text": "My phone vibrates when someone calls."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i03:r2",
+          "text": "Her phone vibrates when someone calls."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i03:r3",
+          "text": "My phone vibrates when someone texts."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i03:audio",
+          "transcript": "My phone vibrates when someone calls."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:i03:r1",
+            "targetText": "My phone vibrates when someone calls.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i03:r2",
+            "targetText": "Her phone vibrates when someone calls.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i03:r3",
+            "targetText": "My phone vibrates when someone texts.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My phone vibrates when someone calls.",
+              "uk": "У записі звучить My phone vibrates when someone calls."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My phone vibrates when someone calls.",
+              "uk": "У записі звучить My phone vibrates when someone calls."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:word:rotates",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rotates",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:word:rotates:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rotates",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:word:rotates:audio",
+          "transcript": "rotates"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:word:rotates:r1",
+            "targetText": "rotates",
+            "meaningByLocale": {
+              "ru": "Вращается. Rotate — двигаться вокруг оси.",
+              "uk": "Обертається. Rotate — рухатися навколо осі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rotates",
+          "definitionByLocale": {
+            "ru": "Вращается. Rotate — двигаться вокруг оси.",
+            "uk": "Обертається. Rotate — рухатися навколо осі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Барабан вращается, когда я включаю стиральную машину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Барабан вращается, когда я включаю стиральную машину.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The drum rotates when I start the washing machine.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Барабан вращается, когда я включаю стиральную машину.»",
+          "uk": "Скажіть: «Барабан обертається, коли я вмикаю пральну машину.»"
+        },
+        "orderedTokens": [
+          "The",
+          "drum",
+          "rotates",
+          "when",
+          "I",
+          "start",
+          "the",
+          "washing",
+          "machine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i05:r1",
+          "text": "rotates"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i05:r2",
+          "text": "rotate"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i05:r3",
+          "text": "rotating"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "The drum ___ when I start the washing machine.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-03:i05:r1",
+            "text": "rotates"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i05:r2",
+            "text": "rotate"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i05:r3",
+            "text": "rotating"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма rotates.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма rotates."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма rotates.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма rotates."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i06:r1",
+          "text": "The drum rotates when I start the washing machine."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i06:r2",
+          "text": "The drum rotates when she starts the washing machine."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i06:r3",
+          "text": "The drum rotates when I restart the washing machine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i06:audio",
+          "transcript": "The drum rotates when I start the washing machine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:i06:r1",
+            "targetText": "The drum rotates when I start the washing machine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i06:r2",
+            "targetText": "The drum rotates when she starts the washing machine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i06:r3",
+            "targetText": "The drum rotates when I restart the washing machine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The drum rotates when I start the washing machine.",
+              "uk": "У записі звучить The drum rotates when I start the washing machine."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The drum rotates when I start the washing machine.",
+              "uk": "У записі звучить The drum rotates when I start the washing machine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:word:sway",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:word:sway:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:word:sway:audio",
+          "transcript": "sway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:word:sway:r1",
+            "targetText": "sway",
+            "meaningByLocale": {
+              "ru": "Качаются. Sway — плавно двигаться из стороны в сторону.",
+              "uk": "Гойдаються. Sway — плавно рухатися з боку в бік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sway",
+          "definitionByLocale": {
+            "ru": "Качаются. Sway — плавно двигаться из стороны в сторону.",
+            "uk": "Гойдаються. Sway — плавно рухатися з боку в бік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Деревья качаются, когда дует ветер.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Деревья качаются, когда дует ветер.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The trees sway when the wind blows.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Деревья качаются, когда дует ветер.»",
+          "uk": "Скажіть: «Дерева гойдаються, коли дме вітер.»"
+        },
+        "orderedTokens": [
+          "The",
+          "trees",
+          "sway",
+          "when",
+          "the",
+          "wind",
+          "blows"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i08:r1",
+          "text": "sway"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i08:r2",
+          "text": "sways"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i08:r3",
+          "text": "swaying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "The trees ___ when the wind blows.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-03:i08:r1",
+            "text": "sway"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i08:r2",
+            "text": "sways"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i08:r3",
+            "text": "swaying"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма sway.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма sway."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма sway.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма sway."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i09:r1",
+          "text": "The trees sway when the wind blows."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i09:r2",
+          "text": "The trees sway when the wind gets stronger."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i09:r3",
+          "text": "The branches sway when the wind blows."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i09:audio",
+          "transcript": "The trees sway when the wind blows."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:i09:r1",
+            "targetText": "The trees sway when the wind blows.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i09:r2",
+            "targetText": "The trees sway when the wind gets stronger.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i09:r3",
+            "targetText": "The branches sway when the wind blows.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trees sway when the wind blows.",
+              "uk": "У записі звучить The trees sway when the wind blows."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trees sway when the wind blows.",
+              "uk": "У записі звучить The trees sway when the wind blows."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:word:flutter",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flutter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:word:flutter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flutter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:word:flutter:audio",
+          "transcript": "flutter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:word:flutter:r1",
+            "targetText": "flutter",
+            "meaningByLocale": {
+              "ru": "Колышутся. Flutter — легко и быстро двигаться, например о ткани на ветру.",
+              "uk": "Колишуться. Flutter — легко й швидко рухатися, наприклад про тканину на вітрі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flutter",
+          "definitionByLocale": {
+            "ru": "Колышутся. Flutter — легко и быстро двигаться, например о ткани на ветру.",
+            "uk": "Колишуться. Flutter — легко й швидко рухатися, наприклад про тканину на вітрі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Шторы колышутся, когда я открываю окно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Шторы колышутся, когда я открываю окно.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The curtains flutter when I open the window.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Шторы колышутся, когда я открываю окно.»",
+          "uk": "Скажіть: «Штори колишуться, коли я відчиняю вікно.»"
+        },
+        "orderedTokens": [
+          "The",
+          "curtains",
+          "flutter",
+          "when",
+          "I",
+          "open",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i11:r1",
+          "text": "flutter"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i11:r2",
+          "text": "flutters"
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i11:r3",
+          "text": "fluttering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "The curtains ___ when I open the window.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-03:i11:r1",
+            "text": "flutter"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i11:r2",
+            "text": "flutters"
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i11:r3",
+            "text": "fluttering"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма flutter.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма flutter."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма flutter.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма flutter."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-03:i12:r1",
+          "text": "The curtains flutter when I open the window."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i12:r2",
+          "text": "The curtains flutter when she opens the window."
+        },
+        {
+          "responseId": "en:lesson-26:session-03:i12:r3",
+          "text": "The curtains flutter when I open the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i12:audio",
+          "transcript": "The curtains flutter when I open the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-03:i12:r1",
+            "targetText": "The curtains flutter when I open the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i12:r2",
+            "targetText": "The curtains flutter when she opens the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i12:r3",
+            "targetText": "The curtains flutter when I open the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The curtains flutter when I open the window.",
+              "uk": "У записі звучить The curtains flutter when I open the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The curtains flutter when I open the window.",
+              "uk": "У записі звучить The curtains flutter when I open the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-26:session-03:i13:p1",
+            "target": "vibrates",
+            "meaningByLocale": {
+              "ru": "вибрирует",
+              "uk": "вібрує"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-03:i13:p2",
+            "target": "rotates",
+            "meaningByLocale": {
+              "ru": "вращается",
+              "uk": "обертається"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-03:i13:p3",
+            "target": "sway",
+            "meaningByLocale": {
+              "ru": "качаются",
+              "uk": "гойдаються"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-03:i13:p4",
+            "target": "flutter",
+            "meaningByLocale": {
+              "ru": "колышутся",
+              "uk": "колишуться"
+            }
+          }
+        ],
+        "leftColumn": [
+          "vibrates",
+          "rotates",
+          "sway",
+          "flutter"
+        ],
+        "rightColumn": [
+          "вибрирует",
+          "вращается",
+          "качаются",
+          "колышутся"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Отдыхаю, когда устаю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Отдыхаю, когда устаю",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i14:audio",
+          "transcript": "I rest when I am tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I rest when I am tired.",
+        "orderedTokens": [
+          "I",
+          "rest",
+          "when",
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Если идёт дождь, остаюсь дома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Если идёт дождь, остаюсь дома",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i15:audio",
+          "transcript": "I stay home if it rains."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I stay home if it rains.",
+        "orderedTokens": [
+          "I",
+          "stay",
+          "home",
+          "if",
+          "it",
+          "rains"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Его телефон вибрирует, когда кто-нибудь звонит».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Его телефон вибрирует, когда кто-нибудь звонит».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i16:audio",
+          "transcript": "His phone vibrates when someone calls."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "His phone vibrates when someone calls.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Шторы колышутся, когда он открывает окно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Шторы колышутся, когда он открывает окно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-03:i17:audio",
+          "transcript": "The curtains flutter when he opens the window."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The curtains flutter when he opens the window.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3394c7552589dea08238645af2d5fa69f2e64954c027f8724abac10ea6cc9c47"
+}

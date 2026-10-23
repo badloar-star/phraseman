@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-03:intro1:r2": {
+          "ru": "В Present Simple с этим подлежащим нужна форма vibrates.",
+          "uk": "У Present Simple із цим підметом потрібна форма vibrates."
+        },
+        "en:lesson-26:session-03:intro1:r3": {
+          "ru": "Обычная реакция: Present Simple в обеих частях.",
+          "uk": "Звичайна реакція: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-03:intro2:r2": {
+          "ru": "В Present Simple с этим подлежащим нужна форма rotates.",
+          "uk": "У Present Simple із цим підметом потрібна форма rotates."
+        },
+        "en:lesson-26:session-03:intro2:r3": {
+          "ru": "Обычная реакция: Present Simple в обеих частях.",
+          "uk": "Звичайна реакція: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-03:intro3:r2": {
+          "ru": "В Present Simple с этим подлежащим нужна форма flutter.",
+          "uk": "У Present Simple із цим підметом потрібна форма flutter."
+        },
+        "en:lesson-26:session-03:intro3:r3": {
+          "ru": "Обычная реакция: Present Simple в обеих частях.",
+          "uk": "Звичайна реакція: Present Simple в обох частинах."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1be4bef1de9bfef1849ddf5a3ef3221e2deba355eef6e8f9619d4bcab9fc78d2"
+}

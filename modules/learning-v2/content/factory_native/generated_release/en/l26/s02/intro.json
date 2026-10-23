@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional: when + present simple, present simple",
+    "uk": "zero conditional: when + present simple, present simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Скрип обуви",
+        "uk": "Скрип взуття"
+      },
+      "bodyByLocale": {
+        "ru": "Вы замечаете, что обувь издаёт высокий скрип на мокром полу. My shoes squeak when the floor is wet — мои туфли скрипят, когда пол мокрый. Squeak — пищать или скрипеть высоким звуком. Это повторяющаяся ситуация с моей обувью: Present Simple в обеих частях. Shoes — множественное число, поэтому squeak без -s. Floor — единственное, поэтому is.",
+        "uk": "Ви помічаєте, що взуття видає високий скрип на мокрій підлозі. My shoes squeak when the floor is wet — мої туфлі скриплять, коли підлога мокра. Squeak — пищати або скрипіти високим звуком. Це повторювана ситуація з моїм взуттям: Present Simple в обох частинах. Shoes — множина, тому squeak без -s. Floor — однина, тому is."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-02:intro1:r1",
+              "text": "My shoes squeak when the floor is wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro1:r2",
+              "text": "My shoes squeaks when the floor is wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro1:r3",
+              "text": "My shoes squeaking when the floor is wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-02:intro1:r1",
+              "text": "My shoes squeak when the floor is wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro1:r2",
+              "text": "My shoes squeaks when the floor is wet."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro1:r3",
+              "text": "My shoes squeaking when the floor is wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шелест и громкий крик",
+        "uk": "Шелест і гучний крик"
+      },
+      "bodyByLocale": {
+        "ru": "Rustle — шелестеть, тихо шуршать. The leaves rustle when the wind blows — листья шелестят, когда дует ветер. Leaves — множественное число: rustle; wind — единственное: blows. Squeal — громко визжать. My children squeal when they get excited — мои дети визжат, когда приходят в возбуждение. Здесь рассказываю о привычной реакции своих детей, а не о поведении всех детей.",
+        "uk": "Rustle — шелестіти, тихо шарудіти. The leaves rustle when the wind blows — листя шелестить, коли дме вітер. Leaves — множина: rustle; wind — однина: blows. Squeal — голосно верещати. My children squeal when they get excited — мої діти верещать, коли збуджуються. Тут розповідаю про звичну реакцію своїх дітей, а не про поведінку всіх дітей."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-02:intro2:r1",
+              "text": "The leaves rustle when the wind blows."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro2:r2",
+              "text": "The leaves rustles when the wind blows."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro2:r3",
+              "text": "The leaves rustling when the wind blows."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-02:intro2:r1",
+              "text": "The leaves rustle when the wind blows."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro2:r2",
+              "text": "The leaves rustles when the wind blows."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro2:r3",
+              "text": "The leaves rustling when the wind blows."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Звук двигателя",
+        "uk": "Звук двигуна"
+      },
+      "bodyByLocale": {
+        "ru": "Roar — реветь, издавать громкий глубокий звук. Так можно описать льва или двигатель. The engine roars when I press the pedal — двигатель ревёт, когда я нажимаю на педаль. Engine — один двигатель, поэтому roars; после I — press без -s. When связывает действие и обычный результат. В zero conditional обе части остаются в Present Simple: мы описываем то, что обычно происходит.",
+        "uk": "Roar — ревти, видавати гучний низький звук. Так можна описати лева або двигун. The engine roars when I press the pedal — двигун реве, коли я натискаю на педаль. Engine — один двигун, тому roars; після I — press без -s. When пов’язує дію та звичайний результат. У zero conditional обидві частини залишаються в Present Simple: ми описуємо те, що зазвичай відбувається."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-02:intro3:r1",
+              "text": "The engine roars when I press the pedal."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro3:r2",
+              "text": "The engine roar when I press the pedal."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro3:r3",
+              "text": "The engine roaring when I press the pedal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-02:intro3:r1",
+              "text": "The engine roars when I press the pedal."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro3:r2",
+              "text": "The engine roar when I press the pedal."
+            },
+            {
+              "responseId": "en:lesson-26:session-02:intro3:r3",
+              "text": "The engine roaring when I press the pedal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "66b9e09deb2348105617c097e31921428ab22ae4875444710a4f1ce30fbd043e"
+}

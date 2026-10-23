@@ -9807,4 +9807,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past simple; review of past narrative forms","uk":"past simple; review of past narrative forms"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 1,
+    sourceFingerprint: "55a753718edf5086a3125cba354397342cd4ca4b3663f2ae9df684d72286d7d0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional: if/when + present simple, present simple","uk":"zero conditional: if/when + present simple, present simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 2,
+    sourceFingerprint: "4594cc985cfd0aceb6b27e4a024e016e3e75e73dfbbc04e78663764f49dceb3c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional: when + present simple, present simple","uk":"zero conditional: when + present simple, present simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 3,
+    sourceFingerprint: "b210740b8247a28f90aedf13d14a7ca2e2f34360632a8ad99ef67c8f6190304b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional: when + present simple, present simple","uk":"zero conditional: when + present simple, present simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

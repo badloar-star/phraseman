@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-01:word:evaporates",
+    "correctText": "evaporates",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i01",
+    "correctText": "Water evaporates when you leave it in an open bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i02",
+    "correctText": "evaporates",
+    "correctResponseId": "en:lesson-26:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i03",
+    "correctText": "Water evaporates when you leave it in an open bowl.",
+    "correctResponseId": "en:lesson-26:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:word:condenses",
+    "correctText": "condenses",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i04",
+    "correctText": "Steam condenses when it touches a cold surface.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i05",
+    "correctText": "condenses",
+    "correctResponseId": "en:lesson-26:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i06",
+    "correctText": "Steam condenses when it touches a cold surface.",
+    "correctResponseId": "en:lesson-26:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:word:splatters",
+    "correctText": "splatters",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i07",
+    "correctText": "Hot oil splatters when water gets into the pan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i08",
+    "correctText": "splatters",
+    "correctResponseId": "en:lesson-26:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i09",
+    "correctText": "Hot oil splatters when water gets into the pan.",
+    "correctResponseId": "en:lesson-26:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:word:stiffen",
+    "correctText": "stiffen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i10",
+    "correctText": "My hands stiffen when they get cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i11",
+    "correctText": "stiffen",
+    "correctResponseId": "en:lesson-26:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i12",
+    "correctText": "My hands stiffen when they get cold.",
+    "correctResponseId": "en:lesson-26:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i13",
+    "correctText": "en:lesson-26:session-01:i13:p1=evaporates\nen:lesson-26:session-01:i13:p2=condenses\nen:lesson-26:session-01:i13:p3=splatters\nen:lesson-26:session-01:i13:p4=stiffen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i14",
+    "correctText": "I rest when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i15",
+    "correctText": "I stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i16",
+    "correctText": "His hands stiffen when they get cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-01:i17",
+    "correctText": "Steam condenses when it touches a cold door.",
+    "correctResponseId": null
+  }
+]

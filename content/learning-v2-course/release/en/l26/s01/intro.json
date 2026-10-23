@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional: if/when + present simple, present simple",
+    "uk": "zero conditional: if/when + present simple, present simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что происходит с водой",
+        "uk": "Що відбувається з водою"
+      },
+      "bodyByLocale": {
+        "ru": "Оставленная в комнате вода постепенно уходит в воздух. Evaporate — испаряться. Water evaporates when you leave it in an open bowl — вода испаряется, когда её оставляют в открытой миске. Так мы описываем обычную закономерность, а не одну будущую ситуацию. Это zero conditional: when или if + Present Simple, и результат тоже в Present Simple. В нашем примере результат стоит первым: Water evaporates; условие — when you leave it in an open bowl.",
+        "uk": "Залишена в кімнаті вода поступово переходить у повітря. Evaporate — випаровуватися. Water evaporates when you leave it in an open bowl — вода випаровується, коли її залишають у відкритій мисці. Так ми описуємо звичайну закономірність, а не одну майбутню ситуацію. Це zero conditional: when або if + Present Simple, і результат теж у Present Simple. У нашому прикладі результат стоїть першим: Water evaporates; умова — when you leave it in an open bowl."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-01:intro1:r1",
+              "text": "Water evaporates when you leave it in an open bowl."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro1:r2",
+              "text": "Water evaporate when you leave it in an open bowl."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro1:r3",
+              "text": "Water evaporating when you leave it in an open bowl."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-01:intro1:r1",
+              "text": "Water evaporates when you leave it in an open bowl."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro1:r2",
+              "text": "Water evaporate when you leave it in an open bowl."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro1:r3",
+              "text": "Water evaporating when you leave it in an open bowl."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Капли и брызги",
+        "uk": "Краплі й бризки"
+      },
+      "bodyByLocale": {
+        "ru": "Condense — конденсироваться: пар превращается в капли. Steam condenses when it touches a cold surface — пар конденсируется при соприкосновении с холодной поверхностью. Splatter — разлетаться брызгами: Hot oil splatters when water gets into the pan — горячее масло разбрызгивается, когда в сковороду попадает вода. В обеих частях описываем обычное происходящее: condenses — touches, splatters — gets. После water, steam и oil здесь форма как с it, поэтому окончание -s.",
+        "uk": "Condense — конденсуватися: пара перетворюється на краплі. Steam condenses when it touches a cold surface — пара конденсується при зіткненні з холодною поверхнею. Splatter — розлітатися бризками: Hot oil splatters when water gets into the pan — гаряча олія розбризкується, коли в сковороду потрапляє вода. В обох частинах описуємо те, що відбувається зазвичай: condenses — touches, splatters — gets. Після water, steam та oil тут форма як з it, тому закінчення -s."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-01:intro2:r1",
+              "text": "Steam condenses when it touches a cold surface."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro2:r2",
+              "text": "Steam condense when it touches a cold surface."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro2:r3",
+              "text": "Steam condensing when it touches a cold surface."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-01:intro2:r1",
+              "text": "Steam condenses when it touches a cold surface."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro2:r2",
+              "text": "Steam condense when it touches a cold surface."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro2:r3",
+              "text": "Steam condensing when it touches a cold surface."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обычная реакция на холод",
+        "uk": "Звичайна реакція на холод"
+      },
+      "bodyByLocale": {
+        "ru": "Stiffen — становиться жёстче, терять гибкость. My hands stiffen when they get cold — мои руки деревенеют, когда мёрзнут. Это моя обычная реакция, не утверждение обо всех людях. Hands — множественное число, поэтому stiffen без -s; they get тоже без -s. Zero conditional подходит и для таких личных привычных реакций. If подчёркивает условие «если», when — «когда это происходит». Для этой обычной закономерности will не нужен.",
+        "uk": "Stiffen — ставати жорсткішими, втрачати гнучкість. My hands stiffen when they get cold — мої руки дерев’яніють, коли мерзнуть. Це моя звичайна реакція, а не твердження про всіх людей. Hands — множина, тому stiffen без -s; they get теж без -s. Zero conditional підходить і для таких особистих звичних реакцій. If підкреслює умову «якщо», when — «коли це відбувається». Для цієї звичайної закономірності will не потрібне."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-01:intro3:r1",
+              "text": "My hands stiffen when they get cold."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro3:r2",
+              "text": "My hands stiffens when they get cold."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro3:r3",
+              "text": "My hands stiffening when they get cold."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-01:intro3:r1",
+              "text": "My hands stiffen when they get cold."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro3:r2",
+              "text": "My hands stiffens when they get cold."
+            },
+            {
+              "responseId": "en:lesson-26:session-01:intro3:r3",
+              "text": "My hands stiffening when they get cold."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3eef39e645414da29957e6415768b5f0c93738cda1b2e4ff51f4ec8fe9414052"
+}

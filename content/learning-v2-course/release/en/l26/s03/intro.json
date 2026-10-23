@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional: when + present simple, present simple",
+    "uk": "zero conditional: when + present simple, present simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Телефон подаёт сигнал",
+        "uk": "Телефон подає сигнал"
+      },
+      "bodyByLocale": {
+        "ru": "Телефон настроен на вибрацию. My phone vibrates when someone calls — мой телефон вибрирует, когда кто-нибудь звонит. Vibrate — быстро и мелко дрожать. Здесь описываем обычную реакцию моего телефона, не всех телефонов. Phone — единственное число, поэтому vibrates. Someone тоже требует форму с -s: calls. Обе части в Present Simple.",
+        "uk": "Телефон налаштовано на вібрацію. My phone vibrates when someone calls — мій телефон вібрує, коли хтось телефонує. Vibrate — швидко й дрібно тремтіти. Тут описуємо звичайну реакцію мого телефона, а не всіх телефонів. Phone — однина, тому vibrates. Someone також потребує форми з -s: calls. Обидві частини в Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-03:intro1:r1",
+              "text": "My phone vibrates when someone calls."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro1:r2",
+              "text": "My phone vibrate when someone calls."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro1:r3",
+              "text": "My phone vibrating when someone calls."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-03:intro1:r1",
+              "text": "My phone vibrates when someone calls."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro1:r2",
+              "text": "My phone vibrate when someone calls."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro1:r3",
+              "text": "My phone vibrating when someone calls."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вращение и качание",
+        "uk": "Обертання й гойдання"
+      },
+      "bodyByLocale": {
+        "ru": "Rotate — вращаться вокруг оси. The drum rotates when I start the washing machine — барабан вращается, когда я включаю стиральную машину. Drum здесь — барабан машины, куда кладут бельё. Sway — плавно качаться из стороны в сторону. The trees sway when the wind blows — деревья качаются, когда дует ветер. Drum — один предмет: rotates; trees — несколько: sway.",
+        "uk": "Rotate — обертатися навколо осі. The drum rotates when I start the washing machine — барабан обертається, коли я вмикаю пральну машину. Drum тут — барабан машини, куди кладуть білизну. Sway — плавно гойдатися з боку в бік. The trees sway when the wind blows — дерева гойдаються, коли дме вітер. Drum — один предмет: rotates; trees — кілька: sway."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-03:intro2:r1",
+              "text": "The drum rotates when I start the washing machine."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro2:r2",
+              "text": "The drum rotate when I start the washing machine."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro2:r3",
+              "text": "The drum rotating when I start the washing machine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-03:intro2:r1",
+              "text": "The drum rotates when I start the washing machine."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro2:r2",
+              "text": "The drum rotate when I start the washing machine."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro2:r3",
+              "text": "The drum rotating when I start the washing machine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шторы у окна",
+        "uk": "Штори біля вікна"
+      },
+      "bodyByLocale": {
+        "ru": "Flutter — легко колыхаться или трепетать. The curtains flutter when I open the window — шторы колышутся, когда я открываю окно. Представьте лёгкие шторы, которые двигает сквозняк. Curtains — множественное число, поэтому flutter без -s; после I — open без -s. When показывает, при каком условии это обычно происходит. Это zero conditional, а не рассказ об одном будущем открытии окна.",
+        "uk": "Flutter — легко колихатися або тріпотіти. The curtains flutter when I open the window — штори колишуться, коли я відчиняю вікно. Уявіть легкі штори, які рухає протяг. Curtains — множина, тому flutter без -s; після I — open без -s. When показує, за якої умови це зазвичай відбувається. Це zero conditional, а не розповідь про одне майбутнє відчинення вікна."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-03:intro3:r1",
+              "text": "The curtains flutter when I open the window."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro3:r2",
+              "text": "The curtains flutters when I open the window."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro3:r3",
+              "text": "The curtains fluttering when I open the window."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-03:intro3:r1",
+              "text": "The curtains flutter when I open the window."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro3:r2",
+              "text": "The curtains flutters when I open the window."
+            },
+            {
+              "responseId": "en:lesson-26:session-03:intro3:r3",
+              "text": "The curtains fluttering when I open the window."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ab42e2ed459ea30526b9bc7f527f744fe22642227705ba1e16825554fbeacc55"
+}

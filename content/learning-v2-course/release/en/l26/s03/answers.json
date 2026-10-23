@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-03:word:vibrates",
+    "correctText": "vibrates",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i01",
+    "correctText": "My phone vibrates when someone calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i02",
+    "correctText": "vibrates",
+    "correctResponseId": "en:lesson-26:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i03",
+    "correctText": "My phone vibrates when someone calls.",
+    "correctResponseId": "en:lesson-26:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:word:rotates",
+    "correctText": "rotates",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i04",
+    "correctText": "The drum rotates when I start the washing machine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i05",
+    "correctText": "rotates",
+    "correctResponseId": "en:lesson-26:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i06",
+    "correctText": "The drum rotates when I start the washing machine.",
+    "correctResponseId": "en:lesson-26:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:word:sway",
+    "correctText": "sway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i07",
+    "correctText": "The trees sway when the wind blows.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i08",
+    "correctText": "sway",
+    "correctResponseId": "en:lesson-26:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i09",
+    "correctText": "The trees sway when the wind blows.",
+    "correctResponseId": "en:lesson-26:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:word:flutter",
+    "correctText": "flutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i10",
+    "correctText": "The curtains flutter when I open the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i11",
+    "correctText": "flutter",
+    "correctResponseId": "en:lesson-26:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i12",
+    "correctText": "The curtains flutter when I open the window.",
+    "correctResponseId": "en:lesson-26:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i13",
+    "correctText": "en:lesson-26:session-03:i13:p1=vibrates\nen:lesson-26:session-03:i13:p2=rotates\nen:lesson-26:session-03:i13:p3=sway\nen:lesson-26:session-03:i13:p4=flutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i14",
+    "correctText": "I rest when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i15",
+    "correctText": "I stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i16",
+    "correctText": "His phone vibrates when someone calls.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-03:i17",
+    "correctText": "The curtains flutter when he opens the window.",
+    "correctResponseId": null
+  }
+]

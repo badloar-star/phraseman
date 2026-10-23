@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-55:word:art",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — art",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:word:art:audio"
+      ],
+      "accessibilityLabel": "Картка слова — art",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:word:art:audio",
+          "transcript": "art"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:word:art:r1",
+            "targetText": "art",
+            "meaningByLocale": {
+              "ru": "искусство.",
+              "uk": "мистецтво."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "art",
+          "definitionByLocale": {
+            "ru": "искусство.",
+            "uk": "мистецтво."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я прочитав про мистецтво.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я прочитав про мистецтво.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have read about art.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я прочитал об искусстве.»",
+          "uk": "Скажіть: «Я прочитав про мистецтво.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "read",
+          "about",
+          "art"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про галерею.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про галерею.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о галерее.",
+          "uk": "Доповніть розповідь про галерею."
+        },
+        "gappedTargetPhrase": "I ___ read about art.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-55:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про галерею.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед read.",
+              "uk": "Із I потрібно have перед read."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед read.",
+              "uk": "Із I потрібно have перед read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i03:r1",
+          "text": "I have read about art."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i03:r2",
+          "text": "We have read about art."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i03:r3",
+          "text": "I have written about art."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i03:audio",
+          "transcript": "I have read about art."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:i03:r1",
+            "targetText": "I have read about art.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i03:r2",
+            "targetText": "We have read about art.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i03:r3",
+            "targetText": "I have written about art.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about art.",
+              "uk": "У записі звучить I have read about art."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about art.",
+              "uk": "У записі звучить I have read about art."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:word:painting",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — painting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:word:painting:audio"
+      ],
+      "accessibilityLabel": "Картка слова — painting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:word:painting:audio",
+          "transcript": "painting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:word:painting:r1",
+            "targetText": "painting",
+            "meaningByLocale": {
+              "ru": "картина.",
+              "uk": "картина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "painting",
+          "definitionByLocale": {
+            "ru": "картина.",
+            "uk": "картина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона купила картину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона купила картину.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She bought a painting yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она купила картину.»",
+          "uk": "Скажіть: «Учора вона купила картину.»"
+        },
+        "orderedTokens": [
+          "She",
+          "bought",
+          "a",
+          "painting",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про галерею.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i05:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i05:r2",
+          "text": "has bought"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i05:r3",
+          "text": "buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про галерею.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о галерее.",
+          "uk": "Доповніть розповідь про галерею."
+        },
+        "gappedTargetPhrase": "She ___ a painting yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-55:i05:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i05:r2",
+            "text": "has bought"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i05:r3",
+            "text": "buy"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про галерею.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма bought без has.",
+              "uk": "Із yesterday потрібна форма bought без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма bought без has.",
+              "uk": "Із yesterday потрібна форма bought без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i06:r1",
+          "text": "She bought a painting yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i06:r2",
+          "text": "He bought a painting yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i06:r3",
+          "text": "She bought a painting last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i06:audio",
+          "transcript": "She bought a painting yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:i06:r1",
+            "targetText": "She bought a painting yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i06:r2",
+            "targetText": "He bought a painting yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i06:r3",
+            "targetText": "She bought a painting last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She bought a painting yesterday.",
+              "uk": "У записі звучить She bought a painting yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She bought a painting yesterday.",
+              "uk": "У записі звучить She bought a painting yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:word:sculpture",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sculpture",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:word:sculpture:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sculpture",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:word:sculpture:audio",
+          "transcript": "sculpture"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:word:sculpture:r1",
+            "targetText": "sculpture",
+            "meaningByLocale": {
+              "ru": "скульптура.",
+              "uk": "скульптура."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sculpture",
+          "definitionByLocale": {
+            "ru": "скульптура.",
+            "uk": "скульптура."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми бачили цю скульптуру.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми бачили цю скульптуру.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have seen this sculpture.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы видели эту скульптуру.»",
+          "uk": "Скажіть: «Ми бачили цю скульптуру.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "seen",
+          "this",
+          "sculpture"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про галерею.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про галерею.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о галерее.",
+          "uk": "Доповніть розповідь про галерею."
+        },
+        "gappedTargetPhrase": "We ___ seen this sculpture.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-55:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про галерею.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед seen.",
+              "uk": "Із we потрібно have перед seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед seen.",
+              "uk": "Із we потрібно have перед seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i09:r1",
+          "text": "We have seen this sculpture."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i09:r2",
+          "text": "They have seen this sculpture."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i09:r3",
+          "text": "We have photographed this sculpture."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i09:audio",
+          "transcript": "We have seen this sculpture."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:i09:r1",
+            "targetText": "We have seen this sculpture.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i09:r2",
+            "targetText": "They have seen this sculpture.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i09:r3",
+            "targetText": "We have photographed this sculpture.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen this sculpture.",
+              "uk": "У записі звучить We have seen this sculpture."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen this sculpture.",
+              "uk": "У записі звучить We have seen this sculpture."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:word:landscape",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — landscape",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:word:landscape:audio"
+      ],
+      "accessibilityLabel": "Картка слова — landscape",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:word:landscape:audio",
+          "transcript": "landscape"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:word:landscape:r1",
+            "targetText": "landscape",
+            "meaningByLocale": {
+              "ru": "пейзаж.",
+              "uk": "пейзаж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "landscape",
+          "definitionByLocale": {
+            "ru": "пейзаж.",
+            "uk": "пейзаж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Минулого тижня він намалював пейзаж фарбами.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Минулого тижня він намалював пейзаж фарбами.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He painted a landscape last week.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На прошлой неделе он написал пейзаж.»",
+          "uk": "Скажіть: «Минулого тижня він намалював пейзаж фарбами.»"
+        },
+        "orderedTokens": [
+          "He",
+          "painted",
+          "a",
+          "landscape",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про галерею.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i11:r1",
+          "text": "painted"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i11:r2",
+          "text": "has painted"
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i11:r3",
+          "text": "paint"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про галерею.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о галерее.",
+          "uk": "Доповніть розповідь про галерею."
+        },
+        "gappedTargetPhrase": "He ___ a landscape last week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-55:i11:r1",
+            "text": "painted"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i11:r2",
+            "text": "has painted"
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i11:r3",
+            "text": "paint"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про галерею.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С last week нужна форма painted без has.",
+              "uk": "Із last week потрібна форма painted без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про галерею.",
+            "feedbackByLocale": {
+              "ru": "С last week нужна форма painted без has.",
+              "uk": "Із last week потрібна форма painted без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-55:i12:r1",
+          "text": "He painted a landscape last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i12:r2",
+          "text": "She painted a landscape last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-55:i12:r3",
+          "text": "He painted a landscape yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i12:audio",
+          "transcript": "He painted a landscape last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-55:i12:r1",
+            "targetText": "He painted a landscape last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i12:r2",
+            "targetText": "She painted a landscape last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i12:r3",
+            "targetText": "He painted a landscape yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-55:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He painted a landscape last week.",
+              "uk": "У записі звучить He painted a landscape last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-55:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He painted a landscape last week.",
+              "uk": "У записі звучить He painted a landscape last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-55:i13:p1",
+            "target": "art",
+            "meaningByLocale": {
+              "ru": "искусство",
+              "uk": "мистецтво"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-55:i13:p2",
+            "target": "painting",
+            "meaningByLocale": {
+              "ru": "картина",
+              "uk": "картина"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-55:i13:p3",
+            "target": "sculpture",
+            "meaningByLocale": {
+              "ru": "скульптура",
+              "uk": "скульптура"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-55:i13:p4",
+            "target": "landscape",
+            "meaningByLocale": {
+              "ru": "пейзаж",
+              "uk": "пейзаж"
+            }
+          }
+        ],
+        "leftColumn": [
+          "art",
+          "painting",
+          "sculpture",
+          "landscape"
+        ],
+        "rightColumn": [
+          "мистецтво",
+          "картина",
+          "скульптура",
+          "пейзаж"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми купили картину вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми купили картину вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i16:audio",
+          "transcript": "We bought a painting yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We bought a painting yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-55:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона намалювала пейзаж фарбами минулого тижня».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона намалювала пейзаж фарбами минулого тижня».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-55:i17:audio",
+          "transcript": "She painted a landscape last week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She painted a landscape last week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b76f0325dd2bea8bb93e254669689add729920581b467df85eef7db66e341586"
+}

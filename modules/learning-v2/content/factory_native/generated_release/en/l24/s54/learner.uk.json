@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-54:word:suppose",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — suppose",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:word:suppose:audio"
+      ],
+      "accessibilityLabel": "Картка слова — suppose",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:word:suppose:audio",
+          "transcript": "suppose"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:word:suppose:r1",
+            "targetText": "suppose",
+            "meaningByLocale": {
+              "ru": "полагать, предполагать.",
+              "uk": "гадати, припускати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suppose",
+          "definitionByLocale": {
+            "ru": "полагать, предполагать.",
+            "uk": "гадати, припускати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Гадаю, ви втомилися.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Гадаю, ви втомилися.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I suppose you are tired.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Полагаю, вы устали.»",
+          "uk": "Скажіть: «Гадаю, ви втомилися.»"
+        },
+        "orderedTokens": [
+          "I",
+          "suppose",
+          "you",
+          "are",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пояснення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i02:r1",
+          "text": "suppose"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i02:r2",
+          "text": "supposes"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i02:r3",
+          "text": "supposing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пояснення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните объяснение.",
+          "uk": "Доповніть пояснення."
+        },
+        "gappedTargetPhrase": "I ___ you are tired.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-54:i02:r1",
+            "text": "suppose"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i02:r2",
+            "text": "supposes"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i02:r3",
+            "text": "supposing"
+          }
+        ],
+        "testedDimension": "Доповніть пояснення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма suppose без s.",
+              "uk": "Із I потрібна форма suppose без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма suppose без s.",
+              "uk": "Із I потрібна форма suppose без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i03:r1",
+          "text": "I suppose you are tired."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i03:r2",
+          "text": "We suppose you are tired."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i03:r3",
+          "text": "I suppose you are hungry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i03:audio",
+          "transcript": "I suppose you are tired."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:i03:r1",
+            "targetText": "I suppose you are tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i03:r2",
+            "targetText": "We suppose you are tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i03:r3",
+            "targetText": "I suppose you are hungry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I suppose you are tired.",
+              "uk": "У записі звучить I suppose you are tired."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I suppose you are tired.",
+              "uk": "У записі звучить I suppose you are tired."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:word:dare",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dare",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:word:dare:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dare",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:word:dare:audio",
+          "transcript": "dare"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:word:dare:r1",
+            "targetText": "dare",
+            "meaningByLocale": {
+              "ru": "осмеливаться.",
+              "uk": "наважуватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dare",
+          "definitionByLocale": {
+            "ru": "осмеливаться.",
+            "uk": "наважуватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не наважуюся стрибнути.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не наважуюся стрибнути.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not dare to jump.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не осмеливаюсь прыгнуть.»",
+          "uk": "Скажіть: «Я не наважуюся стрибнути.»"
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "dare",
+          "to",
+          "jump"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пояснення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i05:r1",
+          "text": "dare"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i05:r2",
+          "text": "dares"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i05:r3",
+          "text": "daring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пояснення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните объяснение.",
+          "uk": "Доповніть пояснення."
+        },
+        "gappedTargetPhrase": "I do not ___ to jump.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-54:i05:r1",
+            "text": "dare"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i05:r2",
+            "text": "dares"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i05:r3",
+            "text": "daring"
+          }
+        ],
+        "testedDimension": "Доповніть пояснення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "После do not нужна форма dare.",
+              "uk": "Після do not потрібна форма dare."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "После do not нужна форма dare.",
+              "uk": "Після do not потрібна форма dare."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i06:r1",
+          "text": "I do not dare to jump."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i06:r2",
+          "text": "We do not dare to jump."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i06:r3",
+          "text": "I do not dare to ask."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i06:audio",
+          "transcript": "I do not dare to jump."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:i06:r1",
+            "targetText": "I do not dare to jump.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i06:r2",
+            "targetText": "We do not dare to jump.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i06:r3",
+            "targetText": "I do not dare to ask.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not dare to jump.",
+              "uk": "У записі звучить I do not dare to jump."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not dare to jump.",
+              "uk": "У записі звучить I do not dare to jump."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:word:suffer",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — suffer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:word:suffer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — suffer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:word:suffer:audio",
+          "transcript": "suffer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:word:suffer:r1",
+            "targetText": "suffer",
+            "meaningByLocale": {
+              "ru": "страдать.",
+              "uk": "страждати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suffer",
+          "definitionByLocale": {
+            "ru": "страдать.",
+            "uk": "страждати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Деякі люди страждають від алергії.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Деякі люди страждають від алергії.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Some people suffer from allergies.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Некоторые люди страдают от аллергии.»",
+          "uk": "Скажіть: «Деякі люди страждають від алергії.»"
+        },
+        "orderedTokens": [
+          "Some",
+          "people",
+          "suffer",
+          "from",
+          "allergies"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пояснення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i08:r1",
+          "text": "suffer"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i08:r2",
+          "text": "suffers"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i08:r3",
+          "text": "suffering"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пояснення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните объяснение.",
+          "uk": "Доповніть пояснення."
+        },
+        "gappedTargetPhrase": "Some people ___ from allergies.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-54:i08:r1",
+            "text": "suffer"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i08:r2",
+            "text": "suffers"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i08:r3",
+            "text": "suffering"
+          }
+        ],
+        "testedDimension": "Доповніть пояснення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "С people нужна форма suffer без s.",
+              "uk": "Із people потрібна форма suffer без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "С people нужна форма suffer без s.",
+              "uk": "Із people потрібна форма suffer без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i09:r1",
+          "text": "Some people suffer from allergies."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i09:r2",
+          "text": "Some children suffer from allergies."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i09:r3",
+          "text": "Some people suffer from asthma."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i09:audio",
+          "transcript": "Some people suffer from allergies."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:i09:r1",
+            "targetText": "Some people suffer from allergies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i09:r2",
+            "targetText": "Some children suffer from allergies.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i09:r3",
+            "targetText": "Some people suffer from asthma.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Some people suffer from allergies.",
+              "uk": "У записі звучить Some people suffer from allergies."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Some people suffer from allergies.",
+              "uk": "У записі звучить Some people suffer from allergies."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:word:injure",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — injure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:word:injure:audio"
+      ],
+      "accessibilityLabel": "Картка слова — injure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:word:injure:audio",
+          "transcript": "injure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:word:injure:r1",
+            "targetText": "injure",
+            "meaningByLocale": {
+              "ru": "травмировать.",
+              "uk": "травмувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "injure",
+          "definitionByLocale": {
+            "ru": "травмировать.",
+            "uk": "травмувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я не хочу травмувати коліно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я не хочу травмувати коліно.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I do not want to injure my knee.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я не хочу травмировать колено.»",
+          "uk": "Скажіть: «Я не хочу травмувати коліно.»"
+        },
+        "orderedTokens": [
+          "I",
+          "do",
+          "not",
+          "want",
+          "to",
+          "injure",
+          "my",
+          "knee"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть пояснення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i11:r1",
+          "text": "injure"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i11:r2",
+          "text": "injures"
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i11:r3",
+          "text": "injuring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть пояснення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните объяснение.",
+          "uk": "Доповніть пояснення."
+        },
+        "gappedTargetPhrase": "I do not want to ___ my knee.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-54:i11:r1",
+            "text": "injure"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i11:r2",
+            "text": "injures"
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i11:r3",
+            "text": "injuring"
+          }
+        ],
+        "testedDimension": "Доповніть пояснення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "После to нужна базовая форма injure.",
+              "uk": "Після to потрібна базова форма injure."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть пояснення.",
+            "feedbackByLocale": {
+              "ru": "После to нужна базовая форма injure.",
+              "uk": "Після to потрібна базова форма injure."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-54:i12:r1",
+          "text": "I do not want to injure my knee."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i12:r2",
+          "text": "We do not want to injure our knees."
+        },
+        {
+          "responseId": "en:lesson-24:session-54:i12:r3",
+          "text": "I do not want to injure my back."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i12:audio",
+          "transcript": "I do not want to injure my knee."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-54:i12:r1",
+            "targetText": "I do not want to injure my knee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i12:r2",
+            "targetText": "We do not want to injure our knees.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i12:r3",
+            "targetText": "I do not want to injure my back.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to injure my knee.",
+              "uk": "У записі звучить I do not want to injure my knee."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I do not want to injure my knee.",
+              "uk": "У записі звучить I do not want to injure my knee."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-54:i13:p1",
+            "target": "suppose",
+            "meaningByLocale": {
+              "ru": "полагать, предполагать",
+              "uk": "гадати, припускати"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-54:i13:p2",
+            "target": "dare",
+            "meaningByLocale": {
+              "ru": "осмеливаться",
+              "uk": "наважуватися"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-54:i13:p3",
+            "target": "suffer",
+            "meaningByLocale": {
+              "ru": "страдать",
+              "uk": "страждати"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-54:i13:p4",
+            "target": "injure",
+            "meaningByLocale": {
+              "ru": "травмировать",
+              "uk": "травмувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "suppose",
+          "dare",
+          "suffer",
+          "injure"
+        ],
+        "rightColumn": [
+          "гадати, припускати",
+          "наважуватися",
+          "страждати",
+          "травмувати"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я травмував коліно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я травмував коліно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i16:audio",
+          "transcript": "I have injured my knee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have injured my knee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я не наважився стрибнути вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я не наважився стрибнути вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-54:i17:audio",
+          "transcript": "I did not dare to jump yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I did not dare to jump yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f25b97f76ebfc48150ae7e2f9376c27ac6212d8f29f5c6a82414c8e56c15352b"
+}

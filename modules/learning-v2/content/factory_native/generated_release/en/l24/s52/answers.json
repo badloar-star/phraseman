@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-52:word:college",
+    "correctText": "college",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i01",
+    "correctText": "I have applied to a college.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i03",
+    "correctText": "I have applied to a college.",
+    "correctResponseId": "en:lesson-24:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:word:diploma",
+    "correctText": "diploma",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i04",
+    "correctText": "She received her diploma yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i05",
+    "correctText": "received",
+    "correctResponseId": "en:lesson-24:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i06",
+    "correctText": "She received her diploma yesterday.",
+    "correctResponseId": "en:lesson-24:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:word:scholarship",
+    "correctText": "scholarship",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i07",
+    "correctText": "We have applied for a scholarship.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i09",
+    "correctText": "We have applied for a scholarship.",
+    "correctResponseId": "en:lesson-24:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:word:title",
+    "correctText": "title",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i10",
+    "correctText": "He changed the title of his essay yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i11",
+    "correctText": "changed",
+    "correctResponseId": "en:lesson-24:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i12",
+    "correctText": "He changed the title of his essay yesterday.",
+    "correctResponseId": "en:lesson-24:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i13",
+    "correctText": "en:lesson-24:session-52:i13:p1=college\nen:lesson-24:session-52:i13:p2=diploma\nen:lesson-24:session-52:i13:p3=scholarship\nen:lesson-24:session-52:i13:p4=title",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i16",
+    "correctText": "We applied to a college yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-52:i17",
+    "correctText": "She changed the title of her essay yesterday.",
+    "correctResponseId": null
+  }
+]

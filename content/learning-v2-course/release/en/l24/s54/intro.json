@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Предположение",
+        "uk": "Припущення"
+      },
+      "bodyByLocale": {
+        "ru": "Suppose — полагать, предполагать. I suppose you are tired — полагаю, вы устали. Человек высказывает предположение, а не подтверждённый факт. После I используем suppose без s. Это близко к знакомому I think.",
+        "uk": "Suppose — гадати, припускати. I suppose you are tired — гадаю, ви втомилися. Людина висловлює припущення, а не підтверджений факт. Після I використовуємо suppose без s. Це близько до знайомого I think."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-54:intro1:r1",
+              "text": "I suppose you are tired."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro1:r2",
+              "text": "I supposes you are tired."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro1:r3",
+              "text": "I supposing you are tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-54:intro1:r1",
+              "text": "I suppose you are tired."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro1:r2",
+              "text": "I supposes you are tired."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro1:r3",
+              "text": "I supposing you are tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не решаюсь прыгнуть",
+        "uk": "Не наважуюся стрибнути"
+      },
+      "bodyByLocale": {
+        "ru": "Dare — осмеливаться. I do not dare to jump — я не осмеливаюсь прыгнуть. В этом варианте после do not стоит dare, затем to jump. Про вчера можно сказать I did not dare to jump yesterday — вчера я не осмелился прыгнуть. После did not тоже остаётся dare.",
+        "uk": "Dare — наважуватися. I do not dare to jump — я не наважуюся стрибнути. У цьому варіанті після do not стоїть dare, потім to jump. Про вчора можна сказати I did not dare to jump yesterday — учора я не наважився стрибнути. Після did not теж залишається dare."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-54:intro2:r1",
+              "text": "I do not dare to jump."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro2:r2",
+              "text": "I do not dares to jump."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro2:r3",
+              "text": "I do not daring to jump."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-54:intro2:r1",
+              "text": "I do not dare to jump."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro2:r2",
+              "text": "I do not dares to jump."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro2:r3",
+              "text": "I do not daring to jump."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Состояние и травма",
+        "uk": "Стан і травма"
+      },
+      "bodyByLocale": {
+        "ru": "Suffer — страдать. Some people suffer from allergies — некоторые люди страдают от аллергии. Suffer from связывает состояние с его причиной. Injure — травмировать. I do not want to injure my knee — я не хочу травмировать колено. После to нужна базовая форма injure. О результате можно сказать I have injured my knee — я травмировал колено.",
+        "uk": "Suffer — страждати. Some people suffer from allergies — деякі люди страждають від алергії. Suffer from пов’язує стан із його причиною. Injure — травмувати. I do not want to injure my knee — я не хочу травмувати коліно. Після to потрібна базова форма injure. Про результат можна сказати I have injured my knee — я травмував коліно."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-54:intro3:r1",
+              "text": "I do not want to injure my knee."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro3:r2",
+              "text": "I do not want to injures my knee."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro3:r3",
+              "text": "I do not want to injuring my knee."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-54:intro3:r1",
+              "text": "I do not want to injure my knee."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro3:r2",
+              "text": "I do not want to injures my knee."
+            },
+            {
+              "responseId": "en:lesson-24:session-54:intro3:r3",
+              "text": "I do not want to injuring my knee."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "854a47e5aab3c99f1a84c6372be47d732f6d550b93ab47a789c7f3ef4ab46957"
+}

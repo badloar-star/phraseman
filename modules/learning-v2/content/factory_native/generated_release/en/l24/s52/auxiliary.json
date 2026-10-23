@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-52:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-52:intro1:r3": {
+          "ru": "После have нужна форма applied.",
+          "uk": "Після have потрібна форма applied."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-52:intro2:r2": {
+          "ru": "С yesterday нужно received без has.",
+          "uk": "Із yesterday потрібне received без has."
+        },
+        "en:lesson-24:session-52:intro2:r3": {
+          "ru": "Для прошлого нужна форма received.",
+          "uk": "Для минулого потрібна форма received."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-52:intro3:r2": {
+          "ru": "С yesterday нужно changed без has.",
+          "uk": "Із yesterday потрібне changed без has."
+        },
+        "en:lesson-24:session-52:intro3:r3": {
+          "ru": "Для прошлого нужна форма changed.",
+          "uk": "Для минулого потрібна форма changed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "46e7621da2b62958a67e35e26340693a6cc5f38ee870ba5fd8a6658838e62a16"
+}

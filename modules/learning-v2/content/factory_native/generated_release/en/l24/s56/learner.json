@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-56:word:Europe",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Europe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:word:Europe:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Europe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:word:Europe:audio",
+          "transcript": "Europe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:word:Europe:r1",
+            "targetText": "Europe",
+            "meaningByLocale": {
+              "ru": "Европа.",
+              "uk": "Європа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Europe",
+          "definitionByLocale": {
+            "ru": "Европа.",
+            "uk": "Європа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я путешествовал по Европе.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я путешествовал по Европе.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have travelled around Europe.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я путешествовал по Европе.»",
+          "uk": "Скажіть: «Я подорожував Європою.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "travelled",
+          "around",
+          "Europe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о путешествиях.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о путешествиях.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о путешествиях.",
+          "uk": "Доповніть розповідь про подорожі."
+        },
+        "gappedTargetPhrase": "I ___ travelled around Europe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-56:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о путешествиях.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед travelled.",
+              "uk": "Із I потрібно have перед travelled."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед travelled.",
+              "uk": "Із I потрібно have перед travelled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i03:r1",
+          "text": "I have travelled around Europe."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i03:r2",
+          "text": "We have travelled around Europe."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i03:r3",
+          "text": "I have lived in Europe."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i03:audio",
+          "transcript": "I have travelled around Europe."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:i03:r1",
+            "targetText": "I have travelled around Europe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i03:r2",
+            "targetText": "We have travelled around Europe.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i03:r3",
+            "targetText": "I have lived in Europe.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have travelled around Europe.",
+              "uk": "У записі звучить I have travelled around Europe."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have travelled around Europe.",
+              "uk": "У записі звучить I have travelled around Europe."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:word:Asia",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Asia",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:word:Asia:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Asia",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:word:Asia:audio",
+          "transcript": "Asia"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:word:Asia:r1",
+            "targetText": "Asia",
+            "meaningByLocale": {
+              "ru": "Азия.",
+              "uk": "Азія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Asia",
+          "definitionByLocale": {
+            "ru": "Азия.",
+            "uk": "Азія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Она побывала в Азии в прошлом году.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Она побывала в Азии в прошлом году.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She visited Asia last year.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она побывала в Азии в прошлом году.»",
+          "uk": "Скажіть: «Вона побувала в Азії торік.»"
+        },
+        "orderedTokens": [
+          "She",
+          "visited",
+          "Asia",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о путешествиях.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i05:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i05:r2",
+          "text": "has visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i05:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о путешествиях.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о путешествиях.",
+          "uk": "Доповніть розповідь про подорожі."
+        },
+        "gappedTargetPhrase": "She ___ Asia last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-56:i05:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i05:r2",
+            "text": "has visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i05:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о путешествиях.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма visited без has.",
+              "uk": "Із last year потрібна форма visited без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма visited без has.",
+              "uk": "Із last year потрібна форма visited без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i06:r1",
+          "text": "She visited Asia last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i06:r2",
+          "text": "He visited Asia last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i06:r3",
+          "text": "She visited Asia last month."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i06:audio",
+          "transcript": "She visited Asia last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:i06:r1",
+            "targetText": "She visited Asia last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i06:r2",
+            "targetText": "He visited Asia last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i06:r3",
+            "targetText": "She visited Asia last month.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited Asia last year.",
+              "uk": "У записі звучить She visited Asia last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited Asia last year.",
+              "uk": "У записі звучить She visited Asia last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:word:Africa",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Africa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:word:Africa:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Africa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:word:Africa:audio",
+          "transcript": "Africa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:word:Africa:r1",
+            "targetText": "Africa",
+            "meaningByLocale": {
+              "ru": "Африка.",
+              "uk": "Африка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Africa",
+          "definitionByLocale": {
+            "ru": "Африка.",
+            "uk": "Африка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы бывали в Африке.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы бывали в Африке.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have been to Africa.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы бывали в Африке.»",
+          "uk": "Скажіть: «Ми бували в Африці.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "been",
+          "to",
+          "Africa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о путешествиях.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о путешествиях.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о путешествиях.",
+          "uk": "Доповніть розповідь про подорожі."
+        },
+        "gappedTargetPhrase": "We ___ been to Africa.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-56:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о путешествиях.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед been.",
+              "uk": "Із we потрібно have перед been."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед been.",
+              "uk": "Із we потрібно have перед been."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i09:r1",
+          "text": "We have been to Africa."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i09:r2",
+          "text": "They have been to Africa."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i09:r3",
+          "text": "We have moved to Africa."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i09:audio",
+          "transcript": "We have been to Africa."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:i09:r1",
+            "targetText": "We have been to Africa.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i09:r2",
+            "targetText": "They have been to Africa.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i09:r3",
+            "targetText": "We have moved to Africa.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have been to Africa.",
+              "uk": "У записі звучить We have been to Africa."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have been to Africa.",
+              "uk": "У записі звучить We have been to Africa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:word:Atlantic",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Atlantic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:word:Atlantic:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Atlantic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:word:Atlantic:audio",
+          "transcript": "Atlantic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:word:Atlantic:r1",
+            "targetText": "Atlantic",
+            "meaningByLocale": {
+              "ru": "Атлантический океан.",
+              "uk": "Атлантичний океан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Atlantic",
+          "definitionByLocale": {
+            "ru": "Атлантический океан.",
+            "uk": "Атлантичний океан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «На прошлой неделе они перелетели через Атлантический океан.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «На прошлой неделе они перелетели через Атлантический океан.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They flew across the Atlantic last week.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На прошлой неделе они перелетели через Атлантический океан.»",
+          "uk": "Скажіть: «Минулого тижня вони перелетіли через Атлантичний океан.»"
+        },
+        "orderedTokens": [
+          "They",
+          "flew",
+          "across",
+          "the",
+          "Atlantic",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о путешествиях.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i11:r1",
+          "text": "flew"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i11:r2",
+          "text": "have flown"
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i11:r3",
+          "text": "fly"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о путешествиях.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о путешествиях.",
+          "uk": "Доповніть розповідь про подорожі."
+        },
+        "gappedTargetPhrase": "They ___ across the Atlantic last week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-56:i11:r1",
+            "text": "flew"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i11:r2",
+            "text": "have flown"
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i11:r3",
+            "text": "fly"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о путешествиях.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С last week нужна форма flew без have.",
+              "uk": "Із last week потрібна форма flew без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о путешествиях.",
+            "feedbackByLocale": {
+              "ru": "С last week нужна форма flew без have.",
+              "uk": "Із last week потрібна форма flew без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-56:i12:r1",
+          "text": "They flew across the Atlantic last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i12:r2",
+          "text": "We flew across the Atlantic last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-56:i12:r3",
+          "text": "They flew across the Atlantic yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i12:audio",
+          "transcript": "They flew across the Atlantic last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-56:i12:r1",
+            "targetText": "They flew across the Atlantic last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i12:r2",
+            "targetText": "We flew across the Atlantic last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i12:r3",
+            "targetText": "They flew across the Atlantic yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They flew across the Atlantic last week.",
+              "uk": "У записі звучить They flew across the Atlantic last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They flew across the Atlantic last week.",
+              "uk": "У записі звучить They flew across the Atlantic last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-56:i13:p1",
+            "target": "Europe",
+            "meaningByLocale": {
+              "ru": "Европа",
+              "uk": "Європа"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-56:i13:p2",
+            "target": "Asia",
+            "meaningByLocale": {
+              "ru": "Азия",
+              "uk": "Азія"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-56:i13:p3",
+            "target": "Africa",
+            "meaningByLocale": {
+              "ru": "Африка",
+              "uk": "Африка"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-56:i13:p4",
+            "target": "Atlantic",
+            "meaningByLocale": {
+              "ru": "Атлантический океан",
+              "uk": "Атлантичний океан"
+            }
+          }
+        ],
+        "leftColumn": [
+          "Europe",
+          "Asia",
+          "Africa",
+          "Atlantic"
+        ],
+        "rightColumn": [
+          "Европа",
+          "Азия",
+          "Африка",
+          "Атлантический океан"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы побывали в Азии в прошлом году».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы побывали в Азии в прошлом году».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i16:audio",
+          "transcript": "We visited Asia last year."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We visited Asia last year.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она перелетела через Атлантический океан на прошлой неделе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она перелетела через Атлантический океан на прошлой неделе».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-56:i17:audio",
+          "transcript": "She flew across the Atlantic last week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She flew across the Atlantic last week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0e649f6a960b56ceb87b32f7e628f82734503ee5e5740758baccd807d5d6d13f"
+}

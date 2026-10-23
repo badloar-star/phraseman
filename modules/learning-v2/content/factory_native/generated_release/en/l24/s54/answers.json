@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-54:word:suppose",
+    "correctText": "suppose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i01",
+    "correctText": "I suppose you are tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i02",
+    "correctText": "suppose",
+    "correctResponseId": "en:lesson-24:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i03",
+    "correctText": "I suppose you are tired.",
+    "correctResponseId": "en:lesson-24:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:word:dare",
+    "correctText": "dare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i04",
+    "correctText": "I do not dare to jump.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i05",
+    "correctText": "dare",
+    "correctResponseId": "en:lesson-24:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i06",
+    "correctText": "I do not dare to jump.",
+    "correctResponseId": "en:lesson-24:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:word:suffer",
+    "correctText": "suffer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i07",
+    "correctText": "Some people suffer from allergies.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i08",
+    "correctText": "suffer",
+    "correctResponseId": "en:lesson-24:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i09",
+    "correctText": "Some people suffer from allergies.",
+    "correctResponseId": "en:lesson-24:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:word:injure",
+    "correctText": "injure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i10",
+    "correctText": "I do not want to injure my knee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i11",
+    "correctText": "injure",
+    "correctResponseId": "en:lesson-24:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i12",
+    "correctText": "I do not want to injure my knee.",
+    "correctResponseId": "en:lesson-24:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i13",
+    "correctText": "en:lesson-24:session-54:i13:p1=suppose\nen:lesson-24:session-54:i13:p2=dare\nen:lesson-24:session-54:i13:p3=suffer\nen:lesson-24:session-54:i13:p4=injure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i16",
+    "correctText": "I have injured my knee.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-54:i17",
+    "correctText": "I did not dare to jump yesterday.",
+    "correctResponseId": null
+  }
+]

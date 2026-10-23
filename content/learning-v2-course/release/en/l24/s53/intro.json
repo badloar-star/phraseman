@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "О чём прочитали",
+        "uk": "Про що прочитали"
+      },
+      "bodyByLocale": {
+        "ru": "Disease — заболевание. I have read about this disease — я прочитал об этом заболевании. This указывает на конкретное заболевание в тексте или разговоре. Сообщаем о прочитанном без законченной даты: have read. Read здесь произносится «ред».",
+        "uk": "Disease — захворювання. I have read about this disease — я прочитав про це захворювання. This указує на конкретне захворювання в тексті чи розмові. Повідомляємо про прочитане без завершеної дати: have read. Read тут вимовляється «ред»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-53:intro1:r1",
+              "text": "I have read about this disease."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro1:r2",
+              "text": "I has read about this disease."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro1:r3",
+              "text": "I have reading about this disease."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-53:intro1:r1",
+              "text": "I have read about this disease."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro1:r2",
+              "text": "I has read about this disease."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro1:r3",
+              "text": "I have reading about this disease."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вопрос о препарате",
+        "uk": "Запитання про препарат"
+      },
+      "bodyByLocale": {
+        "ru": "Drug в медицинском разговоре — лекарственный препарат. She asked about the drug yesterday — вчера она спросила о препарате. В других контекстах drug может обозначать наркотик; здесь речь о лекарстве. Cure — средство или способ излечения. We have asked about a cure — мы спросили о средстве излечения.",
+        "uk": "Drug у медичній розмові — лікарський препарат. She asked about the drug yesterday — учора вона запитала про препарат. В інших контекстах drug може означати наркотик; тут ідеться про ліки. Cure — засіб або спосіб зцілення. We have asked about a cure — ми запитали про засіб зцілення."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-53:intro2:r1",
+              "text": "She asked about the drug yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro2:r2",
+              "text": "She has asked about the drug yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro2:r3",
+              "text": "She ask about the drug yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-53:intro2:r1",
+              "text": "She asked about the drug yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro2:r2",
+              "text": "She has asked about the drug yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro2:r3",
+              "text": "She ask about the drug yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рассказ о выздоровлении",
+        "uk": "Розповідь про одужання"
+      },
+      "bodyByLocale": {
+        "ru": "Recovery — выздоровление. He talked about his recovery yesterday — вчера он говорил о своём выздоровлении. His recovery — его выздоровление, her recovery — её выздоровление. Здесь recovery называет процесс возвращения к здоровью. С yesterday нужен talked без has.",
+        "uk": "Recovery — одужання. He talked about his recovery yesterday — учора він говорив про своє одужання. His recovery — його одужання, her recovery — її одужання. Тут recovery називає процес повернення до здоров’я. Із yesterday потрібне talked без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-53:intro3:r1",
+              "text": "He talked about his recovery yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro3:r2",
+              "text": "He has talked about his recovery yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro3:r3",
+              "text": "He talk about his recovery yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-53:intro3:r1",
+              "text": "He talked about his recovery yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro3:r2",
+              "text": "He has talked about his recovery yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-53:intro3:r3",
+              "text": "He talk about his recovery yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb95ad7c10def475b727cce2250a91a583310ef445ddbe9516d4496c28bcbae3"
+}

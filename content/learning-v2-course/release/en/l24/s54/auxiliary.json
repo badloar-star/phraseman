@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-54:intro1:r2": {
+          "ru": "С I нужна форма suppose без s.",
+          "uk": "Із I потрібна форма suppose без s."
+        },
+        "en:lesson-24:session-54:intro1:r3": {
+          "ru": "Здесь нужна форма suppose.",
+          "uk": "Тут потрібна форма suppose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-54:intro2:r2": {
+          "ru": "После do not нужно dare.",
+          "uk": "Після do not потрібно dare."
+        },
+        "en:lesson-24:session-54:intro2:r3": {
+          "ru": "После do not нужна базовая форма dare.",
+          "uk": "Після do not потрібна базова форма dare."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-54:intro3:r2": {
+          "ru": "После to нужно injure.",
+          "uk": "Після to потрібно injure."
+        },
+        "en:lesson-24:session-54:intro3:r3": {
+          "ru": "Здесь нужен инфинитив to injure.",
+          "uk": "Тут потрібен інфінітив to injure."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b0b7f7c12941deafadcf3d9de52d22c98b2dfc694f93a4423cc62d660e8f1423"
+}

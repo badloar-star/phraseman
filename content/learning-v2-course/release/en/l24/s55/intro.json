@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Об искусстве",
+        "uk": "Про мистецтво"
+      },
+      "bodyByLocale": {
+        "ru": "Art — искусство. I have read about art — я прочитал об искусстве. Здесь art обозначает искусство в целом, поэтому без a. Сообщаем о прочитанном без законченной даты: have read. Read здесь произносится «ред».",
+        "uk": "Art — мистецтво. I have read about art — я прочитав про мистецтво. Тут art позначає мистецтво загалом, тому без a. Повідомляємо про прочитане без завершеної дати: have read. Read тут вимовляється «ред»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-55:intro1:r1",
+              "text": "I have read about art."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro1:r2",
+              "text": "I has read about art."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro1:r3",
+              "text": "I have reading about art."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-55:intro1:r1",
+              "text": "I have read about art."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro1:r2",
+              "text": "I has read about art."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro1:r3",
+              "text": "I have reading about art."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Картина для дома",
+        "uk": "Картина для дому"
+      },
+      "bodyByLocale": {
+        "ru": "Painting здесь — картина, готовая работа красками. She bought a painting yesterday — вчера она купила картину. Знакомое paint — рисовать красками, а a painting — предмет, который можно купить и повесить. С yesterday нужен bought без has. Картина уже куплена, осталось найти свободную стену.",
+        "uk": "Painting тут — картина, готова робота фарбами. She bought a painting yesterday — учора вона купила картину. Знайоме paint — малювати фарбами, а a painting — предмет, який можна купити й повісити. Із yesterday потрібне bought без has. Картину вже куплено, залишилося знайти вільну стіну."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-55:intro2:r1",
+              "text": "She bought a painting yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro2:r2",
+              "text": "She has bought a painting yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro2:r3",
+              "text": "She buy a painting yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-55:intro2:r1",
+              "text": "She bought a painting yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro2:r2",
+              "text": "She has bought a painting yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro2:r3",
+              "text": "She buy a painting yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Скульптура и пейзаж",
+        "uk": "Скульптура та пейзаж"
+      },
+      "bodyByLocale": {
+        "ru": "Sculpture — скульптура. We have seen this sculpture — мы видели эту скульптуру. Landscape — пейзаж: вид местности или его изображение. He painted a landscape last week — на прошлой неделе он написал пейзаж. Здесь речь о картине. Last week уже закончилась, поэтому painted без has.",
+        "uk": "Sculpture — скульптура. We have seen this sculpture — ми бачили цю скульптуру. Landscape — пейзаж: вигляд місцевості або його зображення. He painted a landscape last week — минулого тижня він намалював пейзаж фарбами. Тут ідеться про картину. Last week уже завершився, тому painted без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-55:intro3:r1",
+              "text": "He painted a landscape last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro3:r2",
+              "text": "He has painted a landscape last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro3:r3",
+              "text": "He paint a landscape last week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-55:intro3:r1",
+              "text": "He painted a landscape last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro3:r2",
+              "text": "He has painted a landscape last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-55:intro3:r3",
+              "text": "He paint a landscape last week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ddb30c18ca1e44754b2fc5cba04736b390d44b9266602681fa7ff00f900b967d"
+}

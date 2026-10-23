@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заявление на учёбу",
+        "uk": "Заява на навчання"
+      },
+      "bodyByLocale": {
+        "ru": "College — колледж, учебное заведение. I have applied to a college — я подал заявление в колледж. Конкретный тип колледжа зависит от страны; здесь речь о месте учёбы. Apply to указывает, куда подано заявление. Сообщаем результат без законченной даты: have applied.",
+        "uk": "College — коледж, навчальний заклад. I have applied to a college — я подав заяву до коледжу. Конкретний тип коледжу залежить від країни; тут ідеться про місце навчання. Apply to вказує, куди подано заяву. Повідомляємо результат без завершеної дати: have applied."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-52:intro1:r1",
+              "text": "I have applied to a college."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro1:r2",
+              "text": "I has applied to a college."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro1:r3",
+              "text": "I have apply to a college."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-52:intro1:r1",
+              "text": "I have applied to a college."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro1:r2",
+              "text": "I has applied to a college."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro1:r3",
+              "text": "I have apply to a college."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Диплом и стипендия",
+        "uk": "Диплом і стипендія"
+      },
+      "bodyByLocale": {
+        "ru": "Diploma — диплом. She received her diploma yesterday — вчера она получила диплом. Scholarship — стипендия на обучение, финансовая поддержка учёбы. We have applied for a scholarship — мы подали заявление на стипендию. Apply for указывает, что хотим получить; apply to — куда обращаемся. С yesterday нужен received без has.",
+        "uk": "Diploma — диплом. She received her diploma yesterday — учора вона отримала диплом. Scholarship — стипендія на навчання, фінансова підтримка навчання. We have applied for a scholarship — ми подали заяву на стипендію. Apply for указує, що хочемо отримати; apply to — куди звертаємося. Із yesterday потрібне received без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-52:intro2:r1",
+              "text": "She received her diploma yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro2:r2",
+              "text": "She has received her diploma yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro2:r3",
+              "text": "She receive her diploma yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-52:intro2:r1",
+              "text": "She received her diploma yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro2:r2",
+              "text": "She has received her diploma yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro2:r3",
+              "text": "She receive her diploma yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Название текста",
+        "uk": "Назва тексту"
+      },
+      "bodyByLocale": {
+        "ru": "Title — название, заголовок. He changed the title of his essay yesterday — вчера он изменил название своего эссе. The title of связывает название с текстом. Title также подходит для названия книги или фильма. С yesterday используем changed без has. Название стало короче, хотя само эссе ещё занимает три страницы.",
+        "uk": "Title — назва, заголовок. He changed the title of his essay yesterday — учора він змінив назву свого есе. The title of пов’язує назву з текстом. Title також підходить для назви книжки або фільму. Із yesterday використовуємо changed без has. Назва стала коротшою, хоча саме есе ще займає три сторінки."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-52:intro3:r1",
+              "text": "He changed the title of his essay yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro3:r2",
+              "text": "He has changed the title of his essay yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro3:r3",
+              "text": "He change the title of his essay yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-52:intro3:r1",
+              "text": "He changed the title of his essay yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro3:r2",
+              "text": "He has changed the title of his essay yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-52:intro3:r3",
+              "text": "He change the title of his essay yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "09f6b9ab210fb79a8da3a1c4fbec9410fb2b0476e7768a48f291176f1bdac0a0"
+}

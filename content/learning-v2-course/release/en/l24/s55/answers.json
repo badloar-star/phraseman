@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-55:word:art",
+    "correctText": "art",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i01",
+    "correctText": "I have read about art.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i03",
+    "correctText": "I have read about art.",
+    "correctResponseId": "en:lesson-24:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:word:painting",
+    "correctText": "painting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i04",
+    "correctText": "She bought a painting yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i05",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-24:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i06",
+    "correctText": "She bought a painting yesterday.",
+    "correctResponseId": "en:lesson-24:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:word:sculpture",
+    "correctText": "sculpture",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i07",
+    "correctText": "We have seen this sculpture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i09",
+    "correctText": "We have seen this sculpture.",
+    "correctResponseId": "en:lesson-24:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:word:landscape",
+    "correctText": "landscape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i10",
+    "correctText": "He painted a landscape last week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i11",
+    "correctText": "painted",
+    "correctResponseId": "en:lesson-24:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i12",
+    "correctText": "He painted a landscape last week.",
+    "correctResponseId": "en:lesson-24:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i13",
+    "correctText": "en:lesson-24:session-55:i13:p1=art\nen:lesson-24:session-55:i13:p2=painting\nen:lesson-24:session-55:i13:p3=sculpture\nen:lesson-24:session-55:i13:p4=landscape",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i16",
+    "correctText": "We bought a painting yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-55:i17",
+    "correctText": "She painted a landscape last week.",
+    "correctResponseId": null
+  }
+]

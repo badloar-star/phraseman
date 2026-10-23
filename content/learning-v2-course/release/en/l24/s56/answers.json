@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-56:word:Europe",
+    "correctText": "Europe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i01",
+    "correctText": "I have travelled around Europe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i03",
+    "correctText": "I have travelled around Europe.",
+    "correctResponseId": "en:lesson-24:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:word:Asia",
+    "correctText": "Asia",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i04",
+    "correctText": "She visited Asia last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i05",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-24:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i06",
+    "correctText": "She visited Asia last year.",
+    "correctResponseId": "en:lesson-24:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:word:Africa",
+    "correctText": "Africa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i07",
+    "correctText": "We have been to Africa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i09",
+    "correctText": "We have been to Africa.",
+    "correctResponseId": "en:lesson-24:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:word:Atlantic",
+    "correctText": "Atlantic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i10",
+    "correctText": "They flew across the Atlantic last week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i11",
+    "correctText": "flew",
+    "correctResponseId": "en:lesson-24:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i12",
+    "correctText": "They flew across the Atlantic last week.",
+    "correctResponseId": "en:lesson-24:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i13",
+    "correctText": "en:lesson-24:session-56:i13:p1=Europe\nen:lesson-24:session-56:i13:p2=Asia\nen:lesson-24:session-56:i13:p3=Africa\nen:lesson-24:session-56:i13:p4=Atlantic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i16",
+    "correctText": "We visited Asia last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-56:i17",
+    "correctText": "She flew across the Atlantic last week.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-53:word:disease",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — disease",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:word:disease:audio"
+      ],
+      "accessibilityLabel": "Картка слова — disease",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:word:disease:audio",
+          "transcript": "disease"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:word:disease:r1",
+            "targetText": "disease",
+            "meaningByLocale": {
+              "ru": "заболевание.",
+              "uk": "захворювання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disease",
+          "definitionByLocale": {
+            "ru": "заболевание.",
+            "uk": "захворювання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я прочитав про це захворювання.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я прочитав про це захворювання.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have read about this disease.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я прочитал об этом заболевании.»",
+          "uk": "Скажіть: «Я прочитав про це захворювання.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "read",
+          "about",
+          "this",
+          "disease"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про розмову з лікарем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про розмову з лікарем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о разговоре с врачом.",
+          "uk": "Доповніть розповідь про розмову з лікарем."
+        },
+        "gappedTargetPhrase": "I ___ read about this disease.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-53:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед read.",
+              "uk": "Із I потрібно have перед read."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед read.",
+              "uk": "Із I потрібно have перед read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i03:r1",
+          "text": "I have read about this disease."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i03:r2",
+          "text": "We have read about this disease."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i03:r3",
+          "text": "I have written about this disease."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i03:audio",
+          "transcript": "I have read about this disease."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:i03:r1",
+            "targetText": "I have read about this disease.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i03:r2",
+            "targetText": "We have read about this disease.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i03:r3",
+            "targetText": "I have written about this disease.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about this disease.",
+              "uk": "У записі звучить I have read about this disease."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about this disease.",
+              "uk": "У записі звучить I have read about this disease."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:word:drug",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — drug",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:word:drug:audio"
+      ],
+      "accessibilityLabel": "Картка слова — drug",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:word:drug:audio",
+          "transcript": "drug"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:word:drug:r1",
+            "targetText": "drug",
+            "meaningByLocale": {
+              "ru": "лекарственный препарат.",
+              "uk": "лікарський препарат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drug",
+          "definitionByLocale": {
+            "ru": "лекарственный препарат.",
+            "uk": "лікарський препарат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона запитала про препарат.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона запитала про препарат.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She asked about the drug yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она спросила о препарате.»",
+          "uk": "Скажіть: «Учора вона запитала про препарат.»"
+        },
+        "orderedTokens": [
+          "She",
+          "asked",
+          "about",
+          "the",
+          "drug",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про розмову з лікарем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i05:r1",
+          "text": "asked"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i05:r2",
+          "text": "has asked"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i05:r3",
+          "text": "ask"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про розмову з лікарем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о разговоре с врачом.",
+          "uk": "Доповніть розповідь про розмову з лікарем."
+        },
+        "gappedTargetPhrase": "She ___ about the drug yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-53:i05:r1",
+            "text": "asked"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i05:r2",
+            "text": "has asked"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i05:r3",
+            "text": "ask"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма asked без has.",
+              "uk": "Із yesterday потрібна форма asked без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма asked без has.",
+              "uk": "Із yesterday потрібна форма asked без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i06:r1",
+          "text": "She asked about the drug yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i06:r2",
+          "text": "He asked about the drug yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i06:r3",
+          "text": "She asked about the drug last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i06:audio",
+          "transcript": "She asked about the drug yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:i06:r1",
+            "targetText": "She asked about the drug yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i06:r2",
+            "targetText": "He asked about the drug yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i06:r3",
+            "targetText": "She asked about the drug last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked about the drug yesterday.",
+              "uk": "У записі звучить She asked about the drug yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She asked about the drug yesterday.",
+              "uk": "У записі звучить She asked about the drug yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:word:cure",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:word:cure:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:word:cure:audio",
+          "transcript": "cure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:word:cure:r1",
+            "targetText": "cure",
+            "meaningByLocale": {
+              "ru": "средство излечения.",
+              "uk": "засіб зцілення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cure",
+          "definitionByLocale": {
+            "ru": "средство излечения.",
+            "uk": "засіб зцілення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми запитали про засіб зцілення.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми запитали про засіб зцілення.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have asked about a cure.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы спросили о средстве излечения.»",
+          "uk": "Скажіть: «Ми запитали про засіб зцілення.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "asked",
+          "about",
+          "a",
+          "cure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про розмову з лікарем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про розмову з лікарем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о разговоре с врачом.",
+          "uk": "Доповніть розповідь про розмову з лікарем."
+        },
+        "gappedTargetPhrase": "We ___ asked about a cure.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-53:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед asked.",
+              "uk": "Із we потрібно have перед asked."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед asked.",
+              "uk": "Із we потрібно have перед asked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i09:r1",
+          "text": "We have asked about a cure."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i09:r2",
+          "text": "They have asked about a cure."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i09:r3",
+          "text": "We have read about a cure."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i09:audio",
+          "transcript": "We have asked about a cure."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:i09:r1",
+            "targetText": "We have asked about a cure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i09:r2",
+            "targetText": "They have asked about a cure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i09:r3",
+            "targetText": "We have read about a cure.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have asked about a cure.",
+              "uk": "У записі звучить We have asked about a cure."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have asked about a cure.",
+              "uk": "У записі звучить We have asked about a cure."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:word:recovery",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — recovery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:word:recovery:audio"
+      ],
+      "accessibilityLabel": "Картка слова — recovery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:word:recovery:audio",
+          "transcript": "recovery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:word:recovery:r1",
+            "targetText": "recovery",
+            "meaningByLocale": {
+              "ru": "выздоровление.",
+              "uk": "одужання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recovery",
+          "definitionByLocale": {
+            "ru": "выздоровление.",
+            "uk": "одужання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора він говорив про своє одужання.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора він говорив про своє одужання.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He talked about his recovery yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера он говорил о своём выздоровлении.»",
+          "uk": "Скажіть: «Учора він говорив про своє одужання.»"
+        },
+        "orderedTokens": [
+          "He",
+          "talked",
+          "about",
+          "his",
+          "recovery",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про розмову з лікарем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i11:r1",
+          "text": "talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i11:r2",
+          "text": "has talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i11:r3",
+          "text": "talk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про розмову з лікарем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о разговоре с врачом.",
+          "uk": "Доповніть розповідь про розмову з лікарем."
+        },
+        "gappedTargetPhrase": "He ___ about his recovery yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-53:i11:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i11:r2",
+            "text": "has talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i11:r3",
+            "text": "talk"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про розмову з лікарем.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-53:i12:r1",
+          "text": "He talked about his recovery yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i12:r2",
+          "text": "She talked about her recovery yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-53:i12:r3",
+          "text": "He talked about his recovery last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i12:audio",
+          "transcript": "He talked about his recovery yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-53:i12:r1",
+            "targetText": "He talked about his recovery yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i12:r2",
+            "targetText": "She talked about her recovery yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i12:r3",
+            "targetText": "He talked about his recovery last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He talked about his recovery yesterday.",
+              "uk": "У записі звучить He talked about his recovery yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He talked about his recovery yesterday.",
+              "uk": "У записі звучить He talked about his recovery yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-53:i13:p1",
+            "target": "disease",
+            "meaningByLocale": {
+              "ru": "заболевание",
+              "uk": "захворювання"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-53:i13:p2",
+            "target": "drug",
+            "meaningByLocale": {
+              "ru": "лекарственный препарат",
+              "uk": "лікарський препарат"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-53:i13:p3",
+            "target": "cure",
+            "meaningByLocale": {
+              "ru": "средство излечения",
+              "uk": "засіб зцілення"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-53:i13:p4",
+            "target": "recovery",
+            "meaningByLocale": {
+              "ru": "выздоровление",
+              "uk": "одужання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "disease",
+          "drug",
+          "cure",
+          "recovery"
+        ],
+        "rightColumn": [
+          "захворювання",
+          "лікарський препарат",
+          "засіб зцілення",
+          "одужання"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми запитали про препарат учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми запитали про препарат учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i16:audio",
+          "transcript": "We asked about the drug yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We asked about the drug yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона говорила про своє одужання вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона говорила про своє одужання вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-53:i17:audio",
+          "transcript": "She talked about her recovery yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She talked about her recovery yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3c0b1fa281a63376fe06c0d96e07fdf415e4e231d416ac0aea0987cce678863e"
+}

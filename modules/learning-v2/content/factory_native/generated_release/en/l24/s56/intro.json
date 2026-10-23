@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поездки по Европе",
+        "uk": "Поїздки Європою"
+      },
+      "bodyByLocale": {
+        "ru": "Europe — Европа. I have travelled around Europe — я путешествовал по Европе. Around здесь передаёт поездки по разным местам. Название Europe пишется с большой буквы и без the. Have travelled сообщает об опыте без законченной даты.",
+        "uk": "Europe — Європа. I have travelled around Europe — я подорожував Європою. Around тут передає поїздки різними місцями. Назва Europe пишеться з великої літери й без the. Have travelled повідомляє про досвід без завершеної дати."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-56:intro1:r1",
+              "text": "I have travelled around Europe."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro1:r2",
+              "text": "I has travelled around Europe."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro1:r3",
+              "text": "I have travel around Europe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-56:intro1:r1",
+              "text": "I have travelled around Europe."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro1:r2",
+              "text": "I has travelled around Europe."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro1:r3",
+              "text": "I have travel around Europe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Азия и Африка",
+        "uk": "Азія й Африка"
+      },
+      "bodyByLocale": {
+        "ru": "Asia — Азия, Africa — Африка. She visited Asia last year — она побывала в Азии в прошлом году. We have been to Africa — мы бывали в Африке. С last year нужен visited без has; опыт без даты можно передать через have been to. Эти названия тоже употребляются без the.",
+        "uk": "Asia — Азія, Africa — Африка. She visited Asia last year — вона побувала в Азії торік. We have been to Africa — ми бували в Африці. Із last year потрібне visited без has; досвід без дати можна передати через have been to. Ці назви теж уживаються без the."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-56:intro2:r1",
+              "text": "She visited Asia last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro2:r2",
+              "text": "She has visited Asia last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro2:r3",
+              "text": "She visit Asia last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-56:intro2:r1",
+              "text": "She visited Asia last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro2:r2",
+              "text": "She has visited Asia last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro2:r3",
+              "text": "She visit Asia last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Через океан",
+        "uk": "Через океан"
+      },
+      "bodyByLocale": {
+        "ru": "The Atlantic — Атлантический океан. В этом коротком названии сохраняем the. They flew across the Atlantic last week — на прошлой неделе они перелетели через Атлантический океан. Across — через, с одной стороны на другую. Flew — прошедшая форма fly. С last week используем flew без have.",
+        "uk": "The Atlantic — Атлантичний океан. У цій короткій назві зберігаємо the. They flew across the Atlantic last week — минулого тижня вони перелетіли через Атлантичний океан. Across — через, з одного боку на інший. Flew — минула форма fly. Із last week використовуємо flew без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-56:intro3:r1",
+              "text": "They flew across the Atlantic last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro3:r2",
+              "text": "They have flown across the Atlantic last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro3:r3",
+              "text": "They fly across the Atlantic last week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-56:intro3:r1",
+              "text": "They flew across the Atlantic last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro3:r2",
+              "text": "They have flown across the Atlantic last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-56:intro3:r3",
+              "text": "They fly across the Atlantic last week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a2eea3bb8ab723ebf9aaa9f3e55adbeefc12b4e6bb5bafc606abce5e454eac40"
+}

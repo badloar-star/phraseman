@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-52:word:college",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — college",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:college:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — college",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:college:audio",
+            "transcript": "college"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:college:r1",
+              "targetText": "college",
+              "meaningByLocale": {
+                "ru": "колледж.",
+                "uk": "коледж."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "college",
+            "definitionByLocale": {
+              "ru": "колледж.",
+              "uk": "коледж."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я подал заявление в колледж.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я подал заявление в колледж.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have applied to a college.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я подал заявление в колледж.»",
+            "uk": "Скажіть: «Я подав заяву до коледжу.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "applied",
+            "to",
+            "a",
+            "college"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об учёбе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об учёбе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "I ___ applied to a college.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об учёбе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед applied.",
+                "uk": "Із I потрібно have перед applied."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед applied.",
+                "uk": "Із I потрібно have перед applied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i03:r1",
+            "text": "I have applied to a college."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i03:r2",
+            "text": "We have applied to a college."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i03:r3",
+            "text": "I have applied to a university."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i03:audio",
+            "transcript": "I have applied to a college."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i03:r1",
+              "targetText": "I have applied to a college.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i03:r2",
+              "targetText": "We have applied to a college.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i03:r3",
+              "targetText": "I have applied to a university.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have applied to a college.",
+                "uk": "У записі звучить I have applied to a college."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have applied to a college.",
+                "uk": "У записі звучить I have applied to a college."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:word:diploma",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — diploma",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:diploma:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — diploma",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:diploma:audio",
+            "transcript": "diploma"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:diploma:r1",
+              "targetText": "diploma",
+              "meaningByLocale": {
+                "ru": "диплом.",
+                "uk": "диплом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diploma",
+            "definitionByLocale": {
+              "ru": "диплом.",
+              "uk": "диплом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера она получила диплом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера она получила диплом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She received her diploma yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она получила диплом.»",
+            "uk": "Скажіть: «Учора вона отримала диплом.»"
+          },
+          "orderedTokens": [
+            "She",
+            "received",
+            "her",
+            "diploma",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об учёбе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i05:r1",
+            "text": "received"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i05:r2",
+            "text": "has received"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i05:r3",
+            "text": "receive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об учёбе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "She ___ her diploma yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i05:r1",
+              "text": "received"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i05:r2",
+              "text": "has received"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i05:r3",
+              "text": "receive"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об учёбе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма received без has.",
+                "uk": "Із yesterday потрібна форма received без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма received без has.",
+                "uk": "Із yesterday потрібна форма received без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i06:r1",
+            "text": "She received her diploma yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i06:r2",
+            "text": "He received his diploma yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i06:r3",
+            "text": "She received her diploma last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i06:audio",
+            "transcript": "She received her diploma yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i06:r1",
+              "targetText": "She received her diploma yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i06:r2",
+              "targetText": "He received his diploma yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i06:r3",
+              "targetText": "She received her diploma last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She received her diploma yesterday.",
+                "uk": "У записі звучить She received her diploma yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She received her diploma yesterday.",
+                "uk": "У записі звучить She received her diploma yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:word:scholarship",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scholarship",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:scholarship:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scholarship",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:scholarship:audio",
+            "transcript": "scholarship"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:scholarship:r1",
+              "targetText": "scholarship",
+              "meaningByLocale": {
+                "ru": "стипендия на обучение.",
+                "uk": "стипендія на навчання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scholarship",
+            "definitionByLocale": {
+              "ru": "стипендия на обучение.",
+              "uk": "стипендія на навчання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы подали заявление на стипендию.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы подали заявление на стипендию.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have applied for a scholarship.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы подали заявление на стипендию.»",
+            "uk": "Скажіть: «Ми подали заяву на стипендію.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "applied",
+            "for",
+            "a",
+            "scholarship"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об учёбе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об учёбе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "We ___ applied for a scholarship.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об учёбе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед applied.",
+                "uk": "Із we потрібно have перед applied."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед applied.",
+                "uk": "Із we потрібно have перед applied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i09:r1",
+            "text": "We have applied for a scholarship."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i09:r2",
+            "text": "They have applied for a scholarship."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i09:r3",
+            "text": "We have received a scholarship."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i09:audio",
+            "transcript": "We have applied for a scholarship."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i09:r1",
+              "targetText": "We have applied for a scholarship.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i09:r2",
+              "targetText": "They have applied for a scholarship.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i09:r3",
+              "targetText": "We have received a scholarship.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have applied for a scholarship.",
+                "uk": "У записі звучить We have applied for a scholarship."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have applied for a scholarship.",
+                "uk": "У записі звучить We have applied for a scholarship."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:word:title",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — title",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:title:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — title",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:title:audio",
+            "transcript": "title"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:title:r1",
+              "targetText": "title",
+              "meaningByLocale": {
+                "ru": "название, заголовок.",
+                "uk": "назва, заголовок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "title",
+            "definitionByLocale": {
+              "ru": "название, заголовок.",
+              "uk": "назва, заголовок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера он изменил название своего эссе.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера он изменил название своего эссе.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He changed the title of his essay yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера он изменил название своего эссе.»",
+            "uk": "Скажіть: «Учора він змінив назву свого есе.»"
+          },
+          "orderedTokens": [
+            "He",
+            "changed",
+            "the",
+            "title",
+            "of",
+            "his",
+            "essay",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об учёбе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i11:r1",
+            "text": "changed"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i11:r2",
+            "text": "has changed"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i11:r3",
+            "text": "change"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об учёбе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "He ___ the title of his essay yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i11:r1",
+              "text": "changed"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i11:r2",
+              "text": "has changed"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i11:r3",
+              "text": "change"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об учёбе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма changed без has.",
+                "uk": "Із yesterday потрібна форма changed без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об учёбе.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма changed без has.",
+                "uk": "Із yesterday потрібна форма changed без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i12:r1",
+            "text": "He changed the title of his essay yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i12:r2",
+            "text": "She changed the title of her essay yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i12:r3",
+            "text": "He changed the title of his essay last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i12:audio",
+            "transcript": "He changed the title of his essay yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i12:r1",
+              "targetText": "He changed the title of his essay yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i12:r2",
+              "targetText": "She changed the title of her essay yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i12:r3",
+              "targetText": "He changed the title of his essay last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He changed the title of his essay yesterday.",
+                "uk": "У записі звучить He changed the title of his essay yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He changed the title of his essay yesterday.",
+                "uk": "У записі звучить He changed the title of his essay yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-52:i13:p1",
+              "target": "college",
+              "meaningByLocale": {
+                "ru": "колледж",
+                "uk": "коледж"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-52:i13:p2",
+              "target": "diploma",
+              "meaningByLocale": {
+                "ru": "диплом",
+                "uk": "диплом"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-52:i13:p3",
+              "target": "scholarship",
+              "meaningByLocale": {
+                "ru": "стипендия на обучение",
+                "uk": "стипендія на навчання"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-52:i13:p4",
+              "target": "title",
+              "meaningByLocale": {
+                "ru": "название, заголовок",
+                "uk": "назва, заголовок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "college",
+            "diploma",
+            "scholarship",
+            "title"
+          ],
+          "rightColumn": [
+            "колледж",
+            "диплом",
+            "стипендия на обучение",
+            "название, заголовок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы подали заявление в колледж вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы подали заявление в колледж вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i16:audio",
+            "transcript": "We applied to a college yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We applied to a college yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она изменила название своего эссе вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она изменила название своего эссе вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i17:audio",
+            "transcript": "She changed the title of her essay yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She changed the title of her essay yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-52:word:college",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — college",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:college:audio"
+        ],
+        "accessibilityLabel": "Картка слова — college",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:college:audio",
+            "transcript": "college"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:college:r1",
+              "targetText": "college",
+              "meaningByLocale": {
+                "ru": "колледж.",
+                "uk": "коледж."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "college",
+            "definitionByLocale": {
+              "ru": "колледж.",
+              "uk": "коледж."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я подав заяву до коледжу.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я подав заяву до коледжу.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have applied to a college.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я подал заявление в колледж.»",
+            "uk": "Скажіть: «Я подав заяву до коледжу.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "applied",
+            "to",
+            "a",
+            "college"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про навчання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про навчання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "I ___ applied to a college.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про навчання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед applied.",
+                "uk": "Із I потрібно have перед applied."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед applied.",
+                "uk": "Із I потрібно have перед applied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i03:r1",
+            "text": "I have applied to a college."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i03:r2",
+            "text": "We have applied to a college."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i03:r3",
+            "text": "I have applied to a university."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i03:audio",
+            "transcript": "I have applied to a college."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i03:r1",
+              "targetText": "I have applied to a college.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i03:r2",
+              "targetText": "We have applied to a college.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i03:r3",
+              "targetText": "I have applied to a university.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have applied to a college.",
+                "uk": "У записі звучить I have applied to a college."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have applied to a college.",
+                "uk": "У записі звучить I have applied to a college."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:word:diploma",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — diploma",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:diploma:audio"
+        ],
+        "accessibilityLabel": "Картка слова — diploma",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:diploma:audio",
+            "transcript": "diploma"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:diploma:r1",
+              "targetText": "diploma",
+              "meaningByLocale": {
+                "ru": "диплом.",
+                "uk": "диплом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diploma",
+            "definitionByLocale": {
+              "ru": "диплом.",
+              "uk": "диплом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вона отримала диплом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вона отримала диплом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She received her diploma yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она получила диплом.»",
+            "uk": "Скажіть: «Учора вона отримала диплом.»"
+          },
+          "orderedTokens": [
+            "She",
+            "received",
+            "her",
+            "diploma",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про навчання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i05:r1",
+            "text": "received"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i05:r2",
+            "text": "has received"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i05:r3",
+            "text": "receive"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про навчання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "She ___ her diploma yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i05:r1",
+              "text": "received"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i05:r2",
+              "text": "has received"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i05:r3",
+              "text": "receive"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про навчання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма received без has.",
+                "uk": "Із yesterday потрібна форма received без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма received без has.",
+                "uk": "Із yesterday потрібна форма received без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i06:r1",
+            "text": "She received her diploma yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i06:r2",
+            "text": "He received his diploma yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i06:r3",
+            "text": "She received her diploma last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i06:audio",
+            "transcript": "She received her diploma yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i06:r1",
+              "targetText": "She received her diploma yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i06:r2",
+              "targetText": "He received his diploma yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i06:r3",
+              "targetText": "She received her diploma last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She received her diploma yesterday.",
+                "uk": "У записі звучить She received her diploma yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She received her diploma yesterday.",
+                "uk": "У записі звучить She received her diploma yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:word:scholarship",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scholarship",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:scholarship:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scholarship",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:scholarship:audio",
+            "transcript": "scholarship"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:scholarship:r1",
+              "targetText": "scholarship",
+              "meaningByLocale": {
+                "ru": "стипендия на обучение.",
+                "uk": "стипендія на навчання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scholarship",
+            "definitionByLocale": {
+              "ru": "стипендия на обучение.",
+              "uk": "стипендія на навчання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми подали заяву на стипендію.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми подали заяву на стипендію.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have applied for a scholarship.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы подали заявление на стипендию.»",
+            "uk": "Скажіть: «Ми подали заяву на стипендію.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "applied",
+            "for",
+            "a",
+            "scholarship"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про навчання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про навчання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "We ___ applied for a scholarship.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про навчання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед applied.",
+                "uk": "Із we потрібно have перед applied."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед applied.",
+                "uk": "Із we потрібно have перед applied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i09:r1",
+            "text": "We have applied for a scholarship."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i09:r2",
+            "text": "They have applied for a scholarship."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i09:r3",
+            "text": "We have received a scholarship."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i09:audio",
+            "transcript": "We have applied for a scholarship."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i09:r1",
+              "targetText": "We have applied for a scholarship.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i09:r2",
+              "targetText": "They have applied for a scholarship.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i09:r3",
+              "targetText": "We have received a scholarship.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have applied for a scholarship.",
+                "uk": "У записі звучить We have applied for a scholarship."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have applied for a scholarship.",
+                "uk": "У записі звучить We have applied for a scholarship."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:word:title",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — title",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:word:title:audio"
+        ],
+        "accessibilityLabel": "Картка слова — title",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:word:title:audio",
+            "transcript": "title"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:word:title:r1",
+              "targetText": "title",
+              "meaningByLocale": {
+                "ru": "название, заголовок.",
+                "uk": "назва, заголовок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "title",
+            "definitionByLocale": {
+              "ru": "название, заголовок.",
+              "uk": "назва, заголовок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора він змінив назву свого есе.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора він змінив назву свого есе.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He changed the title of his essay yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера он изменил название своего эссе.»",
+            "uk": "Скажіть: «Учора він змінив назву свого есе.»"
+          },
+          "orderedTokens": [
+            "He",
+            "changed",
+            "the",
+            "title",
+            "of",
+            "his",
+            "essay",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про навчання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i11:r1",
+            "text": "changed"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i11:r2",
+            "text": "has changed"
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i11:r3",
+            "text": "change"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про навчання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об учёбе.",
+            "uk": "Доповніть розповідь про навчання."
+          },
+          "gappedTargetPhrase": "He ___ the title of his essay yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-52:i11:r1",
+              "text": "changed"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i11:r2",
+              "text": "has changed"
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i11:r3",
+              "text": "change"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про навчання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма changed без has.",
+                "uk": "Із yesterday потрібна форма changed без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про навчання.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма changed без has.",
+                "uk": "Із yesterday потрібна форма changed без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-52:i12:r1",
+            "text": "He changed the title of his essay yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i12:r2",
+            "text": "She changed the title of her essay yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-52:i12:r3",
+            "text": "He changed the title of his essay last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i12:audio",
+            "transcript": "He changed the title of his essay yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-52:i12:r1",
+              "targetText": "He changed the title of his essay yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i12:r2",
+              "targetText": "She changed the title of her essay yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i12:r3",
+              "targetText": "He changed the title of his essay last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He changed the title of his essay yesterday.",
+                "uk": "У записі звучить He changed the title of his essay yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He changed the title of his essay yesterday.",
+                "uk": "У записі звучить He changed the title of his essay yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-52:i13:p1",
+              "target": "college",
+              "meaningByLocale": {
+                "ru": "колледж",
+                "uk": "коледж"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-52:i13:p2",
+              "target": "diploma",
+              "meaningByLocale": {
+                "ru": "диплом",
+                "uk": "диплом"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-52:i13:p3",
+              "target": "scholarship",
+              "meaningByLocale": {
+                "ru": "стипендия на обучение",
+                "uk": "стипендія на навчання"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-52:i13:p4",
+              "target": "title",
+              "meaningByLocale": {
+                "ru": "название, заголовок",
+                "uk": "назва, заголовок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "college",
+            "diploma",
+            "scholarship",
+            "title"
+          ],
+          "rightColumn": [
+            "коледж",
+            "диплом",
+            "стипендія на навчання",
+            "назва, заголовок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми подали заяву до коледжу вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми подали заяву до коледжу вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i16:audio",
+            "transcript": "We applied to a college yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We applied to a college yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона змінила назву свого есе вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона змінила назву свого есе вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-52:i17:audio",
+            "transcript": "She changed the title of her essay yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She changed the title of her essay yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-52:word:college",
+      "correctText": "college",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i01",
+      "correctText": "I have applied to a college.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i03",
+      "correctText": "I have applied to a college.",
+      "correctResponseId": "en:lesson-24:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:word:diploma",
+      "correctText": "diploma",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i04",
+      "correctText": "She received her diploma yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i05",
+      "correctText": "received",
+      "correctResponseId": "en:lesson-24:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i06",
+      "correctText": "She received her diploma yesterday.",
+      "correctResponseId": "en:lesson-24:session-52:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:word:scholarship",
+      "correctText": "scholarship",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i07",
+      "correctText": "We have applied for a scholarship.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i09",
+      "correctText": "We have applied for a scholarship.",
+      "correctResponseId": "en:lesson-24:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:word:title",
+      "correctText": "title",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i10",
+      "correctText": "He changed the title of his essay yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i11",
+      "correctText": "changed",
+      "correctResponseId": "en:lesson-24:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i12",
+      "correctText": "He changed the title of his essay yesterday.",
+      "correctResponseId": "en:lesson-24:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i16",
+      "correctText": "We applied to a college yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-52:i17",
+      "correctText": "She changed the title of her essay yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

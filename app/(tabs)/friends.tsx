@@ -162,7 +162,7 @@ import FriendPairMilestoneHost from '../../components/friends_together/FriendPai
 import FriendsOfflineStrip from '../../components/friends_together/FriendsOfflineStrip';
 import { useFriendsOffline } from '../../hooks/use_friends_offline';
 import { noteFriendsListServerSnapshot } from '../friends_together/friends_list_sync';
-import { rememberAcceptedLessonInvite, startLessonTogetherClaimer } from '../friends_together/lesson_together_claim';
+import { creditLessonTogetherForInviter, rememberAcceptedLessonInvite, startLessonTogetherClaimer } from '../friends_together/lesson_together_claim';
 import FriendDuelChallengeSheet from '../../components/friends_together/FriendDuelChallengeSheet';
 import { useDuelChallenge } from '../../hooks/use_duel_challenge';
 import { duelCopy } from '../friends_together/duel_copy';
@@ -954,6 +954,11 @@ export default function FriendsTabScreen() {
       setFriendEvents(friendSocialEventsFromNotifications(rows));
       // зачем (идея 3): пришёл итог или отказ по дуэли — снимаем «дуэль уже идёт» в журнале вызовов, не дожидаясь суток
       if (FRIENDS_TOGETHER_UI_ENABLED) void closeSentDuels(duelClosuresFromNotifications(rows));
+      // зачем (идея 2, закон владельца 22.10 «монеты выдаёт телефон»): друг прошёл по моему приглашению — +2 «вместе»
+      // начисляет мой телефон из уже загруженных «Сообщений» (0 чтений); повтор того же уведомления ничего не даёт
+      if (FRIENDS_TOGETHER_UI_ENABLED) {
+        void creditLessonTogetherForInviter(rows).catch(noteSwallowedHandler('friends:lesson_together_inviter_credit'));
+      }
     };
     let unsubFreshRequests: (() => void) | null = null;
     let socialRefreshStarted = false;
@@ -3072,7 +3077,7 @@ export default function FriendsTabScreen() {
           }
           startLessonTogetherClaimer();
           if (invite.event.inviteId) {
-            void rememberAcceptedLessonInvite({ inviteId: invite.event.inviteId, lessonOrdinal: lesson.lessonOrdinal, sessionOrdinal: lesson.sessionOrdinal, expiresAtMs: invite.event.expiresAtMs ?? null, inviterName: invite.friendName, acceptedAtMs: Date.now() });
+            void rememberAcceptedLessonInvite({ inviteId: invite.event.inviteId, inviterUid: invite.event.actorStableUid, lessonOrdinal: lesson.lessonOrdinal, sessionOrdinal: lesson.sessionOrdinal, expiresAtMs: invite.event.expiresAtMs ?? null, inviterName: invite.friendName, acceptedAtMs: Date.now() });
           }
           launchLearningV2SessionByOrdinalsV1({ lessonOrdinal: lesson.lessonOrdinal, sessionOrdinal: lesson.sessionOrdinal, from: 'friend_lesson_invite' }, { lang, studyTarget, push: (href) => router.push(href as never) })
             .catch((e: unknown) => console.warn(`[FRIENDS-2] lesson_invite:launch failed → вкладка уроков: ${e instanceof Error ? e.message : String(e)}`)); // guard-ok: catch называет причину

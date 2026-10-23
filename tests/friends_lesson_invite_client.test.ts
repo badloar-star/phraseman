@@ -1,7 +1,8 @@
 /**
  * lesson_invite_client — «Урок вместе» (идея 2): формат вызовов согласован с 1 · ЯДРО 22.10.
  * Сторож: до трёх друзей; повтор при сбое сети — тем же requestId; лимит/не друзья — без повтора; числа телефона — только
- * целые в пределах; отправленные приглашения помним на телефоне; claim — один повтор на not_completed, потом тихо.
+ * целые в пределах; отправленные приглашения помним на телефоне; отметка «выполнено» (закон владельца 22.10: сервер только
+ * хранит, +2 начисляет телефон) — один повтор на сеть, окончательные отказы без повтора, битая запись — без вызова.
  */
 const mockStorage: Record<string, string> = {};
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -23,7 +24,7 @@ const mockSender: { current: { stableId: string; displayName?: string } | null }
 jest.mock('../app/friends_together/sender_identity', () => ({ prepareTogetherSender: () => Promise.resolve(mockSender.current) }));
 jest.mock('../app/user_id_policy', () => ({ getCanonicalUserId: () => Promise.resolve('me-1') }));
 
-import { claimLessonTogether, readSentLessonInvites, sendLessonInvites } from '../app/friends_together/lesson_invite_client';
+import { markLessonTogether, readSentLessonInvites, sendLessonInvites } from '../app/friends_together/lesson_invite_client';
 
 const ok = (data: unknown) => () => Promise.resolve({ data });
 const fail = (code: string) => () => Promise.reject(Object.assign(new Error(code), { code: `functions/${code}` }));
@@ -90,26 +91,31 @@ describe('позвать на занятие', () => {
   });
 });
 
-describe('награда «вместе»', () => {
-  it('засчитано — монеты и имя пригласившего', async () => {
-    mockResponses.friendsLessonTogetherClaim = [ok({ ok: true, coins: 2, inviterName: 'Алекс' })];
-    expect(await claimLessonTogether({ inviteId: 'inv', mutationId: 'm1' }, 0)).toEqual({ ok: true, coins: 2, inviterName: 'Алекс' });
-    expect(mockCalls[0]!.payload).toEqual({ inviteId: 'inv', mutationId: 'm1' });
+describe('отметка «выполнено» (сервер хранит, +2 начисляет телефон)', () => {
+  const FID = 'fli_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+
+  it('сервер хранит отметку: день друга и имя пригласившего; повтор — replay', async () => {
+    mockResponses.friendsLessonTogetherMark = [ok({ ok: true, replay: false, coins: 2, inviterName: 'Алекс', dayKey: '2026-10-22' })];
+    expect(await markLessonTogether({ inviteId: FID, dayKey: '2026-10-22' }, 0)).toEqual({ ok: true, replay: false, inviterName: 'Алекс', dayKey: '2026-10-22' });
+    expect(mockCalls[0]).toEqual({ name: 'friendsLessonTogetherMark', payload: { inviteId: FID, dayKey: '2026-10-22' } });
+    mockResponses.friendsLessonTogetherMark = [ok({ ok: true, replay: true, inviterName: 'Алекс', dayKey: '2026-10-22' })];
+    expect((await markLessonTogether({ inviteId: FID, dayKey: '2026-10-22' }, 0)).ok).toBe(true);
   });
 
-  it('засчитывание ещё не дошло до сервера — один повтор, потом тихо', async () => {
-    mockResponses.friendsLessonTogetherClaim = [fail('failed-precondition not_completed'), ok({ ok: true, coins: 2, inviterName: 'Алекс' })];
-    expect((await claimLessonTogether({ inviteId: 'inv', mutationId: 'm1' }, 0)).ok).toBe(true);
-    mockResponses.friendsLessonTogetherClaim = [fail('failed-precondition not_completed'), fail('failed-precondition not_completed')];
-    expect(await claimLessonTogether({ inviteId: 'inv', mutationId: 'm1' }, 0)).toEqual({ ok: false, reason: 'not_completed' });
-    expect(mockCalls).toHaveLength(4);
+  it('сеть — один повтор, потом тихо (вызывающий повторит при следующем запуске)', async () => {
+    mockResponses.friendsLessonTogetherMark = [fail('unavailable'), fail('unavailable')];
+    expect(await markLessonTogether({ inviteId: FID, dayKey: '2026-10-22' }, 0)).toEqual({ ok: false, reason: 'network' });
+    expect(mockCalls).toHaveLength(2);
   });
 
-  it('истекло / уже забрано / не приглашён — без повтора', async () => {
-    for (const reason of ['expired', 'already_claimed', 'not_invited'] as const) {
-      mockResponses.friendsLessonTogetherClaim = [fail(`failed-precondition ${reason}`)];
-      expect(await claimLessonTogether({ inviteId: 'inv', mutationId: 'm1' }, 0)).toEqual({ ok: false, reason });
-    }
-    expect(mockCalls).toHaveLength(3);
+  it('не наше приглашение / выключено — без повтора; битая запись — без вызова', async () => {
+    mockResponses.friendsLessonTogetherMark = [fail('permission-denied not_invited')];
+    expect(await markLessonTogether({ inviteId: FID, dayKey: '2026-10-22' }, 0)).toEqual({ ok: false, reason: 'not_invited' });
+    mockResponses.friendsLessonTogetherMark = [fail('failed-precondition disabled')];
+    expect(await markLessonTogether({ inviteId: FID, dayKey: '2026-10-22' }, 0)).toEqual({ ok: false, reason: 'disabled' });
+    expect(mockCalls).toHaveLength(2);
+    expect(await markLessonTogether({ inviteId: 'inv', dayKey: '2026-10-22' }, 0)).toEqual({ ok: false, reason: 'invalid' });
+    expect(await markLessonTogether({ inviteId: FID, dayKey: '22.10' }, 0)).toEqual({ ok: false, reason: 'invalid' });
+    expect(mockCalls).toHaveLength(2);
   });
 });

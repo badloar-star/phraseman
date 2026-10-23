@@ -1,12 +1,13 @@
 /**
- * «Урок вместе» (идея 2) — сторона телефона: позвать друзей на занятие, помнить отправленные приглашения и забрать
- * награду «вместе» после засчитанного занятия у друга.
+ * «Урок вместе» (идея 2) — сторона телефона: позвать друзей на занятие, помнить отправленные приглашения и отметить
+ * «выполнено» после засчитанного занятия у друга (награду «вместе» телефон начисляет сам).
  *
  * зачем (владелец 21.10, макет docs/design/v2-app/friends-full.html, идея 2; формат сервера согласован с 1 · ЯДРО 22.10):
  * - friendsLessonInvite {friendUids ≤ 3, lessonKey, requestId, minutes?, stars?} → {ok, inviteIds{uid: id}, expiresAtMs{uid: ms}};
  *   повтор с тем же requestId сервер узнаёт по расписке — второго пуша не будет.
- * - friendsLessonTogetherClaim {inviteId, mutationId} → {ok, coins, inviterName} | reason expired / not_completed /
- *   already_claimed / not_invited. not_completed — засчитывание ещё не дошло до сервера: один повтор через ~3 с, потом тихо.
+ * - friendsLessonTogetherMark {inviteId, dayKey} → {ok, replay, coins, inviterName, dayKey} | reason not_invited / invalid_mark /
+ *   disabled (Ядро 652953424, закон владельца 22.10 «сервер для сохранения, а не решений»): сервер только хранит «выполнено»
+ *   и зовёт пригласившего; +2 начисляет сам телефон через кошелёк (lesson_together_claim.ts). Сеть — один повтор через ~3 с.
  * - Отправленные приглашения — только на телефоне (AsyncStorage, своё на аккаунт): строка «приглашение закончилось
  *   в полночь» считается здесь, без планировщика и без чтений Firestore.
  */
@@ -23,17 +24,18 @@ const REGION = 'us-central1';
 const SENT_KEY = 'friends_lesson_invites_sent_v1';
 /** Сколько хранить отправленные приглашения после истечения — для строки «закончилось» утром. */
 const SENT_KEEP_AFTER_EXPIRY_MS = 36 * 60 * 60 * 1000;
-export const LESSON_CLAIM_RETRY_MS = 3_000;
+export const LESSON_MARK_RETRY_MS = 3_000;
 
 export type LessonInviteSendReason = 'network' | 'limit' | 'not_friends' | 'disabled' | 'no_sender';
 export type LessonInviteSendResult =
   | Readonly<{ ok: true; inviteIds: Readonly<Record<string, string>>; expiresAtMs: Readonly<Record<string, number>> }>
   | Readonly<{ ok: false; reason: LessonInviteSendReason }>;
 
-export type LessonClaimReason = 'expired' | 'not_completed' | 'already_claimed' | 'not_invited' | 'network';
-export type LessonClaimResult =
-  | Readonly<{ ok: true; coins: number; inviterName: string }>
-  | Readonly<{ ok: false; reason: LessonClaimReason }>;
+/** not_invited / invalid — окончательно (приглашение не наше или запись битая); disabled и network — можно повторить позже. */
+export type LessonMarkReason = 'not_invited' | 'invalid' | 'disabled' | 'network';
+export type LessonMarkResult =
+  | Readonly<{ ok: true; replay: boolean; inviterName: string; dayKey: string }>
+  | Readonly<{ ok: false; reason: LessonMarkReason }>;
 
 export type SentLessonInvite = Readonly<{ inviteId: string; friendUid: string; lessonKey: string; sentAtMs: number; expiresAtMs: number }>;
 
@@ -52,12 +54,11 @@ function classifySendError(error: unknown): LessonInviteSendReason {
   return 'network';
 }
 
-function classifyClaimError(error: unknown): LessonClaimReason {
+function classifyMarkError(error: unknown): LessonMarkReason {
   const text = `${String((error as { code?: unknown })?.code ?? '')} ${errText(error)}`.toLowerCase();
-  if (text.includes('expired')) return 'expired';
-  if (text.includes('not_completed')) return 'not_completed';
-  if (text.includes('already_claimed')) return 'already_claimed';
   if (text.includes('not_invited')) return 'not_invited';
+  if (text.includes('invalid_mark') || text.includes('invalid-argument')) return 'invalid';
+  if (text.includes('disabled')) return 'disabled';
   return 'network';
 }
 
@@ -158,32 +159,33 @@ export async function sendLessonInvites(input: Readonly<{ friendUids: readonly s
   return { ok: false, reason: 'network' };
 }
 
-type ClaimResponse = { ok?: unknown; coins?: unknown; inviterName?: unknown };
+type MarkResponse = { ok?: unknown; replay?: unknown; inviterName?: unknown; dayKey?: unknown };
 
 const wait = (ms: number): Promise<void> => new Promise((resolve) => { setTimeout(resolve, ms); });
 
 /**
- * Забрать награду «вместе» за занятие по приглашению. Один повтор через ~3 с, если засчитывание ещё не дошло до сервера
- * (not_completed) или пропала сеть; дальше — тихо, без бесконечных повторов.
+ * Отметить приглашение «выполнено» после своего засчитанного занятия. Монеты уже начислены телефоном — здесь только запись
+ * на сервере и уведомление пригласившему. Сеть — один повтор через ~3 с; дальше тихо (вызывающий повторит позже).
  */
-export async function claimLessonTogether(input: Readonly<{ inviteId: string; mutationId: string }>, retryDelayMs: number = LESSON_CLAIM_RETRY_MS): Promise<LessonClaimResult> {
-  if (!input.inviteId || !input.mutationId) {
-    log(`claim:skip reason=${input.inviteId ? 'no_mutation' : 'no_invite'}`);
-    return { ok: false, reason: 'not_invited' };
+export async function markLessonTogether(input: Readonly<{ inviteId: string; dayKey: string }>, retryDelayMs: number = LESSON_MARK_RETRY_MS): Promise<LessonMarkResult> {
+  if (!/^fli_[a-f0-9]{32}$/.test(input.inviteId) || !/^\d{4}-\d{2}-\d{2}$/.test(input.dayKey)) {
+    log(`mark:skip reason=invalid invite=${maskUid(input.inviteId)} day=${input.dayKey}`);
+    return { ok: false, reason: 'invalid' };
   }
-  const fn = httpsCallable<{ inviteId: string; mutationId: string }, ClaimResponse>(getFunctions(getApp(), REGION), 'friendsLessonTogetherClaim');
+  const fn = httpsCallable<{ inviteId: string; dayKey: string }, MarkResponse>(getFunctions(getApp(), REGION), 'friendsLessonTogetherMark');
   for (let attempt = 1; attempt <= 2; attempt += 1) {
+    const startedAt = Date.now();
     try {
-      const res = await fn({ inviteId: input.inviteId, mutationId: input.mutationId });
+      const res = await fn({ inviteId: input.inviteId, dayKey: input.dayKey });
       const data = res.data ?? {};
-      const coins = typeof data.coins === 'number' && Number.isFinite(data.coins) ? data.coins : 0;
       const inviterName = typeof data.inviterName === 'string' ? data.inviterName : '';
-      log(`claim:ok invite=${maskUid(input.inviteId)} coins=${coins} attempt=${attempt}`);
-      return { ok: true, coins, inviterName };
+      const dayKey = typeof data.dayKey === 'string' ? data.dayKey : input.dayKey;
+      log(`mark:ok invite=${maskUid(input.inviteId)} replay=${data.replay === true} day=${dayKey} attempt=${attempt} ms=${Date.now() - startedAt}`);
+      return { ok: true, replay: data.replay === true, inviterName, dayKey };
     } catch (error) {
-      const reason = classifyClaimError(error);
-      log(`claim:error invite=${maskUid(input.inviteId)} reason=${reason} attempt=${attempt} raw="${errText(error).slice(0, 160)}"`);
-      if ((reason !== 'not_completed' && reason !== 'network') || attempt === 2) return { ok: false, reason };
+      const reason = classifyMarkError(error);
+      log(`mark:error invite=${maskUid(input.inviteId)} reason=${reason} attempt=${attempt} ms=${Date.now() - startedAt} raw="${errText(error).slice(0, 160)}"`);
+      if (reason !== 'network' || attempt === 2) return { ok: false, reason };
       await wait(retryDelayMs);
     }
   }

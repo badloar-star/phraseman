@@ -92,7 +92,9 @@ export type UserNotificationFriendEventAction =
   // «Дуэль на 5 фраз» (идея 3): не путать с duel_invite/duel_state удалённой Арены (D83)
   | 'duel_challenge'
   | 'duel_result'
-  | 'duel_declined';
+  | 'duel_declined'
+  // «Урок вместе» (идея 2, Ядро 652953424): друг прошёл занятие по моему приглашению — телефон пригласившего сам начисляет +2
+  | 'lesson_together';
 
 /** Вызов на «Дуэль на 5 фраз» (идея 3, формат 1 · ЯДРО 22.10): id фраз — тексты берём из курса на телефоне. */
 export type UserNotificationDuelChallenge = Readonly<{ duelId: string; expiresAtMs: number; phraseIds: readonly string[] }>;
@@ -132,6 +134,8 @@ export interface UserNotificationNavFriendEvent {
   duelResult?: UserNotificationDuelResult;
   /** duel_declined: какая дуэль закрыта отказом. */
   duelId?: string;
+  /** lesson_together: местный день друга (YYYY-MM-DD) — из него телефон пригласившего считает общий ключ кошелька. */
+  dayKey?: string;
 }
 
 export type UserNotificationNav =
@@ -257,6 +261,7 @@ const FRIEND_EVENT_ACTIONS: ReadonlySet<string> = new Set<UserNotificationFriend
   'duel_challenge',
   'duel_result',
   'duel_declined',
+  'lesson_together',
 ]);
 
 const DUEL_PHRASE_COUNT = 5;
@@ -340,6 +345,9 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
   if (action === 'duel_result' && !duelResult) return null;
   const duelId = action === 'duel_declined' ? cleanText(row.duelId, 160) : '';
   if (action === 'duel_declined' && !duelId) return null;
+  // зачем (закон владельца 22.10 «монеты выдаёт телефон»): без дня друга и приглашения общий ключ «раз в день на пару» не собрать
+  const dayKey = action === 'lesson_together' ? cleanText(row.dayKey, 10) : '';
+  if (action === 'lesson_together' && (!/^\d{4}-\d{2}-\d{2}$/.test(dayKey) || !inviteId)) return null;
   return {
     kind: 'friend_event',
     actorStableUid,
@@ -351,6 +359,7 @@ export function parseUserNotificationNav(value: unknown): UserNotificationNav | 
     ...(duelChallenge ? { duelChallenge } : {}),
     ...(duelResult ? { duelResult } : {}),
     ...(duelId ? { duelId } : {}),
+    ...(dayKey ? { dayKey } : {}),
   };
 }
 

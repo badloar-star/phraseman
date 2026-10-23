@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-45:word:vehicle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vehicle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:vehicle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vehicle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:vehicle:audio",
+            "transcript": "vehicle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:vehicle:r1",
+              "targetText": "vehicle",
+              "meaningByLocale": {
+                "ru": "транспортное средство.",
+                "uk": "транспортний засіб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vehicle",
+            "definitionByLocale": {
+              "ru": "транспортное средство.",
+              "uk": "транспортний засіб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я припарковал транспортное средство снаружи.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я припарковал транспортное средство снаружи.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have parked the vehicle outside.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я припарковал транспортное средство снаружи.»",
+            "uk": "Скажіть: «Я припаркував транспортний засіб надворі.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "parked",
+            "the",
+            "vehicle",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об автомобиле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об автомобиле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "I ___ parked the vehicle outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об автомобиле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед parked.",
+                "uk": "Із I потрібно have перед parked."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед parked.",
+                "uk": "Із I потрібно have перед parked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i03:r1",
+            "text": "I have parked the vehicle outside."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i03:r2",
+            "text": "We have parked the vehicle outside."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i03:r3",
+            "text": "I have parked the vehicle inside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i03:audio",
+            "transcript": "I have parked the vehicle outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i03:r1",
+              "targetText": "I have parked the vehicle outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i03:r2",
+              "targetText": "We have parked the vehicle outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i03:r3",
+              "targetText": "I have parked the vehicle inside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have parked the vehicle outside.",
+                "uk": "У записі звучить I have parked the vehicle outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have parked the vehicle outside.",
+                "uk": "У записі звучить I have parked the vehicle outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:word:fuel",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fuel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:fuel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fuel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:fuel:audio",
+            "transcript": "fuel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:fuel:r1",
+              "targetText": "fuel",
+              "meaningByLocale": {
+                "ru": "топливо.",
+                "uk": "пальне."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fuel",
+            "definitionByLocale": {
+              "ru": "топливо.",
+              "uk": "пальне."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера она купила немного топлива.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера она купила немного топлива.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She bought some fuel yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она купила немного топлива.»",
+            "uk": "Скажіть: «Учора вона купила трохи пального.»"
+          },
+          "orderedTokens": [
+            "She",
+            "bought",
+            "some",
+            "fuel",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об автомобиле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i05:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i05:r2",
+            "text": "has bought"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i05:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об автомобиле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "She ___ some fuel yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i05:r1",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i05:r2",
+              "text": "has bought"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i05:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об автомобиле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма bought без has.",
+                "uk": "Із yesterday потрібна форма bought без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма bought без has.",
+                "uk": "Із yesterday потрібна форма bought без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i06:r1",
+            "text": "She bought some fuel yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i06:r2",
+            "text": "He bought some fuel yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i06:r3",
+            "text": "She bought some fuel last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i06:audio",
+            "transcript": "She bought some fuel yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i06:r1",
+              "targetText": "She bought some fuel yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i06:r2",
+              "targetText": "He bought some fuel yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i06:r3",
+              "targetText": "She bought some fuel last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She bought some fuel yesterday.",
+                "uk": "У записі звучить She bought some fuel yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She bought some fuel yesterday.",
+                "uk": "У записі звучить She bought some fuel yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:word:diesel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — diesel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:diesel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — diesel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:diesel:audio",
+            "transcript": "diesel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:diesel:r1",
+              "targetText": "diesel",
+              "meaningByLocale": {
+                "ru": "дизельное топливо.",
+                "uk": "дизельне пальне."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diesel",
+            "definitionByLocale": {
+              "ru": "дизельное топливо.",
+              "uk": "дизельне пальне."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы заплатили за дизельное топливо.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы заплатили за дизельное топливо.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have paid for the diesel.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы заплатили за дизельное топливо.»",
+            "uk": "Скажіть: «Ми заплатили за дизельне пальне.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "paid",
+            "for",
+            "the",
+            "diesel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об автомобиле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об автомобиле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "We ___ paid for the diesel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об автомобиле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед paid.",
+                "uk": "Із we потрібно have перед paid."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед paid.",
+                "uk": "Із we потрібно have перед paid."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i09:r1",
+            "text": "We have paid for the diesel."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i09:r2",
+            "text": "They have paid for the diesel."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i09:r3",
+            "text": "We have paid for the petrol."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i09:audio",
+            "transcript": "We have paid for the diesel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i09:r1",
+              "targetText": "We have paid for the diesel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i09:r2",
+              "targetText": "They have paid for the diesel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i09:r3",
+              "targetText": "We have paid for the petrol.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have paid for the diesel.",
+                "uk": "У записі звучить We have paid for the diesel."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have paid for the diesel.",
+                "uk": "У записі звучить We have paid for the diesel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:word:headlight",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — headlight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:headlight:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — headlight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:headlight:audio",
+            "transcript": "headlight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:headlight:r1",
+              "targetText": "headlight",
+              "meaningByLocale": {
+                "ru": "фара.",
+                "uk": "фара."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headlight",
+            "definitionByLocale": {
+              "ru": "фара.",
+              "uk": "фара."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера он заменил фару.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера он заменил фару.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He replaced the headlight yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера он заменил фару.»",
+            "uk": "Скажіть: «Учора він замінив фару.»"
+          },
+          "orderedTokens": [
+            "He",
+            "replaced",
+            "the",
+            "headlight",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об автомобиле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i11:r1",
+            "text": "replaced"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i11:r2",
+            "text": "has replaced"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i11:r3",
+            "text": "replace"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об автомобиле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "He ___ the headlight yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i11:r1",
+              "text": "replaced"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i11:r2",
+              "text": "has replaced"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i11:r3",
+              "text": "replace"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об автомобиле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма replaced без has.",
+                "uk": "Із yesterday потрібна форма replaced без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об автомобиле.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма replaced без has.",
+                "uk": "Із yesterday потрібна форма replaced без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i12:r1",
+            "text": "He replaced the headlight yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i12:r2",
+            "text": "She replaced the headlight yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i12:r3",
+            "text": "He replaced the headlight last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i12:audio",
+            "transcript": "He replaced the headlight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i12:r1",
+              "targetText": "He replaced the headlight yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i12:r2",
+              "targetText": "She replaced the headlight yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i12:r3",
+              "targetText": "He replaced the headlight last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He replaced the headlight yesterday.",
+                "uk": "У записі звучить He replaced the headlight yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He replaced the headlight yesterday.",
+                "uk": "У записі звучить He replaced the headlight yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-45:i13:p1",
+              "target": "vehicle",
+              "meaningByLocale": {
+                "ru": "транспортное средство",
+                "uk": "транспортний засіб"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-45:i13:p2",
+              "target": "fuel",
+              "meaningByLocale": {
+                "ru": "топливо",
+                "uk": "пальне"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-45:i13:p3",
+              "target": "diesel",
+              "meaningByLocale": {
+                "ru": "дизельное топливо",
+                "uk": "дизельне пальне"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-45:i13:p4",
+              "target": "headlight",
+              "meaningByLocale": {
+                "ru": "фара",
+                "uk": "фара"
+              }
+            }
+          ],
+          "leftColumn": [
+            "vehicle",
+            "fuel",
+            "diesel",
+            "headlight"
+          ],
+          "rightColumn": [
+            "транспортное средство",
+            "топливо",
+            "дизельное топливо",
+            "фара"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы купили немного топлива вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы купили немного топлива вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i16:audio",
+            "transcript": "We bought some fuel yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We bought some fuel yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она заменила фару вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она заменила фару вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i17:audio",
+            "transcript": "She replaced the headlight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She replaced the headlight yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-45:word:vehicle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vehicle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:vehicle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vehicle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:vehicle:audio",
+            "transcript": "vehicle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:vehicle:r1",
+              "targetText": "vehicle",
+              "meaningByLocale": {
+                "ru": "транспортное средство.",
+                "uk": "транспортний засіб."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vehicle",
+            "definitionByLocale": {
+              "ru": "транспортное средство.",
+              "uk": "транспортний засіб."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я припаркував транспортний засіб надворі.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я припаркував транспортний засіб надворі.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have parked the vehicle outside.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я припарковал транспортное средство снаружи.»",
+            "uk": "Скажіть: «Я припаркував транспортний засіб надворі.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "parked",
+            "the",
+            "vehicle",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про автомобіль.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про автомобіль.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "I ___ parked the vehicle outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про автомобіль.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед parked.",
+                "uk": "Із I потрібно have перед parked."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед parked.",
+                "uk": "Із I потрібно have перед parked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i03:r1",
+            "text": "I have parked the vehicle outside."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i03:r2",
+            "text": "We have parked the vehicle outside."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i03:r3",
+            "text": "I have parked the vehicle inside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i03:audio",
+            "transcript": "I have parked the vehicle outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i03:r1",
+              "targetText": "I have parked the vehicle outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i03:r2",
+              "targetText": "We have parked the vehicle outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i03:r3",
+              "targetText": "I have parked the vehicle inside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have parked the vehicle outside.",
+                "uk": "У записі звучить I have parked the vehicle outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have parked the vehicle outside.",
+                "uk": "У записі звучить I have parked the vehicle outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:word:fuel",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fuel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:fuel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fuel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:fuel:audio",
+            "transcript": "fuel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:fuel:r1",
+              "targetText": "fuel",
+              "meaningByLocale": {
+                "ru": "топливо.",
+                "uk": "пальне."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fuel",
+            "definitionByLocale": {
+              "ru": "топливо.",
+              "uk": "пальне."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вона купила трохи пального.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вона купила трохи пального.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She bought some fuel yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она купила немного топлива.»",
+            "uk": "Скажіть: «Учора вона купила трохи пального.»"
+          },
+          "orderedTokens": [
+            "She",
+            "bought",
+            "some",
+            "fuel",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про автомобіль.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i05:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i05:r2",
+            "text": "has bought"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i05:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про автомобіль.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "She ___ some fuel yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i05:r1",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i05:r2",
+              "text": "has bought"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i05:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про автомобіль.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма bought без has.",
+                "uk": "Із yesterday потрібна форма bought без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма bought без has.",
+                "uk": "Із yesterday потрібна форма bought без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i06:r1",
+            "text": "She bought some fuel yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i06:r2",
+            "text": "He bought some fuel yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i06:r3",
+            "text": "She bought some fuel last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i06:audio",
+            "transcript": "She bought some fuel yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i06:r1",
+              "targetText": "She bought some fuel yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i06:r2",
+              "targetText": "He bought some fuel yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i06:r3",
+              "targetText": "She bought some fuel last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She bought some fuel yesterday.",
+                "uk": "У записі звучить She bought some fuel yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She bought some fuel yesterday.",
+                "uk": "У записі звучить She bought some fuel yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:word:diesel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — diesel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:diesel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — diesel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:diesel:audio",
+            "transcript": "diesel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:diesel:r1",
+              "targetText": "diesel",
+              "meaningByLocale": {
+                "ru": "дизельное топливо.",
+                "uk": "дизельне пальне."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diesel",
+            "definitionByLocale": {
+              "ru": "дизельное топливо.",
+              "uk": "дизельне пальне."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми заплатили за дизельне пальне.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми заплатили за дизельне пальне.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have paid for the diesel.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы заплатили за дизельное топливо.»",
+            "uk": "Скажіть: «Ми заплатили за дизельне пальне.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "paid",
+            "for",
+            "the",
+            "diesel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про автомобіль.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про автомобіль.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "We ___ paid for the diesel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про автомобіль.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед paid.",
+                "uk": "Із we потрібно have перед paid."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед paid.",
+                "uk": "Із we потрібно have перед paid."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i09:r1",
+            "text": "We have paid for the diesel."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i09:r2",
+            "text": "They have paid for the diesel."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i09:r3",
+            "text": "We have paid for the petrol."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i09:audio",
+            "transcript": "We have paid for the diesel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i09:r1",
+              "targetText": "We have paid for the diesel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i09:r2",
+              "targetText": "They have paid for the diesel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i09:r3",
+              "targetText": "We have paid for the petrol.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have paid for the diesel.",
+                "uk": "У записі звучить We have paid for the diesel."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have paid for the diesel.",
+                "uk": "У записі звучить We have paid for the diesel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:word:headlight",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — headlight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:word:headlight:audio"
+        ],
+        "accessibilityLabel": "Картка слова — headlight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:word:headlight:audio",
+            "transcript": "headlight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:word:headlight:r1",
+              "targetText": "headlight",
+              "meaningByLocale": {
+                "ru": "фара.",
+                "uk": "фара."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "headlight",
+            "definitionByLocale": {
+              "ru": "фара.",
+              "uk": "фара."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора він замінив фару.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора він замінив фару.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He replaced the headlight yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера он заменил фару.»",
+            "uk": "Скажіть: «Учора він замінив фару.»"
+          },
+          "orderedTokens": [
+            "He",
+            "replaced",
+            "the",
+            "headlight",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про автомобіль.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i11:r1",
+            "text": "replaced"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i11:r2",
+            "text": "has replaced"
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i11:r3",
+            "text": "replace"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про автомобіль.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об автомобиле.",
+            "uk": "Доповніть розповідь про автомобіль."
+          },
+          "gappedTargetPhrase": "He ___ the headlight yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-45:i11:r1",
+              "text": "replaced"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i11:r2",
+              "text": "has replaced"
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i11:r3",
+              "text": "replace"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про автомобіль.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма replaced без has.",
+                "uk": "Із yesterday потрібна форма replaced без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про автомобіль.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма replaced без has.",
+                "uk": "Із yesterday потрібна форма replaced без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-45:i12:r1",
+            "text": "He replaced the headlight yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i12:r2",
+            "text": "She replaced the headlight yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-45:i12:r3",
+            "text": "He replaced the headlight last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i12:audio",
+            "transcript": "He replaced the headlight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-45:i12:r1",
+              "targetText": "He replaced the headlight yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i12:r2",
+              "targetText": "She replaced the headlight yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i12:r3",
+              "targetText": "He replaced the headlight last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He replaced the headlight yesterday.",
+                "uk": "У записі звучить He replaced the headlight yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He replaced the headlight yesterday.",
+                "uk": "У записі звучить He replaced the headlight yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-45:i13:p1",
+              "target": "vehicle",
+              "meaningByLocale": {
+                "ru": "транспортное средство",
+                "uk": "транспортний засіб"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-45:i13:p2",
+              "target": "fuel",
+              "meaningByLocale": {
+                "ru": "топливо",
+                "uk": "пальне"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-45:i13:p3",
+              "target": "diesel",
+              "meaningByLocale": {
+                "ru": "дизельное топливо",
+                "uk": "дизельне пальне"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-45:i13:p4",
+              "target": "headlight",
+              "meaningByLocale": {
+                "ru": "фара",
+                "uk": "фара"
+              }
+            }
+          ],
+          "leftColumn": [
+            "vehicle",
+            "fuel",
+            "diesel",
+            "headlight"
+          ],
+          "rightColumn": [
+            "транспортний засіб",
+            "пальне",
+            "дизельне пальне",
+            "фара"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми купили трохи пального вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми купили трохи пального вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i16:audio",
+            "transcript": "We bought some fuel yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We bought some fuel yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона замінила фару вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона замінила фару вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-45:i17:audio",
+            "transcript": "She replaced the headlight yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She replaced the headlight yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-45:word:vehicle",
+      "correctText": "vehicle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i01",
+      "correctText": "I have parked the vehicle outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i03",
+      "correctText": "I have parked the vehicle outside.",
+      "correctResponseId": "en:lesson-24:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:word:fuel",
+      "correctText": "fuel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i04",
+      "correctText": "She bought some fuel yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i05",
+      "correctText": "bought",
+      "correctResponseId": "en:lesson-24:session-45:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i06",
+      "correctText": "She bought some fuel yesterday.",
+      "correctResponseId": "en:lesson-24:session-45:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:word:diesel",
+      "correctText": "diesel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i07",
+      "correctText": "We have paid for the diesel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i09",
+      "correctText": "We have paid for the diesel.",
+      "correctResponseId": "en:lesson-24:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:word:headlight",
+      "correctText": "headlight",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i10",
+      "correctText": "He replaced the headlight yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i11",
+      "correctText": "replaced",
+      "correctResponseId": "en:lesson-24:session-45:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i12",
+      "correctText": "He replaced the headlight yesterday.",
+      "correctResponseId": "en:lesson-24:session-45:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i16",
+      "correctText": "We bought some fuel yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:i17",
+      "correctText": "She replaced the headlight yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

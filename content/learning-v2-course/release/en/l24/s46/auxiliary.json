@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-46:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-46:intro1:r3": {
+          "ru": "После have нужна форма washed.",
+          "uk": "Після have потрібна форма washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-46:intro2:r2": {
+          "ru": "С last year нужна форма broke без has.",
+          "uk": "Із last year потрібна форма broke без has."
+        },
+        "en:lesson-24:session-46:intro2:r3": {
+          "ru": "Прошедшая форма break — broke.",
+          "uk": "Минула форма break — broke."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-46:intro3:r2": {
+          "ru": "С yesterday нужно saw без have.",
+          "uk": "Із yesterday потрібне saw без have."
+        },
+        "en:lesson-24:session-46:intro3:r3": {
+          "ru": "Прошедшая форма see — saw.",
+          "uk": "Минула форма see — saw."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a98d9efd0d089dbe74a8a199a57ae758d3ae5c5a21e5531382df5a342ff36522"
+}

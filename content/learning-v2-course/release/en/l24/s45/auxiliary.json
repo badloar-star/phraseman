@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-45:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-45:intro1:r3": {
+          "ru": "После have нужна форма parked.",
+          "uk": "Після have потрібна форма parked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-45:intro2:r2": {
+          "ru": "С yesterday нужно bought без has.",
+          "uk": "Із yesterday потрібне bought без has."
+        },
+        "en:lesson-24:session-45:intro2:r3": {
+          "ru": "Прошедшая форма buy — bought.",
+          "uk": "Минула форма buy — bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-45:intro3:r2": {
+          "ru": "С yesterday нужно replaced без has.",
+          "uk": "Із yesterday потрібне replaced без has."
+        },
+        "en:lesson-24:session-45:intro3:r3": {
+          "ru": "Для прошлого нужна форма replaced.",
+          "uk": "Для минулого потрібна форма replaced."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e78daf15d61b3995eaf4eb9ce1002a87e2e2e597e9c2609a0e52cfe46885c9f4"
+}

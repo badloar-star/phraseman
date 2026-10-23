@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-44:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-44:intro1:r3": {
+          "ru": "После have нужна форма found.",
+          "uk": "Після have потрібна форма found."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-44:intro2:r2": {
+          "ru": "С yesterday нужно loved без has.",
+          "uk": "Із yesterday потрібне loved без has."
+        },
+        "en:lesson-24:session-44:intro2:r3": {
+          "ru": "Для прошлого нужна форма loved.",
+          "uk": "Для минулого потрібна форма loved."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-44:intro3:r2": {
+          "ru": "С last night нужно slept без has.",
+          "uk": "Із last night потрібне slept без has."
+        },
+        "en:lesson-24:session-44:intro3:r3": {
+          "ru": "Прошедшая форма sleep — slept.",
+          "uk": "Минула форма sleep — slept."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "40a10b5295a88ff4512b0095d3c9e8fad1faa0b11b01763ce9916462842789e6"
+}

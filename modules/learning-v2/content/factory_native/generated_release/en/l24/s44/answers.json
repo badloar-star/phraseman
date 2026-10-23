@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-44:word:fortunately",
+    "correctText": "fortunately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i01",
+    "correctText": "Fortunately, I have found my wallet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i03",
+    "correctText": "Fortunately, I have found my wallet.",
+    "correctResponseId": "en:lesson-24:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:word:absolutely",
+    "correctText": "absolutely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i04",
+    "correctText": "She absolutely loved the film yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i05",
+    "correctText": "loved",
+    "correctResponseId": "en:lesson-24:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i06",
+    "correctText": "She absolutely loved the film yesterday.",
+    "correctResponseId": "en:lesson-24:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:word:roughly",
+    "correctText": "roughly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i07",
+    "correctText": "We have spent roughly ten pounds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i09",
+    "correctText": "We have spent roughly ten pounds.",
+    "correctResponseId": "en:lesson-24:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:word:hardly",
+    "correctText": "hardly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i10",
+    "correctText": "He hardly slept last night.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i11",
+    "correctText": "slept",
+    "correctResponseId": "en:lesson-24:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i12",
+    "correctText": "He hardly slept last night.",
+    "correctResponseId": "en:lesson-24:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i13",
+    "correctText": "en:lesson-24:session-44:i13:p1=fortunately\nen:lesson-24:session-44:i13:p2=absolutely\nen:lesson-24:session-44:i13:p3=roughly\nen:lesson-24:session-44:i13:p4=hardly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i16",
+    "correctText": "We spent roughly ten pounds yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-44:i17",
+    "correctText": "She hardly slept last night.",
+    "correctResponseId": null
+  }
+]

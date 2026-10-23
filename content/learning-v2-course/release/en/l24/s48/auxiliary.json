@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-48:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-48:intro1:r3": {
+          "ru": "После have нужна форма been.",
+          "uk": "Після have потрібна форма been."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-48:intro2:r2": {
+          "ru": "С last year нужно visited без has.",
+          "uk": "Із last year потрібне visited без has."
+        },
+        "en:lesson-24:session-48:intro2:r3": {
+          "ru": "Для прошлого нужна форма visited.",
+          "uk": "Для минулого потрібна форма visited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-48:intro3:r2": {
+          "ru": "С yesterday нужно arrived без have.",
+          "uk": "Із yesterday потрібне arrived без have."
+        },
+        "en:lesson-24:session-48:intro3:r3": {
+          "ru": "Для прошлого нужна форма arrived.",
+          "uk": "Для минулого потрібна форма arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7276ff32a717a77fe33636a8d55720a25459499b35039faf4492ea9f38591b0d"
+}

@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-48:word:Finland",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Finland",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:word:Finland:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Finland",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:word:Finland:audio",
+          "transcript": "Finland"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:word:Finland:r1",
+            "targetText": "Finland",
+            "meaningByLocale": {
+              "ru": "Финляндия.",
+              "uk": "Фінляндія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Finland",
+          "definitionByLocale": {
+            "ru": "Финляндия.",
+            "uk": "Фінляндія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я бував у Фінляндії.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я бував у Фінляндії.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have been to Finland.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я бывал в Финляндии.»",
+          "uk": "Скажіть: «Я бував у Фінляндії.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "to",
+          "Finland"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про поїздки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "I ___ been to Finland.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-48:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про поїздки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед been.",
+              "uk": "Із I потрібно have перед been."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед been.",
+              "uk": "Із I потрібно have перед been."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i03:r1",
+          "text": "I have been to Finland."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i03:r2",
+          "text": "We have been to Finland."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i03:r3",
+          "text": "I have lived in Finland."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i03:audio",
+          "transcript": "I have been to Finland."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:i03:r1",
+            "targetText": "I have been to Finland.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i03:r2",
+            "targetText": "We have been to Finland.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i03:r3",
+            "targetText": "I have lived in Finland.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have been to Finland.",
+              "uk": "У записі звучить I have been to Finland."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have been to Finland.",
+              "uk": "У записі звучить I have been to Finland."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:word:Switzerland",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Switzerland",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:word:Switzerland:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Switzerland",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:word:Switzerland:audio",
+          "transcript": "Switzerland"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:word:Switzerland:r1",
+            "targetText": "Switzerland",
+            "meaningByLocale": {
+              "ru": "Швейцария.",
+              "uk": "Швейцарія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Switzerland",
+          "definitionByLocale": {
+            "ru": "Швейцария.",
+            "uk": "Швейцарія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вона відвідала Швейцарію торік.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Вона відвідала Швейцарію торік.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She visited Switzerland last year.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она посетила Швейцарию в прошлом году.»",
+          "uk": "Скажіть: «Вона відвідала Швейцарію торік.»"
+        },
+        "orderedTokens": [
+          "She",
+          "visited",
+          "Switzerland",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про поїздки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i05:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i05:r2",
+          "text": "has visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i05:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "She ___ Switzerland last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-48:i05:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i05:r2",
+            "text": "has visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i05:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про поїздки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма visited без has.",
+              "uk": "Із last year потрібна форма visited без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма visited без has.",
+              "uk": "Із last year потрібна форма visited без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i06:r1",
+          "text": "She visited Switzerland last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i06:r2",
+          "text": "He visited Switzerland last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i06:r3",
+          "text": "She visited Switzerland last month."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i06:audio",
+          "transcript": "She visited Switzerland last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:i06:r1",
+            "targetText": "She visited Switzerland last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i06:r2",
+            "targetText": "He visited Switzerland last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i06:r3",
+            "targetText": "She visited Switzerland last month.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited Switzerland last year.",
+              "uk": "У записі звучить She visited Switzerland last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited Switzerland last year.",
+              "uk": "У записі звучить She visited Switzerland last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:word:Austria",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Austria",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:word:Austria:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Austria",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:word:Austria:audio",
+          "transcript": "Austria"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:word:Austria:r1",
+            "targetText": "Austria",
+            "meaningByLocale": {
+              "ru": "Австрия.",
+              "uk": "Австрія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Austria",
+          "definitionByLocale": {
+            "ru": "Австрия.",
+            "uk": "Австрія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми з’їздили до Австрії.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми з’їздили до Австрії.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have travelled to Austria.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы съездили в Австрию.»",
+          "uk": "Скажіть: «Ми з’їздили до Австрії.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "travelled",
+          "to",
+          "Austria"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про поїздки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "We ___ travelled to Austria.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-48:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про поїздки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед travelled.",
+              "uk": "Із we потрібно have перед travelled."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед travelled.",
+              "uk": "Із we потрібно have перед travelled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i09:r1",
+          "text": "We have travelled to Austria."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i09:r2",
+          "text": "They have travelled to Austria."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i09:r3",
+          "text": "We have moved to Austria."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i09:audio",
+          "transcript": "We have travelled to Austria."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:i09:r1",
+            "targetText": "We have travelled to Austria.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i09:r2",
+            "targetText": "They have travelled to Austria.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i09:r3",
+            "targetText": "We have moved to Austria.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have travelled to Austria.",
+              "uk": "У записі звучить We have travelled to Austria."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have travelled to Austria.",
+              "uk": "У записі звучить We have travelled to Austria."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:word:Belgium",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Belgium",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:word:Belgium:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Belgium",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:word:Belgium:audio",
+          "transcript": "Belgium"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:word:Belgium:r1",
+            "targetText": "Belgium",
+            "meaningByLocale": {
+              "ru": "Бельгия.",
+              "uk": "Бельгія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Belgium",
+          "definitionByLocale": {
+            "ru": "Бельгия.",
+            "uk": "Бельгія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вони приїхали до Бельгії.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вони приїхали до Бельгії.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They arrived in Belgium yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера они приехали в Бельгию.»",
+          "uk": "Скажіть: «Учора вони приїхали до Бельгії.»"
+        },
+        "orderedTokens": [
+          "They",
+          "arrived",
+          "in",
+          "Belgium",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про поїздки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i11:r1",
+          "text": "arrived"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i11:r2",
+          "text": "have arrived"
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i11:r3",
+          "text": "arrive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "They ___ in Belgium yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-48:i11:r1",
+            "text": "arrived"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i11:r2",
+            "text": "have arrived"
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i11:r3",
+            "text": "arrive"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про поїздки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма arrived без have.",
+              "uk": "Із yesterday потрібна форма arrived без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про поїздки.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма arrived без have.",
+              "uk": "Із yesterday потрібна форма arrived без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-48:i12:r1",
+          "text": "They arrived in Belgium yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i12:r2",
+          "text": "We arrived in Belgium yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-48:i12:r3",
+          "text": "They arrived in Belgium last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i12:audio",
+          "transcript": "They arrived in Belgium yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-48:i12:r1",
+            "targetText": "They arrived in Belgium yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i12:r2",
+            "targetText": "We arrived in Belgium yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i12:r3",
+            "targetText": "They arrived in Belgium last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They arrived in Belgium yesterday.",
+              "uk": "У записі звучить They arrived in Belgium yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They arrived in Belgium yesterday.",
+              "uk": "У записі звучить They arrived in Belgium yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-48:i13:p1",
+            "target": "Finland",
+            "meaningByLocale": {
+              "ru": "Финляндия",
+              "uk": "Фінляндія"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-48:i13:p2",
+            "target": "Switzerland",
+            "meaningByLocale": {
+              "ru": "Швейцария",
+              "uk": "Швейцарія"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-48:i13:p3",
+            "target": "Austria",
+            "meaningByLocale": {
+              "ru": "Австрия",
+              "uk": "Австрія"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-48:i13:p4",
+            "target": "Belgium",
+            "meaningByLocale": {
+              "ru": "Бельгия",
+              "uk": "Бельгія"
+            }
+          }
+        ],
+        "leftColumn": [
+          "Finland",
+          "Switzerland",
+          "Austria",
+          "Belgium"
+        ],
+        "rightColumn": [
+          "Фінляндія",
+          "Швейцарія",
+          "Австрія",
+          "Бельгія"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми відвідали Швейцарію торік».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми відвідали Швейцарію торік».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i16:audio",
+          "transcript": "We visited Switzerland last year."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We visited Switzerland last year.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-48:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона приїхала до Бельгії вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона приїхала до Бельгії вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-48:i17:audio",
+          "transcript": "She arrived in Belgium yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She arrived in Belgium yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "be5eefc5643602611a3d2d5b6b6d1bf5bcb174441d856b2c54a7e6ffae5243e3"
+}

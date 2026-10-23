@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Хорошая новость",
+        "uk": "Добра новина"
+      },
+      "bodyByLocale": {
+        "ru": "Fortunately — к счастью. Fortunately, I have found my wallet — к счастью, я нашёл свой кошелёк. Это комментарий к хорошему исходу. После fortunately в начале предложения ставим запятую. Кошелёк уже у меня: сообщаю результат через have found.",
+        "uk": "Fortunately — на щастя. Fortunately, I have found my wallet — на щастя, я знайшов свій гаманець. Це коментар до доброго результату. Після fortunately на початку речення ставимо кому. Гаманець уже в мене: повідомляю результат через have found."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-44:intro1:r1",
+              "text": "Fortunately, I have found my wallet."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro1:r2",
+              "text": "Fortunately, I has found my wallet."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro1:r3",
+              "text": "Fortunately, I have find my wallet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-44:intro1:r1",
+              "text": "Fortunately, I have found my wallet."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro1:r2",
+              "text": "Fortunately, I has found my wallet."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro1:r3",
+              "text": "Fortunately, I have find my wallet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сильное впечатление и примерная сумма",
+        "uk": "Сильне враження й приблизна сума"
+      },
+      "bodyByLocale": {
+        "ru": "Absolutely может усиливать чувство: She absolutely loved the film yesterday — вчера фильм ей очень понравился. Здесь loved не о любви к человеку, а о сильном удовольствии от фильма. Roughly — примерно: We have spent roughly ten pounds — мы потратили примерно десять фунтов. Сумма приблизительная, не точная.",
+        "uk": "Absolutely може посилювати почуття: She absolutely loved the film yesterday — учора фільм їй дуже сподобався. Тут loved не про кохання до людини, а про велике задоволення від фільму. Roughly — приблизно: We have spent roughly ten pounds — ми витратили приблизно десять фунтів. Сума приблизна, не точна."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-44:intro2:r1",
+              "text": "She absolutely loved the film yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro2:r2",
+              "text": "She has absolutely loved the film yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro2:r3",
+              "text": "She absolutely love the film yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-44:intro2:r1",
+              "text": "She absolutely loved the film yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro2:r2",
+              "text": "She has absolutely loved the film yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro2:r3",
+              "text": "She absolutely love the film yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Почти без сна",
+        "uk": "Майже без сну"
+      },
+      "bodyByLocale": {
+        "ru": "Hardly — почти не. He hardly slept last night — прошлой ночью он почти не спал. Hardly уже передаёт отрицательный смысл, поэтому дополнительное not не нужно. Это не hard — «усердно»: hardly worked означало бы «почти не работал». Last night — законченный период, поэтому slept без has.",
+        "uk": "Hardly — майже не. He hardly slept last night — минулої ночі він майже не спав. Hardly вже передає заперечне значення, тому додаткове not не потрібне. Це не hard — «наполегливо»: hardly worked означало б «майже не працював». Last night — завершений період, тому slept без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-44:intro3:r1",
+              "text": "He hardly slept last night."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro3:r2",
+              "text": "He has hardly slept last night."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro3:r3",
+              "text": "He hardly sleep last night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-44:intro3:r1",
+              "text": "He hardly slept last night."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro3:r2",
+              "text": "He has hardly slept last night."
+            },
+            {
+              "responseId": "en:lesson-24:session-44:intro3:r3",
+              "text": "He hardly sleep last night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bbdfd365b1f313a4f3967ca7c112a486f1b3705e68326577a283b3d737a77df5"
+}

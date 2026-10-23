@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После умывания",
+        "uk": "Після вмивання"
+      },
+      "bodyByLocale": {
+        "ru": "Skin — кожа человека. I have washed my skin — я вымыл кожу. Skin здесь обозначает кожу в целом, поэтому перед my skin не нужен a. Сообщаем о результате без законченной даты: have washed.",
+        "uk": "Skin — шкіра людини. I have washed my skin — я вимив шкіру. Skin тут позначає шкіру загалом, тому перед my skin не потрібне a. Повідомляємо про результат без завершеної дати: have washed."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-46:intro1:r1",
+              "text": "I have washed my skin."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro1:r2",
+              "text": "I has washed my skin."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro1:r3",
+              "text": "I have wash my skin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-46:intro1:r1",
+              "text": "I have washed my skin."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro1:r2",
+              "text": "I has washed my skin."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro1:r3",
+              "text": "I have wash my skin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О теле человека",
+        "uk": "Про тіло людини"
+      },
+      "bodyByLocale": {
+        "ru": "Rib — ребро. She broke a rib last year — она сломала ребро в прошлом году. Одна кость — a rib, несколько — ribs. Broke — прошедшая форма знакомого break. Last year уже закончился, поэтому broke без has. Liver — печень. We have read about the liver — мы прочитали о печени: например, в учебнике.",
+        "uk": "Rib — ребро. She broke a rib last year — вона зламала ребро торік. Одна кістка — a rib, кілька — ribs. Broke — минула форма знайомого break. Last year уже закінчився, тому broke без has. Liver — печінка. We have read about the liver — ми прочитали про печінку: наприклад, у підручнику."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-46:intro2:r1",
+              "text": "She broke a rib last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro2:r2",
+              "text": "She has broken a rib last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro2:r3",
+              "text": "She break a rib last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-46:intro2:r1",
+              "text": "She broke a rib last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro2:r2",
+              "text": "She has broken a rib last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro2:r3",
+              "text": "She break a rib last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В музее",
+        "uk": "У музеї"
+      },
+      "bodyByLocale": {
+        "ru": "Skeleton — скелет. They saw a skeleton at the museum yesterday — вчера они увидели скелет в музее. Можно говорить о скелете человека или животного. С yesterday выбираем saw без have. Динозавр в музее огромный, но хотя бы не просит обед.",
+        "uk": "Skeleton — скелет. They saw a skeleton at the museum yesterday — учора вони побачили скелет у музеї. Можна говорити про скелет людини або тварини. Із yesterday вибираємо saw без have. Динозавр у музеї величезний, але принаймні не просить обіду."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-46:intro3:r1",
+              "text": "They saw a skeleton at the museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro3:r2",
+              "text": "They have seen a skeleton at the museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro3:r3",
+              "text": "They see a skeleton at the museum yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-46:intro3:r1",
+              "text": "They saw a skeleton at the museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro3:r2",
+              "text": "They have seen a skeleton at the museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-46:intro3:r3",
+              "text": "They see a skeleton at the museum yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "581a1cce1968db2527f8ae17fb0de099075d21f3dd5a85741efa2df623020298"
+}

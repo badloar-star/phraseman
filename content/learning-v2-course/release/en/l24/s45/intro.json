@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Общее название",
+        "uk": "Загальна назва"
+      },
+      "bodyByLocale": {
+        "ru": "Vehicle — транспортное средство: например, автомобиль, автобус или фургон. Это общее слово, которое встречается на дорожных знаках и в документах. I have parked the vehicle outside — я припарковал транспортное средство снаружи. Результат сейчас: оно стоит снаружи. В разговоре о своей машине можно использовать знакомое car.",
+        "uk": "Vehicle — транспортний засіб: наприклад, автомобіль, автобус або фургон. Це загальне слово, яке трапляється на дорожніх знаках і в документах. I have parked the vehicle outside — я припаркував транспортний засіб надворі. Результат зараз: він стоїть надворі. У розмові про власну машину можна використати знайоме car."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-45:intro1:r1",
+              "text": "I have parked the vehicle outside."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro1:r2",
+              "text": "I has parked the vehicle outside."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro1:r3",
+              "text": "I have park the vehicle outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-45:intro1:r1",
+              "text": "I have parked the vehicle outside."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro1:r2",
+              "text": "I has parked the vehicle outside."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro1:r3",
+              "text": "I have park the vehicle outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "На заправке",
+        "uk": "На заправці"
+      },
+      "bodyByLocale": {
+        "ru": "Fuel — топливо. She bought some fuel yesterday — вчера она купила немного топлива. Diesel — дизельное топливо. We have paid for the diesel — мы заплатили за дизельное топливо. Fuel — общее название; diesel — один из видов топлива. С yesterday нужно bought без has.",
+        "uk": "Fuel — пальне. She bought some fuel yesterday — учора вона купила трохи пального. Diesel — дизельне пальне. We have paid for the diesel — ми заплатили за дизельне пальне. Fuel — загальна назва; diesel — один із видів пального. Із yesterday потрібне bought без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-45:intro2:r1",
+              "text": "She bought some fuel yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro2:r2",
+              "text": "She has bought some fuel yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro2:r3",
+              "text": "She buy some fuel yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-45:intro2:r1",
+              "text": "She bought some fuel yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro2:r2",
+              "text": "She has bought some fuel yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro2:r3",
+              "text": "She buy some fuel yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заменили фару",
+        "uk": "Замінили фару"
+      },
+      "bodyByLocale": {
+        "ru": "Headlight — фара, передний фонарь автомобиля. He replaced the headlight yesterday — вчера он заменил фару. Одна фара — a headlight, две — two headlights. С yesterday нужен replaced без has.",
+        "uk": "Headlight — фара, передній ліхтар автомобіля. He replaced the headlight yesterday — учора він замінив фару. Одна фара — a headlight, дві — two headlights. Із yesterday потрібне replaced без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-45:intro3:r1",
+              "text": "He replaced the headlight yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro3:r2",
+              "text": "He has replaced the headlight yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro3:r3",
+              "text": "He replace the headlight yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-45:intro3:r1",
+              "text": "He replaced the headlight yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro3:r2",
+              "text": "He has replaced the headlight yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-45:intro3:r3",
+              "text": "He replace the headlight yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5f04318ea1712ab2bc63bc2be19941040e319c7942c9eb20c5217ab9212d3e4e"
+}

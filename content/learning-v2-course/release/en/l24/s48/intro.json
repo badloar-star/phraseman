@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Опыт поездки",
+        "uk": "Досвід поїздки"
+      },
+      "bodyByLocale": {
+        "ru": "Finland — Финляндия. I have been to Finland — я бывал в Финляндии. Have been to сообщает об опыте поездки: человек побывал там и вернулся. Finland пишется с большой буквы, без the. Дата здесь не названа.",
+        "uk": "Finland — Фінляндія. I have been to Finland — я бував у Фінляндії. Have been to повідомляє про досвід поїздки: людина побувала там і повернулася. Finland пишеться з великої літери, без the. Дату тут не названо."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-48:intro1:r1",
+              "text": "I have been to Finland."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro1:r2",
+              "text": "I has been to Finland."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro1:r3",
+              "text": "I have be to Finland."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-48:intro1:r1",
+              "text": "I have been to Finland."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro1:r2",
+              "text": "I has been to Finland."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro1:r3",
+              "text": "I have be to Finland."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посетить страну",
+        "uk": "Відвідати країну"
+      },
+      "bodyByLocale": {
+        "ru": "Switzerland — Швейцария. She visited Switzerland last year — она посетила Швейцарию в прошлом году. После visited не ставим to. Austria — Австрия; не путайте с Australia — Австралией. We have travelled to Austria — мы съездили в Австрию. После travelled направление выражаем через to. С last year нужен visited без has.",
+        "uk": "Switzerland — Швейцарія. She visited Switzerland last year — вона відвідала Швейцарію торік. Після visited не ставимо to. Austria — Австрія; не плутайте з Australia — Австралією. We have travelled to Austria — ми з’їздили до Австрії. Після travelled напрямок виражаємо через to. Із last year потрібне visited без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-48:intro2:r1",
+              "text": "She visited Switzerland last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro2:r2",
+              "text": "She has visited Switzerland last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro2:r3",
+              "text": "She visit Switzerland last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-48:intro2:r1",
+              "text": "She visited Switzerland last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro2:r2",
+              "text": "She has visited Switzerland last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro2:r3",
+              "text": "She visit Switzerland last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Приехали вчера",
+        "uk": "Приїхали вчора"
+      },
+      "bodyByLocale": {
+        "ru": "Belgium — Бельгия. They arrived in Belgium yesterday — вчера они приехали в Бельгию. Перед названием страны после arrive нужен in. Yesterday указывает законченный день: arrived без have. Эти четыре названия стран пишутся с большой буквы и без the.",
+        "uk": "Belgium — Бельгія. They arrived in Belgium yesterday — учора вони приїхали до Бельгії. Перед назвою країни після arrive потрібне in. Yesterday указує на завершений день: arrived без have. Ці чотири назви країн пишуться з великої літери й без the."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-48:intro3:r1",
+              "text": "They arrived in Belgium yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro3:r2",
+              "text": "They have arrived in Belgium yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro3:r3",
+              "text": "They arrive in Belgium yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-48:intro3:r1",
+              "text": "They arrived in Belgium yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro3:r2",
+              "text": "They have arrived in Belgium yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-48:intro3:r3",
+              "text": "They arrive in Belgium yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2b5574f7a5ce5a192af1c9a2f082d2d228a329e33ac9256f3e053d27dddbf9de"
+}

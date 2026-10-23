@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-47:word:Poland",
+    "correctText": "Poland",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i01",
+    "correctText": "I have been to Poland.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i03",
+    "correctText": "I have been to Poland.",
+    "correctResponseId": "en:lesson-24:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:word:Portugal",
+    "correctText": "Portugal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i04",
+    "correctText": "She visited Portugal last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i05",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-24:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i06",
+    "correctText": "She visited Portugal last year.",
+    "correctResponseId": "en:lesson-24:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:word:Norway",
+    "correctText": "Norway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i07",
+    "correctText": "We have travelled to Norway.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i09",
+    "correctText": "We have travelled to Norway.",
+    "correctResponseId": "en:lesson-24:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:word:Denmark",
+    "correctText": "Denmark",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i10",
+    "correctText": "They arrived in Denmark yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i11",
+    "correctText": "arrived",
+    "correctResponseId": "en:lesson-24:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i12",
+    "correctText": "They arrived in Denmark yesterday.",
+    "correctResponseId": "en:lesson-24:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i13",
+    "correctText": "en:lesson-24:session-47:i13:p1=Poland\nen:lesson-24:session-47:i13:p2=Portugal\nen:lesson-24:session-47:i13:p3=Norway\nen:lesson-24:session-47:i13:p4=Denmark",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i16",
+    "correctText": "We visited Portugal last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-47:i17",
+    "correctText": "She arrived in Denmark yesterday.",
+    "correctResponseId": null
+  }
+]

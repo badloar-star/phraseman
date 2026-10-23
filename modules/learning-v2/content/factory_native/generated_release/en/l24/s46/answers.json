@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-46:word:skin",
+    "correctText": "skin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i01",
+    "correctText": "I have washed my skin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i03",
+    "correctText": "I have washed my skin.",
+    "correctResponseId": "en:lesson-24:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:word:rib",
+    "correctText": "rib",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i04",
+    "correctText": "She broke a rib last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i05",
+    "correctText": "broke",
+    "correctResponseId": "en:lesson-24:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i06",
+    "correctText": "She broke a rib last year.",
+    "correctResponseId": "en:lesson-24:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:word:liver",
+    "correctText": "liver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i07",
+    "correctText": "We have read about the liver.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i09",
+    "correctText": "We have read about the liver.",
+    "correctResponseId": "en:lesson-24:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:word:skeleton",
+    "correctText": "skeleton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i10",
+    "correctText": "They saw a skeleton at the museum yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i11",
+    "correctText": "saw",
+    "correctResponseId": "en:lesson-24:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i12",
+    "correctText": "They saw a skeleton at the museum yesterday.",
+    "correctResponseId": "en:lesson-24:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i13",
+    "correctText": "en:lesson-24:session-46:i13:p1=skin\nen:lesson-24:session-46:i13:p2=rib\nen:lesson-24:session-46:i13:p3=liver\nen:lesson-24:session-46:i13:p4=skeleton",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i16",
+    "correctText": "We read about the liver yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-46:i17",
+    "correctText": "He broke a rib last year.",
+    "correctResponseId": null
+  }
+]

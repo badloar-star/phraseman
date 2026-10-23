@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-47:word:Poland",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Poland",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:word:Poland:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Poland",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:word:Poland:audio",
+          "transcript": "Poland"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:word:Poland:r1",
+            "targetText": "Poland",
+            "meaningByLocale": {
+              "ru": "Польша.",
+              "uk": "Польща."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Poland",
+          "definitionByLocale": {
+            "ru": "Польша.",
+            "uk": "Польща."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я бывал в Польше.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я бывал в Польше.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have been to Poland.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я бывал в Польше.»",
+          "uk": "Скажіть: «Я бував у Польщі.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "to",
+          "Poland"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездках.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "I ___ been to Poland.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-47:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездках.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед been.",
+              "uk": "Із I потрібно have перед been."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед been.",
+              "uk": "Із I потрібно have перед been."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i03:r1",
+          "text": "I have been to Poland."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i03:r2",
+          "text": "We have been to Poland."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i03:r3",
+          "text": "I have lived in Poland."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i03:audio",
+          "transcript": "I have been to Poland."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:i03:r1",
+            "targetText": "I have been to Poland.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i03:r2",
+            "targetText": "We have been to Poland.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i03:r3",
+            "targetText": "I have lived in Poland.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have been to Poland.",
+              "uk": "У записі звучить I have been to Poland."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have been to Poland.",
+              "uk": "У записі звучить I have been to Poland."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:word:Portugal",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Portugal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:word:Portugal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Portugal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:word:Portugal:audio",
+          "transcript": "Portugal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:word:Portugal:r1",
+            "targetText": "Portugal",
+            "meaningByLocale": {
+              "ru": "Португалия.",
+              "uk": "Португалія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Portugal",
+          "definitionByLocale": {
+            "ru": "Португалия.",
+            "uk": "Португалія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Она посетила Португалию в прошлом году.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Она посетила Португалию в прошлом году.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She visited Portugal last year.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она посетила Португалию в прошлом году.»",
+          "uk": "Скажіть: «Вона відвідала Португалію торік.»"
+        },
+        "orderedTokens": [
+          "She",
+          "visited",
+          "Portugal",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездках.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i05:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i05:r2",
+          "text": "has visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i05:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "She ___ Portugal last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-47:i05:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i05:r2",
+            "text": "has visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i05:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездках.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма visited без has.",
+              "uk": "Із last year потрібна форма visited без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма visited без has.",
+              "uk": "Із last year потрібна форма visited без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i06:r1",
+          "text": "She visited Portugal last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i06:r2",
+          "text": "He visited Portugal last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i06:r3",
+          "text": "She visited Portugal last month."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i06:audio",
+          "transcript": "She visited Portugal last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:i06:r1",
+            "targetText": "She visited Portugal last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i06:r2",
+            "targetText": "He visited Portugal last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i06:r3",
+            "targetText": "She visited Portugal last month.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited Portugal last year.",
+              "uk": "У записі звучить She visited Portugal last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited Portugal last year.",
+              "uk": "У записі звучить She visited Portugal last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:word:Norway",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Norway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:word:Norway:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Norway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:word:Norway:audio",
+          "transcript": "Norway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:word:Norway:r1",
+            "targetText": "Norway",
+            "meaningByLocale": {
+              "ru": "Норвегия.",
+              "uk": "Норвегія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Norway",
+          "definitionByLocale": {
+            "ru": "Норвегия.",
+            "uk": "Норвегія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы съездили в Норвегию.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы съездили в Норвегию.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have travelled to Norway.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы съездили в Норвегию.»",
+          "uk": "Скажіть: «Ми з’їздили до Норвегії.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "travelled",
+          "to",
+          "Norway"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездках.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "We ___ travelled to Norway.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-47:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездках.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед travelled.",
+              "uk": "Із we потрібно have перед travelled."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед travelled.",
+              "uk": "Із we потрібно have перед travelled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i09:r1",
+          "text": "We have travelled to Norway."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i09:r2",
+          "text": "They have travelled to Norway."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i09:r3",
+          "text": "We have moved to Norway."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i09:audio",
+          "transcript": "We have travelled to Norway."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:i09:r1",
+            "targetText": "We have travelled to Norway.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i09:r2",
+            "targetText": "They have travelled to Norway.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i09:r3",
+            "targetText": "We have moved to Norway.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have travelled to Norway.",
+              "uk": "У записі звучить We have travelled to Norway."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have travelled to Norway.",
+              "uk": "У записі звучить We have travelled to Norway."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:word:Denmark",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — Denmark",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:word:Denmark:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — Denmark",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:word:Denmark:audio",
+          "transcript": "Denmark"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:word:Denmark:r1",
+            "targetText": "Denmark",
+            "meaningByLocale": {
+              "ru": "Дания.",
+              "uk": "Данія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Denmark",
+          "definitionByLocale": {
+            "ru": "Дания.",
+            "uk": "Данія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Вчера они приехали в Данию.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Вчера они приехали в Данию.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They arrived in Denmark yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера они приехали в Данию.»",
+          "uk": "Скажіть: «Учора вони приїхали до Данії.»"
+        },
+        "orderedTokens": [
+          "They",
+          "arrived",
+          "in",
+          "Denmark",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о поездках.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i11:r1",
+          "text": "arrived"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i11:r2",
+          "text": "have arrived"
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i11:r3",
+          "text": "arrive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о поездках.",
+          "uk": "Доповніть розповідь про поїздки."
+        },
+        "gappedTargetPhrase": "They ___ in Denmark yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-47:i11:r1",
+            "text": "arrived"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i11:r2",
+            "text": "have arrived"
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i11:r3",
+            "text": "arrive"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о поездках.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма arrived без have.",
+              "uk": "Із yesterday потрібна форма arrived без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о поездках.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма arrived без have.",
+              "uk": "Із yesterday потрібна форма arrived без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-47:i12:r1",
+          "text": "They arrived in Denmark yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i12:r2",
+          "text": "We arrived in Denmark yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-47:i12:r3",
+          "text": "They arrived in Denmark last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i12:audio",
+          "transcript": "They arrived in Denmark yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-47:i12:r1",
+            "targetText": "They arrived in Denmark yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i12:r2",
+            "targetText": "We arrived in Denmark yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i12:r3",
+            "targetText": "They arrived in Denmark last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They arrived in Denmark yesterday.",
+              "uk": "У записі звучить They arrived in Denmark yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They arrived in Denmark yesterday.",
+              "uk": "У записі звучить They arrived in Denmark yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-47:i13:p1",
+            "target": "Poland",
+            "meaningByLocale": {
+              "ru": "Польша",
+              "uk": "Польща"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-47:i13:p2",
+            "target": "Portugal",
+            "meaningByLocale": {
+              "ru": "Португалия",
+              "uk": "Португалія"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-47:i13:p3",
+            "target": "Norway",
+            "meaningByLocale": {
+              "ru": "Норвегия",
+              "uk": "Норвегія"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-47:i13:p4",
+            "target": "Denmark",
+            "meaningByLocale": {
+              "ru": "Дания",
+              "uk": "Данія"
+            }
+          }
+        ],
+        "leftColumn": [
+          "Poland",
+          "Portugal",
+          "Norway",
+          "Denmark"
+        ],
+        "rightColumn": [
+          "Польша",
+          "Португалия",
+          "Норвегия",
+          "Дания"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы посетили Португалию в прошлом году».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы посетили Португалию в прошлом году».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i16:audio",
+          "transcript": "We visited Portugal last year."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We visited Portugal last year.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она приехала в Данию вчера».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она приехала в Данию вчера».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-47:i17:audio",
+          "transcript": "She arrived in Denmark yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She arrived in Denmark yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a8c1bfd5055000dc8eb9d524f4d0c9254d76f6d99ae6afb0061cf6879caf0ac9"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-45:word:vehicle",
+    "correctText": "vehicle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i01",
+    "correctText": "I have parked the vehicle outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i03",
+    "correctText": "I have parked the vehicle outside.",
+    "correctResponseId": "en:lesson-24:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:word:fuel",
+    "correctText": "fuel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i04",
+    "correctText": "She bought some fuel yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i05",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-24:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i06",
+    "correctText": "She bought some fuel yesterday.",
+    "correctResponseId": "en:lesson-24:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:word:diesel",
+    "correctText": "diesel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i07",
+    "correctText": "We have paid for the diesel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i09",
+    "correctText": "We have paid for the diesel.",
+    "correctResponseId": "en:lesson-24:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:word:headlight",
+    "correctText": "headlight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i10",
+    "correctText": "He replaced the headlight yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i11",
+    "correctText": "replaced",
+    "correctResponseId": "en:lesson-24:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i12",
+    "correctText": "He replaced the headlight yesterday.",
+    "correctResponseId": "en:lesson-24:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i13",
+    "correctText": "en:lesson-24:session-45:i13:p1=vehicle\nen:lesson-24:session-45:i13:p2=fuel\nen:lesson-24:session-45:i13:p3=diesel\nen:lesson-24:session-45:i13:p4=headlight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i16",
+    "correctText": "We bought some fuel yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-45:i17",
+    "correctText": "She replaced the headlight yesterday.",
+    "correctResponseId": null
+  }
+]

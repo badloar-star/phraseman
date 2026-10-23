@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-46:word:skin",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — skin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:skin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — skin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:skin:audio",
+            "transcript": "skin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:skin:r1",
+              "targetText": "skin",
+              "meaningByLocale": {
+                "ru": "кожа.",
+                "uk": "шкіра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skin",
+            "definitionByLocale": {
+              "ru": "кожа.",
+              "uk": "шкіра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я вымыл кожу.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я вымыл кожу.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have washed my skin.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я вымыл кожу.»",
+            "uk": "Скажіть: «Я вимив шкіру.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "washed",
+            "my",
+            "skin"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о теле и музее.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о теле и музее.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "I ___ washed my skin.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о теле и музее.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед washed.",
+                "uk": "Із I потрібно have перед washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед washed.",
+                "uk": "Із I потрібно have перед washed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i03:r1",
+            "text": "I have washed my skin."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i03:r2",
+            "text": "We have washed our skin."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i03:r3",
+            "text": "I have dried my skin."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i03:audio",
+            "transcript": "I have washed my skin."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i03:r1",
+              "targetText": "I have washed my skin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i03:r2",
+              "targetText": "We have washed our skin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i03:r3",
+              "targetText": "I have dried my skin.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have washed my skin.",
+                "uk": "У записі звучить I have washed my skin."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have washed my skin.",
+                "uk": "У записі звучить I have washed my skin."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:word:rib",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:rib:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:rib:audio",
+            "transcript": "rib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:rib:r1",
+              "targetText": "rib",
+              "meaningByLocale": {
+                "ru": "ребро.",
+                "uk": "ребро."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rib",
+            "definitionByLocale": {
+              "ru": "ребро.",
+              "uk": "ребро."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она сломала ребро в прошлом году.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она сломала ребро в прошлом году.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She broke a rib last year.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она сломала ребро в прошлом году.»",
+            "uk": "Скажіть: «Вона зламала ребро торік.»"
+          },
+          "orderedTokens": [
+            "She",
+            "broke",
+            "a",
+            "rib",
+            "last",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о теле и музее.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i05:r1",
+            "text": "broke"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i05:r2",
+            "text": "has broken"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i05:r3",
+            "text": "break"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о теле и музее.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "She ___ a rib last year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i05:r1",
+              "text": "broke"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i05:r2",
+              "text": "has broken"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i05:r3",
+              "text": "break"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о теле и музее.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма broke без has.",
+                "uk": "Із last year потрібна форма broke без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма broke без has.",
+                "uk": "Із last year потрібна форма broke без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i06:r1",
+            "text": "She broke a rib last year."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i06:r2",
+            "text": "He broke a rib last year."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i06:r3",
+            "text": "She broke a rib last month."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i06:audio",
+            "transcript": "She broke a rib last year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i06:r1",
+              "targetText": "She broke a rib last year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i06:r2",
+              "targetText": "He broke a rib last year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i06:r3",
+              "targetText": "She broke a rib last month.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She broke a rib last year.",
+                "uk": "У записі звучить She broke a rib last year."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She broke a rib last year.",
+                "uk": "У записі звучить She broke a rib last year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:word:liver",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — liver",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:liver:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — liver",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:liver:audio",
+            "transcript": "liver"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:liver:r1",
+              "targetText": "liver",
+              "meaningByLocale": {
+                "ru": "печень.",
+                "uk": "печінка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "liver",
+            "definitionByLocale": {
+              "ru": "печень.",
+              "uk": "печінка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы прочитали о печени.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы прочитали о печени.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have read about the liver.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы прочитали о печени.»",
+            "uk": "Скажіть: «Ми прочитали про печінку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "read",
+            "about",
+            "the",
+            "liver"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о теле и музее.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о теле и музее.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "We ___ read about the liver.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о теле и музее.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед read.",
+                "uk": "Із we потрібно have перед read."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед read.",
+                "uk": "Із we потрібно have перед read."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i09:r1",
+            "text": "We have read about the liver."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i09:r2",
+            "text": "They have read about the liver."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i09:r3",
+            "text": "We have talked about the liver."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i09:audio",
+            "transcript": "We have read about the liver."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i09:r1",
+              "targetText": "We have read about the liver.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i09:r2",
+              "targetText": "They have read about the liver.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i09:r3",
+              "targetText": "We have talked about the liver.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have read about the liver.",
+                "uk": "У записі звучить We have read about the liver."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have read about the liver.",
+                "uk": "У записі звучить We have read about the liver."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:word:skeleton",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — skeleton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:skeleton:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — skeleton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:skeleton:audio",
+            "transcript": "skeleton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:skeleton:r1",
+              "targetText": "skeleton",
+              "meaningByLocale": {
+                "ru": "скелет.",
+                "uk": "скелет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skeleton",
+            "definitionByLocale": {
+              "ru": "скелет.",
+              "uk": "скелет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера они увидели скелет в музее.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера они увидели скелет в музее.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They saw a skeleton at the museum yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера они увидели скелет в музее.»",
+            "uk": "Скажіть: «Учора вони побачили скелет у музеї.»"
+          },
+          "orderedTokens": [
+            "They",
+            "saw",
+            "a",
+            "skeleton",
+            "at",
+            "the",
+            "museum",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о теле и музее.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i11:r1",
+            "text": "saw"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i11:r2",
+            "text": "have seen"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i11:r3",
+            "text": "see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о теле и музее.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "They ___ a skeleton at the museum yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i11:r1",
+              "text": "saw"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i11:r2",
+              "text": "have seen"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i11:r3",
+              "text": "see"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о теле и музее.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма saw без have.",
+                "uk": "Із yesterday потрібна форма saw без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о теле и музее.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма saw без have.",
+                "uk": "Із yesterday потрібна форма saw без have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i12:r1",
+            "text": "They saw a skeleton at the museum yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i12:r2",
+            "text": "We saw a skeleton at the museum yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i12:r3",
+            "text": "They saw a skeleton at the museum last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i12:audio",
+            "transcript": "They saw a skeleton at the museum yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i12:r1",
+              "targetText": "They saw a skeleton at the museum yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i12:r2",
+              "targetText": "We saw a skeleton at the museum yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i12:r3",
+              "targetText": "They saw a skeleton at the museum last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They saw a skeleton at the museum yesterday.",
+                "uk": "У записі звучить They saw a skeleton at the museum yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They saw a skeleton at the museum yesterday.",
+                "uk": "У записі звучить They saw a skeleton at the museum yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-46:i13:p1",
+              "target": "skin",
+              "meaningByLocale": {
+                "ru": "кожа",
+                "uk": "шкіра"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-46:i13:p2",
+              "target": "rib",
+              "meaningByLocale": {
+                "ru": "ребро",
+                "uk": "ребро"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-46:i13:p3",
+              "target": "liver",
+              "meaningByLocale": {
+                "ru": "печень",
+                "uk": "печінка"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-46:i13:p4",
+              "target": "skeleton",
+              "meaningByLocale": {
+                "ru": "скелет",
+                "uk": "скелет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "skin",
+            "rib",
+            "liver",
+            "skeleton"
+          ],
+          "rightColumn": [
+            "кожа",
+            "ребро",
+            "печень",
+            "скелет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы прочитали о печени вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы прочитали о печени вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i16:audio",
+            "transcript": "We read about the liver yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We read about the liver yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Он сломал ребро в прошлом году».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Он сломал ребро в прошлом году».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i17:audio",
+            "transcript": "He broke a rib last year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He broke a rib last year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-46:word:skin",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — skin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:skin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — skin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:skin:audio",
+            "transcript": "skin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:skin:r1",
+              "targetText": "skin",
+              "meaningByLocale": {
+                "ru": "кожа.",
+                "uk": "шкіра."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skin",
+            "definitionByLocale": {
+              "ru": "кожа.",
+              "uk": "шкіра."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я вимив шкіру.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я вимив шкіру.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have washed my skin.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я вымыл кожу.»",
+            "uk": "Скажіть: «Я вимив шкіру.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "washed",
+            "my",
+            "skin"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про тіло й музей.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про тіло й музей.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "I ___ washed my skin.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про тіло й музей.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед washed.",
+                "uk": "Із I потрібно have перед washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед washed.",
+                "uk": "Із I потрібно have перед washed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i03:r1",
+            "text": "I have washed my skin."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i03:r2",
+            "text": "We have washed our skin."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i03:r3",
+            "text": "I have dried my skin."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i03:audio",
+            "transcript": "I have washed my skin."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i03:r1",
+              "targetText": "I have washed my skin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i03:r2",
+              "targetText": "We have washed our skin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i03:r3",
+              "targetText": "I have dried my skin.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have washed my skin.",
+                "uk": "У записі звучить I have washed my skin."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have washed my skin.",
+                "uk": "У записі звучить I have washed my skin."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:word:rib",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rib",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:rib:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rib",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:rib:audio",
+            "transcript": "rib"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:rib:r1",
+              "targetText": "rib",
+              "meaningByLocale": {
+                "ru": "ребро.",
+                "uk": "ребро."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rib",
+            "definitionByLocale": {
+              "ru": "ребро.",
+              "uk": "ребро."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона зламала ребро торік.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона зламала ребро торік.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She broke a rib last year.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она сломала ребро в прошлом году.»",
+            "uk": "Скажіть: «Вона зламала ребро торік.»"
+          },
+          "orderedTokens": [
+            "She",
+            "broke",
+            "a",
+            "rib",
+            "last",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про тіло й музей.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i05:r1",
+            "text": "broke"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i05:r2",
+            "text": "has broken"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i05:r3",
+            "text": "break"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про тіло й музей.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "She ___ a rib last year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i05:r1",
+              "text": "broke"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i05:r2",
+              "text": "has broken"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i05:r3",
+              "text": "break"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про тіло й музей.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма broke без has.",
+                "uk": "Із last year потрібна форма broke без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма broke без has.",
+                "uk": "Із last year потрібна форма broke без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i06:r1",
+            "text": "She broke a rib last year."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i06:r2",
+            "text": "He broke a rib last year."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i06:r3",
+            "text": "She broke a rib last month."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i06:audio",
+            "transcript": "She broke a rib last year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i06:r1",
+              "targetText": "She broke a rib last year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i06:r2",
+              "targetText": "He broke a rib last year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i06:r3",
+              "targetText": "She broke a rib last month.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She broke a rib last year.",
+                "uk": "У записі звучить She broke a rib last year."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She broke a rib last year.",
+                "uk": "У записі звучить She broke a rib last year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:word:liver",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — liver",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:liver:audio"
+        ],
+        "accessibilityLabel": "Картка слова — liver",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:liver:audio",
+            "transcript": "liver"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:liver:r1",
+              "targetText": "liver",
+              "meaningByLocale": {
+                "ru": "печень.",
+                "uk": "печінка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "liver",
+            "definitionByLocale": {
+              "ru": "печень.",
+              "uk": "печінка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми прочитали про печінку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми прочитали про печінку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have read about the liver.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы прочитали о печени.»",
+            "uk": "Скажіть: «Ми прочитали про печінку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "read",
+            "about",
+            "the",
+            "liver"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про тіло й музей.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i08:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про тіло й музей.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "We ___ read about the liver.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i08:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про тіло й музей.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед read.",
+                "uk": "Із we потрібно have перед read."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед read.",
+                "uk": "Із we потрібно have перед read."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i09:r1",
+            "text": "We have read about the liver."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i09:r2",
+            "text": "They have read about the liver."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i09:r3",
+            "text": "We have talked about the liver."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i09:audio",
+            "transcript": "We have read about the liver."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i09:r1",
+              "targetText": "We have read about the liver.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i09:r2",
+              "targetText": "They have read about the liver.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i09:r3",
+              "targetText": "We have talked about the liver.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have read about the liver.",
+                "uk": "У записі звучить We have read about the liver."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have read about the liver.",
+                "uk": "У записі звучить We have read about the liver."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:word:skeleton",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — skeleton",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:word:skeleton:audio"
+        ],
+        "accessibilityLabel": "Картка слова — skeleton",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:word:skeleton:audio",
+            "transcript": "skeleton"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:word:skeleton:r1",
+              "targetText": "skeleton",
+              "meaningByLocale": {
+                "ru": "скелет.",
+                "uk": "скелет."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skeleton",
+            "definitionByLocale": {
+              "ru": "скелет.",
+              "uk": "скелет."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вони побачили скелет у музеї.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вони побачили скелет у музеї.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They saw a skeleton at the museum yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера они увидели скелет в музее.»",
+            "uk": "Скажіть: «Учора вони побачили скелет у музеї.»"
+          },
+          "orderedTokens": [
+            "They",
+            "saw",
+            "a",
+            "skeleton",
+            "at",
+            "the",
+            "museum",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про тіло й музей.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i11:r1",
+            "text": "saw"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i11:r2",
+            "text": "have seen"
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i11:r3",
+            "text": "see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про тіло й музей.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о теле и музее.",
+            "uk": "Доповніть розповідь про тіло й музей."
+          },
+          "gappedTargetPhrase": "They ___ a skeleton at the museum yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-46:i11:r1",
+              "text": "saw"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i11:r2",
+              "text": "have seen"
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i11:r3",
+              "text": "see"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про тіло й музей.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма saw без have.",
+                "uk": "Із yesterday потрібна форма saw без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про тіло й музей.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма saw без have.",
+                "uk": "Із yesterday потрібна форма saw без have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-46:i12:r1",
+            "text": "They saw a skeleton at the museum yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i12:r2",
+            "text": "We saw a skeleton at the museum yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-46:i12:r3",
+            "text": "They saw a skeleton at the museum last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i12:audio",
+            "transcript": "They saw a skeleton at the museum yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-46:i12:r1",
+              "targetText": "They saw a skeleton at the museum yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i12:r2",
+              "targetText": "We saw a skeleton at the museum yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i12:r3",
+              "targetText": "They saw a skeleton at the museum last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They saw a skeleton at the museum yesterday.",
+                "uk": "У записі звучить They saw a skeleton at the museum yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They saw a skeleton at the museum yesterday.",
+                "uk": "У записі звучить They saw a skeleton at the museum yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-46:i13:p1",
+              "target": "skin",
+              "meaningByLocale": {
+                "ru": "кожа",
+                "uk": "шкіра"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-46:i13:p2",
+              "target": "rib",
+              "meaningByLocale": {
+                "ru": "ребро",
+                "uk": "ребро"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-46:i13:p3",
+              "target": "liver",
+              "meaningByLocale": {
+                "ru": "печень",
+                "uk": "печінка"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-46:i13:p4",
+              "target": "skeleton",
+              "meaningByLocale": {
+                "ru": "скелет",
+                "uk": "скелет"
+              }
+            }
+          ],
+          "leftColumn": [
+            "skin",
+            "rib",
+            "liver",
+            "skeleton"
+          ],
+          "rightColumn": [
+            "шкіра",
+            "ребро",
+            "печінка",
+            "скелет"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми прочитали про печінку вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми прочитали про печінку вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i16:audio",
+            "transcript": "We read about the liver yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We read about the liver yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Він зламав ребро торік».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Він зламав ребро торік».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-46:i17:audio",
+            "transcript": "He broke a rib last year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He broke a rib last year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-46:word:skin",
+      "correctText": "skin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i01",
+      "correctText": "I have washed my skin.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i03",
+      "correctText": "I have washed my skin.",
+      "correctResponseId": "en:lesson-24:session-46:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:word:rib",
+      "correctText": "rib",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i04",
+      "correctText": "She broke a rib last year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i05",
+      "correctText": "broke",
+      "correctResponseId": "en:lesson-24:session-46:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i06",
+      "correctText": "She broke a rib last year.",
+      "correctResponseId": "en:lesson-24:session-46:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:word:liver",
+      "correctText": "liver",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i07",
+      "correctText": "We have read about the liver.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-46:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i09",
+      "correctText": "We have read about the liver.",
+      "correctResponseId": "en:lesson-24:session-46:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:word:skeleton",
+      "correctText": "skeleton",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i10",
+      "correctText": "They saw a skeleton at the museum yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i11",
+      "correctText": "saw",
+      "correctResponseId": "en:lesson-24:session-46:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i12",
+      "correctText": "They saw a skeleton at the museum yesterday.",
+      "correctResponseId": "en:lesson-24:session-46:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i16",
+      "correctText": "We read about the liver yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-46:i17",
+      "correctText": "He broke a rib last year.",
+      "correctResponseId": null
+    }
+  ]
+}

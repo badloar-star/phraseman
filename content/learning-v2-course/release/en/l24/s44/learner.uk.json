@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-44:word:fortunately",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fortunately",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:word:fortunately:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fortunately",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:word:fortunately:audio",
+          "transcript": "fortunately"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:word:fortunately:r1",
+            "targetText": "fortunately",
+            "meaningByLocale": {
+              "ru": "к счастью.",
+              "uk": "на щастя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fortunately",
+          "definitionByLocale": {
+            "ru": "к счастью.",
+            "uk": "на щастя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «На щастя, я знайшов свій гаманець.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «На щастя, я знайшов свій гаманець.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Fortunately, I have found my wallet.",
+        "localizedMeaning": {
+          "ru": "Скажите: «К счастью, я нашёл свой кошелёк.»",
+          "uk": "Скажіть: «На щастя, я знайшов свій гаманець.»"
+        },
+        "orderedTokens": [
+          "Fortunately,",
+          "I",
+          "have",
+          "found",
+          "my",
+          "wallet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про недавні події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про недавні події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о недавних событиях.",
+          "uk": "Доповніть розповідь про недавні події."
+        },
+        "gappedTargetPhrase": "Fortunately, I ___ found my wallet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-44:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про недавні події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед found.",
+              "uk": "Із I потрібно have перед found."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед found.",
+              "uk": "Із I потрібно have перед found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i03:r1",
+          "text": "Fortunately, I have found my wallet."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i03:r2",
+          "text": "Fortunately, we have found my wallet."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i03:r3",
+          "text": "Fortunately, I have found my keys."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i03:audio",
+          "transcript": "Fortunately, I have found my wallet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:i03:r1",
+            "targetText": "Fortunately, I have found my wallet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i03:r2",
+            "targetText": "Fortunately, we have found my wallet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i03:r3",
+            "targetText": "Fortunately, I have found my keys.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Fortunately, I have found my wallet.",
+              "uk": "У записі звучить Fortunately, I have found my wallet."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Fortunately, I have found my wallet.",
+              "uk": "У записі звучить Fortunately, I have found my wallet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:word:absolutely",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — absolutely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:word:absolutely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — absolutely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:word:absolutely:audio",
+          "transcript": "absolutely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:word:absolutely:r1",
+            "targetText": "absolutely",
+            "meaningByLocale": {
+              "ru": "совершенно, очень.",
+              "uk": "цілком, дуже."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "absolutely",
+          "definitionByLocale": {
+            "ru": "совершенно, очень.",
+            "uk": "цілком, дуже."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора фільм їй дуже сподобався.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора фільм їй дуже сподобався.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She absolutely loved the film yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера фильм ей очень понравился.»",
+          "uk": "Скажіть: «Учора фільм їй дуже сподобався.»"
+        },
+        "orderedTokens": [
+          "She",
+          "absolutely",
+          "loved",
+          "the",
+          "film",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про недавні події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i05:r1",
+          "text": "loved"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i05:r2",
+          "text": "has loved"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i05:r3",
+          "text": "love"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про недавні події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о недавних событиях.",
+          "uk": "Доповніть розповідь про недавні події."
+        },
+        "gappedTargetPhrase": "She absolutely ___ the film yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-44:i05:r1",
+            "text": "loved"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i05:r2",
+            "text": "has loved"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i05:r3",
+            "text": "love"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про недавні події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма loved без has.",
+              "uk": "Із yesterday потрібна форма loved без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма loved без has.",
+              "uk": "Із yesterday потрібна форма loved без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i06:r1",
+          "text": "She absolutely loved the film yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i06:r2",
+          "text": "He absolutely loved the film yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i06:r3",
+          "text": "She absolutely loved the film last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i06:audio",
+          "transcript": "She absolutely loved the film yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:i06:r1",
+            "targetText": "She absolutely loved the film yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i06:r2",
+            "targetText": "He absolutely loved the film yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i06:r3",
+            "targetText": "She absolutely loved the film last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She absolutely loved the film yesterday.",
+              "uk": "У записі звучить She absolutely loved the film yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She absolutely loved the film yesterday.",
+              "uk": "У записі звучить She absolutely loved the film yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:word:roughly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — roughly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:word:roughly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — roughly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:word:roughly:audio",
+          "transcript": "roughly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:word:roughly:r1",
+            "targetText": "roughly",
+            "meaningByLocale": {
+              "ru": "примерно.",
+              "uk": "приблизно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roughly",
+          "definitionByLocale": {
+            "ru": "примерно.",
+            "uk": "приблизно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми витратили приблизно десять фунтів.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми витратили приблизно десять фунтів.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have spent roughly ten pounds.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы потратили примерно десять фунтов.»",
+          "uk": "Скажіть: «Ми витратили приблизно десять фунтів.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "spent",
+          "roughly",
+          "ten",
+          "pounds"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про недавні події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про недавні події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о недавних событиях.",
+          "uk": "Доповніть розповідь про недавні події."
+        },
+        "gappedTargetPhrase": "We ___ spent roughly ten pounds.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-44:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про недавні події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед spent.",
+              "uk": "Із we потрібно have перед spent."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед spent.",
+              "uk": "Із we потрібно have перед spent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i09:r1",
+          "text": "We have spent roughly ten pounds."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i09:r2",
+          "text": "They have spent roughly ten pounds."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i09:r3",
+          "text": "We have spent roughly twenty pounds."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i09:audio",
+          "transcript": "We have spent roughly ten pounds."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:i09:r1",
+            "targetText": "We have spent roughly ten pounds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i09:r2",
+            "targetText": "They have spent roughly ten pounds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i09:r3",
+            "targetText": "We have spent roughly twenty pounds.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have spent roughly ten pounds.",
+              "uk": "У записі звучить We have spent roughly ten pounds."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have spent roughly ten pounds.",
+              "uk": "У записі звучить We have spent roughly ten pounds."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:word:hardly",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hardly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:word:hardly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hardly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:word:hardly:audio",
+          "transcript": "hardly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:word:hardly:r1",
+            "targetText": "hardly",
+            "meaningByLocale": {
+              "ru": "почти не.",
+              "uk": "майже не."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hardly",
+          "definitionByLocale": {
+            "ru": "почти не.",
+            "uk": "майже не."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Минулої ночі він майже не спав.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Минулої ночі він майже не спав.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He hardly slept last night.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Прошлой ночью он почти не спал.»",
+          "uk": "Скажіть: «Минулої ночі він майже не спав.»"
+        },
+        "orderedTokens": [
+          "He",
+          "hardly",
+          "slept",
+          "last",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про недавні події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i11:r1",
+          "text": "slept"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i11:r2",
+          "text": "has slept"
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i11:r3",
+          "text": "sleep"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про недавні події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о недавних событиях.",
+          "uk": "Доповніть розповідь про недавні події."
+        },
+        "gappedTargetPhrase": "He hardly ___ last night.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-44:i11:r1",
+            "text": "slept"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i11:r2",
+            "text": "has slept"
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i11:r3",
+            "text": "sleep"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про недавні події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С last night нужна форма slept без has.",
+              "uk": "Із last night потрібна форма slept без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про недавні події.",
+            "feedbackByLocale": {
+              "ru": "С last night нужна форма slept без has.",
+              "uk": "Із last night потрібна форма slept без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-44:i12:r1",
+          "text": "He hardly slept last night."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i12:r2",
+          "text": "She hardly slept last night."
+        },
+        {
+          "responseId": "en:lesson-24:session-44:i12:r3",
+          "text": "He hardly slept yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i12:audio",
+          "transcript": "He hardly slept last night."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-44:i12:r1",
+            "targetText": "He hardly slept last night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i12:r2",
+            "targetText": "She hardly slept last night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i12:r3",
+            "targetText": "He hardly slept yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He hardly slept last night.",
+              "uk": "У записі звучить He hardly slept last night."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He hardly slept last night.",
+              "uk": "У записі звучить He hardly slept last night."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-44:i13:p1",
+            "target": "fortunately",
+            "meaningByLocale": {
+              "ru": "к счастью",
+              "uk": "на щастя"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-44:i13:p2",
+            "target": "absolutely",
+            "meaningByLocale": {
+              "ru": "совершенно, очень",
+              "uk": "цілком, дуже"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-44:i13:p3",
+            "target": "roughly",
+            "meaningByLocale": {
+              "ru": "примерно",
+              "uk": "приблизно"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-44:i13:p4",
+            "target": "hardly",
+            "meaningByLocale": {
+              "ru": "почти не",
+              "uk": "майже не"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fortunately",
+          "absolutely",
+          "roughly",
+          "hardly"
+        ],
+        "rightColumn": [
+          "на щастя",
+          "цілком, дуже",
+          "приблизно",
+          "майже не"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми витратили приблизно десять фунтів учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми витратили приблизно десять фунтів учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i16:audio",
+          "transcript": "We spent roughly ten pounds yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We spent roughly ten pounds yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона майже не спала минулої ночі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона майже не спала минулої ночі».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-44:i17:audio",
+          "transcript": "She hardly slept last night."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She hardly slept last night.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aba113be1fb2e7c47d600f3c93667616b24d70f677f307bbcfae995a4d01202b"
+}

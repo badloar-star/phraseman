@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-34:intro1:r2": {
+          "ru": "После have нужна форма bought.",
+          "uk": "Після have потрібна форма bought."
+        },
+        "en:lesson-26:session-34:intro1:r3": {
+          "ru": "Для результата сейчас нужно have bought.",
+          "uk": "Для результату зараз потрібно have bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-34:intro2:r2": {
+          "ru": "В этом условии после if нужно is без will.",
+          "uk": "У цій умові після if потрібно is без will."
+        },
+        "en:lesson-26:session-34:intro2:r3": {
+          "ru": "Unless изменяет условие на противоположное.",
+          "uk": "Unless змінює умову на протилежну."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-34:intro3:r2": {
+          "ru": "Речь о двух прошлых событиях; более раннее — had cut.",
+          "uk": "Ідеться про дві минулі події; раніша — had cut."
+        },
+        "en:lesson-26:session-34:intro3:r3": {
+          "ru": "После had нужна форма cut, не cutting.",
+          "uk": "Після had потрібна форма cut, не cutting."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "86c048f76213845667f388b6a2598dc812da315fd04ad346ee3f76502e79d51e"
+}

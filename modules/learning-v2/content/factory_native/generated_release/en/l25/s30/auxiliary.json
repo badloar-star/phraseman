@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-30:intro1:r2": {
+          "ru": "Для рассказа о прошлом нужна форма was.",
+          "uk": "Для розповіді про минуле потрібна форма was."
+        },
+        "en:lesson-25:session-30:intro1:r3": {
+          "ru": "Здесь используем Past Simple: was.",
+          "uk": "Тут використовуємо Past Simple: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-30:intro2:r2": {
+          "ru": "Для рассказа о прошлом нужна форма gave.",
+          "uk": "Для розповіді про минуле потрібна форма gave."
+        },
+        "en:lesson-25:session-30:intro2:r3": {
+          "ru": "Здесь используем Past Simple: gave.",
+          "uk": "Тут використовуємо Past Simple: gave."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-30:intro3:r2": {
+          "ru": "Для рассказа о прошлом нужна форма ended.",
+          "uk": "Для розповіді про минуле потрібна форма ended."
+        },
+        "en:lesson-25:session-30:intro3:r3": {
+          "ru": "Здесь используем Past Simple: ended.",
+          "uk": "Тут використовуємо Past Simple: ended."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d983448dddb8d4ba5bea7a223588416ec02373e7d667845d8d3573b6bf2db94e"
+}

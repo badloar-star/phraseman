@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "before|after + past clause",
+    "uk": "before|after + past clause"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Искреннее извинение",
+        "uk": "Щире вибачення"
+      },
+      "bodyByLocale": {
+        "ru": "Sincere — искренний. His apology was sincere after we argued — после нашей ссоры его извинение было искренним. Он действительно сожалел, а не просто произнёс нужные слова. Sincere описывает apology, поэтому здесь was sincere. Argued называет более раннюю ссору: это видно по after.",
+        "uk": "Sincere — щирий. His apology was sincere after we argued — після нашої сварки його вибачення було щирим. Він справді шкодував, а не просто промовив потрібні слова. Sincere описує apology, тому тут was sincere. Argued називає ранішу сварку: це видно з after."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-29:intro1:r1",
+              "text": "His apology was sincere after we argued."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro1:r2",
+              "text": "His apology is sincere after we argued."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro1:r3",
+              "text": "His apology be sincere after we argued."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-29:intro1:r1",
+              "text": "His apology was sincere after we argued."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro1:r2",
+              "text": "His apology is sincere after we argued."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro1:r3",
+              "text": "His apology be sincere after we argued."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поведение до и после",
+        "uk": "Поведінка до й після"
+      },
+      "bodyByLocale": {
+        "ru": "Impolite — невежливый, противоположность знакомого polite. I was impolite before I apologised — я был невежливым до того, как извинился. Сначала повёл себя невежливо, затем извинился. Humble — скромный, не считающий себя лучше других. He stayed humble after he won — он остался скромным после победы. Stayed humble значит, что победа не изменила эту черту.",
+        "uk": "Impolite — неввічливий, протилежність знайомого polite. I was impolite before I apologised — я був неввічливим до того, як вибачився. Спочатку повівся неввічливо, потім вибачився. Humble — скромний, той, хто не вважає себе кращим за інших. He stayed humble after he won — він залишився скромним після перемоги. Stayed humble означає, що перемога не змінила цю рису."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-29:intro2:r1",
+              "text": "I was impolite before I apologised."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro2:r2",
+              "text": "I am impolite before I apologised."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro2:r3",
+              "text": "I be impolite before I apologised."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-29:intro2:r1",
+              "text": "I was impolite before I apologised."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro2:r2",
+              "text": "I am impolite before I apologised."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro2:r3",
+              "text": "I be impolite before I apologised."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как я себя чувствовал",
+        "uk": "Як я почувався"
+      },
+      "bodyByLocale": {
+        "ru": "Coward — трус. I felt like a coward after I ran away — я чувствовал себя трусом после того, как убежал. Это оценка собственного поступка, а не просто сообщение «мне было страшно». Coward — существительное о человеке: a coward. В felt like a coward слово like значит «как». Felt и ran — формы Past Simple; после after названо событие, которое случилось раньше.",
+        "uk": "Coward — боягуз. I felt like a coward after I ran away — я почувався боягузом після того, як утік. Це оцінка власного вчинку, а не просто повідомлення «мені було страшно». Coward — іменник про людину: a coward. У felt like a coward слово like означає «як». Felt і ran — форми Past Simple; після after названо подію, яка сталася раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-29:intro3:r1",
+              "text": "I felt like a coward after I ran away."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro3:r2",
+              "text": "I feel like a coward after I ran away."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro3:r3",
+              "text": "I feeling like a coward after I ran away."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-29:intro3:r1",
+              "text": "I felt like a coward after I ran away."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro3:r2",
+              "text": "I feel like a coward after I ran away."
+            },
+            {
+              "responseId": "en:lesson-25:session-29:intro3:r3",
+              "text": "I feeling like a coward after I ran away."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4009b5101fb17905416e3eadcde2a61f9f207ea7a5cc6484adb3ca548b3e168d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-28:intro1:r2": {
+          "ru": "Встреча была раньше совместной работы: had met.",
+          "uk": "Зустріч була раніше за спільну роботу: had met."
+        },
+        "en:lesson-25:session-28:intro1:r3": {
+          "ru": "Встреча была раньше совместной работы: had met.",
+          "uk": "Зустріч була раніше за спільну роботу: had met."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-28:intro2:r2": {
+          "ru": "Нынешняя привычка: I walk.",
+          "uk": "Теперішня звичка: I walk."
+        },
+        "en:lesson-25:session-28:intro2:r3": {
+          "ru": "Нынешняя привычка: I walk.",
+          "uk": "Теперішня звичка: I walk."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-28:intro3:r2": {
+          "ru": "Законченное событие в прошлом: lost.",
+          "uk": "Завершена подія в минулому: lost."
+        },
+        "en:lesson-25:session-28:intro3:r3": {
+          "ru": "Законченное событие в прошлом: lost.",
+          "uk": "Завершена подія в минулому: lost."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0206eac071518377919b387bdf07e597ee0414ad51cdda15e6a1d7d5348668b9"
+}

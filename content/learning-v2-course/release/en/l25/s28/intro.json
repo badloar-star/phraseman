@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect; used to and present habits; after + past clause",
+    "uk": "past perfect; used to and present habits; after + past clause"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мы уже встречались",
+        "uk": "Ми вже зустрічалися"
+      },
+      "bodyByLocale": {
+        "ru": "Previously — ранее. Представьте: вы стали работать вместе и вспомнили, что уже встречались. I had previously met her at school — я ранее встречал её в школе. Previously относится ко времени до вашей совместной работы. Had met показывает более раннюю встречу; previously можно поставить между had и met. Само слово previously не требует Past Perfect в каждом предложении.",
+        "uk": "Previously — раніше. Уявіть: ви стали працювати разом і згадали, що вже зустрічалися. I had previously met her at school — я раніше зустрічав її в школі. Previously стосується часу до вашої спільної роботи. Had met показує ранішу зустріч; previously можна поставити між had і met. Саме слово previously не вимагає Past Perfect у кожному реченні."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-28:intro1:r1",
+              "text": "I had previously met her at school."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro1:r2",
+              "text": "I have previously met her at school."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro1:r3",
+              "text": "I was previously met her at school."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-28:intro1:r1",
+              "text": "I had previously met her at school."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro1:r2",
+              "text": "I have previously met her at school."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro1:r3",
+              "text": "I was previously met her at school."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Теперь и в общей сложности",
+        "uk": "Тепер і загалом"
+      },
+      "bodyByLocale": {
+        "ru": "Nowadays — в наши дни, теперь по сравнению с прошлым. I used to drive. I walk to work nowadays — раньше я ездил на машине. Теперь хожу на работу пешком. Used to относится к прежней привычке, walk — к нынешней. Altogether — всего, если складываем расходы. We paid twenty pounds altogether after we ate — после еды мы заплатили всего двадцать фунтов. Это общая сумма, а не цена для каждого.",
+        "uk": "Nowadays — нині, тепер порівняно з минулим. I used to drive. I walk to work nowadays — раніше я їздив машиною. Тепер ходжу на роботу пішки. Used to стосується колишньої звички, walk — теперішньої. Altogether — загалом, якщо складаємо витрати. We paid twenty pounds altogether after we ate — після їжі ми заплатили загалом двадцять фунтів. Це загальна сума, а не ціна для кожного."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-28:intro2:r1",
+              "text": "I walk to work nowadays."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro2:r2",
+              "text": "I walked to work nowadays."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro2:r3",
+              "text": "I walking to work nowadays."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-28:intro2:r1",
+              "text": "I walk to work nowadays."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro2:r2",
+              "text": "I walked to work nowadays."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro2:r3",
+              "text": "I walking to work nowadays."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Неясно, как это случилось",
+        "uk": "Незрозуміло, як це сталося"
+      },
+      "bodyByLocale": {
+        "ru": "Somehow — каким-то образом: вы не знаете или не объясняете, как это произошло. I somehow lost my key after I left the house — я каким-то образом потерял ключ после того, как вышел из дома. Выход был раньше потери, это показывает after. Somehow не называет место и не означает «где-то». Здесь lost и left — две формы Past Simple.",
+        "uk": "Somehow — якимось чином: ви не знаєте або не пояснюєте, як це сталося. I somehow lost my key after I left the house — я якимось чином загубив ключ після того, як вийшов із дому. Вихід був раніше за втрату, це показує after. Somehow не називає місце й не означає «десь». Тут lost і left — дві форми Past Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-28:intro3:r1",
+              "text": "I somehow lost my key after I left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro3:r2",
+              "text": "I somehow lose my key after I left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro3:r3",
+              "text": "I somehow losing my key after I left the house."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-28:intro3:r1",
+              "text": "I somehow lost my key after I left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro3:r2",
+              "text": "I somehow lose my key after I left the house."
+            },
+            {
+              "responseId": "en:lesson-25:session-28:intro3:r3",
+              "text": "I somehow losing my key after I left the house."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c846c66fac18dc2875cf9eddbd00803bf32613903ee7f4fb31d23505d7d8931d"
+}

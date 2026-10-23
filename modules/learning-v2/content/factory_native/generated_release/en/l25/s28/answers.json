@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-28:word:previously",
+    "correctText": "previously",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i01",
+    "correctText": "I had previously met her at school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i03",
+    "correctText": "I had previously met her at school.",
+    "correctResponseId": "en:lesson-25:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:word:nowadays",
+    "correctText": "nowadays",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i04",
+    "correctText": "I walk to work nowadays.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i05",
+    "correctText": "walk",
+    "correctResponseId": "en:lesson-25:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i06",
+    "correctText": "I walk to work nowadays.",
+    "correctResponseId": "en:lesson-25:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:word:altogether",
+    "correctText": "altogether",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i07",
+    "correctText": "We paid twenty pounds altogether after we ate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i08",
+    "correctText": "paid",
+    "correctResponseId": "en:lesson-25:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i09",
+    "correctText": "We paid twenty pounds altogether after we ate.",
+    "correctResponseId": "en:lesson-25:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:word:somehow",
+    "correctText": "somehow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i10",
+    "correctText": "I somehow lost my key after I left the house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i11",
+    "correctText": "lost",
+    "correctResponseId": "en:lesson-25:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i12",
+    "correctText": "I somehow lost my key after I left the house.",
+    "correctResponseId": "en:lesson-25:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i13",
+    "correctText": "en:lesson-25:session-28:i13:p1=previously\nen:lesson-25:session-28:i13:p2=nowadays\nen:lesson-25:session-28:i13:p3=altogether\nen:lesson-25:session-28:i13:p4=somehow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i14",
+    "correctText": "We ate before we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i15",
+    "correctText": "I used to drive to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i16",
+    "correctText": "She walks to school nowadays.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-28:i17",
+    "correctText": "We paid thirty pounds altogether.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "before|after + past clause",
+    "uk": "before|after + past clause"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Как нас встретили",
+        "uk": "Як нас зустріли"
+      },
+      "bodyByLocale": {
+        "ru": "Greeting — приветствие: слова или жест при встрече. Her greeting was friendly when we arrived — её приветствие было дружелюбным, когда мы приехали. Знакомое greet — действие «приветствовать», greeting здесь — название приветствия. Поэтому her greeting сочетается с was: говорим об одном приветствии в прошлом.",
+        "uk": "Greeting — привітання: слова або жест під час зустрічі. Her greeting was friendly when we arrived — її привітання було дружнім, коли ми приїхали. Знайоме greet — дія «вітати», greeting тут — назва привітання. Тому her greeting поєднується з was: говоримо про одне привітання в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-30:intro1:r1",
+              "text": "Her greeting was friendly when we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro1:r2",
+              "text": "Her greeting is friendly when we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro1:r3",
+              "text": "Her greeting be friendly when we arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-30:intro1:r1",
+              "text": "Her greeting was friendly when we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro1:r2",
+              "text": "Her greeting is friendly when we arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro1:r3",
+              "text": "Her greeting be friendly when we arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Приветствие и планы",
+        "uk": "Привітання й плани"
+      },
+      "bodyByLocale": {
+        "ru": "Handshake — рукопожатие. He gave me a handshake before he left — он пожал мне руку перед уходом. A handshake — одно рукопожатие, а gave — прошедшая форма give. Outing — короткая прогулка или поездка ради удовольствия. We planned an outing before we called our friends — мы запланировали поездку на отдых до того, как позвонили друзьям. Перед outing стоит an, потому что слово начинается с гласного звука.",
+        "uk": "Handshake — рукостискання. He gave me a handshake before he left — він потиснув мені руку перед відходом. A handshake — одне рукостискання, а gave — минула форма give. Outing — коротка прогулянка чи поїздка задля задоволення. We planned an outing before we called our friends — ми запланували поїздку на відпочинок до того, як зателефонували друзям. Перед outing стоїть an, бо слово починається з голосного звука."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-30:intro2:r1",
+              "text": "He gave me a handshake before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro2:r2",
+              "text": "He give me a handshake before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro2:r3",
+              "text": "He giving me a handshake before he left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-30:intro2:r1",
+              "text": "He gave me a handshake before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro2:r2",
+              "text": "He give me a handshake before he left."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro2:r3",
+              "text": "He giving me a handshake before he left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вечер с друзьями",
+        "uk": "Вечір із друзями"
+      },
+      "bodyByLocale": {
+        "ru": "Gathering — встреча, на которую собрались люди. The gathering ended after we ate — встреча закончилась после того, как мы поели. Это может быть небольшой вечер с друзьями или родственниками, а не обязательно официальное собрание. Outing предполагает, что вы куда-то идёте или едете; gathering может пройти дома. After показывает: сначала поели, затем встреча закончилась.",
+        "uk": "Gathering — зустріч, на яку зібралися люди. The gathering ended after we ate — зустріч закінчилася після того, як ми поїли. Це може бути невеликий вечір із друзями чи родичами, а не обов’язково офіційні збори. Outing передбачає, що ви кудись ідете або їдете; gathering може відбутися вдома. After показує: спочатку поїли, потім зустріч закінчилася."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-30:intro3:r1",
+              "text": "The gathering ended after we ate."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro3:r2",
+              "text": "The gathering end after we ate."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro3:r3",
+              "text": "The gathering ending after we ate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-30:intro3:r1",
+              "text": "The gathering ended after we ate."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro3:r2",
+              "text": "The gathering end after we ate."
+            },
+            {
+              "responseId": "en:lesson-25:session-30:intro3:r3",
+              "text": "The gathering ending after we ate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bcad3335ad0d73bb2314896f89fea323a81d985a50de363494a3e502dcd6c92e"
+}

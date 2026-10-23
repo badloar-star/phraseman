@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-30:word:greeting",
+    "correctText": "greeting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i01",
+    "correctText": "Her greeting was friendly when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i02",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i03",
+    "correctText": "Her greeting was friendly when we arrived.",
+    "correctResponseId": "en:lesson-25:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:word:handshake",
+    "correctText": "handshake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i04",
+    "correctText": "He gave me a handshake before he left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i05",
+    "correctText": "gave",
+    "correctResponseId": "en:lesson-25:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i06",
+    "correctText": "He gave me a handshake before he left.",
+    "correctResponseId": "en:lesson-25:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:word:outing",
+    "correctText": "outing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i07",
+    "correctText": "We planned an outing before we called our friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i08",
+    "correctText": "planned",
+    "correctResponseId": "en:lesson-25:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i09",
+    "correctText": "We planned an outing before we called our friends.",
+    "correctResponseId": "en:lesson-25:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:word:gathering",
+    "correctText": "gathering",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i10",
+    "correctText": "The gathering ended after we ate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i11",
+    "correctText": "ended",
+    "correctResponseId": "en:lesson-25:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i12",
+    "correctText": "The gathering ended after we ate.",
+    "correctResponseId": "en:lesson-25:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i13",
+    "correctText": "en:lesson-25:session-30:i13:p1=greeting\nen:lesson-25:session-30:i13:p2=handshake\nen:lesson-25:session-30:i13:p3=outing\nen:lesson-25:session-30:i13:p4=gathering",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i14",
+    "correctText": "We ate before we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i15",
+    "correctText": "We started after she arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i16",
+    "correctText": "She gave me a handshake before she left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-30:i17",
+    "correctText": "The gathering ended after we danced.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-29:word:sincere",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sincere",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:sincere:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sincere",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:sincere:audio",
+            "transcript": "sincere"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:sincere:r1",
+              "targetText": "sincere",
+              "meaningByLocale": {
+                "ru": "Искренним. Sincere — искренний, говорящий то, что действительно чувствует.",
+                "uk": "Щирим. Sincere — щирий, той, хто каже те, що справді відчуває."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sincere",
+            "definitionByLocale": {
+              "ru": "Искренним. Sincere — искренний, говорящий то, что действительно чувствует.",
+              "uk": "Щирим. Sincere — щирий, той, хто каже те, що справді відчуває."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «После нашей ссоры его извинение было искренним.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «После нашей ссоры его извинение было искренним.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "His apology was sincere after we argued.",
+          "localizedMeaning": {
+            "ru": "Скажите: «После нашей ссоры его извинение было искренним.»",
+            "uk": "Скажіть: «Після нашої сварки його вибачення було щирим.»"
+          },
+          "orderedTokens": [
+            "His",
+            "apology",
+            "was",
+            "sincere",
+            "after",
+            "we",
+            "argued"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i02:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i02:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i02:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "His apology ___ sincere after we argued.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i02:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i02:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i02:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i03:r1",
+            "text": "His apology was sincere after we argued."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i03:r2",
+            "text": "Her apology was sincere after we argued."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i03:r3",
+            "text": "His apology was sincere after they argued."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i03:audio",
+            "transcript": "His apology was sincere after we argued."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i03:r1",
+              "targetText": "His apology was sincere after we argued.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i03:r2",
+              "targetText": "Her apology was sincere after we argued.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i03:r3",
+              "targetText": "His apology was sincere after they argued.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит His apology was sincere after we argued.",
+                "uk": "У записі звучить His apology was sincere after we argued."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит His apology was sincere after we argued.",
+                "uk": "У записі звучить His apology was sincere after we argued."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:word:impolite",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — impolite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:impolite:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — impolite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:impolite:audio",
+            "transcript": "impolite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:impolite:r1",
+              "targetText": "impolite",
+              "meaningByLocale": {
+                "ru": "Невежливым. Impolite — невежливый.",
+                "uk": "Неввічливим. Impolite — неввічливий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "impolite",
+            "definitionByLocale": {
+              "ru": "Невежливым. Impolite — невежливый.",
+              "uk": "Неввічливим. Impolite — неввічливий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я был невежливым до того, как извинился.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я был невежливым до того, как извинился.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was impolite before I apologised.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я был невежливым до того, как извинился.»",
+            "uk": "Скажіть: «Я був неввічливим до того, як вибачився.»"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "impolite",
+            "before",
+            "I",
+            "apologised"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i05:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i05:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i05:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "I ___ impolite before I apologised.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i05:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i05:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i05:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i06:r1",
+            "text": "I was impolite before I apologised."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i06:r2",
+            "text": "He was impolite before he apologised."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i06:r3",
+            "text": "I was impolite before I left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i06:audio",
+            "transcript": "I was impolite before I apologised."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i06:r1",
+              "targetText": "I was impolite before I apologised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i06:r2",
+              "targetText": "He was impolite before he apologised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i06:r3",
+              "targetText": "I was impolite before I left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was impolite before I apologised.",
+                "uk": "У записі звучить I was impolite before I apologised."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was impolite before I apologised.",
+                "uk": "У записі звучить I was impolite before I apologised."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:word:humble",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — humble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:humble:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — humble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:humble:audio",
+            "transcript": "humble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:humble:r1",
+              "targetText": "humble",
+              "meaningByLocale": {
+                "ru": "Скромным. Humble — скромный, не считающий себя лучше других.",
+                "uk": "Скромним. Humble — скромний, той, хто не вважає себе кращим за інших."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humble",
+            "definitionByLocale": {
+              "ru": "Скромным. Humble — скромный, не считающий себя лучше других.",
+              "uk": "Скромним. Humble — скромний, той, хто не вважає себе кращим за інших."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он остался скромным после того, как победил.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он остался скромным после того, как победил.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He stayed humble after he won.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он остался скромным после того, как победил.»",
+            "uk": "Скажіть: «Він залишився скромним після того, як переміг.»"
+          },
+          "orderedTokens": [
+            "He",
+            "stayed",
+            "humble",
+            "after",
+            "he",
+            "won"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i08:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i08:r2",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i08:r3",
+            "text": "staying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "He ___ humble after he won.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i08:r1",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i08:r2",
+              "text": "stay"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i08:r3",
+              "text": "staying"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма stayed.",
+                "uk": "Для завершеної події потрібна минула форма stayed."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма stayed.",
+                "uk": "Для завершеної події потрібна минула форма stayed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i09:r1",
+            "text": "He stayed humble after he won."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i09:r2",
+            "text": "She stayed humble after she won."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i09:r3",
+            "text": "He stayed humble after they won."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i09:audio",
+            "transcript": "He stayed humble after he won."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i09:r1",
+              "targetText": "He stayed humble after he won.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i09:r2",
+              "targetText": "She stayed humble after she won.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i09:r3",
+              "targetText": "He stayed humble after they won.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He stayed humble after he won.",
+                "uk": "У записі звучить He stayed humble after he won."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He stayed humble after he won.",
+                "uk": "У записі звучить He stayed humble after he won."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:word:coward",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — coward",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:coward:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — coward",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:coward:audio",
+            "transcript": "coward"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:coward:r1",
+              "targetText": "coward",
+              "meaningByLocale": {
+                "ru": "Трус. Coward — человек, который не решается действовать из-за страха.",
+                "uk": "Боягуз. Coward — людина, яка не наважується діяти через страх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coward",
+            "definitionByLocale": {
+              "ru": "Трус. Coward — человек, который не решается действовать из-за страха.",
+              "uk": "Боягуз. Coward — людина, яка не наважується діяти через страх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я чувствовал себя трусом после того, как убежал.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я чувствовал себя трусом после того, как убежал.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I felt like a coward after I ran away.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я чувствовал себя трусом после того, как убежал.»",
+            "uk": "Скажіть: «Я почувався боягузом після того, як утік.»"
+          },
+          "orderedTokens": [
+            "I",
+            "felt",
+            "like",
+            "a",
+            "coward",
+            "after",
+            "I",
+            "ran",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i11:r1",
+            "text": "felt"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i11:r2",
+            "text": "feel"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i11:r3",
+            "text": "feeling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "I ___ like a coward after I ran away.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i11:r1",
+              "text": "felt"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i11:r2",
+              "text": "feel"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i11:r3",
+              "text": "feeling"
+            }
+          ],
+          "testedDimension": "Дополните рассказ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма felt.",
+                "uk": "Для завершеної події потрібна минула форма felt."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма felt.",
+                "uk": "Для завершеної події потрібна минула форма felt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i12:r1",
+            "text": "I felt like a coward after I ran away."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i12:r2",
+            "text": "She felt like a coward after she ran away."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i12:r3",
+            "text": "I felt like a coward after I hid."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i12:audio",
+            "transcript": "I felt like a coward after I ran away."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i12:r1",
+              "targetText": "I felt like a coward after I ran away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i12:r2",
+              "targetText": "She felt like a coward after she ran away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i12:r3",
+              "targetText": "I felt like a coward after I hid.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I felt like a coward after I ran away.",
+                "uk": "У записі звучить I felt like a coward after I ran away."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I felt like a coward after I ran away.",
+                "uk": "У записі звучить I felt like a coward after I ran away."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-29:i13:p1",
+              "target": "sincere",
+              "meaningByLocale": {
+                "ru": "искренним",
+                "uk": "щирим"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-29:i13:p2",
+              "target": "impolite",
+              "meaningByLocale": {
+                "ru": "невежливым",
+                "uk": "неввічливим"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-29:i13:p3",
+              "target": "humble",
+              "meaningByLocale": {
+                "ru": "скромным",
+                "uk": "скромним"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-29:i13:p4",
+              "target": "coward",
+              "meaningByLocale": {
+                "ru": "трус",
+                "uk": "боягуз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sincere",
+            "impolite",
+            "humble",
+            "coward"
+          ],
+          "rightColumn": [
+            "искренним",
+            "невежливым",
+            "скромным",
+            "трус"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поели перед отъездом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Поели перед отъездом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i14:audio",
+            "transcript": "We ate before we left."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We ate before we left.",
+          "orderedTokens": [
+            "We",
+            "ate",
+            "before",
+            "we",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начали после её прихода",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Начали после её прихода",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i15:audio",
+            "transcript": "We started after she arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We started after she arrived.",
+          "orderedTokens": [
+            "We",
+            "started",
+            "after",
+            "she",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она осталась скромной после победы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она осталась скромной после победы».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i16:audio",
+            "transcript": "She stayed humble after she won."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stayed humble after she won.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Он был невежливым до того, как извинился».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Он был невежливым до того, как извинился».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i17:audio",
+            "transcript": "He was impolite before he apologised."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He was impolite before he apologised.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-29:word:sincere",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sincere",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:sincere:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sincere",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:sincere:audio",
+            "transcript": "sincere"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:sincere:r1",
+              "targetText": "sincere",
+              "meaningByLocale": {
+                "ru": "Искренним. Sincere — искренний, говорящий то, что действительно чувствует.",
+                "uk": "Щирим. Sincere — щирий, той, хто каже те, що справді відчуває."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sincere",
+            "definitionByLocale": {
+              "ru": "Искренним. Sincere — искренний, говорящий то, что действительно чувствует.",
+              "uk": "Щирим. Sincere — щирий, той, хто каже те, що справді відчуває."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Після нашої сварки його вибачення було щирим.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Після нашої сварки його вибачення було щирим.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "His apology was sincere after we argued.",
+          "localizedMeaning": {
+            "ru": "Скажите: «После нашей ссоры его извинение было искренним.»",
+            "uk": "Скажіть: «Після нашої сварки його вибачення було щирим.»"
+          },
+          "orderedTokens": [
+            "His",
+            "apology",
+            "was",
+            "sincere",
+            "after",
+            "we",
+            "argued"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i02:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i02:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i02:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "His apology ___ sincere after we argued.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i02:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i02:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i02:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i03:r1",
+            "text": "His apology was sincere after we argued."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i03:r2",
+            "text": "Her apology was sincere after we argued."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i03:r3",
+            "text": "His apology was sincere after they argued."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i03:audio",
+            "transcript": "His apology was sincere after we argued."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i03:r1",
+              "targetText": "His apology was sincere after we argued.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i03:r2",
+              "targetText": "Her apology was sincere after we argued.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i03:r3",
+              "targetText": "His apology was sincere after they argued.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит His apology was sincere after we argued.",
+                "uk": "У записі звучить His apology was sincere after we argued."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит His apology was sincere after we argued.",
+                "uk": "У записі звучить His apology was sincere after we argued."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:word:impolite",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — impolite",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:impolite:audio"
+        ],
+        "accessibilityLabel": "Картка слова — impolite",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:impolite:audio",
+            "transcript": "impolite"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:impolite:r1",
+              "targetText": "impolite",
+              "meaningByLocale": {
+                "ru": "Невежливым. Impolite — невежливый.",
+                "uk": "Неввічливим. Impolite — неввічливий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "impolite",
+            "definitionByLocale": {
+              "ru": "Невежливым. Impolite — невежливый.",
+              "uk": "Неввічливим. Impolite — неввічливий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я був неввічливим до того, як вибачився.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я був неввічливим до того, як вибачився.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I was impolite before I apologised.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я был невежливым до того, как извинился.»",
+            "uk": "Скажіть: «Я був неввічливим до того, як вибачився.»"
+          },
+          "orderedTokens": [
+            "I",
+            "was",
+            "impolite",
+            "before",
+            "I",
+            "apologised"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i05:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i05:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i05:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "I ___ impolite before I apologised.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i05:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i05:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i05:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма was.",
+                "uk": "Для завершеної події потрібна минула форма was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i06:r1",
+            "text": "I was impolite before I apologised."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i06:r2",
+            "text": "He was impolite before he apologised."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i06:r3",
+            "text": "I was impolite before I left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i06:audio",
+            "transcript": "I was impolite before I apologised."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i06:r1",
+              "targetText": "I was impolite before I apologised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i06:r2",
+              "targetText": "He was impolite before he apologised.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i06:r3",
+              "targetText": "I was impolite before I left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was impolite before I apologised.",
+                "uk": "У записі звучить I was impolite before I apologised."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I was impolite before I apologised.",
+                "uk": "У записі звучить I was impolite before I apologised."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:word:humble",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — humble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:humble:audio"
+        ],
+        "accessibilityLabel": "Картка слова — humble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:humble:audio",
+            "transcript": "humble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:humble:r1",
+              "targetText": "humble",
+              "meaningByLocale": {
+                "ru": "Скромным. Humble — скромный, не считающий себя лучше других.",
+                "uk": "Скромним. Humble — скромний, той, хто не вважає себе кращим за інших."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humble",
+            "definitionByLocale": {
+              "ru": "Скромным. Humble — скромный, не считающий себя лучше других.",
+              "uk": "Скромним. Humble — скромний, той, хто не вважає себе кращим за інших."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він залишився скромним після того, як переміг.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він залишився скромним після того, як переміг.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He stayed humble after he won.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он остался скромным после того, как победил.»",
+            "uk": "Скажіть: «Він залишився скромним після того, як переміг.»"
+          },
+          "orderedTokens": [
+            "He",
+            "stayed",
+            "humble",
+            "after",
+            "he",
+            "won"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i08:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i08:r2",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i08:r3",
+            "text": "staying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "He ___ humble after he won.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i08:r1",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i08:r2",
+              "text": "stay"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i08:r3",
+              "text": "staying"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма stayed.",
+                "uk": "Для завершеної події потрібна минула форма stayed."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма stayed.",
+                "uk": "Для завершеної події потрібна минула форма stayed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i09:r1",
+            "text": "He stayed humble after he won."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i09:r2",
+            "text": "She stayed humble after she won."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i09:r3",
+            "text": "He stayed humble after they won."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i09:audio",
+            "transcript": "He stayed humble after he won."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i09:r1",
+              "targetText": "He stayed humble after he won.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i09:r2",
+              "targetText": "She stayed humble after she won.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i09:r3",
+              "targetText": "He stayed humble after they won.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He stayed humble after he won.",
+                "uk": "У записі звучить He stayed humble after he won."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He stayed humble after he won.",
+                "uk": "У записі звучить He stayed humble after he won."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:word:coward",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — coward",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:word:coward:audio"
+        ],
+        "accessibilityLabel": "Картка слова — coward",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:word:coward:audio",
+            "transcript": "coward"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:word:coward:r1",
+              "targetText": "coward",
+              "meaningByLocale": {
+                "ru": "Трус. Coward — человек, который не решается действовать из-за страха.",
+                "uk": "Боягуз. Coward — людина, яка не наважується діяти через страх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coward",
+            "definitionByLocale": {
+              "ru": "Трус. Coward — человек, который не решается действовать из-за страха.",
+              "uk": "Боягуз. Coward — людина, яка не наважується діяти через страх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я почувався боягузом після того, як утік.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я почувався боягузом після того, як утік.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I felt like a coward after I ran away.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я чувствовал себя трусом после того, как убежал.»",
+            "uk": "Скажіть: «Я почувався боягузом після того, як утік.»"
+          },
+          "orderedTokens": [
+            "I",
+            "felt",
+            "like",
+            "a",
+            "coward",
+            "after",
+            "I",
+            "ran",
+            "away"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i11:r1",
+            "text": "felt"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i11:r2",
+            "text": "feel"
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i11:r3",
+            "text": "feeling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ.",
+            "uk": "Доповніть розповідь."
+          },
+          "gappedTargetPhrase": "I ___ like a coward after I ran away.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-29:i11:r1",
+              "text": "felt"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i11:r2",
+              "text": "feel"
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i11:r3",
+              "text": "feeling"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма felt.",
+                "uk": "Для завершеної події потрібна минула форма felt."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь.",
+              "feedbackByLocale": {
+                "ru": "Для законченного события нужна прошедшая форма felt.",
+                "uk": "Для завершеної події потрібна минула форма felt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-29:i12:r1",
+            "text": "I felt like a coward after I ran away."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i12:r2",
+            "text": "She felt like a coward after she ran away."
+          },
+          {
+            "responseId": "en:lesson-25:session-29:i12:r3",
+            "text": "I felt like a coward after I hid."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i12:audio",
+            "transcript": "I felt like a coward after I ran away."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-29:i12:r1",
+              "targetText": "I felt like a coward after I ran away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i12:r2",
+              "targetText": "She felt like a coward after she ran away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i12:r3",
+              "targetText": "I felt like a coward after I hid.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I felt like a coward after I ran away.",
+                "uk": "У записі звучить I felt like a coward after I ran away."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I felt like a coward after I ran away.",
+                "uk": "У записі звучить I felt like a coward after I ran away."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте форми з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-29:i13:p1",
+              "target": "sincere",
+              "meaningByLocale": {
+                "ru": "искренним",
+                "uk": "щирим"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-29:i13:p2",
+              "target": "impolite",
+              "meaningByLocale": {
+                "ru": "невежливым",
+                "uk": "неввічливим"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-29:i13:p3",
+              "target": "humble",
+              "meaningByLocale": {
+                "ru": "скромным",
+                "uk": "скромним"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-29:i13:p4",
+              "target": "coward",
+              "meaningByLocale": {
+                "ru": "трус",
+                "uk": "боягуз"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sincere",
+            "impolite",
+            "humble",
+            "coward"
+          ],
+          "rightColumn": [
+            "щирим",
+            "неввічливим",
+            "скромним",
+            "боягуз"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поїли перед від’їздом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Поїли перед від’їздом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i14:audio",
+            "transcript": "We ate before we left."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We ate before we left.",
+          "orderedTokens": [
+            "We",
+            "ate",
+            "before",
+            "we",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почали після її приходу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Почали після її приходу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i15:audio",
+            "transcript": "We started after she arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We started after she arrived.",
+          "orderedTokens": [
+            "We",
+            "started",
+            "after",
+            "she",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона залишилася скромною після перемоги».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона залишилася скромною після перемоги».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i16:audio",
+            "transcript": "She stayed humble after she won."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She stayed humble after she won.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Він був неввічливим до того, як вибачився».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Він був неввічливим до того, як вибачився».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-29:i17:audio",
+            "transcript": "He was impolite before he apologised."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He was impolite before he apologised.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-29:word:sincere",
+      "correctText": "sincere",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i01",
+      "correctText": "His apology was sincere after we argued.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i02",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-25:session-29:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i03",
+      "correctText": "His apology was sincere after we argued.",
+      "correctResponseId": "en:lesson-25:session-29:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:word:impolite",
+      "correctText": "impolite",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i04",
+      "correctText": "I was impolite before I apologised.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i05",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-25:session-29:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i06",
+      "correctText": "I was impolite before I apologised.",
+      "correctResponseId": "en:lesson-25:session-29:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:word:humble",
+      "correctText": "humble",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i07",
+      "correctText": "He stayed humble after he won.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i08",
+      "correctText": "stayed",
+      "correctResponseId": "en:lesson-25:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i09",
+      "correctText": "He stayed humble after he won.",
+      "correctResponseId": "en:lesson-25:session-29:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:word:coward",
+      "correctText": "coward",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i10",
+      "correctText": "I felt like a coward after I ran away.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i11",
+      "correctText": "felt",
+      "correctResponseId": "en:lesson-25:session-29:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i12",
+      "correctText": "I felt like a coward after I ran away.",
+      "correctResponseId": "en:lesson-25:session-29:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i14",
+      "correctText": "We ate before we left.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i15",
+      "correctText": "We started after she arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i16",
+      "correctText": "She stayed humble after she won.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-29:i17",
+      "correctText": "He was impolite before he apologised.",
+      "correctResponseId": null
+    }
+  ]
+}

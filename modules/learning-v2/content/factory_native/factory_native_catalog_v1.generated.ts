@@ -9233,4 +9233,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 31,
+    sourceFingerprint: "1691baef828be865f218dda7f961c82415028c94a86c180d2f6b716ed6ad4c3a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 32,
+    sourceFingerprint: "d08eeb5929f84c569340d30cb144b6a7e9aa5533e34e8ef4e59fa8c1085ac727",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

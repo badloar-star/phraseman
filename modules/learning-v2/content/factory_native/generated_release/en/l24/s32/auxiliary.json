@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-32:intro1:r2": {
+          "ru": "С yesterday нужно visited без have.",
+          "uk": "Із yesterday потрібне visited без have."
+        },
+        "en:lesson-24:session-32:intro1:r3": {
+          "ru": "Для прошлого нужна форма visited.",
+          "uk": "Для минулого потрібна форма visited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-32:intro2:r2": {
+          "ru": "С yesterday нужно cooked без has.",
+          "uk": "Із yesterday потрібне cooked без has."
+        },
+        "en:lesson-24:session-32:intro2:r3": {
+          "ru": "Для прошлого нужна форма cooked.",
+          "uk": "Для минулого потрібна форма cooked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-32:intro3:r2": {
+          "ru": "Обсуждали вчера: discussed без have.",
+          "uk": "Обговорювали вчора: discussed без have."
+        },
+        "en:lesson-24:session-32:intro3:r3": {
+          "ru": "Для прошлого нужна форма discussed.",
+          "uk": "Для минулого потрібна форма discussed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "05cd33dc4be472d22bc562a48225f16f5f6e7592a07452c400b6f4e6ada5e524"
+}

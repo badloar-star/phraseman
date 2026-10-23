@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-32:word:historic",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — historic",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:word:historic:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — historic",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:word:historic:audio",
+          "transcript": "historic"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:word:historic:r1",
+            "targetText": "historic",
+            "meaningByLocale": {
+              "ru": "исторически важный.",
+              "uk": "історично важливий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "historic",
+          "definitionByLocale": {
+            "ru": "исторически важный.",
+            "uk": "історично важливий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я посетил исторически важный замок.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я посетил исторически важный замок.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have visited a historic castle.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я посетил исторически важный замок.»",
+          "uk": "Скажіть: «Я відвідав історично важливий замок.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "visited",
+          "a",
+          "historic",
+          "castle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "I ___ visited a historic castle.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-32:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед visited.",
+              "uk": "Із I потрібно have перед visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед visited.",
+              "uk": "Із I потрібно have перед visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i03:r1",
+          "text": "I have visited a historic castle."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i03:r2",
+          "text": "We have visited a historic castle."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i03:r3",
+          "text": "I have visited a historic house."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i03:audio",
+          "transcript": "I have visited a historic castle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:i03:r1",
+            "targetText": "I have visited a historic castle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i03:r2",
+            "targetText": "We have visited a historic castle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i03:r3",
+            "targetText": "I have visited a historic house.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have visited a historic castle.",
+              "uk": "У записі звучить I have visited a historic castle."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have visited a historic castle.",
+              "uk": "У записі звучить I have visited a historic castle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:word:traditional",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — traditional",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:word:traditional:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — traditional",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:word:traditional:audio",
+          "transcript": "traditional"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:word:traditional:r1",
+            "targetText": "traditional",
+            "meaningByLocale": {
+              "ru": "традиционный.",
+              "uk": "традиційний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "traditional",
+          "definitionByLocale": {
+            "ru": "традиционный.",
+            "uk": "традиційний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Вчера она приготовила традиционное блюдо.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Вчера она приготовила традиционное блюдо.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She cooked a traditional meal yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она приготовила традиционное блюдо.»",
+          "uk": "Скажіть: «Учора вона приготувала традиційну страву.»"
+        },
+        "orderedTokens": [
+          "She",
+          "cooked",
+          "a",
+          "traditional",
+          "meal",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i05:r1",
+          "text": "cooked"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i05:r2",
+          "text": "has cooked"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i05:r3",
+          "text": "cook"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "She ___ a traditional meal yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-32:i05:r1",
+            "text": "cooked"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i05:r2",
+            "text": "has cooked"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i05:r3",
+            "text": "cook"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма cooked без has.",
+              "uk": "Із yesterday потрібна форма cooked без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма cooked без has.",
+              "uk": "Із yesterday потрібна форма cooked без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i06:r1",
+          "text": "She cooked a traditional meal yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i06:r2",
+          "text": "He cooked a traditional meal yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i06:r3",
+          "text": "She cooked a traditional meal last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i06:audio",
+          "transcript": "She cooked a traditional meal yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:i06:r1",
+            "targetText": "She cooked a traditional meal yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i06:r2",
+            "targetText": "He cooked a traditional meal yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i06:r3",
+            "targetText": "She cooked a traditional meal last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cooked a traditional meal yesterday.",
+              "uk": "У записі звучить She cooked a traditional meal yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cooked a traditional meal yesterday.",
+              "uk": "У записі звучить She cooked a traditional meal yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:word:previous",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — previous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:word:previous:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — previous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:word:previous:audio",
+          "transcript": "previous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:word:previous:r1",
+            "targetText": "previous",
+            "meaningByLocale": {
+              "ru": "предыдущий.",
+              "uk": "попередній."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "previous",
+          "definitionByLocale": {
+            "ru": "предыдущий.",
+            "uk": "попередній."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы прочитали твоё предыдущее сообщение.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы прочитали твоё предыдущее сообщение.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have read your previous message.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы прочитали твоё предыдущее сообщение.»",
+          "uk": "Скажіть: «Ми прочитали твоє попереднє повідомлення.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "read",
+          "your",
+          "previous",
+          "message"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "We ___ read your previous message.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-32:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед read.",
+              "uk": "Із we потрібно have перед read."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед read.",
+              "uk": "Із we потрібно have перед read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i09:r1",
+          "text": "We have read your previous message."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i09:r2",
+          "text": "They have read your previous message."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i09:r3",
+          "text": "We have read her previous message."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i09:audio",
+          "transcript": "We have read your previous message."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:i09:r1",
+            "targetText": "We have read your previous message.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i09:r2",
+            "targetText": "They have read your previous message.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i09:r3",
+            "targetText": "We have read her previous message.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have read your previous message.",
+              "uk": "У записі звучить We have read your previous message."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have read your previous message.",
+              "uk": "У записі звучить We have read your previous message."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:word:future",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — future",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:word:future:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — future",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:word:future:audio",
+          "transcript": "future"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:word:future:r1",
+            "targetText": "future",
+            "meaningByLocale": {
+              "ru": "будущий.",
+              "uk": "майбутній."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "future",
+          "definitionByLocale": {
+            "ru": "будущий.",
+            "uk": "майбутній."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Вчера они обсудили свои будущие планы.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Вчера они обсудили свои будущие планы.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They discussed their future plans yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера они обсудили свои будущие планы.»",
+          "uk": "Скажіть: «Учора вони обговорили свої майбутні плани.»"
+        },
+        "orderedTokens": [
+          "They",
+          "discussed",
+          "their",
+          "future",
+          "plans",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i11:r1",
+          "text": "discussed"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i11:r2",
+          "text": "have discussed"
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i11:r3",
+          "text": "discuss"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "They ___ their future plans yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-32:i11:r1",
+            "text": "discussed"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i11:r2",
+            "text": "have discussed"
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i11:r3",
+            "text": "discuss"
+          }
+        ],
+        "testedDimension": "Дополните рассказ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма discussed без have.",
+              "uk": "Із yesterday потрібна форма discussed без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма discussed без have.",
+              "uk": "Із yesterday потрібна форма discussed без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-32:i12:r1",
+          "text": "They discussed their future plans yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i12:r2",
+          "text": "We discussed our future plans yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-32:i12:r3",
+          "text": "They discussed their future plans last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i12:audio",
+          "transcript": "They discussed their future plans yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-32:i12:r1",
+            "targetText": "They discussed their future plans yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i12:r2",
+            "targetText": "We discussed our future plans yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i12:r3",
+            "targetText": "They discussed their future plans last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They discussed their future plans yesterday.",
+              "uk": "У записі звучить They discussed their future plans yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They discussed their future plans yesterday.",
+              "uk": "У записі звучить They discussed their future plans yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-32:i13:p1",
+            "target": "historic",
+            "meaningByLocale": {
+              "ru": "исторически важный",
+              "uk": "історично важливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-32:i13:p2",
+            "target": "traditional",
+            "meaningByLocale": {
+              "ru": "традиционный",
+              "uk": "традиційний"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-32:i13:p3",
+            "target": "previous",
+            "meaningByLocale": {
+              "ru": "предыдущий",
+              "uk": "попередній"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-32:i13:p4",
+            "target": "future",
+            "meaningByLocale": {
+              "ru": "будущий",
+              "uk": "майбутній"
+            }
+          }
+        ],
+        "leftColumn": [
+          "historic",
+          "traditional",
+          "previous",
+          "future"
+        ],
+        "rightColumn": [
+          "исторически важный",
+          "традиционный",
+          "предыдущий",
+          "будущий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы посетили исторически важный замок вчера».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы посетили исторически важный замок вчера».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i16:audio",
+          "transcript": "We visited a historic castle yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We visited a historic castle yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-32:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она приготовила традиционное блюдо на прошлой неделе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она приготовила традиционное блюдо на прошлой неделе».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-32:i17:audio",
+          "transcript": "She cooked a traditional meal last week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She cooked a traditional meal last week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a012a868e78bebe5468aa5683a6eb53132285e28fca66f9ca6cfbc2ed93df45a"
+}

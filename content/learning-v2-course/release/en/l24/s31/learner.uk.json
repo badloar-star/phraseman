@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-31:word:whole",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — whole",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:word:whole:audio"
+      ],
+      "accessibilityLabel": "Картка слова — whole",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:word:whole:audio",
+          "transcript": "whole"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:word:whole:r1",
+            "targetText": "whole",
+            "meaningByLocale": {
+              "ru": "весь, целый.",
+              "uk": "увесь, цілий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "whole",
+          "definitionByLocale": {
+            "ru": "весь, целый.",
+            "uk": "увесь, цілий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я з’їв увесь торт.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я з’їв увесь торт.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have eaten the whole cake.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я съел весь торт.»",
+          "uk": "Скажіть: «Я з’їв увесь торт.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "eaten",
+          "the",
+          "whole",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "I ___ eaten the whole cake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-31:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед eaten.",
+              "uk": "Із I потрібно have перед eaten."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед eaten.",
+              "uk": "Із I потрібно have перед eaten."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i03:r1",
+          "text": "I have eaten the whole cake."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i03:r2",
+          "text": "We have eaten the whole cake."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i03:r3",
+          "text": "I have made the whole cake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i03:audio",
+          "transcript": "I have eaten the whole cake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:i03:r1",
+            "targetText": "I have eaten the whole cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i03:r2",
+            "targetText": "We have eaten the whole cake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i03:r3",
+            "targetText": "I have made the whole cake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have eaten the whole cake.",
+              "uk": "У записі звучить I have eaten the whole cake."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have eaten the whole cake.",
+              "uk": "У записі звучить I have eaten the whole cake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:word:modern",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — modern",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:word:modern:audio"
+      ],
+      "accessibilityLabel": "Картка слова — modern",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:word:modern:audio",
+          "transcript": "modern"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:word:modern:r1",
+            "targetText": "modern",
+            "meaningByLocale": {
+              "ru": "современный.",
+              "uk": "сучасний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "modern",
+          "definitionByLocale": {
+            "ru": "современный.",
+            "uk": "сучасний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона відвідала сучасний музей.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона відвідала сучасний музей.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She visited a modern museum yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она посетила современный музей.»",
+          "uk": "Скажіть: «Учора вона відвідала сучасний музей.»"
+        },
+        "orderedTokens": [
+          "She",
+          "visited",
+          "a",
+          "modern",
+          "museum",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i05:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i05:r2",
+          "text": "has visited"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i05:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "She ___ a modern museum yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-31:i05:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i05:r2",
+            "text": "has visited"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i05:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма visited без has.",
+              "uk": "Із yesterday потрібна форма visited без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма visited без has.",
+              "uk": "Із yesterday потрібна форма visited без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i06:r1",
+          "text": "She visited a modern museum yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i06:r2",
+          "text": "He visited a modern museum yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i06:r3",
+          "text": "She visited a modern museum last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i06:audio",
+          "transcript": "She visited a modern museum yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:i06:r1",
+            "targetText": "She visited a modern museum yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i06:r2",
+            "targetText": "He visited a modern museum yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i06:r3",
+            "targetText": "She visited a modern museum last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited a modern museum yesterday.",
+              "uk": "У записі звучить She visited a modern museum yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited a modern museum yesterday.",
+              "uk": "У записі звучить She visited a modern museum yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:word:strange",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — strange",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:word:strange:audio"
+      ],
+      "accessibilityLabel": "Картка слова — strange",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:word:strange:audio",
+          "transcript": "strange"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:word:strange:r1",
+            "targetText": "strange",
+            "meaningByLocale": {
+              "ru": "странный.",
+              "uk": "дивний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "strange",
+          "definitionByLocale": {
+            "ru": "странный.",
+            "uk": "дивний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми почули дивний шум.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми почули дивний шум.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have heard a strange noise.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы услышали странный шум.»",
+          "uk": "Скажіть: «Ми почули дивний шум.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "heard",
+          "a",
+          "strange",
+          "noise"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "We ___ heard a strange noise.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-31:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед heard.",
+              "uk": "Із we потрібно have перед heard."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед heard.",
+              "uk": "Із we потрібно have перед heard."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i09:r1",
+          "text": "We have heard a strange noise."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i09:r2",
+          "text": "They have heard a strange noise."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i09:r3",
+          "text": "We have made a strange noise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i09:audio",
+          "transcript": "We have heard a strange noise."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:i09:r1",
+            "targetText": "We have heard a strange noise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i09:r2",
+            "targetText": "They have heard a strange noise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i09:r3",
+            "targetText": "We have made a strange noise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have heard a strange noise.",
+              "uk": "У записі звучить We have heard a strange noise."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have heard a strange noise.",
+              "uk": "У записі звучить We have heard a strange noise."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:word:complex",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — complex",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:word:complex:audio"
+      ],
+      "accessibilityLabel": "Картка слова — complex",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:word:complex:audio",
+          "transcript": "complex"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:word:complex:r1",
+            "targetText": "complex",
+            "meaningByLocale": {
+              "ru": "сложный.",
+              "uk": "складний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "complex",
+          "definitionByLocale": {
+            "ru": "сложный.",
+            "uk": "складний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вони розв’язали складну головоломку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вони розв’язали складну головоломку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They solved a complex puzzle yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера они решили сложную головоломку.»",
+          "uk": "Скажіть: «Учора вони розв’язали складну головоломку.»"
+        },
+        "orderedTokens": [
+          "They",
+          "solved",
+          "a",
+          "complex",
+          "puzzle",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i11:r1",
+          "text": "solved"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i11:r2",
+          "text": "have solved"
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i11:r3",
+          "text": "solve"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
+        },
+        "gappedTargetPhrase": "They ___ a complex puzzle yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-31:i11:r1",
+            "text": "solved"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i11:r2",
+            "text": "have solved"
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i11:r3",
+            "text": "solve"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма solved без have.",
+              "uk": "Із yesterday потрібна форма solved без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма solved без have.",
+              "uk": "Із yesterday потрібна форма solved без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-31:i12:r1",
+          "text": "They solved a complex puzzle yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i12:r2",
+          "text": "We solved a complex puzzle yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-31:i12:r3",
+          "text": "They solved a complex puzzle last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i12:audio",
+          "transcript": "They solved a complex puzzle yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-31:i12:r1",
+            "targetText": "They solved a complex puzzle yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i12:r2",
+            "targetText": "We solved a complex puzzle yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i12:r3",
+            "targetText": "They solved a complex puzzle last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They solved a complex puzzle yesterday.",
+              "uk": "У записі звучить They solved a complex puzzle yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They solved a complex puzzle yesterday.",
+              "uk": "У записі звучить They solved a complex puzzle yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-31:i13:p1",
+            "target": "whole",
+            "meaningByLocale": {
+              "ru": "весь, целый",
+              "uk": "увесь, цілий"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-31:i13:p2",
+            "target": "modern",
+            "meaningByLocale": {
+              "ru": "современный",
+              "uk": "сучасний"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-31:i13:p3",
+            "target": "strange",
+            "meaningByLocale": {
+              "ru": "странный",
+              "uk": "дивний"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-31:i13:p4",
+            "target": "complex",
+            "meaningByLocale": {
+              "ru": "сложный",
+              "uk": "складний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "whole",
+          "modern",
+          "strange",
+          "complex"
+        ],
+        "rightColumn": [
+          "увесь, цілий",
+          "сучасний",
+          "дивний",
+          "складний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми з’їли увесь торт учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми з’їли увесь торт учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i16:audio",
+          "transcript": "We ate the whole cake yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We ate the whole cake yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона почула дивний шум учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона почула дивний шум учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-31:i17:audio",
+          "transcript": "She heard a strange noise yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She heard a strange noise yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b5e7a0e77a924abe124feae8ac8849a642f360ee325f50d0131b3faaeb3ba90d"
+}

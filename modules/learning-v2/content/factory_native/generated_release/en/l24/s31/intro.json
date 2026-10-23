@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Торт целиком",
+        "uk": "Торт повністю"
+      },
+      "bodyByLocale": {
+        "ru": "Whole — весь, целый. I have eaten the whole cake — я съел весь торт. Подчёркиваем: не кусочек, а торт целиком. Present Perfect сообщает результат сейчас — торта больше нет. В сочетании the whole cake артикль стоит перед whole. Тарелку, к счастью, есть не пришлось.",
+        "uk": "Whole — увесь, цілий. I have eaten the whole cake — я з’їв увесь торт. Підкреслюємо: не шматочок, а торт повністю. Present Perfect повідомляє результат зараз — торта більше немає. У сполученні the whole cake артикль стоїть перед whole. Тарілку, на щастя, їсти не довелося."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-31:intro1:r1",
+              "text": "I have eaten the whole cake."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro1:r2",
+              "text": "I has eaten the whole cake."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro1:r3",
+              "text": "I have eat the whole cake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-31:intro1:r1",
+              "text": "I have eaten the whole cake."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro1:r2",
+              "text": "I has eaten the whole cake."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro1:r3",
+              "text": "I have eat the whole cake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Современный музей",
+        "uk": "Сучасний музей"
+      },
+      "bodyByLocale": {
+        "ru": "Modern — современный. She visited a modern museum yesterday — вчера она посетила современный музей. Modern описывает музей, а yesterday указывает, когда она там была. Поэтому используем visited без has. Modern — противоположность знакомому ancient, «древний».",
+        "uk": "Modern — сучасний. She visited a modern museum yesterday — учора вона відвідала сучасний музей. Modern описує музей, а yesterday вказує, коли вона там була. Тому використовуємо visited без has. Modern — протилежність знайомому ancient, «стародавній»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-31:intro2:r1",
+              "text": "She visited a modern museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro2:r2",
+              "text": "She has visited a modern museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro2:r3",
+              "text": "She visit a modern museum yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-31:intro2:r1",
+              "text": "She visited a modern museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro2:r2",
+              "text": "She has visited a modern museum yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro2:r3",
+              "text": "She visit a modern museum yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шум и головоломка",
+        "uk": "Шум і головоломка"
+      },
+      "bodyByLocale": {
+        "ru": "Strange — странный, необычный. We have heard a strange noise — мы услышали странный шум: сообщаем, что случилось. Complex — сложный, состоящий из связанных частей. They solved a complex puzzle yesterday — вчера они решили сложную головоломку. С yesterday нужен solved без have. Complex близко к знакомому complicated.",
+        "uk": "Strange — дивний, незвичний. We have heard a strange noise — ми почули дивний шум: повідомляємо, що сталося. Complex — складний, такий, що складається з пов’язаних частин. They solved a complex puzzle yesterday — учора вони розв’язали складну головоломку. Із yesterday потрібне solved без have. Complex близьке до знайомого complicated."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-31:intro3:r1",
+              "text": "They solved a complex puzzle yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro3:r2",
+              "text": "They have solved a complex puzzle yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro3:r3",
+              "text": "They solve a complex puzzle yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-31:intro3:r1",
+              "text": "They solved a complex puzzle yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro3:r2",
+              "text": "They have solved a complex puzzle yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-31:intro3:r3",
+              "text": "They solve a complex puzzle yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8d914159bc1f86232a6373e80c120186b4f08bd8153610664b0e7ae6edf25d39"
+}

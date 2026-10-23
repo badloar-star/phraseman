@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-31:word:whole",
+    "correctText": "whole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i01",
+    "correctText": "I have eaten the whole cake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i03",
+    "correctText": "I have eaten the whole cake.",
+    "correctResponseId": "en:lesson-24:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:word:modern",
+    "correctText": "modern",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i04",
+    "correctText": "She visited a modern museum yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i05",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-24:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i06",
+    "correctText": "She visited a modern museum yesterday.",
+    "correctResponseId": "en:lesson-24:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:word:strange",
+    "correctText": "strange",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i07",
+    "correctText": "We have heard a strange noise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i09",
+    "correctText": "We have heard a strange noise.",
+    "correctResponseId": "en:lesson-24:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:word:complex",
+    "correctText": "complex",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i10",
+    "correctText": "They solved a complex puzzle yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i11",
+    "correctText": "solved",
+    "correctResponseId": "en:lesson-24:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i12",
+    "correctText": "They solved a complex puzzle yesterday.",
+    "correctResponseId": "en:lesson-24:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i13",
+    "correctText": "en:lesson-24:session-31:i13:p1=whole\nen:lesson-24:session-31:i13:p2=modern\nen:lesson-24:session-31:i13:p3=strange\nen:lesson-24:session-31:i13:p4=complex",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i16",
+    "correctText": "We ate the whole cake yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-31:i17",
+    "correctText": "She heard a strange noise yesterday.",
+    "correctResponseId": null
+  }
+]

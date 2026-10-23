@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-32:word:historic",
+    "correctText": "historic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i01",
+    "correctText": "I have visited a historic castle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i03",
+    "correctText": "I have visited a historic castle.",
+    "correctResponseId": "en:lesson-24:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:word:traditional",
+    "correctText": "traditional",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i04",
+    "correctText": "She cooked a traditional meal yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i05",
+    "correctText": "cooked",
+    "correctResponseId": "en:lesson-24:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i06",
+    "correctText": "She cooked a traditional meal yesterday.",
+    "correctResponseId": "en:lesson-24:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:word:previous",
+    "correctText": "previous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i07",
+    "correctText": "We have read your previous message.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i09",
+    "correctText": "We have read your previous message.",
+    "correctResponseId": "en:lesson-24:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:word:future",
+    "correctText": "future",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i10",
+    "correctText": "They discussed their future plans yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i11",
+    "correctText": "discussed",
+    "correctResponseId": "en:lesson-24:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i12",
+    "correctText": "They discussed their future plans yesterday.",
+    "correctResponseId": "en:lesson-24:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i13",
+    "correctText": "en:lesson-24:session-32:i13:p1=historic\nen:lesson-24:session-32:i13:p2=traditional\nen:lesson-24:session-32:i13:p3=previous\nen:lesson-24:session-32:i13:p4=future",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i16",
+    "correctText": "We visited a historic castle yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-32:i17",
+    "correctText": "She cooked a traditional meal last week.",
+    "correctResponseId": null
+  }
+]

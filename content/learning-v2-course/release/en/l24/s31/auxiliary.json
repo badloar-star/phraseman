@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-31:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-31:intro1:r3": {
+          "ru": "После have нужна форма eaten.",
+          "uk": "Після have потрібна форма eaten."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-31:intro2:r2": {
+          "ru": "С yesterday нужно visited без has.",
+          "uk": "Із yesterday потрібне visited без has."
+        },
+        "en:lesson-24:session-31:intro2:r3": {
+          "ru": "Для прошлого нужна форма visited.",
+          "uk": "Для минулого потрібна форма visited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-31:intro3:r2": {
+          "ru": "С yesterday нужен solved без have.",
+          "uk": "Із yesterday потрібне solved без have."
+        },
+        "en:lesson-24:session-31:intro3:r3": {
+          "ru": "Для прошлого нужна форма solved.",
+          "uk": "Для минулого потрібна форма solved."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8b87d7136ee0b6056873b0a8c33bbc23641fa4df24ecc5d9d82523a6c9e5762a"
+}

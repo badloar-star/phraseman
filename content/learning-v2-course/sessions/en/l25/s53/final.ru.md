@@ -53,99 +53,99 @@
 <!-- interaction_id: en:lesson-25:session-53:word:towards; family: word_card -->
 > **towards** — По направлению к. Towards указывает направление движения, но не гарантирует прибытие.
 
-**2 · Скажите: «Раньше мы обычно шли по направлению к парку.»**
-<!-- interaction_id: en:lesson-25:session-53:i01; family: phrase_builder -->
-Плитки: `park` `the` `towards` `walk` `would` `We` → **We would walk towards the park.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-53:i01; family: listen_choose -->
+🔊 *The children ran towards the gate.* → **The children ran towards the gate.** · The children ran away from the gate. · The children walked towards the gate.
+- The children ran away from the gate. — *В записи звучит The children ran towards the gate.*
+- The children walked towards the gate. — *В записи звучит The children ran towards the gate.*
 
-**3 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-53:i02; family: context_gap_grammar -->
-We would ___ towards the park. → **walk** · walked · walking
-- walked — *После would нужна начальная форма walk.*
-- walking — *После would нужна начальная форма walk.*
+**3 · Друг ушёл вперёд. Попросите: «Подожди меня!»**
+<!-- interaction_id: en:lesson-25:session-53:i02; family: scripted_repeat_compare -->
+🎙 **Wait for me!**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-53:i03; family: listen_choose -->
-🔊 *We would walk towards the park.* → **We would walk towards the park.** · They would walk towards the park. · We would walk towards the beach.
-- They would walk towards the park. — *В записи звучит We would walk towards the park.*
-- We would walk towards the beach. — *В записи звучит We would walk towards the park.*
-
-**5 · Карточка слова — alongside**
+**4 · Карточка слова — alongside**
 <!-- interaction_id: en:lesson-25:session-53:word:alongside; family: word_card -->
 > **alongside** — Вдоль, рядом с. Alongside — рядом с чем-то по его длине; также рядом с человеком.
 
-**6 · Скажите: «Раньше мы обычно шли вдоль реки.»**
-<!-- interaction_id: en:lesson-25:session-53:i04; family: phrase_builder -->
-Плитки: `river` `the` `alongside` `walk` `would` `We` → **We would walk alongside the river.**
+**5 · Опишите, где проходит тропинка: «Тропинка идёт вдоль реки».**
+<!-- interaction_id: en:lesson-25:session-53:i03; family: phrase_builder -->
+Плитки: `river` `the` `alongside` `runs` `path` `The` → **The path runs alongside the river.**
 
-**7 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-53:i05; family: context_gap_grammar -->
-We would ___ alongside the river. → **walk** · walked · walking
-- walked — *После would нужна начальная форма walk.*
-- walking — *После would нужна начальная форма walk.*
+**6 · Вы идёте рядом с другом, а не впереди или позади. Выберите alongside.**
+<!-- interaction_id: en:lesson-25:session-53:i04; family: context_gap_grammar -->
+I walked ___ my friend. → **alongside** · behind · ahead of
+- behind — *Behind — позади, а вы шли рядом.*
+- ahead of — *Ahead of — впереди, а вы шли рядом.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-53:i06; family: listen_choose -->
-🔊 *We would walk alongside the river.* → **We would walk alongside the river.** · They would walk alongside the river. · We would run alongside the river.
-- They would walk alongside the river. — *В записи звучит We would walk alongside the river.*
-- We would run alongside the river. — *В записи звучит We would walk alongside the river.*
-
-**9 · Карточка слова — beneath**
+**7 · Карточка слова — beneath**
 <!-- interaction_id: en:lesson-25:session-53:word:beneath; family: word_card -->
 > **beneath** — Под. Beneath указывает, что что-то находится ниже другого предмета.
 
-**10 · Скажите: «Раньше мы обычно сидели под деревом.»**
-<!-- interaction_id: en:lesson-25:session-53:i07; family: phrase_builder -->
-Плитки: `tree` `a` `beneath` `sit` `would` `We` → **We would sit beneath a tree.**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-53:i05; family: listen_choose -->
+🔊 *The keys were beneath the newspaper.* → **The keys were beneath the newspaper.** · The keys were beside the newspaper. · The phone was beneath the newspaper.
+- The keys were beside the newspaper. — *В записи звучит The keys were beneath the newspaper.*
+- The phone was beneath the newspaper. — *В записи звучит The keys were beneath the newspaper.*
 
-**11 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-53:i08; family: context_gap_grammar -->
-We would ___ beneath a tree. → **sit** · sat · sitting
-- sat — *После would нужна начальная форма sit.*
-- sitting — *После would нужна начальная форма sit.*
+**9 · Услышьте просьбу поднять газету.**
+<!-- interaction_id: en:lesson-25:session-53:i06; family: listen_build_dictation -->
+🔊 *Could you lift the newspaper?* Плитки: `newspaper` `the` `lift` `you` `Could` → **Could you lift the newspaper?**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-53:i09; family: listen_choose -->
-🔊 *We would sit beneath a tree.* → **We would sit beneath a tree.** · They would sit beneath a tree. · We would rest beneath a tree.
-- They would sit beneath a tree. — *В записи звучит We would sit beneath a tree.*
-- We would rest beneath a tree. — *В записи звучит We would sit beneath a tree.*
-
-**13 · Карточка слова — throughout**
+**10 · Карточка слова — throughout**
 <!-- interaction_id: en:lesson-25:session-53:word:throughout; family: word_card -->
 > **throughout** — На протяжении всего. Throughout здесь означает «в течение всего указанного времени».
 
-**14 · Скажите: «Раньше мы обычно разговаривали всю дорогу.»**
-<!-- interaction_id: en:lesson-25:session-53:i10; family: phrase_builder -->
-Плитки: `journey` `the` `throughout` `talk` `would` `We` → **We would talk throughout the journey.**
+**11 · Дождь шёл всю ночь без перерыва. Выберите throughout.**
+<!-- interaction_id: en:lesson-25:session-53:i07; family: context_gap_grammar -->
+It rained ___ the night. → **throughout** · before · after
+- before — *Before — до ночи, а дождь шёл всю ночь.*
+- after — *After — после ночи, а здесь всё ночное время.*
 
-**15 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-53:i11; family: context_gap_grammar -->
-We would ___ throughout the journey. → **talk** · talked · talking
-- talked — *После would нужна начальная форма talk.*
-- talking — *После would нужна начальная форма talk.*
+**12 · После долгой прогулки предложите: «Давай сядем здесь».**
+<!-- interaction_id: en:lesson-25:session-53:i08; family: scripted_repeat_compare -->
+🎙 **Let us sit here.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-53:i12; family: listen_choose -->
-🔊 *We would talk throughout the journey.* → **We would talk throughout the journey.** · They would talk throughout the journey. · We would laugh throughout the journey.
-- They would talk throughout the journey. — *В записи звучит We would talk throughout the journey.*
-- We would laugh throughout the journey. — *В записи звучит We would talk throughout the journey.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-53:i13; family: speed_match -->
+**13 · Соотнесите слова с переводом**
+<!-- interaction_id: en:lesson-25:session-53:i09; family: speed_match -->
 towards — по направлению к · alongside — вдоль, рядом с · beneath — под · throughout — на протяжении всего
 
-**18 · Прежняя привычка**
-<!-- interaction_id: en:lesson-25:session-53:i14; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+**14 · Вы пришли домой раньше начала дождя. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-53:i10; family: context_gap_grammar -->
+We ___ reached home by the time it started raining. → **had** · have · were
+- have — *Have связывает результат с настоящим, а started задаёт прошлый момент.*
+- were — *Нужно had reached для прибытия до начала дождя.*
 
-**19 · Повторялось каждый вечер в прошлом**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-53:i11; family: listen_choose -->
+🔊 *We visited the park yesterday.* → **We visited the park yesterday.** · We visited the beach yesterday. · We visited the park last month.
+- We visited the beach yesterday. — *В записи звучит We visited the park yesterday.*
+- We visited the park last month. — *В записи звучит We visited the park yesterday.*
+
+**16 · Вспомните прежние прогулки: «Раньше мы часто ходили сюда».**
+<!-- interaction_id: en:lesson-25:session-53:i12; family: phrase_builder -->
+Плитки: `often` `here` `come` `to` `used` `We` → **We used to come here often.**
+
+**17 · Друг предлагает поискать ключи. Ответьте: «Я уже нашёл их».**
+<!-- interaction_id: en:lesson-25:session-53:i13; family: scripted_repeat_compare -->
+🎙 **I have already found them.**
+
+**18 · Вы отдохнули и затем продолжили путь. Выберите after.**
+<!-- interaction_id: en:lesson-25:session-53:i14; family: context_gap_grammar -->
+We continued walking ___ we rested. → **after** · before · while
+- before — *Before означало бы продолжение пути до отдыха.*
+- while — *While означает одновременность, а здесь шли после отдыха.*
+
+**19 · Услышьте описание места для пикника.**
 <!-- interaction_id: en:lesson-25:session-53:i15; family: listen_build_dictation -->
-🔊 *We would play outside every evening.* Плитки: `evening` `every` `outside` `play` `would` `We` → **We would play outside every evening.**
+🔊 *There is a quiet place near the water.* Плитки: `water` `the` `near` `place` `quiet` `a` `is` `There` → **There is a quiet place near the water.**
 
-**20 · Скажите: «Раньше я обычно сидел под деревом».**
-<!-- interaction_id: en:lesson-25:session-53:i16; family: scripted_repeat_compare -->
-🎙 **I would sit beneath a tree.**
+**20 · Здесь шумно. Предложите поискать другое место.**
+<!-- interaction_id: en:lesson-25:session-53:i16; family: context_gap_grammar -->
+Let us find ___ place. → **another** · other · others
+- other — *Place в единственном числе, поэтому another.*
+- others — *Others не ставится перед place.*
 
-**21 · Скажите: «Раньше она обычно разговаривала всю дорогу».**
-<!-- interaction_id: en:lesson-25:session-53:i17; family: scripted_repeat_compare -->
-🎙 **She would talk throughout the journey.**
+**21 · Вспомните летние вечера: «В детстве мы каждый вечер сидели у реки». Используйте would.**
+<!-- interaction_id: en:lesson-25:session-53:i17; family: phrase_builder -->
+Плитки: `evening` `every` `river` `the` `by` `sit` `would` `we` `children` `As` → **As children we would sit by the river every evening.**
 

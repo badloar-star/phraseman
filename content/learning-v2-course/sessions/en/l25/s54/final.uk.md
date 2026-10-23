@@ -53,99 +53,99 @@ Spice — пряність, spices — спеції. He had added the spices bef
 <!-- interaction_id: en:lesson-25:session-54:word:gravy; family: word_card -->
 > **gravy** — Підлива. Gravy — соус до м’яса та інших страв, часто приготований на основі м’ясного соку.
 
-**2 · Скажіть: «Ми приготували підливу до того, як прийшли гості.»**
-<!-- interaction_id: en:lesson-25:session-54:i01; family: phrase_builder -->
-Плитки: `arrived` `guests` `the` `before` `gravy` `the` `made` `had` `We` → **We had made the gravy before the guests arrived.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-54:i01; family: listen_choose -->
+🔊 *Would you like some gravy?* → **Would you like some gravy?** · Would you like some soup? · Would you like some bread?
+- Would you like some soup? — *У записі звучить Would you like some gravy?*
+- Would you like some bread? — *У записі звучить Would you like some gravy?*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-54:i02; family: context_gap_grammar -->
-We ___ made the gravy before the guests arrived. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Друг пропонує добавку до м’яса. Дайте відповідь: «Так, трохи, будь ласка».**
+<!-- interaction_id: en:lesson-25:session-54:i02; family: scripted_repeat_compare -->
+🎙 **Yes, a little, please.**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-54:i03; family: listen_choose -->
-🔊 *We had made the gravy before the guests arrived.* → **We had made the gravy before the guests arrived.** · They had made the gravy before the guests arrived. · We had made the gravy before the guests called.
-- They had made the gravy before the guests arrived. — *У записі звучить We had made the gravy before the guests arrived.*
-- We had made the gravy before the guests called. — *У записі звучить We had made the gravy before the guests arrived.*
-
-**5 · Картка слова — topping**
+**4 · Картка слова — topping**
 <!-- interaction_id: en:lesson-25:session-54:word:topping; family: word_card -->
 > **topping** — Добавка зверху. Topping — продукт, який кладуть поверх страви, наприклад піци чи морозива.
 
-**6 · Скажіть: «Вона вибрала добавку зверху до того, як я зробив замовлення.»**
-<!-- interaction_id: en:lesson-25:session-54:i04; family: phrase_builder -->
-Плитки: `ordered` `I` `before` `topping` `the` `chosen` `had` `She` → **She had chosen the topping before I ordered.**
+**5 · Уточніть вибір до морозива: «Яку добавку зверху ти хочеш?»**
+<!-- interaction_id: en:lesson-25:session-54:i03; family: phrase_builder -->
+Плитки: `like` `you` `would` `topping` `Which` → **Which topping would you like?**
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-54:i05; family: context_gap_grammar -->
-She ___ chosen the topping before I ordered. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**6 · Ви вибрали шоколад, який покладуть поверх морозива. Виберіть topping.**
+<!-- interaction_id: en:lesson-25:session-54:i04; family: context_gap_grammar -->
+I chose chocolate as a ___. → **topping** · plate · spoon
+- plate — *Plate — тарілка; тут добавка до їжі.*
+- spoon — *Spoon — ложка, а шоколад кладуть зверху на морозиво.*
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-54:i06; family: listen_choose -->
-🔊 *She had chosen the topping before I ordered.* → **She had chosen the topping before I ordered.** · He had chosen the topping before I ordered. · She had chosen the topping before we ordered.
-- He had chosen the topping before I ordered. — *У записі звучить She had chosen the topping before I ordered.*
-- She had chosen the topping before we ordered. — *У записі звучить She had chosen the topping before I ordered.*
-
-**9 · Картка слова — herbs**
+**7 · Картка слова — herbs**
 <!-- interaction_id: en:lesson-25:session-54:word:herbs; family: word_card -->
 > **herbs** — Пряні трави. Herb — ароматна трава, яку використовують у готуванні; herbs — множина.
 
-**10 · Скажіть: «Я нарізав пряні трави до того, як вона почала готувати.»**
-<!-- interaction_id: en:lesson-25:session-54:i07; family: phrase_builder -->
-Плитки: `cooking` `started` `she` `before` `herbs` `the` `chopped` `had` `I` → **I had chopped the herbs before she started cooking.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-54:i05; family: listen_choose -->
+🔊 *There are fresh herbs in the soup.* → **There are fresh herbs in the soup.** · There are fresh herbs in the salad. · There are dried herbs in the soup.
+- There are fresh herbs in the salad. — *У записі звучить There are fresh herbs in the soup.*
+- There are dried herbs in the soup. — *У записі звучить There are fresh herbs in the soup.*
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-54:i08; family: context_gap_grammar -->
-I ___ chopped the herbs before she started cooking. → **had** · have · was
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Почуйте прохання скуштувати страву.**
+<!-- interaction_id: en:lesson-25:session-54:i06; family: listen_build_dictation -->
+🔊 *Taste this and tell me what you think.* Плитки: `think` `you` `what` `me` `tell` `and` `this` `Taste` → **Taste this and tell me what you think.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-54:i09; family: listen_choose -->
-🔊 *I had chopped the herbs before she started cooking.* → **I had chopped the herbs before she started cooking.** · He had chopped the herbs before she started cooking. · I had chopped the herbs before he started cooking.
-- He had chopped the herbs before she started cooking. — *У записі звучить I had chopped the herbs before she started cooking.*
-- I had chopped the herbs before he started cooking. — *У записі звучить I had chopped the herbs before she started cooking.*
-
-**13 · Картка слова — spices**
+**10 · Картка слова — spices**
 <!-- interaction_id: en:lesson-25:session-54:word:spices; family: word_card -->
 > **spices** — Спеції. Spice — пряність; spices — множина.
 
-**14 · Скажіть: «Він додав спеції до того, як я скуштував суп.»**
-<!-- interaction_id: en:lesson-25:session-54:i10; family: phrase_builder -->
-Плитки: `soup` `the` `tasted` `I` `before` `spices` `the` `added` `had` `He` → **He had added the spices before I tasted the soup.**
+**11 · У рецепті перелічено корицю й перець. Як їх назвати разом?**
+<!-- interaction_id: en:lesson-25:session-54:i07; family: context_gap_grammar -->
+These ___ give the dish its flavour. → **spices** · plates · spoons
+- plates — *Plates — тарілки; смак тут надають прянощі.*
+- spoons — *Spoons — ложки; вони не є переліченими складниками.*
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-54:i11; family: context_gap_grammar -->
-He ___ added the spices before I tasted the soup. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**12 · Страва вам сподобалася. Скажіть кухареві: «Це дуже смачно».**
+<!-- interaction_id: en:lesson-25:session-54:i08; family: scripted_repeat_compare -->
+🎙 **This tastes delicious.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-54:i12; family: listen_choose -->
-🔊 *He had added the spices before I tasted the soup.* → **He had added the spices before I tasted the soup.** · She had added the spices before I tasted the soup. · He had added the spices before we tasted the soup.
-- She had added the spices before I tasted the soup. — *У записі звучить He had added the spices before I tasted the soup.*
-- He had added the spices before we tasted the soup. — *У записі звучить He had added the spices before I tasted the soup.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-54:i13; family: speed_match -->
+**13 · Зіставте слова про їжу з перекладом**
+<!-- interaction_id: en:lesson-25:session-54:i09; family: speed_match -->
 gravy — підлива · topping — добавка зверху · herbs — пряні трави · spices — спеції
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-54:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Вечерю приготували до приходу друзів. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-54:i10; family: context_gap_grammar -->
+We ___ cooked dinner by the time our friends arrived. → **had** · have · were
+- have — *Have пов’язує результат із теперішнім, а arrived задає минулий момент.*
+- were — *Потрібно had cooked для завершення готування до приходу.*
 
-**19 · Потяг уже поїхав**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-54:i11; family: listen_choose -->
+🔊 *I bought the ingredients yesterday.* → **I bought the ingredients yesterday.** · I bought the vegetables yesterday. · I bought the ingredients last week.
+- I bought the vegetables yesterday. — *У записі звучить I bought the ingredients yesterday.*
+- I bought the ingredients last week. — *У записі звучить I bought the ingredients yesterday.*
+
+**16 · Повідомте, що стіл уже готовий: «Я вже накрив на стіл».**
+<!-- interaction_id: en:lesson-25:session-54:i12; family: phrase_builder -->
+Плитки: `table` `the` `set` `already` `have` `I` → **I have already set the table.**
+
+**17 · Ви скуштували суп і потім додали сіль. Виберіть after.**
+<!-- interaction_id: en:lesson-25:session-54:i13; family: context_gap_grammar -->
+I added salt ___ I tasted the soup. → **after** · before · while
+- before — *Before означало б додавання солі до куштування.*
+- while — *While означає одночасність, а тут дії послідовні.*
+
+**18 · Гість просить рецепт. Дайте відповідь: «Я надішлю його тобі».**
+<!-- interaction_id: en:lesson-25:session-54:i14; family: scripted_repeat_compare -->
+🎙 **I will send it to you.**
+
+**19 · Почуйте пропозицію розділити десерт.**
 <!-- interaction_id: en:lesson-25:session-54:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *Let us share the dessert.* Плитки: `dessert` `the` `share` `us` `Let` → **Let us share the dessert.**
 
-**20 · Скажіть: «Вона приготувала підливу до того, як прийшли гості».**
-<!-- interaction_id: en:lesson-25:session-54:i16; family: scripted_repeat_compare -->
-🎙 **She had made the gravy before the guests arrived.**
+**20 · Перша ложка впала на підлогу. Попросіть іншу.**
+<!-- interaction_id: en:lesson-25:session-54:i16; family: context_gap_grammar -->
+Could I have ___ spoon? → **another** · other · others
+- other — *Spoon в однині, тому another.*
+- others — *Others не ставиться перед spoon.*
 
-**21 · Скажіть: «Ми додали спеції до того, як вона скуштувала суп».**
-<!-- interaction_id: en:lesson-25:session-54:i17; family: scripted_repeat_compare -->
-🎙 **We had added the spices before she tasted the soup.**
+**21 · Згадайте колишній смак: «Раніше я не любив таку їжу». Використайте never used to.**
+<!-- interaction_id: en:lesson-25:session-54:i17; family: phrase_builder -->
+Плитки: `food` `of` `kind` `this` `like` `to` `used` `never` `I` → **I never used to like this kind of food.**
 

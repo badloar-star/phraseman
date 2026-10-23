@@ -53,99 +53,99 @@ Sunlit — освітлений сонцем. The kitchen was sunlit when we arr
 <!-- interaction_id: en:lesson-25:session-56:word:occupied; family: word_card -->
 > **occupied** — Зайнятий. Occupied тут — той, яким уже хтось користується, наприклад про місце чи номер.
 
-**2 · Скажіть: «Місце було зайняте, коли ми прийшли.»**
-<!-- interaction_id: en:lesson-25:session-56:i01; family: phrase_builder -->
-Плитки: `arrived` `we` `when` `occupied` `was` `seat` `The` → **The seat was occupied when we arrived.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-56:i01; family: listen_choose -->
+🔊 *This seat is occupied.* → **This seat is occupied.** · This room is occupied. · That seat is occupied.
+- This room is occupied. — *У записі звучить This seat is occupied.*
+- That seat is occupied. — *У записі звучить This seat is occupied.*
 
-**3 · Доповніть розповідь про минулу поїздку.**
-<!-- interaction_id: en:lesson-25:session-56:i02; family: context_gap_grammar -->
-The seat ___ occupied when we arrived. → **was** · is · been
-- is — *Стан у минулому: was, Past Simple.*
-- been — *Стан у минулому: was, Past Simple.*
+**3 · Ви шукаєте місце в кафе. Запитайте: «Тут хтось сидить?»**
+<!-- interaction_id: en:lesson-25:session-56:i02; family: phrase_builder -->
+Плитки: `here` `sitting` `anyone` `Is` → **Is anyone sitting here?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-56:i03; family: listen_choose -->
-🔊 *The seat was occupied when we arrived.* → **The seat was occupied when we arrived.** · The seat was occupied when they arrived. · The room was occupied when we arrived.
-- The seat was occupied when they arrived. — *У записі звучить The seat was occupied when we arrived.*
-- The room was occupied when we arrived. — *У записі звучить The seat was occupied when we arrived.*
-
-**5 · Картка слова — vacant**
+**4 · Картка слова — vacant**
 <!-- interaction_id: en:lesson-25:session-56:word:vacant; family: word_card -->
 > **vacant** — Вільний. Vacant — ніким не зайнятий, доступний для використання.
 
-**6 · Скажіть: «Номер був вільний, коли ми приїхали.»**
+**5 · Номер ніхто не займає, і в нього можна заселитися. Виберіть vacant.**
+<!-- interaction_id: en:lesson-25:session-56:i03; family: context_gap_grammar -->
+The room is ___. → **vacant** · occupied · closed
+- occupied — *Occupied означає зайнятий, а номер вільний.*
+- closed — *Closed — зачинений, а тут номер доступний для заселення.*
+
+**6 · Уточніть термін проживання: «Нам потрібен номер на дві ночі».**
 <!-- interaction_id: en:lesson-25:session-56:i04; family: phrase_builder -->
-Плитки: `arrived` `we` `when` `vacant` `was` `room` `The` → **The room was vacant when we arrived.**
+Плитки: `nights` `two` `for` `room` `a` `need` `We` → **We need a room for two nights.**
 
-**7 · Доповніть розповідь про минулу поїздку.**
-<!-- interaction_id: en:lesson-25:session-56:i05; family: context_gap_grammar -->
-The room ___ vacant when we arrived. → **was** · is · been
-- is — *Стан у минулому: was, Past Simple.*
-- been — *Стан у минулому: was, Past Simple.*
-
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-56:i06; family: listen_choose -->
-🔊 *The room was vacant when we arrived.* → **The room was vacant when we arrived.** · The room was vacant when they arrived. · The seat was vacant when we arrived.
-- The room was vacant when they arrived. — *У записі звучить The room was vacant when we arrived.*
-- The seat was vacant when we arrived. — *У записі звучить The room was vacant when we arrived.*
-
-**9 · Картка слова — accessible**
+**7 · Картка слова — accessible**
 <!-- interaction_id: en:lesson-25:session-56:word:accessible; family: word_card -->
 > **accessible** — Доступний. Accessible тут — такий, до якого можна дістатися.
 
-**10 · Скажіть: «Минулого літа до пляжу можна було дістатися автобусом.»**
-<!-- interaction_id: en:lesson-25:session-56:i07; family: phrase_builder -->
-Плитки: `summer` `last` `bus` `by` `accessible` `was` `beach` `The` → **The beach was accessible by bus last summer.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-56:i05; family: listen_choose -->
+🔊 *The village is accessible by bus.* → **The village is accessible by bus.** · The village is accessible by train. · The beach is accessible by bus.
+- The village is accessible by train. — *У записі звучить The village is accessible by bus.*
+- The beach is accessible by bus. — *У записі звучить The village is accessible by bus.*
 
-**11 · Доповніть розповідь про минулу поїздку.**
-<!-- interaction_id: en:lesson-25:session-56:i08; family: context_gap_grammar -->
-The beach ___ accessible by bus last summer. → **was** · is · been
-- is — *Стан у минулому: was, Past Simple.*
-- been — *Стан у минулому: was, Past Simple.*
+**9 · Ви вибираєте маршрут. Запитайте: «Скільки часу триває поїздка?»**
+<!-- interaction_id: en:lesson-25:session-56:i06; family: scripted_repeat_compare -->
+🎙 **How long does the journey take?**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-56:i09; family: listen_choose -->
-🔊 *The beach was accessible by bus last summer.* → **The beach was accessible by bus last summer.** · The park was accessible by bus last summer. · The beach was accessible by train last summer.
-- The park was accessible by bus last summer. — *У записі звучить The beach was accessible by bus last summer.*
-- The beach was accessible by train last summer. — *У записі звучить The beach was accessible by bus last summer.*
-
-**13 · Картка слова — sunlit**
+**10 · Картка слова — sunlit**
 <!-- interaction_id: en:lesson-25:session-56:word:sunlit; family: word_card -->
 > **sunlit** — Освітлений сонцем. Sunlit описує місце, куди падає сонячне світло.
 
-**14 · Скажіть: «Кухня була освітлена сонцем, коли ми прийшли.»**
-<!-- interaction_id: en:lesson-25:session-56:i10; family: phrase_builder -->
-Плитки: `arrived` `we` `when` `sunlit` `was` `kitchen` `The` → **The kitchen was sunlit when we arrived.**
+**11 · Почуйте опис кімнати.**
+<!-- interaction_id: en:lesson-25:session-56:i07; family: listen_build_dictation -->
+🔊 *We had breakfast in a sunlit room.* Плитки: `room` `sunlit` `a` `in` `breakfast` `had` `We` → **We had breakfast in a sunlit room.**
 
-**15 · Доповніть розповідь про минулу поїздку.**
-<!-- interaction_id: en:lesson-25:session-56:i11; family: context_gap_grammar -->
-The kitchen ___ sunlit when we arrived. → **was** · is · been
-- is — *Стан у минулому: was, Past Simple.*
-- been — *Стан у минулому: was, Past Simple.*
+**12 · Крізь великі вікна до кухні падає сонячне світло. Виберіть sunlit.**
+<!-- interaction_id: en:lesson-25:session-56:i08; family: context_gap_grammar -->
+The kitchen is ___. → **sunlit** · dark · locked
+- dark — *Dark — темний; тут кухню освітлює сонце.*
+- locked — *Locked — замкнений; це не опис освітлення.*
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-56:i12; family: listen_choose -->
-🔊 *The kitchen was sunlit when we arrived.* → **The kitchen was sunlit when we arrived.** · The bedroom was sunlit when we arrived. · The kitchen was sunlit when they arrived.
-- The bedroom was sunlit when we arrived. — *У записі звучить The kitchen was sunlit when we arrived.*
-- The kitchen was sunlit when they arrived. — *У записі звучить The kitchen was sunlit when we arrived.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-56:i13; family: speed_match -->
+**13 · Зіставте описи місць з перекладом**
+<!-- interaction_id: en:lesson-25:session-56:i09; family: speed_match -->
 occupied — зайнятий · vacant — вільний · accessible — доступний · sunlit — освітлений сонцем
 
-**18 · Учора була рада**
-<!-- interaction_id: en:lesson-25:session-56:i14; family: listen_build_dictation -->
-🔊 *She was happy yesterday.* Плитки: `yesterday` `happy` `was` `She` → **She was happy yesterday.**
+**14 · Ви забронювали номер до дзвінка друга. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-56:i10; family: context_gap_grammar -->
+I ___ booked a room by the time my friend called. → **had** · have · was
+- have — *Have пов’язує результат із теперішнім, а called задає минулий момент.*
+- was — *Потрібно had booked для бронювання до дзвінка.*
 
-**19 · Раніше боявся подорожей**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-56:i11; family: listen_choose -->
+🔊 *We arrived at the hotel yesterday.* → **We arrived at the hotel yesterday.** · We left the hotel yesterday. · We arrived at the hotel last week.
+- We left the hotel yesterday. — *У записі звучить We arrived at the hotel yesterday.*
+- We arrived at the hotel last week. — *У записі звучить We arrived at the hotel yesterday.*
+
+**16 · Згадайте колишнє місце відпочинку: «Ми раніше зупинялися тут щоліта».**
+<!-- interaction_id: en:lesson-25:session-56:i12; family: phrase_builder -->
+Плитки: `summer` `every` `here` `stay` `to` `used` `We` → **We used to stay here every summer.**
+
+**17 · На стійці реєстрації уточніть: «Сніданок включено?»**
+<!-- interaction_id: en:lesson-25:session-56:i13; family: scripted_repeat_compare -->
+🎙 **Is breakfast included?**
+
+**18 · Спочатку ви залишили сумки, потім пішли гуляти. Виберіть after.**
+<!-- interaction_id: en:lesson-25:session-56:i14; family: context_gap_grammar -->
+We went for a walk ___ we left our bags. → **after** · before · while
+- before — *Before означало б прогулянку до того, як залишили сумки.*
+- while — *While означає одночасність, а дії тут послідовні.*
+
+**19 · Почуйте, що вже зроблено з багажем.**
 <!-- interaction_id: en:lesson-25:session-56:i15; family: listen_build_dictation -->
-🔊 *I used to be afraid of travelling.* Плитки: `travelling` `of` `afraid` `be` `to` `used` `I` → **I used to be afraid of travelling.**
+🔊 *I have already unpacked my suitcase.* Плитки: `suitcase` `my` `unpacked` `already` `have` `I` → **I have already unpacked my suitcase.**
 
-**20 · Скажіть: «Номер був зайнятий, коли я приїхав».**
-<!-- interaction_id: en:lesson-25:session-56:i16; family: scripted_repeat_compare -->
-🎙 **The room was occupied when I arrived.**
+**20 · У номері лише один стілець, а вас двоє. Попросіть ще один.**
+<!-- interaction_id: en:lesson-25:session-56:i16; family: context_gap_grammar -->
+Could we have ___ chair? → **another** · other · others
+- other — *Chair в однині, тому another.*
+- others — *Others не ставиться перед chair.*
 
-**21 · Скажіть: «Спальня була освітлена сонцем, коли вона прийшла».**
-<!-- interaction_id: en:lesson-25:session-56:i17; family: scripted_repeat_compare -->
-🎙 **The bedroom was sunlit when she arrived.**
+**21 · Подякуйте працівникові за допомогу: «Дякуємо, це все, що нам потрібно».**
+<!-- interaction_id: en:lesson-25:session-56:i17; family: phrase_builder -->
+Плитки: `need` `we` `all` `is` `that` `you,` `Thank` → **Thank you, that is all we need.**
 

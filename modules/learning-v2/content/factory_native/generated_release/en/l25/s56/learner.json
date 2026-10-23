@@ -50,28 +50,101 @@
       "interactionId": "en:lesson-25:session-56:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-56:i01:r1",
+          "text": "This seat is occupied."
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i01:r2",
+          "text": "This room is occupied."
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i01:r3",
+          "text": "That seat is occupied."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-56:i01:audio",
+          "transcript": "This seat is occupied."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-56:i01:r1",
+            "targetText": "This seat is occupied.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i01:r2",
+            "targetText": "This room is occupied.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i01:r3",
+            "targetText": "That seat is occupied.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-56:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This seat is occupied.",
+              "uk": "У записі звучить This seat is occupied."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This seat is occupied.",
+              "uk": "У записі звучить This seat is occupied."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Место было занято, когда мы пришли.»",
+      "prompt": "Вы ищете место в кафе. Спросите: «Здесь кто-нибудь сидит?»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Место было занято, когда мы пришли.»",
+      "accessibilityLabel": "Вы ищете место в кафе. Спросите: «Здесь кто-нибудь сидит?»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The seat was occupied when we arrived.",
+        "targetPhrase": "Is anyone sitting here?",
         "localizedMeaning": {
-          "ru": "Скажите: «Место было занято, когда мы пришли.»",
-          "uk": "Скажіть: «Місце було зайняте, коли ми прийшли.»"
+          "ru": "Вы ищете место в кафе. Спросите: «Здесь кто-нибудь сидит?»",
+          "uk": "Ви шукаєте місце в кафе. Запитайте: «Тут хтось сидить?»"
         },
         "orderedTokens": [
-          "The",
-          "seat",
-          "was",
-          "occupied",
-          "when",
-          "we",
-          "arrived"
+          "Is",
+          "anyone",
+          "sitting",
+          "here"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -83,153 +156,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-56:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлой поездке.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-56:i02:r1",
-          "text": "was"
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i02:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i02:r3",
-          "text": "been"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлой поездке.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлой поездке.",
-          "uk": "Доповніть розповідь про минулу поїздку."
-        },
-        "gappedTargetPhrase": "The seat ___ occupied when we arrived.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-56:i02:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i02:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i02:r3",
-            "text": "been"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлой поездке.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-56:i02:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
-            "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i02:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
-            "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-56:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-56:i03:r1",
-          "text": "The seat was occupied when we arrived."
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i03:r2",
-          "text": "The seat was occupied when they arrived."
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i03:r3",
-          "text": "The room was occupied when we arrived."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-56:i03:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-56:i03:audio",
-          "transcript": "The seat was occupied when we arrived."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-56:i03:r1",
-            "targetText": "The seat was occupied when we arrived.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i03:r2",
-            "targetText": "The seat was occupied when they arrived.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i03:r3",
-            "targetText": "The room was occupied when we arrived.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-56:i03:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The seat was occupied when we arrived.",
-              "uk": "У записі звучить The seat was occupied when we arrived."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i03:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The seat was occupied when we arrived.",
-              "uk": "У записі звучить The seat was occupied when we arrived."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-56:word:vacant",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -271,31 +199,100 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-56:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Номер никто не занимает, и в него можно заселиться. Выберите vacant.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-56:i03:r1",
+          "text": "vacant"
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i03:r2",
+          "text": "occupied"
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i03:r3",
+          "text": "closed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Номер никто не занимает, и в него можно заселиться. Выберите vacant.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Номер никто не занимает, и в него можно заселиться. Выберите vacant.",
+          "uk": "Номер ніхто не займає, і в нього можна заселитися. Виберіть vacant."
+        },
+        "gappedTargetPhrase": "The room is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-56:i03:r1",
+            "text": "vacant"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i03:r2",
+            "text": "occupied"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i03:r3",
+            "text": "closed"
+          }
+        ],
+        "testedDimension": "Номер никто не занимает, и в него можно заселиться. Выберите vacant.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Номер никто не занимает, и в него можно заселиться. Выберите vacant.",
+            "feedbackByLocale": {
+              "ru": "Occupied означает занятый, а номер свободен.",
+              "uk": "Occupied означає зайнятий, а номер вільний."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Номер никто не занимает, и в него можно заселиться. Выберите vacant.",
+            "feedbackByLocale": {
+              "ru": "Closed — закрытый, а здесь номер доступен для заселения.",
+              "uk": "Closed — зачинений, а тут номер доступний для заселення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-56:i04",
       "ordinal": 9,
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Номер был свободен, когда мы приехали.»",
+      "prompt": "Уточните срок проживания: «Нам нужен номер на две ночи».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Номер был свободен, когда мы приехали.»",
+      "accessibilityLabel": "Уточните срок проживания: «Нам нужен номер на две ночи».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The room was vacant when we arrived.",
+        "targetPhrase": "We need a room for two nights.",
         "localizedMeaning": {
-          "ru": "Скажите: «Номер был свободен, когда мы приехали.»",
-          "uk": "Скажіть: «Номер був вільний, коли ми приїхали.»"
+          "ru": "Уточните срок проживания: «Нам нужен номер на две ночи».",
+          "uk": "Уточніть термін проживання: «Нам потрібен номер на дві ночі»."
         },
         "orderedTokens": [
-          "The",
+          "We",
+          "need",
+          "a",
           "room",
-          "was",
-          "vacant",
-          "when",
-          "we",
-          "arrived"
+          "for",
+          "two",
+          "nights"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -307,154 +304,9 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-56:i05",
+      "interactionId": "en:lesson-25:session-56:word:accessible",
       "ordinal": 10,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлой поездке.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-56:i05:r1",
-          "text": "was"
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i05:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i05:r3",
-          "text": "been"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлой поездке.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлой поездке.",
-          "uk": "Доповніть розповідь про минулу поїздку."
-        },
-        "gappedTargetPhrase": "The room ___ vacant when we arrived.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-56:i05:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i05:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i05:r3",
-            "text": "been"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлой поездке.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-56:i05:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
-            "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i05:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
-            "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-56:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-56:i06:r1",
-          "text": "The room was vacant when we arrived."
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i06:r2",
-          "text": "The room was vacant when they arrived."
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i06:r3",
-          "text": "The seat was vacant when we arrived."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-56:i06:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-56:i06:audio",
-          "transcript": "The room was vacant when we arrived."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-56:i06:r1",
-            "targetText": "The room was vacant when we arrived.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i06:r2",
-            "targetText": "The room was vacant when they arrived.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i06:r3",
-            "targetText": "The seat was vacant when we arrived.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-56:i06:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The room was vacant when we arrived.",
-              "uk": "У записі звучить The room was vacant when we arrived."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i06:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The room was vacant when we arrived.",
-              "uk": "У записі звучить The room was vacant when we arrived."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-56:word:accessible",
-      "ordinal": 12,
-      "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Карточка слова — accessible",
@@ -495,179 +347,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-56:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Прошлым летом до пляжа можно было добраться на автобусе.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Прошлым летом до пляжа можно было добраться на автобусе.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The beach was accessible by bus last summer.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Прошлым летом до пляжа можно было добраться на автобусе.»",
-          "uk": "Скажіть: «Минулого літа до пляжу можна було дістатися автобусом.»"
-        },
-        "orderedTokens": [
-          "The",
-          "beach",
-          "was",
-          "accessible",
-          "by",
-          "bus",
-          "last",
-          "summer"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-56:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлой поездке.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-56:i08:r1",
-          "text": "was"
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i08:r2",
-          "text": "is"
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i08:r3",
-          "text": "been"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлой поездке.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Дополните рассказ о прошлой поездке.",
-          "uk": "Доповніть розповідь про минулу поїздку."
-        },
-        "gappedTargetPhrase": "The beach ___ accessible by bus last summer.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-56:i08:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i08:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i08:r3",
-            "text": "been"
-          }
-        ],
-        "testedDimension": "Дополните рассказ о прошлой поездке.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-56:i08:r2",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
-            "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i08:r3",
-            "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
-            "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-56:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-25:session-56:i05",
+      "ordinal": 11,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-56:i09:r1",
-          "text": "The beach was accessible by bus last summer."
+          "responseId": "en:lesson-25:session-56:i05:r1",
+          "text": "The village is accessible by bus."
         },
         {
-          "responseId": "en:lesson-25:session-56:i09:r2",
-          "text": "The park was accessible by bus last summer."
+          "responseId": "en:lesson-25:session-56:i05:r2",
+          "text": "The village is accessible by train."
         },
         {
-          "responseId": "en:lesson-25:session-56:i09:r3",
-          "text": "The beach was accessible by train last summer."
+          "responseId": "en:lesson-25:session-56:i05:r3",
+          "text": "The beach is accessible by bus."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-56:i09:audio"
+        "en:lesson-25:session-56:i05:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-56:i09:audio",
-          "transcript": "The beach was accessible by bus last summer."
+          "audioTargetId": "en:lesson-25:session-56:i05:audio",
+          "transcript": "The village is accessible by bus."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-56:i09:r1",
-            "targetText": "The beach was accessible by bus last summer.",
+            "responseId": "en:lesson-25:session-56:i05:r1",
+            "targetText": "The village is accessible by bus.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-56:i09:r2",
-            "targetText": "The park was accessible by bus last summer.",
+            "responseId": "en:lesson-25:session-56:i05:r2",
+            "targetText": "The village is accessible by train.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-56:i09:r3",
-            "targetText": "The beach was accessible by train last summer.",
+            "responseId": "en:lesson-25:session-56:i05:r3",
+            "targetText": "The beach is accessible by bus.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-56:i09:r2",
+            "responseId": "en:lesson-25:session-56:i05:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The beach was accessible by bus last summer.",
-              "uk": "У записі звучить The beach was accessible by bus last summer."
+              "ru": "В записи звучит The village is accessible by bus.",
+              "uk": "У записі звучить The village is accessible by bus."
             }
           },
           {
-            "responseId": "en:lesson-25:session-56:i09:r3",
+            "responseId": "en:lesson-25:session-56:i05:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The beach was accessible by bus last summer.",
-              "uk": "У записі звучить The beach was accessible by bus last summer."
+              "ru": "В записи звучит The village is accessible by bus.",
+              "uk": "У записі звучить The village is accessible by bus."
             }
           }
         ],
@@ -677,8 +423,41 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-56:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы выбираете маршрут. Спросите: «Сколько времени занимает поездка?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Вы выбираете маршрут. Спросите: «Сколько времени занимает поездка?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-56:i06:audio",
+          "transcript": "How long does the journey take?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long does the journey take?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-56:word:sunlit",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -720,31 +499,34 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-56:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
+      "interactionId": "en:lesson-25:session-56:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Кухня была освещена солнцем, когда мы пришли.»",
+      "prompt": "Услышьте описание комнаты.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Кухня была освещена солнцем, когда мы пришли.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте описание комнаты.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The kitchen was sunlit when we arrived.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Кухня была освещена солнцем, когда мы пришли.»",
-          "uk": "Скажіть: «Кухня була освітлена сонцем, коли ми прийшли.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-56:i07:audio",
+          "transcript": "We had breakfast in a sunlit room."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We had breakfast in a sunlit room.",
         "orderedTokens": [
-          "The",
-          "kitchen",
-          "was",
+          "We",
+          "had",
+          "breakfast",
+          "in",
+          "a",
           "sunlit",
-          "when",
-          "we",
-          "arrived"
+          "room"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -756,68 +538,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-56:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-56:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о прошлой поездке.",
+      "prompt": "Через большие окна в кухню падает солнечный свет. Выберите sunlit.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-56:i11:r1",
-          "text": "was"
+          "responseId": "en:lesson-25:session-56:i08:r1",
+          "text": "sunlit"
         },
         {
-          "responseId": "en:lesson-25:session-56:i11:r2",
-          "text": "is"
+          "responseId": "en:lesson-25:session-56:i08:r2",
+          "text": "dark"
         },
         {
-          "responseId": "en:lesson-25:session-56:i11:r3",
-          "text": "been"
+          "responseId": "en:lesson-25:session-56:i08:r3",
+          "text": "locked"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о прошлой поездке.",
+      "accessibilityLabel": "Через большие окна в кухню падает солнечный свет. Выберите sunlit.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о прошлой поездке.",
-          "uk": "Доповніть розповідь про минулу поїздку."
+          "ru": "Через большие окна в кухню падает солнечный свет. Выберите sunlit.",
+          "uk": "Крізь великі вікна до кухні падає сонячне світло. Виберіть sunlit."
         },
-        "gappedTargetPhrase": "The kitchen ___ sunlit when we arrived.",
+        "gappedTargetPhrase": "The kitchen is ___.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-56:i11:r1",
-            "text": "was"
+            "responseId": "en:lesson-25:session-56:i08:r1",
+            "text": "sunlit"
           },
           {
-            "responseId": "en:lesson-25:session-56:i11:r2",
-            "text": "is"
+            "responseId": "en:lesson-25:session-56:i08:r2",
+            "text": "dark"
           },
           {
-            "responseId": "en:lesson-25:session-56:i11:r3",
-            "text": "been"
+            "responseId": "en:lesson-25:session-56:i08:r3",
+            "text": "locked"
           }
         ],
-        "testedDimension": "Дополните рассказ о прошлой поездке.",
+        "testedDimension": "Через большие окна в кухню падает солнечный свет. Выберите sunlit.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-56:i11:r2",
+            "responseId": "en:lesson-25:session-56:i08:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
+            "testedDimension": "Через большие окна в кухню падает солнечный свет. Выберите sunlit.",
             "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
+              "ru": "Dark — тёмный; здесь кухню освещает солнце.",
+              "uk": "Dark — темний; тут кухню освітлює сонце."
             }
           },
           {
-            "responseId": "en:lesson-25:session-56:i11:r3",
+            "responseId": "en:lesson-25:session-56:i08:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о прошлой поездке.",
+            "testedDimension": "Через большие окна в кухню падает солнечный свет. Выберите sunlit.",
             "feedbackByLocale": {
-              "ru": "Состояние в прошлом: was, Past Simple.",
-              "uk": "Стан у минулому: was, Past Simple."
+              "ru": "Locked — запертый; это не описание освещения.",
+              "uk": "Locked — замкнений; це не опис освітлення."
             }
           }
         ]
@@ -825,97 +607,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-56:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-56:i12:r1",
-          "text": "The kitchen was sunlit when we arrived."
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i12:r2",
-          "text": "The bedroom was sunlit when we arrived."
-        },
-        {
-          "responseId": "en:lesson-25:session-56:i12:r3",
-          "text": "The kitchen was sunlit when they arrived."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-56:i12:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-56:i12:audio",
-          "transcript": "The kitchen was sunlit when we arrived."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-56:i12:r1",
-            "targetText": "The kitchen was sunlit when we arrived.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i12:r2",
-            "targetText": "The bedroom was sunlit when we arrived.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i12:r3",
-            "targetText": "The kitchen was sunlit when they arrived.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-56:i12:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The kitchen was sunlit when we arrived.",
-              "uk": "У записі звучить The kitchen was sunlit when we arrived."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-56:i12:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит The kitchen was sunlit when we arrived.",
-              "uk": "У записі звучить The kitchen was sunlit when we arrived."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-56:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-56:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова с переводом",
+      "prompt": "Соотнесите описания мест с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова с переводом",
+      "accessibilityLabel": "Соотнесите описания мест с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-56:i13:p1",
+            "pairId": "en:lesson-25:session-56:i09:p1",
             "target": "occupied",
             "meaningByLocale": {
               "ru": "занятый",
@@ -923,7 +629,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-56:i13:p2",
+            "pairId": "en:lesson-25:session-56:i09:p2",
             "target": "vacant",
             "meaningByLocale": {
               "ru": "свободный",
@@ -931,7 +637,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-56:i13:p3",
+            "pairId": "en:lesson-25:session-56:i09:p3",
             "target": "accessible",
             "meaningByLocale": {
               "ru": "доступный",
@@ -939,7 +645,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-56:i13:p4",
+            "pairId": "en:lesson-25:session-56:i09:p4",
             "target": "sunlit",
             "meaningByLocale": {
               "ru": "освещённый солнцем",
@@ -974,31 +680,176 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-56:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Вчера была рада",
-      "responseOptions": [],
+      "interactionId": "en:lesson-25:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы забронировали номер до звонка друга. Выберите had.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-56:i10:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i10:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i10:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы забронировали номер до звонка друга. Выберите had.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы забронировали номер до звонка друга. Выберите had.",
+          "uk": "Ви забронювали номер до дзвінка друга. Виберіть had."
+        },
+        "gappedTargetPhrase": "I ___ booked a room by the time my friend called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-56:i10:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i10:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i10:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Вы забронировали номер до звонка друга. Выберите had.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-56:i10:r2",
+            "correct": false,
+            "testedDimension": "Вы забронировали номер до звонка друга. Выберите had.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим, а called задаёт прошлый момент.",
+              "uk": "Have пов’язує результат із теперішнім, а called задає минулий момент."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i10:r3",
+            "correct": false,
+            "testedDimension": "Вы забронировали номер до звонка друга. Выберите had.",
+            "feedbackByLocale": {
+              "ru": "Нужно had booked для бронирования до звонка.",
+              "uk": "Потрібно had booked для бронювання до дзвінка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-56:i11:r1",
+          "text": "We arrived at the hotel yesterday."
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i11:r2",
+          "text": "We left the hotel yesterday."
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i11:r3",
+          "text": "We arrived at the hotel last week."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-56:i14:audio"
+        "en:lesson-25:session-56:i11:audio"
       ],
-      "accessibilityLabel": "Вчера была рада",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-56:i14:audio",
-          "transcript": "She was happy yesterday."
+          "audioTargetId": "en:lesson-25:session-56:i11:audio",
+          "transcript": "We arrived at the hotel yesterday."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She was happy yesterday.",
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-56:i11:r1",
+            "targetText": "We arrived at the hotel yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i11:r2",
+            "targetText": "We left the hotel yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i11:r3",
+            "targetText": "We arrived at the hotel last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We arrived at the hotel yesterday.",
+              "uk": "У записі звучить We arrived at the hotel yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We arrived at the hotel yesterday.",
+              "uk": "У записі звучить We arrived at the hotel yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вспомните прежнее место отдыха: «Мы раньше останавливались здесь каждое лето».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните прежнее место отдыха: «Мы раньше останавливались здесь каждое лето».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used to stay here every summer.",
+        "localizedMeaning": {
+          "ru": "Вспомните прежнее место отдыха: «Мы раньше останавливались здесь каждое лето».",
+          "uk": "Згадайте колишнє місце відпочинку: «Ми раніше зупинялися тут щоліта»."
+        },
         "orderedTokens": [
-          "She",
-          "was",
-          "happy",
-          "yesterday"
+          "We",
+          "used",
+          "to",
+          "stay",
+          "here",
+          "every",
+          "summer"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1010,34 +861,135 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-25:session-56:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "На стойке регистрации уточните: «Завтрак включён?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "На стойке регистрации уточните: «Завтрак включён?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-56:i13:audio",
+          "transcript": "Is breakfast included?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is breakfast included?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сначала вы оставили сумки, затем пошли гулять. Выберите after.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-56:i14:r1",
+          "text": "after"
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i14:r2",
+          "text": "before"
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i14:r3",
+          "text": "while"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сначала вы оставили сумки, затем пошли гулять. Выберите after.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сначала вы оставили сумки, затем пошли гулять. Выберите after.",
+          "uk": "Спочатку ви залишили сумки, потім пішли гуляти. Виберіть after."
+        },
+        "gappedTargetPhrase": "We went for a walk ___ we left our bags.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-56:i14:r1",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i14:r2",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i14:r3",
+            "text": "while"
+          }
+        ],
+        "testedDimension": "Сначала вы оставили сумки, затем пошли гулять. Выберите after.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-56:i14:r2",
+            "correct": false,
+            "testedDimension": "Сначала вы оставили сумки, затем пошли гулять. Выберите after.",
+            "feedbackByLocale": {
+              "ru": "Before означало бы прогулку до того, как оставили сумки.",
+              "uk": "Before означало б прогулянку до того, як залишили сумки."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i14:r3",
+            "correct": false,
+            "testedDimension": "Сначала вы оставили сумки, затем пошли гулять. Выберите after.",
+            "feedbackByLocale": {
+              "ru": "While означает одновременность, а действия здесь последовательны.",
+              "uk": "While означає одночасність, а дії тут послідовні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-25:session-56:i15",
       "ordinal": 22,
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Раньше боялся поездок",
+      "prompt": "Услышьте, что уже сделано с багажом.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-25:session-56:i15:audio"
       ],
-      "accessibilityLabel": "Раньше боялся поездок",
+      "accessibilityLabel": "Услышьте, что уже сделано с багажом.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-25:session-56:i15:audio",
-          "transcript": "I used to be afraid of travelling."
+          "transcript": "I have already unpacked my suitcase."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to be afraid of travelling.",
+        "hiddenTargetPhrase": "I have already unpacked my suitcase.",
         "orderedTokens": [
           "I",
-          "used",
-          "to",
-          "be",
-          "afraid",
-          "of",
-          "travelling"
+          "have",
+          "already",
+          "unpacked",
+          "my",
+          "suitcase"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1051,32 +1003,68 @@
     {
       "interactionId": "en:lesson-25:session-56:i16",
       "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Номер был занят, когда я приехал».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-56:i16:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Номер был занят, когда я приехал».",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-56:i16:audio",
-          "transcript": "The room was occupied when I arrived."
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В номере только один стул, а вас двое. Попросите ещё один.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-56:i16:r1",
+          "text": "another"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "The room was occupied when I arrived.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-25:session-56:i16:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-56:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В номере только один стул, а вас двое. Попросите ещё один.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В номере только один стул, а вас двое. Попросите ещё один.",
+          "uk": "У номері лише один стілець, а вас двоє. Попросіть ще один."
+        },
+        "gappedTargetPhrase": "Could we have ___ chair?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-56:i16:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i16:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "В номере только один стул, а вас двое. Попросите ещё один.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-56:i16:r2",
+            "correct": false,
+            "testedDimension": "В номере только один стул, а вас двое. Попросите ещё один.",
+            "feedbackByLocale": {
+              "ru": "Chair в единственном числе, поэтому another.",
+              "uk": "Chair в однині, тому another."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-56:i16:r3",
+            "correct": false,
+            "testedDimension": "В номере только один стул, а вас двое. Попросите ещё один.",
+            "feedbackByLocale": {
+              "ru": "Others не ставится перед chair.",
+              "uk": "Others не ставиться перед chair."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1084,33 +1072,36 @@
     {
       "interactionId": "en:lesson-25:session-56:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Спальня была освещена солнцем, когда она пришла».",
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите сотрудника за помощь: «Спасибо, это всё, что нам нужно».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-56:i17:audio"
-      ],
-      "accessibilityLabel": "Скажите: «Спальня была освещена солнцем, когда она пришла».",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите сотрудника за помощь: «Спасибо, это всё, что нам нужно».",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-56:i17:audio",
-          "transcript": "The bedroom was sunlit when she arrived."
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you, that is all we need.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите сотрудника за помощь: «Спасибо, это всё, что нам нужно».",
+          "uk": "Подякуйте працівникові за допомогу: «Дякуємо, це все, що нам потрібно»."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "The bedroom was sunlit when she arrived.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "Thank",
+          "you,",
+          "that",
+          "is",
+          "all",
+          "we",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1121,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "89b45b9b11230cca3909181063690e3065ab3d1ba720967c3ab8b1fee91ea4f7"
+  "learnerFingerprint": "5dcf8820ec78cf39cf32a1f2afa867aee121fbed4393974facc4d2a7f3035e99"
 }

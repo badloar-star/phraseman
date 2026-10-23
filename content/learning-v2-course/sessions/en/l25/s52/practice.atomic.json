@@ -50,175 +50,70 @@
         "interactionId": "en:lesson-25:session-52:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Вчера я был очень рад подарку.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Вчера я был очень рад подарку.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I was delighted with the gift yesterday.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Вчера я был очень рад подарку.»",
-            "uk": "Скажіть: «Учора я був дуже радий подарунку.»"
-          },
-          "orderedTokens": [
-            "I",
-            "was",
-            "delighted",
-            "with",
-            "the",
-            "gift",
-            "yesterday"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о вчерашнем дне.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i02:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i02:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i02:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о вчерашнем дне.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "I ___ delighted with the gift yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i02:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i02:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i02:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Дополните рассказ о вчерашнем дне.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i02:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i02:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-52:i03:r1",
-            "text": "I was delighted with the gift yesterday."
+            "responseId": "en:lesson-25:session-52:i01:r1",
+            "text": "My parents were delighted with the news."
           },
           {
-            "responseId": "en:lesson-25:session-52:i03:r2",
-            "text": "She was delighted with the gift yesterday."
+            "responseId": "en:lesson-25:session-52:i01:r2",
+            "text": "My parents were worried about the news."
           },
           {
-            "responseId": "en:lesson-25:session-52:i03:r3",
-            "text": "I was delighted with the meal yesterday."
+            "responseId": "en:lesson-25:session-52:i01:r3",
+            "text": "My sister was delighted with the news."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-52:i03:audio"
+          "en:lesson-25:session-52:i01:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i03:audio",
-            "transcript": "I was delighted with the gift yesterday."
+            "audioTargetId": "en:lesson-25:session-52:i01:audio",
+            "transcript": "My parents were delighted with the news."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-52:i03:r1",
-              "targetText": "I was delighted with the gift yesterday.",
+              "responseId": "en:lesson-25:session-52:i01:r1",
+              "targetText": "My parents were delighted with the news.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i03:r2",
-              "targetText": "She was delighted with the gift yesterday.",
+              "responseId": "en:lesson-25:session-52:i01:r2",
+              "targetText": "My parents were worried about the news.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i03:r3",
-              "targetText": "I was delighted with the meal yesterday.",
+              "responseId": "en:lesson-25:session-52:i01:r3",
+              "targetText": "My sister was delighted with the news.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-52:i03:r2",
+              "responseId": "en:lesson-25:session-52:i01:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was delighted with the gift yesterday.",
-                "uk": "У записі звучить I was delighted with the gift yesterday."
+                "ru": "В записи звучит My parents were delighted with the news.",
+                "uk": "У записі звучить My parents were delighted with the news."
               }
             },
             {
-              "responseId": "en:lesson-25:session-52:i03:r3",
+              "responseId": "en:lesson-25:session-52:i01:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was delighted with the gift yesterday.",
-                "uk": "У записі звучить I was delighted with the gift yesterday."
+                "ru": "В записи звучит My parents were delighted with the news.",
+                "uk": "У записі звучить My parents were delighted with the news."
               }
             }
           ],
@@ -228,8 +123,41 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг сообщил хорошую новость. Ответьте: «Я так рад за тебя».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Друг сообщил хорошую новость. Ответьте: «Я так рад за тебя».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i02:audio",
+            "transcript": "I am so happy for you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am so happy for you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:word:astonished",
-        "ordinal": 8,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -271,31 +199,100 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Цена была намного выше ожидаемой и очень вас удивила. Выберите astonished.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i03:r1",
+            "text": "astonished"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i03:r2",
+            "text": "asleep"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i03:r3",
+            "text": "hungry"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Цена была намного выше ожидаемой и очень вас удивила. Выберите astonished.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Цена была намного выше ожидаемой и очень вас удивила. Выберите astonished.",
+            "uk": "Ціна була набагато вищою за очікувану й дуже вас здивувала. Виберіть astonished."
+          },
+          "gappedTargetPhrase": "I was ___ by the price.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i03:r1",
+              "text": "astonished"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i03:r2",
+              "text": "asleep"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i03:r3",
+              "text": "hungry"
+            }
+          ],
+          "testedDimension": "Цена была намного выше ожидаемой и очень вас удивила. Выберите astonished.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Цена была намного выше ожидаемой и очень вас удивила. Выберите astonished.",
+              "feedbackByLocale": {
+                "ru": "Asleep — спящий; здесь реакция сильного удивления.",
+                "uk": "Asleep — той, хто спить; тут реакція сильного здивування."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Цена была намного выше ожидаемой и очень вас удивила. Выберите astonished.",
+              "feedbackByLocale": {
+                "ru": "Hungry — голодный, а здесь речь об удивлении ценой.",
+                "uk": "Hungry — голодний, а тут ідеться про здивування ціною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:i04",
         "ordinal": 9,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Вчера я был изумлён ценой.»",
+        "prompt": "Уточните цену у продавца: «Это цена за одного человека?»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Вчера я был изумлён ценой.»",
+        "accessibilityLabel": "Уточните цену у продавца: «Это цена за одного человека?»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I was astonished by the price yesterday.",
+          "targetPhrase": "Is that the price for one person?",
           "localizedMeaning": {
-            "ru": "Скажите: «Вчера я был изумлён ценой.»",
-            "uk": "Скажіть: «Учора я був вражений ціною.»"
+            "ru": "Уточните цену у продавца: «Это цена за одного человека?»",
+            "uk": "Уточніть ціну у продавця: «Це ціна за одну людину?»"
           },
           "orderedTokens": [
-            "I",
-            "was",
-            "astonished",
-            "by",
+            "Is",
+            "that",
             "the",
             "price",
-            "yesterday"
+            "for",
+            "one",
+            "person"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -307,154 +304,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i05",
+        "interactionId": "en:lesson-25:session-52:word:uneasy",
         "ordinal": 10,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о вчерашнем дне.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i05:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i05:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i05:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о вчерашнем дне.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "I ___ astonished by the price yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i05:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i05:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i05:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Дополните рассказ о вчерашнем дне.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i06:r1",
-            "text": "I was astonished by the price yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i06:r2",
-            "text": "She was astonished by the price yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i06:r3",
-            "text": "I was astonished by the news yesterday."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i06:audio",
-            "transcript": "I was astonished by the price yesterday."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-52:i06:r1",
-              "targetText": "I was astonished by the price yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i06:r2",
-              "targetText": "She was astonished by the price yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i06:r3",
-              "targetText": "I was astonished by the news yesterday.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I was astonished by the price yesterday.",
-                "uk": "У записі звучить I was astonished by the price yesterday."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I was astonished by the price yesterday.",
-                "uk": "У записі звучить I was astonished by the price yesterday."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:word:uneasy",
-        "ordinal": 12,
-        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Карточка слова — uneasy",
@@ -495,178 +347,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Вчера перед поездкой мне было тревожно.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Вчера перед поездкой мне было тревожно.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I was uneasy before the journey yesterday.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Вчера перед поездкой мне было тревожно.»",
-            "uk": "Скажіть: «Учора перед поїздкою мені було тривожно.»"
-          },
-          "orderedTokens": [
-            "I",
-            "was",
-            "uneasy",
-            "before",
-            "the",
-            "journey",
-            "yesterday"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о вчерашнем дне.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i08:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i08:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i08:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о вчерашнем дне.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "I ___ uneasy before the journey yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i08:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i08:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i08:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Дополните рассказ о вчерашнем дне.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-52:i05",
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-52:i09:r1",
-            "text": "I was uneasy before the journey yesterday."
+            "responseId": "en:lesson-25:session-52:i05:r1",
+            "text": "I felt uneasy in the empty house."
           },
           {
-            "responseId": "en:lesson-25:session-52:i09:r2",
-            "text": "He was uneasy before the journey yesterday."
+            "responseId": "en:lesson-25:session-52:i05:r2",
+            "text": "I felt comfortable in the empty house."
           },
           {
-            "responseId": "en:lesson-25:session-52:i09:r3",
-            "text": "I was uneasy after the journey yesterday."
+            "responseId": "en:lesson-25:session-52:i05:r3",
+            "text": "She felt uneasy in the empty house."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-52:i09:audio"
+          "en:lesson-25:session-52:i05:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i09:audio",
-            "transcript": "I was uneasy before the journey yesterday."
+            "audioTargetId": "en:lesson-25:session-52:i05:audio",
+            "transcript": "I felt uneasy in the empty house."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-52:i09:r1",
-              "targetText": "I was uneasy before the journey yesterday.",
+              "responseId": "en:lesson-25:session-52:i05:r1",
+              "targetText": "I felt uneasy in the empty house.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i09:r2",
-              "targetText": "He was uneasy before the journey yesterday.",
+              "responseId": "en:lesson-25:session-52:i05:r2",
+              "targetText": "I felt comfortable in the empty house.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i09:r3",
-              "targetText": "I was uneasy after the journey yesterday.",
+              "responseId": "en:lesson-25:session-52:i05:r3",
+              "targetText": "She felt uneasy in the empty house.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-52:i09:r2",
+              "responseId": "en:lesson-25:session-52:i05:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was uneasy before the journey yesterday.",
-                "uk": "У записі звучить I was uneasy before the journey yesterday."
+                "ru": "В записи звучит I felt uneasy in the empty house.",
+                "uk": "У записі звучить I felt uneasy in the empty house."
               }
             },
             {
-              "responseId": "en:lesson-25:session-52:i09:r3",
+              "responseId": "en:lesson-25:session-52:i05:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was uneasy before the journey yesterday.",
-                "uk": "У записі звучить I was uneasy before the journey yesterday."
+                "ru": "В записи звучит I felt uneasy in the empty house.",
+                "uk": "У записі звучить I felt uneasy in the empty house."
               }
             }
           ],
@@ -676,8 +423,41 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам тревожно одному. Попросите друга: «Можешь немного побыть со мной?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Вам тревожно одному. Попросите друга: «Можешь немного побыть со мной?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i06:audio",
+            "transcript": "Can you stay with me for a while?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you stay with me for a while?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:word:heartbroken",
-        "ordinal": 16,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -719,31 +499,104 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Вчера после этих новостей она была убита горем.»",
-        "responseOptions": [],
+        "interactionId": "en:lesson-25:session-52:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг очень тяжело переживает потерю любимого питомца. Выберите heartbroken.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i07:r1",
+            "text": "heartbroken"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i07:r2",
+            "text": "delighted"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i07:r3",
+            "text": "bored"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Вчера после этих новостей она была убита горем.»",
+        "accessibilityLabel": "Друг очень тяжело переживает потерю любимого питомца. Выберите heartbroken.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She was heartbroken after the news yesterday.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Вчера после этих новостей она была убита горем.»",
-            "uk": "Скажіть: «Учора після цих новин вона була вбита горем.»"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг очень тяжело переживает потерю любимого питомца. Выберите heartbroken.",
+            "uk": "Друг дуже тяжко переживає втрату улюбленця. Виберіть heartbroken."
           },
+          "gappedTargetPhrase": "He is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i07:r1",
+              "text": "heartbroken"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i07:r2",
+              "text": "delighted"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i07:r3",
+              "text": "bored"
+            }
+          ],
+          "testedDimension": "Друг очень тяжело переживает потерю любимого питомца. Выберите heartbroken.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i07:r2",
+              "correct": false,
+              "testedDimension": "Друг очень тяжело переживает потерю любимого питомца. Выберите heartbroken.",
+              "feedbackByLocale": {
+                "ru": "Delighted — очень рад, а здесь глубокая печаль.",
+                "uk": "Delighted — дуже радий, а тут глибокий смуток."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i07:r3",
+              "correct": false,
+              "testedDimension": "Друг очень тяжело переживает потерю любимого питомца. Выберите heartbroken.",
+              "feedbackByLocale": {
+                "ru": "Bored — скучающий; здесь сильное горе, а не скука.",
+                "uk": "Bored — той, кому нудно; тут сильне горе, а не нудьга."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте предложение поддержки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Услышьте предложение поддержки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i08:audio",
+            "transcript": "I am here if you want to talk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am here if you want to talk.",
           "orderedTokens": [
-            "She",
-            "was",
-            "heartbroken",
-            "after",
-            "the",
-            "news",
-            "yesterday"
+            "I",
+            "am",
+            "here",
+            "if",
+            "you",
+            "want",
+            "to",
+            "talk"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,166 +608,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните рассказ о вчерашнем дне.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i11:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i11:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i11:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните рассказ о вчерашнем дне.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "She ___ heartbroken after the news yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i11:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i11:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i11:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Дополните рассказ о вчерашнем дне.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i11:r2",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i11:r3",
-              "correct": false,
-              "testedDimension": "Дополните рассказ о вчерашнем дне.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i12:r1",
-            "text": "She was heartbroken after the news yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i12:r2",
-            "text": "He was heartbroken after the news yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i12:r3",
-            "text": "She was heartbroken after the call yesterday."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i12:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i12:audio",
-            "transcript": "She was heartbroken after the news yesterday."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-52:i12:r1",
-              "targetText": "She was heartbroken after the news yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i12:r2",
-              "targetText": "He was heartbroken after the news yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i12:r3",
-              "targetText": "She was heartbroken after the call yesterday.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i12:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She was heartbroken after the news yesterday.",
-                "uk": "У записі звучить She was heartbroken after the news yesterday."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i12:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She was heartbroken after the news yesterday.",
-                "uk": "У записі звучить She was heartbroken after the news yesterday."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова с переводом",
+        "prompt": "Соотнесите чувства с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова с переводом",
+        "accessibilityLabel": "Соотнесите чувства с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-52:i13:p1",
+              "pairId": "en:lesson-25:session-52:i09:p1",
               "target": "delighted",
               "meaningByLocale": {
                 "ru": "очень рад",
@@ -922,7 +630,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-52:i13:p2",
+              "pairId": "en:lesson-25:session-52:i09:p2",
               "target": "astonished",
               "meaningByLocale": {
                 "ru": "изумлённый",
@@ -930,7 +638,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-52:i13:p3",
+              "pairId": "en:lesson-25:session-52:i09:p3",
               "target": "uneasy",
               "meaningByLocale": {
                 "ru": "встревоженный",
@@ -938,7 +646,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-52:i13:p4",
+              "pairId": "en:lesson-25:session-52:i09:p4",
               "target": "heartbroken",
               "meaningByLocale": {
                 "ru": "убитый горем",
@@ -973,31 +681,176 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Вчера была рада",
-        "responseOptions": [],
+        "interactionId": "en:lesson-25:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра узнала новости до вашего звонка. Выберите had.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i10:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i10:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i10:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра узнала новости до вашего звонка. Выберите had.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра узнала новости до вашего звонка. Выберите had.",
+            "uk": "Сестра дізналася новини до вашого дзвінка. Виберіть had."
+          },
+          "gappedTargetPhrase": "My sister ___ heard the news by the time I called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i10:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i10:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i10:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Сестра узнала новости до вашего звонка. Выберите had.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i10:r2",
+              "correct": false,
+              "testedDimension": "Сестра узнала новости до вашего звонка. Выберите had.",
+              "feedbackByLocale": {
+                "ru": "Has связывает действие с настоящим, а called задаёт прошлый момент.",
+                "uk": "Has пов’язує дію з теперішнім, а called задає минулий момент."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i10:r3",
+              "correct": false,
+              "testedDimension": "Сестра узнала новости до вашего звонка. Выберите had.",
+              "feedbackByLocale": {
+                "ru": "Нужно had heard для более раннего события.",
+                "uk": "Потрібно had heard для ранішої події."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i11:r1",
+            "text": "I visited my friend yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i11:r2",
+            "text": "I called my friend yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i11:r3",
+            "text": "I visited my friend last month."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-52:i14:audio"
+          "en:lesson-25:session-52:i11:audio"
         ],
-        "accessibilityLabel": "Вчера была рада",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i14:audio",
-            "transcript": "She was happy yesterday."
+            "audioTargetId": "en:lesson-25:session-52:i11:audio",
+            "transcript": "I visited my friend yesterday."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She was happy yesterday.",
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-52:i11:r1",
+              "targetText": "I visited my friend yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i11:r2",
+              "targetText": "I called my friend yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i11:r3",
+              "targetText": "I visited my friend last month.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited my friend yesterday.",
+                "uk": "У записі звучить I visited my friend yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited my friend yesterday.",
+                "uk": "У записі звучить I visited my friend yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вспомните прежнее состояние: «Я раньше тревожился перед поездками».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните прежнее состояние: «Я раньше тревожился перед поездками».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to feel nervous before journeys.",
+          "localizedMeaning": {
+            "ru": "Вспомните прежнее состояние: «Я раньше тревожился перед поездками».",
+            "uk": "Згадайте колишній стан: «Я раніше хвилювався перед поїздками»."
+          },
           "orderedTokens": [
-            "She",
-            "was",
-            "happy",
-            "yesterday"
+            "I",
+            "used",
+            "to",
+            "feel",
+            "nervous",
+            "before",
+            "journeys"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1009,34 +862,135 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг выслушал вас. Скажите: «Мне стало немного легче».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Друг выслушал вас. Скажите: «Мне стало немного легче».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i13:audio",
+            "transcript": "I feel a little better."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I feel a little better.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы позвонили другу, затем стало спокойнее. Выберите after.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i14:r1",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i14:r2",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i14:r3",
+            "text": "while"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы позвонили другу, затем стало спокойнее. Выберите after.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы позвонили другу, затем стало спокойнее. Выберите after.",
+            "uk": "Ви зателефонували другові, потім стало спокійніше. Виберіть after."
+          },
+          "gappedTargetPhrase": "I felt calmer ___ I called my friend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i14:r1",
+              "text": "after"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i14:r2",
+              "text": "before"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i14:r3",
+              "text": "while"
+            }
+          ],
+          "testedDimension": "Вы позвонили другу, затем стало спокойнее. Выберите after.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы позвонили другу, затем стало спокойнее. Выберите after.",
+              "feedbackByLocale": {
+                "ru": "Before означало бы, что спокойнее стало до звонка.",
+                "uk": "Before означало б, що спокійніше стало до дзвінка."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы позвонили другу, затем стало спокойнее. Выберите after.",
+              "feedbackByLocale": {
+                "ru": "While означает одновременность, а здесь изменение описано после звонка.",
+                "uk": "While означає одночасність, а тут зміну описано після дзвінка."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:i15",
         "ordinal": 22,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Раньше боялся поездок",
+        "prompt": "Услышьте, кому уже сообщили новость.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-52:i15:audio"
         ],
-        "accessibilityLabel": "Раньше боялся поездок",
+        "accessibilityLabel": "Услышьте, кому уже сообщили новость.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-52:i15:audio",
-            "transcript": "I used to be afraid of travelling."
+            "transcript": "I have already told my parents."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be afraid of travelling.",
+          "hiddenTargetPhrase": "I have already told my parents.",
           "orderedTokens": [
             "I",
-            "used",
-            "to",
-            "be",
-            "afraid",
-            "of",
-            "travelling"
+            "have",
+            "already",
+            "told",
+            "my",
+            "parents"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1050,32 +1004,68 @@
       {
         "interactionId": "en:lesson-25:session-52:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Вчера он был очень рад подарку».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i16:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Вчера он был очень рад подарку».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i16:audio",
-            "transcript": "He was delighted with the gift yesterday."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг просит немного времени перед ответом. Дополните просьбу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i16:r1",
+            "text": "another"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "He was delighted with the gift yesterday.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-52:i16:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i16:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг просит немного времени перед ответом. Дополните просьбу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг просит немного времени перед ответом. Дополните просьбу.",
+            "uk": "Друг просить трохи часу перед відповіддю. Доповніть прохання."
+          },
+          "gappedTargetPhrase": "Please give me ___ moment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i16:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i16:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i16:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Друг просит немного времени перед ответом. Дополните просьбу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i16:r2",
+              "correct": false,
+              "testedDimension": "Друг просит немного времени перед ответом. Дополните просьбу.",
+              "feedbackByLocale": {
+                "ru": "Moment в единственном числе, поэтому another.",
+                "uk": "Moment в однині, тому another."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i16:r3",
+              "correct": false,
+              "testedDimension": "Друг просит немного времени перед ответом. Дополните просьбу.",
+              "feedbackByLocale": {
+                "ru": "Others не ставится перед moment.",
+                "uk": "Others не ставиться перед moment."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1083,33 +1073,36 @@
       {
         "interactionId": "en:lesson-25:session-52:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Вчера перед поездкой ей было тревожно».",
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите прогулку другу: «Давай выйдем ненадолго».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i17:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Вчера перед поездкой ей было тревожно».",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите прогулку другу: «Давай выйдем ненадолго».",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i17:audio",
-            "transcript": "She was uneasy before the journey yesterday."
+          "family": "phrase_builder",
+          "targetPhrase": "Let us go out for a while.",
+          "localizedMeaning": {
+            "ru": "Предложите прогулку другу: «Давай выйдем ненадолго».",
+            "uk": "Запропонуйте другові прогулянку: «Давай вийдемо ненадовго»."
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She was uneasy before the journey yesterday.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "Let",
+            "us",
+            "go",
+            "out",
+            "for",
+            "a",
+            "while"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       }
@@ -1162,175 +1155,70 @@
         "interactionId": "en:lesson-25:session-52:i01",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Учора я був дуже радий подарунку.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Учора я був дуже радий подарунку.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I was delighted with the gift yesterday.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Вчера я был очень рад подарку.»",
-            "uk": "Скажіть: «Учора я був дуже радий подарунку.»"
-          },
-          "orderedTokens": [
-            "I",
-            "was",
-            "delighted",
-            "with",
-            "the",
-            "gift",
-            "yesterday"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i02",
-        "ordinal": 6,
-        "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про вчорашній день.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i02:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i02:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i02:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про вчорашній день.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "I ___ delighted with the gift yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i02:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i02:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i02:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь про вчорашній день.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i02:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i02:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i03",
-        "ordinal": 7,
-        "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-52:i03:r1",
-            "text": "I was delighted with the gift yesterday."
+            "responseId": "en:lesson-25:session-52:i01:r1",
+            "text": "My parents were delighted with the news."
           },
           {
-            "responseId": "en:lesson-25:session-52:i03:r2",
-            "text": "She was delighted with the gift yesterday."
+            "responseId": "en:lesson-25:session-52:i01:r2",
+            "text": "My parents were worried about the news."
           },
           {
-            "responseId": "en:lesson-25:session-52:i03:r3",
-            "text": "I was delighted with the meal yesterday."
+            "responseId": "en:lesson-25:session-52:i01:r3",
+            "text": "My sister was delighted with the news."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-52:i03:audio"
+          "en:lesson-25:session-52:i01:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i03:audio",
-            "transcript": "I was delighted with the gift yesterday."
+            "audioTargetId": "en:lesson-25:session-52:i01:audio",
+            "transcript": "My parents were delighted with the news."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-52:i03:r1",
-              "targetText": "I was delighted with the gift yesterday.",
+              "responseId": "en:lesson-25:session-52:i01:r1",
+              "targetText": "My parents were delighted with the news.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i03:r2",
-              "targetText": "She was delighted with the gift yesterday.",
+              "responseId": "en:lesson-25:session-52:i01:r2",
+              "targetText": "My parents were worried about the news.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i03:r3",
-              "targetText": "I was delighted with the meal yesterday.",
+              "responseId": "en:lesson-25:session-52:i01:r3",
+              "targetText": "My sister was delighted with the news.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-52:i03:r2",
+              "responseId": "en:lesson-25:session-52:i01:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was delighted with the gift yesterday.",
-                "uk": "У записі звучить I was delighted with the gift yesterday."
+                "ru": "В записи звучит My parents were delighted with the news.",
+                "uk": "У записі звучить My parents were delighted with the news."
               }
             },
             {
-              "responseId": "en:lesson-25:session-52:i03:r3",
+              "responseId": "en:lesson-25:session-52:i01:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was delighted with the gift yesterday.",
-                "uk": "У записі звучить I was delighted with the gift yesterday."
+                "ru": "В записи звучит My parents were delighted with the news.",
+                "uk": "У записі звучить My parents were delighted with the news."
               }
             }
           ],
@@ -1340,8 +1228,41 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг повідомив добру новину. Дайте відповідь: «Я такий радий за тебе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Друг повідомив добру новину. Дайте відповідь: «Я такий радий за тебе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i02:audio",
+            "transcript": "I am so happy for you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am so happy for you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:word:astonished",
-        "ordinal": 8,
+        "ordinal": 7,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1383,31 +1304,100 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ціна була набагато вищою за очікувану й дуже вас здивувала. Виберіть astonished.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i03:r1",
+            "text": "astonished"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i03:r2",
+            "text": "asleep"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i03:r3",
+            "text": "hungry"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ціна була набагато вищою за очікувану й дуже вас здивувала. Виберіть astonished.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Цена была намного выше ожидаемой и очень вас удивила. Выберите astonished.",
+            "uk": "Ціна була набагато вищою за очікувану й дуже вас здивувала. Виберіть astonished."
+          },
+          "gappedTargetPhrase": "I was ___ by the price.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i03:r1",
+              "text": "astonished"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i03:r2",
+              "text": "asleep"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i03:r3",
+              "text": "hungry"
+            }
+          ],
+          "testedDimension": "Ціна була набагато вищою за очікувану й дуже вас здивувала. Виберіть astonished.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Ціна була набагато вищою за очікувану й дуже вас здивувала. Виберіть astonished.",
+              "feedbackByLocale": {
+                "ru": "Asleep — спящий; здесь реакция сильного удивления.",
+                "uk": "Asleep — той, хто спить; тут реакція сильного здивування."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Ціна була набагато вищою за очікувану й дуже вас здивувала. Виберіть astonished.",
+              "feedbackByLocale": {
+                "ru": "Hungry — голодный, а здесь речь об удивлении ценой.",
+                "uk": "Hungry — голодний, а тут ідеться про здивування ціною."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:i04",
         "ordinal": 9,
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Учора я був вражений ціною.»",
+        "prompt": "Уточніть ціну у продавця: «Це ціна за одну людину?»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Учора я був вражений ціною.»",
+        "accessibilityLabel": "Уточніть ціну у продавця: «Це ціна за одну людину?»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I was astonished by the price yesterday.",
+          "targetPhrase": "Is that the price for one person?",
           "localizedMeaning": {
-            "ru": "Скажите: «Вчера я был изумлён ценой.»",
-            "uk": "Скажіть: «Учора я був вражений ціною.»"
+            "ru": "Уточните цену у продавца: «Это цена за одного человека?»",
+            "uk": "Уточніть ціну у продавця: «Це ціна за одну людину?»"
           },
           "orderedTokens": [
-            "I",
-            "was",
-            "astonished",
-            "by",
+            "Is",
+            "that",
             "the",
             "price",
-            "yesterday"
+            "for",
+            "one",
+            "person"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1419,154 +1409,9 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i05",
+        "interactionId": "en:lesson-25:session-52:word:uneasy",
         "ordinal": 10,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про вчорашній день.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i05:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i05:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i05:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про вчорашній день.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "I ___ astonished by the price yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i05:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i05:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i05:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь про вчорашній день.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i06:r1",
-            "text": "I was astonished by the price yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i06:r2",
-            "text": "She was astonished by the price yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i06:r3",
-            "text": "I was astonished by the news yesterday."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i06:audio",
-            "transcript": "I was astonished by the price yesterday."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-52:i06:r1",
-              "targetText": "I was astonished by the price yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i06:r2",
-              "targetText": "She was astonished by the price yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i06:r3",
-              "targetText": "I was astonished by the news yesterday.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I was astonished by the price yesterday.",
-                "uk": "У записі звучить I was astonished by the price yesterday."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I was astonished by the price yesterday.",
-                "uk": "У записі звучить I was astonished by the price yesterday."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:word:uneasy",
-        "ordinal": 12,
-        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Картка слова — uneasy",
@@ -1607,178 +1452,73 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Учора перед поїздкою мені було тривожно.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Учора перед поїздкою мені було тривожно.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I was uneasy before the journey yesterday.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Вчера перед поездкой мне было тревожно.»",
-            "uk": "Скажіть: «Учора перед поїздкою мені було тривожно.»"
-          },
-          "orderedTokens": [
-            "I",
-            "was",
-            "uneasy",
-            "before",
-            "the",
-            "journey",
-            "yesterday"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про вчорашній день.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i08:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i08:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i08:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про вчорашній день.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "I ___ uneasy before the journey yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i08:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i08:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i08:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь про вчорашній день.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i09",
-        "ordinal": 15,
+        "interactionId": "en:lesson-25:session-52:i05",
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-52:i09:r1",
-            "text": "I was uneasy before the journey yesterday."
+            "responseId": "en:lesson-25:session-52:i05:r1",
+            "text": "I felt uneasy in the empty house."
           },
           {
-            "responseId": "en:lesson-25:session-52:i09:r2",
-            "text": "He was uneasy before the journey yesterday."
+            "responseId": "en:lesson-25:session-52:i05:r2",
+            "text": "I felt comfortable in the empty house."
           },
           {
-            "responseId": "en:lesson-25:session-52:i09:r3",
-            "text": "I was uneasy after the journey yesterday."
+            "responseId": "en:lesson-25:session-52:i05:r3",
+            "text": "She felt uneasy in the empty house."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-52:i09:audio"
+          "en:lesson-25:session-52:i05:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i09:audio",
-            "transcript": "I was uneasy before the journey yesterday."
+            "audioTargetId": "en:lesson-25:session-52:i05:audio",
+            "transcript": "I felt uneasy in the empty house."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-52:i09:r1",
-              "targetText": "I was uneasy before the journey yesterday.",
+              "responseId": "en:lesson-25:session-52:i05:r1",
+              "targetText": "I felt uneasy in the empty house.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i09:r2",
-              "targetText": "He was uneasy before the journey yesterday.",
+              "responseId": "en:lesson-25:session-52:i05:r2",
+              "targetText": "I felt comfortable in the empty house.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-52:i09:r3",
-              "targetText": "I was uneasy after the journey yesterday.",
+              "responseId": "en:lesson-25:session-52:i05:r3",
+              "targetText": "She felt uneasy in the empty house.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-52:i09:r2",
+              "responseId": "en:lesson-25:session-52:i05:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was uneasy before the journey yesterday.",
-                "uk": "У записі звучить I was uneasy before the journey yesterday."
+                "ru": "В записи звучит I felt uneasy in the empty house.",
+                "uk": "У записі звучить I felt uneasy in the empty house."
               }
             },
             {
-              "responseId": "en:lesson-25:session-52:i09:r3",
+              "responseId": "en:lesson-25:session-52:i05:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I was uneasy before the journey yesterday.",
-                "uk": "У записі звучить I was uneasy before the journey yesterday."
+                "ru": "В записи звучит I felt uneasy in the empty house.",
+                "uk": "У записі звучить I felt uneasy in the empty house."
               }
             }
           ],
@@ -1788,8 +1528,41 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вам тривожно самому. Попросіть друга: «Можеш трохи побути зі мною?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i06:audio"
+        ],
+        "accessibilityLabel": "Вам тривожно самому. Попросіть друга: «Можеш трохи побути зі мною?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i06:audio",
+            "transcript": "Can you stay with me for a while?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you stay with me for a while?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:word:heartbroken",
-        "ordinal": 16,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1831,31 +1604,104 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Учора після цих новин вона була вбита горем.»",
-        "responseOptions": [],
+        "interactionId": "en:lesson-25:session-52:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг дуже тяжко переживає втрату улюбленця. Виберіть heartbroken.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i07:r1",
+            "text": "heartbroken"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i07:r2",
+            "text": "delighted"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i07:r3",
+            "text": "bored"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Учора після цих новин вона була вбита горем.»",
+        "accessibilityLabel": "Друг дуже тяжко переживає втрату улюбленця. Виберіть heartbroken.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "She was heartbroken after the news yesterday.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Вчера после этих новостей она была убита горем.»",
-            "uk": "Скажіть: «Учора після цих новин вона була вбита горем.»"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг очень тяжело переживает потерю любимого питомца. Выберите heartbroken.",
+            "uk": "Друг дуже тяжко переживає втрату улюбленця. Виберіть heartbroken."
           },
+          "gappedTargetPhrase": "He is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i07:r1",
+              "text": "heartbroken"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i07:r2",
+              "text": "delighted"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i07:r3",
+              "text": "bored"
+            }
+          ],
+          "testedDimension": "Друг дуже тяжко переживає втрату улюбленця. Виберіть heartbroken.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i07:r2",
+              "correct": false,
+              "testedDimension": "Друг дуже тяжко переживає втрату улюбленця. Виберіть heartbroken.",
+              "feedbackByLocale": {
+                "ru": "Delighted — очень рад, а здесь глубокая печаль.",
+                "uk": "Delighted — дуже радий, а тут глибокий смуток."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i07:r3",
+              "correct": false,
+              "testedDimension": "Друг дуже тяжко переживає втрату улюбленця. Виберіть heartbroken.",
+              "feedbackByLocale": {
+                "ru": "Bored — скучающий; здесь сильное горе, а не скука.",
+                "uk": "Bored — той, кому нудно; тут сильне горе, а не нудьга."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пропозицію підтримки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Почуйте пропозицію підтримки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i08:audio",
+            "transcript": "I am here if you want to talk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am here if you want to talk.",
           "orderedTokens": [
-            "She",
-            "was",
-            "heartbroken",
-            "after",
-            "the",
-            "news",
-            "yesterday"
+            "I",
+            "am",
+            "here",
+            "if",
+            "you",
+            "want",
+            "to",
+            "talk"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1867,166 +1713,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть розповідь про вчорашній день.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i11:r1",
-            "text": "was"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i11:r2",
-            "text": "is"
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i11:r3",
-            "text": "been"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть розповідь про вчорашній день.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните рассказ о вчерашнем дне.",
-            "uk": "Доповніть розповідь про вчорашній день."
-          },
-          "gappedTargetPhrase": "She ___ heartbroken after the news yesterday.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-52:i11:r1",
-              "text": "was"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i11:r2",
-              "text": "is"
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i11:r3",
-              "text": "been"
-            }
-          ],
-          "testedDimension": "Доповніть розповідь про вчорашній день.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i11:r2",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i11:r3",
-              "correct": false,
-              "testedDimension": "Доповніть розповідь про вчорашній день.",
-              "feedbackByLocale": {
-                "ru": "Вчерашнее состояние: was, Past Simple.",
-                "uk": "Учорашній стан: was, Past Simple."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-52:i12:r1",
-            "text": "She was heartbroken after the news yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i12:r2",
-            "text": "He was heartbroken after the news yesterday."
-          },
-          {
-            "responseId": "en:lesson-25:session-52:i12:r3",
-            "text": "She was heartbroken after the call yesterday."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i12:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i12:audio",
-            "transcript": "She was heartbroken after the news yesterday."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-52:i12:r1",
-              "targetText": "She was heartbroken after the news yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i12:r2",
-              "targetText": "He was heartbroken after the news yesterday.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i12:r3",
-              "targetText": "She was heartbroken after the call yesterday.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-52:i12:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She was heartbroken after the news yesterday.",
-                "uk": "У записі звучить She was heartbroken after the news yesterday."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-52:i12:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит She was heartbroken after the news yesterday.",
-                "uk": "У записі звучить She was heartbroken after the news yesterday."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-52:i13",
-        "ordinal": 20,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-52:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте слова з перекладом",
+        "prompt": "Зіставте почуття з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "accessibilityLabel": "Зіставте почуття з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-52:i13:p1",
+              "pairId": "en:lesson-25:session-52:i09:p1",
               "target": "delighted",
               "meaningByLocale": {
                 "ru": "очень рад",
@@ -2034,7 +1735,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-52:i13:p2",
+              "pairId": "en:lesson-25:session-52:i09:p2",
               "target": "astonished",
               "meaningByLocale": {
                 "ru": "изумлённый",
@@ -2042,7 +1743,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-52:i13:p3",
+              "pairId": "en:lesson-25:session-52:i09:p3",
               "target": "uneasy",
               "meaningByLocale": {
                 "ru": "встревоженный",
@@ -2050,7 +1751,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-52:i13:p4",
+              "pairId": "en:lesson-25:session-52:i09:p4",
               "target": "heartbroken",
               "meaningByLocale": {
                 "ru": "убитый горем",
@@ -2085,31 +1786,176 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-52:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Учора була рада",
-        "responseOptions": [],
+        "interactionId": "en:lesson-25:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестра дізналася новини до вашого дзвінка. Виберіть had.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i10:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i10:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i10:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестра дізналася новини до вашого дзвінка. Виберіть had.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестра узнала новости до вашего звонка. Выберите had.",
+            "uk": "Сестра дізналася новини до вашого дзвінка. Виберіть had."
+          },
+          "gappedTargetPhrase": "My sister ___ heard the news by the time I called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i10:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i10:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i10:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Сестра дізналася новини до вашого дзвінка. Виберіть had.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i10:r2",
+              "correct": false,
+              "testedDimension": "Сестра дізналася новини до вашого дзвінка. Виберіть had.",
+              "feedbackByLocale": {
+                "ru": "Has связывает действие с настоящим, а called задаёт прошлый момент.",
+                "uk": "Has пов’язує дію з теперішнім, а called задає минулий момент."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i10:r3",
+              "correct": false,
+              "testedDimension": "Сестра дізналася новини до вашого дзвінка. Виберіть had.",
+              "feedbackByLocale": {
+                "ru": "Нужно had heard для более раннего события.",
+                "uk": "Потрібно had heard для ранішої події."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i11:r1",
+            "text": "I visited my friend yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i11:r2",
+            "text": "I called my friend yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i11:r3",
+            "text": "I visited my friend last month."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-52:i14:audio"
+          "en:lesson-25:session-52:i11:audio"
         ],
-        "accessibilityLabel": "Учора була рада",
+        "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
-          "family": "listen_build_dictation",
+          "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i14:audio",
-            "transcript": "She was happy yesterday."
+            "audioTargetId": "en:lesson-25:session-52:i11:audio",
+            "transcript": "I visited my friend yesterday."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She was happy yesterday.",
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-52:i11:r1",
+              "targetText": "I visited my friend yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i11:r2",
+              "targetText": "I called my friend yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i11:r3",
+              "targetText": "I visited my friend last month.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited my friend yesterday.",
+                "uk": "У записі звучить I visited my friend yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited my friend yesterday.",
+                "uk": "У записі звучить I visited my friend yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Згадайте колишній стан: «Я раніше хвилювався перед поїздками».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Згадайте колишній стан: «Я раніше хвилювався перед поїздками».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to feel nervous before journeys.",
+          "localizedMeaning": {
+            "ru": "Вспомните прежнее состояние: «Я раньше тревожился перед поездками».",
+            "uk": "Згадайте колишній стан: «Я раніше хвилювався перед поїздками»."
+          },
           "orderedTokens": [
-            "She",
-            "was",
-            "happy",
-            "yesterday"
+            "I",
+            "used",
+            "to",
+            "feel",
+            "nervous",
+            "before",
+            "journeys"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2121,34 +1967,135 @@
         "scriptedAlternate": null
       },
       {
+        "interactionId": "en:lesson-25:session-52:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг вислухав вас. Скажіть: «Мені стало трохи легше».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-52:i13:audio"
+        ],
+        "accessibilityLabel": "Друг вислухав вас. Скажіть: «Мені стало трохи легше».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-52:i13:audio",
+            "transcript": "I feel a little better."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I feel a little better.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зателефонували другові, потім стало спокійніше. Виберіть after.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i14:r1",
+            "text": "after"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i14:r2",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i14:r3",
+            "text": "while"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зателефонували другові, потім стало спокійніше. Виберіть after.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы позвонили другу, затем стало спокойнее. Выберите after.",
+            "uk": "Ви зателефонували другові, потім стало спокійніше. Виберіть after."
+          },
+          "gappedTargetPhrase": "I felt calmer ___ I called my friend.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i14:r1",
+              "text": "after"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i14:r2",
+              "text": "before"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i14:r3",
+              "text": "while"
+            }
+          ],
+          "testedDimension": "Ви зателефонували другові, потім стало спокійніше. Виберіть after.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви зателефонували другові, потім стало спокійніше. Виберіть after.",
+              "feedbackByLocale": {
+                "ru": "Before означало бы, что спокойнее стало до звонка.",
+                "uk": "Before означало б, що спокійніше стало до дзвінка."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви зателефонували другові, потім стало спокійніше. Виберіть after.",
+              "feedbackByLocale": {
+                "ru": "While означает одновременность, а здесь изменение описано после звонка.",
+                "uk": "While означає одночасність, а тут зміну описано після дзвінка."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
         "interactionId": "en:lesson-25:session-52:i15",
         "ordinal": 22,
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Раніше боявся подорожей",
+        "prompt": "Почуйте, кому вже повідомили новину.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-52:i15:audio"
         ],
-        "accessibilityLabel": "Раніше боявся подорожей",
+        "accessibilityLabel": "Почуйте, кому вже повідомили новину.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-52:i15:audio",
-            "transcript": "I used to be afraid of travelling."
+            "transcript": "I have already told my parents."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I used to be afraid of travelling.",
+          "hiddenTargetPhrase": "I have already told my parents.",
           "orderedTokens": [
             "I",
-            "used",
-            "to",
-            "be",
-            "afraid",
-            "of",
-            "travelling"
+            "have",
+            "already",
+            "told",
+            "my",
+            "parents"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2162,32 +2109,68 @@
       {
         "interactionId": "en:lesson-25:session-52:i16",
         "ordinal": 23,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Учора він був дуже радий подарунку».",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i16:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Учора він був дуже радий подарунку».",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i16:audio",
-            "transcript": "He was delighted with the gift yesterday."
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг просить трохи часу перед відповіддю. Доповніть прохання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-52:i16:r1",
+            "text": "another"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "He was delighted with the gift yesterday.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          {
+            "responseId": "en:lesson-25:session-52:i16:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-52:i16:r3",
+            "text": "others"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг просить трохи часу перед відповіддю. Доповніть прохання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг просит немного времени перед ответом. Дополните просьбу.",
+            "uk": "Друг просить трохи часу перед відповіддю. Доповніть прохання."
+          },
+          "gappedTargetPhrase": "Please give me ___ moment.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-52:i16:r1",
+              "text": "another"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i16:r2",
+              "text": "other"
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i16:r3",
+              "text": "others"
+            }
+          ],
+          "testedDimension": "Друг просить трохи часу перед відповіддю. Доповніть прохання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-52:i16:r2",
+              "correct": false,
+              "testedDimension": "Друг просить трохи часу перед відповіддю. Доповніть прохання.",
+              "feedbackByLocale": {
+                "ru": "Moment в единственном числе, поэтому another.",
+                "uk": "Moment в однині, тому another."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-52:i16:r3",
+              "correct": false,
+              "testedDimension": "Друг просить трохи часу перед відповіддю. Доповніть прохання.",
+              "feedbackByLocale": {
+                "ru": "Others не ставится перед moment.",
+                "uk": "Others не ставиться перед moment."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -2195,33 +2178,36 @@
       {
         "interactionId": "en:lesson-25:session-52:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Учора перед поїздкою їй було тривожно».",
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте другові прогулянку: «Давай вийдемо ненадовго».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-52:i17:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Учора перед поїздкою їй було тривожно».",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте другові прогулянку: «Давай вийдемо ненадовго».",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-52:i17:audio",
-            "transcript": "She was uneasy before the journey yesterday."
+          "family": "phrase_builder",
+          "targetPhrase": "Let us go out for a while.",
+          "localizedMeaning": {
+            "ru": "Предложите прогулку другу: «Давай выйдем ненадолго».",
+            "uk": "Запропонуйте другові прогулянку: «Давай вийдемо ненадовго»."
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She was uneasy before the journey yesterday.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "Let",
+            "us",
+            "go",
+            "out",
+            "for",
+            "a",
+            "while"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       }
@@ -2235,18 +2221,13 @@
     },
     {
       "interactionId": "en:lesson-25:session-52:i01",
-      "correctText": "I was delighted with the gift yesterday.",
-      "correctResponseId": null
+      "correctText": "My parents were delighted with the news.",
+      "correctResponseId": "en:lesson-25:session-52:i01:r1"
     },
     {
       "interactionId": "en:lesson-25:session-52:i02",
-      "correctText": "was",
-      "correctResponseId": "en:lesson-25:session-52:i02:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-52:i03",
-      "correctText": "I was delighted with the gift yesterday.",
-      "correctResponseId": "en:lesson-25:session-52:i03:r1"
+      "correctText": "I am so happy for you.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-52:word:astonished",
@@ -2254,19 +2235,14 @@
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-52:i03",
+      "correctText": "astonished",
+      "correctResponseId": "en:lesson-25:session-52:i03:r1"
+    },
+    {
       "interactionId": "en:lesson-25:session-52:i04",
-      "correctText": "I was astonished by the price yesterday.",
+      "correctText": "Is that the price for one person?",
       "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-52:i05",
-      "correctText": "was",
-      "correctResponseId": "en:lesson-25:session-52:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-52:i06",
-      "correctText": "I was astonished by the price yesterday.",
-      "correctResponseId": "en:lesson-25:session-52:i06:r1"
     },
     {
       "interactionId": "en:lesson-25:session-52:word:uneasy",
@@ -2274,19 +2250,14 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-52:i07",
-      "correctText": "I was uneasy before the journey yesterday.",
+      "interactionId": "en:lesson-25:session-52:i05",
+      "correctText": "I felt uneasy in the empty house.",
+      "correctResponseId": "en:lesson-25:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-52:i06",
+      "correctText": "Can you stay with me for a while?",
       "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-52:i08",
-      "correctText": "was",
-      "correctResponseId": "en:lesson-25:session-52:i08:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-52:i09",
-      "correctText": "I was uneasy before the journey yesterday.",
-      "correctResponseId": "en:lesson-25:session-52:i09:r1"
     },
     {
       "interactionId": "en:lesson-25:session-52:word:heartbroken",
@@ -2294,43 +2265,58 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-52:i10",
-      "correctText": "She was heartbroken after the news yesterday.",
+      "interactionId": "en:lesson-25:session-52:i07",
+      "correctText": "heartbroken",
+      "correctResponseId": "en:lesson-25:session-52:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-52:i08",
+      "correctText": "I am here if you want to talk.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-52:i11",
-      "correctText": "was",
-      "correctResponseId": "en:lesson-25:session-52:i11:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-52:i12",
-      "correctText": "She was heartbroken after the news yesterday.",
-      "correctResponseId": "en:lesson-25:session-52:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-52:i13",
+      "interactionId": "en:lesson-25:session-52:i09",
       "correctText": "",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-52:i14",
-      "correctText": "She was happy yesterday.",
+      "interactionId": "en:lesson-25:session-52:i10",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-52:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-52:i11",
+      "correctText": "I visited my friend yesterday.",
+      "correctResponseId": "en:lesson-25:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-52:i12",
+      "correctText": "I used to feel nervous before journeys.",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-52:i13",
+      "correctText": "I feel a little better.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-52:i14",
+      "correctText": "after",
+      "correctResponseId": "en:lesson-25:session-52:i14:r1"
+    },
+    {
       "interactionId": "en:lesson-25:session-52:i15",
-      "correctText": "I used to be afraid of travelling.",
+      "correctText": "I have already told my parents.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-52:i16",
-      "correctText": "He was delighted with the gift yesterday.",
-      "correctResponseId": null
+      "correctText": "another",
+      "correctResponseId": "en:lesson-25:session-52:i16:r1"
     },
     {
       "interactionId": "en:lesson-25:session-52:i17",
-      "correctText": "She was uneasy before the journey yesterday.",
+      "correctText": "Let us go out for a while.",
       "correctResponseId": null
     }
   ]

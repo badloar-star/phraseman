@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-56:i01",
-    "correctText": "The seat was occupied when we arrived.",
-    "correctResponseId": null
+    "correctText": "This seat is occupied.",
+    "correctResponseId": "en:lesson-25:session-56:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-56:i02",
-    "correctText": "was",
-    "correctResponseId": "en:lesson-25:session-56:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-56:i03",
-    "correctText": "The seat was occupied when we arrived.",
-    "correctResponseId": "en:lesson-25:session-56:i03:r1"
+    "correctText": "Is anyone sitting here?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-56:word:vacant",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-56:i03",
+    "correctText": "vacant",
+    "correctResponseId": "en:lesson-25:session-56:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-56:i04",
-    "correctText": "The room was vacant when we arrived.",
+    "correctText": "We need a room for two nights.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-56:i05",
-    "correctText": "was",
-    "correctResponseId": "en:lesson-25:session-56:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-56:i06",
-    "correctText": "The room was vacant when we arrived.",
-    "correctResponseId": "en:lesson-25:session-56:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-56:word:accessible",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-56:i07",
-    "correctText": "The beach was accessible by bus last summer.",
+    "interactionId": "en:lesson-25:session-56:i05",
+    "correctText": "The village is accessible by bus.",
+    "correctResponseId": "en:lesson-25:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-56:i06",
+    "correctText": "How long does the journey take?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-56:i08",
-    "correctText": "was",
-    "correctResponseId": "en:lesson-25:session-56:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-56:i09",
-    "correctText": "The beach was accessible by bus last summer.",
-    "correctResponseId": "en:lesson-25:session-56:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-56:word:sunlit",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-56:i10",
-    "correctText": "The kitchen was sunlit when we arrived.",
+    "interactionId": "en:lesson-25:session-56:i07",
+    "correctText": "We had breakfast in a sunlit room.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-56:i08",
+    "correctText": "sunlit",
+    "correctResponseId": "en:lesson-25:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-56:i09",
+    "correctText": "en:lesson-25:session-56:i09:p1=occupied\nen:lesson-25:session-56:i09:p2=vacant\nen:lesson-25:session-56:i09:p3=accessible\nen:lesson-25:session-56:i09:p4=sunlit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-56:i10",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-56:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-56:i11",
-    "correctText": "was",
+    "correctText": "We arrived at the hotel yesterday.",
     "correctResponseId": "en:lesson-25:session-56:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-56:i12",
-    "correctText": "The kitchen was sunlit when we arrived.",
-    "correctResponseId": "en:lesson-25:session-56:i12:r1"
+    "correctText": "We used to stay here every summer.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-56:i13",
-    "correctText": "en:lesson-25:session-56:i13:p1=occupied\nen:lesson-25:session-56:i13:p2=vacant\nen:lesson-25:session-56:i13:p3=accessible\nen:lesson-25:session-56:i13:p4=sunlit",
+    "correctText": "Is breakfast included?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-56:i14",
-    "correctText": "She was happy yesterday.",
-    "correctResponseId": null
+    "correctText": "after",
+    "correctResponseId": "en:lesson-25:session-56:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-56:i15",
-    "correctText": "I used to be afraid of travelling.",
+    "correctText": "I have already unpacked my suitcase.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-56:i16",
-    "correctText": "The room was occupied when I arrived.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-56:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-56:i17",
-    "correctText": "The bedroom was sunlit when she arrived.",
+    "correctText": "Thank you, that is all we need.",
     "correctResponseId": null
   }
 ]

@@ -53,99 +53,99 @@ Elastic — еластичний: розтягується й повертаєт
 <!-- interaction_id: en:lesson-25:session-55:word:oversized; family: word_card -->
 > **oversized** — Збільшеного розміру. Oversized — навмисно більший за звичайний, наприклад про вільний одяг.
 
-**2 · Скажіть: «Раніше вона носила светри збільшеного розміру.»**
-<!-- interaction_id: en:lesson-25:session-55:i01; family: phrase_builder -->
-Плитки: `sweaters` `oversized` `wear` `to` `used` `She` → **She used to wear oversized sweaters.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-55:i01; family: listen_choose -->
+🔊 *She is wearing an oversized jacket.* → **She is wearing an oversized jacket.** · She is wearing an oversized shirt. · He is wearing an oversized jacket.
+- She is wearing an oversized shirt. — *У записі звучить She is wearing an oversized jacket.*
+- He is wearing an oversized jacket. — *У записі звучить She is wearing an oversized jacket.*
 
-**3 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-55:i02; family: context_gap_grammar -->
-She ___ to wear oversized sweaters. → **used** · use · using
-- use — *Колишня звичка: used to + початкова форма.*
-- using — *Колишня звичка: used to + початкова форма.*
+**3 · Річ завелика. Запитайте продавця: «Є менший розмір?»**
+<!-- interaction_id: en:lesson-25:session-55:i02; family: scripted_repeat_compare -->
+🎙 **Do you have a smaller size?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-55:i03; family: listen_choose -->
-🔊 *She used to wear oversized sweaters.* → **She used to wear oversized sweaters.** · He used to wear oversized sweaters. · She used to wear oversized shirts.
-- He used to wear oversized sweaters. — *У записі звучить She used to wear oversized sweaters.*
-- She used to wear oversized shirts. — *У записі звучить She used to wear oversized sweaters.*
-
-**5 · Картка слова — woollen**
+**4 · Картка слова — woollen**
 <!-- interaction_id: en:lesson-25:session-55:word:woollen; family: word_card -->
 > **woollen** — Вовняний. Woollen — зроблений із вовни.
 
-**6 · Скажіть: «Раніше я носив вовняні шкарпетки.»**
-<!-- interaction_id: en:lesson-25:session-55:i04; family: phrase_builder -->
-Плитки: `socks` `woollen` `wear` `to` `used` `I` → **I used to wear woollen socks.**
+**5 · Розкажіть, що взяли для холоду: «Я взяв вовняний светр».**
+<!-- interaction_id: en:lesson-25:session-55:i03; family: phrase_builder -->
+Плитки: `sweater` `woollen` `a` `brought` `I` → **I brought a woollen sweater.**
 
-**7 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-55:i05; family: context_gap_grammar -->
-I ___ to wear woollen socks. → **used** · use · using
-- use — *Колишня звичка: used to + початкова форма.*
-- using — *Колишня звичка: used to + початкова форма.*
+**6 · Ці шкарпетки зроблено з вовни. Виберіть woollen.**
+<!-- interaction_id: en:lesson-25:session-55:i04; family: context_gap_grammar -->
+These socks are ___. → **woollen** · wooden · metal
+- wooden — *Wooden — дерев’яний, а шкарпетки з вовни.*
+- metal — *Metal — металевий; за умовою матеріал інший.*
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-55:i06; family: listen_choose -->
-🔊 *I used to wear woollen socks.* → **I used to wear woollen socks.** · She used to wear woollen socks. · I used to wear woollen gloves.
-- She used to wear woollen socks. — *У записі звучить I used to wear woollen socks.*
-- I used to wear woollen gloves. — *У записі звучить I used to wear woollen socks.*
-
-**9 · Картка слова — silky**
+**7 · Картка слова — silky**
 <!-- interaction_id: en:lesson-25:session-55:word:silky; family: word_card -->
 > **silky** — Шовковистий. Silky — гладенький і м’який, схожий на шовк на дотик.
 
-**10 · Скажіть: «Раніше вона носила шовковистий шарф.»**
-<!-- interaction_id: en:lesson-25:session-55:i07; family: phrase_builder -->
-Плитки: `scarf` `silky` `a` `wear` `to` `used` `She` → **She used to wear a silky scarf.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-55:i05; family: listen_choose -->
+🔊 *The scarf feels silky.* → **The scarf feels silky.** · The scarf feels rough. · The shirt feels silky.
+- The scarf feels rough. — *У записі звучить The scarf feels silky.*
+- The shirt feels silky. — *У записі звучить The scarf feels silky.*
 
-**11 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-55:i08; family: context_gap_grammar -->
-She ___ to wear a silky scarf. → **used** · use · using
-- use — *Колишня звичка: used to + початкова форма.*
-- using — *Колишня звичка: used to + початкова форма.*
+**9 · Ви хочете приміряти шарф. Запитайте продавця: «Можна його приміряти?»**
+<!-- interaction_id: en:lesson-25:session-55:i06; family: scripted_repeat_compare -->
+🎙 **Can I try it on?**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-55:i09; family: listen_choose -->
-🔊 *She used to wear a silky scarf.* → **She used to wear a silky scarf.** · He used to wear a silky scarf. · She used to wear a silky blouse.
-- He used to wear a silky scarf. — *У записі звучить She used to wear a silky scarf.*
-- She used to wear a silky blouse. — *У записі звучить She used to wear a silky scarf.*
-
-**13 · Картка слова — elastic**
+**10 · Картка слова — elastic**
 <!-- interaction_id: en:lesson-25:session-55:word:elastic; family: word_card -->
 > **elastic** — Еластичний. Elastic — той, що розтягується й повертає попередню форму.
 
-**14 · Скажіть: «Раніше я носив штани з еластичним поясом.»**
-<!-- interaction_id: en:lesson-25:session-55:i10; family: phrase_builder -->
-Плитки: `waist` `elastic` `an` `with` `trousers` `wear` `to` `used` `I` → **I used to wear trousers with an elastic waist.**
+**11 · Пояс розтягується й повертає попередню форму. Виберіть elastic.**
+<!-- interaction_id: en:lesson-25:session-55:i07; family: context_gap_grammar -->
+The waist is ___. → **elastic** · silky · woollen
+- silky — *Silky описує гладенькість на дотик, а тут розтяжність.*
+- woollen — *Woollen називає матеріал, але не властивість розтягуватися.*
 
-**15 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-55:i11; family: context_gap_grammar -->
-I ___ to wear trousers with an elastic waist. → **used** · use · using
-- use — *Колишня звичка: used to + початкова форма.*
-- using — *Колишня звичка: used to + початкова форма.*
+**12 · Почуйте відгук про те, як сидять штани.**
+<!-- interaction_id: en:lesson-25:session-55:i08; family: listen_build_dictation -->
+🔊 *These trousers fit me well.* Плитки: `well` `me` `fit` `trousers` `These` → **These trousers fit me well.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-55:i12; family: listen_choose -->
-🔊 *I used to wear trousers with an elastic waist.* → **I used to wear trousers with an elastic waist.** · She used to wear trousers with an elastic waist. · I used to wear shorts with an elastic waist.
-- She used to wear trousers with an elastic waist. — *У записі звучить I used to wear trousers with an elastic waist.*
-- I used to wear shorts with an elastic waist. — *У записі звучить I used to wear trousers with an elastic waist.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-55:i13; family: speed_match -->
+**13 · Зіставте описи одягу з перекладом**
+<!-- interaction_id: en:lesson-25:session-55:i09; family: speed_match -->
 oversized — збільшеного розміру · woollen — вовняний · silky — шовковистий · elastic — еластичний
 
-**18 · Уже закінчила до мого дзвінка**
-<!-- interaction_id: en:lesson-25:session-55:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Ви вибрали пальто до приходу сестри. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-55:i10; family: context_gap_grammar -->
+I ___ chosen a coat by the time my sister arrived. → **had** · have · was
+- have — *Have пов’язує результат із теперішнім, а arrived задає минулий момент.*
+- was — *Потрібно had chosen для завершеного вибору до приходу.*
 
-**19 · Раніше їздив машиною**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-55:i11; family: listen_choose -->
+🔊 *I bought these boots last winter.* → **I bought these boots last winter.** · I bought these shoes last winter. · I bought these boots last week.
+- I bought these shoes last winter. — *У записі звучить I bought these boots last winter.*
+- I bought these boots last week. — *У записі звучить I bought these boots last winter.*
+
+**16 · Згадайте колишній стиль: «Я раніше щодня носив джинси».**
+<!-- interaction_id: en:lesson-25:session-55:i12; family: phrase_builder -->
+Плитки: `day` `every` `jeans` `wear` `to` `used` `I` → **I used to wear jeans every day.**
+
+**17 · Ви вирішили купити річ. Скажіть продавцю: «Я візьму це».**
+<!-- interaction_id: en:lesson-25:session-55:i13; family: scripted_repeat_compare -->
+🎙 **I will take it.**
+
+**18 · Ви приміряли пальто до оплати. Виберіть before.**
+<!-- interaction_id: en:lesson-25:session-55:i14; family: context_gap_grammar -->
+I tried the coat on ___ I paid. → **before** · after · while
+- after — *After означало б примірку після оплати.*
+- while — *While означає одночасність, а тут примірка була раніше.*
+
+**19 · Почуйте, що вже поклали до валізи.**
 <!-- interaction_id: en:lesson-25:session-55:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+🔊 *I have already packed my clothes.* Плитки: `clothes` `my` `packed` `already` `have` `I` → **I have already packed my clothes.**
 
-**20 · Скажіть: «Раніше він носив вовняні рукавички».**
-<!-- interaction_id: en:lesson-25:session-55:i16; family: scripted_repeat_compare -->
-🎙 **He used to wear woollen gloves.**
+**20 · Ця сорочка не підходить. Ви хочете подивитися іншу.**
+<!-- interaction_id: en:lesson-25:session-55:i16; family: context_gap_grammar -->
+Can I see ___ shirt? → **another** · other · others
+- other — *Shirt в однині, тому another.*
+- others — *Others не ставиться перед shirt.*
 
-**21 · Скажіть: «Раніше я носив шовковистий шарф».**
-<!-- interaction_id: en:lesson-25:session-55:i17; family: scripted_repeat_compare -->
-🎙 **I used to wear a silky scarf.**
+**21 · Запитайте про місце примірки: «Де примірочна?»**
+<!-- interaction_id: en:lesson-25:session-55:i17; family: phrase_builder -->
+Плитки: `room` `changing` `the` `is` `Where` → **Where is the changing room?**
 

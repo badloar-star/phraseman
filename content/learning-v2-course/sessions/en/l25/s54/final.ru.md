@@ -53,99 +53,99 @@ Spice — пряность, spices — специи. He had added the spices bef
 <!-- interaction_id: en:lesson-25:session-54:word:gravy; family: word_card -->
 > **gravy** — Подливка. Gravy — соус к мясу и другим блюдам, часто приготовленный на основе мясного сока.
 
-**2 · Скажите: «Мы приготовили подливку до того, как пришли гости.»**
-<!-- interaction_id: en:lesson-25:session-54:i01; family: phrase_builder -->
-Плитки: `arrived` `guests` `the` `before` `gravy` `the` `made` `had` `We` → **We had made the gravy before the guests arrived.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-54:i01; family: listen_choose -->
+🔊 *Would you like some gravy?* → **Would you like some gravy?** · Would you like some soup? · Would you like some bread?
+- Would you like some soup? — *В записи звучит Would you like some gravy?*
+- Would you like some bread? — *В записи звучит Would you like some gravy?*
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-54:i02; family: context_gap_grammar -->
-We ___ made the gravy before the guests arrived. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**3 · Друг предлагает добавку к мясу. Ответьте: «Да, немного, пожалуйста».**
+<!-- interaction_id: en:lesson-25:session-54:i02; family: scripted_repeat_compare -->
+🎙 **Yes, a little, please.**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-54:i03; family: listen_choose -->
-🔊 *We had made the gravy before the guests arrived.* → **We had made the gravy before the guests arrived.** · They had made the gravy before the guests arrived. · We had made the gravy before the guests called.
-- They had made the gravy before the guests arrived. — *В записи звучит We had made the gravy before the guests arrived.*
-- We had made the gravy before the guests called. — *В записи звучит We had made the gravy before the guests arrived.*
-
-**5 · Карточка слова — topping**
+**4 · Карточка слова — topping**
 <!-- interaction_id: en:lesson-25:session-54:word:topping; family: word_card -->
 > **topping** — Добавка сверху. Topping — продукт, который кладут поверх блюда, например пиццы или мороженого.
 
-**6 · Скажите: «Она выбрала добавку сверху до того, как я сделал заказ.»**
-<!-- interaction_id: en:lesson-25:session-54:i04; family: phrase_builder -->
-Плитки: `ordered` `I` `before` `topping` `the` `chosen` `had` `She` → **She had chosen the topping before I ordered.**
+**5 · Уточните выбор к мороженому: «Какую добавку сверху ты хочешь?»**
+<!-- interaction_id: en:lesson-25:session-54:i03; family: phrase_builder -->
+Плитки: `like` `you` `would` `topping` `Which` → **Which topping would you like?**
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-54:i05; family: context_gap_grammar -->
-She ___ chosen the topping before I ordered. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**6 · Вы выбрали шоколад, который положат поверх мороженого. Выберите topping.**
+<!-- interaction_id: en:lesson-25:session-54:i04; family: context_gap_grammar -->
+I chose chocolate as a ___. → **topping** · plate · spoon
+- plate — *Plate — тарелка; здесь добавка к еде.*
+- spoon — *Spoon — ложка, а шоколад кладут сверху на мороженое.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-54:i06; family: listen_choose -->
-🔊 *She had chosen the topping before I ordered.* → **She had chosen the topping before I ordered.** · He had chosen the topping before I ordered. · She had chosen the topping before we ordered.
-- He had chosen the topping before I ordered. — *В записи звучит She had chosen the topping before I ordered.*
-- She had chosen the topping before we ordered. — *В записи звучит She had chosen the topping before I ordered.*
-
-**9 · Карточка слова — herbs**
+**7 · Карточка слова — herbs**
 <!-- interaction_id: en:lesson-25:session-54:word:herbs; family: word_card -->
 > **herbs** — Пряные травы. Herb — ароматная трава, используемая в готовке; herbs — множественное число.
 
-**10 · Скажите: «Я нарезал пряные травы до того, как она начала готовить.»**
-<!-- interaction_id: en:lesson-25:session-54:i07; family: phrase_builder -->
-Плитки: `cooking` `started` `she` `before` `herbs` `the` `chopped` `had` `I` → **I had chopped the herbs before she started cooking.**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-54:i05; family: listen_choose -->
+🔊 *There are fresh herbs in the soup.* → **There are fresh herbs in the soup.** · There are fresh herbs in the salad. · There are dried herbs in the soup.
+- There are fresh herbs in the salad. — *В записи звучит There are fresh herbs in the soup.*
+- There are dried herbs in the soup. — *В записи звучит There are fresh herbs in the soup.*
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-54:i08; family: context_gap_grammar -->
-I ___ chopped the herbs before she started cooking. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Услышьте просьбу попробовать блюдо.**
+<!-- interaction_id: en:lesson-25:session-54:i06; family: listen_build_dictation -->
+🔊 *Taste this and tell me what you think.* Плитки: `think` `you` `what` `me` `tell` `and` `this` `Taste` → **Taste this and tell me what you think.**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-54:i09; family: listen_choose -->
-🔊 *I had chopped the herbs before she started cooking.* → **I had chopped the herbs before she started cooking.** · He had chopped the herbs before she started cooking. · I had chopped the herbs before he started cooking.
-- He had chopped the herbs before she started cooking. — *В записи звучит I had chopped the herbs before she started cooking.*
-- I had chopped the herbs before he started cooking. — *В записи звучит I had chopped the herbs before she started cooking.*
-
-**13 · Карточка слова — spices**
+**10 · Карточка слова — spices**
 <!-- interaction_id: en:lesson-25:session-54:word:spices; family: word_card -->
 > **spices** — Специи. Spice — пряность; spices — множественное число.
 
-**14 · Скажите: «Он добавил специи до того, как я попробовал суп.»**
-<!-- interaction_id: en:lesson-25:session-54:i10; family: phrase_builder -->
-Плитки: `soup` `the` `tasted` `I` `before` `spices` `the` `added` `had` `He` → **He had added the spices before I tasted the soup.**
+**11 · В рецепте перечислены корица и перец. Как их назвать вместе?**
+<!-- interaction_id: en:lesson-25:session-54:i07; family: context_gap_grammar -->
+These ___ give the dish its flavour. → **spices** · plates · spoons
+- plates — *Plates — тарелки; вкус здесь дают пряности.*
+- spoons — *Spoons — ложки; они не являются перечисленными ингредиентами.*
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-54:i11; family: context_gap_grammar -->
-He ___ added the spices before I tasted the soup. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**12 · Блюдо вам понравилось. Скажите повару: «Это очень вкусно».**
+<!-- interaction_id: en:lesson-25:session-54:i08; family: scripted_repeat_compare -->
+🎙 **This tastes delicious.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-54:i12; family: listen_choose -->
-🔊 *He had added the spices before I tasted the soup.* → **He had added the spices before I tasted the soup.** · She had added the spices before I tasted the soup. · He had added the spices before we tasted the soup.
-- She had added the spices before I tasted the soup. — *В записи звучит He had added the spices before I tasted the soup.*
-- He had added the spices before we tasted the soup. — *В записи звучит He had added the spices before I tasted the soup.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-54:i13; family: speed_match -->
+**13 · Соотнесите слова о еде с переводом**
+<!-- interaction_id: en:lesson-25:session-54:i09; family: speed_match -->
 gravy — подливка · topping — добавка сверху · herbs — пряные травы · spices — специи
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-54:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Ужин приготовили до прихода друзей. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-54:i10; family: context_gap_grammar -->
+We ___ cooked dinner by the time our friends arrived. → **had** · have · were
+- have — *Have связывает результат с настоящим, а arrived задаёт прошлый момент.*
+- were — *Нужно had cooked для завершения готовки до прихода.*
 
-**19 · Поезд уже ушёл**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-54:i11; family: listen_choose -->
+🔊 *I bought the ingredients yesterday.* → **I bought the ingredients yesterday.** · I bought the vegetables yesterday. · I bought the ingredients last week.
+- I bought the vegetables yesterday. — *В записи звучит I bought the ingredients yesterday.*
+- I bought the ingredients last week. — *В записи звучит I bought the ingredients yesterday.*
+
+**16 · Сообщите, что стол уже готов: «Я уже накрыл на стол».**
+<!-- interaction_id: en:lesson-25:session-54:i12; family: phrase_builder -->
+Плитки: `table` `the` `set` `already` `have` `I` → **I have already set the table.**
+
+**17 · Вы попробовали суп и затем добавили соль. Выберите after.**
+<!-- interaction_id: en:lesson-25:session-54:i13; family: context_gap_grammar -->
+I added salt ___ I tasted the soup. → **after** · before · while
+- before — *Before означало бы добавление соли до пробы.*
+- while — *While означает одновременность, а здесь действия последовательны.*
+
+**18 · Гость просит рецепт. Ответьте: «Я пришлю его тебе».**
+<!-- interaction_id: en:lesson-25:session-54:i14; family: scripted_repeat_compare -->
+🎙 **I will send it to you.**
+
+**19 · Услышьте предложение разделить десерт.**
 <!-- interaction_id: en:lesson-25:session-54:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *Let us share the dessert.* Плитки: `dessert` `the` `share` `us` `Let` → **Let us share the dessert.**
 
-**20 · Скажите: «Она приготовила подливку до того, как пришли гости».**
-<!-- interaction_id: en:lesson-25:session-54:i16; family: scripted_repeat_compare -->
-🎙 **She had made the gravy before the guests arrived.**
+**20 · Первая ложка упала на пол. Попросите другую.**
+<!-- interaction_id: en:lesson-25:session-54:i16; family: context_gap_grammar -->
+Could I have ___ spoon? → **another** · other · others
+- other — *Spoon в единственном числе, поэтому another.*
+- others — *Others не ставится перед spoon.*
 
-**21 · Скажите: «Мы добавили специи до того, как она попробовала суп».**
-<!-- interaction_id: en:lesson-25:session-54:i17; family: scripted_repeat_compare -->
-🎙 **We had added the spices before she tasted the soup.**
+**21 · Вспомните прежний вкус: «Раньше я не любил такую еду». Используйте never used to.**
+<!-- interaction_id: en:lesson-25:session-54:i17; family: phrase_builder -->
+Плитки: `food` `of` `kind` `this` `like` `to` `used` `never` `I` → **I never used to like this kind of food.**
 

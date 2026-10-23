@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-53:i01",
-    "correctText": "We would walk towards the park.",
-    "correctResponseId": null
+    "correctText": "The children ran towards the gate.",
+    "correctResponseId": "en:lesson-25:session-53:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-53:i02",
-    "correctText": "walk",
-    "correctResponseId": "en:lesson-25:session-53:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-53:i03",
-    "correctText": "We would walk towards the park.",
-    "correctResponseId": "en:lesson-25:session-53:i03:r1"
+    "correctText": "Wait for me!",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-53:word:alongside",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-53:i04",
-    "correctText": "We would walk alongside the river.",
+    "interactionId": "en:lesson-25:session-53:i03",
+    "correctText": "The path runs alongside the river.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-53:i05",
-    "correctText": "walk",
-    "correctResponseId": "en:lesson-25:session-53:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-53:i06",
-    "correctText": "We would walk alongside the river.",
-    "correctResponseId": "en:lesson-25:session-53:i06:r1"
+    "interactionId": "en:lesson-25:session-53:i04",
+    "correctText": "alongside",
+    "correctResponseId": "en:lesson-25:session-53:i04:r1"
   },
   {
     "interactionId": "en:lesson-25:session-53:word:beneath",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-53:i07",
-    "correctText": "We would sit beneath a tree.",
+    "interactionId": "en:lesson-25:session-53:i05",
+    "correctText": "The keys were beneath the newspaper.",
+    "correctResponseId": "en:lesson-25:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-53:i06",
+    "correctText": "Could you lift the newspaper?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-53:i08",
-    "correctText": "sit",
-    "correctResponseId": "en:lesson-25:session-53:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-53:i09",
-    "correctText": "We would sit beneath a tree.",
-    "correctResponseId": "en:lesson-25:session-53:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-53:word:throughout",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-53:i10",
-    "correctText": "We would talk throughout the journey.",
+    "interactionId": "en:lesson-25:session-53:i07",
+    "correctText": "throughout",
+    "correctResponseId": "en:lesson-25:session-53:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-53:i08",
+    "correctText": "Let us sit here.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-53:i09",
+    "correctText": "en:lesson-25:session-53:i09:p1=towards\nen:lesson-25:session-53:i09:p2=alongside\nen:lesson-25:session-53:i09:p3=beneath\nen:lesson-25:session-53:i09:p4=throughout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-53:i10",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-53:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-53:i11",
-    "correctText": "talk",
+    "correctText": "We visited the park yesterday.",
     "correctResponseId": "en:lesson-25:session-53:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-53:i12",
-    "correctText": "We would talk throughout the journey.",
-    "correctResponseId": "en:lesson-25:session-53:i12:r1"
+    "correctText": "We used to come here often.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-53:i13",
-    "correctText": "en:lesson-25:session-53:i13:p1=towards\nen:lesson-25:session-53:i13:p2=alongside\nen:lesson-25:session-53:i13:p3=beneath\nen:lesson-25:session-53:i13:p4=throughout",
+    "correctText": "I have already found them.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-53:i14",
-    "correctText": "I used to drive to work.",
-    "correctResponseId": null
+    "correctText": "after",
+    "correctResponseId": "en:lesson-25:session-53:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-53:i15",
-    "correctText": "We would play outside every evening.",
+    "correctText": "There is a quiet place near the water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-53:i16",
-    "correctText": "I would sit beneath a tree.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-53:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-53:i17",
-    "correctText": "She would talk throughout the journey.",
+    "correctText": "As children we would sit by the river every evening.",
     "correctResponseId": null
   }
 ]

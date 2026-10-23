@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Relative — родственник: например, дядя или двоюродная сестра. I have visited a relative — я навестил родственника. Visited — форма после have. Если после визита вам дали три банки варенья, возможно, вы навестили бабушку.",
+        "uk": "Relative — родич: наприклад, дядько або двоюрідна сестра. I have visited a relative — я відвідав родича. Visited — форма після have. Якщо після візиту вам дали три банки варення, можливо, ви відвідали бабусю."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-45:intro1:r1",
+              "text": "I have visited a relative."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro1:r2",
+              "text": "I has visited a relative."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro1:r3",
+              "text": "I have visit a relative."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-45:intro1:r1",
+              "text": "I have visited a relative."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro1:r2",
+              "text": "I has visited a relative."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro1:r3",
+              "text": "I have visit a relative."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Ancestor — предок: человек из вашей семьи, живший до вас, например прабабушка. She has found a photo of an ancestor — она нашла фотографию предка. Generation — поколение. We have met people from another generation — мы познакомились с людьми другого поколения. Met — форма meet после have.",
+        "uk": "Ancestor — предок: людина з вашої родини, яка жила до вас, наприклад прабабуся. She has found a photo of an ancestor — вона знайшла фотографію предка. Generation — покоління. We have met people from another generation — ми познайомилися з людьми іншого покоління. Met — форма meet після have."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-45:intro2:r1",
+              "text": "We have met people from another generation."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro2:r2",
+              "text": "We has met people from another generation."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro2:r3",
+              "text": "We have meet people from another generation."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-45:intro2:r1",
+              "text": "We have met people from another generation."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro2:r2",
+              "text": "We has met people from another generation."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro2:r3",
+              "text": "We have meet people from another generation."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Citizen — гражданин страны. He has become a citizen — он стал гражданином; страна понятна из разговора. После has здесь become, не became. Просто жить в стране и быть её гражданином — разные вещи.",
+        "uk": "Citizen — громадянин країни. He has become a citizen — він став громадянином; країна зрозуміла з розмови. Після has тут become, не became. Просто жити в країні й бути її громадянином — різні речі."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-45:intro3:r1",
+              "text": "He has become a citizen."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro3:r2",
+              "text": "He have become a citizen."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro3:r3",
+              "text": "He has became a citizen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-45:intro3:r1",
+              "text": "He has become a citizen."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro3:r2",
+              "text": "He have become a citizen."
+            },
+            {
+              "responseId": "en:lesson-23:session-45:intro3:r3",
+              "text": "He has became a citizen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "62798238fbc88c6b6b6802a8f2852841a242f78d92f1620d122aca3cf5255d9b"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Wise — мудрый или разумный, когда речь о решении. I have made a wise decision — я принял разумное решение. В английском решение делают: made a decision. Например, взять зонт перед дождём — wise decision, даже если зонт испортил причёску.",
+        "uk": "Wise — мудрий або розумний, коли йдеться про рішення. I have made a wise decision — я ухвалив розумне рішення. Англійською рішення роблять: made a decision. Наприклад, узяти парасолю перед дощем — wise decision, навіть якщо парасоля зіпсувала зачіску."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-49:intro1:r1",
+              "text": "I have made a wise decision."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro1:r2",
+              "text": "I has made a wise decision."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro1:r3",
+              "text": "I have make a wise decision."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-49:intro1:r1",
+              "text": "I have made a wise decision."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro1:r2",
+              "text": "I has made a wise decision."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro1:r3",
+              "text": "I have make a wise decision."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Foolish — глупый, неразумный. She has made a foolish mistake — она допустила глупую ошибку. Ridiculous — нелепый, такой, в который трудно поверить или который вызывает смех. We have heard a ridiculous excuse — мы услышали нелепую отговорку. Excuse здесь — объяснение, которым оправдываются; это другой смысл знакомого excuse me.",
+        "uk": "Foolish — дурний, нерозумний. She has made a foolish mistake — вона припустилася дурної помилки. Ridiculous — безглуздий, такий, у який важко повірити або який викликає сміх. We have heard a ridiculous excuse — ми почули безглузду відмовку. Excuse тут — пояснення, яким виправдовуються; це інше значення знайомого excuse me."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-49:intro2:r1",
+              "text": "We have heard a ridiculous excuse."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro2:r2",
+              "text": "We has heard a ridiculous excuse."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro2:r3",
+              "text": "We have hear a ridiculous excuse."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-49:intro2:r1",
+              "text": "We have heard a ridiculous excuse."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro2:r2",
+              "text": "We has heard a ridiculous excuse."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro2:r3",
+              "text": "We have hear a ridiculous excuse."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Intelligent — умный, способный хорошо понимать и учиться. He has met an intelligent person — он познакомился с умным человеком. Перед intelligent нужен an. Wise чаще подчёркивает здравое суждение и опыт, intelligent — способность понимать.",
+        "uk": "Intelligent — розумний, здатний добре розуміти й навчатися. He has met an intelligent person — він познайомився з розумною людиною. Перед intelligent потрібен an. Wise частіше підкреслює розсудливість і досвід, intelligent — здатність розуміти."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-49:intro3:r1",
+              "text": "He has met an intelligent person."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro3:r2",
+              "text": "He have met an intelligent person."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro3:r3",
+              "text": "He has meet an intelligent person."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-49:intro3:r1",
+              "text": "He has met an intelligent person."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro3:r2",
+              "text": "He have met an intelligent person."
+            },
+            {
+              "responseId": "en:lesson-23:session-49:intro3:r3",
+              "text": "He has meet an intelligent person."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "808b5836383491f56f0e6cca6d72e3574fc86d35ddbdeedf15624c33e77133c1"
+}

@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-48:word:valley",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — valley",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:word:valley:audio"
+      ],
+      "accessibilityLabel": "Картка слова — valley",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:word:valley:audio",
+          "transcript": "valley"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:word:valley:r1",
+            "targetText": "valley",
+            "meaningByLocale": {
+              "ru": "долина.",
+              "uk": "долина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "valley",
+          "definitionByLocale": {
+            "ru": "долина.",
+            "uk": "долина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я пройшов долиною.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я пройшов долиною.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have walked through a valley.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я прошёл по долине.»",
+          "uk": "Розкажіть про досвід: «Я пройшов долиною.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "walked",
+          "through",
+          "a",
+          "valley"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i02:r1",
+          "text": "I have walked through a valley."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i02:r2",
+          "text": "You have walked through a valley."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i02:r3",
+          "text": "They have walked through a valley."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i02:audio",
+          "transcript": "I have walked through a valley."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:i02:r1",
+            "targetText": "I have walked through a valley.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i02:r2",
+            "targetText": "You have walked through a valley.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i02:r3",
+            "targetText": "They have walked through a valley.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have walked through a valley.",
+              "uk": "У записі звучить I have walked through a valley."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have walked through a valley.",
+              "uk": "У записі звучить I have walked through a valley."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i03:r1",
+          "text": "walked"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i03:r2",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i03:r3",
+          "text": "walks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ through a valley.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-48:i03:r1",
+            "text": "walked"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i03:r2",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i03:r3",
+            "text": "walks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: walked.",
+              "uk": "Потрібна третя форма: walked."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: walked.",
+              "uk": "Потрібна третя форма: walked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:word:field",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — field",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:word:field:audio"
+      ],
+      "accessibilityLabel": "Картка слова — field",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:word:field:audio",
+          "transcript": "field"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:word:field:r1",
+            "targetText": "field",
+            "meaningByLocale": {
+              "ru": "поле.",
+              "uk": "поле."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "field",
+          "definitionByLocale": {
+            "ru": "поле.",
+            "uk": "поле."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона перетнула поле.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона перетнула поле.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has crossed a field.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она пересекла поле.»",
+          "uk": "Розкажіть про досвід: «Вона перетнула поле.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "crossed",
+          "a",
+          "field"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i05:r1",
+          "text": "She has crossed a field."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i05:r2",
+          "text": "You have crossed a field."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i05:r3",
+          "text": "They have crossed a field."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i05:audio",
+          "transcript": "She has crossed a field."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:i05:r1",
+            "targetText": "She has crossed a field.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i05:r2",
+            "targetText": "You have crossed a field.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i05:r3",
+            "targetText": "They have crossed a field.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has crossed a field.",
+              "uk": "У записі звучить She has crossed a field."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has crossed a field.",
+              "uk": "У записі звучить She has crossed a field."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i06:r1",
+          "text": "crossed"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i06:r2",
+          "text": "cross"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i06:r3",
+          "text": "crosses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a field.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-48:i06:r1",
+            "text": "crossed"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i06:r2",
+            "text": "cross"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i06:r3",
+            "text": "crosses"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: crossed.",
+              "uk": "Потрібна третя форма: crossed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: crossed.",
+              "uk": "Потрібна третя форма: crossed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:word:branch",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — branch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:word:branch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — branch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:word:branch:audio",
+          "transcript": "branch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:word:branch:r1",
+            "targetText": "branch",
+            "meaningByLocale": {
+              "ru": "ветка.",
+              "uk": "гілка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "branch",
+          "definitionByLocale": {
+            "ru": "ветка.",
+            "uk": "гілка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми знайшли гілку, що впала.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми знайшли гілку, що впала.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have found a fallen branch.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы нашли упавшую ветку.»",
+          "uk": "Розкажіть про досвід: «Ми знайшли гілку, що впала.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "found",
+          "a",
+          "fallen",
+          "branch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i08:r1",
+          "text": "We have found a fallen branch."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i08:r2",
+          "text": "You have found a fallen branch."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i08:r3",
+          "text": "They have found a fallen branch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i08:audio",
+          "transcript": "We have found a fallen branch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:i08:r1",
+            "targetText": "We have found a fallen branch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i08:r2",
+            "targetText": "You have found a fallen branch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i08:r3",
+            "targetText": "They have found a fallen branch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have found a fallen branch.",
+              "uk": "У записі звучить We have found a fallen branch."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have found a fallen branch.",
+              "uk": "У записі звучить We have found a fallen branch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i09:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i09:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i09:r3",
+          "text": "finds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a fallen branch.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-48:i09:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i09:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i09:r3",
+            "text": "finds"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:word:meadow",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — meadow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:word:meadow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — meadow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:word:meadow:audio",
+          "transcript": "meadow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:word:meadow:r1",
+            "targetText": "meadow",
+            "meaningByLocale": {
+              "ru": "луг.",
+              "uk": "луг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "meadow",
+          "definitionByLocale": {
+            "ru": "луг.",
+            "uk": "луг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він сфотографував луг.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він сфотографував луг.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has taken a photo of a meadow.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он сфотографировал луг.»",
+          "uk": "Розкажіть про досвід: «Він сфотографував луг.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "taken",
+          "a",
+          "photo",
+          "of",
+          "a",
+          "meadow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i11:r1",
+          "text": "He has taken a photo of a meadow."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i11:r2",
+          "text": "You have taken a photo of a meadow."
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i11:r3",
+          "text": "They have taken a photo of a meadow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i11:audio",
+          "transcript": "He has taken a photo of a meadow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-48:i11:r1",
+            "targetText": "He has taken a photo of a meadow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i11:r2",
+            "targetText": "You have taken a photo of a meadow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i11:r3",
+            "targetText": "They have taken a photo of a meadow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has taken a photo of a meadow.",
+              "uk": "У записі звучить He has taken a photo of a meadow."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has taken a photo of a meadow.",
+              "uk": "У записі звучить He has taken a photo of a meadow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-48:i12:r1",
+          "text": "taken"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i12:r2",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-23:session-48:i12:r3",
+          "text": "takes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a photo of a meadow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-48:i12:r1",
+            "text": "taken"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i12:r2",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i12:r3",
+            "text": "takes"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-48:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: taken.",
+              "uk": "Потрібна третя форма: taken."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-48:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: taken.",
+              "uk": "Потрібна третя форма: taken."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-48:i13:p1",
+            "target": "valley",
+            "meaningByLocale": {
+              "ru": "долина",
+              "uk": "долина"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-48:i13:p2",
+            "target": "field",
+            "meaningByLocale": {
+              "ru": "поле",
+              "uk": "поле"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-48:i13:p3",
+            "target": "branch",
+            "meaningByLocale": {
+              "ru": "ветка",
+              "uk": "гілка"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-48:i13:p4",
+            "target": "meadow",
+            "meaningByLocale": {
+              "ru": "луг",
+              "uk": "луг"
+            }
+          }
+        ],
+        "leftColumn": [
+          "valley",
+          "field",
+          "branch",
+          "meadow"
+        ],
+        "rightColumn": [
+          "долина",
+          "поле",
+          "гілка",
+          "луг"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я перетнув поле.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я перетнув поле.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i16:audio",
+          "transcript": "I have crossed a field."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have crossed a field.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-48:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона пройшла долиною.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона пройшла долиною.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-48:i17:audio",
+          "transcript": "She has walked through a valley."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has walked through a valley.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "76022a18d88e5c75a842fbed45af92ffbf2c198bafb42261c9aaa5080e80abc2"
+}

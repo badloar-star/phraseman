@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Blood — кровь. I have donated blood — я сдал кровь как донор. Знакомое donate здесь означает сдать для помощи другим людям. Donated — форма после have. Это рассказ о сделанном, без указания даты.",
+        "uk": "Blood — кров. I have donated blood — я здав кров як донор. Знайоме donate тут означає здати для допомоги іншим людям. Donated — форма після have. Це розповідь про зроблене, без зазначення дати."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-47:intro1:r1",
+              "text": "I have donated blood."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro1:r2",
+              "text": "I has donated blood."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro1:r3",
+              "text": "I have donate blood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-47:intro1:r1",
+              "text": "I have donated blood."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro1:r2",
+              "text": "I has donated blood."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro1:r3",
+              "text": "I have donate blood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Lung — лёгкое, lungs — лёгкие. The doctor has checked my lungs — врач проверил мои лёгкие. Brain — мозг. We have learned about the brain — мы узнали о работе мозга. Learned — форма learn после have. Мозг изучает сам себя — и ещё должен запомнить новое слово.",
+        "uk": "Lung — легеня, lungs — легені. The doctor has checked my lungs — лікар перевірив мої легені. Brain — мозок. We have learned about the brain — ми дізналися про роботу мозку. Learned — форма learn після have. Мозок вивчає сам себе — і ще має запам’ятати нове слово."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-47:intro2:r1",
+              "text": "We have learned about the brain."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro2:r2",
+              "text": "We has learned about the brain."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro2:r3",
+              "text": "We have learn about the brain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-47:intro2:r1",
+              "text": "We have learned about the brain."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro2:r2",
+              "text": "We has learned about the brain."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro2:r3",
+              "text": "We have learn about the brain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Toe — палец ноги. He has hurt his toe — он повредил палец ноги. После has слово hurt не меняется. His относится к he: речь о его пальце. С I будет my toe.",
+        "uk": "Toe — палець ноги. He has hurt his toe — він пошкодив палець ноги. Після has слово hurt не змінюється. His стосується he: ідеться про його палець. З I буде my toe."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-47:intro3:r1",
+              "text": "He has hurt his toe."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro3:r2",
+              "text": "He have hurt his toe."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro3:r3",
+              "text": "He has hurts his toe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-47:intro3:r1",
+              "text": "He has hurt his toe."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro3:r2",
+              "text": "He have hurt his toe."
+            },
+            {
+              "responseId": "en:lesson-23:session-47:intro3:r3",
+              "text": "He has hurts his toe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8426f455c79c2367b3ab3356e8fde7321bef7755184f83cb8349d8029a9e5789"
+}

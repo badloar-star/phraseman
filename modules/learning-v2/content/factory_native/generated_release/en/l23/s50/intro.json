@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Theft — кража, например велосипеда. I have reported a theft — я сообщил о краже. Reported — форма report после have. В этой фразе перед theft нужно a: речь об одном происшествии.",
+        "uk": "Theft — крадіжка, наприклад велосипеда. I have reported a theft — я повідомив про крадіжку. Reported — форма report після have. У цій фразі перед theft потрібно a: ідеться про одну подію."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-50:intro1:r1",
+              "text": "I have reported a theft."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro1:r2",
+              "text": "I has reported a theft."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro1:r3",
+              "text": "I have report a theft."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-50:intro1:r1",
+              "text": "I have reported a theft."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro1:r2",
+              "text": "I has reported a theft."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro1:r3",
+              "text": "I have report a theft."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Victim — пострадавший или жертва. She has helped a victim — она помогла пострадавшему. Thief — вор, человек, который крадёт. We have seen a thief — мы видели вора. Не путайте theft, само происшествие, и thief, человека.",
+        "uk": "Victim — постраждалий або жертва. She has helped a victim — вона допомогла постраждалому. Thief — злодій, людина, яка краде. We have seen a thief — ми бачили злодія. Не плутайте theft, саму подію, і thief, людину."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-50:intro2:r1",
+              "text": "We have seen a thief."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro2:r2",
+              "text": "We has seen a thief."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro2:r3",
+              "text": "We have see a thief."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-50:intro2:r1",
+              "text": "We have seen a thief."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro2:r2",
+              "text": "We has seen a thief."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro2:r3",
+              "text": "We have see a thief."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Suspect — подозреваемый: человек, которого подозревают, но само слово не означает, что он виновен. He has described a suspect — он описал подозреваемого. В домашней истории об исчезнувшем печенье кот может быть главным suspect — пока не найдутся крошки у собаки.",
+        "uk": "Suspect — підозрюваний: людина, яку підозрюють, але саме слово не означає, що вона винна. He has described a suspect — він описав підозрюваного. У домашній історії про зникле печиво кіт може бути головним suspect — доки не знайдуться крихти в собаки."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-50:intro3:r1",
+              "text": "He has described a suspect."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro3:r2",
+              "text": "He have described a suspect."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro3:r3",
+              "text": "He has describe a suspect."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-50:intro3:r1",
+              "text": "He has described a suspect."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro3:r2",
+              "text": "He have described a suspect."
+            },
+            {
+              "responseId": "en:lesson-23:session-50:intro3:r3",
+              "text": "He has describe a suspect."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "730491a60aec688bac9fa4d7840c3c415996cf0f0615f475ee781298c0a78103"
+}

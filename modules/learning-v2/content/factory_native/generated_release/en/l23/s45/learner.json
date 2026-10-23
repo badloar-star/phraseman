@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-45",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-45:word:relative",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — relative",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:word:relative:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — relative",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:word:relative:audio",
+          "transcript": "relative"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:word:relative:r1",
+            "targetText": "relative",
+            "meaningByLocale": {
+              "ru": "родственник.",
+              "uk": "родич."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "relative",
+          "definitionByLocale": {
+            "ru": "родственник.",
+            "uk": "родич."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я навестил родственника.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я навестил родственника.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have visited a relative.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я навестил родственника.»",
+          "uk": "Розкажіть про досвід: «Я відвідав родича.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "visited",
+          "a",
+          "relative"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i02:r1",
+          "text": "I have visited a relative."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i02:r2",
+          "text": "You have visited a relative."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i02:r3",
+          "text": "They have visited a relative."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i02:audio",
+          "transcript": "I have visited a relative."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:i02:r1",
+            "targetText": "I have visited a relative.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i02:r2",
+            "targetText": "You have visited a relative.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i02:r3",
+            "targetText": "They have visited a relative.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have visited a relative.",
+              "uk": "У записі звучить I have visited a relative."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have visited a relative.",
+              "uk": "У записі звучить I have visited a relative."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i03:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i03:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i03:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ a relative.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-45:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: visited.",
+              "uk": "Потрібна третя форма: visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: visited.",
+              "uk": "Потрібна третя форма: visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:word:ancestor",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ancestor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:word:ancestor:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ancestor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:word:ancestor:audio",
+          "transcript": "ancestor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:word:ancestor:r1",
+            "targetText": "ancestor",
+            "meaningByLocale": {
+              "ru": "предок.",
+              "uk": "предок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ancestor",
+          "definitionByLocale": {
+            "ru": "предок.",
+            "uk": "предок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Она нашла фотографию предка.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Она нашла фотографию предка.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has found a photo of an ancestor.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она нашла фотографию предка.»",
+          "uk": "Розкажіть про досвід: «Вона знайшла фотографію предка.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "found",
+          "a",
+          "photo",
+          "of",
+          "an",
+          "ancestor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i05:r1",
+          "text": "She has found a photo of an ancestor."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i05:r2",
+          "text": "You have found a photo of an ancestor."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i05:r3",
+          "text": "They have found a photo of an ancestor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i05:audio",
+          "transcript": "She has found a photo of an ancestor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:i05:r1",
+            "targetText": "She has found a photo of an ancestor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i05:r2",
+            "targetText": "You have found a photo of an ancestor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i05:r3",
+            "targetText": "They have found a photo of an ancestor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has found a photo of an ancestor.",
+              "uk": "У записі звучить She has found a photo of an ancestor."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has found a photo of an ancestor.",
+              "uk": "У записі звучить She has found a photo of an ancestor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i06:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i06:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i06:r3",
+          "text": "finds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a photo of an ancestor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-45:i06:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i06:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i06:r3",
+            "text": "finds"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:word:generation",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — generation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:word:generation:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — generation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:word:generation:audio",
+          "transcript": "generation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:word:generation:r1",
+            "targetText": "generation",
+            "meaningByLocale": {
+              "ru": "поколение.",
+              "uk": "покоління."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "generation",
+          "definitionByLocale": {
+            "ru": "поколение.",
+            "uk": "покоління."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы познакомились с людьми другого поколения.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы познакомились с людьми другого поколения.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have met people from another generation.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы познакомились с людьми другого поколения.»",
+          "uk": "Розкажіть про досвід: «Ми познайомилися з людьми іншого покоління.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "met",
+          "people",
+          "from",
+          "another",
+          "generation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i08:r1",
+          "text": "We have met people from another generation."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i08:r2",
+          "text": "You have met people from another generation."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i08:r3",
+          "text": "They have met people from another generation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i08:audio",
+          "transcript": "We have met people from another generation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:i08:r1",
+            "targetText": "We have met people from another generation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i08:r2",
+            "targetText": "You have met people from another generation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i08:r3",
+            "targetText": "They have met people from another generation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have met people from another generation.",
+              "uk": "У записі звучить We have met people from another generation."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have met people from another generation.",
+              "uk": "У записі звучить We have met people from another generation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i09:r1",
+          "text": "met"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i09:r2",
+          "text": "meet"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i09:r3",
+          "text": "meets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ people from another generation.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-45:i09:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i09:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i09:r3",
+            "text": "meets"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: met.",
+              "uk": "Потрібна третя форма: met."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: met.",
+              "uk": "Потрібна третя форма: met."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:word:citizen",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — citizen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:word:citizen:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — citizen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:word:citizen:audio",
+          "transcript": "citizen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:word:citizen:r1",
+            "targetText": "citizen",
+            "meaningByLocale": {
+              "ru": "гражданин.",
+              "uk": "громадянин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "citizen",
+          "definitionByLocale": {
+            "ru": "гражданин.",
+            "uk": "громадянин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он стал гражданином.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он стал гражданином.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has become a citizen.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он стал гражданином.»",
+          "uk": "Розкажіть про досвід: «Він став громадянином.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "become",
+          "a",
+          "citizen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i11:r1",
+          "text": "He has become a citizen."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i11:r2",
+          "text": "You have become a citizen."
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i11:r3",
+          "text": "They have become citizens."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i11:audio",
+          "transcript": "He has become a citizen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-45:i11:r1",
+            "targetText": "He has become a citizen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i11:r2",
+            "targetText": "You have become a citizen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i11:r3",
+            "targetText": "They have become citizens.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has become a citizen.",
+              "uk": "У записі звучить He has become a citizen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has become a citizen.",
+              "uk": "У записі звучить He has become a citizen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-45:i12:r1",
+          "text": "become"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i12:r2",
+          "text": "became"
+        },
+        {
+          "responseId": "en:lesson-23:session-45:i12:r3",
+          "text": "becomes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a citizen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-45:i12:r1",
+            "text": "become"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i12:r2",
+            "text": "became"
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i12:r3",
+            "text": "becomes"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-45:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: become.",
+              "uk": "Потрібна третя форма: become."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-45:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: become.",
+              "uk": "Потрібна третя форма: become."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-45:i13:p1",
+            "target": "relative",
+            "meaningByLocale": {
+              "ru": "родственник",
+              "uk": "родич"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-45:i13:p2",
+            "target": "ancestor",
+            "meaningByLocale": {
+              "ru": "предок",
+              "uk": "предок"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-45:i13:p3",
+            "target": "generation",
+            "meaningByLocale": {
+              "ru": "поколение",
+              "uk": "покоління"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-45:i13:p4",
+            "target": "citizen",
+            "meaningByLocale": {
+              "ru": "гражданин",
+              "uk": "громадянин"
+            }
+          }
+        ],
+        "leftColumn": [
+          "relative",
+          "ancestor",
+          "generation",
+          "citizen"
+        ],
+        "rightColumn": [
+          "родственник",
+          "предок",
+          "поколение",
+          "гражданин"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой вариант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой вариант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она навестила родственника.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она навестила родственника.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i16:audio",
+          "transcript": "She has visited a relative."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has visited a relative.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-45:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я стал гражданином.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-45:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я стал гражданином.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-45:i17:audio",
+          "transcript": "I have become a citizen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have become a citizen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d5bf96d61be7fafaeee553af9a7984d44fd51d33ffb999e03b602193d63bd3f7"
+}

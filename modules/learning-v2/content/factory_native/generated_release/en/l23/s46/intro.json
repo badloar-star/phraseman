@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Wheat — пшеница. Wheat flour — пшеничная мука: знакомое flour уточняем новым словом wheat. I have bought wheat flour — я купил пшеничную муку. Bought — форма buy после have. Знакомое buckwheat означает гречку, это другой продукт.",
+        "uk": "Wheat — пшениця. Wheat flour — пшеничне борошно: знайоме flour уточнюємо новим словом wheat. I have bought wheat flour — я купив пшеничне борошно. Bought — форма buy після have. Знайоме buckwheat означає гречку, це інший продукт."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-46:intro1:r1",
+              "text": "I have bought wheat flour."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro1:r2",
+              "text": "I has bought wheat flour."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro1:r3",
+              "text": "I have buy wheat flour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-46:intro1:r1",
+              "text": "I have bought wheat flour."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro1:r2",
+              "text": "I has bought wheat flour."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro1:r3",
+              "text": "I have buy wheat flour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Oats — овёс, а в рецепте завтрака обычно овсяные хлопья. She has cooked oats — она приготовила овсяные хлопья. Yeast — дрожжи. We have added yeast — мы добавили дрожжи. Если тесто полезло из миски, дрожжи явно работают. Added — форма add после have.",
+        "uk": "Oats — овес, а в рецепті сніданку зазвичай вівсяні пластівці. She has cooked oats — вона приготувала вівсяні пластівці. Yeast — дріжджі. We have added yeast — ми додали дріжджі. Якщо тісто полізло з миски, дріжджі явно працюють. Added — форма add після have."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-46:intro2:r1",
+              "text": "We have added yeast."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro2:r2",
+              "text": "We has added yeast."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro2:r3",
+              "text": "We have add yeast."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-46:intro2:r1",
+              "text": "We have added yeast."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro2:r2",
+              "text": "We has added yeast."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro2:r3",
+              "text": "We have add yeast."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Pastry — тесто для пирогов и похожей выпечки, например слоёное или песочное. He has made pastry — он приготовил тесто для пирога. Здесь говорим о тесте как продукте, без a. A pastry может означать отдельную выпечку, например слойку. Не всякое тесто для хлеба называют pastry.",
+        "uk": "Pastry — тісто для пирогів і подібної випічки, наприклад листкове або пісочне. He has made pastry — він приготував тісто для пирога. Тут говоримо про тісто як продукт, без a. A pastry може означати окрему випічку, наприклад слойку. Не всяке тісто для хліба називають pastry."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-46:intro3:r1",
+              "text": "He has made pastry."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro3:r2",
+              "text": "He have made pastry."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro3:r3",
+              "text": "He has make pastry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-46:intro3:r1",
+              "text": "He has made pastry."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro3:r2",
+              "text": "He have made pastry."
+            },
+            {
+              "responseId": "en:lesson-23:session-46:intro3:r3",
+              "text": "He has make pastry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "70748e673c1a71836896a396ae42c49d031cb0330f1cf2a0206b1839a8bcb7b4"
+}

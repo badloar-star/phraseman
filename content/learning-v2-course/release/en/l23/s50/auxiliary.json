@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-50:intro1:r2": {
+          "ru": "С I и we нужно have, с he и she — has.",
+          "uk": "З I та we потрібно have, з he та she — has."
+        },
+        "en:lesson-23:session-50:intro1:r3": {
+          "ru": "После have или has нужна третья форма: reported.",
+          "uk": "Після have або has потрібна третя форма: reported."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-50:intro2:r2": {
+          "ru": "С I и we нужно have, с he и she — has.",
+          "uk": "З I та we потрібно have, з he та she — has."
+        },
+        "en:lesson-23:session-50:intro2:r3": {
+          "ru": "После have или has нужна третья форма: seen.",
+          "uk": "Після have або has потрібна третя форма: seen."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-50:intro3:r2": {
+          "ru": "С I и we нужно have, с he и she — has.",
+          "uk": "З I та we потрібно have, з he та she — has."
+        },
+        "en:lesson-23:session-50:intro3:r3": {
+          "ru": "После have или has нужна третья форма: described.",
+          "uk": "Після have або has потрібна третя форма: described."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8e257d94ab0e4b67327beadc9dfd7c5f1808baac0fa22aa76a42ddfc058695b6"
+}

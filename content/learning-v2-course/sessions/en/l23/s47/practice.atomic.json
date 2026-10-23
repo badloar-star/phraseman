@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-47",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-47:word:blood",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blood",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:blood:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blood",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:blood:audio",
+            "transcript": "blood"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:blood:r1",
+              "targetText": "blood",
+              "meaningByLocale": {
+                "ru": "кровь.",
+                "uk": "кров."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blood",
+            "definitionByLocale": {
+              "ru": "кровь.",
+              "uk": "кров."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Я сдал кровь как донор.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Я сдал кровь как донор.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have donated blood.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я сдал кровь как донор.»",
+            "uk": "Розкажіть про досвід: «Я здав кров як донор.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "donated",
+            "blood"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i02:r1",
+            "text": "I have donated blood."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i02:r2",
+            "text": "You have donated blood."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i02:r3",
+            "text": "They have donated blood."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i02:audio",
+            "transcript": "I have donated blood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i02:r1",
+              "targetText": "I have donated blood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i02:r2",
+              "targetText": "You have donated blood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i02:r3",
+              "targetText": "They have donated blood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have donated blood.",
+                "uk": "У записі звучить I have donated blood."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have donated blood.",
+                "uk": "У записі звучить I have donated blood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i03:r1",
+            "text": "donated"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i03:r2",
+            "text": "donate"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i03:r3",
+            "text": "donates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ blood.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i03:r1",
+              "text": "donated"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i03:r2",
+              "text": "donate"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i03:r3",
+              "text": "donates"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: donated.",
+                "uk": "Потрібна третя форма: donated."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: donated.",
+                "uk": "Потрібна третя форма: donated."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:word:lungs",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lungs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:lungs:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lungs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:lungs:audio",
+            "transcript": "lungs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:lungs:r1",
+              "targetText": "lungs",
+              "meaningByLocale": {
+                "ru": "лёгкие.",
+                "uk": "легені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lungs",
+            "definitionByLocale": {
+              "ru": "лёгкие.",
+              "uk": "легені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Врач проверил мои лёгкие.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Врач проверил мои лёгкие.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The doctor has checked my lungs.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Врач проверил мои лёгкие.»",
+            "uk": "Розкажіть про досвід: «Лікар перевірив мої легені.»"
+          },
+          "orderedTokens": [
+            "The",
+            "doctor",
+            "has",
+            "checked",
+            "my",
+            "lungs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i05:r1",
+            "text": "The doctor has checked my lungs."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i05:r2",
+            "text": "You have checked my lungs."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i05:r3",
+            "text": "They have checked my lungs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i05:audio",
+            "transcript": "The doctor has checked my lungs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i05:r1",
+              "targetText": "The doctor has checked my lungs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i05:r2",
+              "targetText": "You have checked my lungs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i05:r3",
+              "targetText": "They have checked my lungs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor has checked my lungs.",
+                "uk": "У записі звучить The doctor has checked my lungs."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor has checked my lungs.",
+                "uk": "У записі звучить The doctor has checked my lungs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i06:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "The doctor has ___ my lungs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i06:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i06:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i06:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: checked.",
+                "uk": "Потрібна третя форма: checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: checked.",
+                "uk": "Потрібна третя форма: checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:word:brain",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:brain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:brain:audio",
+            "transcript": "brain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:brain:r1",
+              "targetText": "brain",
+              "meaningByLocale": {
+                "ru": "мозг.",
+                "uk": "мозок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brain",
+            "definitionByLocale": {
+              "ru": "мозг.",
+              "uk": "мозок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Мы узнали о работе мозга.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Мы узнали о работе мозга.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have learned about the brain.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы узнали о работе мозга.»",
+            "uk": "Розкажіть про досвід: «Ми дізналися про роботу мозку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "learned",
+            "about",
+            "the",
+            "brain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i08:r1",
+            "text": "We have learned about the brain."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i08:r2",
+            "text": "You have learned about the brain."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i08:r3",
+            "text": "They have learned about the brain."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i08:audio",
+            "transcript": "We have learned about the brain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i08:r1",
+              "targetText": "We have learned about the brain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i08:r2",
+              "targetText": "You have learned about the brain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i08:r3",
+              "targetText": "They have learned about the brain.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have learned about the brain.",
+                "uk": "У записі звучить We have learned about the brain."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have learned about the brain.",
+                "uk": "У записі звучить We have learned about the brain."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i09:r1",
+            "text": "learned"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i09:r2",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i09:r3",
+            "text": "learns"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ about the brain.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i09:r1",
+              "text": "learned"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i09:r2",
+              "text": "learn"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i09:r3",
+              "text": "learns"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: learned.",
+                "uk": "Потрібна третя форма: learned."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: learned.",
+                "uk": "Потрібна третя форма: learned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:word:toe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — toe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:toe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — toe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:toe:audio",
+            "transcript": "toe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:toe:r1",
+              "targetText": "toe",
+              "meaningByLocale": {
+                "ru": "палец ноги.",
+                "uk": "палець ноги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toe",
+            "definitionByLocale": {
+              "ru": "палец ноги.",
+              "uk": "палець ноги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Он повредил палец ноги.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Он повредил палец ноги.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has hurt his toe.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он повредил палец ноги.»",
+            "uk": "Розкажіть про досвід: «Він пошкодив палець ноги.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "hurt",
+            "his",
+            "toe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i11:r1",
+            "text": "He has hurt his toe."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i11:r2",
+            "text": "You have hurt your toe."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i11:r3",
+            "text": "They have hurt their toes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i11:audio",
+            "transcript": "He has hurt his toe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i11:r1",
+              "targetText": "He has hurt his toe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i11:r2",
+              "targetText": "You have hurt your toe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i11:r3",
+              "targetText": "They have hurt their toes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has hurt his toe.",
+                "uk": "У записі звучить He has hurt his toe."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has hurt his toe.",
+                "uk": "У записі звучить He has hurt his toe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i12:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i12:r2",
+            "text": "hurts"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i12:r3",
+            "text": "hurting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ his toe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i12:r1",
+              "text": "hurt"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i12:r2",
+              "text": "hurts"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i12:r3",
+              "text": "hurting"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: hurt.",
+                "uk": "Потрібна третя форма: hurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: hurt.",
+                "uk": "Потрібна третя форма: hurt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-47:i13:p1",
+              "target": "blood",
+              "meaningByLocale": {
+                "ru": "кровь",
+                "uk": "кров"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-47:i13:p2",
+              "target": "lungs",
+              "meaningByLocale": {
+                "ru": "лёгкие",
+                "uk": "легені"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-47:i13:p3",
+              "target": "brain",
+              "meaningByLocale": {
+                "ru": "мозг",
+                "uk": "мозок"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-47:i13:p4",
+              "target": "toe",
+              "meaningByLocale": {
+                "ru": "палец ноги",
+                "uk": "палець ноги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blood",
+            "lungs",
+            "brain",
+            "toe"
+          ],
+          "rightColumn": [
+            "кровь",
+            "лёгкие",
+            "мозг",
+            "палец ноги"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой вариант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой вариант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i14:audio",
+            "transcript": "We can choose another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i15:audio",
+            "transcript": "You mustn't leave the door open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the door open.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она сдала кровь как донор.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она сдала кровь как донор.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i16:audio",
+            "transcript": "She has donated blood."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has donated blood.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я повредил палец ноги.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я повредил палец ноги.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i17:audio",
+            "transcript": "I have hurt my toe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have hurt my toe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-47:word:blood",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blood",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:blood:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blood",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:blood:audio",
+            "transcript": "blood"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:blood:r1",
+              "targetText": "blood",
+              "meaningByLocale": {
+                "ru": "кровь.",
+                "uk": "кров."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blood",
+            "definitionByLocale": {
+              "ru": "кровь.",
+              "uk": "кров."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Я здав кров як донор.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Я здав кров як донор.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have donated blood.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я сдал кровь как донор.»",
+            "uk": "Розкажіть про досвід: «Я здав кров як донор.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "donated",
+            "blood"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i02:r1",
+            "text": "I have donated blood."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i02:r2",
+            "text": "You have donated blood."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i02:r3",
+            "text": "They have donated blood."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i02:audio",
+            "transcript": "I have donated blood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i02:r1",
+              "targetText": "I have donated blood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i02:r2",
+              "targetText": "You have donated blood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i02:r3",
+              "targetText": "They have donated blood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have donated blood.",
+                "uk": "У записі звучить I have donated blood."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have donated blood.",
+                "uk": "У записі звучить I have donated blood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i03:r1",
+            "text": "donated"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i03:r2",
+            "text": "donate"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i03:r3",
+            "text": "donates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ blood.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i03:r1",
+              "text": "donated"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i03:r2",
+              "text": "donate"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i03:r3",
+              "text": "donates"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: donated.",
+                "uk": "Потрібна третя форма: donated."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: donated.",
+                "uk": "Потрібна третя форма: donated."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:word:lungs",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lungs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:lungs:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lungs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:lungs:audio",
+            "transcript": "lungs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:lungs:r1",
+              "targetText": "lungs",
+              "meaningByLocale": {
+                "ru": "лёгкие.",
+                "uk": "легені."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lungs",
+            "definitionByLocale": {
+              "ru": "лёгкие.",
+              "uk": "легені."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Лікар перевірив мої легені.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Лікар перевірив мої легені.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The doctor has checked my lungs.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Врач проверил мои лёгкие.»",
+            "uk": "Розкажіть про досвід: «Лікар перевірив мої легені.»"
+          },
+          "orderedTokens": [
+            "The",
+            "doctor",
+            "has",
+            "checked",
+            "my",
+            "lungs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i05:r1",
+            "text": "The doctor has checked my lungs."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i05:r2",
+            "text": "You have checked my lungs."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i05:r3",
+            "text": "They have checked my lungs."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i05:audio",
+            "transcript": "The doctor has checked my lungs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i05:r1",
+              "targetText": "The doctor has checked my lungs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i05:r2",
+              "targetText": "You have checked my lungs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i05:r3",
+              "targetText": "They have checked my lungs.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor has checked my lungs.",
+                "uk": "У записі звучить The doctor has checked my lungs."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor has checked my lungs.",
+                "uk": "У записі звучить The doctor has checked my lungs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i06:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "The doctor has ___ my lungs.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i06:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i06:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i06:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: checked.",
+                "uk": "Потрібна третя форма: checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: checked.",
+                "uk": "Потрібна третя форма: checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:word:brain",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:brain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:brain:audio",
+            "transcript": "brain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:brain:r1",
+              "targetText": "brain",
+              "meaningByLocale": {
+                "ru": "мозг.",
+                "uk": "мозок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brain",
+            "definitionByLocale": {
+              "ru": "мозг.",
+              "uk": "мозок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Ми дізналися про роботу мозку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Ми дізналися про роботу мозку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have learned about the brain.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы узнали о работе мозга.»",
+            "uk": "Розкажіть про досвід: «Ми дізналися про роботу мозку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "learned",
+            "about",
+            "the",
+            "brain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i08:r1",
+            "text": "We have learned about the brain."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i08:r2",
+            "text": "You have learned about the brain."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i08:r3",
+            "text": "They have learned about the brain."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i08:audio",
+            "transcript": "We have learned about the brain."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i08:r1",
+              "targetText": "We have learned about the brain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i08:r2",
+              "targetText": "You have learned about the brain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i08:r3",
+              "targetText": "They have learned about the brain.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have learned about the brain.",
+                "uk": "У записі звучить We have learned about the brain."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have learned about the brain.",
+                "uk": "У записі звучить We have learned about the brain."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i09:r1",
+            "text": "learned"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i09:r2",
+            "text": "learn"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i09:r3",
+            "text": "learns"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ about the brain.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i09:r1",
+              "text": "learned"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i09:r2",
+              "text": "learn"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i09:r3",
+              "text": "learns"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: learned.",
+                "uk": "Потрібна третя форма: learned."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: learned.",
+                "uk": "Потрібна третя форма: learned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:word:toe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — toe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:word:toe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — toe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:word:toe:audio",
+            "transcript": "toe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:word:toe:r1",
+              "targetText": "toe",
+              "meaningByLocale": {
+                "ru": "палец ноги.",
+                "uk": "палець ноги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toe",
+            "definitionByLocale": {
+              "ru": "палец ноги.",
+              "uk": "палець ноги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Він пошкодив палець ноги.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Він пошкодив палець ноги.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has hurt his toe.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он повредил палец ноги.»",
+            "uk": "Розкажіть про досвід: «Він пошкодив палець ноги.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "hurt",
+            "his",
+            "toe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i11:r1",
+            "text": "He has hurt his toe."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i11:r2",
+            "text": "You have hurt your toe."
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i11:r3",
+            "text": "They have hurt their toes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i11:audio",
+            "transcript": "He has hurt his toe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-47:i11:r1",
+              "targetText": "He has hurt his toe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i11:r2",
+              "targetText": "You have hurt your toe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i11:r3",
+              "targetText": "They have hurt their toes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has hurt his toe.",
+                "uk": "У записі звучить He has hurt his toe."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has hurt his toe.",
+                "uk": "У записі звучить He has hurt his toe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-47:i12:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i12:r2",
+            "text": "hurts"
+          },
+          {
+            "responseId": "en:lesson-23:session-47:i12:r3",
+            "text": "hurting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ his toe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-47:i12:r1",
+              "text": "hurt"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i12:r2",
+              "text": "hurts"
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i12:r3",
+              "text": "hurting"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-47:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: hurt.",
+                "uk": "Потрібна третя форма: hurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-47:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: hurt.",
+                "uk": "Потрібна третя форма: hurt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-47:i13:p1",
+              "target": "blood",
+              "meaningByLocale": {
+                "ru": "кровь",
+                "uk": "кров"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-47:i13:p2",
+              "target": "lungs",
+              "meaningByLocale": {
+                "ru": "лёгкие",
+                "uk": "легені"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-47:i13:p3",
+              "target": "brain",
+              "meaningByLocale": {
+                "ru": "мозг",
+                "uk": "мозок"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-47:i13:p4",
+              "target": "toe",
+              "meaningByLocale": {
+                "ru": "палец ноги",
+                "uk": "палець ноги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "blood",
+            "lungs",
+            "brain",
+            "toe"
+          ],
+          "rightColumn": [
+            "кров",
+            "легені",
+            "мозок",
+            "палець ноги"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший варіант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший варіант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i14:audio",
+            "transcript": "We can choose another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i15:audio",
+            "transcript": "You mustn't leave the door open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the door open.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона здала кров як донор.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона здала кров як донор.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i16:audio",
+            "transcript": "She has donated blood."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has donated blood.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-47:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я пошкодив палець ноги.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я пошкодив палець ноги.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-47:i17:audio",
+            "transcript": "I have hurt my toe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have hurt my toe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-47:word:blood",
+      "correctText": "blood",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i01",
+      "correctText": "I have donated blood.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i02",
+      "correctText": "I have donated blood.",
+      "correctResponseId": "en:lesson-23:session-47:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i03",
+      "correctText": "donated",
+      "correctResponseId": "en:lesson-23:session-47:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:word:lungs",
+      "correctText": "lungs",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i04",
+      "correctText": "The doctor has checked my lungs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i05",
+      "correctText": "The doctor has checked my lungs.",
+      "correctResponseId": "en:lesson-23:session-47:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i06",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-23:session-47:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:word:brain",
+      "correctText": "brain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i07",
+      "correctText": "We have learned about the brain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i08",
+      "correctText": "We have learned about the brain.",
+      "correctResponseId": "en:lesson-23:session-47:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i09",
+      "correctText": "learned",
+      "correctResponseId": "en:lesson-23:session-47:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:word:toe",
+      "correctText": "toe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i10",
+      "correctText": "He has hurt his toe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i11",
+      "correctText": "He has hurt his toe.",
+      "correctResponseId": "en:lesson-23:session-47:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i12",
+      "correctText": "hurt",
+      "correctResponseId": "en:lesson-23:session-47:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i14",
+      "correctText": "We can choose another place.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i15",
+      "correctText": "You mustn't leave the door open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i16",
+      "correctText": "She has donated blood.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-47:i17",
+      "correctText": "I have hurt my toe.",
+      "correctResponseId": null
+    }
+  ]
+}

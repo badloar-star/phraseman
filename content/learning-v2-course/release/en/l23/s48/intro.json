@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Valley — долина, низкое место между холмами или горами. I have walked through a valley — я прошёл по долине. Walked — форма walk после have. Through здесь показывает, что путь проходил через долину.",
+        "uk": "Valley — долина, низьке місце між пагорбами або горами. I have walked through a valley — я пройшов долиною. Walked — форма walk після have. Through тут показує, що шлях проходив через долину."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-48:intro1:r1",
+              "text": "I have walked through a valley."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro1:r2",
+              "text": "I has walked through a valley."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro1:r3",
+              "text": "I have walk through a valley."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-48:intro1:r1",
+              "text": "I have walked through a valley."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro1:r2",
+              "text": "I has walked through a valley."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro1:r3",
+              "text": "I have walk through a valley."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Field — поле. She has crossed a field — она пересекла поле. Branch — ветка дерева. We have found a fallen branch — мы нашли упавшую ветку. Fallen здесь означает упавшая. Для нас это ветка, для собаки — находка размером с неё саму.",
+        "uk": "Field — поле. She has crossed a field — вона перетнула поле. Branch — гілка дерева. We have found a fallen branch — ми знайшли гілку, що впала. Fallen тут означає таку, що впала. Для нас це гілка, для собаки — знахідка, майже така велика, як вона сама."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-48:intro2:r1",
+              "text": "We have found a fallen branch."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro2:r2",
+              "text": "We has found a fallen branch."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro2:r3",
+              "text": "We have find a fallen branch."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-48:intro2:r1",
+              "text": "We have found a fallen branch."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro2:r2",
+              "text": "We has found a fallen branch."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro2:r3",
+              "text": "We have find a fallen branch."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Meadow — луг, участок с травой и часто полевыми цветами. Field — более общее слово: поле может быть засеяно или использоваться для животных. He has taken a photo of a meadow — он сфотографировал луг. После has нужна форма taken, а не take.",
+        "uk": "Meadow — луг, ділянка з травою й часто польовими квітами. Field — загальніше слово: поле може бути засіяне або використовуватися для тварин. He has taken a photo of a meadow — він сфотографував луг. Після has потрібна форма taken, а не take."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-48:intro3:r1",
+              "text": "He has taken a photo of a meadow."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro3:r2",
+              "text": "He have taken a photo of a meadow."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro3:r3",
+              "text": "He has take a photo of a meadow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-48:intro3:r1",
+              "text": "He has taken a photo of a meadow."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro3:r2",
+              "text": "He have taken a photo of a meadow."
+            },
+            {
+              "responseId": "en:lesson-23:session-48:intro3:r3",
+              "text": "He has take a photo of a meadow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9a16e1bcd13df6a86401513bffec6484ca69f120279cf11130f18b9fadc12a16"
+}

@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-46:word:wheat",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wheat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:word:wheat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wheat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:word:wheat:audio",
+          "transcript": "wheat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:word:wheat:r1",
+            "targetText": "wheat",
+            "meaningByLocale": {
+              "ru": "пшеница.",
+              "uk": "пшениця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wheat",
+          "definitionByLocale": {
+            "ru": "пшеница.",
+            "uk": "пшениця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я купив пшеничне борошно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я купив пшеничне борошно.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have bought wheat flour.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я купил пшеничную муку.»",
+          "uk": "Розкажіть про досвід: «Я купив пшеничне борошно.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "bought",
+          "wheat",
+          "flour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i02:r1",
+          "text": "I have bought wheat flour."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i02:r2",
+          "text": "You have bought wheat flour."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i02:r3",
+          "text": "They have bought wheat flour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i02:audio",
+          "transcript": "I have bought wheat flour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:i02:r1",
+            "targetText": "I have bought wheat flour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i02:r2",
+            "targetText": "You have bought wheat flour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i02:r3",
+            "targetText": "They have bought wheat flour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have bought wheat flour.",
+              "uk": "У записі звучить I have bought wheat flour."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have bought wheat flour.",
+              "uk": "У записі звучить I have bought wheat flour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i03:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i03:r2",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i03:r3",
+          "text": "buys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ wheat flour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-46:i03:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i03:r2",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i03:r3",
+            "text": "buys"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: bought.",
+              "uk": "Потрібна третя форма: bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: bought.",
+              "uk": "Потрібна третя форма: bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:word:oats",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — oats",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:word:oats:audio"
+      ],
+      "accessibilityLabel": "Картка слова — oats",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:word:oats:audio",
+          "transcript": "oats"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:word:oats:r1",
+            "targetText": "oats",
+            "meaningByLocale": {
+              "ru": "овёс, овсяные хлопья.",
+              "uk": "овес, вівсяні пластівці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oats",
+          "definitionByLocale": {
+            "ru": "овёс, овсяные хлопья.",
+            "uk": "овес, вівсяні пластівці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона приготувала вівсяні пластівці.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона приготувала вівсяні пластівці.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has cooked oats.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она приготовила овсяные хлопья.»",
+          "uk": "Розкажіть про досвід: «Вона приготувала вівсяні пластівці.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "cooked",
+          "oats"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i05:r1",
+          "text": "She has cooked oats."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i05:r2",
+          "text": "You have cooked oats."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i05:r3",
+          "text": "They have cooked oats."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i05:audio",
+          "transcript": "She has cooked oats."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:i05:r1",
+            "targetText": "She has cooked oats.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i05:r2",
+            "targetText": "You have cooked oats.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i05:r3",
+            "targetText": "They have cooked oats.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has cooked oats.",
+              "uk": "У записі звучить She has cooked oats."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has cooked oats.",
+              "uk": "У записі звучить She has cooked oats."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i06:r1",
+          "text": "cooked"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i06:r2",
+          "text": "cook"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i06:r3",
+          "text": "cooks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ oats.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-46:i06:r1",
+            "text": "cooked"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i06:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i06:r3",
+            "text": "cooks"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cooked.",
+              "uk": "Потрібна третя форма: cooked."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cooked.",
+              "uk": "Потрібна третя форма: cooked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:word:yeast",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — yeast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:word:yeast:audio"
+      ],
+      "accessibilityLabel": "Картка слова — yeast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:word:yeast:audio",
+          "transcript": "yeast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:word:yeast:r1",
+            "targetText": "yeast",
+            "meaningByLocale": {
+              "ru": "дрожжи.",
+              "uk": "дріжджі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yeast",
+          "definitionByLocale": {
+            "ru": "дрожжи.",
+            "uk": "дріжджі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми додали дріжджі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми додали дріжджі.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have added yeast.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы добавили дрожжи.»",
+          "uk": "Розкажіть про досвід: «Ми додали дріжджі.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "added",
+          "yeast"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i08:r1",
+          "text": "We have added yeast."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i08:r2",
+          "text": "You have added yeast."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i08:r3",
+          "text": "They have added yeast."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i08:audio",
+          "transcript": "We have added yeast."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:i08:r1",
+            "targetText": "We have added yeast.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i08:r2",
+            "targetText": "You have added yeast.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i08:r3",
+            "targetText": "They have added yeast.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have added yeast.",
+              "uk": "У записі звучить We have added yeast."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have added yeast.",
+              "uk": "У записі звучить We have added yeast."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i09:r1",
+          "text": "added"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i09:r2",
+          "text": "add"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i09:r3",
+          "text": "adds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ yeast.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-46:i09:r1",
+            "text": "added"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i09:r2",
+            "text": "add"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i09:r3",
+            "text": "adds"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: added.",
+              "uk": "Потрібна третя форма: added."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: added.",
+              "uk": "Потрібна третя форма: added."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:word:pastry",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pastry",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:word:pastry:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pastry",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:word:pastry:audio",
+          "transcript": "pastry"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:word:pastry:r1",
+            "targetText": "pastry",
+            "meaningByLocale": {
+              "ru": "тесто для пирогов и выпечки.",
+              "uk": "тісто для пирогів і випічки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pastry",
+          "definitionByLocale": {
+            "ru": "тесто для пирогов и выпечки.",
+            "uk": "тісто для пирогів і випічки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він приготував тісто для пирога.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він приготував тісто для пирога.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has made pastry.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он приготовил тесто для пирога.»",
+          "uk": "Розкажіть про досвід: «Він приготував тісто для пирога.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "made",
+          "pastry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i11:r1",
+          "text": "He has made pastry."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i11:r2",
+          "text": "You have made pastry."
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i11:r3",
+          "text": "They have made pastry."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i11:audio",
+          "transcript": "He has made pastry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-46:i11:r1",
+            "targetText": "He has made pastry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i11:r2",
+            "targetText": "You have made pastry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i11:r3",
+            "targetText": "They have made pastry.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has made pastry.",
+              "uk": "У записі звучить He has made pastry."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has made pastry.",
+              "uk": "У записі звучить He has made pastry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-46:i12:r1",
+          "text": "made"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i12:r2",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-23:session-46:i12:r3",
+          "text": "makes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ pastry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-46:i12:r1",
+            "text": "made"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i12:r2",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i12:r3",
+            "text": "makes"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: made.",
+              "uk": "Потрібна третя форма: made."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: made.",
+              "uk": "Потрібна третя форма: made."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-46:i13:p1",
+            "target": "wheat",
+            "meaningByLocale": {
+              "ru": "пшеница",
+              "uk": "пшениця"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-46:i13:p2",
+            "target": "oats",
+            "meaningByLocale": {
+              "ru": "овёс, овсяные хлопья",
+              "uk": "овес, вівсяні пластівці"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-46:i13:p3",
+            "target": "yeast",
+            "meaningByLocale": {
+              "ru": "дрожжи",
+              "uk": "дріжджі"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-46:i13:p4",
+            "target": "pastry",
+            "meaningByLocale": {
+              "ru": "тесто для пирогов и выпечки",
+              "uk": "тісто для пирогів і випічки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "wheat",
+          "oats",
+          "yeast",
+          "pastry"
+        ],
+        "rightColumn": [
+          "пшениця",
+          "овес, вівсяні пластівці",
+          "дріжджі",
+          "тісто для пирогів і випічки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я приготував тісто для пирога.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я приготував тісто для пирога.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i16:audio",
+          "transcript": "I have made pastry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have made pastry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона додала дріжджі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона додала дріжджі.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-46:i17:audio",
+          "transcript": "She has added yeast."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has added yeast.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "632195b91ed9bdc54063b06e099725b553bb5afc3071ed4873827c444b8a57f1"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-50:word:theft",
+    "correctText": "theft",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i01",
+    "correctText": "I have reported a theft.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i02",
+    "correctText": "I have reported a theft.",
+    "correctResponseId": "en:lesson-23:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i03",
+    "correctText": "reported",
+    "correctResponseId": "en:lesson-23:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:word:victim",
+    "correctText": "victim",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i04",
+    "correctText": "She has helped a victim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i05",
+    "correctText": "She has helped a victim.",
+    "correctResponseId": "en:lesson-23:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i06",
+    "correctText": "helped",
+    "correctResponseId": "en:lesson-23:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:word:thief",
+    "correctText": "thief",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i07",
+    "correctText": "We have seen a thief.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i08",
+    "correctText": "We have seen a thief.",
+    "correctResponseId": "en:lesson-23:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i09",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:word:suspect",
+    "correctText": "suspect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i10",
+    "correctText": "He has described a suspect.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i11",
+    "correctText": "He has described a suspect.",
+    "correctResponseId": "en:lesson-23:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i12",
+    "correctText": "described",
+    "correctResponseId": "en:lesson-23:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i13",
+    "correctText": "en:lesson-23:session-50:i13:p1=theft\nen:lesson-23:session-50:i13:p2=victim\nen:lesson-23:session-50:i13:p3=thief\nen:lesson-23:session-50:i13:p4=suspect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i16",
+    "correctText": "She has reported a theft.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-50:i17",
+    "correctText": "I have helped a victim.",
+    "correctResponseId": null
+  }
+]

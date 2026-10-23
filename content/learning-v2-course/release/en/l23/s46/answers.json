@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-46:word:wheat",
+    "correctText": "wheat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i01",
+    "correctText": "I have bought wheat flour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i02",
+    "correctText": "I have bought wheat flour.",
+    "correctResponseId": "en:lesson-23:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i03",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-23:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:word:oats",
+    "correctText": "oats",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i04",
+    "correctText": "She has cooked oats.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i05",
+    "correctText": "She has cooked oats.",
+    "correctResponseId": "en:lesson-23:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i06",
+    "correctText": "cooked",
+    "correctResponseId": "en:lesson-23:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:word:yeast",
+    "correctText": "yeast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i07",
+    "correctText": "We have added yeast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i08",
+    "correctText": "We have added yeast.",
+    "correctResponseId": "en:lesson-23:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i09",
+    "correctText": "added",
+    "correctResponseId": "en:lesson-23:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:word:pastry",
+    "correctText": "pastry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i10",
+    "correctText": "He has made pastry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i11",
+    "correctText": "He has made pastry.",
+    "correctResponseId": "en:lesson-23:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i12",
+    "correctText": "made",
+    "correctResponseId": "en:lesson-23:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i13",
+    "correctText": "en:lesson-23:session-46:i13:p1=wheat\nen:lesson-23:session-46:i13:p2=oats\nen:lesson-23:session-46:i13:p3=yeast\nen:lesson-23:session-46:i13:p4=pastry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i16",
+    "correctText": "I have made pastry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-46:i17",
+    "correctText": "She has added yeast.",
+    "correctResponseId": null
+  }
+]

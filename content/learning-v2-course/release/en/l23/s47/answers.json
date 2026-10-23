@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-47:word:blood",
+    "correctText": "blood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i01",
+    "correctText": "I have donated blood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i02",
+    "correctText": "I have donated blood.",
+    "correctResponseId": "en:lesson-23:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i03",
+    "correctText": "donated",
+    "correctResponseId": "en:lesson-23:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:word:lungs",
+    "correctText": "lungs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i04",
+    "correctText": "The doctor has checked my lungs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i05",
+    "correctText": "The doctor has checked my lungs.",
+    "correctResponseId": "en:lesson-23:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-23:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:word:brain",
+    "correctText": "brain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i07",
+    "correctText": "We have learned about the brain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i08",
+    "correctText": "We have learned about the brain.",
+    "correctResponseId": "en:lesson-23:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i09",
+    "correctText": "learned",
+    "correctResponseId": "en:lesson-23:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:word:toe",
+    "correctText": "toe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i10",
+    "correctText": "He has hurt his toe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i11",
+    "correctText": "He has hurt his toe.",
+    "correctResponseId": "en:lesson-23:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i12",
+    "correctText": "hurt",
+    "correctResponseId": "en:lesson-23:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i13",
+    "correctText": "en:lesson-23:session-47:i13:p1=blood\nen:lesson-23:session-47:i13:p2=lungs\nen:lesson-23:session-47:i13:p3=brain\nen:lesson-23:session-47:i13:p4=toe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i16",
+    "correctText": "She has donated blood.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-47:i17",
+    "correctText": "I have hurt my toe.",
+    "correctResponseId": null
+  }
+]

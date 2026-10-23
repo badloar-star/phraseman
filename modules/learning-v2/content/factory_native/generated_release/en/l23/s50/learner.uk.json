@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-50:word:theft",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — theft",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:word:theft:audio"
+      ],
+      "accessibilityLabel": "Картка слова — theft",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:word:theft:audio",
+          "transcript": "theft"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:word:theft:r1",
+            "targetText": "theft",
+            "meaningByLocale": {
+              "ru": "кража.",
+              "uk": "крадіжка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "theft",
+          "definitionByLocale": {
+            "ru": "кража.",
+            "uk": "крадіжка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я повідомив про крадіжку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я повідомив про крадіжку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have reported a theft.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я сообщил о краже.»",
+          "uk": "Розкажіть про досвід: «Я повідомив про крадіжку.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "reported",
+          "a",
+          "theft"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i02:r1",
+          "text": "I have reported a theft."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i02:r2",
+          "text": "You have reported a theft."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i02:r3",
+          "text": "They have reported a theft."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i02:audio",
+          "transcript": "I have reported a theft."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:i02:r1",
+            "targetText": "I have reported a theft.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i02:r2",
+            "targetText": "You have reported a theft.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i02:r3",
+            "targetText": "They have reported a theft.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have reported a theft.",
+              "uk": "У записі звучить I have reported a theft."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have reported a theft.",
+              "uk": "У записі звучить I have reported a theft."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i03:r1",
+          "text": "reported"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i03:r2",
+          "text": "report"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i03:r3",
+          "text": "reports"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ a theft.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-50:i03:r1",
+            "text": "reported"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i03:r2",
+            "text": "report"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i03:r3",
+            "text": "reports"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: reported.",
+              "uk": "Потрібна третя форма: reported."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: reported.",
+              "uk": "Потрібна третя форма: reported."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:word:victim",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — victim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:word:victim:audio"
+      ],
+      "accessibilityLabel": "Картка слова — victim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:word:victim:audio",
+          "transcript": "victim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:word:victim:r1",
+            "targetText": "victim",
+            "meaningByLocale": {
+              "ru": "пострадавший, жертва.",
+              "uk": "постраждалий, жертва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "victim",
+          "definitionByLocale": {
+            "ru": "пострадавший, жертва.",
+            "uk": "постраждалий, жертва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона допомогла постраждалому.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона допомогла постраждалому.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has helped a victim.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она помогла пострадавшему.»",
+          "uk": "Розкажіть про досвід: «Вона допомогла постраждалому.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "helped",
+          "a",
+          "victim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i05:r1",
+          "text": "She has helped a victim."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i05:r2",
+          "text": "You have helped a victim."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i05:r3",
+          "text": "They have helped a victim."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i05:audio",
+          "transcript": "She has helped a victim."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:i05:r1",
+            "targetText": "She has helped a victim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i05:r2",
+            "targetText": "You have helped a victim.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i05:r3",
+            "targetText": "They have helped a victim.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has helped a victim.",
+              "uk": "У записі звучить She has helped a victim."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has helped a victim.",
+              "uk": "У записі звучить She has helped a victim."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i06:r1",
+          "text": "helped"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i06:r2",
+          "text": "help"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i06:r3",
+          "text": "helps"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a victim.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-50:i06:r1",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i06:r2",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i06:r3",
+            "text": "helps"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: helped.",
+              "uk": "Потрібна третя форма: helped."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: helped.",
+              "uk": "Потрібна третя форма: helped."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:word:thief",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — thief",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:word:thief:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thief",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:word:thief:audio",
+          "transcript": "thief"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:word:thief:r1",
+            "targetText": "thief",
+            "meaningByLocale": {
+              "ru": "вор.",
+              "uk": "злодій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thief",
+          "definitionByLocale": {
+            "ru": "вор.",
+            "uk": "злодій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми бачили злодія.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми бачили злодія.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have seen a thief.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы видели вора.»",
+          "uk": "Розкажіть про досвід: «Ми бачили злодія.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "seen",
+          "a",
+          "thief"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i08:r1",
+          "text": "We have seen a thief."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i08:r2",
+          "text": "You have seen a thief."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i08:r3",
+          "text": "They have seen a thief."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i08:audio",
+          "transcript": "We have seen a thief."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:i08:r1",
+            "targetText": "We have seen a thief.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i08:r2",
+            "targetText": "You have seen a thief.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i08:r3",
+            "targetText": "They have seen a thief.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a thief.",
+              "uk": "У записі звучить We have seen a thief."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a thief.",
+              "uk": "У записі звучить We have seen a thief."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i09:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i09:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i09:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a thief.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-50:i09:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i09:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i09:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:word:suspect",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — suspect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:word:suspect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — suspect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:word:suspect:audio",
+          "transcript": "suspect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:word:suspect:r1",
+            "targetText": "suspect",
+            "meaningByLocale": {
+              "ru": "подозреваемый.",
+              "uk": "підозрюваний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suspect",
+          "definitionByLocale": {
+            "ru": "подозреваемый.",
+            "uk": "підозрюваний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він описав підозрюваного.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він описав підозрюваного.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has described a suspect.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он описал подозреваемого.»",
+          "uk": "Розкажіть про досвід: «Він описав підозрюваного.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "described",
+          "a",
+          "suspect"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i11:r1",
+          "text": "He has described a suspect."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i11:r2",
+          "text": "You have described a suspect."
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i11:r3",
+          "text": "They have described a suspect."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i11:audio",
+          "transcript": "He has described a suspect."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-50:i11:r1",
+            "targetText": "He has described a suspect.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i11:r2",
+            "targetText": "You have described a suspect.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i11:r3",
+            "targetText": "They have described a suspect.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has described a suspect.",
+              "uk": "У записі звучить He has described a suspect."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has described a suspect.",
+              "uk": "У записі звучить He has described a suspect."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-50:i12:r1",
+          "text": "described"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i12:r2",
+          "text": "describe"
+        },
+        {
+          "responseId": "en:lesson-23:session-50:i12:r3",
+          "text": "describes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a suspect.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-50:i12:r1",
+            "text": "described"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i12:r2",
+            "text": "describe"
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i12:r3",
+            "text": "describes"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: described.",
+              "uk": "Потрібна третя форма: described."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: described.",
+              "uk": "Потрібна третя форма: described."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-50:i13:p1",
+            "target": "theft",
+            "meaningByLocale": {
+              "ru": "кража",
+              "uk": "крадіжка"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-50:i13:p2",
+            "target": "victim",
+            "meaningByLocale": {
+              "ru": "пострадавший, жертва",
+              "uk": "постраждалий, жертва"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-50:i13:p3",
+            "target": "thief",
+            "meaningByLocale": {
+              "ru": "вор",
+              "uk": "злодій"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-50:i13:p4",
+            "target": "suspect",
+            "meaningByLocale": {
+              "ru": "подозреваемый",
+              "uk": "підозрюваний"
+            }
+          }
+        ],
+        "leftColumn": [
+          "theft",
+          "victim",
+          "thief",
+          "suspect"
+        ],
+        "rightColumn": [
+          "крадіжка",
+          "постраждалий, жертва",
+          "злодій",
+          "підозрюваний"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона повідомила про крадіжку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона повідомила про крадіжку.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i16:audio",
+          "transcript": "She has reported a theft."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has reported a theft.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я допоміг постраждалому.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я допоміг постраждалому.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-50:i17:audio",
+          "transcript": "I have helped a victim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have helped a victim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7c8dcb0a684c9d005d4f02a9a5d953e52b60133cfca3842abdedbc65ecde2e7e"
+}

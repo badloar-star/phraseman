@@ -49,103 +49,103 @@ Wealthy — состоятельный, богатый. A wealthy area — ра�
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — deaf**
+**1 · Услышьте воспоминание о работе.**
+<!-- interaction_id: en:lesson-25:session-05:i01; family: listen_build_dictation -->
+🔊 *I used to work at this school.* Плитки: `school` `this` `at` `work` `to` `used` `I` → **I used to work at this school.**
+
+**2 · Карточка слова — deaf**
 <!-- interaction_id: en:lesson-25:session-05:word:deaf; family: word_card -->
-> **deaf** — глухой.
+> **deaf** — глухой
 
-**2 · Скажите: «Раньше она учила глухих детей.»**
-<!-- interaction_id: en:lesson-25:session-05:i01; family: phrase_builder -->
-Плитки: `children` `deaf` `teach` `to` `used` `She` → **She used to teach deaf children.**
+**3 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-05:i02; family: listen_choose -->
+🔊 *My deaf cousin used to live nearby.* → **My deaf cousin used to live nearby.** · My deaf uncle used to live nearby. · My deaf cousin used to work nearby.
+- My deaf uncle used to live nearby. — *В записи звучит My deaf cousin used to live nearby.*
+- My deaf cousin used to work nearby. — *В записи звучит My deaf cousin used to live nearby.*
 
-**3 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-05:i02; family: context_gap_grammar -->
-She used to ___ deaf children. → **teach** · taught · teaching
-- taught — *После used to нужна форма teach.*
-- teaching — *После used to нужна форма teach.*
+**4 · Речь о прежней работе учителя. Дополните действие после used to.**
+<!-- interaction_id: en:lesson-25:session-05:i03; family: context_gap_grammar -->
+I used to ___ at a small school. → **teach** · taught · teaching
+- taught — *После used to нужна начальная форма teach.*
+- teaching — *Teaching не подходит после used to в значении прежней привычки.*
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-05:i03; family: listen_choose -->
-🔊 *She used to teach deaf children.* → **She used to teach deaf children.** · He used to teach deaf children. · She used to teach deaf adults.
-- He used to teach deaf children. — *В записи звучит She used to teach deaf children.*
-- She used to teach deaf adults. — *В записи звучит She used to teach deaf children.*
-
-**5 · Карточка слова — disabled**
-<!-- interaction_id: en:lesson-25:session-05:word:disabled; family: word_card -->
-> **disabled** — с инвалидностью.
-
-**6 · Скажите: «Раньше я работал со взрослыми с инвалидностью.»**
+**5 · Вы хотите познакомиться и с другими соседями. Скажите: «Я хочу встретиться с другими соседями».**
 <!-- interaction_id: en:lesson-25:session-05:i04; family: phrase_builder -->
-Плитки: `adults` `disabled` `with` `work` `to` `used` `I` → **I used to work with disabled adults.**
+Плитки: `neighbours` `other` `the` `meet` `to` `want` `I` → **I want to meet the other neighbours.**
 
-**7 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-05:i05; family: context_gap_grammar -->
-I used to ___ with disabled adults. → **work** · worked · working
-- worked — *После used to нужна форма work.*
-- working — *После used to нужна форма work.*
+**6 · Карточка слова — disabled**
+<!-- interaction_id: en:lesson-25:session-05:word:disabled; family: word_card -->
+> **disabled** — с инвалидностью
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-05:i06; family: listen_choose -->
-🔊 *I used to work with disabled adults.* → **I used to work with disabled adults.** · We used to work with disabled adults. · I used to work with disabled children.
-- We used to work with disabled adults. — *В записи звучит I used to work with disabled adults.*
-- I used to work with disabled children. — *В записи звучит I used to work with disabled adults.*
+**7 · Вспомните прежнего коллегу: «Мой сосед с инвалидностью раньше работал в этой школе».**
+<!-- interaction_id: en:lesson-25:session-05:i05; family: phrase_builder -->
+Плитки: `school` `this` `at` `work` `to` `used` `neighbour` `disabled` `My` → **My disabled neighbour used to work at this school.**
 
-**9 · Карточка слова — homeless**
+**8 · Вы снова встретили знакомого. Скажите: «Я уже поговорил с моим бывшим коллегой».**
+<!-- interaction_id: en:lesson-25:session-05:i06; family: scripted_repeat_compare -->
+🎙 **I have already spoken to my former colleague.**
+
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-05:i07; family: listen_choose -->
+🔊 *I met my neighbour at the market yesterday.* → **I met my neighbour at the market yesterday.** · I met my teacher at the market yesterday. · I met my neighbour at the station yesterday.
+- I met my teacher at the market yesterday. — *В записи звучит I met my neighbour at the market yesterday.*
+- I met my neighbour at the station yesterday. — *В записи звучит I met my neighbour at the market yesterday.*
+
+**10 · Карточка слова — homeless**
 <!-- interaction_id: en:lesson-25:session-05:word:homeless; family: word_card -->
-> **homeless** — бездомный.
+> **homeless** — бездомный
 
-**10 · Скажите: «Раньше мы помогали бездомным людям.»**
-<!-- interaction_id: en:lesson-25:session-05:i07; family: phrase_builder -->
-Плитки: `people` `homeless` `help` `to` `used` `We` → **We used to help homeless people.**
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-05:i08; family: listen_choose -->
+🔊 *We used to cook meals for homeless families.* → **We used to cook meals for homeless families.** · We used to buy meals for homeless families. · We used to cook meals for our neighbours.
+- We used to buy meals for homeless families. — *В записи звучит We used to cook meals for homeless families.*
+- We used to cook meals for our neighbours. — *В записи звучит We used to cook meals for homeless families.*
 
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-05:i08; family: context_gap_grammar -->
-We used to ___ homeless people. → **help** · helped · helping
-- helped — *После used to нужна форма help.*
-- helping — *После used to нужна форма help.*
+**12 · У людей не было постоянного жилья. Выберите слово об отсутствии дома, не об усталости или голоде.**
+<!-- interaction_id: en:lesson-25:session-05:i09; family: context_gap_grammar -->
+We used to help ___ people. → **homeless** · tired · hungry
+- tired — *Tired — уставшие; в ситуации говорится об отсутствии жилья.*
+- hungry — *Hungry — голодные; это не значение «без постоянного жилья».*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-05:i09; family: listen_choose -->
-🔊 *We used to help homeless people.* → **We used to help homeless people.** · They used to help homeless people. · We used to help homeless families.
-- They used to help homeless people. — *В записи звучит We used to help homeless people.*
-- We used to help homeless families. — *В записи звучит We used to help homeless people.*
+**13 · Услышьте прежнюю привычку.**
+<!-- interaction_id: en:lesson-25:session-05:i10; family: listen_build_dictation -->
+🔊 *We used to collect warm clothes every winter.* Плитки: `winter` `every` `clothes` `warm` `collect` `to` `used` `We` → **We used to collect warm clothes every winter.**
 
-**13 · Карточка слова — wealthy**
+**14 · Карточка слова — wealthy**
 <!-- interaction_id: en:lesson-25:session-05:word:wealthy; family: word_card -->
-> **wealthy** — состоятельный, богатый.
+> **wealthy** — состоятельный, богатый
 
-**14 · Скажите: «Раньше он жил в богатом районе.»**
-<!-- interaction_id: en:lesson-25:session-05:i10; family: phrase_builder -->
-Плитки: `area` `wealthy` `a` `in` `live` `to` `used` `He` → **He used to live in a wealthy area.**
+**15 · Вспомните прежних жильцов: «Раньше этот дом снимала богатая семья».**
+<!-- interaction_id: en:lesson-25:session-05:i11; family: phrase_builder -->
+Плитки: `house` `this` `rent` `to` `used` `family` `wealthy` `A` → **A wealthy family used to rent this house.**
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-05:i11; family: context_gap_grammar -->
-He used to ___ in a wealthy area. → **live** · lived · living
-- lived — *После used to нужна форма live.*
-- living — *После used to нужна форма live.*
-
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-05:i12; family: listen_choose -->
-🔊 *He used to live in a wealthy area.* → **He used to live in a wealthy area.** · She used to live in a wealthy area. · He used to work in a wealthy area.
-- She used to live in a wealthy area. — *В записи звучит He used to live in a wealthy area.*
-- He used to work in a wealthy area. — *В записи звучит He used to live in a wealthy area.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-05:i13; family: speed_match -->
+**16 · Вспомните значения слов**
+<!-- interaction_id: en:lesson-25:session-05:i12; family: speed_match -->
 deaf — глухой · disabled — с инвалидностью · homeless — бездомный · wealthy — состоятельный, богатый
 
-**18 · Нашёл другую работу**
-<!-- interaction_id: en:lesson-25:session-05:i14; family: listen_build_dictation -->
-🔊 *I have found another job.* Плитки: `job` `another` `found` `have` `I` → **I have found another job.**
+**17 · Вы рассказываете об опыте без даты. Дополните Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-05:i13; family: context_gap_grammar -->
+I have ___ with deaf adults before. → **worked** · work · working
+- work — *После have в Present Perfect нужна форма worked.*
+- working — *Working здесь не образует Present Perfect; нужно worked.*
 
-**19 · Другие семьи переехали**
-<!-- interaction_id: en:lesson-25:session-05:i15; family: listen_build_dictation -->
-🔊 *The other families moved last year.* Плитки: `year` `last` `moved` `families` `other` `The` → **The other families moved last year.**
+**18 · Предложите следующий шаг: «Мы можем пригласить ещё одного друга».**
+<!-- interaction_id: en:lesson-25:session-05:i14; family: scripted_repeat_compare -->
+🎙 **We can invite another friend.**
 
-**20 · Скажите: «Мы раньше учили глухих детей».**
-<!-- interaction_id: en:lesson-25:session-05:i16; family: scripted_repeat_compare -->
-🎙 **We used to teach deaf children.**
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-05:i15; family: listen_choose -->
+🔊 *My neighbour used to play chess with me.* → **My neighbour used to play chess with me.** · My neighbour used to play cards with me. · My colleague used to play chess with me.
+- My neighbour used to play cards with me. — *В записи звучит My neighbour used to play chess with me.*
+- My colleague used to play chess with me. — *В записи звучит My neighbour used to play chess with me.*
 
-**21 · Скажите: «Она раньше жила в богатом районе».**
+**20 · Речь об одном ужине вчера. Выберите форму для законченного события.**
+<!-- interaction_id: en:lesson-25:session-05:i16; family: context_gap_grammar -->
+We ___ dinner together yesterday. → **cooked** · have cooked · used to cook
+- have cooked — *Yesterday требует здесь Past Simple: cooked.*
+- used to cook — *Used to cook описывает прежнюю привычку, а здесь был один ужин.*
+
+**21 · Расскажите, как вы проводили выходные раньше: «Раньше я навещал своего соседа по воскресеньям».**
 <!-- interaction_id: en:lesson-25:session-05:i17; family: scripted_repeat_compare -->
-🎙 **She used to live in a wealthy area.**
+🎙 **I used to visit my neighbour on Sundays.**
 

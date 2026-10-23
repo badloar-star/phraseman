@@ -49,103 +49,103 @@ Yearly — ежегодный; a yearly pass — годовой абонемен
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — former**
+**1 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-04:i01; family: listen_choose -->
+🔊 *I visited my old school yesterday.* → **I visited my old school yesterday.** · I visited my old school last week. · I visited my old house yesterday.
+- I visited my old school last week. — *В записи звучит I visited my old school yesterday.*
+- I visited my old house yesterday. — *В записи звучит I visited my old school yesterday.*
+
+**2 · Карточка слова — former**
 <!-- interaction_id: en:lesson-25:session-04:word:former; family: word_card -->
-> **former** — бывший, прежний.
+> **former** — бывший, прежний
 
-**2 · Скажите: «Раньше я навещал своего бывшего соседа.»**
-<!-- interaction_id: en:lesson-25:session-04:i01; family: phrase_builder -->
-Плитки: `neighbour` `former` `my` `visit` `to` `used` `I` → **I used to visit my former neighbour.**
+**3 · Вспомните прежнего учителя: «Мой бывший учитель раньше жил рядом».**
+<!-- interaction_id: en:lesson-25:session-04:i02; family: phrase_builder -->
+Плитки: `nearby` `live` `to` `used` `teacher` `former` `My` → **My former teacher used to live nearby.**
 
-**3 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-04:i02; family: context_gap_grammar -->
-I used to ___ my former neighbour. → **visit** · visited · visiting
-- visited — *После used to нужна форма visit.*
-- visiting — *После used to нужна форма visit.*
-
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-04:i03; family: listen_choose -->
-🔊 *I used to visit my former neighbour.* → **I used to visit my former neighbour.** · We used to visit my former neighbour. · I used to call my former neighbour.
-- We used to visit my former neighbour. — *В записи звучит I used to visit my former neighbour.*
-- I used to call my former neighbour. — *В записи звучит I used to visit my former neighbour.*
+**4 · Сейчас вы живёте далеко. Раньше дорога до школы занимала пять минут. Выберите прежнее состояние.**
+<!-- interaction_id: en:lesson-25:session-04:i03; family: context_gap_grammar -->
+The walk to school ___ five minutes. → **used to take** · takes · is taking
+- takes — *Takes описывает настоящее, а здесь речь о прежней дороге.*
+- is taking — *Is taking не описывает прежнее постоянное время в пути.*
 
 **5 · Карточка слова — frequent**
 <!-- interaction_id: en:lesson-25:session-04:word:frequent; family: word_card -->
-> **frequent** — частый.
+> **frequent** — частый
 
-**6 · Скажите: «Раньше она часто делала перерывы.»**
-<!-- interaction_id: en:lesson-25:session-04:i04; family: phrase_builder -->
-Плитки: `breaks` `frequent` `take` `to` `used` `She` → **She used to take frequent breaks.**
+**6 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-04:i04; family: listen_choose -->
+🔊 *We used to make frequent trips to the beach.* → **We used to make frequent trips to the beach.** · We used to make frequent trips to the park. · We used to make frequent trips to the market.
+- We used to make frequent trips to the park. — *В записи звучит We used to make frequent trips to the beach.*
+- We used to make frequent trips to the market. — *В записи звучит We used to make frequent trips to the beach.*
 
-**7 · Дополните воспоминание.**
+**7 · Перерывы случались много раз за день. Выберите слово именно о частоте, не о длительности.**
 <!-- interaction_id: en:lesson-25:session-04:i05; family: context_gap_grammar -->
-She used to ___ frequent breaks. → **take** · took · taking
-- took — *После used to нужна форма take.*
-- taking — *После used to нужна форма take.*
+I used to take ___ breaks. → **frequent** · long · short
+- long — *Long — длинные; это длительность, не частота.*
+- short — *Short — короткие; это длительность, не частота.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-04:i06; family: listen_choose -->
-🔊 *She used to take frequent breaks.* → **She used to take frequent breaks.** · He used to take frequent breaks. · She used to need frequent breaks.
-- He used to take frequent breaks. — *В записи звучит She used to take frequent breaks.*
-- She used to need frequent breaks. — *В записи звучит She used to take frequent breaks.*
+**8 · Услышьте, с кем говорящий общался раньше.**
+<!-- interaction_id: en:lesson-25:session-04:i06; family: listen_build_dictation -->
+🔊 *I used to call my former neighbour every week.* Плитки: `week` `every` `neighbour` `former` `my` `call` `to` `used` `I` → **I used to call my former neighbour every week.**
 
-**9 · Карточка слова — occasional**
-<!-- interaction_id: en:lesson-25:session-04:word:occasional; family: word_card -->
-> **occasional** — случающийся время от времени.
-
-**10 · Скажите: «Раньше к нам время от времени приходили гости.»**
-<!-- interaction_id: en:lesson-25:session-04:i07; family: phrase_builder -->
-Плитки: `guests` `occasional` `have` `to` `used` `We` → **We used to have occasional guests.**
-
-**11 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-04:i08; family: context_gap_grammar -->
-We used to ___ occasional guests. → **have** · had · having
-- had — *После used to нужна форма have.*
-- having — *После used to нужна форма have.*
-
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-04:i09; family: listen_choose -->
-🔊 *We used to have occasional guests.* → **We used to have occasional guests.** · They used to have occasional guests. · We used to have occasional visitors.
-- They used to have occasional guests. — *В записи звучит We used to have occasional guests.*
-- We used to have occasional visitors. — *В записи звучит We used to have occasional guests.*
-
-**13 · Карточка слова — yearly**
+**9 · Карточка слова — yearly**
 <!-- interaction_id: en:lesson-25:session-04:word:yearly; family: word_card -->
-> **yearly** — ежегодный.
+> **yearly** — ежегодный
 
-**14 · Скажите: «Раньше он покупал годовой абонемент.»**
-<!-- interaction_id: en:lesson-25:session-04:i10; family: phrase_builder -->
-Плитки: `pass` `yearly` `a` `buy` `to` `used` `He` → **He used to buy a yearly pass.**
+**10 · Сравните цену абонемента: «Мой годовой абонемент раньше стоил меньше».**
+<!-- interaction_id: en:lesson-25:session-04:i07; family: phrase_builder -->
+Плитки: `less` `cost` `to` `used` `pass` `yearly` `My` → **My yearly pass used to cost less.**
 
-**15 · Дополните воспоминание.**
-<!-- interaction_id: en:lesson-25:session-04:i11; family: context_gap_grammar -->
-He used to ___ a yearly pass. → **buy** · bought · buying
-- bought — *После used to нужна форма buy.*
-- buying — *После used to нужна форма buy.*
+**11 · Сообщите о результате: «Я уже продлил свой годовой абонемент».**
+<!-- interaction_id: en:lesson-25:session-04:i08; family: scripted_repeat_compare -->
+🎙 **I have already renewed my yearly pass.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-04:i12; family: listen_choose -->
-🔊 *He used to buy a yearly pass.* → **He used to buy a yearly pass.** · She used to buy a yearly pass. · He used to renew a yearly pass.
-- She used to buy a yearly pass. — *В записи звучит He used to buy a yearly pass.*
-- He used to renew a yearly pass. — *В записи звучит He used to buy a yearly pass.*
+**12 · Карточка слова — occasional**
+<!-- interaction_id: en:lesson-25:session-04:word:occasional; family: word_card -->
+> **occasional** — случающийся время от времени
 
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-04:i13; family: speed_match -->
+**13 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-04:i09; family: listen_choose -->
+🔊 *We used to have occasional picnics by the river.* → **We used to have occasional picnics by the river.** · We used to have occasional picnics in the forest. · We used to have occasional parties by the river.
+- We used to have occasional picnics in the forest. — *В записи звучит We used to have occasional picnics by the river.*
+- We used to have occasional parties by the river. — *В записи звучит We used to have occasional picnics by the river.*
+
+**14 · Вспомните значения прилагательных**
+<!-- interaction_id: en:lesson-25:session-04:i10; family: speed_match -->
 former — бывший, прежний · frequent — частый · occasional — случающийся время от времени · yearly — ежегодный
 
-**18 · Ещё один билет**
-<!-- interaction_id: en:lesson-25:session-04:i14; family: listen_build_dictation -->
-🔊 *I have bought another ticket.* Плитки: `ticket` `another` `bought` `have` `I` → **I have bought another ticket.**
+**15 · Вы рассказываете об опыте без даты. Дополните Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-04:i11; family: context_gap_grammar -->
+I have ___ my former teacher twice. → **met** · meet · meeting
+- meet — *После have в Present Perfect нужна форма met.*
+- meeting — *Meeting здесь не образует Present Perfect; нужно met.*
 
-**19 · Другие билеты пришли вчера**
-<!-- interaction_id: en:lesson-25:session-04:i15; family: listen_build_dictation -->
-🔊 *The other tickets arrived yesterday.* Плитки: `yesterday` `arrived` `tickets` `other` `The` → **The other tickets arrived yesterday.**
+**16 · Один парк вы знаете. Скажите: «Мы хотим посетить другие парки».**
+<!-- interaction_id: en:lesson-25:session-04:i12; family: phrase_builder -->
+Плитки: `parks` `other` `visit` `to` `want` `We` → **We want to visit other parks.**
 
-**20 · Скажите: «Мы раньше часто делали перерывы».**
-<!-- interaction_id: en:lesson-25:session-04:i16; family: scripted_repeat_compare -->
-🎙 **We used to take frequent breaks.**
+**17 · Услышьте прежнюю привычку.**
+<!-- interaction_id: en:lesson-25:session-04:i13; family: listen_build_dictation -->
+🔊 *We used to meet at the same cafe.* Плитки: `cafe` `same` `the` `at` `meet` `to` `used` `We` → **We used to meet at the same cafe.**
 
-**21 · Скажите: «Она раньше покупала годовой абонемент».**
+**18 · Вы говорите об одном визите в прошлый понедельник.**
+<!-- interaction_id: en:lesson-25:session-04:i14; family: context_gap_grammar -->
+I ___ my former neighbour last Monday. → **visited** · have visited · used to visit
+- have visited — *Last Monday — законченный момент в прошлом: visited.*
+- used to visit — *Used to visit описывает прежнюю привычку, а здесь один визит.*
+
+**19 · Скажите о прошлом: «Раньше мы время от времени принимали гостей».**
+<!-- interaction_id: en:lesson-25:session-04:i15; family: scripted_repeat_compare -->
+🎙 **We used to have occasional visitors.**
+
+**20 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-04:i16; family: listen_choose -->
+🔊 *I have bought another ticket.* → **I have bought another ticket.** · I have sold another ticket. · I have bought another pass.
+- I have sold another ticket. — *В записи звучит I have bought another ticket.*
+- I have bought another pass. — *В записи звучит I have bought another ticket.*
+
+**21 · Вспомните дорогу к друзьям: «Раньше я ездил туда на автобусе».**
 <!-- interaction_id: en:lesson-25:session-04:i17; family: scripted_repeat_compare -->
-🎙 **She used to buy a yearly pass.**
+🎙 **I used to go there by bus.**
 

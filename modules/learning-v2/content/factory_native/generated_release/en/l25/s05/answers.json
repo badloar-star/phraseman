@@ -1,23 +1,28 @@
 [
   {
+    "interactionId": "en:lesson-25:session-05:i01",
+    "correctText": "I used to work at this school.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-05:word:deaf",
     "correctText": "deaf",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-05:i01",
-    "correctText": "She used to teach deaf children.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-25:session-05:i02",
-    "correctText": "teach",
+    "correctText": "My deaf cousin used to live nearby.",
     "correctResponseId": "en:lesson-25:session-05:i02:r1"
   },
   {
     "interactionId": "en:lesson-25:session-05:i03",
-    "correctText": "She used to teach deaf children.",
+    "correctText": "teach",
     "correctResponseId": "en:lesson-25:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-05:i04",
+    "correctText": "I want to meet the other neighbours.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-05:word:disabled",
@@ -25,19 +30,19 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-05:i04",
-    "correctText": "I used to work with disabled adults.",
+    "interactionId": "en:lesson-25:session-05:i05",
+    "correctText": "My disabled neighbour used to work at this school.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-05:i05",
-    "correctText": "work",
-    "correctResponseId": "en:lesson-25:session-05:i05:r1"
+    "interactionId": "en:lesson-25:session-05:i06",
+    "correctText": "I have already spoken to my former colleague.",
+    "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-05:i06",
-    "correctText": "I used to work with disabled adults.",
-    "correctResponseId": "en:lesson-25:session-05:i06:r1"
+    "interactionId": "en:lesson-25:session-05:i07",
+    "correctText": "I met my neighbour at the market yesterday.",
+    "correctResponseId": "en:lesson-25:session-05:i07:r1"
   },
   {
     "interactionId": "en:lesson-25:session-05:word:homeless",
@@ -45,19 +50,19 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-05:i07",
-    "correctText": "We used to help homeless people.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-25:session-05:i08",
-    "correctText": "help",
+    "correctText": "We used to cook meals for homeless families.",
     "correctResponseId": "en:lesson-25:session-05:i08:r1"
   },
   {
     "interactionId": "en:lesson-25:session-05:i09",
-    "correctText": "We used to help homeless people.",
+    "correctText": "homeless",
     "correctResponseId": "en:lesson-25:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-05:i10",
+    "correctText": "We used to collect warm clothes every winter.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-05:word:wealthy",
@@ -65,43 +70,38 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-05:i10",
-    "correctText": "He used to live in a wealthy area.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-25:session-05:i11",
-    "correctText": "live",
-    "correctResponseId": "en:lesson-25:session-05:i11:r1"
+    "correctText": "A wealthy family used to rent this house.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-05:i12",
-    "correctText": "He used to live in a wealthy area.",
-    "correctResponseId": "en:lesson-25:session-05:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-05:i13",
-    "correctText": "en:lesson-25:session-05:i13:p1=deaf\nen:lesson-25:session-05:i13:p2=disabled\nen:lesson-25:session-05:i13:p3=homeless\nen:lesson-25:session-05:i13:p4=wealthy",
+    "correctText": "en:lesson-25:session-05:i12:p1=deaf\nen:lesson-25:session-05:i12:p2=disabled\nen:lesson-25:session-05:i12:p3=homeless\nen:lesson-25:session-05:i12:p4=wealthy",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-05:i13",
+    "correctText": "worked",
+    "correctResponseId": "en:lesson-25:session-05:i13:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-05:i14",
-    "correctText": "I have found another job.",
+    "correctText": "We can invite another friend.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-05:i15",
-    "correctText": "The other families moved last year.",
-    "correctResponseId": null
+    "correctText": "My neighbour used to play chess with me.",
+    "correctResponseId": "en:lesson-25:session-05:i15:r1"
   },
   {
     "interactionId": "en:lesson-25:session-05:i16",
-    "correctText": "We used to teach deaf children.",
-    "correctResponseId": null
+    "correctText": "cooked",
+    "correctResponseId": "en:lesson-25:session-05:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-05:i17",
-    "correctText": "She used to live in a wealthy area.",
+    "correctText": "I used to visit my neighbour on Sundays.",
     "correctResponseId": null
   }
 ]

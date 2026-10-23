@@ -28,8 +28,8 @@
               "responseId": "en:lesson-25:session-06:word:youth:r1",
               "targetText": "youth",
               "meaningByLocale": {
-                "ru": "юность.",
-                "uk": "юність."
+                "ru": "юность",
+                "uk": "юність"
               }
             }
           ],
@@ -39,8 +39,8 @@
           "wordCard": {
             "word": "youth",
             "definitionByLocale": {
-              "ru": "юность.",
-              "uk": "юність."
+              "ru": "юность",
+              "uk": "юність"
             }
           }
         },
@@ -52,24 +52,27 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше он рассказывал о своей юности.»",
+        "prompt": "Расскажите о привычке отца в юности: «В юности мой отец вёл дневник».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше он рассказывал о своей юности.»",
+        "accessibilityLabel": "Расскажите о привычке отца в юности: «В юности мой отец вёл дневник».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He used to talk about his youth.",
+          "targetPhrase": "My father used to keep a diary in his youth.",
           "localizedMeaning": {
-            "ru": "Скажите: «Раньше он рассказывал о своей юности.»",
-            "uk": "Скажіть: «Раніше він розповідав про свою юність.»"
+            "ru": "Расскажите о привычке отца в юности: «В юности мой отец вёл дневник».",
+            "uk": "Розкажіть про звичку батька в юності: «У юності мій батько вів щоденник»."
           },
           "orderedTokens": [
-            "He",
+            "My",
+            "father",
             "used",
             "to",
-            "talk",
-            "about",
+            "keep",
+            "a",
+            "diary",
+            "in",
             "his",
             "youth"
           ],
@@ -86,68 +89,75 @@
         "interactionId": "en:lesson-25:session-06:i02",
         "ordinal": 6,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
+        "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-06:i02:r1",
-            "text": "talk"
+            "text": "I used to spend summers with my grandparents."
           },
           {
             "responseId": "en:lesson-25:session-06:i02:r2",
-            "text": "talked"
+            "text": "I used to spend winters with my grandparents."
           },
           {
             "responseId": "en:lesson-25:session-06:i02:r3",
-            "text": "talking"
+            "text": "I used to spend summers with my cousins."
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i02:audio",
+            "transcript": "I used to spend summers with my grandparents."
           },
-          "gappedTargetPhrase": "He used to ___ about his youth.",
-          "gapOptions": [
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-25:session-06:i02:r1",
-              "text": "talk"
+              "targetText": "I used to spend summers with my grandparents.",
+              "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-25:session-06:i02:r2",
-              "text": "talked"
+              "targetText": "I used to spend winters with my grandparents.",
+              "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-25:session-06:i02:r3",
-              "text": "talking"
+              "targetText": "I used to spend summers with my cousins.",
+              "meaningByLocale": null
             }
           ],
-          "testedDimension": "Дополните воспоминание.",
+          "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-06:i02:r2",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
+                "ru": "В записи звучит I used to spend summers with my grandparents.",
+                "uk": "У записі звучить I used to spend summers with my grandparents."
               }
             },
             {
               "responseId": "en:lesson-25:session-06:i02:r3",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
+                "ru": "В записи звучит I used to spend summers with my grandparents.",
+                "uk": "У записі звучить I used to spend summers with my grandparents."
               }
             }
-          ]
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -155,75 +165,68 @@
         "interactionId": "en:lesson-25:session-06:i03",
         "ordinal": 7,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Теперь вы уверены в себе. В школе вы были стеснительным человеком. Выберите прежнее состояние.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-06:i03:r1",
-            "text": "He used to talk about his youth."
+            "text": "used to be"
           },
           {
             "responseId": "en:lesson-25:session-06:i03:r2",
-            "text": "She used to talk about his youth."
+            "text": "am"
           },
           {
             "responseId": "en:lesson-25:session-06:i03:r3",
-            "text": "He used to write about his youth."
+            "text": "am being"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i03:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Теперь вы уверены в себе. В школе вы были стеснительным человеком. Выберите прежнее состояние.",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i03:audio",
-            "transcript": "He used to talk about his youth."
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Теперь вы уверены в себе. В школе вы были стеснительным человеком. Выберите прежнее состояние.",
+            "uk": "Тепер ви впевнені в собі. У школі ви були сором’язливою людиною. Виберіть колишній стан."
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I ___ shy at school.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-25:session-06:i03:r1",
-              "targetText": "He used to talk about his youth.",
-              "meaningByLocale": null
+              "text": "used to be"
             },
             {
               "responseId": "en:lesson-25:session-06:i03:r2",
-              "targetText": "She used to talk about his youth.",
-              "meaningByLocale": null
+              "text": "am"
             },
             {
               "responseId": "en:lesson-25:session-06:i03:r3",
-              "targetText": "He used to write about his youth.",
-              "meaningByLocale": null
+              "text": "am being"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Теперь вы уверены в себе. В школе вы были стеснительным человеком. Выберите прежнее состояние.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-06:i03:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Теперь вы уверены в себе. В школе вы были стеснительным человеком. Выберите прежнее состояние.",
               "feedbackByLocale": {
-                "ru": "В записи звучит He used to talk about his youth.",
-                "uk": "У записі звучить He used to talk about his youth."
+                "ru": "Am описывает настоящее, а здесь воспоминание о школьных годах.",
+                "uk": "Am описує теперішнє, а тут спогад про шкільні роки."
               }
             },
             {
               "responseId": "en:lesson-25:session-06:i03:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите",
+              "testedDimension": "Теперь вы уверены в себе. В школе вы были стеснительным человеком. Выберите прежнее состояние.",
               "feedbackByLocale": {
-                "ru": "В записи звучит He used to talk about his youth.",
-                "uk": "У записі звучить He used to talk about his youth."
+                "ru": "Для прежнего состояния нужна конструкция used to be.",
+                "uk": "Для колишнього стану потрібна конструкція used to be."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -252,8 +255,8 @@
               "responseId": "en:lesson-25:session-06:word:adulthood:r1",
               "targetText": "adulthood",
               "meaningByLocale": {
-                "ru": "взрослая жизнь.",
-                "uk": "доросле життя."
+                "ru": "взрослая жизнь",
+                "uk": "доросле життя"
               }
             }
           ],
@@ -263,8 +266,8 @@
           "wordCard": {
             "word": "adulthood",
             "definitionByLocale": {
-              "ru": "взрослая жизнь.",
-              "uk": "доросле життя."
+              "ru": "взрослая жизнь",
+              "uk": "доросле життя"
             }
           }
         },
@@ -274,34 +277,75 @@
         "interactionId": "en:lesson-25:session-06:i04",
         "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше я переживал из-за будущей взрослой жизни.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше я переживал из-за будущей взрослой жизни.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I used to worry about adulthood.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше я переживал из-за будущей взрослой жизни.»",
-            "uk": "Скажіть: «Раніше я хвилювався через майбутнє доросле життя.»"
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i04:r1",
+            "text": "I used to dream about adulthood."
           },
-          "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "worry",
-            "about",
-            "adulthood"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
+          {
+            "responseId": "en:lesson-25:session-06:i04:r2",
+            "text": "I used to worry about adulthood."
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i04:r3",
+            "text": "We used to dream about adulthood."
           }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i04:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i04:audio",
+            "transcript": "I used to dream about adulthood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-06:i04:r1",
+              "targetText": "I used to dream about adulthood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i04:r2",
+              "targetText": "I used to worry about adulthood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i04:r3",
+              "targetText": "We used to dream about adulthood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i04:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to dream about adulthood.",
+                "uk": "У записі звучить I used to dream about adulthood."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i04:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to dream about adulthood.",
+                "uk": "У записі звучить I used to dream about adulthood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -309,218 +353,31 @@
         "interactionId": "en:lesson-25:session-06:i05",
         "ordinal": 10,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i05:r1",
-            "text": "worry"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i05:r2",
-            "text": "worried"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i05:r3",
-            "text": "worrying"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "I used to ___ about adulthood.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-06:i05:r1",
-              "text": "worry"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i05:r2",
-              "text": "worried"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i05:r3",
-              "text": "worrying"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i05:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма worry.",
-                "uk": "Після used to потрібна форма worry."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i05:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма worry.",
-                "uk": "Після used to потрібна форма worry."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i06:r1",
-            "text": "I used to worry about adulthood."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i06:r2",
-            "text": "We used to worry about adulthood."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i06:r3",
-            "text": "I used to dream about adulthood."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i06:audio",
-            "transcript": "I used to worry about adulthood."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-06:i06:r1",
-              "targetText": "I used to worry about adulthood.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i06:r2",
-              "targetText": "We used to worry about adulthood.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i06:r3",
-              "targetText": "I used to dream about adulthood.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i06:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to worry about adulthood.",
-                "uk": "У записі звучить I used to worry about adulthood."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i06:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to worry about adulthood.",
-                "uk": "У записі звучить I used to worry about adulthood."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:word:attitude",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — attitude",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:word:attitude:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — attitude",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:word:attitude:audio",
-            "transcript": "attitude"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-06:word:attitude:r1",
-              "targetText": "attitude",
-              "meaningByLocale": {
-                "ru": "отношение, настрой.",
-                "uk": "ставлення, настрій."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "attitude",
-            "definitionByLocale": {
-              "ru": "отношение, настрой.",
-              "uk": "ставлення, настрій."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше у нас было одинаковое отношение к деньгам.»",
+        "prompt": "Услышьте прежнюю мечту.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше у нас было одинаковое отношение к деньгам.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте прежнюю мечту.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We used to have the same attitude to money.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше у нас было одинаковое отношение к деньгам.»",
-            "uk": "Скажіть: «Раніше в нас було однакове ставлення до грошей.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i05:audio",
+            "transcript": "I used to dream about living alone."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to dream about living alone.",
           "orderedTokens": [
-            "We",
+            "I",
             "used",
             "to",
-            "have",
-            "the",
-            "same",
-            "attitude",
-            "to",
-            "money"
+            "dream",
+            "about",
+            "living",
+            "alone"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -532,153 +389,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i08:r1",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i08:r2",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i08:r3",
-            "text": "having"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "We used to ___ the same attitude to money.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-06:i08:r1",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i08:r2",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i08:r3",
-              "text": "having"
-            }
-          ],
-          "testedDimension": "Дополните воспоминание.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i08:r2",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i08:r3",
-              "correct": false,
-              "testedDimension": "Дополните воспоминание.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i09:r1",
-            "text": "We used to have the same attitude to money."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i09:r2",
-            "text": "They used to have the same attitude to money."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i09:r3",
-            "text": "We used to have the same attitude to work."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i09:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i09:audio",
-            "transcript": "We used to have the same attitude to money."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-06:i09:r1",
-              "targetText": "We used to have the same attitude to money.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i09:r2",
-              "targetText": "They used to have the same attitude to money.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i09:r3",
-              "targetText": "We used to have the same attitude to work.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i09:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We used to have the same attitude to money.",
-                "uk": "У записі звучить We used to have the same attitude to money."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i09:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We used to have the same attitude to money.",
-                "uk": "У записі звучить We used to have the same attitude to money."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-06:word:personality",
-        "ordinal": 16,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -701,8 +413,8 @@
               "responseId": "en:lesson-25:session-06:word:personality:r1",
               "targetText": "personality",
               "meaningByLocale": {
-                "ru": "характер, личность.",
-                "uk": "характер, особистість."
+                "ru": "характер, личность",
+                "uk": "характер, особистість"
               }
             }
           ],
@@ -712,38 +424,36 @@
           "wordCard": {
             "word": "personality",
             "definitionByLocale": {
-              "ru": "характер, личность.",
-              "uk": "характер, особистість."
+              "ru": "характер, личность",
+              "uk": "характер, особистість"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажите: «Раньше ей нравился его характер.»",
+        "prompt": "Знакомая стала гораздо увереннее. Скажите: «Её характер изменился».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажите: «Раньше ей нравился его характер.»",
+        "accessibilityLabel": "Знакомая стала гораздо увереннее. Скажите: «Её характер изменился».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She used to like his personality.",
+          "targetPhrase": "Her personality has changed.",
           "localizedMeaning": {
-            "ru": "Скажите: «Раньше ей нравился его характер.»",
-            "uk": "Скажіть: «Раніше їй подобався його характер.»"
+            "ru": "Знакомая стала гораздо увереннее. Скажите: «Её характер изменился».",
+            "uk": "Знайома стала набагато впевненішою. Скажіть: «Її характер змінився»."
           },
           "orderedTokens": [
-            "She",
-            "used",
-            "to",
-            "like",
-            "his",
-            "personality"
+            "Her",
+            "personality",
+            "has",
+            "changed"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,68 +465,101 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вспомните разговоры с другом: «Раньше мы говорили о своей юности».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Вспомните разговоры с другом: «Раньше мы говорили о своей юности».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i07:audio",
+            "transcript": "We used to talk about our youth."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to talk about our youth.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дополните воспоминание.",
+        "prompt": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-06:i11:r1",
-            "text": "like"
+            "responseId": "en:lesson-25:session-06:i08:r1",
+            "text": "changed"
           },
           {
-            "responseId": "en:lesson-25:session-06:i11:r2",
-            "text": "liked"
+            "responseId": "en:lesson-25:session-06:i08:r2",
+            "text": "change"
           },
           {
-            "responseId": "en:lesson-25:session-06:i11:r3",
-            "text": "liking"
+            "responseId": "en:lesson-25:session-06:i08:r3",
+            "text": "changing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дополните воспоминание.",
+        "accessibilityLabel": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+            "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect."
           },
-          "gappedTargetPhrase": "She used to ___ his personality.",
+          "gappedTargetPhrase": "My life has ___ a lot.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-06:i11:r1",
-              "text": "like"
+              "responseId": "en:lesson-25:session-06:i08:r1",
+              "text": "changed"
             },
             {
-              "responseId": "en:lesson-25:session-06:i11:r2",
-              "text": "liked"
+              "responseId": "en:lesson-25:session-06:i08:r2",
+              "text": "change"
             },
             {
-              "responseId": "en:lesson-25:session-06:i11:r3",
-              "text": "liking"
+              "responseId": "en:lesson-25:session-06:i08:r3",
+              "text": "changing"
             }
           ],
-          "testedDimension": "Дополните воспоминание.",
+          "testedDimension": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-06:i11:r2",
+              "responseId": "en:lesson-25:session-06:i08:r2",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма like.",
-                "uk": "Після used to потрібна форма like."
+                "ru": "После has нужна форма changed.",
+                "uk": "Після has потрібна форма changed."
               }
             },
             {
-              "responseId": "en:lesson-25:session-06:i11:r3",
+              "responseId": "en:lesson-25:session-06:i08:r3",
               "correct": false,
-              "testedDimension": "Дополните воспоминание.",
+              "testedDimension": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма like.",
-                "uk": "Після used to потрібна форма like."
+                "ru": "Changing здесь не образует Present Perfect; нужно changed.",
+                "uk": "Changing тут не утворює Present Perfect; потрібно changed."
               }
             }
           ]
@@ -824,73 +567,116 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-06:word:attitude",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — attitude",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:word:attitude:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — attitude",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:word:attitude:audio",
+            "transcript": "attitude"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-06:word:attitude:r1",
+              "targetText": "attitude",
+              "meaningByLocale": {
+                "ru": "отношение, настрой",
+                "uk": "ставлення, настрій"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "attitude",
+            "definitionByLocale": {
+              "ru": "отношение, настрой",
+              "uk": "ставлення, настрій"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-06:i12:r1",
-            "text": "She used to like his personality."
+            "responseId": "en:lesson-25:session-06:i09:r1",
+            "text": "My attitude to work used to be different."
           },
           {
-            "responseId": "en:lesson-25:session-06:i12:r2",
-            "text": "He used to like his personality."
+            "responseId": "en:lesson-25:session-06:i09:r2",
+            "text": "My attitude to money used to be different."
           },
           {
-            "responseId": "en:lesson-25:session-06:i12:r3",
-            "text": "She used to like her personality."
+            "responseId": "en:lesson-25:session-06:i09:r3",
+            "text": "My attitude to school used to be different."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-06:i12:audio"
+          "en:lesson-25:session-06:i09:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i12:audio",
-            "transcript": "She used to like his personality."
+            "audioTargetId": "en:lesson-25:session-06:i09:audio",
+            "transcript": "My attitude to work used to be different."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-06:i12:r1",
-              "targetText": "She used to like his personality.",
+              "responseId": "en:lesson-25:session-06:i09:r1",
+              "targetText": "My attitude to work used to be different.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-06:i12:r2",
-              "targetText": "He used to like his personality.",
+              "responseId": "en:lesson-25:session-06:i09:r2",
+              "targetText": "My attitude to money used to be different.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-06:i12:r3",
-              "targetText": "She used to like her personality.",
+              "responseId": "en:lesson-25:session-06:i09:r3",
+              "targetText": "My attitude to school used to be different.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-06:i12:r2",
+              "responseId": "en:lesson-25:session-06:i09:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to like his personality.",
-                "uk": "У записі звучить She used to like his personality."
+                "ru": "В записи звучит My attitude to work used to be different.",
+                "uk": "У записі звучить My attitude to work used to be different."
               }
             },
             {
-              "responseId": "en:lesson-25:session-06:i12:r3",
+              "responseId": "en:lesson-25:session-06:i09:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to like his personality.",
-                "uk": "У записі звучить She used to like his personality."
+                "ru": "В записи звучит My attitude to work used to be different.",
+                "uk": "У записі звучить My attitude to work used to be different."
               }
             }
           ],
@@ -900,21 +686,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-06:i10",
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова с переводом",
+        "prompt": "Различите этапы жизни и качества человека",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова с переводом",
+        "accessibilityLabel": "Различите этапы жизни и качества человека",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-06:i13:p1",
+              "pairId": "en:lesson-25:session-06:i10:p1",
               "target": "youth",
               "meaningByLocale": {
                 "ru": "юность",
@@ -922,7 +708,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-06:i13:p2",
+              "pairId": "en:lesson-25:session-06:i10:p2",
               "target": "adulthood",
               "meaningByLocale": {
                 "ru": "взрослая жизнь",
@@ -930,7 +716,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-06:i13:p3",
+              "pairId": "en:lesson-25:session-06:i10:p3",
               "target": "attitude",
               "meaningByLocale": {
                 "ru": "отношение, настрой",
@@ -938,7 +724,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-06:i13:p4",
+              "pairId": "en:lesson-25:session-06:i10:p4",
               "target": "personality",
               "meaningByLocale": {
                 "ru": "характер, личность",
@@ -973,32 +759,97 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
+        "interactionId": "en:lesson-25:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы говорите именно об отношении человека к работе, не о всей его личности или возрасте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i11:r1",
+            "text": "attitude"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i11:r2",
+            "text": "personality"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i11:r3",
+            "text": "adulthood"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы говорите именно об отношении человека к работе, не о всей его личности или возрасте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите именно об отношении человека к работе, не о всей его личности или возрасте.",
+            "uk": "Ви говорите саме про ставлення людини до роботи, не про всю її особистість чи вік."
+          },
+          "gappedTargetPhrase": "I like his ___ to work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-06:i11:r1",
+              "text": "attitude"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i11:r2",
+              "text": "personality"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i11:r3",
+              "text": "adulthood"
+            }
+          ],
+          "testedDimension": "Вы говорите именно об отношении человека к работе, не о всей его личности или возрасте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Вы говорите именно об отношении человека к работе, не о всей его личности или возрасте.",
+              "feedbackByLocale": {
+                "ru": "Personality — личность или характер в целом; здесь речь об отношении к работе.",
+                "uk": "Personality — особистість або характер загалом; тут ідеться про ставлення до роботи."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Вы говорите именно об отношении человека к работе, не о всей его личности или возрасте.",
+              "feedbackByLocale": {
+                "ru": "Adulthood — взрослая жизнь, а не отношение к чему-либо.",
+                "uk": "Adulthood — доросле життя, а не ставлення до чогось."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Нашёл другую работу",
+        "prompt": "Один рассказ вы уже услышали. Попросите: «Расскажи мне ещё одну историю».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i14:audio"
-        ],
-        "accessibilityLabel": "Нашёл другую работу",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Один рассказ вы уже услышали. Попросите: «Расскажи мне ещё одну историю».",
         "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i14:audio",
-            "transcript": "I have found another job."
+          "family": "phrase_builder",
+          "targetPhrase": "Tell me another story.",
+          "localizedMeaning": {
+            "ru": "Один рассказ вы уже услышали. Попросите: «Расскажи мне ещё одну историю».",
+            "uk": "Одну розповідь ви вже почули. Попросіть: «Розкажи мені ще одну історію»."
           },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I have found another job.",
           "orderedTokens": [
-            "I",
-            "have",
-            "found",
+            "Tell",
+            "me",
             "another",
-            "job"
+            "story"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1010,33 +861,35 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Другие семьи переехали",
+        "prompt": "Услышьте семейное воспоминание.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-06:i15:audio"
+          "en:lesson-25:session-06:i13:audio"
         ],
-        "accessibilityLabel": "Другие семьи переехали",
+        "accessibilityLabel": "Услышьте семейное воспоминание.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i15:audio",
-            "transcript": "The other families moved last year."
+            "audioTargetId": "en:lesson-25:session-06:i13:audio",
+            "transcript": "We used to look at old photos together."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "The other families moved last year.",
+          "hiddenTargetPhrase": "We used to look at old photos together.",
           "orderedTokens": [
-            "The",
-            "other",
-            "families",
-            "moved",
-            "last",
-            "year"
+            "We",
+            "used",
+            "to",
+            "look",
+            "at",
+            "old",
+            "photos",
+            "together"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1044,6 +897,151 @@
             "ru": "",
             "uk": ""
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i14:r1",
+            "text": "I found my old diary yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i14:r2",
+            "text": "I read my old diary yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i14:r3",
+            "text": "I found my old photos yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i14:audio",
+            "transcript": "I found my old diary yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-06:i14:r1",
+              "targetText": "I found my old diary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i14:r2",
+              "targetText": "I read my old diary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i14:r3",
+              "targetText": "I found my old photos yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found my old diary yesterday.",
+                "uk": "У записі звучить I found my old diary yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found my old diary yesterday.",
+                "uk": "У записі звучить I found my old diary yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы говорите об одном вечере на прошлой неделе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i15:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i15:r2",
+            "text": "have talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i15:r3",
+            "text": "used to talk"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы говорите об одном вечере на прошлой неделе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите об одном вечере на прошлой неделе.",
+            "uk": "Ви говорите про один вечір минулого тижня."
+          },
+          "gappedTargetPhrase": "We ___ about our school days last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-06:i15:r1",
+              "text": "talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i15:r2",
+              "text": "have talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i15:r3",
+              "text": "used to talk"
+            }
+          ],
+          "testedDimension": "Вы говорите об одном вечере на прошлой неделе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Вы говорите об одном вечере на прошлой неделе.",
+              "feedbackByLocale": {
+                "ru": "Last week — законченное время: нужен Past Simple talked.",
+                "uk": "Last week — завершений час: потрібен Past Simple talked."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Вы говорите об одном вечере на прошлой неделе.",
+              "feedbackByLocale": {
+                "ru": "Used to talk описывает прежнюю привычку; здесь был один разговор.",
+                "uk": "Used to talk описує колишню звичку; тут була одна розмова."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1053,21 +1051,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Мы раньше рассказывали о своей юности».",
+        "prompt": "Теперь вы любите встречи. Скажите о прошлом: «Раньше я предпочитал быть один».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-06:i16:audio"
         ],
-        "accessibilityLabel": "Скажите: «Мы раньше рассказывали о своей юности».",
+        "accessibilityLabel": "Теперь вы любите встречи. Скажите о прошлом: «Раньше я предпочитал быть один».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-06:i16:audio",
-            "transcript": "We used to talk about our youth."
+            "transcript": "I used to prefer being alone."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We used to talk about our youth.",
+          "targetPhrase": "I used to prefer being alone.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1083,33 +1081,34 @@
       {
         "interactionId": "en:lesson-25:session-06:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите: «Она раньше переживала из-за будущей взрослой жизни».",
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите о воспоминаниях других людей: «У других людей другие воспоминания».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i17:audio"
-        ],
-        "accessibilityLabel": "Скажите: «Она раньше переживала из-за будущей взрослой жизни».",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите о воспоминаниях других людей: «У других людей другие воспоминания».",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i17:audio",
-            "transcript": "She used to worry about adulthood."
+          "family": "phrase_builder",
+          "targetPhrase": "Other people have different memories.",
+          "localizedMeaning": {
+            "ru": "Скажите о воспоминаниях других людей: «У других людей другие воспоминания».",
+            "uk": "Скажіть про спогади інших людей: «В інших людей інші спогади»."
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She used to worry about adulthood.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "Other",
+            "people",
+            "have",
+            "different",
+            "memories"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       }
@@ -1140,8 +1139,8 @@
               "responseId": "en:lesson-25:session-06:word:youth:r1",
               "targetText": "youth",
               "meaningByLocale": {
-                "ru": "юность.",
-                "uk": "юність."
+                "ru": "юность",
+                "uk": "юність"
               }
             }
           ],
@@ -1151,8 +1150,8 @@
           "wordCard": {
             "word": "youth",
             "definitionByLocale": {
-              "ru": "юность.",
-              "uk": "юність."
+              "ru": "юность",
+              "uk": "юність"
             }
           }
         },
@@ -1164,24 +1163,27 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше він розповідав про свою юність.»",
+        "prompt": "Розкажіть про звичку батька в юності: «У юності мій батько вів щоденник».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше він розповідав про свою юність.»",
+        "accessibilityLabel": "Розкажіть про звичку батька в юності: «У юності мій батько вів щоденник».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "He used to talk about his youth.",
+          "targetPhrase": "My father used to keep a diary in his youth.",
           "localizedMeaning": {
-            "ru": "Скажите: «Раньше он рассказывал о своей юности.»",
-            "uk": "Скажіть: «Раніше він розповідав про свою юність.»"
+            "ru": "Расскажите о привычке отца в юности: «В юности мой отец вёл дневник».",
+            "uk": "Розкажіть про звичку батька в юності: «У юності мій батько вів щоденник»."
           },
           "orderedTokens": [
-            "He",
+            "My",
+            "father",
             "used",
             "to",
-            "talk",
-            "about",
+            "keep",
+            "a",
+            "diary",
+            "in",
             "his",
             "youth"
           ],
@@ -1198,68 +1200,75 @@
         "interactionId": "en:lesson-25:session-06:i02",
         "ordinal": 6,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
+        "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
+        "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-06:i02:r1",
-            "text": "talk"
+            "text": "I used to spend summers with my grandparents."
           },
           {
             "responseId": "en:lesson-25:session-06:i02:r2",
-            "text": "talked"
+            "text": "I used to spend winters with my grandparents."
           },
           {
             "responseId": "en:lesson-25:session-06:i02:r3",
-            "text": "talking"
+            "text": "I used to spend summers with my cousins."
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i02:audio",
+            "transcript": "I used to spend summers with my grandparents."
           },
-          "gappedTargetPhrase": "He used to ___ about his youth.",
-          "gapOptions": [
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-25:session-06:i02:r1",
-              "text": "talk"
+              "targetText": "I used to spend summers with my grandparents.",
+              "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-25:session-06:i02:r2",
-              "text": "talked"
+              "targetText": "I used to spend winters with my grandparents.",
+              "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-25:session-06:i02:r3",
-              "text": "talking"
+              "targetText": "I used to spend summers with my cousins.",
+              "meaningByLocale": null
             }
           ],
-          "testedDimension": "Доповніть спогад.",
+          "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-06:i02:r2",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
+                "ru": "В записи звучит I used to spend summers with my grandparents.",
+                "uk": "У записі звучить I used to spend summers with my grandparents."
               }
             },
             {
               "responseId": "en:lesson-25:session-06:i02:r3",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма talk.",
-                "uk": "Після used to потрібна форма talk."
+                "ru": "В записи звучит I used to spend summers with my grandparents.",
+                "uk": "У записі звучить I used to spend summers with my grandparents."
               }
             }
-          ]
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1267,75 +1276,68 @@
         "interactionId": "en:lesson-25:session-06:i03",
         "ordinal": 7,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
+        "prompt": "Тепер ви впевнені в собі. У школі ви були сором’язливою людиною. Виберіть колишній стан.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-06:i03:r1",
-            "text": "He used to talk about his youth."
+            "text": "used to be"
           },
           {
             "responseId": "en:lesson-25:session-06:i03:r2",
-            "text": "She used to talk about his youth."
+            "text": "am"
           },
           {
             "responseId": "en:lesson-25:session-06:i03:r3",
-            "text": "He used to write about his youth."
+            "text": "am being"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i03:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тепер ви впевнені в собі. У школі ви були сором’язливою людиною. Виберіть колишній стан.",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i03:audio",
-            "transcript": "He used to talk about his youth."
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Теперь вы уверены в себе. В школе вы были стеснительным человеком. Выберите прежнее состояние.",
+            "uk": "Тепер ви впевнені в собі. У школі ви були сором’язливою людиною. Виберіть колишній стан."
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I ___ shy at school.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-25:session-06:i03:r1",
-              "targetText": "He used to talk about his youth.",
-              "meaningByLocale": null
+              "text": "used to be"
             },
             {
               "responseId": "en:lesson-25:session-06:i03:r2",
-              "targetText": "She used to talk about his youth.",
-              "meaningByLocale": null
+              "text": "am"
             },
             {
               "responseId": "en:lesson-25:session-06:i03:r3",
-              "targetText": "He used to write about his youth.",
-              "meaningByLocale": null
+              "text": "am being"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Тепер ви впевнені в собі. У школі ви були сором’язливою людиною. Виберіть колишній стан.",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-25:session-06:i03:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть",
+              "testedDimension": "Тепер ви впевнені в собі. У школі ви були сором’язливою людиною. Виберіть колишній стан.",
               "feedbackByLocale": {
-                "ru": "В записи звучит He used to talk about his youth.",
-                "uk": "У записі звучить He used to talk about his youth."
+                "ru": "Am описывает настоящее, а здесь воспоминание о школьных годах.",
+                "uk": "Am описує теперішнє, а тут спогад про шкільні роки."
               }
             },
             {
               "responseId": "en:lesson-25:session-06:i03:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть",
+              "testedDimension": "Тепер ви впевнені в собі. У школі ви були сором’язливою людиною. Виберіть колишній стан.",
               "feedbackByLocale": {
-                "ru": "В записи звучит He used to talk about his youth.",
-                "uk": "У записі звучить He used to talk about his youth."
+                "ru": "Для прежнего состояния нужна конструкция used to be.",
+                "uk": "Для колишнього стану потрібна конструкція used to be."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1364,8 +1366,8 @@
               "responseId": "en:lesson-25:session-06:word:adulthood:r1",
               "targetText": "adulthood",
               "meaningByLocale": {
-                "ru": "взрослая жизнь.",
-                "uk": "доросле життя."
+                "ru": "взрослая жизнь",
+                "uk": "доросле життя"
               }
             }
           ],
@@ -1375,8 +1377,8 @@
           "wordCard": {
             "word": "adulthood",
             "definitionByLocale": {
-              "ru": "взрослая жизнь.",
-              "uk": "доросле життя."
+              "ru": "взрослая жизнь",
+              "uk": "доросле життя"
             }
           }
         },
@@ -1386,34 +1388,75 @@
         "interactionId": "en:lesson-25:session-06:i04",
         "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше я хвилювався через майбутнє доросле життя.»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше я хвилювався через майбутнє доросле життя.»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I used to worry about adulthood.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше я переживал из-за будущей взрослой жизни.»",
-            "uk": "Скажіть: «Раніше я хвилювався через майбутнє доросле життя.»"
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i04:r1",
+            "text": "I used to dream about adulthood."
           },
-          "orderedTokens": [
-            "I",
-            "used",
-            "to",
-            "worry",
-            "about",
-            "adulthood"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
+          {
+            "responseId": "en:lesson-25:session-06:i04:r2",
+            "text": "I used to worry about adulthood."
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i04:r3",
+            "text": "We used to dream about adulthood."
           }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i04:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i04:audio",
+            "transcript": "I used to dream about adulthood."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-06:i04:r1",
+              "targetText": "I used to dream about adulthood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i04:r2",
+              "targetText": "I used to worry about adulthood.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i04:r3",
+              "targetText": "We used to dream about adulthood.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i04:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to dream about adulthood.",
+                "uk": "У записі звучить I used to dream about adulthood."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i04:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to dream about adulthood.",
+                "uk": "У записі звучить I used to dream about adulthood."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1421,218 +1464,31 @@
         "interactionId": "en:lesson-25:session-06:i05",
         "ordinal": 10,
         "purpose": "supported_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i05:r1",
-            "text": "worry"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i05:r2",
-            "text": "worried"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i05:r3",
-            "text": "worrying"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "I used to ___ about adulthood.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-06:i05:r1",
-              "text": "worry"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i05:r2",
-              "text": "worried"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i05:r3",
-              "text": "worrying"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i05:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма worry.",
-                "uk": "Після used to потрібна форма worry."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i05:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма worry.",
-                "uk": "Після used to потрібна форма worry."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:i06",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i06:r1",
-            "text": "I used to worry about adulthood."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i06:r2",
-            "text": "We used to worry about adulthood."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i06:r3",
-            "text": "I used to dream about adulthood."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i06:audio",
-            "transcript": "I used to worry about adulthood."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-06:i06:r1",
-              "targetText": "I used to worry about adulthood.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i06:r2",
-              "targetText": "We used to worry about adulthood.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i06:r3",
-              "targetText": "I used to dream about adulthood.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i06:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to worry about adulthood.",
-                "uk": "У записі звучить I used to worry about adulthood."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i06:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит I used to worry about adulthood.",
-                "uk": "У записі звучить I used to worry about adulthood."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:word:attitude",
-        "ordinal": 12,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — attitude",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:word:attitude:audio"
-        ],
-        "accessibilityLabel": "Картка слова — attitude",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:word:attitude:audio",
-            "transcript": "attitude"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-06:word:attitude:r1",
-              "targetText": "attitude",
-              "meaningByLocale": {
-                "ru": "отношение, настрой.",
-                "uk": "ставлення, настрій."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "attitude",
-            "definitionByLocale": {
-              "ru": "отношение, настрой.",
-              "uk": "ставлення, настрій."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:i07",
-        "ordinal": 13,
-        "purpose": "guided_practice",
-        "family": "phrase_builder",
+        "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше в нас було однакове ставлення до грошей.»",
+        "prompt": "Почуйте колишню мрію.",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше в нас було однакове ставлення до грошей.»",
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте колишню мрію.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We used to have the same attitude to money.",
-          "localizedMeaning": {
-            "ru": "Скажите: «Раньше у нас было одинаковое отношение к деньгам.»",
-            "uk": "Скажіть: «Раніше в нас було однакове ставлення до грошей.»"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i05:audio",
+            "transcript": "I used to dream about living alone."
           },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to dream about living alone.",
           "orderedTokens": [
-            "We",
+            "I",
             "used",
             "to",
-            "have",
-            "the",
-            "same",
-            "attitude",
-            "to",
-            "money"
+            "dream",
+            "about",
+            "living",
+            "alone"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1644,153 +1500,8 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i08",
-        "ordinal": 14,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i08:r1",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i08:r2",
-            "text": "had"
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i08:r3",
-            "text": "having"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
-          },
-          "gappedTargetPhrase": "We used to ___ the same attitude to money.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-25:session-06:i08:r1",
-              "text": "have"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i08:r2",
-              "text": "had"
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i08:r3",
-              "text": "having"
-            }
-          ],
-          "testedDimension": "Доповніть спогад.",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i08:r2",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i08:r3",
-              "correct": false,
-              "testedDimension": "Доповніть спогад.",
-              "feedbackByLocale": {
-                "ru": "После used to нужна форма have.",
-                "uk": "Після used to потрібна форма have."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-25:session-06:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-25:session-06:i09:r1",
-            "text": "We used to have the same attitude to money."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i09:r2",
-            "text": "They used to have the same attitude to money."
-          },
-          {
-            "responseId": "en:lesson-25:session-06:i09:r3",
-            "text": "We used to have the same attitude to work."
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i09:audio"
-        ],
-        "accessibilityLabel": "Послухайте й виберіть",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i09:audio",
-            "transcript": "We used to have the same attitude to money."
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-25:session-06:i09:r1",
-              "targetText": "We used to have the same attitude to money.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i09:r2",
-              "targetText": "They used to have the same attitude to money.",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i09:r3",
-              "targetText": "We used to have the same attitude to work.",
-              "meaningByLocale": null
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-25:session-06:i09:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We used to have the same attitude to money.",
-                "uk": "У записі звучить We used to have the same attitude to money."
-              }
-            },
-            {
-              "responseId": "en:lesson-25:session-06:i09:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит We used to have the same attitude to money.",
-                "uk": "У записі звучить We used to have the same attitude to money."
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-25:session-06:word:personality",
-        "ordinal": 16,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1813,8 +1524,8 @@
               "responseId": "en:lesson-25:session-06:word:personality:r1",
               "targetText": "personality",
               "meaningByLocale": {
-                "ru": "характер, личность.",
-                "uk": "характер, особистість."
+                "ru": "характер, личность",
+                "uk": "характер, особистість"
               }
             }
           ],
@@ -1824,38 +1535,36 @@
           "wordCard": {
             "word": "personality",
             "definitionByLocale": {
-              "ru": "характер, личность.",
-              "uk": "характер, особистість."
+              "ru": "характер, личность",
+              "uk": "характер, особистість"
             }
           }
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i10",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-06:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Скажіть: «Раніше їй подобався його характер.»",
+        "prompt": "Знайома стала набагато впевненішою. Скажіть: «Її характер змінився».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Скажіть: «Раніше їй подобався його характер.»",
+        "accessibilityLabel": "Знайома стала набагато впевненішою. Скажіть: «Її характер змінився».",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She used to like his personality.",
+          "targetPhrase": "Her personality has changed.",
           "localizedMeaning": {
-            "ru": "Скажите: «Раньше ей нравился его характер.»",
-            "uk": "Скажіть: «Раніше їй подобався його характер.»"
+            "ru": "Знакомая стала гораздо увереннее. Скажите: «Её характер изменился».",
+            "uk": "Знайома стала набагато впевненішою. Скажіть: «Її характер змінився»."
           },
           "orderedTokens": [
-            "She",
-            "used",
-            "to",
-            "like",
-            "his",
-            "personality"
+            "Her",
+            "personality",
+            "has",
+            "changed"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1867,68 +1576,101 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i11",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-06:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Згадайте розмови з другом: «Раніше ми говорили про свою юність».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i07:audio"
+        ],
+        "accessibilityLabel": "Згадайте розмови з другом: «Раніше ми говорили про свою юність».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i07:audio",
+            "transcript": "We used to talk about our youth."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to talk about our youth.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Доповніть спогад.",
+        "prompt": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-06:i11:r1",
-            "text": "like"
+            "responseId": "en:lesson-25:session-06:i08:r1",
+            "text": "changed"
           },
           {
-            "responseId": "en:lesson-25:session-06:i11:r2",
-            "text": "liked"
+            "responseId": "en:lesson-25:session-06:i08:r2",
+            "text": "change"
           },
           {
-            "responseId": "en:lesson-25:session-06:i11:r3",
-            "text": "liking"
+            "responseId": "en:lesson-25:session-06:i08:r3",
+            "text": "changing"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Доповніть спогад.",
+        "accessibilityLabel": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дополните воспоминание.",
-            "uk": "Доповніть спогад."
+            "ru": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+            "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect."
           },
-          "gappedTargetPhrase": "She used to ___ his personality.",
+          "gappedTargetPhrase": "My life has ___ a lot.",
           "gapOptions": [
             {
-              "responseId": "en:lesson-25:session-06:i11:r1",
-              "text": "like"
+              "responseId": "en:lesson-25:session-06:i08:r1",
+              "text": "changed"
             },
             {
-              "responseId": "en:lesson-25:session-06:i11:r2",
-              "text": "liked"
+              "responseId": "en:lesson-25:session-06:i08:r2",
+              "text": "change"
             },
             {
-              "responseId": "en:lesson-25:session-06:i11:r3",
-              "text": "liking"
+              "responseId": "en:lesson-25:session-06:i08:r3",
+              "text": "changing"
             }
           ],
-          "testedDimension": "Доповніть спогад.",
+          "testedDimension": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-06:i11:r2",
+              "responseId": "en:lesson-25:session-06:i08:r2",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма like.",
-                "uk": "Після used to потрібна форма like."
+                "ru": "После has нужна форма changed.",
+                "uk": "Після has потрібна форма changed."
               }
             },
             {
-              "responseId": "en:lesson-25:session-06:i11:r3",
+              "responseId": "en:lesson-25:session-06:i08:r3",
               "correct": false,
-              "testedDimension": "Доповніть спогад.",
+              "testedDimension": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
               "feedbackByLocale": {
-                "ru": "После used to нужна форма like.",
-                "uk": "Після used to потрібна форма like."
+                "ru": "Changing здесь не образует Present Perfect; нужно changed.",
+                "uk": "Changing тут не утворює Present Perfect; потрібно changed."
               }
             }
           ]
@@ -1936,73 +1678,116 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
+        "interactionId": "en:lesson-25:session-06:word:attitude",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — attitude",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:word:attitude:audio"
+        ],
+        "accessibilityLabel": "Картка слова — attitude",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:word:attitude:audio",
+            "transcript": "attitude"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-06:word:attitude:r1",
+              "targetText": "attitude",
+              "meaningByLocale": {
+                "ru": "отношение, настрой",
+                "uk": "ставлення, настрій"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "attitude",
+            "definitionByLocale": {
+              "ru": "отношение, настрой",
+              "uk": "ставлення, настрій"
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-25:session-06:i12:r1",
-            "text": "She used to like his personality."
+            "responseId": "en:lesson-25:session-06:i09:r1",
+            "text": "My attitude to work used to be different."
           },
           {
-            "responseId": "en:lesson-25:session-06:i12:r2",
-            "text": "He used to like his personality."
+            "responseId": "en:lesson-25:session-06:i09:r2",
+            "text": "My attitude to money used to be different."
           },
           {
-            "responseId": "en:lesson-25:session-06:i12:r3",
-            "text": "She used to like her personality."
+            "responseId": "en:lesson-25:session-06:i09:r3",
+            "text": "My attitude to school used to be different."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-06:i12:audio"
+          "en:lesson-25:session-06:i09:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i12:audio",
-            "transcript": "She used to like his personality."
+            "audioTargetId": "en:lesson-25:session-06:i09:audio",
+            "transcript": "My attitude to work used to be different."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-25:session-06:i12:r1",
-              "targetText": "She used to like his personality.",
+              "responseId": "en:lesson-25:session-06:i09:r1",
+              "targetText": "My attitude to work used to be different.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-06:i12:r2",
-              "targetText": "He used to like his personality.",
+              "responseId": "en:lesson-25:session-06:i09:r2",
+              "targetText": "My attitude to money used to be different.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-25:session-06:i12:r3",
-              "targetText": "She used to like her personality.",
+              "responseId": "en:lesson-25:session-06:i09:r3",
+              "targetText": "My attitude to school used to be different.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-25:session-06:i12:r2",
+              "responseId": "en:lesson-25:session-06:i09:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to like his personality.",
-                "uk": "У записі звучить She used to like his personality."
+                "ru": "В записи звучит My attitude to work used to be different.",
+                "uk": "У записі звучить My attitude to work used to be different."
               }
             },
             {
-              "responseId": "en:lesson-25:session-06:i12:r3",
+              "responseId": "en:lesson-25:session-06:i09:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит She used to like his personality.",
-                "uk": "У записі звучить She used to like his personality."
+                "ru": "В записи звучит My attitude to work used to be different.",
+                "uk": "У записі звучить My attitude to work used to be different."
               }
             }
           ],
@@ -2012,21 +1797,21 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i13",
-        "ordinal": 20,
+        "interactionId": "en:lesson-25:session-06:i10",
+        "ordinal": 17,
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Поєднайте слова з перекладом",
+        "prompt": "Розрізніть етапи життя та якості людини",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "accessibilityLabel": "Розрізніть етапи життя та якості людини",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-25:session-06:i13:p1",
+              "pairId": "en:lesson-25:session-06:i10:p1",
               "target": "youth",
               "meaningByLocale": {
                 "ru": "юность",
@@ -2034,7 +1819,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-06:i13:p2",
+              "pairId": "en:lesson-25:session-06:i10:p2",
               "target": "adulthood",
               "meaningByLocale": {
                 "ru": "взрослая жизнь",
@@ -2042,7 +1827,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-06:i13:p3",
+              "pairId": "en:lesson-25:session-06:i10:p3",
               "target": "attitude",
               "meaningByLocale": {
                 "ru": "отношение, настрой",
@@ -2050,7 +1835,7 @@
               }
             },
             {
-              "pairId": "en:lesson-25:session-06:i13:p4",
+              "pairId": "en:lesson-25:session-06:i10:p4",
               "target": "personality",
               "meaningByLocale": {
                 "ru": "характер, личность",
@@ -2085,32 +1870,97 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i14",
-        "ordinal": 21,
-        "purpose": "independent_check",
-        "family": "listen_build_dictation",
+        "interactionId": "en:lesson-25:session-06:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви говорите саме про ставлення людини до роботи, не про всю її особистість чи вік.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i11:r1",
+            "text": "attitude"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i11:r2",
+            "text": "personality"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i11:r3",
+            "text": "adulthood"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви говорите саме про ставлення людини до роботи, не про всю її особистість чи вік.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите именно об отношении человека к работе, не о всей его личности или возрасте.",
+            "uk": "Ви говорите саме про ставлення людини до роботи, не про всю її особистість чи вік."
+          },
+          "gappedTargetPhrase": "I like his ___ to work.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-06:i11:r1",
+              "text": "attitude"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i11:r2",
+              "text": "personality"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i11:r3",
+              "text": "adulthood"
+            }
+          ],
+          "testedDimension": "Ви говорите саме про ставлення людини до роботи, не про всю її особистість чи вік.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i11:r2",
+              "correct": false,
+              "testedDimension": "Ви говорите саме про ставлення людини до роботи, не про всю її особистість чи вік.",
+              "feedbackByLocale": {
+                "ru": "Personality — личность или характер в целом; здесь речь об отношении к работе.",
+                "uk": "Personality — особистість або характер загалом; тут ідеться про ставлення до роботи."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i11:r3",
+              "correct": false,
+              "testedDimension": "Ви говорите саме про ставлення людини до роботи, не про всю її особистість чи вік.",
+              "feedbackByLocale": {
+                "ru": "Adulthood — взрослая жизнь, а не отношение к чему-либо.",
+                "uk": "Adulthood — доросле життя, а не ставлення до чогось."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Знайшов іншу роботу",
+        "prompt": "Одну розповідь ви вже почули. Попросіть: «Розкажи мені ще одну історію».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i14:audio"
-        ],
-        "accessibilityLabel": "Знайшов іншу роботу",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Одну розповідь ви вже почули. Попросіть: «Розкажи мені ще одну історію».",
         "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i14:audio",
-            "transcript": "I have found another job."
+          "family": "phrase_builder",
+          "targetPhrase": "Tell me another story.",
+          "localizedMeaning": {
+            "ru": "Один рассказ вы уже услышали. Попросите: «Расскажи мне ещё одну историю».",
+            "uk": "Одну розповідь ви вже почули. Попросіть: «Розкажи мені ще одну історію»."
           },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I have found another job.",
           "orderedTokens": [
-            "I",
-            "have",
-            "found",
+            "Tell",
+            "me",
             "another",
-            "job"
+            "story"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2122,33 +1972,35 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-25:session-06:i15",
-        "ordinal": 22,
-        "purpose": "independent_check",
+        "interactionId": "en:lesson-25:session-06:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Інші сім’ї переїхали",
+        "prompt": "Почуйте сімейний спогад.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-25:session-06:i15:audio"
+          "en:lesson-25:session-06:i13:audio"
         ],
-        "accessibilityLabel": "Інші сім’ї переїхали",
+        "accessibilityLabel": "Почуйте сімейний спогад.",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i15:audio",
-            "transcript": "The other families moved last year."
+            "audioTargetId": "en:lesson-25:session-06:i13:audio",
+            "transcript": "We used to look at old photos together."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "The other families moved last year.",
+          "hiddenTargetPhrase": "We used to look at old photos together.",
           "orderedTokens": [
-            "The",
-            "other",
-            "families",
-            "moved",
-            "last",
-            "year"
+            "We",
+            "used",
+            "to",
+            "look",
+            "at",
+            "old",
+            "photos",
+            "together"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2156,6 +2008,151 @@
             "ru": "",
             "uk": ""
           }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i14:r1",
+            "text": "I found my old diary yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i14:r2",
+            "text": "I read my old diary yesterday."
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i14:r3",
+            "text": "I found my old photos yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-06:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-06:i14:audio",
+            "transcript": "I found my old diary yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-06:i14:r1",
+              "targetText": "I found my old diary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i14:r2",
+              "targetText": "I read my old diary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i14:r3",
+              "targetText": "I found my old photos yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i14:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found my old diary yesterday.",
+                "uk": "У записі звучить I found my old diary yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i14:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found my old diary yesterday.",
+                "uk": "У записі звучить I found my old diary yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-06:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви говорите про один вечір минулого тижня.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-06:i15:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i15:r2",
+            "text": "have talked"
+          },
+          {
+            "responseId": "en:lesson-25:session-06:i15:r3",
+            "text": "used to talk"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви говорите про один вечір минулого тижня.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы говорите об одном вечере на прошлой неделе.",
+            "uk": "Ви говорите про один вечір минулого тижня."
+          },
+          "gappedTargetPhrase": "We ___ about our school days last week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-06:i15:r1",
+              "text": "talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i15:r2",
+              "text": "have talked"
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i15:r3",
+              "text": "used to talk"
+            }
+          ],
+          "testedDimension": "Ви говорите про один вечір минулого тижня.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-06:i15:r2",
+              "correct": false,
+              "testedDimension": "Ви говорите про один вечір минулого тижня.",
+              "feedbackByLocale": {
+                "ru": "Last week — законченное время: нужен Past Simple talked.",
+                "uk": "Last week — завершений час: потрібен Past Simple talked."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-06:i15:r3",
+              "correct": false,
+              "testedDimension": "Ви говорите про один вечір минулого тижня.",
+              "feedbackByLocale": {
+                "ru": "Used to talk описывает прежнюю привычку; здесь был один разговор.",
+                "uk": "Used to talk описує колишню звичку; тут була одна розмова."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -2165,21 +2162,21 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Ми раніше розповідали про свою юність».",
+        "prompt": "Тепер ви любите зустрічі. Скажіть про минуле: «Раніше я волів бути сам».",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-06:i16:audio"
         ],
-        "accessibilityLabel": "Скажіть: «Ми раніше розповідали про свою юність».",
+        "accessibilityLabel": "Тепер ви любите зустрічі. Скажіть про минуле: «Раніше я волів бути сам».",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-25:session-06:i16:audio",
-            "transcript": "We used to talk about our youth."
+            "transcript": "I used to prefer being alone."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We used to talk about our youth.",
+          "targetPhrase": "I used to prefer being alone.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2195,33 +2192,34 @@
       {
         "interactionId": "en:lesson-25:session-06:i17",
         "ordinal": 24,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть: «Вона раніше хвилювалася через майбутнє доросле життя».",
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть про спогади інших людей: «В інших людей інші спогади».",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-25:session-06:i17:audio"
-        ],
-        "accessibilityLabel": "Скажіть: «Вона раніше хвилювалася через майбутнє доросле життя».",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть про спогади інших людей: «В інших людей інші спогади».",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-25:session-06:i17:audio",
-            "transcript": "She used to worry about adulthood."
+          "family": "phrase_builder",
+          "targetPhrase": "Other people have different memories.",
+          "localizedMeaning": {
+            "ru": "Скажите о воспоминаниях других людей: «У других людей другие воспоминания».",
+            "uk": "Скажіть про спогади інших людей: «В інших людей інші спогади»."
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She used to worry about adulthood.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "Other",
+            "people",
+            "have",
+            "different",
+            "memories"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       }
@@ -2235,17 +2233,17 @@
     },
     {
       "interactionId": "en:lesson-25:session-06:i01",
-      "correctText": "He used to talk about his youth.",
+      "correctText": "My father used to keep a diary in his youth.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-25:session-06:i02",
-      "correctText": "talk",
+      "correctText": "I used to spend summers with my grandparents.",
       "correctResponseId": "en:lesson-25:session-06:i02:r1"
     },
     {
       "interactionId": "en:lesson-25:session-06:i03",
-      "correctText": "He used to talk about his youth.",
+      "correctText": "used to be",
       "correctResponseId": "en:lesson-25:session-06:i03:r1"
     },
     {
@@ -2255,38 +2253,13 @@
     },
     {
       "interactionId": "en:lesson-25:session-06:i04",
-      "correctText": "I used to worry about adulthood.",
-      "correctResponseId": null
+      "correctText": "I used to dream about adulthood.",
+      "correctResponseId": "en:lesson-25:session-06:i04:r1"
     },
     {
       "interactionId": "en:lesson-25:session-06:i05",
-      "correctText": "worry",
-      "correctResponseId": "en:lesson-25:session-06:i05:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i06",
-      "correctText": "I used to worry about adulthood.",
-      "correctResponseId": "en:lesson-25:session-06:i06:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:word:attitude",
-      "correctText": "attitude",
+      "correctText": "I used to dream about living alone.",
       "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i07",
-      "correctText": "We used to have the same attitude to money.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i08",
-      "correctText": "have",
-      "correctResponseId": "en:lesson-25:session-06:i08:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i09",
-      "correctText": "We used to have the same attitude to money.",
-      "correctResponseId": "en:lesson-25:session-06:i09:r1"
     },
     {
       "interactionId": "en:lesson-25:session-06:word:personality",
@@ -2294,43 +2267,68 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-06:i10",
-      "correctText": "She used to like his personality.",
+      "interactionId": "en:lesson-25:session-06:i06",
+      "correctText": "Her personality has changed.",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-25:session-06:i11",
-      "correctText": "like",
-      "correctResponseId": "en:lesson-25:session-06:i11:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i12",
-      "correctText": "She used to like his personality.",
-      "correctResponseId": "en:lesson-25:session-06:i12:r1"
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i13",
-      "correctText": "",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i14",
-      "correctText": "I have found another job.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i15",
-      "correctText": "The other families moved last year.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-06:i16",
+      "interactionId": "en:lesson-25:session-06:i07",
       "correctText": "We used to talk about our youth.",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-25:session-06:i08",
+      "correctText": "changed",
+      "correctResponseId": "en:lesson-25:session-06:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:word:attitude",
+      "correctText": "attitude",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i09",
+      "correctText": "My attitude to work used to be different.",
+      "correctResponseId": "en:lesson-25:session-06:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i11",
+      "correctText": "attitude",
+      "correctResponseId": "en:lesson-25:session-06:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i12",
+      "correctText": "Tell me another story.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i13",
+      "correctText": "We used to look at old photos together.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i14",
+      "correctText": "I found my old diary yesterday.",
+      "correctResponseId": "en:lesson-25:session-06:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i15",
+      "correctText": "talked",
+      "correctResponseId": "en:lesson-25:session-06:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-06:i16",
+      "correctText": "I used to prefer being alone.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-25:session-06:i17",
-      "correctText": "She used to worry about adulthood.",
+      "correctText": "Other people have different memories.",
       "correctResponseId": null
     }
   ]

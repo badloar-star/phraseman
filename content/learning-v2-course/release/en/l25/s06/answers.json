@@ -6,17 +6,17 @@
   },
   {
     "interactionId": "en:lesson-25:session-06:i01",
-    "correctText": "He used to talk about his youth.",
+    "correctText": "My father used to keep a diary in his youth.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-06:i02",
-    "correctText": "talk",
+    "correctText": "I used to spend summers with my grandparents.",
     "correctResponseId": "en:lesson-25:session-06:i02:r1"
   },
   {
     "interactionId": "en:lesson-25:session-06:i03",
-    "correctText": "He used to talk about his youth.",
+    "correctText": "used to be",
     "correctResponseId": "en:lesson-25:session-06:i03:r1"
   },
   {
@@ -26,38 +26,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-06:i04",
-    "correctText": "I used to worry about adulthood.",
-    "correctResponseId": null
+    "correctText": "I used to dream about adulthood.",
+    "correctResponseId": "en:lesson-25:session-06:i04:r1"
   },
   {
     "interactionId": "en:lesson-25:session-06:i05",
-    "correctText": "worry",
-    "correctResponseId": "en:lesson-25:session-06:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i06",
-    "correctText": "I used to worry about adulthood.",
-    "correctResponseId": "en:lesson-25:session-06:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:word:attitude",
-    "correctText": "attitude",
+    "correctText": "I used to dream about living alone.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i07",
-    "correctText": "We used to have the same attitude to money.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i08",
-    "correctText": "have",
-    "correctResponseId": "en:lesson-25:session-06:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i09",
-    "correctText": "We used to have the same attitude to money.",
-    "correctResponseId": "en:lesson-25:session-06:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-06:word:personality",
@@ -65,43 +40,68 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-06:i10",
-    "correctText": "She used to like his personality.",
+    "interactionId": "en:lesson-25:session-06:i06",
+    "correctText": "Her personality has changed.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-06:i11",
-    "correctText": "like",
-    "correctResponseId": "en:lesson-25:session-06:i11:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i12",
-    "correctText": "She used to like his personality.",
-    "correctResponseId": "en:lesson-25:session-06:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i13",
-    "correctText": "en:lesson-25:session-06:i13:p1=youth\nen:lesson-25:session-06:i13:p2=adulthood\nen:lesson-25:session-06:i13:p3=attitude\nen:lesson-25:session-06:i13:p4=personality",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i14",
-    "correctText": "I have found another job.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i15",
-    "correctText": "The other families moved last year.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-06:i16",
+    "interactionId": "en:lesson-25:session-06:i07",
     "correctText": "We used to talk about our youth.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-06:i08",
+    "correctText": "changed",
+    "correctResponseId": "en:lesson-25:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:word:attitude",
+    "correctText": "attitude",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i09",
+    "correctText": "My attitude to work used to be different.",
+    "correctResponseId": "en:lesson-25:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i10",
+    "correctText": "en:lesson-25:session-06:i10:p1=youth\nen:lesson-25:session-06:i10:p2=adulthood\nen:lesson-25:session-06:i10:p3=attitude\nen:lesson-25:session-06:i10:p4=personality",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i11",
+    "correctText": "attitude",
+    "correctResponseId": "en:lesson-25:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i12",
+    "correctText": "Tell me another story.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i13",
+    "correctText": "We used to look at old photos together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i14",
+    "correctText": "I found my old diary yesterday.",
+    "correctResponseId": "en:lesson-25:session-06:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i15",
+    "correctText": "talked",
+    "correctResponseId": "en:lesson-25:session-06:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-06:i16",
+    "correctText": "I used to prefer being alone.",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-25:session-06:i17",
-    "correctText": "She used to worry about adulthood.",
+    "correctText": "Other people have different memories.",
     "correctResponseId": null
   }
 ]

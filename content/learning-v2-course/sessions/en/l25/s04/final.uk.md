@@ -49,103 +49,103 @@ Yearly — щорічний; a yearly pass — річний абонемент. 
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — former**
+**1 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-04:i01; family: listen_choose -->
+🔊 *I visited my old school yesterday.* → **I visited my old school yesterday.** · I visited my old school last week. · I visited my old house yesterday.
+- I visited my old school last week. — *У записі звучить I visited my old school yesterday.*
+- I visited my old house yesterday. — *У записі звучить I visited my old school yesterday.*
+
+**2 · Картка слова — former**
 <!-- interaction_id: en:lesson-25:session-04:word:former; family: word_card -->
-> **former** — колишній.
+> **former** — колишній
 
-**2 · Скажіть: «Раніше я навідував свого колишнього сусіда.»**
-<!-- interaction_id: en:lesson-25:session-04:i01; family: phrase_builder -->
-Плитки: `neighbour` `former` `my` `visit` `to` `used` `I` → **I used to visit my former neighbour.**
+**3 · Згадайте колишнього вчителя: «Мій колишній учитель раніше жив поруч».**
+<!-- interaction_id: en:lesson-25:session-04:i02; family: phrase_builder -->
+Плитки: `nearby` `live` `to` `used` `teacher` `former` `My` → **My former teacher used to live nearby.**
 
-**3 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-04:i02; family: context_gap_grammar -->
-I used to ___ my former neighbour. → **visit** · visited · visiting
-- visited — *Після used to потрібна форма visit.*
-- visiting — *Після used to потрібна форма visit.*
-
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-04:i03; family: listen_choose -->
-🔊 *I used to visit my former neighbour.* → **I used to visit my former neighbour.** · We used to visit my former neighbour. · I used to call my former neighbour.
-- We used to visit my former neighbour. — *У записі звучить I used to visit my former neighbour.*
-- I used to call my former neighbour. — *У записі звучить I used to visit my former neighbour.*
+**4 · Зараз ви живете далеко. Раніше дорога до школи тривала п’ять хвилин. Виберіть колишній стан.**
+<!-- interaction_id: en:lesson-25:session-04:i03; family: context_gap_grammar -->
+The walk to school ___ five minutes. → **used to take** · takes · is taking
+- takes — *Takes описує теперішнє, а тут ідеться про колишню дорогу.*
+- is taking — *Is taking не описує колишній постійний час у дорозі.*
 
 **5 · Картка слова — frequent**
 <!-- interaction_id: en:lesson-25:session-04:word:frequent; family: word_card -->
-> **frequent** — частий.
+> **frequent** — частий
 
-**6 · Скажіть: «Раніше вона часто робила перерви.»**
-<!-- interaction_id: en:lesson-25:session-04:i04; family: phrase_builder -->
-Плитки: `breaks` `frequent` `take` `to` `used` `She` → **She used to take frequent breaks.**
+**6 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-04:i04; family: listen_choose -->
+🔊 *We used to make frequent trips to the beach.* → **We used to make frequent trips to the beach.** · We used to make frequent trips to the park. · We used to make frequent trips to the market.
+- We used to make frequent trips to the park. — *У записі звучить We used to make frequent trips to the beach.*
+- We used to make frequent trips to the market. — *У записі звучить We used to make frequent trips to the beach.*
 
-**7 · Доповніть спогад.**
+**7 · Перерви траплялися багато разів за день. Виберіть слово саме про частоту, не про тривалість.**
 <!-- interaction_id: en:lesson-25:session-04:i05; family: context_gap_grammar -->
-She used to ___ frequent breaks. → **take** · took · taking
-- took — *Після used to потрібна форма take.*
-- taking — *Після used to потрібна форма take.*
+I used to take ___ breaks. → **frequent** · long · short
+- long — *Long — довгі; це тривалість, не частота.*
+- short — *Short — короткі; це тривалість, не частота.*
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-04:i06; family: listen_choose -->
-🔊 *She used to take frequent breaks.* → **She used to take frequent breaks.** · He used to take frequent breaks. · She used to need frequent breaks.
-- He used to take frequent breaks. — *У записі звучить She used to take frequent breaks.*
-- She used to need frequent breaks. — *У записі звучить She used to take frequent breaks.*
+**8 · Почуйте, з ким мовець спілкувався раніше.**
+<!-- interaction_id: en:lesson-25:session-04:i06; family: listen_build_dictation -->
+🔊 *I used to call my former neighbour every week.* Плитки: `week` `every` `neighbour` `former` `my` `call` `to` `used` `I` → **I used to call my former neighbour every week.**
 
-**9 · Картка слова — occasional**
-<!-- interaction_id: en:lesson-25:session-04:word:occasional; family: word_card -->
-> **occasional** — такий, що трапляється час від часу.
-
-**10 · Скажіть: «Раніше до нас час від часу приходили гості.»**
-<!-- interaction_id: en:lesson-25:session-04:i07; family: phrase_builder -->
-Плитки: `guests` `occasional` `have` `to` `used` `We` → **We used to have occasional guests.**
-
-**11 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-04:i08; family: context_gap_grammar -->
-We used to ___ occasional guests. → **have** · had · having
-- had — *Після used to потрібна форма have.*
-- having — *Після used to потрібна форма have.*
-
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-04:i09; family: listen_choose -->
-🔊 *We used to have occasional guests.* → **We used to have occasional guests.** · They used to have occasional guests. · We used to have occasional visitors.
-- They used to have occasional guests. — *У записі звучить We used to have occasional guests.*
-- We used to have occasional visitors. — *У записі звучить We used to have occasional guests.*
-
-**13 · Картка слова — yearly**
+**9 · Картка слова — yearly**
 <!-- interaction_id: en:lesson-25:session-04:word:yearly; family: word_card -->
-> **yearly** — щорічний.
+> **yearly** — щорічний
 
-**14 · Скажіть: «Раніше він купував річний абонемент.»**
-<!-- interaction_id: en:lesson-25:session-04:i10; family: phrase_builder -->
-Плитки: `pass` `yearly` `a` `buy` `to` `used` `He` → **He used to buy a yearly pass.**
+**10 · Порівняйте ціну абонемента: «Мій річний абонемент раніше коштував менше».**
+<!-- interaction_id: en:lesson-25:session-04:i07; family: phrase_builder -->
+Плитки: `less` `cost` `to` `used` `pass` `yearly` `My` → **My yearly pass used to cost less.**
 
-**15 · Доповніть спогад.**
-<!-- interaction_id: en:lesson-25:session-04:i11; family: context_gap_grammar -->
-He used to ___ a yearly pass. → **buy** · bought · buying
-- bought — *Після used to потрібна форма buy.*
-- buying — *Після used to потрібна форма buy.*
+**11 · Повідомте про результат: «Я вже продовжив свій річний абонемент».**
+<!-- interaction_id: en:lesson-25:session-04:i08; family: scripted_repeat_compare -->
+🎙 **I have already renewed my yearly pass.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-04:i12; family: listen_choose -->
-🔊 *He used to buy a yearly pass.* → **He used to buy a yearly pass.** · She used to buy a yearly pass. · He used to renew a yearly pass.
-- She used to buy a yearly pass. — *У записі звучить He used to buy a yearly pass.*
-- He used to renew a yearly pass. — *У записі звучить He used to buy a yearly pass.*
+**12 · Картка слова — occasional**
+<!-- interaction_id: en:lesson-25:session-04:word:occasional; family: word_card -->
+> **occasional** — такий, що трапляється час від часу
 
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-04:i13; family: speed_match -->
+**13 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-04:i09; family: listen_choose -->
+🔊 *We used to have occasional picnics by the river.* → **We used to have occasional picnics by the river.** · We used to have occasional picnics in the forest. · We used to have occasional parties by the river.
+- We used to have occasional picnics in the forest. — *У записі звучить We used to have occasional picnics by the river.*
+- We used to have occasional parties by the river. — *У записі звучить We used to have occasional picnics by the river.*
+
+**14 · Пригадайте значення прикметників**
+<!-- interaction_id: en:lesson-25:session-04:i10; family: speed_match -->
 former — колишній · frequent — частий · occasional — такий, що трапляється час від часу · yearly — щорічний
 
-**18 · Ще один квиток**
-<!-- interaction_id: en:lesson-25:session-04:i14; family: listen_build_dictation -->
-🔊 *I have bought another ticket.* Плитки: `ticket` `another` `bought` `have` `I` → **I have bought another ticket.**
+**15 · Ви розповідаєте про досвід без дати. Доповніть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-04:i11; family: context_gap_grammar -->
+I have ___ my former teacher twice. → **met** · meet · meeting
+- meet — *Після have у Present Perfect потрібна форма met.*
+- meeting — *Meeting тут не утворює Present Perfect; потрібно met.*
 
-**19 · Інші квитки надійшли вчора**
-<!-- interaction_id: en:lesson-25:session-04:i15; family: listen_build_dictation -->
-🔊 *The other tickets arrived yesterday.* Плитки: `yesterday` `arrived` `tickets` `other` `The` → **The other tickets arrived yesterday.**
+**16 · Один парк ви знаєте. Скажіть: «Ми хочемо відвідати інші парки».**
+<!-- interaction_id: en:lesson-25:session-04:i12; family: phrase_builder -->
+Плитки: `parks` `other` `visit` `to` `want` `We` → **We want to visit other parks.**
 
-**20 · Скажіть: «Ми раніше часто робили перерви».**
-<!-- interaction_id: en:lesson-25:session-04:i16; family: scripted_repeat_compare -->
-🎙 **We used to take frequent breaks.**
+**17 · Почуйте колишню звичку.**
+<!-- interaction_id: en:lesson-25:session-04:i13; family: listen_build_dictation -->
+🔊 *We used to meet at the same cafe.* Плитки: `cafe` `same` `the` `at` `meet` `to` `used` `We` → **We used to meet at the same cafe.**
 
-**21 · Скажіть: «Вона раніше купувала річний абонемент».**
+**18 · Ви говорите про один візит минулого понеділка.**
+<!-- interaction_id: en:lesson-25:session-04:i14; family: context_gap_grammar -->
+I ___ my former neighbour last Monday. → **visited** · have visited · used to visit
+- have visited — *Last Monday — завершений момент у минулому: visited.*
+- used to visit — *Used to visit описує колишню звичку, а тут один візит.*
+
+**19 · Скажіть про минуле: «Раніше ми час від часу приймали гостей».**
+<!-- interaction_id: en:lesson-25:session-04:i15; family: scripted_repeat_compare -->
+🎙 **We used to have occasional visitors.**
+
+**20 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-04:i16; family: listen_choose -->
+🔊 *I have bought another ticket.* → **I have bought another ticket.** · I have sold another ticket. · I have bought another pass.
+- I have sold another ticket. — *У записі звучить I have bought another ticket.*
+- I have bought another pass. — *У записі звучить I have bought another ticket.*
+
+**21 · Згадайте дорогу до друзів: «Раніше я їздив туди автобусом».**
 <!-- interaction_id: en:lesson-25:session-04:i17; family: scripted_repeat_compare -->
-🎙 **She used to buy a yearly pass.**
+🎙 **I used to go there by bus.**
 

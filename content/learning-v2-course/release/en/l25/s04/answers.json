@@ -1,22 +1,22 @@
 [
   {
+    "interactionId": "en:lesson-25:session-04:i01",
+    "correctText": "I visited my old school yesterday.",
+    "correctResponseId": "en:lesson-25:session-04:i01:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-04:word:former",
     "correctText": "former",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-04:i01",
-    "correctText": "I used to visit my former neighbour.",
+    "interactionId": "en:lesson-25:session-04:i02",
+    "correctText": "My former teacher used to live nearby.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-04:i02",
-    "correctText": "visit",
-    "correctResponseId": "en:lesson-25:session-04:i02:r1"
-  },
-  {
     "interactionId": "en:lesson-25:session-04:i03",
-    "correctText": "I used to visit my former neighbour.",
+    "correctText": "used to take",
     "correctResponseId": "en:lesson-25:session-04:i03:r1"
   },
   {
@@ -26,38 +26,18 @@
   },
   {
     "interactionId": "en:lesson-25:session-04:i04",
-    "correctText": "She used to take frequent breaks.",
-    "correctResponseId": null
+    "correctText": "We used to make frequent trips to the beach.",
+    "correctResponseId": "en:lesson-25:session-04:i04:r1"
   },
   {
     "interactionId": "en:lesson-25:session-04:i05",
-    "correctText": "take",
+    "correctText": "frequent",
     "correctResponseId": "en:lesson-25:session-04:i05:r1"
   },
   {
     "interactionId": "en:lesson-25:session-04:i06",
-    "correctText": "She used to take frequent breaks.",
-    "correctResponseId": "en:lesson-25:session-04:i06:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-04:word:occasional",
-    "correctText": "occasional",
+    "correctText": "I used to call my former neighbour every week.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-04:i07",
-    "correctText": "We used to have occasional guests.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-04:i08",
-    "correctText": "have",
-    "correctResponseId": "en:lesson-25:session-04:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-04:i09",
-    "correctText": "We used to have occasional guests.",
-    "correctResponseId": "en:lesson-25:session-04:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-04:word:yearly",
@@ -65,43 +45,63 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-04:i07",
+    "correctText": "My yearly pass used to cost less.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-04:i08",
+    "correctText": "I have already renewed my yearly pass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-04:word:occasional",
+    "correctText": "occasional",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-04:i09",
+    "correctText": "We used to have occasional picnics by the river.",
+    "correctResponseId": "en:lesson-25:session-04:i09:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-04:i10",
-    "correctText": "He used to buy a yearly pass.",
+    "correctText": "en:lesson-25:session-04:i10:p1=former\nen:lesson-25:session-04:i10:p2=frequent\nen:lesson-25:session-04:i10:p3=occasional\nen:lesson-25:session-04:i10:p4=yearly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-04:i11",
-    "correctText": "buy",
+    "correctText": "met",
     "correctResponseId": "en:lesson-25:session-04:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-04:i12",
-    "correctText": "He used to buy a yearly pass.",
-    "correctResponseId": "en:lesson-25:session-04:i12:r1"
+    "correctText": "We want to visit other parks.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-04:i13",
-    "correctText": "en:lesson-25:session-04:i13:p1=former\nen:lesson-25:session-04:i13:p2=frequent\nen:lesson-25:session-04:i13:p3=occasional\nen:lesson-25:session-04:i13:p4=yearly",
+    "correctText": "We used to meet at the same cafe.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-04:i14",
-    "correctText": "I have bought another ticket.",
-    "correctResponseId": null
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-25:session-04:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-04:i15",
-    "correctText": "The other tickets arrived yesterday.",
+    "correctText": "We used to have occasional visitors.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-04:i16",
-    "correctText": "We used to take frequent breaks.",
-    "correctResponseId": null
+    "correctText": "I have bought another ticket.",
+    "correctResponseId": "en:lesson-25:session-04:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-04:i17",
-    "correctText": "She used to buy a yearly pass.",
+    "correctText": "I used to go there by bus.",
     "correctResponseId": null
   }
 ]

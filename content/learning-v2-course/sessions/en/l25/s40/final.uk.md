@@ -53,99 +53,99 @@ Honk — посигналити автомобільним гудком. The dri
 <!-- interaction_id: en:lesson-25:session-40:word:banged; family: word_card -->
 > **banged** — Грюкнула. Bang — видати гучний різкий стукіт чи грюкіт; banged — третя форма.
 
-**2 · Скажіть: «Двері вже зачинилися з гуркотом до того моменту, коли я до них дійшов.»**
-<!-- interaction_id: en:lesson-25:session-40:i01; family: phrase_builder -->
-Плитки: `it` `reached` `I` `time` `the` `by` `shut` `banged` `had` `door` `The` → **The door had banged shut by the time I reached it.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-40:i01; family: listen_choose -->
+🔊 *The wind banged the door shut.* → **The wind banged the door shut.** · The wind banged the window shut. · My brother banged the door shut.
+- The wind banged the window shut. — *У записі звучить The wind banged the door shut.*
+- My brother banged the door shut. — *У записі звучить The wind banged the door shut.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-40:i02; family: context_gap_grammar -->
-The door ___ banged shut by the time I reached it. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · Ви почули гучний грюкіт. Запитайте: «Що це був за шум?»**
+<!-- interaction_id: en:lesson-25:session-40:i02; family: scripted_repeat_compare -->
+🎙 **What was that noise?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-40:i03; family: listen_choose -->
-🔊 *The door had banged shut by the time I reached it.* → **The door had banged shut by the time I reached it.** · The door had banged shut by the time she reached it. · The window had banged shut by the time I reached it.
-- The door had banged shut by the time she reached it. — *У записі звучить The door had banged shut by the time I reached it.*
-- The window had banged shut by the time I reached it. — *У записі звучить The door had banged shut by the time I reached it.*
-
-**5 · Картка слова — crashed**
+**4 · Картка слова — crashed**
 <!-- interaction_id: en:lesson-25:session-40:word:crashed; family: word_card -->
 > **crashed** — З гуркотом упали. Crash тут — з гуркотом упасти; crashed — третя форма.
 
-**6 · Скажіть: «Тарілки вже з гуркотом упали на підлогу до того моменту, коли я впіймав тацю.»**
-<!-- interaction_id: en:lesson-25:session-40:i04; family: phrase_builder -->
-Плитки: `tray` `the` `caught` `I` `time` `the` `by` `floor` `the` `to` `crashed` `had` `plates` `The` → **The plates had crashed to the floor by the time I caught the tray.**
+**5 · Розкажіть, що впало: «Миски з гуркотом упали на підлогу».**
+<!-- interaction_id: en:lesson-25:session-40:i03; family: phrase_builder -->
+Плитки: `floor` `the` `to` `crashed` `bowls` `The` → **The bowls crashed to the floor.**
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-40:i05; family: context_gap_grammar -->
-The plates ___ crashed to the floor by the time I caught the tray. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**6 · Ви впустили тарілку вчора. Виберіть Past Simple.**
+<!-- interaction_id: en:lesson-25:session-40:i04; family: context_gap_grammar -->
+I ___ a plate yesterday. → **dropped** · have dropped · dropping
+- have dropped — *Yesterday — завершений момент, тому dropped.*
+- dropping — *Dropping без допоміжного дієслова тут не підходить.*
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-40:i06; family: listen_choose -->
-🔊 *The plates had crashed to the floor by the time I caught the tray.* → **The plates had crashed to the floor by the time I caught the tray.** · The cups had crashed to the floor by the time I caught the tray. · The plates had crashed to the floor by the time she caught the tray.
-- The cups had crashed to the floor by the time I caught the tray. — *У записі звучить The plates had crashed to the floor by the time I caught the tray.*
-- The plates had crashed to the floor by the time she caught the tray. — *У записі звучить The plates had crashed to the floor by the time I caught the tray.*
-
-**9 · Картка слова — beeped**
+**7 · Картка слова — beeped**
 <!-- interaction_id: en:lesson-25:session-40:word:beeped; family: word_card -->
 > **beeped** — Подав звуковий сигнал. Beep — видати короткий електронний писк; beeped — третя форма.
 
-**10 · Скажіть: «Таймер уже подав звуковий сигнал до того моменту, коли я повернувся.»**
-<!-- interaction_id: en:lesson-25:session-40:i07; family: phrase_builder -->
-Плитки: `returned` `I` `time` `the` `by` `beeped` `had` `timer` `The` → **The timer had beeped by the time I returned.**
+**8 · Почуйте, який прилад подав сигнал.**
+<!-- interaction_id: en:lesson-25:session-40:i05; family: listen_build_dictation -->
+🔊 *The microwave beeped twice.* Плитки: `twice` `beeped` `microwave` `The` → **The microwave beeped twice.**
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-40:i08; family: context_gap_grammar -->
-The timer ___ beeped by the time I returned. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-40:i06; family: listen_choose -->
+🔊 *The food is ready.* → **The food is ready.** · The food is cold. · The food is hot.
+- The food is cold. — *У записі звучить The food is ready.*
+- The food is hot. — *У записі звучить The food is ready.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-40:i09; family: listen_choose -->
-🔊 *The timer had beeped by the time I returned.* → **The timer had beeped by the time I returned.** · The timer had beeped by the time she returned. · The timer had beeped by the time we returned.
-- The timer had beeped by the time she returned. — *У записі звучить The timer had beeped by the time I returned.*
-- The timer had beeped by the time we returned. — *У записі звучить The timer had beeped by the time I returned.*
-
-**13 · Картка слова — honked**
+**10 · Картка слова — honked**
 <!-- interaction_id: en:lesson-25:session-40:word:honked; family: word_card -->
 > **honked** — Посигналив. Honk — подати сигнал автомобільним гудком; honked — третя форма.
 
-**14 · Скажіть: «Водій уже посигналив до того моменту, коли я побачив машину.»**
-<!-- interaction_id: en:lesson-25:session-40:i10; family: phrase_builder -->
-Плитки: `car` `the` `saw` `I` `time` `the` `by` `honked` `had` `driver` `The` → **The driver had honked by the time I saw the car.**
+**11 · Водій подав сигнал автомобільним гудком. Виберіть honked.**
+<!-- interaction_id: en:lesson-25:session-40:i07; family: context_gap_grammar -->
+The driver ___. → **honked** · whispered · laughed
+- whispered — *Whispered — прошепотів, а тут сигнал автомобіля.*
+- laughed — *Laughed — засміявся; тут ідеться про гудок.*
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-40:i11; family: context_gap_grammar -->
-The driver ___ honked by the time I saw the car. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**12 · Таксі приїхало. Повідомте родині: «Наше таксі вже тут».**
+<!-- interaction_id: en:lesson-25:session-40:i08; family: scripted_repeat_compare -->
+🎙 **Our taxi is here.**
+
+**13 · Зіставте звуки та дії з перекладом**
+<!-- interaction_id: en:lesson-25:session-40:i09; family: speed_match -->
+banged — грюкнула · crashed — з гуркотом упали · beeped — подав звуковий сигнал · honked — посигналив
+
+**14 · Ви вимкнули духовку раніше за прихід гостя. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-40:i10; family: context_gap_grammar -->
+I ___ turned the oven off by the time my friend arrived. → **had** · have · was
+- have — *Have стосується теперішнього, а arrived задає минулий момент.*
+- was — *Для завершеної дії до приходу потрібно had turned.*
+
+**15 · Попросіть зачинити двері: «Будь ласка, зачини двері тихо».**
+<!-- interaction_id: en:lesson-25:session-40:i11; family: phrase_builder -->
+Плитки: `quietly` `door` `the` `close` `Please` → **Please close the door quietly.**
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-40:i12; family: listen_choose -->
-🔊 *The driver had honked by the time I saw the car.* → **The driver had honked by the time I saw the car.** · The driver had honked by the time she saw the car. · The driver had honked by the time I saw the bus.
-- The driver had honked by the time she saw the car. — *У записі звучить The driver had honked by the time I saw the car.*
-- The driver had honked by the time I saw the bus. — *У записі звучить The driver had honked by the time I saw the car.*
+🔊 *I have already cleaned the floor.* → **I have already cleaned the floor.** · I have already cleaned the table. · She has already cleaned the floor.
+- I have already cleaned the table. — *У записі звучить I have already cleaned the floor.*
+- She has already cleaned the floor. — *У записі звучить I have already cleaned the floor.*
 
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-40:i13; family: speed_match -->
-banged — грюкнула · crashed — з гуркотом упали · beeped — подав звуковий сигнал · honked — посигналив
+**17 · Тарілка розбилася. Ви берете ще одну.**
+<!-- interaction_id: en:lesson-25:session-40:i13; family: context_gap_grammar -->
+I need ___ plate. → **another** · other · others
+- other — *Plate в однині, тому another.*
+- others — *Others не вживається перед plate.*
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-40:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**18 · Ви випадково розбудили друга. Вибачтеся: «Вибач, що розбудив тебе».**
+<!-- interaction_id: en:lesson-25:session-40:i14; family: scripted_repeat_compare -->
+🎙 **I am sorry I woke you up.**
 
-**19 · Потяг уже поїхав**
+**19 · Почуйте, де лежать ключі.**
 <!-- interaction_id: en:lesson-25:session-40:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *Your keys are beside the phone.* Плитки: `phone` `the` `beside` `are` `keys` `Your` → **Your keys are beside the phone.**
 
-**20 · Скажіть: «Таймер уже подав сигнал до того моменту, коли він повернувся».**
-<!-- interaction_id: en:lesson-25:session-40:i16; family: scripted_repeat_compare -->
-🎙 **The timer had beeped by the time he returned.**
+**20 · У колишній квартирі було тихо, а тепер гамірно. Доповніть used to.**
+<!-- interaction_id: en:lesson-25:session-40:i16; family: context_gap_grammar -->
+Our old flat used to ___ quiet. → **be** · was · being
+- was — *Після used to потрібна початкова форма be, не was.*
+- being — *Після used to тут потрібна be, не being.*
 
-**21 · Скажіть: «Водій уже посигналив до того моменту, коли ми побачили машину».**
-<!-- interaction_id: en:lesson-25:session-40:i17; family: scripted_repeat_compare -->
-🎙 **The driver had honked by the time we saw the car.**
+**21 · Поясніть порядок подій: «Я почув машину до того, як побачив її».**
+<!-- interaction_id: en:lesson-25:session-40:i17; family: phrase_builder -->
+Плитки: `it` `saw` `I` `before` `car` `the` `heard` `I` → **I heard the car before I saw it.**
 

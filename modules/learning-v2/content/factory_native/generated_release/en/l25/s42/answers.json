@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-42:i01",
-    "correctText": "Our cat would purr beside me every evening.",
-    "correctResponseId": null
+    "correctText": "I can hear the cat purr.",
+    "correctResponseId": "en:lesson-25:session-42:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-42:i02",
-    "correctText": "purr",
-    "correctResponseId": "en:lesson-25:session-42:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-42:i03",
-    "correctText": "Our cat would purr beside me every evening.",
-    "correctResponseId": "en:lesson-25:session-42:i03:r1"
+    "correctText": "Our cat used to sleep on the sofa.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-42:word:growl",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-42:i04",
-    "correctText": "Our dog would growl at other dogs.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-42:i05",
+    "interactionId": "en:lesson-25:session-42:i03",
     "correctText": "growl",
-    "correctResponseId": "en:lesson-25:session-42:i05:r1"
+    "correctResponseId": "en:lesson-25:session-42:i03:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-42:i06",
-    "correctText": "Our dog would growl at other dogs.",
-    "correctResponseId": "en:lesson-25:session-42:i06:r1"
+    "interactionId": "en:lesson-25:session-42:i04",
+    "correctText": "It is hanging beside the door.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-42:word:hiss",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-42:i07",
-    "correctText": "The cat would hiss at our dog.",
+    "interactionId": "en:lesson-25:session-42:i05",
+    "correctText": "My cat can hiss very loudly.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-42:i08",
-    "correctText": "hiss",
-    "correctResponseId": "en:lesson-25:session-42:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-42:i09",
-    "correctText": "The cat would hiss at our dog.",
-    "correctResponseId": "en:lesson-25:session-42:i09:r1"
+    "interactionId": "en:lesson-25:session-42:i06",
+    "correctText": "The cat is hiding under the bed.",
+    "correctResponseId": "en:lesson-25:session-42:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-42:word:howl",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-42:i10",
-    "correctText": "The dog would howl at night.",
+    "interactionId": "en:lesson-25:session-42:i07",
+    "correctText": "howl",
+    "correctResponseId": "en:lesson-25:session-42:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-42:i08",
+    "correctText": "en:lesson-25:session-42:i08:p1=purr\nen:lesson-25:session-42:i08:p2=growl\nen:lesson-25:session-42:i08:p3=hiss\nen:lesson-25:session-42:i08:p4=howl",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-42:i09",
+    "correctText": "I have already fed the dog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-42:i10",
+    "correctText": "walked",
+    "correctResponseId": "en:lesson-25:session-42:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-42:i11",
-    "correctText": "howl",
-    "correctResponseId": "en:lesson-25:session-42:i11:r1"
+    "correctText": "I noticed the open door after the cat left.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-42:i12",
-    "correctText": "The dog would howl at night.",
+    "correctText": "We found him in the garden.",
     "correctResponseId": "en:lesson-25:session-42:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-42:i13",
-    "correctText": "en:lesson-25:session-42:i13:p1=purr\nen:lesson-25:session-42:i13:p2=growl\nen:lesson-25:session-42:i13:p3=hiss\nen:lesson-25:session-42:i13:p4=howl",
-    "correctResponseId": null
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-42:i13:r1"
   },
   {
     "interactionId": "en:lesson-25:session-42:i14",
-    "correctText": "I used to drive to work.",
+    "correctText": "Please fill the bowl with water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-42:i15",
-    "correctText": "We would play outside every evening.",
+    "correctText": "Thank you for bringing him home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-42:i16",
-    "correctText": "Their cat would purr beside me.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-42:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-42:i17",
-    "correctText": "Our dog would howl in the evening.",
+    "correctText": "As a child I would play with our dog every evening.",
     "correctResponseId": null
   }
 ]

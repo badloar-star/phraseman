@@ -53,99 +53,99 @@ Within — у межах, усередині меж. We used to stay within the 
 <!-- interaction_id: en:lesson-25:session-43:word:among; family: word_card -->
 > **among** — Серед. Among — усередині групи людей або речей.
 
-**2 · Скажіть: «Раніше вона зазвичай сиділа серед своїх друзів.»**
-<!-- interaction_id: en:lesson-25:session-43:i01; family: phrase_builder -->
-Плитки: `friends` `her` `among` `sit` `to` `used` `She` → **She used to sit among her friends.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-43:i01; family: listen_choose -->
+🔊 *I found my keys among the toys.* → **I found my keys among the toys.** · I found my keys under the toys. · I found my phone among the toys.
+- I found my keys under the toys. — *У записі звучить I found my keys among the toys.*
+- I found my phone among the toys. — *У записі звучить I found my keys among the toys.*
 
-**3 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-43:i02; family: context_gap_grammar -->
-She ___ to sit among her friends. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
+**3 · Ви шукаєте сумку. Запитайте друга: «Ти бачив мою сумку?»**
+<!-- interaction_id: en:lesson-25:session-43:i02; family: scripted_repeat_compare -->
+🎙 **Have you seen my bag?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-43:i03; family: listen_choose -->
-🔊 *She used to sit among her friends.* → **She used to sit among her friends.** · He used to sit among his friends. · She used to sit among her neighbours.
-- He used to sit among his friends. — *У записі звучить She used to sit among her friends.*
-- She used to sit among her neighbours. — *У записі звучить She used to sit among her friends.*
-
-**5 · Картка слова — opposite**
+**4 · Картка слова — opposite**
 <!-- interaction_id: en:lesson-25:session-43:word:opposite; family: word_card -->
 > **opposite** — Навпроти. Opposite тут — на протилежному боці від чогось.
 
-**6 · Скажіть: «Раніше я жив навпроти школи.»**
-<!-- interaction_id: en:lesson-25:session-43:i04; family: phrase_builder -->
-Плитки: `school` `the` `opposite` `live` `to` `used` `I` → **I used to live opposite the school.**
+**5 · Поясніть, де розташоване кафе: «Кафе навпроти банку».**
+<!-- interaction_id: en:lesson-25:session-43:i03; family: phrase_builder -->
+Плитки: `bank` `the` `opposite` `is` `cafe` `The` → **The cafe is opposite the bank.**
 
-**7 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-43:i05; family: context_gap_grammar -->
-I ___ to live opposite the school. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
+**6 · Ваш колишній будинок був на іншому боці вулиці від школи. Виберіть opposite.**
+<!-- interaction_id: en:lesson-25:session-43:i04; family: context_gap_grammar -->
+I used to live ___ the school. → **opposite** · inside · under
+- inside — *Inside означало б усередині школи, а будинок був через дорогу.*
+- under — *Under означало б під школою, а не навпроти.*
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-43:i06; family: listen_choose -->
-🔊 *I used to live opposite the school.* → **I used to live opposite the school.** · She used to live opposite the school. · I used to live opposite the park.
-- She used to live opposite the school. — *У записі звучить I used to live opposite the school.*
-- I used to live opposite the park. — *У записі звучить I used to live opposite the school.*
-
-**9 · Картка слова — beyond**
+**7 · Картка слова — beyond**
 <!-- interaction_id: en:lesson-25:session-43:word:beyond; family: word_card -->
 > **beyond** — Далі, за. Beyond — далі за вказане місце чи межу.
 
-**10 · Скажіть: «Раніше ми зазвичай ходили далі за міст.»**
-<!-- interaction_id: en:lesson-25:session-43:i07; family: phrase_builder -->
-Плитки: `bridge` `the` `beyond` `walk` `to` `used` `We` → **We used to walk beyond the bridge.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-43:i05; family: listen_choose -->
+🔊 *The campsite is beyond the bridge.* → **The campsite is beyond the bridge.** · The campsite is beside the bridge. · The village is beyond the bridge.
+- The campsite is beside the bridge. — *У записі звучить The campsite is beyond the bridge.*
+- The village is beyond the bridge. — *У записі звучить The campsite is beyond the bridge.*
 
-**11 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-43:i08; family: context_gap_grammar -->
-We ___ to walk beyond the bridge. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
+**9 · Перед прогулянкою уточніть відстань: «Це далеко звідси?»**
+<!-- interaction_id: en:lesson-25:session-43:i06; family: scripted_repeat_compare -->
+🎙 **Is it far from here?**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-43:i09; family: listen_choose -->
-🔊 *We used to walk beyond the bridge.* → **We used to walk beyond the bridge.** · They used to walk beyond the bridge. · We used to walk beyond the village.
-- They used to walk beyond the bridge. — *У записі звучить We used to walk beyond the bridge.*
-- We used to walk beyond the village. — *У записі звучить We used to walk beyond the bridge.*
-
-**13 · Картка слова — within**
+**10 · Картка слова — within**
 <!-- interaction_id: en:lesson-25:session-43:word:within; family: word_card -->
 > **within** — У межах. Within — усередині вказаних меж.
 
-**14 · Скажіть: «Раніше ми зазвичай залишалися в межах села.»**
-<!-- interaction_id: en:lesson-25:session-43:i10; family: phrase_builder -->
-Плитки: `village` `the` `within` `stay` `to` `used` `We` → **We used to stay within the village.**
+**11 · Шукана адреса всередині міської межі. Виберіть within.**
+<!-- interaction_id: en:lesson-25:session-43:i07; family: context_gap_grammar -->
+The address is ___ the city limits. → **within** · beyond · opposite
+- beyond — *Beyond означало б за міською межею.*
+- opposite — *Opposite означає навпроти, а тут ідеться про перебування всередині меж.*
 
-**15 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-43:i11; family: context_gap_grammar -->
-We ___ to stay within the village. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
+**12 · Почуйте, де призначено зустріч.**
+<!-- interaction_id: en:lesson-25:session-43:i08; family: listen_build_dictation -->
+🔊 *Meet me outside the library.* Плитки: `library` `the` `outside` `me` `Meet` → **Meet me outside the library.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-43:i12; family: listen_choose -->
-🔊 *We used to stay within the village.* → **We used to stay within the village.** · They used to stay within the village. · We used to stay within the town.
-- They used to stay within the village. — *У записі звучить We used to stay within the village.*
-- We used to stay within the town. — *У записі звучить We used to stay within the village.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-43:i13; family: speed_match -->
+**13 · Зіставте вказівки місця з перекладом**
+<!-- interaction_id: en:lesson-25:session-43:i09; family: speed_match -->
 among — серед · opposite — навпроти · beyond — далі, за · within — у межах
 
-**18 · Уже закінчила до мого дзвінка**
-<!-- interaction_id: en:lesson-25:session-43:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Ви знайшли адресу до дзвінка друга. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-43:i10; family: context_gap_grammar -->
+I ___ found the address by the time my friend called. → **had** · have · was
+- have — *Have пов’язує дію з теперішнім, а called задає минулий момент.*
+- was — *Потрібно had found для ранішої завершеної дії.*
 
-**19 · Раніше їздив машиною**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-43:i11; family: listen_choose -->
+🔊 *We crossed the bridge yesterday.* → **We crossed the bridge yesterday.** · We crossed the road yesterday. · We crossed the bridge last week.
+- We crossed the road yesterday. — *У записі звучить We crossed the bridge yesterday.*
+- We crossed the bridge last week. — *У записі звучить We crossed the bridge yesterday.*
+
+**16 · Опишіть дорогу: «Після мосту поверніть ліворуч».**
+<!-- interaction_id: en:lesson-25:session-43:i12; family: phrase_builder -->
+Плитки: `bridge` `the` `after` `left` `Turn` → **Turn left after the bridge.**
+
+**17 · Ви перевірили мапу, а потім вийшли. Виберіть before.**
+<!-- interaction_id: en:lesson-25:session-43:i13; family: context_gap_grammar -->
+I checked the map ___ I left. → **before** · after · while
+- after — *After змінює порядок: перевірка була б уже після виходу.*
+- while — *While означає одночасність, а перевірка була раніше.*
+
+**18 · Друг пояснив дорогу. Підтвердьте: «Тепер я знаю, куди йти».**
+<!-- interaction_id: en:lesson-25:session-43:i14; family: scripted_repeat_compare -->
+🎙 **Now I know where to go.**
+
+**19 · Почуйте, що змінилося в районі.**
 <!-- interaction_id: en:lesson-25:session-43:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+🔊 *They have opened a new shop near us.* Плитки: `us` `near` `shop` `new` `a` `opened` `have` `They` → **They have opened a new shop near us.**
 
-**20 · Скажіть: «Раніше вони жили навпроти парку».**
-<!-- interaction_id: en:lesson-25:session-43:i16; family: scripted_repeat_compare -->
-🎙 **They used to live opposite the park.**
+**20 · Цей шлях перекрито. Запропонуйте спробувати інший.**
+<!-- interaction_id: en:lesson-25:session-43:i16; family: context_gap_grammar -->
+Let us try ___ way. → **another** · other · others
+- other — *Перед way в однині вживаємо another.*
+- others — *Others не ставиться перед іменником way.*
 
-**21 · Скажіть: «Раніше я зазвичай залишався в межах села».**
-<!-- interaction_id: en:lesson-25:session-43:i17; family: scripted_repeat_compare -->
-🎙 **I used to stay within the village.**
+**21 · Згадайте колишню прогулянку: «У дитинстві ми щонеділі ходили до річки». Використайте would.**
+<!-- interaction_id: en:lesson-25:session-43:i17; family: phrase_builder -->
+Плитки: `Sunday` `every` `river` `the` `to` `walk` `would` `we` `children` `As` → **As children we would walk to the river every Sunday.**
 

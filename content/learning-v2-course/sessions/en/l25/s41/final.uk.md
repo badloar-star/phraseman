@@ -53,99 +53,99 @@ Carefree — безтурботний. We used to be carefree during the holiday
 <!-- interaction_id: en:lesson-25:session-41:word:fearless; family: word_card -->
 > **fearless** — Безстрашний. Fearless — той, хто не відчуває або не показує страху.
 
-**2 · Скажіть: «У дитинстві я був безстрашним.»**
-<!-- interaction_id: en:lesson-25:session-41:i01; family: phrase_builder -->
-Плитки: `child` `a` `as` `fearless` `be` `to` `used` `I` → **I used to be fearless as a child.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-41:i01; family: listen_choose -->
+🔊 *My little sister seems fearless.* → **My little sister seems fearless.** · My little brother seems fearless. · My little sister seems nervous.
+- My little brother seems fearless. — *У записі звучить My little sister seems fearless.*
+- My little sister seems nervous. — *У записі звучить My little sister seems fearless.*
 
-**3 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-41:i02; family: context_gap_grammar -->
-I ___ to be fearless as a child. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
+**3 · Розкажіть про колишній страх: «Я раніше боявся темряви».**
+<!-- interaction_id: en:lesson-25:session-41:i02; family: phrase_builder -->
+Плитки: `dark` `the` `of` `afraid` `be` `to` `used` `I` → **I used to be afraid of the dark.**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-41:i03; family: listen_choose -->
-🔊 *I used to be fearless as a child.* → **I used to be fearless as a child.** · She used to be fearless as a child. · I used to be fearless at school.
-- She used to be fearless as a child. — *У записі звучить I used to be fearless as a child.*
-- I used to be fearless at school. — *У записі звучить I used to be fearless as a child.*
-
-**5 · Картка слова — helpless**
+**4 · Картка слова — helpless**
 <!-- interaction_id: en:lesson-25:session-41:word:helpless; family: word_card -->
 > **helpless** — Безпорадний. Helpless — той, хто не може впоратися без допомоги.
 
-**6 · Скажіть: «Раніше він почувався безпорадним на кухні.»**
-<!-- interaction_id: en:lesson-25:session-41:i04; family: phrase_builder -->
-Плитки: `kitchen` `the` `in` `helpless` `feel` `to` `used` `He` → **He used to feel helpless in the kitchen.**
+**5 · Ви не знали, що робити, і почувалися безпорадним. Виберіть helpless.**
+<!-- interaction_id: en:lesson-25:session-41:i03; family: context_gap_grammar -->
+I felt ___. → **helpless** · fearless · hungry
+- fearless — *Fearless — безстрашний; тут ідеться про неможливість упоратися самому.*
+- hungry — *Hungry — голодний; у ситуації не йдеться про їжу.*
 
-**7 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-41:i05; family: context_gap_grammar -->
-He ___ to feel helpless in the kitchen. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
+**6 · Замість того щоб мовчати, попросіть: «Покажи мені, будь ласка, як це робити».**
+<!-- interaction_id: en:lesson-25:session-41:i04; family: scripted_repeat_compare -->
+🎙 **Please show me how to do it.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-41:i06; family: listen_choose -->
-🔊 *He used to feel helpless in the kitchen.* → **He used to feel helpless in the kitchen.** · She used to feel helpless in the kitchen. · He used to feel helpless at school.
-- She used to feel helpless in the kitchen. — *У записі звучить He used to feel helpless in the kitchen.*
-- He used to feel helpless at school. — *У записі звучить He used to feel helpless in the kitchen.*
-
-**9 · Картка слова — outgoing**
+**7 · Картка слова — outgoing**
 <!-- interaction_id: en:lesson-25:session-41:word:outgoing; family: word_card -->
 > **outgoing** — Товариський. Outgoing — той, хто легко спілкується й знайомиться з людьми.
 
-**10 · Скажіть: «У школі вона була товариською.»**
-<!-- interaction_id: en:lesson-25:session-41:i07; family: phrase_builder -->
-Плитки: `school` `at` `outgoing` `be` `to` `used` `She` → **She used to be outgoing at school.**
+**8 · Почуйте опис нового сусіда.**
+<!-- interaction_id: en:lesson-25:session-41:i05; family: listen_build_dictation -->
+🔊 *Our new neighbour is very outgoing.* Плитки: `outgoing` `very` `is` `neighbour` `new` `Our` → **Our new neighbour is very outgoing.**
 
-**11 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-41:i08; family: context_gap_grammar -->
-She ___ to be outgoing at school. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
+**9 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-41:i06; family: listen_choose -->
+🔊 *She introduced me to her friends.* → **She introduced me to her friends.** · She introduced him to her friends. · She introduced me to her family.
+- She introduced him to her friends. — *У записі звучить She introduced me to her friends.*
+- She introduced me to her family. — *У записі звучить She introduced me to her friends.*
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-41:i09; family: listen_choose -->
-🔊 *She used to be outgoing at school.* → **She used to be outgoing at school.** · He used to be outgoing at school. · She used to be outgoing at work.
-- He used to be outgoing at school. — *У записі звучить She used to be outgoing at school.*
-- She used to be outgoing at work. — *У записі звучить She used to be outgoing at school.*
-
-**13 · Картка слова — carefree**
+**10 · Картка слова — carefree**
 <!-- interaction_id: en:lesson-25:session-41:word:carefree; family: word_card -->
 > **carefree** — Безтурботний. Carefree — не обтяжений турботами.
 
-**14 · Скажіть: «Раніше на канікулах ми були безтурботними.»**
-<!-- interaction_id: en:lesson-25:session-41:i10; family: phrase_builder -->
-Плитки: `holidays` `the` `during` `carefree` `be` `to` `used` `We` → **We used to be carefree during the holidays.**
+**11 · Згадайте літо без турбот: «Ми провели безтурботне літо біля моря».**
+<!-- interaction_id: en:lesson-25:session-41:i07; family: phrase_builder -->
+Плитки: `sea` `the` `by` `summer` `carefree` `a` `spent` `We` → **We spent a carefree summer by the sea.**
 
-**15 · Пригадайте, як було раніше.**
-<!-- interaction_id: en:lesson-25:session-41:i11; family: context_gap_grammar -->
-We ___ to be carefree during the holidays. → **used** · use · using
-- use — *Колишній стан: used to + початкова форма.*
-- using — *Колишній стан: used to + початкова форма.*
-
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-41:i12; family: listen_choose -->
-🔊 *We used to be carefree during the holidays.* → **We used to be carefree during the holidays.** · They used to be carefree during the holidays. · We used to be carefree during the summer.
-- They used to be carefree during the holidays. — *У записі звучить We used to be carefree during the holidays.*
-- We used to be carefree during the summer. — *У записі звучить We used to be carefree during the holidays.*
-
-**17 · Поєднайте слова з перекладом**
-<!-- interaction_id: en:lesson-25:session-41:i13; family: speed_match -->
+**12 · Зіставте описи людей з перекладом**
+<!-- interaction_id: en:lesson-25:session-41:i08; family: speed_match -->
 fearless — безстрашний · helpless — безпорадний · outgoing — товариський · carefree — безтурботний
 
-**18 · Уже закінчила до мого дзвінка**
-<!-- interaction_id: en:lesson-25:session-41:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**13 · У дитинстві вечорами ви гралися надворі. Виберіть would для повторюваної дії.**
+<!-- interaction_id: en:lesson-25:session-41:i09; family: context_gap_grammar -->
+As children we ___ play outside every evening. → **would** · had · were
+- had — *Had play неправильно; тут потрібна форма звичної дії would play.*
+- were — *Were play неправильно; тут використайте would play.*
 
-**19 · Раніше їздив машиною**
-<!-- interaction_id: en:lesson-25:session-41:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+**14 · Підтримайте друга перед знайомством: «Я піду з тобою».**
+<!-- interaction_id: en:lesson-25:session-41:i10; family: scripted_repeat_compare -->
+🎙 **I will go with you.**
 
-**20 · Скажіть: «Раніше вона почувалася безпорадною на роботі».**
-<!-- interaction_id: en:lesson-25:session-41:i16; family: scripted_repeat_compare -->
-🎙 **She used to feel helpless at work.**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-41:i11; family: listen_choose -->
+🔊 *I met our neighbours last weekend.* → **I met our neighbours last weekend.** · I met our neighbours last night. · I visited our neighbours last weekend.
+- I met our neighbours last night. — *У записі звучить I met our neighbours last weekend.*
+- I visited our neighbours last weekend. — *У записі звучить I met our neighbours last weekend.*
 
-**21 · Скажіть: «У дитинстві ми були безтурботними».**
-<!-- interaction_id: en:lesson-25:session-41:i17; family: scripted_repeat_compare -->
-🎙 **We used to be carefree as children.**
+**16 · Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.**
+<!-- interaction_id: en:lesson-25:session-41:i12; family: context_gap_grammar -->
+We ___ our neighbours. → **have already met** · has already met · have already meet
+- has already met — *Після we потрібно have, не has.*
+- have already meet — *Після have потрібна третя форма met.*
+
+**17 · Почуйте запрошення приєднатися до компанії.**
+<!-- interaction_id: en:lesson-25:session-41:i13; family: listen_build_dictation -->
+🔊 *Come and sit with us.* Плитки: `us` `with` `sit` `and` `Come` → **Come and sit with us.**
+
+**18 · Друг прийшов пізніше, коли всі вже пішли. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-41:i14; family: context_gap_grammar -->
+Everyone ___ left by the time my friend arrived. → **had** · has · is
+- has — *Has left стосується теперішнього; тут подія до минулого arrived.*
+- is — *Потрібно had left для ранішої завершеної дії.*
+
+**19 · Друг упорався сам. Скажіть: «Ти дуже добре впорався».**
+<!-- interaction_id: en:lesson-25:session-41:i15; family: scripted_repeat_compare -->
+🎙 **You did very well.**
+
+**20 · Першу спробу закінчили. Запропонуйте спробувати ще раз.**
+<!-- interaction_id: en:lesson-25:session-41:i16; family: context_gap_grammar -->
+Let us have ___ try. → **another** · other · others
+- other — *Try тут іменник в однині, тому another.*
+- others — *Others не ставиться перед try.*
+
+**21 · Розкажіть, коли стало легше: «Я відчув себе краще після розмови з другом».**
+<!-- interaction_id: en:lesson-25:session-41:i17; family: phrase_builder -->
+Плитки: `friend` `my` `to` `talked` `I` `after` `better` `felt` `I` → **I felt better after I talked to my friend.**
 

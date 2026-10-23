@@ -53,99 +53,99 @@ Howl — выть, издавать долгий громкий вой. The dog 
 <!-- interaction_id: en:lesson-25:session-42:word:purr; family: word_card -->
 > **purr** — Мурлыкать. Purr — издавать тихий вибрирующий звук, как кот.
 
-**2 · Скажите: «Раньше наш кот каждый вечер мурлыкал рядом со мной.»**
-<!-- interaction_id: en:lesson-25:session-42:i01; family: phrase_builder -->
-Плитки: `evening` `every` `me` `beside` `purr` `would` `cat` `Our` → **Our cat would purr beside me every evening.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-42:i01; family: listen_choose -->
+🔊 *I can hear the cat purr.* → **I can hear the cat purr.** · I can hear the cat cry. · She can hear the cat purr.
+- I can hear the cat cry. — *В записи звучит I can hear the cat purr.*
+- She can hear the cat purr. — *В записи звучит I can hear the cat purr.*
 
-**3 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-42:i02; family: context_gap_grammar -->
-Our cat would ___ beside me every evening. → **purr** · purred · purring
-- purred — *После would нужна начальная форма purr.*
-- purring — *После would нужна начальная форма purr.*
+**3 · Вспомните место для сна: «Наш кот раньше спал на диване».**
+<!-- interaction_id: en:lesson-25:session-42:i02; family: phrase_builder -->
+Плитки: `sofa` `the` `on` `sleep` `to` `used` `cat` `Our` → **Our cat used to sleep on the sofa.**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-42:i03; family: listen_choose -->
-🔊 *Our cat would purr beside me every evening.* → **Our cat would purr beside me every evening.** · Our cat would purr beside her every evening. · Our cat would purr beside me every morning.
-- Our cat would purr beside her every evening. — *В записи звучит Our cat would purr beside me every evening.*
-- Our cat would purr beside me every morning. — *В записи звучит Our cat would purr beside me every evening.*
-
-**5 · Карточка слова — growl**
+**4 · Карточка слова — growl**
 <!-- interaction_id: en:lesson-25:session-42:word:growl; family: word_card -->
 > **growl** — Рычать. Growl — издавать низкий угрожающий звук.
 
-**6 · Скажите: «Раньше наша собака обычно рычала на других собак.»**
-<!-- interaction_id: en:lesson-25:session-42:i04; family: phrase_builder -->
-Плитки: `dogs` `other` `at` `growl` `would` `dog` `Our` → **Our dog would growl at other dogs.**
+**5 · Вы вспоминаете собаку из детства: она часто рычала на почтальона. Выберите начальную форму после would.**
+<!-- interaction_id: en:lesson-25:session-42:i03; family: context_gap_grammar -->
+Our old dog would ___ at the postman. → **growl** · growled · growling
+- growled — *После would нужна growl, не growled.*
+- growling — *После would не добавляем окончание -ing.*
 
-**7 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-42:i05; family: context_gap_grammar -->
-Our dog would ___ at other dogs. → **growl** · growled · growling
-- growled — *После would нужна начальная форма growl.*
-- growling — *После would нужна начальная форма growl.*
+**6 · Друг ищет поводок. Сообщите: «Он висит возле двери».**
+<!-- interaction_id: en:lesson-25:session-42:i04; family: scripted_repeat_compare -->
+🎙 **It is hanging beside the door.**
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-42:i06; family: listen_choose -->
-🔊 *Our dog would growl at other dogs.* → **Our dog would growl at other dogs.** · Their dog would growl at other dogs. · Our dog would growl at the cat.
-- Their dog would growl at other dogs. — *В записи звучит Our dog would growl at other dogs.*
-- Our dog would growl at the cat. — *В записи звучит Our dog would growl at other dogs.*
-
-**9 · Карточка слова — hiss**
+**7 · Карточка слова — hiss**
 <!-- interaction_id: en:lesson-25:session-42:word:hiss; family: word_card -->
 > **hiss** — Шипеть. Hiss — издавать протяжный звук, похожий на «с-с-с».
 
-**10 · Скажите: «Раньше кот обычно шипел на нашу собаку.»**
-<!-- interaction_id: en:lesson-25:session-42:i07; family: phrase_builder -->
-Плитки: `dog` `our` `at` `hiss` `would` `cat` `The` → **The cat would hiss at our dog.**
+**8 · Услышьте описание поведения кошки.**
+<!-- interaction_id: en:lesson-25:session-42:i05; family: listen_build_dictation -->
+🔊 *My cat can hiss very loudly.* Плитки: `loudly` `very` `hiss` `can` `cat` `My` → **My cat can hiss very loudly.**
 
-**11 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-42:i08; family: context_gap_grammar -->
-The cat would ___ at our dog. → **hiss** · hissed · hissing
-- hissed — *После would нужна начальная форма hiss.*
-- hissing — *После would нужна начальная форма hiss.*
+**9 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-42:i06; family: listen_choose -->
+🔊 *The cat is hiding under the bed.* → **The cat is hiding under the bed.** · The cat is sleeping on the bed. · The cat is hiding behind the sofa.
+- The cat is sleeping on the bed. — *В записи звучит The cat is hiding under the bed.*
+- The cat is hiding behind the sofa. — *В записи звучит The cat is hiding under the bed.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-42:i09; family: listen_choose -->
-🔊 *The cat would hiss at our dog.* → **The cat would hiss at our dog.** · The cat would hiss at their dog. · Our cat would hiss at the dog.
-- The cat would hiss at their dog. — *В записи звучит The cat would hiss at our dog.*
-- Our cat would hiss at the dog. — *В записи звучит The cat would hiss at our dog.*
-
-**13 · Карточка слова — howl**
+**10 · Карточка слова — howl**
 <!-- interaction_id: en:lesson-25:session-42:word:howl; family: word_card -->
 > **howl** — Выть. Howl — издавать долгий громкий вой.
 
-**14 · Скажите: «Раньше собака обычно выла по ночам.»**
-<!-- interaction_id: en:lesson-25:session-42:i10; family: phrase_builder -->
-Плитки: `night` `at` `howl` `would` `dog` `The` → **The dog would howl at night.**
+**11 · Ночью вы слышали протяжный вой. Выберите howl.**
+<!-- interaction_id: en:lesson-25:session-42:i07; family: context_gap_grammar -->
+We could hear the dog ___. → **howl** · purr · whisper
+- purr — *Purr — мурлыкать, а не протяжно выть.*
+- whisper — *Whisper — шептать; это не описанный звук собаки.*
 
-**15 · Продолжите воспоминание о детстве.**
-<!-- interaction_id: en:lesson-25:session-42:i11; family: context_gap_grammar -->
-The dog would ___ at night. → **howl** · howled · howling
-- howled — *После would нужна начальная форма howl.*
-- howling — *После would нужна начальная форма howl.*
+**12 · Соотнесите звуки животных с переводом**
+<!-- interaction_id: en:lesson-25:session-42:i08; family: speed_match -->
+purr — мурлыкать · growl — рычать · hiss — шипеть · howl — выть
+
+**13 · Брат спрашивает о кормлении. Ответьте: «Я уже покормил собаку».**
+<!-- interaction_id: en:lesson-25:session-42:i09; family: scripted_repeat_compare -->
+🎙 **I have already fed the dog.**
+
+**14 · Вы гуляли с собакой вчера. Выберите Past Simple.**
+<!-- interaction_id: en:lesson-25:session-42:i10; family: context_gap_grammar -->
+I ___ the dog yesterday. → **walked** · have walked · walking
+- have walked — *Yesterday называет законченный день, поэтому walked.*
+- walking — *Walking без вспомогательного глагола здесь не подходит.*
+
+**15 · Объясните, когда вы заметили пропажу: «Я заметил открытую дверь после того, как кот ушёл».**
+<!-- interaction_id: en:lesson-25:session-42:i11; family: phrase_builder -->
+Плитки: `left` `cat` `the` `after` `door` `open` `the` `noticed` `I` → **I noticed the open door after the cat left.**
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-42:i12; family: listen_choose -->
-🔊 *The dog would howl at night.* → **The dog would howl at night.** · The dog would howl in the morning. · Their dog would howl at night.
-- The dog would howl in the morning. — *В записи звучит The dog would howl at night.*
-- Their dog would howl at night. — *В записи звучит The dog would howl at night.*
+🔊 *We found him in the garden.* → **We found him in the garden.** · We found him in the garage. · They found him in the garden.
+- We found him in the garage. — *В записи звучит We found him in the garden.*
+- They found him in the garden. — *В записи звучит We found him in the garden.*
 
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-42:i13; family: speed_match -->
-purr — мурлыкать · growl — рычать · hiss — шипеть · howl — выть
+**17 · К вашему возвращению собака уже уснула. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-42:i13; family: context_gap_grammar -->
+The dog ___ fallen asleep by the time we got home. → **had** · has · is
+- has — *Has относится к настоящему, а got задаёт прошлый момент.*
+- is — *Нужно had fallen asleep для сна, начавшегося до возвращения.*
 
-**18 · Прежняя привычка**
+**18 · Услышьте просьбу наполнить миску.**
 <!-- interaction_id: en:lesson-25:session-42:i14; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+🔊 *Please fill the bowl with water.* Плитки: `water` `with` `bowl` `the` `fill` `Please` → **Please fill the bowl with water.**
 
-**19 · Повторялось каждый вечер в прошлом**
-<!-- interaction_id: en:lesson-25:session-42:i15; family: listen_build_dictation -->
-🔊 *We would play outside every evening.* Плитки: `evening` `every` `outside` `play` `would` `We` → **We would play outside every evening.**
+**19 · Сосед нашёл вашего кота. Поблагодарите: «Спасибо, что привёл его домой».**
+<!-- interaction_id: en:lesson-25:session-42:i15; family: scripted_repeat_compare -->
+🎙 **Thank you for bringing him home.**
 
-**20 · Скажите: «Раньше их кот обычно мурлыкал рядом со мной».**
-<!-- interaction_id: en:lesson-25:session-42:i16; family: scripted_repeat_compare -->
-🎙 **Their cat would purr beside me.**
+**20 · Первая миска занята кормом. Нужна ещё одна для воды.**
+<!-- interaction_id: en:lesson-25:session-42:i16; family: context_gap_grammar -->
+We need ___ bowl for water. → **another** · other · others
+- other — *Перед bowl в единственном числе нужно another.*
+- others — *Others не ставится перед существительным bowl.*
 
-**21 · Скажите: «Раньше наша собака обычно выла по вечерам».**
-<!-- interaction_id: en:lesson-25:session-42:i17; family: scripted_repeat_compare -->
-🎙 **Our dog would howl in the evening.**
+**21 · Вспомните вечернюю привычку: «В детстве я каждый вечер играл с нашей собакой». Используйте would.**
+<!-- interaction_id: en:lesson-25:session-42:i17; family: phrase_builder -->
+Плитки: `evening` `every` `dog` `our` `with` `play` `would` `I` `child` `a` `As` → **As a child I would play with our dog every evening.**
 

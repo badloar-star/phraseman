@@ -50,29 +50,105 @@
       "interactionId": "en:lesson-25:session-41:i01",
       "ordinal": 5,
       "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i01:r1",
+          "text": "My little sister seems fearless."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i01:r2",
+          "text": "My little brother seems fearless."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i01:r3",
+          "text": "My little sister seems nervous."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i01:audio",
+          "transcript": "My little sister seems fearless."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:i01:r1",
+            "targetText": "My little sister seems fearless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i01:r2",
+            "targetText": "My little brother seems fearless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i01:r3",
+            "targetText": "My little sister seems nervous.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My little sister seems fearless.",
+              "uk": "У записі звучить My little sister seems fearless."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My little sister seems fearless.",
+              "uk": "У записі звучить My little sister seems fearless."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У дитинстві я був безстрашним.»",
+      "prompt": "Розкажіть про колишній страх: «Я раніше боявся темряви».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У дитинстві я був безстрашним.»",
+      "accessibilityLabel": "Розкажіть про колишній страх: «Я раніше боявся темряви».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I used to be fearless as a child.",
+        "targetPhrase": "I used to be afraid of the dark.",
         "localizedMeaning": {
-          "ru": "Скажите: «В детстве я был бесстрашным.»",
-          "uk": "Скажіть: «У дитинстві я був безстрашним.»"
+          "ru": "Расскажите о прошлом страхе: «Я раньше боялся темноты».",
+          "uk": "Розкажіть про колишній страх: «Я раніше боявся темряви»."
         },
         "orderedTokens": [
           "I",
           "used",
           "to",
           "be",
-          "fearless",
-          "as",
-          "a",
-          "child"
+          "afraid",
+          "of",
+          "the",
+          "dark"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -84,153 +160,8 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i02",
-      "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Пригадайте, як було раніше.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-41:i02:r1",
-          "text": "used"
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i02:r2",
-          "text": "use"
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i02:r3",
-          "text": "using"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Пригадайте, як було раніше.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вспомните, как было раньше.",
-          "uk": "Пригадайте, як було раніше."
-        },
-        "gappedTargetPhrase": "I ___ to be fearless as a child.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-41:i02:r1",
-            "text": "used"
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i02:r2",
-            "text": "use"
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i02:r3",
-            "text": "using"
-          }
-        ],
-        "testedDimension": "Пригадайте, як було раніше.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-41:i02:r2",
-            "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
-            "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i02:r3",
-            "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
-            "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-41:i03",
-      "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-41:i03:r1",
-          "text": "I used to be fearless as a child."
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i03:r2",
-          "text": "She used to be fearless as a child."
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i03:r3",
-          "text": "I used to be fearless at school."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-41:i03:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i03:audio",
-          "transcript": "I used to be fearless as a child."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-41:i03:r1",
-            "targetText": "I used to be fearless as a child.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i03:r2",
-            "targetText": "She used to be fearless as a child.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i03:r3",
-            "targetText": "I used to be fearless at school.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-41:i03:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to be fearless as a child.",
-              "uk": "У записі звучить I used to be fearless as a child."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i03:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит I used to be fearless as a child.",
-              "uk": "У записі звучить I used to be fearless as a child."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-25:session-41:word:helpless",
-      "ordinal": 8,
+      "ordinal": 7,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -272,105 +203,68 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i04",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше він почувався безпорадним на кухні.»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше він почувався безпорадним на кухні.»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "He used to feel helpless in the kitchen.",
-        "localizedMeaning": {
-          "ru": "Скажите: «Раньше он чувствовал себя беспомощным на кухне.»",
-          "uk": "Скажіть: «Раніше він почувався безпорадним на кухні.»"
-        },
-        "orderedTokens": [
-          "He",
-          "used",
-          "to",
-          "feel",
-          "helpless",
-          "in",
-          "the",
-          "kitchen"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-41:i05",
-      "ordinal": 10,
+      "interactionId": "en:lesson-25:session-41:i03",
+      "ordinal": 8,
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Пригадайте, як було раніше.",
+      "prompt": "Ви не знали, що робити, і почувалися безпорадним. Виберіть helpless.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-41:i05:r1",
-          "text": "used"
+          "responseId": "en:lesson-25:session-41:i03:r1",
+          "text": "helpless"
         },
         {
-          "responseId": "en:lesson-25:session-41:i05:r2",
-          "text": "use"
+          "responseId": "en:lesson-25:session-41:i03:r2",
+          "text": "fearless"
         },
         {
-          "responseId": "en:lesson-25:session-41:i05:r3",
-          "text": "using"
+          "responseId": "en:lesson-25:session-41:i03:r3",
+          "text": "hungry"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "accessibilityLabel": "Ви не знали, що робити, і почувалися безпорадним. Виберіть helpless.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вспомните, как было раньше.",
-          "uk": "Пригадайте, як було раніше."
+          "ru": "Вы не знали, что делать, и чувствовали себя беспомощным. Выберите helpless.",
+          "uk": "Ви не знали, що робити, і почувалися безпорадним. Виберіть helpless."
         },
-        "gappedTargetPhrase": "He ___ to feel helpless in the kitchen.",
+        "gappedTargetPhrase": "I felt ___.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-25:session-41:i05:r1",
-            "text": "used"
+            "responseId": "en:lesson-25:session-41:i03:r1",
+            "text": "helpless"
           },
           {
-            "responseId": "en:lesson-25:session-41:i05:r2",
-            "text": "use"
+            "responseId": "en:lesson-25:session-41:i03:r2",
+            "text": "fearless"
           },
           {
-            "responseId": "en:lesson-25:session-41:i05:r3",
-            "text": "using"
+            "responseId": "en:lesson-25:session-41:i03:r3",
+            "text": "hungry"
           }
         ],
-        "testedDimension": "Пригадайте, як було раніше.",
+        "testedDimension": "Ви не знали, що робити, і почувалися безпорадним. Виберіть helpless.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-41:i05:r2",
+            "responseId": "en:lesson-25:session-41:i03:r2",
             "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
+            "testedDimension": "Ви не знали, що робити, і почувалися безпорадним. Виберіть helpless.",
             "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
+              "ru": "Fearless — бесстрашный; здесь речь о невозможности справиться самому.",
+              "uk": "Fearless — безстрашний; тут ідеться про неможливість упоратися самому."
             }
           },
           {
-            "responseId": "en:lesson-25:session-41:i05:r3",
+            "responseId": "en:lesson-25:session-41:i03:r3",
             "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
+            "testedDimension": "Ви не знали, що робити, і почувалися безпорадним. Виберіть helpless.",
             "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
+              "ru": "Hungry — голодный; в ситуации не говорится о еде.",
+              "uk": "Hungry — голодний; у ситуації не йдеться про їжу."
             }
           }
         ]
@@ -378,85 +272,42 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i06",
-      "ordinal": 11,
+      "interactionId": "en:lesson-25:session-41:i04",
+      "ordinal": 9,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-41:i06:r1",
-          "text": "He used to feel helpless in the kitchen."
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i06:r2",
-          "text": "She used to feel helpless in the kitchen."
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i06:r3",
-          "text": "He used to feel helpless at school."
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Замість того щоб мовчати, попросіть: «Покажи мені, будь ласка, як це робити».",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-41:i06:audio"
+        "en:lesson-25:session-41:i04:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть",
+      "accessibilityLabel": "Замість того щоб мовчати, попросіть: «Покажи мені, будь ласка, як це робити».",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i06:audio",
-          "transcript": "He used to feel helpless in the kitchen."
+          "audioTargetId": "en:lesson-25:session-41:i04:audio",
+          "transcript": "Please show me how to do it."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-41:i06:r1",
-            "targetText": "He used to feel helpless in the kitchen.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i06:r2",
-            "targetText": "She used to feel helpless in the kitchen.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i06:r3",
-            "targetText": "He used to feel helpless at school.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-41:i06:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He used to feel helpless in the kitchen.",
-              "uk": "У записі звучить He used to feel helpless in the kitchen."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i06:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит He used to feel helpless in the kitchen.",
-              "uk": "У записі звучить He used to feel helpless in the kitchen."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "Please show me how to do it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-25:session-41:word:outgoing",
-      "ordinal": 12,
-      "purpose": "guided_practice",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — outgoing",
@@ -497,31 +348,33 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i07",
-      "ordinal": 13,
+      "interactionId": "en:lesson-25:session-41:i05",
+      "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У школі вона була товариською.»",
+      "prompt": "Почуйте опис нового сусіда.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У школі вона була товариською.»",
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте опис нового сусіда.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She used to be outgoing at school.",
-        "localizedMeaning": {
-          "ru": "Скажите: «В школе она была общительной.»",
-          "uk": "Скажіть: «У школі вона була товариською.»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i05:audio",
+          "transcript": "Our new neighbour is very outgoing."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Our new neighbour is very outgoing.",
         "orderedTokens": [
-          "She",
-          "used",
-          "to",
-          "be",
-          "outgoing",
-          "at",
-          "school"
+          "Our",
+          "new",
+          "neighbour",
+          "is",
+          "very",
+          "outgoing"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -533,142 +386,73 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Пригадайте, як було раніше.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-41:i08:r1",
-          "text": "used"
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i08:r2",
-          "text": "use"
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i08:r3",
-          "text": "using"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Пригадайте, як було раніше.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вспомните, как было раньше.",
-          "uk": "Пригадайте, як було раніше."
-        },
-        "gappedTargetPhrase": "She ___ to be outgoing at school.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-41:i08:r1",
-            "text": "used"
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i08:r2",
-            "text": "use"
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i08:r3",
-            "text": "using"
-          }
-        ],
-        "testedDimension": "Пригадайте, як було раніше.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-41:i08:r2",
-            "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
-            "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i08:r3",
-            "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
-            "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-41:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-25:session-41:i06",
+      "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-25:session-41:i09:r1",
-          "text": "She used to be outgoing at school."
+          "responseId": "en:lesson-25:session-41:i06:r1",
+          "text": "She introduced me to her friends."
         },
         {
-          "responseId": "en:lesson-25:session-41:i09:r2",
-          "text": "He used to be outgoing at school."
+          "responseId": "en:lesson-25:session-41:i06:r2",
+          "text": "She introduced him to her friends."
         },
         {
-          "responseId": "en:lesson-25:session-41:i09:r3",
-          "text": "She used to be outgoing at work."
+          "responseId": "en:lesson-25:session-41:i06:r3",
+          "text": "She introduced me to her family."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-41:i09:audio"
+        "en:lesson-25:session-41:i06:audio"
       ],
       "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i09:audio",
-          "transcript": "She used to be outgoing at school."
+          "audioTargetId": "en:lesson-25:session-41:i06:audio",
+          "transcript": "She introduced me to her friends."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-25:session-41:i09:r1",
-            "targetText": "She used to be outgoing at school.",
+            "responseId": "en:lesson-25:session-41:i06:r1",
+            "targetText": "She introduced me to her friends.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-41:i09:r2",
-            "targetText": "He used to be outgoing at school.",
+            "responseId": "en:lesson-25:session-41:i06:r2",
+            "targetText": "She introduced him to her friends.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-25:session-41:i09:r3",
-            "targetText": "She used to be outgoing at work.",
+            "responseId": "en:lesson-25:session-41:i06:r3",
+            "targetText": "She introduced me to her family.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-25:session-41:i09:r2",
+            "responseId": "en:lesson-25:session-41:i06:r2",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She used to be outgoing at school.",
-              "uk": "У записі звучить She used to be outgoing at school."
+              "ru": "В записи звучит She introduced me to her friends.",
+              "uk": "У записі звучить She introduced me to her friends."
             }
           },
           {
-            "responseId": "en:lesson-25:session-41:i09:r3",
+            "responseId": "en:lesson-25:session-41:i06:r3",
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She used to be outgoing at school.",
-              "uk": "У записі звучить She used to be outgoing at school."
+              "ru": "В записи звучит She introduced me to her friends.",
+              "uk": "У записі звучить She introduced me to her friends."
             }
           }
         ],
@@ -679,7 +463,7 @@
     },
     {
       "interactionId": "en:lesson-25:session-41:word:carefree",
-      "ordinal": 16,
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -721,32 +505,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i10",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-41:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Раніше на канікулах ми були безтурботними.»",
+      "prompt": "Згадайте літо без турбот: «Ми провели безтурботне літо біля моря».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Раніше на канікулах ми були безтурботними.»",
+      "accessibilityLabel": "Згадайте літо без турбот: «Ми провели безтурботне літо біля моря».",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We used to be carefree during the holidays.",
+        "targetPhrase": "We spent a carefree summer by the sea.",
         "localizedMeaning": {
-          "ru": "Скажите: «Раньше на каникулах мы были беззаботными.»",
-          "uk": "Скажіть: «Раніше на канікулах ми були безтурботними.»"
+          "ru": "Вспомните лето без забот: «Мы провели беззаботное лето у моря».",
+          "uk": "Згадайте літо без турбот: «Ми провели безтурботне літо біля моря»."
         },
         "orderedTokens": [
           "We",
-          "used",
-          "to",
-          "be",
+          "spent",
+          "a",
           "carefree",
-          "during",
+          "summer",
+          "by",
           "the",
-          "holidays"
+          "sea"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -758,166 +542,21 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Пригадайте, як було раніше.",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-41:i11:r1",
-          "text": "used"
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i11:r2",
-          "text": "use"
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i11:r3",
-          "text": "using"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Пригадайте, як було раніше.",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вспомните, как было раньше.",
-          "uk": "Пригадайте, як було раніше."
-        },
-        "gappedTargetPhrase": "We ___ to be carefree during the holidays.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-25:session-41:i11:r1",
-            "text": "used"
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i11:r2",
-            "text": "use"
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i11:r3",
-            "text": "using"
-          }
-        ],
-        "testedDimension": "Пригадайте, як було раніше.",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-41:i11:r2",
-            "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
-            "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i11:r3",
-            "correct": false,
-            "testedDimension": "Пригадайте, як було раніше.",
-            "feedbackByLocale": {
-              "ru": "Прежнее состояние: used to + начальная форма.",
-              "uk": "Колишній стан: used to + початкова форма."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-41:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-25:session-41:i12:r1",
-          "text": "We used to be carefree during the holidays."
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i12:r2",
-          "text": "They used to be carefree during the holidays."
-        },
-        {
-          "responseId": "en:lesson-25:session-41:i12:r3",
-          "text": "We used to be carefree during the summer."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-41:i12:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i12:audio",
-          "transcript": "We used to be carefree during the holidays."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-25:session-41:i12:r1",
-            "targetText": "We used to be carefree during the holidays.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i12:r2",
-            "targetText": "They used to be carefree during the holidays.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i12:r3",
-            "targetText": "We used to be carefree during the summer.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-25:session-41:i12:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We used to be carefree during the holidays.",
-              "uk": "У записі звучить We used to be carefree during the holidays."
-            }
-          },
-          {
-            "responseId": "en:lesson-25:session-41:i12:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит We used to be carefree during the holidays.",
-              "uk": "У записі звучить We used to be carefree during the holidays."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-41:i13",
-      "ordinal": 20,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-25:session-41:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Поєднайте слова з перекладом",
+      "prompt": "Зіставте описи людей з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "accessibilityLabel": "Зіставте описи людей з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-25:session-41:i13:p1",
+            "pairId": "en:lesson-25:session-41:i08:p1",
             "target": "fearless",
             "meaningByLocale": {
               "ru": "бесстрашный",
@@ -925,7 +564,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-41:i13:p2",
+            "pairId": "en:lesson-25:session-41:i08:p2",
             "target": "helpless",
             "meaningByLocale": {
               "ru": "беспомощный",
@@ -933,7 +572,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-41:i13:p3",
+            "pairId": "en:lesson-25:session-41:i08:p3",
             "target": "outgoing",
             "meaningByLocale": {
               "ru": "общительный",
@@ -941,7 +580,7 @@
             }
           },
           {
-            "pairId": "en:lesson-25:session-41:i13:p4",
+            "pairId": "en:lesson-25:session-41:i08:p4",
             "target": "carefree",
             "meaningByLocale": {
               "ru": "беззаботный",
@@ -976,102 +615,95 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Уже закінчила до мого дзвінка",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-41:i14:audio"
-      ],
-      "accessibilityLabel": "Уже закінчила до мого дзвінка",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i14:audio",
-          "transcript": "She had finished before I called."
+      "interactionId": "en:lesson-25:session-41:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У дитинстві вечорами ви гралися надворі. Виберіть would для повторюваної дії.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i09:r1",
+          "text": "would"
         },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She had finished before I called.",
-        "orderedTokens": [
-          "She",
-          "had",
-          "finished",
-          "before",
-          "I",
-          "called"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
+        {
+          "responseId": "en:lesson-25:session-41:i09:r2",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i09:r3",
+          "text": "were"
         }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У дитинстві вечорами ви гралися надворі. Виберіть would для повторюваної дії.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В детстве по вечерам вы играли на улице. Выберите would для повторявшегося действия.",
+          "uk": "У дитинстві вечорами ви гралися надворі. Виберіть would для повторюваної дії."
+        },
+        "gappedTargetPhrase": "As children we ___ play outside every evening.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i09:r1",
+            "text": "would"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i09:r2",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "У дитинстві вечорами ви гралися надворі. Виберіть would для повторюваної дії.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "У дитинстві вечорами ви гралися надворі. Виберіть would для повторюваної дії.",
+            "feedbackByLocale": {
+              "ru": "Had play неверно; здесь нужна форма привычного действия would play.",
+              "uk": "Had play неправильно; тут потрібна форма звичної дії would play."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "У дитинстві вечорами ви гралися надворі. Виберіть would для повторюваної дії.",
+            "feedbackByLocale": {
+              "ru": "Were play неверно; здесь используйте would play.",
+              "uk": "Were play неправильно; тут використайте would play."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-25:session-41:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Раніше їздив машиною",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-41:i15:audio"
-      ],
-      "accessibilityLabel": "Раніше їздив машиною",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i15:audio",
-          "transcript": "I used to drive to work."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I used to drive to work.",
-        "orderedTokens": [
-          "I",
-          "used",
-          "to",
-          "drive",
-          "to",
-          "work"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-25:session-41:i16",
-      "ordinal": 23,
+      "interactionId": "en:lesson-25:session-41:i10",
+      "ordinal": 17,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Раніше вона почувалася безпорадною на роботі».",
+      "prompt": "Підтримайте друга перед знайомством: «Я піду з тобою».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-25:session-41:i16:audio"
+        "en:lesson-25:session-41:i10:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Раніше вона почувалася безпорадною на роботі».",
+      "accessibilityLabel": "Підтримайте друга перед знайомством: «Я піду з тобою».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i16:audio",
-          "transcript": "She used to feel helpless at work."
+          "audioTargetId": "en:lesson-25:session-41:i10:audio",
+          "transcript": "I will go with you."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She used to feel helpless at work.",
+        "targetPhrase": "I will go with you.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1080,6 +712,359 @@
           "NEEDS_WORK_CONFIDENT",
           "UNCERTAIN",
           "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i11:r1",
+          "text": "I met our neighbours last weekend."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i11:r2",
+          "text": "I met our neighbours last night."
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i11:r3",
+          "text": "I visited our neighbours last weekend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i11:audio",
+          "transcript": "I met our neighbours last weekend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-41:i11:r1",
+            "targetText": "I met our neighbours last weekend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i11:r2",
+            "targetText": "I met our neighbours last night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i11:r3",
+            "targetText": "I visited our neighbours last weekend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I met our neighbours last weekend.",
+              "uk": "У записі звучить I met our neighbours last weekend."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I met our neighbours last weekend.",
+              "uk": "У записі звучить I met our neighbours last weekend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i12:r1",
+          "text": "have already met"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i12:r2",
+          "text": "has already met"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i12:r3",
+          "text": "have already meet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже познакомились с соседями, поэтому представлять вас не нужно. Выберите Present Perfect.",
+          "uk": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect."
+        },
+        "gappedTargetPhrase": "We ___ our neighbours.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i12:r1",
+            "text": "have already met"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i12:r2",
+            "text": "has already met"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i12:r3",
+            "text": "have already meet"
+          }
+        ],
+        "testedDimension": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "После we нужно have, не has.",
+              "uk": "Після we потрібно have, не has."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
+            "feedbackByLocale": {
+              "ru": "После have нужна третья форма met.",
+              "uk": "Після have потрібна третя форма met."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запрошення приєднатися до компанії.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте запрошення приєднатися до компанії.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i13:audio",
+          "transcript": "Come and sit with us."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Come and sit with us.",
+        "orderedTokens": [
+          "Come",
+          "and",
+          "sit",
+          "with",
+          "us"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг прийшов пізніше, коли всі вже пішли. Виберіть had.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i14:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг прийшов пізніше, коли всі вже пішли. Виберіть had.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг пришёл позже, когда все уже ушли. Выберите had.",
+          "uk": "Друг прийшов пізніше, коли всі вже пішли. Виберіть had."
+        },
+        "gappedTargetPhrase": "Everyone ___ left by the time my friend arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Друг прийшов пізніше, коли всі вже пішли. Виберіть had.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i14:r2",
+            "correct": false,
+            "testedDimension": "Друг прийшов пізніше, коли всі вже пішли. Виберіть had.",
+            "feedbackByLocale": {
+              "ru": "Has left относится к настоящему; здесь событие до прошлого arrived.",
+              "uk": "Has left стосується теперішнього; тут подія до минулого arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i14:r3",
+            "correct": false,
+            "testedDimension": "Друг прийшов пізніше, коли всі вже пішли. Виберіть had.",
+            "feedbackByLocale": {
+              "ru": "Нужно had left для более раннего завершённого действия.",
+              "uk": "Потрібно had left для ранішої завершеної дії."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг упорався сам. Скажіть: «Ти дуже добре впорався».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Друг упорався сам. Скажіть: «Ти дуже добре впорався».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-41:i15:audio",
+          "transcript": "You did very well."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "You did very well.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-41:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Першу спробу закінчили. Запропонуйте спробувати ще раз.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-41:i16:r1",
+          "text": "another"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i16:r2",
+          "text": "other"
+        },
+        {
+          "responseId": "en:lesson-25:session-41:i16:r3",
+          "text": "others"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Першу спробу закінчили. Запропонуйте спробувати ще раз.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Первую попытку закончили. Предложите попробовать ещё раз.",
+          "uk": "Першу спробу закінчили. Запропонуйте спробувати ще раз."
+        },
+        "gappedTargetPhrase": "Let us have ___ try.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-41:i16:r1",
+            "text": "another"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i16:r2",
+            "text": "other"
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i16:r3",
+            "text": "others"
+          }
+        ],
+        "testedDimension": "Першу спробу закінчили. Запропонуйте спробувати ще раз.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-41:i16:r2",
+            "correct": false,
+            "testedDimension": "Першу спробу закінчили. Запропонуйте спробувати ще раз.",
+            "feedbackByLocale": {
+              "ru": "Try здесь существительное в единственном числе, поэтому another.",
+              "uk": "Try тут іменник в однині, тому another."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-41:i16:r3",
+            "correct": false,
+            "testedDimension": "Першу спробу закінчили. Запропонуйте спробувати ще раз.",
+            "feedbackByLocale": {
+              "ru": "Others не ставится перед try.",
+              "uk": "Others не ставиться перед try."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1087,33 +1072,38 @@
     {
       "interactionId": "en:lesson-25:session-41:i17",
       "ordinal": 24,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «У дитинстві ми були безтурботними».",
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть, коли стало легше: «Я відчув себе краще після розмови з другом».",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-25:session-41:i17:audio"
-      ],
-      "accessibilityLabel": "Скажіть: «У дитинстві ми були безтурботними».",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть, коли стало легше: «Я відчув себе краще після розмови з другом».",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-25:session-41:i17:audio",
-          "transcript": "We used to be carefree as children."
+        "family": "phrase_builder",
+        "targetPhrase": "I felt better after I talked to my friend.",
+        "localizedMeaning": {
+          "ru": "Расскажите, когда стало легче: «Я почувствовал себя лучше после разговора с другом».",
+          "uk": "Розкажіть, коли стало легше: «Я відчув себе краще після розмови з другом»."
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "We used to be carefree as children.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "I",
+          "felt",
+          "better",
+          "after",
+          "I",
+          "talked",
+          "to",
+          "my",
+          "friend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     }
@@ -1124,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "18ff682fc84bc0714ca21a63f01c225a9c772fd0f3bebf69d5561fd9f940b1c4"
+  "learnerFingerprint": "a429bbac38166c0a19f44825a5a37062f2933994be07a389fd21144703d4c0d5"
 }

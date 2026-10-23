@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-43:i01",
-    "correctText": "She used to sit among her friends.",
-    "correctResponseId": null
+    "correctText": "I found my keys among the toys.",
+    "correctResponseId": "en:lesson-25:session-43:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-43:i02",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-43:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-43:i03",
-    "correctText": "She used to sit among her friends.",
-    "correctResponseId": "en:lesson-25:session-43:i03:r1"
+    "correctText": "Have you seen my bag?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-43:word:opposite",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-43:i04",
-    "correctText": "I used to live opposite the school.",
+    "interactionId": "en:lesson-25:session-43:i03",
+    "correctText": "The cafe is opposite the bank.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-43:i05",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-43:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-43:i06",
-    "correctText": "I used to live opposite the school.",
-    "correctResponseId": "en:lesson-25:session-43:i06:r1"
+    "interactionId": "en:lesson-25:session-43:i04",
+    "correctText": "opposite",
+    "correctResponseId": "en:lesson-25:session-43:i04:r1"
   },
   {
     "interactionId": "en:lesson-25:session-43:word:beyond",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-43:i07",
-    "correctText": "We used to walk beyond the bridge.",
+    "interactionId": "en:lesson-25:session-43:i05",
+    "correctText": "The campsite is beyond the bridge.",
+    "correctResponseId": "en:lesson-25:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-43:i06",
+    "correctText": "Is it far from here?",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-43:i08",
-    "correctText": "used",
-    "correctResponseId": "en:lesson-25:session-43:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-43:i09",
-    "correctText": "We used to walk beyond the bridge.",
-    "correctResponseId": "en:lesson-25:session-43:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-43:word:within",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-43:i10",
-    "correctText": "We used to stay within the village.",
+    "interactionId": "en:lesson-25:session-43:i07",
+    "correctText": "within",
+    "correctResponseId": "en:lesson-25:session-43:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-43:i08",
+    "correctText": "Meet me outside the library.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-43:i09",
+    "correctText": "en:lesson-25:session-43:i09:p1=among\nen:lesson-25:session-43:i09:p2=opposite\nen:lesson-25:session-43:i09:p3=beyond\nen:lesson-25:session-43:i09:p4=within",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-43:i10",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-43:i10:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-43:i11",
-    "correctText": "used",
+    "correctText": "We crossed the bridge yesterday.",
     "correctResponseId": "en:lesson-25:session-43:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-43:i12",
-    "correctText": "We used to stay within the village.",
-    "correctResponseId": "en:lesson-25:session-43:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-43:i13",
-    "correctText": "en:lesson-25:session-43:i13:p1=among\nen:lesson-25:session-43:i13:p2=opposite\nen:lesson-25:session-43:i13:p3=beyond\nen:lesson-25:session-43:i13:p4=within",
+    "correctText": "Turn left after the bridge.",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-43:i13",
+    "correctText": "before",
+    "correctResponseId": "en:lesson-25:session-43:i13:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-43:i14",
-    "correctText": "She had finished before I called.",
+    "correctText": "Now I know where to go.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-43:i15",
-    "correctText": "I used to drive to work.",
+    "correctText": "They have opened a new shop near us.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-43:i16",
-    "correctText": "They used to live opposite the park.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-43:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-43:i17",
-    "correctText": "I used to stay within the village.",
+    "correctText": "As children we would walk to the river every Sunday.",
     "correctResponseId": null
   }
 ]

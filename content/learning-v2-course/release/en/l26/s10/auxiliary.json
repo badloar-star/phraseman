@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-10:intro1:r2": {
+          "ru": "После have нужна третья форма sorted.",
+          "uk": "Після have потрібна третя форма sorted."
+        },
+        "en:lesson-26:session-10:intro1:r3": {
+          "ru": "С I используем have.",
+          "uk": "З I вживаємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-10:intro2:r2": {
+          "ru": "После I нужна форма hear, не hearing.",
+          "uk": "Після I потрібна форма hear, не hearing."
+        },
+        "en:lesson-26:session-10:intro2:r3": {
+          "ru": "С I глагол check без -s.",
+          "uk": "З I дієслово check без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-10:intro3:r2": {
+          "ru": "После had нужна третья форма closed.",
+          "uk": "Після had потрібна третя форма closed."
+        },
+        "en:lesson-26:session-10:intro3:r3": {
+          "ru": "Для события до другого прошлого события нужно had closed.",
+          "uk": "Для події до іншої минулої події потрібно had closed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fbcba9a38e8183bd0aecd9f943921f44f6663e4e3e2999e5880ce6b218b9ebfc"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional; first conditional; already, yet; past perfect + by the time",
+    "uk": "zero conditional; first conditional; already, yet; past perfect + by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разобрать вещи",
+        "uk": "Розібрати речі"
+      },
+      "bodyByLocale": {
+        "ru": "В кладовке накопилось ненужное. Junk — хлам: старые бесполезные вещи. Это неисчисляемое слово: this junk, без a и без -s. I have already sorted out the junk — я уже разобрал хлам. Already показывает, что действие выполнено. А I will take it outside if you help me — я вынесу это, если ты мне поможешь — обещание на возможный случай. После if здесь help, без will.",
+        "uk": "У коморі накопичилося непотрібне. Junk — мотлох: старі непотрібні речі. Це незлічуване слово: this junk, без a та без -s. I have already sorted out the junk — я вже розібрав мотлох. Already показує, що дію виконано. А I will take it outside if you help me — я винесу це, якщо ти мені допоможеш — обіцянка на можливий випадок. Після if тут help, без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-10:intro1:r1",
+              "text": "I have already sorted out the junk."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro1:r2",
+              "text": "I have already sort out the junk."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro1:r3",
+              "text": "I has already sorted out the junk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-10:intro1:r1",
+              "text": "I have already sorted out the junk."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro1:r2",
+              "text": "I have already sort out the junk."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro1:r3",
+              "text": "I has already sorted out the junk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не верить всему подряд",
+        "uk": "Не вірити всьому підряд"
+      },
+      "bodyByLocale": {
+        "ru": "Nonsense — ерунда, бессмыслица. That is nonsense — это ерунда. Так можно резко отвергнуть нелепое утверждение; это не нейтральное «я не согласен». Reckon — считать, полагать, разговорное слово, особенно в британской речи. I reckon we have enough time — думаю, у нас достаточно времени. Для обычного правила сохраняем Present Simple в обеих частях: If I hear a strange story, I check it — если я слышу странную историю, я её проверяю.",
+        "uk": "Nonsense — нісенітниця, дурниці. That is nonsense — це нісенітниця. Так можна різко відкинути безглузде твердження; це не нейтральне «я не згоден». Reckon — вважати, гадати, розмовне слово, особливо в британському мовленні. I reckon we have enough time — гадаю, у нас достатньо часу. Для звичайного правила зберігаємо Present Simple в обох частинах: If I hear a strange story, I check it — якщо я чую дивну історію, я її перевіряю."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-10:intro2:r1",
+              "text": "If I hear a strange story, I check it."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro2:r2",
+              "text": "If I hearing a strange story, I check it."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro2:r3",
+              "text": "If I hear a strange story, I checks it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-10:intro2:r1",
+              "text": "If I hear a strange story, I check it."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro2:r2",
+              "text": "If I hearing a strange story, I check it."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro2:r3",
+              "text": "If I hear a strange story, I checks it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Жаль, что не успели",
+        "uk": "Шкода, що не встигли"
+      },
+      "bodyByLocale": {
+        "ru": "Pity — жалость; в выражении What a pity! — «Как жаль!». Так реагируют на небольшую неприятность: например, кафе уже закрылось. It had closed by the time we arrived — оно уже закрылось к тому времени, как мы пришли. Had closed — более раннее событие, arrived — последующее. Если кафе закрыто сегодня, можно предложить план: We will come back tomorrow if we have time — вернёмся завтра, если будет время.",
+        "uk": "Pity — жаль; у вислові What a pity! — «Як шкода!». Так реагують на невелику прикрість: наприклад, кафе вже зачинилося. It had closed by the time we arrived — воно вже зачинилося на той час, коли ми прийшли. Had closed — раніша подія, arrived — наступна. Якщо кафе зачинене сьогодні, можна запропонувати план: We will come back tomorrow if we have time — повернемося завтра, якщо буде час."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-10:intro3:r1",
+              "text": "It had closed by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro3:r2",
+              "text": "It had close by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro3:r3",
+              "text": "It have closed by the time we arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-10:intro3:r1",
+              "text": "It had closed by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro3:r2",
+              "text": "It had close by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-10:intro3:r3",
+              "text": "It have closed by the time we arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0065c2d745138cf13e7b72ea0ecdebd2ee372e7f9f79715bbd9efe9f84ebf578"
+}

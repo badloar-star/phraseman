@@ -1,0 +1,1086 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-11:word:blister",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — blister",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:word:blister:audio"
+      ],
+      "accessibilityLabel": "Картка слова — blister",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:word:blister:audio",
+          "transcript": "blister"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:word:blister:r1",
+            "targetText": "blister",
+            "meaningByLocale": {
+              "ru": "Волдырь, например от натирающей обуви. A blister on my heel — волдырь на пятке.",
+              "uk": "Пухир, наприклад від взуття, яке натирає. A blister on my heel — пухир на п’яті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blister",
+          "definitionByLocale": {
+            "ru": "Волдырь, например от натирающей обуви. A blister on my heel — волдырь на пятке.",
+            "uk": "Пухир, наприклад від взуття, яке натирає. A blister on my heel — пухир на п’яті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i01:r1",
+          "text": "I have a blister on my heel."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i01:r2",
+          "text": "I have a blister on my hand."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i01:r3",
+          "text": "I have a cut on my heel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i01:audio",
+          "transcript": "I have a blister on my heel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:i01:r1",
+            "targetText": "I have a blister on my heel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i01:r2",
+            "targetText": "I have a blister on my hand.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i01:r3",
+            "targetText": "I have a cut on my heel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a blister on my heel.",
+              "uk": "У записі звучить I have a blister on my heel."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have a blister on my heel.",
+              "uk": "У записі звучить I have a blister on my heel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть супутника йти повільніше: «Можемо ми трохи сповільнитися?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть супутника йти повільніше: «Можемо ми трохи сповільнитися?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can we slow down a little?",
+        "localizedMeaning": {
+          "ru": "Попросите спутника идти медленнее: «Можем мы немного замедлиться?»",
+          "uk": "Попросіть супутника йти повільніше: «Можемо ми трохи сповільнитися?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "we",
+          "slow",
+          "down",
+          "a",
+          "little"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:word:tummy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tummy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:word:tummy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tummy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:word:tummy:audio",
+          "transcript": "tummy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:word:tummy:r1",
+            "targetText": "tummy",
+            "meaningByLocale": {
+              "ru": "Живот, животик. Разговорное слово, часто в речи с детьми; my tummy hurts — у меня болит живот.",
+              "uk": "Животик. Розмовне слово, часто в мовленні з дітьми; my tummy hurts — у мене болить животик."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tummy",
+          "definitionByLocale": {
+            "ru": "Живот, животик. Разговорное слово, часто в речи с детьми; my tummy hurts — у меня болит живот.",
+            "uk": "Животик. Розмовне слово, часто в мовленні з дітьми; my tummy hurts — у мене болить животик."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i03",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дитина скаржиться на живіт. Запитайте: «У тебе досі болить животик?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i03:audio"
+      ],
+      "accessibilityLabel": "Дитина скаржиться на живіт. Запитайте: «У тебе досі болить животик?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i03:audio",
+          "transcript": "Does your tummy still hurt?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Does your tummy still hurt?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишіть свою звичайну реакцію на незручне взуття.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i04:r1",
+          "text": "change"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i04:r2",
+          "text": "changes"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i04:r3",
+          "text": "changing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишіть свою звичайну реакцію на незручне взуття.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите свою обычную реакцию на неудобную обувь.",
+          "uk": "Опишіть свою звичайну реакцію на незручне взуття."
+        },
+        "gappedTargetPhrase": "If my shoes hurt, I ___ them.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-11:i04:r1",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i04:r2",
+            "text": "changes"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i04:r3",
+            "text": "changing"
+          }
+        ],
+        "testedDimension": "Опишіть свою звичайну реакцію на незручне взуття.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i04:r2",
+            "correct": false,
+            "testedDimension": "Опишіть свою звичайну реакцію на незручне взуття.",
+            "feedbackByLocale": {
+              "ru": "С I используем change без -s.",
+              "uk": "З I вживаємо change без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i04:r3",
+            "correct": false,
+            "testedDimension": "Опишіть свою звичайну реакцію на незручне взуття.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужен глагол change, не отдельная форма changing.",
+              "uk": "Для звички потрібне дієслово change, а не окрема форма changing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:word:thigh",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — thigh",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:word:thigh:audio"
+      ],
+      "accessibilityLabel": "Картка слова — thigh",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:word:thigh:audio",
+          "transcript": "thigh"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:word:thigh:r1",
+            "targetText": "thigh",
+            "meaningByLocale": {
+              "ru": "Бедро: верхняя часть ноги между коленом и тазом. My thigh — моё бедро.",
+              "uk": "Стегно: верхня частина ноги між коліном і тазом. My thigh — моє стегно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thigh",
+          "definitionByLocale": {
+            "ru": "Бедро: верхняя часть ноги между коленом и тазом. My thigh — моё бедро.",
+            "uk": "Стегно: верхня частина ноги між коліном і тазом. My thigh — моє стегно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, що людина щойно пошкодила.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте, що людина щойно пошкодила.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i05:audio",
+          "transcript": "I have just hurt my thigh."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have just hurt my thigh.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "just",
+          "hurt",
+          "my",
+          "thigh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг запитує, чим допомогти. Попросіть: «Принеси, будь ласка, мій телефон».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує, чим допомогти. Попросіть: «Принеси, будь ласка, мій телефон».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please bring me my phone.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, чем помочь. Попросите: «Принеси, пожалуйста, мой телефон».",
+          "uk": "Друг запитує, чим допомогти. Попросіть: «Принеси, будь ласка, мій телефон»."
+        },
+        "orderedTokens": [
+          "Please",
+          "bring",
+          "me",
+          "my",
+          "phone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:word:gums",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gums",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:word:gums:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gums",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:word:gums:audio",
+          "transcript": "gums"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:word:gums:r1",
+            "targetText": "gums",
+            "meaningByLocale": {
+              "ru": "Дёсны. Единственное число gum — десна; my gums hurt — у меня болят дёсны.",
+              "uk": "Ясна. Gums — форма множини від gum; my gums hurt — у мене болять ясна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gums",
+          "definitionByLocale": {
+            "ru": "Дёсны. Единственное число gum — десна; my gums hurt — у меня болят дёсны.",
+            "uk": "Ясна. Gums — форма множини від gum; my gums hurt — у мене болять ясна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i07:r1",
+          "text": "My gums hurt when I eat."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i07:r2",
+          "text": "My gums hurt when I drink."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i07:r3",
+          "text": "My tooth hurts when I eat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i07:audio",
+          "transcript": "My gums hurt when I eat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:i07:r1",
+            "targetText": "My gums hurt when I eat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i07:r2",
+            "targetText": "My gums hurt when I drink.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i07:r3",
+            "targetText": "My tooth hurts when I eat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My gums hurt when I eat.",
+              "uk": "У записі звучить My gums hurt when I eat."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My gums hurt when I eat.",
+              "uk": "У записі звучить My gums hurt when I eat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг пропонує відвезти вас завтра за потреби. Доповніть його обіцянку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i08:r1",
+          "text": "will"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i08:r3",
+          "text": "have"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг пропонує відвезти вас завтра за потреби. Доповніть його обіцянку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг предлагает отвезти вас завтра при необходимости. Дополните его обещание.",
+          "uk": "Друг пропонує відвезти вас завтра за потреби. Доповніть його обіцянку."
+        },
+        "gappedTargetPhrase": "I ___ drive you there if you need a lift.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-11:i08:r1",
+            "text": "will"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i08:r3",
+            "text": "have"
+          }
+        ],
+        "testedDimension": "Друг пропонує відвезти вас завтра за потреби. Доповніть його обіцянку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Друг пропонує відвезти вас завтра за потреби. Доповніть його обіцянку.",
+            "feedbackByLocale": {
+              "ru": "Am не сочетается с начальной формой drive.",
+              "uk": "Am не поєднується з початковою формою drive."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Друг пропонує відвезти вас завтра за потреби. Доповніть його обіцянку.",
+            "feedbackByLocale": {
+              "ru": "Have drive не выражает обещание; нужно will drive.",
+              "uk": "Have drive не виражає обіцянки; потрібно will drive."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сестра запитує про стоматолога. Дайте відповідь: «Я вже записався на прийом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра запитує про стоматолога. Дайте відповідь: «Я вже записався на прийом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already booked an appointment.",
+        "localizedMeaning": {
+          "ru": "Сестра спрашивает о стоматологе. Ответьте: «Я уже записался на приём».",
+          "uk": "Сестра запитує про стоматолога. Дайте відповідь: «Я вже записався на прийом»."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "booked",
+          "an",
+          "appointment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Мама запитує, що сталося на прогулянці. Скажіть: «Цей пухир болить».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i10:audio"
+      ],
+      "accessibilityLabel": "Мама запитує, що сталося на прогулянці. Скажіть: «Цей пухир болить».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i10:audio",
+          "transcript": "This blister hurts."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This blister hurts.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i11:r1",
+          "text": "My tummy feels better now."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i11:r2",
+          "text": "My tummy feels worse now."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i11:r3",
+          "text": "My back feels better now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i11:audio",
+          "transcript": "My tummy feels better now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:i11:r1",
+            "targetText": "My tummy feels better now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i11:r2",
+            "targetText": "My tummy feels worse now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i11:r3",
+            "targetText": "My back feels better now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My tummy feels better now.",
+              "uk": "У записі звучить My tummy feels better now."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My tummy feels better now.",
+              "uk": "У записі звучить My tummy feels better now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ще не зателефонували другові. Доповніть заперечну відповідь словом «ще».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i12:r1",
+          "text": "yet"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i12:r2",
+          "text": "already"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i12:r3",
+          "text": "just"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ще не зателефонували другові. Доповніть заперечну відповідь словом «ще».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ещё не позвонили другу. Дополните отрицательный ответ словом «ещё».",
+          "uk": "Ви ще не зателефонували другові. Доповніть заперечну відповідь словом «ще»."
+        },
+        "gappedTargetPhrase": "I have not called him ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-11:i12:r1",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i12:r2",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i12:r3",
+            "text": "just"
+          }
+        ],
+        "testedDimension": "Ви ще не зателефонували другові. Доповніть заперечну відповідь словом «ще».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви ще не зателефонували другові. Доповніть заперечну відповідь словом «ще».",
+            "feedbackByLocale": {
+              "ru": "Already означает «уже», а здесь нужно «ещё не».",
+              "uk": "Already означає «вже», а тут потрібно «ще не»."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви ще не зателефонували другові. Доповніть заперечну відповідь словом «ще».",
+            "feedbackByLocale": {
+              "ru": "Just означает «только что» и не подходит в конец этого ответа.",
+              "uk": "Just означає «щойно» й не підходить у кінець цієї відповіді."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, що сталося до приїзду сестри.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте, що сталося до приїзду сестри.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i13:audio",
+          "transcript": "I had gone home by the time my sister arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I had gone home by the time my sister arrived.",
+        "orderedTokens": [
+          "I",
+          "had",
+          "gone",
+          "home",
+          "by",
+          "the",
+          "time",
+          "my",
+          "sister",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Тренер уточнює місце болю. Ви показуєте верхню частину ноги між коліном і тазом. Доповніть відповідь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i14:r1",
+          "text": "thigh"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i14:r2",
+          "text": "heel"
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i14:r3",
+          "text": "wrist"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тренер уточнює місце болю. Ви показуєте верхню частину ноги між коліном і тазом. Доповніть відповідь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Тренер уточняет место боли. Вы показываете верхнюю часть ноги между коленом и тазом. Дополните ответ.",
+          "uk": "Тренер уточнює місце болю. Ви показуєте верхню частину ноги між коліном і тазом. Доповніть відповідь."
+        },
+        "gappedTargetPhrase": "It is my ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-11:i14:r1",
+            "text": "thigh"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i14:r2",
+            "text": "heel"
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i14:r3",
+            "text": "wrist"
+          }
+        ],
+        "testedDimension": "Тренер уточнює місце болю. Ви показуєте верхню частину ноги між коліном і тазом. Доповніть відповідь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i14:r2",
+            "correct": false,
+            "testedDimension": "Тренер уточнює місце болю. Ви показуєте верхню частину ноги між коліном і тазом. Доповніть відповідь.",
+            "feedbackByLocale": {
+              "ru": "Heel — пятка, внизу стопы.",
+              "uk": "Heel — п’ята, унизу стопи."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i14:r3",
+            "correct": false,
+            "testedDimension": "Тренер уточнює місце болю. Ви показуєте верхню частину ноги між коліном і тазом. Доповніть відповідь.",
+            "feedbackByLocale": {
+              "ru": "Wrist — запястье, часть руки.",
+              "uk": "Wrist — зап’ясток, частина руки."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Стоматолог запитує, що вас турбує. Дайте відповідь: «У мене болять ясна».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Стоматолог запитує, що вас турбує. Дайте відповідь: «У мене болять ясна».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i15:audio",
+          "transcript": "My gums hurt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My gums hurt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пообіцяйте подрузі: «Я напишу тобі, якщо плани зміняться».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообіцяйте подрузі: «Я напишу тобі, якщо плани зміняться».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will text you if the plans change.",
+        "localizedMeaning": {
+          "ru": "Пообещайте подруге: «Я напишу тебе, если планы изменятся».",
+          "uk": "Пообіцяйте подрузі: «Я напишу тобі, якщо плани зміняться»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "text",
+          "you",
+          "if",
+          "the",
+          "plans",
+          "change"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-11:i17:r1",
+          "text": "We can meet another day."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i17:r2",
+          "text": "We can meet another time."
+        },
+        {
+          "responseId": "en:lesson-26:session-11:i17:r3",
+          "text": "We can leave another day."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-11:i17:audio",
+          "transcript": "We can meet another day."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-11:i17:r1",
+            "targetText": "We can meet another day.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i17:r2",
+            "targetText": "We can meet another time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i17:r3",
+            "targetText": "We can leave another day.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-11:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can meet another day.",
+              "uk": "У записі звучить We can meet another day."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-11:i17:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can meet another day.",
+              "uk": "У записі звучить We can meet another day."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c913e655c385bb7a65a4c4928cb3b0033bcf2b3ba22cf08f51b3c7fc4997fbb4"
+}

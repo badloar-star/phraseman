@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "first conditional; zero conditional; just, already, yet; past perfect + by the time",
+    "uk": "first conditional; zero conditional; just, already, yet; past perfect + by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В гости с ребёнком",
+        "uk": "У гості з дитиною"
+      },
+      "bodyByLocale": {
+        "ru": "Cot — детская кроватка с высокими бортиками; так её называют в британском английском. We will bring a cot if you need one — мы привезём детскую кроватку, если она вам понадобится. One заменяет уже названное cot. Это предложение помощи на возможный случай: will bring в результате, need после if. В ответ можно сказать I have already borrowed one — я уже одолжил одну.",
+        "uk": "Cot — дитяче ліжечко з високими бортиками; так його називають у британській англійській. We will bring a cot if you need one — ми привеземо дитяче ліжечко, якщо воно вам знадобиться. One замінює вже назване cot. Це пропозиція допомоги на можливий випадок: will bring у результаті, need після if. У відповідь можна сказати I have already borrowed one — я вже позичив одне."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-12:intro1:r1",
+              "text": "We will bring a cot if you need one."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro1:r2",
+              "text": "We will bring a cot if you will need one."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro1:r3",
+              "text": "We will bringing a cot if you need one."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-12:intro1:r1",
+              "text": "We will bring a cot if you need one."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro1:r2",
+              "text": "We will bring a cot if you will need one."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro1:r3",
+              "text": "We will bringing a cot if you need one."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Собрать всё нужное",
+        "uk": "Зібрати все потрібне"
+      },
+      "bodyByLocale": {
+        "ru": "Dummy — пустышка, соска-пустышка в британском английском. Potty — детский горшок. Have you packed the dummy yet? — ты уже положил пустышку в сумку? Yet в конце вопроса уточняет, сделано ли ожидаемое действие. I have just packed the potty — я только что положил горшок. Just стоит между have и packed. Эти слова помогают назвать конкретные детские вещи, а не заменять всё словом thing.",
+        "uk": "Dummy — пустушка в британській англійській. Potty — дитячий горщик. Have you packed the dummy yet? — ти вже поклав пустушку в сумку? Yet у кінці питання уточнює, чи виконано очікувану дію. I have just packed the potty — я щойно поклав горщик. Just стоїть між have та packed. Ці слова допомагають назвати конкретні дитячі речі, а не замінювати все словом thing."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-12:intro2:r1",
+              "text": "Have you packed the dummy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro2:r2",
+              "text": "Have you pack the dummy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro2:r3",
+              "text": "Has you packed the dummy yet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-12:intro2:r1",
+              "text": "Have you packed the dummy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro2:r2",
+              "text": "Have you pack the dummy yet?"
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro2:r3",
+              "text": "Has you packed the dummy yet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выйти на прогулку",
+        "uk": "Вийти на прогулянку"
+      },
+      "bodyByLocale": {
+        "ru": "Buggy — прогулочная детская коляска, обычное британское название. The buggy is in the hall — коляска в прихожей. I had folded it by the time the taxi arrived — я уже сложил её к приезду такси. Had folded произошло раньше, чем arrived. О семейной привычке говорим в настоящем: If the baby is tired, we go home — если малыш устал, мы идём домой. Для плана на сегодняшнюю прогулку: We will go home if it rains.",
+        "uk": "Buggy — прогулянковий дитячий візок, звичайна британська назва. The buggy is in the hall — візок у передпокої. I had folded it by the time the taxi arrived — я вже склав його до приїзду таксі. Had folded сталося раніше, ніж arrived. Про сімейну звичку говоримо в теперішньому часі: If the baby is tired, we go home — якщо малюк утомився, ми йдемо додому. Для плану на сьогоднішню прогулянку: We will go home if it rains."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-12:intro3:r1",
+              "text": "I had folded it by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro3:r2",
+              "text": "I had fold it by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro3:r3",
+              "text": "I have folded it by the time the taxi arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-12:intro3:r1",
+              "text": "I had folded it by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro3:r2",
+              "text": "I had fold it by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-12:intro3:r3",
+              "text": "I have folded it by the time the taxi arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "afd13ee1171fe7bbc097596c69ab552108018a56549f3df2b8c56dabc509272d"
+}

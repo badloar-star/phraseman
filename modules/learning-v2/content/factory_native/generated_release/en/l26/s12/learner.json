@@ -1,0 +1,1087 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-12:word:cot",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:word:cot:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:word:cot:audio",
+          "transcript": "cot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:word:cot:r1",
+            "targetText": "cot",
+            "meaningByLocale": {
+              "ru": "Детская кроватка с высокими бортиками, британское название. A cot — одна кроватка.",
+              "uk": "Дитяче ліжечко з високими бортиками, британська назва. A cot — одне ліжечко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cot",
+          "definitionByLocale": {
+            "ru": "Детская кроватка с высокими бортиками, британское название. A cot — одна кроватка.",
+            "uk": "Дитяче ліжечко з високими бортиками, британська назва. A cot — одне ліжечко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i01:r1",
+          "text": "There is a cot in the bedroom."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i01:r2",
+          "text": "There is a cot in the living room."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i01:r3",
+          "text": "There is a chair in the bedroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i01:audio",
+          "transcript": "There is a cot in the bedroom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:i01:r1",
+            "targetText": "There is a cot in the bedroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i01:r2",
+            "targetText": "There is a cot in the living room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i01:r3",
+            "targetText": "There is a chair in the bedroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a cot in the bedroom.",
+              "uk": "У записі звучить There is a cot in the bedroom."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a cot in the bedroom.",
+              "uk": "У записі звучить There is a cot in the bedroom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сестра спрашивает, что приготовить к вашему приезду. Попросите: «Нам нужно тихое место».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра спрашивает, что приготовить к вашему приезду. Попросите: «Нам нужно тихое место».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need a quiet place.",
+        "localizedMeaning": {
+          "ru": "Сестра спрашивает, что приготовить к вашему приезду. Попросите: «Нам нужно тихое место».",
+          "uk": "Сестра запитує, що підготувати до вашого приїзду. Попросіть: «Нам потрібне тихе місце»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "a",
+          "quiet",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:word:dummy",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dummy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:word:dummy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dummy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:word:dummy:audio",
+          "transcript": "dummy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:word:dummy:r1",
+            "targetText": "dummy",
+            "meaningByLocale": {
+              "ru": "Пустышка, соска-пустышка. Британское слово для детской пустышки.",
+              "uk": "Пустушка. Британське слово для дитячої пустушки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dummy",
+          "definitionByLocale": {
+            "ru": "Пустышка, соска-пустышка. Британское слово для детской пустышки.",
+            "uk": "Пустушка. Британське слово для дитячої пустушки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Папа ищет пустышку. Вы видели её в сумке. Дополните ответ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i03:r1",
+          "text": "dummy"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i03:r2",
+          "text": "cot"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i03:r3",
+          "text": "table"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Папа ищет пустышку. Вы видели её в сумке. Дополните ответ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Папа ищет пустышку. Вы видели её в сумке. Дополните ответ.",
+          "uk": "Тато шукає пустушку. Ви бачили її в сумці. Доповніть відповідь."
+        },
+        "gappedTargetPhrase": "The ___ is in the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-12:i03:r1",
+            "text": "dummy"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i03:r2",
+            "text": "cot"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i03:r3",
+            "text": "table"
+          }
+        ],
+        "testedDimension": "Папа ищет пустышку. Вы видели её в сумке. Дополните ответ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Папа ищет пустышку. Вы видели её в сумке. Дополните ответ.",
+            "feedbackByLocale": {
+              "ru": "Cot — кроватка, а папа ищет пустышку.",
+              "uk": "Cot — ліжечко, а тато шукає пустушку."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Папа ищет пустышку. Вы видели её в сумке. Дополните ответ.",
+            "feedbackByLocale": {
+              "ru": "Table — стол, а здесь нужна пустышка.",
+              "uk": "Table — стіл, а тут потрібна пустушка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о кроватке. Ответьте: «Мы уже одолжили кроватку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i04:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о кроватке. Ответьте: «Мы уже одолжили кроватку».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i04:audio",
+          "transcript": "We have already borrowed a cot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have already borrowed a cot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:word:potty",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — potty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:word:potty:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — potty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:word:potty:audio",
+          "transcript": "potty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:word:potty:r1",
+            "targetText": "potty",
+            "meaningByLocale": {
+              "ru": "Детский горшок. The potty — горшок, о котором уже известно собеседнику.",
+              "uk": "Дитячий горщик. The potty — горщик, про який уже знає співрозмовник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "potty",
+          "definitionByLocale": {
+            "ru": "Детский горшок. The potty — горшок, о котором уже известно собеседнику.",
+            "uk": "Дитячий горщик. The potty — горщик, про який уже знає співрозмовник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните перед выходом: «Ты взял горшок?» Используйте yet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните перед выходом: «Ты взял горшок?» Используйте yet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you packed the potty yet?",
+        "localizedMeaning": {
+          "ru": "Уточните перед выходом: «Ты взял горшок?» Используйте yet.",
+          "uk": "Уточніть перед виходом: «Ти взяв горщик?» Використайте yet."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "packed",
+          "the",
+          "potty",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i06:r1",
+          "text": "I have just put the bag in the car."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i06:r2",
+          "text": "I have just put the bag in the hall."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i06:r3",
+          "text": "I have just taken the bag out of the car."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i06:audio",
+          "transcript": "I have just put the bag in the car."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:i06:r1",
+            "targetText": "I have just put the bag in the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i06:r2",
+            "targetText": "I have just put the bag in the hall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i06:r3",
+            "targetText": "I have just taken the bag out of the car.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just put the bag in the car.",
+              "uk": "У записі звучить I have just put the bag in the car."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just put the bag in the car.",
+              "uk": "У записі звучить I have just put the bag in the car."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:word:buggy",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — buggy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:word:buggy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — buggy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:word:buggy:audio",
+          "transcript": "buggy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:word:buggy:r1",
+            "targetText": "buggy",
+            "meaningByLocale": {
+              "ru": "Прогулочная детская коляска. Обычное британское название; a buggy — одна коляска.",
+              "uk": "Прогулянковий дитячий візок. Звичайна британська назва; a buggy — один візок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "buggy",
+          "definitionByLocale": {
+            "ru": "Прогулочная детская коляска. Обычное британское название; a buggy — одна коляска.",
+            "uk": "Прогулянковий дитячий візок. Звичайна британська назва; a buggy — один візок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу перед поездкой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу перед поездкой.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i07:audio",
+          "transcript": "Please fold the buggy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please fold the buggy.",
+        "orderedTokens": [
+          "Please",
+          "fold",
+          "the",
+          "buggy"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i08:r1",
+          "text": "gets"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i08:r2",
+          "text": "will get"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i08:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
+          "uk": "Мама пропонує взяти запасний одяг на випадок холоду. Доповніть умову."
+        },
+        "gappedTargetPhrase": "We will bring a jacket if it ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-12:i08:r1",
+            "text": "gets"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i08:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i08:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "После if в этом условии нужен Present Simple: gets.",
+              "uk": "Після if у цій умові потрібен Present Simple: gets."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
+            "feedbackByLocale": {
+              "ru": "Нужно сказуемое gets, а не отдельная форма getting.",
+              "uk": "Потрібен присудок gets, а не окрема форма getting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра просит передать пустышку. Ответьте: «Вот она».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i09:audio"
+      ],
+      "accessibilityLabel": "Сестра просит передать пустышку. Ответьте: «Вот она».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i09:audio",
+          "transcript": "Here is the dummy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Here is the dummy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сосед предлагает помощь у лестницы. Попросите: «Можешь подержать дверь?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сосед предлагает помощь у лестницы. Попросите: «Можешь подержать дверь?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you hold the door?",
+        "localizedMeaning": {
+          "ru": "Сосед предлагает помощь у лестницы. Попросите: «Можешь подержать дверь?»",
+          "uk": "Сусід пропонує допомогу біля сходів. Попросіть: «Можеш потримати двері?»"
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "hold",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишите обычное семейное правило: когда малыш устал, вы идёте домой.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i11:r1",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i11:r2",
+          "text": "goes"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i11:r3",
+          "text": "going"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите обычное семейное правило: когда малыш устал, вы идёте домой.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите обычное семейное правило: когда малыш устал, вы идёте домой.",
+          "uk": "Опишіть звичайне сімейне правило: коли малюк утомився, ви йдете додому."
+        },
+        "gappedTargetPhrase": "If the baby is tired, we ___ home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-12:i11:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i11:r2",
+            "text": "goes"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i11:r3",
+            "text": "going"
+          }
+        ],
+        "testedDimension": "Опишите обычное семейное правило: когда малыш устал, вы идёте домой.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Опишите обычное семейное правило: когда малыш устал, вы идёте домой.",
+            "feedbackByLocale": {
+              "ru": "С we глагол go без -s.",
+              "uk": "З we дієслово go без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Опишите обычное семейное правило: когда малыш устал, вы идёте домой.",
+            "feedbackByLocale": {
+              "ru": "Для обычного правила нужен глагол go, не отдельная форма going.",
+              "uk": "Для звичайного правила потрібне дієслово go, а не окрема форма going."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i12:r1",
+          "text": "The potty is in the bathroom."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i12:r2",
+          "text": "The potty is in the bedroom."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i12:r3",
+          "text": "The towel is in the bathroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i12:audio",
+          "transcript": "The potty is in the bathroom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:i12:r1",
+            "targetText": "The potty is in the bathroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i12:r2",
+            "targetText": "The potty is in the bedroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i12:r3",
+            "targetText": "The towel is in the bathroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The potty is in the bathroom.",
+              "uk": "У записі звучить The potty is in the bathroom."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The potty is in the bathroom.",
+              "uk": "У записі звучить The potty is in the bathroom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, что успели сделать до приезда такси.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что успели сделать до приезда такси.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i13:audio",
+          "transcript": "We had folded the buggy by the time the taxi arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We had folded the buggy by the time the taxi arrived.",
+        "orderedTokens": [
+          "We",
+          "had",
+          "folded",
+          "the",
+          "buggy",
+          "by",
+          "the",
+          "time",
+          "the",
+          "taxi",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг спрашивает, отправили ли вы адрес. Вы ещё не сделали этого. Дополните ответ.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i14:r1",
+          "text": "yet"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i14:r2",
+          "text": "already"
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i14:r3",
+          "text": "just"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, отправили ли вы адрес. Вы ещё не сделали этого. Дополните ответ.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спрашивает, отправили ли вы адрес. Вы ещё не сделали этого. Дополните ответ.",
+          "uk": "Друг запитує, чи надіслали ви адресу. Ви ще не зробили цього. Доповніть відповідь."
+        },
+        "gappedTargetPhrase": "I have not sent it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-12:i14:r1",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i14:r2",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i14:r3",
+            "text": "just"
+          }
+        ],
+        "testedDimension": "Друг спрашивает, отправили ли вы адрес. Вы ещё не сделали этого. Дополните ответ.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i14:r2",
+            "correct": false,
+            "testedDimension": "Друг спрашивает, отправили ли вы адрес. Вы ещё не сделали этого. Дополните ответ.",
+            "feedbackByLocale": {
+              "ru": "Already означает «уже», а здесь нужно «ещё не».",
+              "uk": "Already означає «вже», а тут потрібно «ще не»."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i14:r3",
+            "correct": false,
+            "testedDimension": "Друг спрашивает, отправили ли вы адрес. Вы ещё не сделали этого. Дополните ответ.",
+            "feedbackByLocale": {
+              "ru": "Just означает «только что» и не подходит в конце этого отрицания.",
+              "uk": "Just означає «щойно» й не підходить у кінці цього заперечення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Хозяйка спрашивает, куда поставить кроватку. Скажите: «Поставь её здесь, пожалуйста».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Хозяйка спрашивает, куда поставить кроватку. Скажите: «Поставь её здесь, пожалуйста».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i15:audio",
+          "transcript": "Put it here, please."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Put it here, please.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-12:i16:r1",
+          "text": "I will reply if you text me."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i16:r2",
+          "text": "I will call if you text me."
+        },
+        {
+          "responseId": "en:lesson-26:session-12:i16:r3",
+          "text": "I will reply if you email me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-12:i16:audio",
+          "transcript": "I will reply if you text me."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-12:i16:r1",
+            "targetText": "I will reply if you text me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i16:r2",
+            "targetText": "I will call if you text me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i16:r3",
+            "targetText": "I will reply if you email me.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-12:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will reply if you text me.",
+              "uk": "У записі звучить I will reply if you text me."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-12:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will reply if you text me.",
+              "uk": "У записі звучить I will reply if you text me."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Договоритесь с другом: «Мы встретимся в парке, если погода будет хорошая».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Договоритесь с другом: «Мы встретимся в парке, если погода будет хорошая».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will meet in the park if the weather is nice.",
+        "localizedMeaning": {
+          "ru": "Договоритесь с другом: «Мы встретимся в парке, если погода будет хорошая».",
+          "uk": "Домовтеся з другом: «Ми зустрінемося в парку, якщо погода буде гарна»."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "meet",
+          "in",
+          "the",
+          "park",
+          "if",
+          "the",
+          "weather",
+          "is",
+          "nice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7000a748fe671cbe9071bb0f896892a606b297589d33d9085d8c54353d9d6112"
+}

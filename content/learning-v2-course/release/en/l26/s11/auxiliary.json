@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-11:intro1:r2": {
+          "ru": "В условии после if здесь go без will.",
+          "uk": "В умові після if тут go без will."
+        },
+        "en:lesson-26:session-11:intro1:r3": {
+          "ru": "После will нужно bring без -s.",
+          "uk": "Після will потрібно bring без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-11:intro2:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-26:session-11:intro2:r3": {
+          "ru": "После have нужна третья форма hurt, не hurting.",
+          "uk": "Після have потрібна третя форма hurt, не hurting."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-11:intro3:r2": {
+          "ru": "После had нужна форма booked.",
+          "uk": "Після had потрібна форма booked."
+        },
+        "en:lesson-26:session-11:intro3:r3": {
+          "ru": "Called задаёт прошлый момент; более раннее событие — had booked.",
+          "uk": "Called задає минулий момент; раніша подія — had booked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9ef5d02e2cc80f39068af43d371e6dcf90dcac846914a48da3b87ac003d0eba5"
+}

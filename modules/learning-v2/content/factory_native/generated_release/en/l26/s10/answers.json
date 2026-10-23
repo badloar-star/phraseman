@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-10:word:junk",
+    "correctText": "junk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i01",
+    "correctText": "There is too much junk in this cupboard.",
+    "correctResponseId": "en:lesson-26:session-10:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i02",
+    "correctText": "Can you help me with this box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:word:nonsense",
+    "correctText": "nonsense",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i03",
+    "correctText": "nonsense",
+    "correctResponseId": "en:lesson-26:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i04",
+    "correctText": "We have already taken the junk outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:word:reckon",
+    "correctText": "reckon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i05",
+    "correctText": "I reckon we have ten minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i06",
+    "correctText": "check",
+    "correctResponseId": "en:lesson-26:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:word:pity",
+    "correctText": "pity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i07",
+    "correctText": "What a pity!",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i08",
+    "correctText": "The shop had closed by the time we arrived.",
+    "correctResponseId": "en:lesson-26:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i09",
+    "correctText": "rains",
+    "correctResponseId": "en:lesson-26:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i10",
+    "correctText": "Have you finished yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i11",
+    "correctText": "What do you reckon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i12",
+    "correctText": "Please stop talking nonsense.",
+    "correctResponseId": "en:lesson-26:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-10:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i14",
+    "correctText": "I will sweep the floor if you move the chairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i15",
+    "correctText": "That is a pity.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i16",
+    "correctText": "already",
+    "correctResponseId": "en:lesson-26:session-10:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-10:i17",
+    "correctText": "We will take a taxi if we are late.",
+    "correctResponseId": null
+  }
+]

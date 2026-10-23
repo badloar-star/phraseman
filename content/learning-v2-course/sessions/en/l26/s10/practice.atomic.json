@@ -1,0 +1,2245 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-10",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-10:word:junk",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — junk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:junk:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — junk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:junk:audio",
+            "transcript": "junk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:junk:r1",
+              "targetText": "junk",
+              "meaningByLocale": {
+                "ru": "Хлам, ненужные вещи. Неисчисляемое: this junk; не a junk.",
+                "uk": "Мотлох, непотрібні речі. Незлічуване: this junk; не a junk."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "junk",
+            "definitionByLocale": {
+              "ru": "Хлам, ненужные вещи. Неисчисляемое: this junk; не a junk.",
+              "uk": "Мотлох, непотрібні речі. Незлічуване: this junk; не a junk."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i01:r1",
+            "text": "There is too much junk in this cupboard."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i01:r2",
+            "text": "There is too much junk in this garage."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i01:r3",
+            "text": "There is too much food in this cupboard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i01:audio",
+            "transcript": "There is too much junk in this cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:i01:r1",
+              "targetText": "There is too much junk in this cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i01:r2",
+              "targetText": "There is too much junk in this garage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i01:r3",
+              "targetText": "There is too much food in this cupboard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is too much junk in this cupboard.",
+                "uk": "У записі звучить There is too much junk in this cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is too much junk in this cupboard.",
+                "uk": "У записі звучить There is too much junk in this cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коробку тяжело нести одному. Попросите друга: «Можешь помочь мне с этой коробкой?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коробку тяжело нести одному. Попросите друга: «Можешь помочь мне с этой коробкой?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you help me with this box?",
+          "localizedMeaning": {
+            "ru": "Коробку тяжело нести одному. Попросите друга: «Можешь помочь мне с этой коробкой?»",
+            "uk": "Коробку важко нести самому. Попросіть друга: «Можеш допомогти мені з цією коробкою?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "help",
+            "me",
+            "with",
+            "this",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:word:nonsense",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nonsense",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:nonsense:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nonsense",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:nonsense:audio",
+            "transcript": "nonsense"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:nonsense:r1",
+              "targetText": "nonsense",
+              "meaningByLocale": {
+                "ru": "Ерунда, бессмыслица. That is nonsense — это ерунда; резкая оценка утверждения.",
+                "uk": "Нісенітниця, дурниці. That is nonsense — це нісенітниця; різка оцінка твердження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nonsense",
+            "definitionByLocale": {
+              "ru": "Ерунда, бессмыслица. That is nonsense — это ерунда; резкая оценка утверждения.",
+              "uk": "Нісенітниця, дурниці. That is nonsense — це нісенітниця; різка оцінка твердження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг утверждает, что можно неделю обходиться без сна. Вы считаете утверждение нелепым. Дополните ответ.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i03:r1",
+            "text": "nonsense"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i03:r2",
+            "text": "advice"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i03:r3",
+            "text": "permission"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг утверждает, что можно неделю обходиться без сна. Вы считаете утверждение нелепым. Дополните ответ.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг утверждает, что можно неделю обходиться без сна. Вы считаете утверждение нелепым. Дополните ответ.",
+            "uk": "Друг стверджує, що можна тиждень обходитися без сну. Ви вважаєте твердження безглуздим. Доповніть відповідь."
+          },
+          "gappedTargetPhrase": "That is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i03:r1",
+              "text": "nonsense"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i03:r2",
+              "text": "advice"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i03:r3",
+              "text": "permission"
+            }
+          ],
+          "testedDimension": "Друг утверждает, что можно неделю обходиться без сна. Вы считаете утверждение нелепым. Дополните ответ.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг утверждает, что можно неделю обходиться без сна. Вы считаете утверждение нелепым. Дополните ответ.",
+              "feedbackByLocale": {
+                "ru": "Advice — совет, а вы отвергаете нелепое утверждение.",
+                "uk": "Advice — порада, а ви відкидаєте безглузде твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг утверждает, что можно неделю обходиться без сна. Вы считаете утверждение нелепым. Дополните ответ.",
+              "feedbackByLocale": {
+                "ru": "Permission — разрешение, не оценка услышанного.",
+                "uk": "Permission — дозвіл, а не оцінка почутого."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, что уже сделали с ненужными вещами.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i04:audio"
+        ],
+        "accessibilityLabel": "Услышьте, что уже сделали с ненужными вещами.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i04:audio",
+            "transcript": "We have already taken the junk outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have already taken the junk outside.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "already",
+            "taken",
+            "the",
+            "junk",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:word:reckon",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reckon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:reckon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reckon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:reckon:audio",
+            "transcript": "reckon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:reckon:r1",
+              "targetText": "reckon",
+              "meaningByLocale": {
+                "ru": "Считать, полагать. Разговорное I reckon — думаю, полагаю; особенно часто в британской речи.",
+                "uk": "Вважати, гадати. Розмовне I reckon — думаю, гадаю; особливо часто в британському мовленні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reckon",
+            "definitionByLocale": {
+              "ru": "Считать, полагать. Разговорное I reckon — думаю, полагаю; особенно часто в британской речи.",
+              "uk": "Вважати, гадати. Розмовне I reckon — думаю, гадаю; особливо часто в британському мовленні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, хватит ли времени на чай. Скажите: «Думаю, у нас есть десять минут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, хватит ли времени на чай. Скажите: «Думаю, у нас есть десять минут».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i05:audio",
+            "transcript": "I reckon we have ten minutes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I reckon we have ten minutes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i06:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i06:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i06:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
+            "uk": "Ви зазвичай перевіряєте дивні історії, перш ніж їм вірити. Доповніть опис звички."
+          },
+          "gappedTargetPhrase": "If I hear a strange story, I ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i06:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i06:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i06:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
+              "feedbackByLocale": {
+                "ru": "С I нужно check без -s.",
+                "uk": "З I потрібно check без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
+              "feedbackByLocale": {
+                "ru": "Checking без вспомогательного глагола не образует сказуемое.",
+                "uk": "Checking без допоміжного дієслова не утворює присудок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:word:pity",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:pity:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:pity:audio",
+            "transcript": "pity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:pity:r1",
+              "targetText": "pity",
+              "meaningByLocale": {
+                "ru": "Жалость. Восклицание What a pity! означает «Как жаль!» — реакция на неприятность.",
+                "uk": "Жаль. Вигук What a pity! означає «Як шкода!» — реакція на прикрість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pity",
+            "definitionByLocale": {
+              "ru": "Жалость. Восклицание What a pity! означает «Как жаль!» — реакция на неприятность.",
+              "uk": "Жаль. Вигук What a pity! означає «Як шкода!» — реакція на прикрість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг не сможет прийти на ужин. Отреагируйте: «Как жаль!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг не сможет прийти на ужин. Отреагируйте: «Как жаль!»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What a pity!",
+          "localizedMeaning": {
+            "ru": "Друг не сможет прийти на ужин. Отреагируйте: «Как жаль!»",
+            "uk": "Друг не зможе прийти на вечерю. Відреагуйте: «Як шкода!»"
+          },
+          "orderedTokens": [
+            "What",
+            "a",
+            "pity"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i08:r1",
+            "text": "The shop had closed by the time we arrived."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i08:r2",
+            "text": "The shop had opened by the time we arrived."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i08:r3",
+            "text": "The café had closed by the time we arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i08:audio",
+            "transcript": "The shop had closed by the time we arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:i08:r1",
+              "targetText": "The shop had closed by the time we arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i08:r2",
+              "targetText": "The shop had opened by the time we arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i08:r3",
+              "targetText": "The café had closed by the time we arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shop had closed by the time we arrived.",
+                "uk": "У записі звучить The shop had closed by the time we arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shop had closed by the time we arrived.",
+                "uk": "У записі звучить The shop had closed by the time we arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i09:r1",
+            "text": "rains"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i09:r2",
+            "text": "will rain"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i09:r3",
+            "text": "raining"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
+            "uk": "Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план."
+          },
+          "gappedTargetPhrase": "I will stay at home if it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i09:r1",
+              "text": "rains"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i09:r2",
+              "text": "will rain"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i09:r3",
+              "text": "raining"
+            }
+          ],
+          "testedDimension": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
+              "feedbackByLocale": {
+                "ru": "В будущем условии после if нужен Present Simple: rains.",
+                "uk": "У майбутній умові після if потрібен Present Simple: rains."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
+              "feedbackByLocale": {
+                "ru": "Нужно сказуемое rains, не отдельная форма raining.",
+                "uk": "Потрібен присудок rains, а не окрема форма raining."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите сестру, закончила ли она уборку: «Ты уже закончила?» Используйте yet.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите сестру, закончила ли она уборку: «Ты уже закончила?» Используйте yet.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you finished yet?",
+          "localizedMeaning": {
+            "ru": "Спросите сестру, закончила ли она уборку: «Ты уже закончила?» Используйте yet.",
+            "uk": "Запитайте сестру, чи закінчила вона прибирання: «Ти вже закінчила?» Використайте yet."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "finished",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы не уверены, стоит ли хранить сломанный стул. Спросите друга: «Как ты думаешь?» Используйте reckon.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Вы не уверены, стоит ли хранить сломанный стул. Спросите друга: «Как ты думаешь?» Используйте reckon.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i11:audio",
+            "transcript": "What do you reckon?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What do you reckon?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i12:r1",
+            "text": "Please stop talking nonsense."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i12:r2",
+            "text": "Please stop making noise."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i12:r3",
+            "text": "Please keep talking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i12:audio",
+            "transcript": "Please stop talking nonsense."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:i12:r1",
+              "targetText": "Please stop talking nonsense.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i12:r2",
+              "targetText": "Please stop making noise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i12:r3",
+              "targetText": "Please keep talking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please stop talking nonsense.",
+                "uk": "У записі звучить Please stop talking nonsense."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please stop talking nonsense.",
+                "uk": "У записі звучить Please stop talking nonsense."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Когда вы добрались до остановки, автобус уже уехал. Дополните более раннее событие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i13:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i13:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Когда вы добрались до остановки, автобус уже уехал. Дополните более раннее событие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Когда вы добрались до остановки, автобус уже уехал. Дополните более раннее событие.",
+            "uk": "Коли ви дісталися зупинки, автобус уже поїхав. Доповніть ранішу подію."
+          },
+          "gappedTargetPhrase": "The bus ___ left by the time we got there.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i13:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i13:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Когда вы добрались до остановки, автобус уже уехал. Дополните более раннее событие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i13:r2",
+              "correct": false,
+              "testedDimension": "Когда вы добрались до остановки, автобус уже уехал. Дополните более раннее событие.",
+              "feedbackByLocale": {
+                "ru": "Has связывает результат с настоящим, а got задаёт прошлый момент.",
+                "uk": "Has пов’язує результат із теперішнім, а got задає минулий момент."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i13:r3",
+              "correct": false,
+              "testedDimension": "Когда вы добрались до остановки, автобус уже уехал. Дополните более раннее событие.",
+              "feedbackByLocale": {
+                "ru": "Нужно had left, чтобы показать событие до другого прошлого события.",
+                "uk": "Потрібно had left, щоб показати подію до іншої минулої події."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте предложение помочь с уборкой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Услышьте предложение помочь с уборкой.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i14:audio",
+            "transcript": "I will sweep the floor if you move the chairs."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will sweep the floor if you move the chairs.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "sweep",
+            "the",
+            "floor",
+            "if",
+            "you",
+            "move",
+            "the",
+            "chairs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг сообщает, что потерял билет. Скажите: «Как жаль!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Друг сообщает, что потерял билет. Скажите: «Как жаль!»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i15:audio",
+            "transcript": "That is a pity."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is a pity.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мама зовёт есть, но вы пообедали раньше. Сообщите, что это уже сделано.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i16:r1",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i16:r2",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i16:r3",
+            "text": "tomorrow"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама зовёт есть, но вы пообедали раньше. Сообщите, что это уже сделано.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мама зовёт есть, но вы пообедали раньше. Сообщите, что это уже сделано.",
+            "uk": "Мама кличе їсти, але ви пообідали раніше. Повідомте, що це вже зроблено."
+          },
+          "gappedTargetPhrase": "I have ___ had lunch.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i16:r1",
+              "text": "already"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i16:r2",
+              "text": "yet"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i16:r3",
+              "text": "tomorrow"
+            }
+          ],
+          "testedDimension": "Мама зовёт есть, но вы пообедали раньше. Сообщите, что это уже сделано.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i16:r2",
+              "correct": false,
+              "testedDimension": "Мама зовёт есть, но вы пообедали раньше. Сообщите, что это уже сделано.",
+              "feedbackByLocale": {
+                "ru": "Yet обычно ставим в конце вопроса или отрицания, а здесь утвердительный ответ.",
+                "uk": "Yet зазвичай ставимо в кінці питання або заперечення, а тут ствердна відповідь."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i16:r3",
+              "correct": false,
+              "testedDimension": "Мама зовёт есть, но вы пообедали раньше. Сообщите, что это уже сделано.",
+              "feedbackByLocale": {
+                "ru": "Tomorrow обозначает завтра, а обед уже состоялся.",
+                "uk": "Tomorrow позначає завтра, а обід уже відбувся."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "После пропущенного автобуса предложите: «Мы возьмём такси, если будем опаздывать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "После пропущенного автобуса предложите: «Мы возьмём такси, если будем опаздывать».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will take a taxi if we are late.",
+          "localizedMeaning": {
+            "ru": "После пропущенного автобуса предложите: «Мы возьмём такси, если будем опаздывать».",
+            "uk": "Після пропущеного автобуса запропонуйте: «Ми візьмемо таксі, якщо запізнюватимемося»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "take",
+            "a",
+            "taxi",
+            "if",
+            "we",
+            "are",
+            "late"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-10:word:junk",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — junk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:junk:audio"
+        ],
+        "accessibilityLabel": "Картка слова — junk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:junk:audio",
+            "transcript": "junk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:junk:r1",
+              "targetText": "junk",
+              "meaningByLocale": {
+                "ru": "Хлам, ненужные вещи. Неисчисляемое: this junk; не a junk.",
+                "uk": "Мотлох, непотрібні речі. Незлічуване: this junk; не a junk."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "junk",
+            "definitionByLocale": {
+              "ru": "Хлам, ненужные вещи. Неисчисляемое: this junk; не a junk.",
+              "uk": "Мотлох, непотрібні речі. Незлічуване: this junk; не a junk."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i01:r1",
+            "text": "There is too much junk in this cupboard."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i01:r2",
+            "text": "There is too much junk in this garage."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i01:r3",
+            "text": "There is too much food in this cupboard."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i01:audio",
+            "transcript": "There is too much junk in this cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:i01:r1",
+              "targetText": "There is too much junk in this cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i01:r2",
+              "targetText": "There is too much junk in this garage.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i01:r3",
+              "targetText": "There is too much food in this cupboard.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is too much junk in this cupboard.",
+                "uk": "У записі звучить There is too much junk in this cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is too much junk in this cupboard.",
+                "uk": "У записі звучить There is too much junk in this cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коробку важко нести самому. Попросіть друга: «Можеш допомогти мені з цією коробкою?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коробку важко нести самому. Попросіть друга: «Можеш допомогти мені з цією коробкою?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you help me with this box?",
+          "localizedMeaning": {
+            "ru": "Коробку тяжело нести одному. Попросите друга: «Можешь помочь мне с этой коробкой?»",
+            "uk": "Коробку важко нести самому. Попросіть друга: «Можеш допомогти мені з цією коробкою?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "help",
+            "me",
+            "with",
+            "this",
+            "box"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:word:nonsense",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nonsense",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:nonsense:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nonsense",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:nonsense:audio",
+            "transcript": "nonsense"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:nonsense:r1",
+              "targetText": "nonsense",
+              "meaningByLocale": {
+                "ru": "Ерунда, бессмыслица. That is nonsense — это ерунда; резкая оценка утверждения.",
+                "uk": "Нісенітниця, дурниці. That is nonsense — це нісенітниця; різка оцінка твердження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nonsense",
+            "definitionByLocale": {
+              "ru": "Ерунда, бессмыслица. That is nonsense — это ерунда; резкая оценка утверждения.",
+              "uk": "Нісенітниця, дурниці. That is nonsense — це нісенітниця; різка оцінка твердження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг стверджує, що можна тиждень обходитися без сну. Ви вважаєте твердження безглуздим. Доповніть відповідь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i03:r1",
+            "text": "nonsense"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i03:r2",
+            "text": "advice"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i03:r3",
+            "text": "permission"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг стверджує, що можна тиждень обходитися без сну. Ви вважаєте твердження безглуздим. Доповніть відповідь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг утверждает, что можно неделю обходиться без сна. Вы считаете утверждение нелепым. Дополните ответ.",
+            "uk": "Друг стверджує, що можна тиждень обходитися без сну. Ви вважаєте твердження безглуздим. Доповніть відповідь."
+          },
+          "gappedTargetPhrase": "That is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i03:r1",
+              "text": "nonsense"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i03:r2",
+              "text": "advice"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i03:r3",
+              "text": "permission"
+            }
+          ],
+          "testedDimension": "Друг стверджує, що можна тиждень обходитися без сну. Ви вважаєте твердження безглуздим. Доповніть відповідь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг стверджує, що можна тиждень обходитися без сну. Ви вважаєте твердження безглуздим. Доповніть відповідь.",
+              "feedbackByLocale": {
+                "ru": "Advice — совет, а вы отвергаете нелепое утверждение.",
+                "uk": "Advice — порада, а ви відкидаєте безглузде твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг стверджує, що можна тиждень обходитися без сну. Ви вважаєте твердження безглуздим. Доповніть відповідь.",
+              "feedbackByLocale": {
+                "ru": "Permission — разрешение, не оценка услышанного.",
+                "uk": "Permission — дозвіл, а не оцінка почутого."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, що вже зробили з непотрібними речами.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i04:audio"
+        ],
+        "accessibilityLabel": "Почуйте, що вже зробили з непотрібними речами.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i04:audio",
+            "transcript": "We have already taken the junk outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have already taken the junk outside.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "already",
+            "taken",
+            "the",
+            "junk",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:word:reckon",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reckon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:reckon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reckon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:reckon:audio",
+            "transcript": "reckon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:reckon:r1",
+              "targetText": "reckon",
+              "meaningByLocale": {
+                "ru": "Считать, полагать. Разговорное I reckon — думаю, полагаю; особенно часто в британской речи.",
+                "uk": "Вважати, гадати. Розмовне I reckon — думаю, гадаю; особливо часто в британському мовленні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reckon",
+            "definitionByLocale": {
+              "ru": "Считать, полагать. Разговорное I reckon — думаю, полагаю; особенно часто в британской речи.",
+              "uk": "Вважати, гадати. Розмовне I reckon — думаю, гадаю; особливо часто в британському мовленні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, чи вистачить часу на чай. Скажіть: «Гадаю, у нас є десять хвилин».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i05:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, чи вистачить часу на чай. Скажіть: «Гадаю, у нас є десять хвилин».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i05:audio",
+            "transcript": "I reckon we have ten minutes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I reckon we have ten minutes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зазвичай перевіряєте дивні історії, перш ніж їм вірити. Доповніть опис звички.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i06:r1",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i06:r2",
+            "text": "checks"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i06:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зазвичай перевіряєте дивні історії, перш ніж їм вірити. Доповніть опис звички.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
+            "uk": "Ви зазвичай перевіряєте дивні історії, перш ніж їм вірити. Доповніть опис звички."
+          },
+          "gappedTargetPhrase": "If I hear a strange story, I ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i06:r1",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i06:r2",
+              "text": "checks"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i06:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Ви зазвичай перевіряєте дивні історії, перш ніж їм вірити. Доповніть опис звички.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви зазвичай перевіряєте дивні історії, перш ніж їм вірити. Доповніть опис звички.",
+              "feedbackByLocale": {
+                "ru": "С I нужно check без -s.",
+                "uk": "З I потрібно check без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви зазвичай перевіряєте дивні історії, перш ніж їм вірити. Доповніть опис звички.",
+              "feedbackByLocale": {
+                "ru": "Checking без вспомогательного глагола не образует сказуемое.",
+                "uk": "Checking без допоміжного дієслова не утворює присудок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:word:pity",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:word:pity:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:word:pity:audio",
+            "transcript": "pity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:word:pity:r1",
+              "targetText": "pity",
+              "meaningByLocale": {
+                "ru": "Жалость. Восклицание What a pity! означает «Как жаль!» — реакция на неприятность.",
+                "uk": "Жаль. Вигук What a pity! означає «Як шкода!» — реакція на прикрість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pity",
+            "definitionByLocale": {
+              "ru": "Жалость. Восклицание What a pity! означает «Как жаль!» — реакция на неприятность.",
+              "uk": "Жаль. Вигук What a pity! означає «Як шкода!» — реакція на прикрість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг не зможе прийти на вечерю. Відреагуйте: «Як шкода!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг не зможе прийти на вечерю. Відреагуйте: «Як шкода!»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What a pity!",
+          "localizedMeaning": {
+            "ru": "Друг не сможет прийти на ужин. Отреагируйте: «Как жаль!»",
+            "uk": "Друг не зможе прийти на вечерю. Відреагуйте: «Як шкода!»"
+          },
+          "orderedTokens": [
+            "What",
+            "a",
+            "pity"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i08:r1",
+            "text": "The shop had closed by the time we arrived."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i08:r2",
+            "text": "The shop had opened by the time we arrived."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i08:r3",
+            "text": "The café had closed by the time we arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i08:audio",
+            "transcript": "The shop had closed by the time we arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:i08:r1",
+              "targetText": "The shop had closed by the time we arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i08:r2",
+              "targetText": "The shop had opened by the time we arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i08:r3",
+              "targetText": "The café had closed by the time we arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shop had closed by the time we arrived.",
+                "uk": "У записі звучить The shop had closed by the time we arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The shop had closed by the time we arrived.",
+                "uk": "У записі звучить The shop had closed by the time we arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i09:r1",
+            "text": "rains"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i09:r2",
+            "text": "will rain"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i09:r3",
+            "text": "raining"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
+            "uk": "Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план."
+          },
+          "gappedTargetPhrase": "I will stay at home if it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i09:r1",
+              "text": "rains"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i09:r2",
+              "text": "will rain"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i09:r3",
+              "text": "raining"
+            }
+          ],
+          "testedDimension": "Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i09:r2",
+              "correct": false,
+              "testedDimension": "Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план.",
+              "feedbackByLocale": {
+                "ru": "В будущем условии после if нужен Present Simple: rains.",
+                "uk": "У майбутній умові після if потрібен Present Simple: rains."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i09:r3",
+              "correct": false,
+              "testedDimension": "Сусід запитує, що ви робитимете завтра, якщо буде дощ. Доповніть свій план.",
+              "feedbackByLocale": {
+                "ru": "Нужно сказуемое rains, не отдельная форма raining.",
+                "uk": "Потрібен присудок rains, а не окрема форма raining."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте сестру, чи закінчила вона прибирання: «Ти вже закінчила?» Використайте yet.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте сестру, чи закінчила вона прибирання: «Ти вже закінчила?» Використайте yet.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you finished yet?",
+          "localizedMeaning": {
+            "ru": "Спросите сестру, закончила ли она уборку: «Ты уже закончила?» Используйте yet.",
+            "uk": "Запитайте сестру, чи закінчила вона прибирання: «Ти вже закінчила?» Використайте yet."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "finished",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви не впевнені, чи варто зберігати зламаний стілець. Запитайте друга: «Як ти гадаєш?» Використайте reckon.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i11:audio"
+        ],
+        "accessibilityLabel": "Ви не впевнені, чи варто зберігати зламаний стілець. Запитайте друга: «Як ти гадаєш?» Використайте reckon.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i11:audio",
+            "transcript": "What do you reckon?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What do you reckon?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i12:r1",
+            "text": "Please stop talking nonsense."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i12:r2",
+            "text": "Please stop making noise."
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i12:r3",
+            "text": "Please keep talking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i12:audio",
+            "transcript": "Please stop talking nonsense."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-10:i12:r1",
+              "targetText": "Please stop talking nonsense.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i12:r2",
+              "targetText": "Please stop making noise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i12:r3",
+              "targetText": "Please keep talking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please stop talking nonsense.",
+                "uk": "У записі звучить Please stop talking nonsense."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please stop talking nonsense.",
+                "uk": "У записі звучить Please stop talking nonsense."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коли ви дісталися зупинки, автобус уже поїхав. Доповніть ранішу подію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i13:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i13:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коли ви дісталися зупинки, автобус уже поїхав. Доповніть ранішу подію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Когда вы добрались до остановки, автобус уже уехал. Дополните более раннее событие.",
+            "uk": "Коли ви дісталися зупинки, автобус уже поїхав. Доповніть ранішу подію."
+          },
+          "gappedTargetPhrase": "The bus ___ left by the time we got there.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i13:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i13:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Коли ви дісталися зупинки, автобус уже поїхав. Доповніть ранішу подію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i13:r2",
+              "correct": false,
+              "testedDimension": "Коли ви дісталися зупинки, автобус уже поїхав. Доповніть ранішу подію.",
+              "feedbackByLocale": {
+                "ru": "Has связывает результат с настоящим, а got задаёт прошлый момент.",
+                "uk": "Has пов’язує результат із теперішнім, а got задає минулий момент."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i13:r3",
+              "correct": false,
+              "testedDimension": "Коли ви дісталися зупинки, автобус уже поїхав. Доповніть ранішу подію.",
+              "feedbackByLocale": {
+                "ru": "Нужно had left, чтобы показать событие до другого прошлого события.",
+                "uk": "Потрібно had left, щоб показати подію до іншої минулої події."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пропозицію допомогти з прибиранням.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i14:audio"
+        ],
+        "accessibilityLabel": "Почуйте пропозицію допомогти з прибиранням.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i14:audio",
+            "transcript": "I will sweep the floor if you move the chairs."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will sweep the floor if you move the chairs.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "sweep",
+            "the",
+            "floor",
+            "if",
+            "you",
+            "move",
+            "the",
+            "chairs"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг повідомляє, що загубив квиток. Скажіть: «Як шкода!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-10:i15:audio"
+        ],
+        "accessibilityLabel": "Друг повідомляє, що загубив квиток. Скажіть: «Як шкода!»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-10:i15:audio",
+            "transcript": "That is a pity."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "That is a pity.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мама кличе їсти, але ви пообідали раніше. Повідомте, що це вже зроблено.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-10:i16:r1",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i16:r2",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-10:i16:r3",
+            "text": "tomorrow"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мама кличе їсти, але ви пообідали раніше. Повідомте, що це вже зроблено.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мама зовёт есть, но вы пообедали раньше. Сообщите, что это уже сделано.",
+            "uk": "Мама кличе їсти, але ви пообідали раніше. Повідомте, що це вже зроблено."
+          },
+          "gappedTargetPhrase": "I have ___ had lunch.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-10:i16:r1",
+              "text": "already"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i16:r2",
+              "text": "yet"
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i16:r3",
+              "text": "tomorrow"
+            }
+          ],
+          "testedDimension": "Мама кличе їсти, але ви пообідали раніше. Повідомте, що це вже зроблено.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-10:i16:r2",
+              "correct": false,
+              "testedDimension": "Мама кличе їсти, але ви пообідали раніше. Повідомте, що це вже зроблено.",
+              "feedbackByLocale": {
+                "ru": "Yet обычно ставим в конце вопроса или отрицания, а здесь утвердительный ответ.",
+                "uk": "Yet зазвичай ставимо в кінці питання або заперечення, а тут ствердна відповідь."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-10:i16:r3",
+              "correct": false,
+              "testedDimension": "Мама кличе їсти, але ви пообідали раніше. Повідомте, що це вже зроблено.",
+              "feedbackByLocale": {
+                "ru": "Tomorrow обозначает завтра, а обед уже состоялся.",
+                "uk": "Tomorrow позначає завтра, а обід уже відбувся."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-10:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Після пропущеного автобуса запропонуйте: «Ми візьмемо таксі, якщо запізнюватимемося».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Після пропущеного автобуса запропонуйте: «Ми візьмемо таксі, якщо запізнюватимемося».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will take a taxi if we are late.",
+          "localizedMeaning": {
+            "ru": "После пропущенного автобуса предложите: «Мы возьмём такси, если будем опаздывать».",
+            "uk": "Після пропущеного автобуса запропонуйте: «Ми візьмемо таксі, якщо запізнюватимемося»."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "take",
+            "a",
+            "taxi",
+            "if",
+            "we",
+            "are",
+            "late"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-10:word:junk",
+      "correctText": "junk",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i01",
+      "correctText": "There is too much junk in this cupboard.",
+      "correctResponseId": "en:lesson-26:session-10:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i02",
+      "correctText": "Can you help me with this box?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:word:nonsense",
+      "correctText": "nonsense",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i03",
+      "correctText": "nonsense",
+      "correctResponseId": "en:lesson-26:session-10:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i04",
+      "correctText": "We have already taken the junk outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:word:reckon",
+      "correctText": "reckon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i05",
+      "correctText": "I reckon we have ten minutes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i06",
+      "correctText": "check",
+      "correctResponseId": "en:lesson-26:session-10:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:word:pity",
+      "correctText": "pity",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i07",
+      "correctText": "What a pity!",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i08",
+      "correctText": "The shop had closed by the time we arrived.",
+      "correctResponseId": "en:lesson-26:session-10:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i09",
+      "correctText": "rains",
+      "correctResponseId": "en:lesson-26:session-10:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i10",
+      "correctText": "Have you finished yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i11",
+      "correctText": "What do you reckon?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i12",
+      "correctText": "Please stop talking nonsense.",
+      "correctResponseId": "en:lesson-26:session-10:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i13",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-10:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i14",
+      "correctText": "I will sweep the floor if you move the chairs.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i15",
+      "correctText": "That is a pity.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i16",
+      "correctText": "already",
+      "correctResponseId": "en:lesson-26:session-10:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-10:i17",
+      "correctText": "We will take a taxi if we are late.",
+      "correctResponseId": null
+    }
+  ]
+}

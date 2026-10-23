@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-12",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-12:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-12:intro1:r2": {
+          "ru": "После if в этом будущем условии need без will.",
+          "uk": "Після if у цій майбутній умові need без will."
+        },
+        "en:lesson-26:session-12:intro1:r3": {
+          "ru": "После will нужна начальная форма bring.",
+          "uk": "Після will потрібна початкова форма bring."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-12:intro2:r2": {
+          "ru": "После have нужна форма packed.",
+          "uk": "Після have потрібна форма packed."
+        },
+        "en:lesson-26:session-12:intro2:r3": {
+          "ru": "С you используем have.",
+          "uk": "З you вживаємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-12:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-12:intro3:r2": {
+          "ru": "После had нужна форма folded.",
+          "uk": "Після had потрібна форма folded."
+        },
+        "en:lesson-26:session-12:intro3:r3": {
+          "ru": "Arrived задаёт прошлый момент: более раннее действие — had folded.",
+          "uk": "Arrived задає минулий момент: раніша дія — had folded."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7d61aace780dc3e8f35898d2224a47b754e0577bab0d6a2d4a656061cec05971"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-12:word:cot",
+    "correctText": "cot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i01",
+    "correctText": "There is a cot in the bedroom.",
+    "correctResponseId": "en:lesson-26:session-12:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i02",
+    "correctText": "We need a quiet place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:word:dummy",
+    "correctText": "dummy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i03",
+    "correctText": "dummy",
+    "correctResponseId": "en:lesson-26:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i04",
+    "correctText": "We have already borrowed a cot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:word:potty",
+    "correctText": "potty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i05",
+    "correctText": "Have you packed the potty yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i06",
+    "correctText": "I have just put the bag in the car.",
+    "correctResponseId": "en:lesson-26:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:word:buggy",
+    "correctText": "buggy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i07",
+    "correctText": "Please fold the buggy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i08",
+    "correctText": "gets",
+    "correctResponseId": "en:lesson-26:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i09",
+    "correctText": "Here is the dummy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i10",
+    "correctText": "Can you hold the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i11",
+    "correctText": "go",
+    "correctResponseId": "en:lesson-26:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i12",
+    "correctText": "The potty is in the bathroom.",
+    "correctResponseId": "en:lesson-26:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i13",
+    "correctText": "We had folded the buggy by the time the taxi arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i14",
+    "correctText": "yet",
+    "correctResponseId": "en:lesson-26:session-12:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i15",
+    "correctText": "Put it here, please.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i16",
+    "correctText": "I will reply if you text me.",
+    "correctResponseId": "en:lesson-26:session-12:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-12:i17",
+    "correctText": "We will meet in the park if the weather is nice.",
+    "correctResponseId": null
+  }
+]

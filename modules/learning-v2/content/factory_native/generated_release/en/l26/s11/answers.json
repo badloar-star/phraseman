@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-11:word:blister",
+    "correctText": "blister",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i01",
+    "correctText": "I have a blister on my heel.",
+    "correctResponseId": "en:lesson-26:session-11:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i02",
+    "correctText": "Can we slow down a little?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:word:tummy",
+    "correctText": "tummy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i03",
+    "correctText": "Does your tummy still hurt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i04",
+    "correctText": "change",
+    "correctResponseId": "en:lesson-26:session-11:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:word:thigh",
+    "correctText": "thigh",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i05",
+    "correctText": "I have just hurt my thigh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i06",
+    "correctText": "Please bring me my phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:word:gums",
+    "correctText": "gums",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i07",
+    "correctText": "My gums hurt when I eat.",
+    "correctResponseId": "en:lesson-26:session-11:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i08",
+    "correctText": "will",
+    "correctResponseId": "en:lesson-26:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i09",
+    "correctText": "I have already booked an appointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i10",
+    "correctText": "This blister hurts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i11",
+    "correctText": "My tummy feels better now.",
+    "correctResponseId": "en:lesson-26:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i12",
+    "correctText": "yet",
+    "correctResponseId": "en:lesson-26:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i13",
+    "correctText": "I had gone home by the time my sister arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i14",
+    "correctText": "thigh",
+    "correctResponseId": "en:lesson-26:session-11:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i15",
+    "correctText": "My gums hurt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i16",
+    "correctText": "I will text you if the plans change.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-11:i17",
+    "correctText": "We can meet another day.",
+    "correctResponseId": "en:lesson-26:session-11:i17:r1"
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Очень хотелось путешествовать",
+        "uk": "Дуже хотілося подорожувати"
+      },
+      "bodyByLocale": {
+        "ru": "Раньше вы с нетерпением ждали каждой поездки, а теперь больше любите оставаться дома. I used to be eager to travel — раньше я очень хотел путешествовать. Eager передаёт сильное желание, энтузиазм. После be eager ставим to + действие: be eager to travel. Used to be показывает, каким было ваше отношение раньше.",
+        "uk": "Раніше ви з нетерпінням чекали кожної поїздки, а тепер більше любите залишатися вдома. I used to be eager to travel — раніше я дуже прагнув подорожувати. Eager передає сильне бажання, ентузіазм. Після be eager ставимо to + дію: be eager to travel. Used to be показує, яким було ваше ставлення раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-46:intro1:r1",
+              "text": "I used to be eager to travel."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro1:r2",
+              "text": "I use to be eager to travel."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro1:r3",
+              "text": "I using to be eager to travel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-46:intro1:r1",
+              "text": "I used to be eager to travel."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro1:r2",
+              "text": "I use to be eager to travel."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro1:r3",
+              "text": "I using to be eager to travel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Согласие и внимание",
+        "uk": "Згода й увага"
+      },
+      "bodyByLocale": {
+        "ru": "Willing — готовый, согласный что-то сделать. He used to be willing to help — раньше он был готов помочь. Это готовность по желанию, не сообщение о собранных вещах или законченной подготовке. Eager сильнее: человек не просто согласен, а очень хочет. Attentive — внимательный. She used to be attentive in class — раньше она была внимательной на уроках: слушала и не отвлекалась.",
+        "uk": "Willing — готовий, згодний щось зробити. He used to be willing to help — раніше він був готовий допомогти. Це готовність за власним бажанням, а не повідомлення про зібрані речі чи завершену підготовку. Eager сильніше: людина не просто згодна, а дуже хоче. Attentive — уважний. She used to be attentive in class — раніше вона була уважною на уроках: слухала й не відволікалася."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-46:intro2:r1",
+              "text": "He used to be willing to help."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro2:r2",
+              "text": "He use to be willing to help."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro2:r3",
+              "text": "He using to be willing to help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-46:intro2:r1",
+              "text": "He used to be willing to help."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro2:r2",
+              "text": "He use to be willing to help."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro2:r3",
+              "text": "He using to be willing to help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Без вреда",
+        "uk": "Без шкоди"
+      },
+      "bodyByLocale": {
+        "ru": "Harmless — безвредный, не причиняющий вреда. We used to play harmless games — раньше мы играли в безвредные игры. Так можно вспомнить спокойные детские игры, в которых никто не страдал. Used to play описывает привычное действие, а used to be attentive — прежнее состояние. После used to в обоих случаях начальная форма: play или be.",
+        "uk": "Harmless — нешкідливий, той, що не завдає шкоди. We used to play harmless games — раніше ми грали в нешкідливі ігри. Так можна згадати спокійні дитячі ігри, у яких ніхто не страждав. Used to play описує звичну дію, а used to be attentive — колишній стан. Після used to в обох випадках початкова форма: play або be."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-46:intro3:r1",
+              "text": "We used to play harmless games."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro3:r2",
+              "text": "We use to play harmless games."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro3:r3",
+              "text": "We using to play harmless games."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-46:intro3:r1",
+              "text": "We used to play harmless games."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro3:r2",
+              "text": "We use to play harmless games."
+            },
+            {
+              "responseId": "en:lesson-25:session-46:intro3:r3",
+              "text": "We using to play harmless games."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eee0b4537bc0eeb0da7e1912b421d0b98d41b73f7ee6784772b5080bd2532622"
+}

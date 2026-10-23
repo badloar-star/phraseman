@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-46:word:eager",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eager",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:word:eager:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eager",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:word:eager:audio",
+          "transcript": "eager"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:word:eager:r1",
+            "targetText": "eager",
+            "meaningByLocale": {
+              "ru": "Очень желающий. Eager описывает сильное желание и интерес к предстоящему действию.",
+              "uk": "Який дуже прагне. Eager описує сильне бажання й інтерес до майбутньої дії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eager",
+          "definitionByLocale": {
+            "ru": "Очень желающий. Eager описывает сильное желание и интерес к предстоящему действию.",
+            "uk": "Який дуже прагне. Eager описує сильне бажання й інтерес до майбутньої дії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше я дуже прагнув подорожувати.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше я дуже прагнув подорожувати.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to be eager to travel.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше я очень хотел путешествовать.»",
+          "uk": "Скажіть: «Раніше я дуже прагнув подорожувати.»"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "be",
+          "eager",
+          "to",
+          "travel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i02:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i02:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i02:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "I ___ to be eager to travel.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-46:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i02:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i03:r1",
+          "text": "I used to be eager to travel."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i03:r2",
+          "text": "She used to be eager to travel."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i03:r3",
+          "text": "I used to be eager to learn."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i03:audio",
+          "transcript": "I used to be eager to travel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:i03:r1",
+            "targetText": "I used to be eager to travel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i03:r2",
+            "targetText": "She used to be eager to travel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i03:r3",
+            "targetText": "I used to be eager to learn.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be eager to travel.",
+              "uk": "У записі звучить I used to be eager to travel."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be eager to travel.",
+              "uk": "У записі звучить I used to be eager to travel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:word:willing",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — willing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:word:willing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — willing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:word:willing:audio",
+          "transcript": "willing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:word:willing:r1",
+            "targetText": "willing",
+            "meaningByLocale": {
+              "ru": "Готовый, согласный. Willing означает согласие сделать что-то, а не завершённую подготовку.",
+              "uk": "Готовий, згодний. Willing означає згоду зробити щось, а не завершену підготовку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "willing",
+          "definitionByLocale": {
+            "ru": "Готовый, согласный. Willing означает согласие сделать что-то, а не завершённую подготовку.",
+            "uk": "Готовий, згодний. Willing означає згоду зробити щось, а не завершену підготовку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше він був готовий допомогти.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше він був готовий допомогти.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He used to be willing to help.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше он был готов помочь.»",
+          "uk": "Скажіть: «Раніше він був готовий допомогти.»"
+        },
+        "orderedTokens": [
+          "He",
+          "used",
+          "to",
+          "be",
+          "willing",
+          "to",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i05:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i05:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i05:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "He ___ to be willing to help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-46:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i05:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i06:r1",
+          "text": "He used to be willing to help."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i06:r2",
+          "text": "She used to be willing to help."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i06:r3",
+          "text": "He used to be willing to wait."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i06:audio",
+          "transcript": "He used to be willing to help."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:i06:r1",
+            "targetText": "He used to be willing to help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i06:r2",
+            "targetText": "She used to be willing to help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i06:r3",
+            "targetText": "He used to be willing to wait.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used to be willing to help.",
+              "uk": "У записі звучить He used to be willing to help."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used to be willing to help.",
+              "uk": "У записі звучить He used to be willing to help."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:word:attentive",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — attentive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:word:attentive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — attentive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:word:attentive:audio",
+          "transcript": "attentive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:word:attentive:r1",
+            "targetText": "attentive",
+            "meaningByLocale": {
+              "ru": "Внимательный. Attentive — внимательно слушающий или замечающий потребности другого человека.",
+              "uk": "Уважний. Attentive — той, хто уважно слухає або помічає потреби іншої людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "attentive",
+          "definitionByLocale": {
+            "ru": "Внимательный. Attentive — внимательно слушающий или замечающий потребности другого человека.",
+            "uk": "Уважний. Attentive — той, хто уважно слухає або помічає потреби іншої людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше вона була уважною на уроках.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше вона була уважною на уроках.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She used to be attentive in class.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше она была внимательной на уроках.»",
+          "uk": "Скажіть: «Раніше вона була уважною на уроках.»"
+        },
+        "orderedTokens": [
+          "She",
+          "used",
+          "to",
+          "be",
+          "attentive",
+          "in",
+          "class"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i08:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i08:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i08:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "She ___ to be attentive in class.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-46:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i08:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i09:r1",
+          "text": "She used to be attentive in class."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i09:r2",
+          "text": "He used to be attentive in class."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i09:r3",
+          "text": "She used to be attentive at work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i09:audio",
+          "transcript": "She used to be attentive in class."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:i09:r1",
+            "targetText": "She used to be attentive in class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i09:r2",
+            "targetText": "He used to be attentive in class.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i09:r3",
+            "targetText": "She used to be attentive at work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to be attentive in class.",
+              "uk": "У записі звучить She used to be attentive in class."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to be attentive in class.",
+              "uk": "У записі звучить She used to be attentive in class."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:word:harmless",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — harmless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:word:harmless:audio"
+      ],
+      "accessibilityLabel": "Картка слова — harmless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:word:harmless:audio",
+          "transcript": "harmless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:word:harmless:r1",
+            "targetText": "harmless",
+            "meaningByLocale": {
+              "ru": "Безвредный. Harmless — не причиняющий вреда.",
+              "uk": "Нешкідливий. Harmless — той, що не завдає шкоди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "harmless",
+          "definitionByLocale": {
+            "ru": "Безвредный. Harmless — не причиняющий вреда.",
+            "uk": "Нешкідливий. Harmless — той, що не завдає шкоди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Раніше ми грали в нешкідливі ігри.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Раніше ми грали в нешкідливі ігри.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used to play harmless games.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше мы играли в безвредные игры.»",
+          "uk": "Скажіть: «Раніше ми грали в нешкідливі ігри.»"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "play",
+          "harmless",
+          "games"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пригадайте, як було раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i11:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i11:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i11:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пригадайте, як було раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "We ___ to play harmless games.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-46:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i11:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Пригадайте, як було раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Пригадайте, як було раніше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-46:i12:r1",
+          "text": "We used to play harmless games."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i12:r2",
+          "text": "They used to play harmless games."
+        },
+        {
+          "responseId": "en:lesson-25:session-46:i12:r3",
+          "text": "We used to enjoy harmless games."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i12:audio",
+          "transcript": "We used to play harmless games."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-46:i12:r1",
+            "targetText": "We used to play harmless games.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i12:r2",
+            "targetText": "They used to play harmless games.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i12:r3",
+            "targetText": "We used to enjoy harmless games.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to play harmless games.",
+              "uk": "У записі звучить We used to play harmless games."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to play harmless games.",
+              "uk": "У записі звучить We used to play harmless games."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-46:i13:p1",
+            "target": "eager",
+            "meaningByLocale": {
+              "ru": "очень желающий",
+              "uk": "який дуже прагне"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-46:i13:p2",
+            "target": "willing",
+            "meaningByLocale": {
+              "ru": "готовый, согласный",
+              "uk": "готовий, згодний"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-46:i13:p3",
+            "target": "attentive",
+            "meaningByLocale": {
+              "ru": "внимательный",
+              "uk": "уважний"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-46:i13:p4",
+            "target": "harmless",
+            "meaningByLocale": {
+              "ru": "безвредный",
+              "uk": "нешкідливий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "eager",
+          "willing",
+          "attentive",
+          "harmless"
+        ],
+        "rightColumn": [
+          "який дуже прагне",
+          "готовий, згодний",
+          "уважний",
+          "нешкідливий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закінчила до мого дзвінка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закінчила до мого дзвінка",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раніше їздив машиною",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Раніше їздив машиною",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i15:audio",
+          "transcript": "I used to drive to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to drive to work.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "drive",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Раніше я був готовий чекати».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Раніше я був готовий чекати».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i16:audio",
+          "transcript": "I used to be willing to wait."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I used to be willing to wait.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Раніше він був уважним удома».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Раніше він був уважним удома».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-46:i17:audio",
+          "transcript": "He used to be attentive at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He used to be attentive at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "347dc17aaab403f70975981d1794be9adbf99a064ad473bd0457f8f442051326"
+}

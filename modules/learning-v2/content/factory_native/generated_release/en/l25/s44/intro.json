@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect; before; by the time + past simple",
+    "uk": "past perfect; before; by the time + past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросили до урока",
+        "uk": "Попросили до уроку"
+      },
+      "bodyByLocale": {
+        "ru": "Request — просьба или обращение с просьбой. We had sent the request before the lesson began — мы отправили просьбу до начала урока. Например, письменно попросили учителя помочь с заданием. Request не обязана быть письменной, но sent в этом примере говорит об отправленном сообщении. Had sent показывает более раннее действие, began — последующее начало урока.",
+        "uk": "Request — прохання або звернення з проханням. We had sent the request before the lesson began — ми надіслали прохання до початку уроку. Наприклад, письмово попросили вчителя допомогти із завданням. Request не обов’язково має бути письмовим, але sent у цьому прикладі вказує на надіслане повідомлення. Had sent показує ранішу дію, began — подальший початок уроку."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-44:intro1:r1",
+              "text": "We had sent the request before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro1:r2",
+              "text": "We have sent the request before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro1:r3",
+              "text": "We were sent the request before the lesson began."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-44:intro1:r1",
+              "text": "We had sent the request before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro1:r2",
+              "text": "We have sent the request before the lesson began."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro1:r3",
+              "text": "We were sent the request before the lesson began."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Оценка и значение слова",
+        "uk": "Оцінка й значення слова"
+      },
+      "bodyByLocale": {
+        "ru": "Grade здесь — оценка за учебную работу. I had checked my grade by the time she called — я уже проверил свою оценку к её звонку. Definition — определение, объяснение значения слова. We had read the definition by the time he explained the word — мы уже прочитали определение к тому моменту, когда он объяснил слово. Определение объясняет смысл, а перевод даёт соответствие на другом языке: это не одно и то же.",
+        "uk": "Grade тут — оцінка за навчальну роботу. I had checked my grade by the time she called — я вже перевірив свою оцінку до її дзвінка. Definition — визначення, пояснення значення слова. We had read the definition by the time he explained the word — ми вже прочитали визначення до того моменту, коли він пояснив слово. Визначення пояснює зміст, а переклад дає відповідник іншою мовою: це не те саме."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-44:intro2:r1",
+              "text": "I had checked my grade by the time she called."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro2:r2",
+              "text": "I have checked my grade by the time she called."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro2:r3",
+              "text": "I was checked my grade by the time she called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-44:intro2:r1",
+              "text": "I had checked my grade by the time she called."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro2:r2",
+              "text": "I have checked my grade by the time she called."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro2:r3",
+              "text": "I was checked my grade by the time she called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Готово начало текста",
+        "uk": "Готовий початок тексту"
+      },
+      "bodyByLocale": {
+        "ru": "Introduction здесь — введение к тексту, его начальная часть. She had finished the introduction by the time I arrived — она уже закончила введение к моему приходу. Представьте, что она писала рассказ и закончила пока только начало, не весь текст. Had finished относится именно к введению. By the time I arrived задаёт момент, к которому оно уже было готово.",
+        "uk": "Introduction тут — вступ до тексту, його початкова частина. She had finished the introduction by the time I arrived — вона вже закінчила вступ до мого приходу. Уявіть, що вона писала розповідь і завершила поки лише початок, не весь текст. Had finished стосується саме вступу. By the time I arrived задає момент, до якого він уже був готовий."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-44:intro3:r1",
+              "text": "She had finished the introduction by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro3:r2",
+              "text": "She has finished the introduction by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro3:r3",
+              "text": "She was finished the introduction by the time I arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-44:intro3:r1",
+              "text": "She had finished the introduction by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro3:r2",
+              "text": "She has finished the introduction by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-44:intro3:r3",
+              "text": "She was finished the introduction by the time I arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4504b26b6bb755a4c0b34641bb53add941dd5366c0db0de1cab6d25ecc86965c"
+}

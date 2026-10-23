@@ -1,0 +1,2353 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-45",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-45:word:recalled",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recalled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:recalled:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recalled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:recalled:audio",
+            "transcript": "recalled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:recalled:r1",
+              "targetText": "recalled",
+              "meaningByLocale": {
+                "ru": "Вспомнил. Recall — вспомнить; recalled — прошедшая и третья форма.",
+                "uk": "Згадав. Recall — згадати; recalled — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recalled",
+            "definitionByLocale": {
+              "ru": "Вспомнил. Recall — вспомнить; recalled — прошедшая и третья форма.",
+              "uk": "Згадав. Recall — згадати; recalled — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он вспомнил её имя до того, как она заговорила.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он вспомнил её имя до того, как она заговорила.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had recalled her name before she spoke.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он вспомнил её имя до того, как она заговорила.»",
+            "uk": "Скажіть: «Він згадав її ім’я до того, як вона заговорила.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "recalled",
+            "her",
+            "name",
+            "before",
+            "she",
+            "spoke"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ recalled her name before she spoke.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i03:r1",
+            "text": "He had recalled her name before she spoke."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i03:r2",
+            "text": "She had recalled his name before he spoke."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i03:r3",
+            "text": "He had recalled her name before she arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i03:audio",
+            "transcript": "He had recalled her name before she spoke."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i03:r1",
+              "targetText": "He had recalled her name before she spoke.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i03:r2",
+              "targetText": "She had recalled his name before he spoke.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i03:r3",
+              "targetText": "He had recalled her name before she arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had recalled her name before she spoke.",
+                "uk": "У записі звучить He had recalled her name before she spoke."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had recalled her name before she spoke.",
+                "uk": "У записі звучить He had recalled her name before she spoke."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:word:predicted",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — predicted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:predicted:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — predicted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:predicted:audio",
+            "transcript": "predicted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:predicted:r1",
+              "targetText": "predicted",
+              "meaningByLocale": {
+                "ru": "Предсказал. Predict — предсказать; predicted — прошедшая и третья форма.",
+                "uk": "Передбачив. Predict — передбачити; predicted — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "predicted",
+            "definitionByLocale": {
+              "ru": "Предсказал. Predict — предсказать; predicted — прошедшая и третья форма.",
+              "uk": "Передбачив. Predict — передбачити; predicted — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она предсказала дождь до того, как мы ушли.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она предсказала дождь до того, как мы ушли.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had predicted rain before we left.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она предсказала дождь до того, как мы ушли.»",
+            "uk": "Скажіть: «Вона передбачила дощ до того, як ми пішли.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "predicted",
+            "rain",
+            "before",
+            "we",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ predicted rain before we left.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i06:r1",
+            "text": "She had predicted rain before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i06:r2",
+            "text": "He had predicted rain before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i06:r3",
+            "text": "She had predicted rain before they left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i06:audio",
+            "transcript": "She had predicted rain before we left."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i06:r1",
+              "targetText": "She had predicted rain before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i06:r2",
+              "targetText": "He had predicted rain before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i06:r3",
+              "targetText": "She had predicted rain before they left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had predicted rain before we left.",
+                "uk": "У записі звучить She had predicted rain before we left."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had predicted rain before we left.",
+                "uk": "У записі звучить She had predicted rain before we left."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:word:examined",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — examined",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:examined:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — examined",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:examined:audio",
+            "transcript": "examined"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:examined:r1",
+              "targetText": "examined",
+              "meaningByLocale": {
+                "ru": "Осмотрел. Examine — внимательно осмотреть; examined — прошедшая и третья форма.",
+                "uk": "Оглянув. Examine — уважно оглянути; examined — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "examined",
+            "definitionByLocale": {
+              "ru": "Осмотрел. Examine — внимательно осмотреть; examined — прошедшая и третья форма.",
+              "uk": "Оглянув. Examine — уважно оглянути; examined — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Врач осмотрел моё колено до того, как я пошёл домой.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Врач осмотрел моё колено до того, как я пошёл домой.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The doctor had examined my knee before I went home.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Врач осмотрел моё колено до того, как я пошёл домой.»",
+            "uk": "Скажіть: «Лікар оглянув моє коліно до того, як я пішов додому.»"
+          },
+          "orderedTokens": [
+            "The",
+            "doctor",
+            "had",
+            "examined",
+            "my",
+            "knee",
+            "before",
+            "I",
+            "went",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The doctor ___ examined my knee before I went home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i09:r1",
+            "text": "The doctor had examined my knee before I went home."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i09:r2",
+            "text": "The doctor had examined my arm before I went home."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i09:r3",
+            "text": "The doctor had examined my knee before she went home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i09:audio",
+            "transcript": "The doctor had examined my knee before I went home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i09:r1",
+              "targetText": "The doctor had examined my knee before I went home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i09:r2",
+              "targetText": "The doctor had examined my arm before I went home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i09:r3",
+              "targetText": "The doctor had examined my knee before she went home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor had examined my knee before I went home.",
+                "uk": "У записі звучить The doctor had examined my knee before I went home."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor had examined my knee before I went home.",
+                "uk": "У записі звучить The doctor had examined my knee before I went home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:word:insisted",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — insisted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:insisted:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — insisted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:insisted:audio",
+            "transcript": "insisted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:insisted:r1",
+              "targetText": "insisted",
+              "meaningByLocale": {
+                "ru": "Настоял. Insist — настаивать; insisted — прошедшая и третья форма.",
+                "uk": "Наполіг. Insist — наполягати; insisted — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "insisted",
+            "definitionByLocale": {
+              "ru": "Настоял. Insist — настаивать; insisted — прошедшая и третья форма.",
+              "uk": "Наполіг. Insist — наполягати; insisted — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он настоял на такси до того, как мы ушли.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он настоял на такси до того, как мы ушли.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had insisted on a taxi before we left.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он настоял на такси до того, как мы ушли.»",
+            "uk": "Скажіть: «Він наполіг на таксі до того, як ми пішли.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "insisted",
+            "on",
+            "a",
+            "taxi",
+            "before",
+            "we",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ insisted on a taxi before we left.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i12:r1",
+            "text": "He had insisted on a taxi before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i12:r2",
+            "text": "She had insisted on a taxi before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i12:r3",
+            "text": "He had insisted on a taxi before they left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i12:audio",
+            "transcript": "He had insisted on a taxi before we left."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i12:r1",
+              "targetText": "He had insisted on a taxi before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i12:r2",
+              "targetText": "She had insisted on a taxi before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i12:r3",
+              "targetText": "He had insisted on a taxi before they left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had insisted on a taxi before we left.",
+                "uk": "У записі звучить He had insisted on a taxi before we left."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had insisted on a taxi before we left.",
+                "uk": "У записі звучить He had insisted on a taxi before we left."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-45:i13:p1",
+              "target": "recalled",
+              "meaningByLocale": {
+                "ru": "вспомнил",
+                "uk": "згадав"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-45:i13:p2",
+              "target": "predicted",
+              "meaningByLocale": {
+                "ru": "предсказал",
+                "uk": "передбачив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-45:i13:p3",
+              "target": "examined",
+              "meaningByLocale": {
+                "ru": "осмотрел",
+                "uk": "оглянув"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-45:i13:p4",
+              "target": "insisted",
+              "meaningByLocale": {
+                "ru": "настоял",
+                "uk": "наполіг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recalled",
+            "predicted",
+            "examined",
+            "insisted"
+          ],
+          "rightColumn": [
+            "вспомнил",
+            "предсказал",
+            "осмотрел",
+            "настоял"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончил",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поезд уже ушёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Поезд уже ушёл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Врач осмотрел мою руку до того, как я ушёл».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Врач осмотрел мою руку до того, как я ушёл».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i16:audio",
+            "transcript": "The doctor had examined my arm before I left."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The doctor had examined my arm before I left.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она настояла на такси до того, как он ушёл».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она настояла на такси до того, как он ушёл».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i17:audio",
+            "transcript": "She had insisted on a taxi before he left."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She had insisted on a taxi before he left.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-45:word:recalled",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recalled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:recalled:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recalled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:recalled:audio",
+            "transcript": "recalled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:recalled:r1",
+              "targetText": "recalled",
+              "meaningByLocale": {
+                "ru": "Вспомнил. Recall — вспомнить; recalled — прошедшая и третья форма.",
+                "uk": "Згадав. Recall — згадати; recalled — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recalled",
+            "definitionByLocale": {
+              "ru": "Вспомнил. Recall — вспомнить; recalled — прошедшая и третья форма.",
+              "uk": "Згадав. Recall — згадати; recalled — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він згадав її ім’я до того, як вона заговорила.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він згадав її ім’я до того, як вона заговорила.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had recalled her name before she spoke.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он вспомнил её имя до того, как она заговорила.»",
+            "uk": "Скажіть: «Він згадав її ім’я до того, як вона заговорила.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "recalled",
+            "her",
+            "name",
+            "before",
+            "she",
+            "spoke"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ recalled her name before she spoke.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i03:r1",
+            "text": "He had recalled her name before she spoke."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i03:r2",
+            "text": "She had recalled his name before he spoke."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i03:r3",
+            "text": "He had recalled her name before she arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i03:audio",
+            "transcript": "He had recalled her name before she spoke."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i03:r1",
+              "targetText": "He had recalled her name before she spoke.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i03:r2",
+              "targetText": "She had recalled his name before he spoke.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i03:r3",
+              "targetText": "He had recalled her name before she arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had recalled her name before she spoke.",
+                "uk": "У записі звучить He had recalled her name before she spoke."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had recalled her name before she spoke.",
+                "uk": "У записі звучить He had recalled her name before she spoke."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:word:predicted",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — predicted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:predicted:audio"
+        ],
+        "accessibilityLabel": "Картка слова — predicted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:predicted:audio",
+            "transcript": "predicted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:predicted:r1",
+              "targetText": "predicted",
+              "meaningByLocale": {
+                "ru": "Предсказал. Predict — предсказать; predicted — прошедшая и третья форма.",
+                "uk": "Передбачив. Predict — передбачити; predicted — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "predicted",
+            "definitionByLocale": {
+              "ru": "Предсказал. Predict — предсказать; predicted — прошедшая и третья форма.",
+              "uk": "Передбачив. Predict — передбачити; predicted — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона передбачила дощ до того, як ми пішли.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона передбачила дощ до того, як ми пішли.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had predicted rain before we left.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она предсказала дождь до того, как мы ушли.»",
+            "uk": "Скажіть: «Вона передбачила дощ до того, як ми пішли.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "predicted",
+            "rain",
+            "before",
+            "we",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ predicted rain before we left.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i06:r1",
+            "text": "She had predicted rain before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i06:r2",
+            "text": "He had predicted rain before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i06:r3",
+            "text": "She had predicted rain before they left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i06:audio",
+            "transcript": "She had predicted rain before we left."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i06:r1",
+              "targetText": "She had predicted rain before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i06:r2",
+              "targetText": "He had predicted rain before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i06:r3",
+              "targetText": "She had predicted rain before they left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had predicted rain before we left.",
+                "uk": "У записі звучить She had predicted rain before we left."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had predicted rain before we left.",
+                "uk": "У записі звучить She had predicted rain before we left."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:word:examined",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — examined",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:examined:audio"
+        ],
+        "accessibilityLabel": "Картка слова — examined",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:examined:audio",
+            "transcript": "examined"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:examined:r1",
+              "targetText": "examined",
+              "meaningByLocale": {
+                "ru": "Осмотрел. Examine — внимательно осмотреть; examined — прошедшая и третья форма.",
+                "uk": "Оглянув. Examine — уважно оглянути; examined — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "examined",
+            "definitionByLocale": {
+              "ru": "Осмотрел. Examine — внимательно осмотреть; examined — прошедшая и третья форма.",
+              "uk": "Оглянув. Examine — уважно оглянути; examined — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Лікар оглянув моє коліно до того, як я пішов додому.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Лікар оглянув моє коліно до того, як я пішов додому.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The doctor had examined my knee before I went home.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Врач осмотрел моё колено до того, как я пошёл домой.»",
+            "uk": "Скажіть: «Лікар оглянув моє коліно до того, як я пішов додому.»"
+          },
+          "orderedTokens": [
+            "The",
+            "doctor",
+            "had",
+            "examined",
+            "my",
+            "knee",
+            "before",
+            "I",
+            "went",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The doctor ___ examined my knee before I went home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i09:r1",
+            "text": "The doctor had examined my knee before I went home."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i09:r2",
+            "text": "The doctor had examined my arm before I went home."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i09:r3",
+            "text": "The doctor had examined my knee before she went home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i09:audio",
+            "transcript": "The doctor had examined my knee before I went home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i09:r1",
+              "targetText": "The doctor had examined my knee before I went home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i09:r2",
+              "targetText": "The doctor had examined my arm before I went home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i09:r3",
+              "targetText": "The doctor had examined my knee before she went home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor had examined my knee before I went home.",
+                "uk": "У записі звучить The doctor had examined my knee before I went home."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The doctor had examined my knee before I went home.",
+                "uk": "У записі звучить The doctor had examined my knee before I went home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:word:insisted",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — insisted",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:word:insisted:audio"
+        ],
+        "accessibilityLabel": "Картка слова — insisted",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:word:insisted:audio",
+            "transcript": "insisted"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:word:insisted:r1",
+              "targetText": "insisted",
+              "meaningByLocale": {
+                "ru": "Настоял. Insist — настаивать; insisted — прошедшая и третья форма.",
+                "uk": "Наполіг. Insist — наполягати; insisted — минула й третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "insisted",
+            "definitionByLocale": {
+              "ru": "Настоял. Insist — настаивать; insisted — прошедшая и третья форма.",
+              "uk": "Наполіг. Insist — наполягати; insisted — минула й третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він наполіг на таксі до того, як ми пішли.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він наполіг на таксі до того, як ми пішли.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had insisted on a taxi before we left.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он настоял на такси до того, как мы ушли.»",
+            "uk": "Скажіть: «Він наполіг на таксі до того, як ми пішли.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "insisted",
+            "on",
+            "a",
+            "taxi",
+            "before",
+            "we",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ insisted on a taxi before we left.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-45:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-45:i12:r1",
+            "text": "He had insisted on a taxi before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i12:r2",
+            "text": "She had insisted on a taxi before we left."
+          },
+          {
+            "responseId": "en:lesson-25:session-45:i12:r3",
+            "text": "He had insisted on a taxi before they left."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i12:audio",
+            "transcript": "He had insisted on a taxi before we left."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-45:i12:r1",
+              "targetText": "He had insisted on a taxi before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i12:r2",
+              "targetText": "She had insisted on a taxi before we left.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i12:r3",
+              "targetText": "He had insisted on a taxi before they left.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-45:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had insisted on a taxi before we left.",
+                "uk": "У записі звучить He had insisted on a taxi before we left."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-45:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had insisted on a taxi before we left.",
+                "uk": "У записі звучить He had insisted on a taxi before we left."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте форми з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-45:i13:p1",
+              "target": "recalled",
+              "meaningByLocale": {
+                "ru": "вспомнил",
+                "uk": "згадав"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-45:i13:p2",
+              "target": "predicted",
+              "meaningByLocale": {
+                "ru": "предсказал",
+                "uk": "передбачив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-45:i13:p3",
+              "target": "examined",
+              "meaningByLocale": {
+                "ru": "осмотрел",
+                "uk": "оглянув"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-45:i13:p4",
+              "target": "insisted",
+              "meaningByLocale": {
+                "ru": "настоял",
+                "uk": "наполіг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "recalled",
+            "predicted",
+            "examined",
+            "insisted"
+          ],
+          "rightColumn": [
+            "згадав",
+            "передбачив",
+            "оглянув",
+            "наполіг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчив",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Потяг уже поїхав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i15:audio"
+        ],
+        "accessibilityLabel": "Потяг уже поїхав",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Лікар оглянув мою руку до того, як я пішов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Лікар оглянув мою руку до того, як я пішов».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i16:audio",
+            "transcript": "The doctor had examined my arm before I left."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The doctor had examined my arm before I left.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-45:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона наполягла на таксі до того, як він пішов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-45:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона наполягла на таксі до того, як він пішов».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-45:i17:audio",
+            "transcript": "She had insisted on a taxi before he left."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She had insisted on a taxi before he left.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-45:word:recalled",
+      "correctText": "recalled",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i01",
+      "correctText": "He had recalled her name before she spoke.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i02",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-45:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i03",
+      "correctText": "He had recalled her name before she spoke.",
+      "correctResponseId": "en:lesson-25:session-45:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:word:predicted",
+      "correctText": "predicted",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i04",
+      "correctText": "She had predicted rain before we left.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i05",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-45:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i06",
+      "correctText": "She had predicted rain before we left.",
+      "correctResponseId": "en:lesson-25:session-45:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:word:examined",
+      "correctText": "examined",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i07",
+      "correctText": "The doctor had examined my knee before I went home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i08",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-45:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i09",
+      "correctText": "The doctor had examined my knee before I went home.",
+      "correctResponseId": "en:lesson-25:session-45:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:word:insisted",
+      "correctText": "insisted",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i10",
+      "correctText": "He had insisted on a taxi before we left.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i11",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-45:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i12",
+      "correctText": "He had insisted on a taxi before we left.",
+      "correctResponseId": "en:lesson-25:session-45:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i15",
+      "correctText": "The train had left when we arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i16",
+      "correctText": "The doctor had examined my arm before I left.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-45:i17",
+      "correctText": "She had insisted on a taxi before he left.",
+      "correctResponseId": null
+    }
+  ]
+}

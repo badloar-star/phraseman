@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-38",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-38:word:geography",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — geography",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:geography:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — geography",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:geography:audio",
+            "transcript": "geography"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:geography:r1",
+              "targetText": "geography",
+              "meaningByLocale": {
+                "ru": "география.",
+                "uk": "географія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "geography",
+            "definitionByLocale": {
+              "ru": "география.",
+              "uk": "географія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Я изучал географию.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Я изучал географию.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have studied geography.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я изучал географию.»",
+            "uk": "Розкажіть про досвід: «Я вивчав географію.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "studied",
+            "geography"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i02:r1",
+            "text": "I have studied geography."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i02:r2",
+            "text": "You have studied geography."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i02:r3",
+            "text": "They have studied geography."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i02:audio",
+            "transcript": "I have studied geography."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i02:r1",
+              "targetText": "I have studied geography.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i02:r2",
+              "targetText": "You have studied geography.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i02:r3",
+              "targetText": "They have studied geography.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have studied geography.",
+                "uk": "У записі звучить I have studied geography."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have studied geography.",
+                "uk": "У записі звучить I have studied geography."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i03:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i03:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i03:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ geography.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i03:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i03:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i03:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:word:biology",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — biology",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:biology:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — biology",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:biology:audio",
+            "transcript": "biology"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:biology:r1",
+              "targetText": "biology",
+              "meaningByLocale": {
+                "ru": "биология.",
+                "uk": "біологія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "biology",
+            "definitionByLocale": {
+              "ru": "биология.",
+              "uk": "біологія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Она изучала биологию.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Она изучала биологию.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has studied biology.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она изучала биологию.»",
+            "uk": "Розкажіть про досвід: «Вона вивчала біологію.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "studied",
+            "biology"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i05:r1",
+            "text": "She has studied biology."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i05:r2",
+            "text": "You have studied biology."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i05:r3",
+            "text": "They have studied biology."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i05:audio",
+            "transcript": "She has studied biology."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i05:r1",
+              "targetText": "She has studied biology.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i05:r2",
+              "targetText": "You have studied biology.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i05:r3",
+              "targetText": "They have studied biology.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has studied biology.",
+                "uk": "У записі звучить She has studied biology."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has studied biology.",
+                "uk": "У записі звучить She has studied biology."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i06:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i06:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i06:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ biology.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i06:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i06:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i06:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:word:chemistry",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chemistry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:chemistry:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chemistry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:chemistry:audio",
+            "transcript": "chemistry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:chemistry:r1",
+              "targetText": "chemistry",
+              "meaningByLocale": {
+                "ru": "химия.",
+                "uk": "хімія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chemistry",
+            "definitionByLocale": {
+              "ru": "химия.",
+              "uk": "хімія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Мы изучали химию.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Мы изучали химию.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied chemistry.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы изучали химию.»",
+            "uk": "Розкажіть про досвід: «Ми вивчали хімію.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "chemistry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i08:r1",
+            "text": "We have studied chemistry."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i08:r2",
+            "text": "You have studied chemistry."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i08:r3",
+            "text": "They have studied chemistry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i08:audio",
+            "transcript": "We have studied chemistry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i08:r1",
+              "targetText": "We have studied chemistry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i08:r2",
+              "targetText": "You have studied chemistry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i08:r3",
+              "targetText": "They have studied chemistry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied chemistry.",
+                "uk": "У записі звучить We have studied chemistry."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied chemistry.",
+                "uk": "У записі звучить We have studied chemistry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i09:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i09:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i09:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ chemistry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i09:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i09:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i09:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:word:physics",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — physics",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:physics:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — physics",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:physics:audio",
+            "transcript": "physics"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:physics:r1",
+              "targetText": "physics",
+              "meaningByLocale": {
+                "ru": "физика.",
+                "uk": "фізика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "physics",
+            "definitionByLocale": {
+              "ru": "физика.",
+              "uk": "фізика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Он изучал физику.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Он изучал физику.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has studied physics.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он изучал физику.»",
+            "uk": "Розкажіть про досвід: «Він вивчав фізику.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "studied",
+            "physics"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i11:r1",
+            "text": "He has studied physics."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i11:r2",
+            "text": "You have studied physics."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i11:r3",
+            "text": "They have studied physics."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i11:audio",
+            "transcript": "He has studied physics."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i11:r1",
+              "targetText": "He has studied physics.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i11:r2",
+              "targetText": "You have studied physics.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i11:r3",
+              "targetText": "They have studied physics.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied physics.",
+                "uk": "У записі звучить He has studied physics."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied physics.",
+                "uk": "У записі звучить He has studied physics."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i12:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i12:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i12:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ physics.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i12:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i12:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i12:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-38:i13:p1",
+              "target": "geography",
+              "meaningByLocale": {
+                "ru": "география",
+                "uk": "географія"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-38:i13:p2",
+              "target": "biology",
+              "meaningByLocale": {
+                "ru": "биология",
+                "uk": "біологія"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-38:i13:p3",
+              "target": "chemistry",
+              "meaningByLocale": {
+                "ru": "химия",
+                "uk": "хімія"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-38:i13:p4",
+              "target": "physics",
+              "meaningByLocale": {
+                "ru": "физика",
+                "uk": "фізика"
+              }
+            }
+          ],
+          "leftColumn": [
+            "geography",
+            "biology",
+            "chemistry",
+            "physics"
+          ],
+          "rightColumn": [
+            "география",
+            "биология",
+            "химия",
+            "физика"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой вариант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой вариант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i14:audio",
+            "transcript": "We can choose another subject."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another subject.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "subject"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i15:audio",
+            "transcript": "You mustn't use your phone in class."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't use your phone in class.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "use",
+            "your",
+            "phone",
+            "in",
+            "class"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я изучал биологию.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я изучал биологию.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i16:audio",
+            "transcript": "I have studied biology."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have studied biology.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она изучала географию.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она изучала географию.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i17:audio",
+            "transcript": "She has studied geography."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has studied geography.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-38:word:geography",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — geography",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:geography:audio"
+        ],
+        "accessibilityLabel": "Картка слова — geography",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:geography:audio",
+            "transcript": "geography"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:geography:r1",
+              "targetText": "geography",
+              "meaningByLocale": {
+                "ru": "география.",
+                "uk": "географія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "geography",
+            "definitionByLocale": {
+              "ru": "география.",
+              "uk": "географія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Я вивчав географію.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Я вивчав географію.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have studied geography.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я изучал географию.»",
+            "uk": "Розкажіть про досвід: «Я вивчав географію.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "studied",
+            "geography"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i02:r1",
+            "text": "I have studied geography."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i02:r2",
+            "text": "You have studied geography."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i02:r3",
+            "text": "They have studied geography."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i02:audio",
+            "transcript": "I have studied geography."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i02:r1",
+              "targetText": "I have studied geography.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i02:r2",
+              "targetText": "You have studied geography.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i02:r3",
+              "targetText": "They have studied geography.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have studied geography.",
+                "uk": "У записі звучить I have studied geography."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have studied geography.",
+                "uk": "У записі звучить I have studied geography."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i03:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i03:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i03:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ geography.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i03:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i03:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i03:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:word:biology",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — biology",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:biology:audio"
+        ],
+        "accessibilityLabel": "Картка слова — biology",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:biology:audio",
+            "transcript": "biology"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:biology:r1",
+              "targetText": "biology",
+              "meaningByLocale": {
+                "ru": "биология.",
+                "uk": "біологія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "biology",
+            "definitionByLocale": {
+              "ru": "биология.",
+              "uk": "біологія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Вона вивчала біологію.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Вона вивчала біологію.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has studied biology.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она изучала биологию.»",
+            "uk": "Розкажіть про досвід: «Вона вивчала біологію.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "studied",
+            "biology"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i05:r1",
+            "text": "She has studied biology."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i05:r2",
+            "text": "You have studied biology."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i05:r3",
+            "text": "They have studied biology."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i05:audio",
+            "transcript": "She has studied biology."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i05:r1",
+              "targetText": "She has studied biology.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i05:r2",
+              "targetText": "You have studied biology.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i05:r3",
+              "targetText": "They have studied biology.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has studied biology.",
+                "uk": "У записі звучить She has studied biology."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has studied biology.",
+                "uk": "У записі звучить She has studied biology."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i06:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i06:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i06:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ biology.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i06:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i06:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i06:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:word:chemistry",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chemistry",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:chemistry:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chemistry",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:chemistry:audio",
+            "transcript": "chemistry"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:chemistry:r1",
+              "targetText": "chemistry",
+              "meaningByLocale": {
+                "ru": "химия.",
+                "uk": "хімія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chemistry",
+            "definitionByLocale": {
+              "ru": "химия.",
+              "uk": "хімія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Ми вивчали хімію.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Ми вивчали хімію.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied chemistry.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы изучали химию.»",
+            "uk": "Розкажіть про досвід: «Ми вивчали хімію.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "chemistry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i08:r1",
+            "text": "We have studied chemistry."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i08:r2",
+            "text": "You have studied chemistry."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i08:r3",
+            "text": "They have studied chemistry."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i08:audio",
+            "transcript": "We have studied chemistry."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i08:r1",
+              "targetText": "We have studied chemistry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i08:r2",
+              "targetText": "You have studied chemistry.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i08:r3",
+              "targetText": "They have studied chemistry.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied chemistry.",
+                "uk": "У записі звучить We have studied chemistry."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied chemistry.",
+                "uk": "У записі звучить We have studied chemistry."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i09:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i09:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i09:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ chemistry.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i09:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i09:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i09:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:word:physics",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — physics",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:word:physics:audio"
+        ],
+        "accessibilityLabel": "Картка слова — physics",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:word:physics:audio",
+            "transcript": "physics"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:word:physics:r1",
+              "targetText": "physics",
+              "meaningByLocale": {
+                "ru": "физика.",
+                "uk": "фізика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "physics",
+            "definitionByLocale": {
+              "ru": "физика.",
+              "uk": "фізика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Він вивчав фізику.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Він вивчав фізику.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has studied physics.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он изучал физику.»",
+            "uk": "Розкажіть про досвід: «Він вивчав фізику.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "studied",
+            "physics"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i11:r1",
+            "text": "He has studied physics."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i11:r2",
+            "text": "You have studied physics."
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i11:r3",
+            "text": "They have studied physics."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i11:audio",
+            "transcript": "He has studied physics."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-38:i11:r1",
+              "targetText": "He has studied physics.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i11:r2",
+              "targetText": "You have studied physics.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i11:r3",
+              "targetText": "They have studied physics.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied physics.",
+                "uk": "У записі звучить He has studied physics."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has studied physics.",
+                "uk": "У записі звучить He has studied physics."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-38:i12:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i12:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-38:i12:r3",
+            "text": "studies"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ physics.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-38:i12:r1",
+              "text": "studied"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i12:r2",
+              "text": "study"
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i12:r3",
+              "text": "studies"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-38:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-38:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: studied.",
+                "uk": "Потрібна третя форма: studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-38:i13:p1",
+              "target": "geography",
+              "meaningByLocale": {
+                "ru": "география",
+                "uk": "географія"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-38:i13:p2",
+              "target": "biology",
+              "meaningByLocale": {
+                "ru": "биология",
+                "uk": "біологія"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-38:i13:p3",
+              "target": "chemistry",
+              "meaningByLocale": {
+                "ru": "химия",
+                "uk": "хімія"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-38:i13:p4",
+              "target": "physics",
+              "meaningByLocale": {
+                "ru": "физика",
+                "uk": "фізика"
+              }
+            }
+          ],
+          "leftColumn": [
+            "geography",
+            "biology",
+            "chemistry",
+            "physics"
+          ],
+          "rightColumn": [
+            "географія",
+            "біологія",
+            "хімія",
+            "фізика"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший варіант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший варіант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i14:audio",
+            "transcript": "We can choose another subject."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another subject.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "subject"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i15:audio",
+            "transcript": "You mustn't use your phone in class."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't use your phone in class.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "use",
+            "your",
+            "phone",
+            "in",
+            "class"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я вивчав біологію.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я вивчав біологію.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i16:audio",
+            "transcript": "I have studied biology."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have studied biology.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-38:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона вивчала географію.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-38:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона вивчала географію.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-38:i17:audio",
+            "transcript": "She has studied geography."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has studied geography.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-38:word:geography",
+      "correctText": "geography",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i01",
+      "correctText": "I have studied geography.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i02",
+      "correctText": "I have studied geography.",
+      "correctResponseId": "en:lesson-23:session-38:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i03",
+      "correctText": "studied",
+      "correctResponseId": "en:lesson-23:session-38:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:word:biology",
+      "correctText": "biology",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i04",
+      "correctText": "She has studied biology.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i05",
+      "correctText": "She has studied biology.",
+      "correctResponseId": "en:lesson-23:session-38:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i06",
+      "correctText": "studied",
+      "correctResponseId": "en:lesson-23:session-38:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:word:chemistry",
+      "correctText": "chemistry",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i07",
+      "correctText": "We have studied chemistry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i08",
+      "correctText": "We have studied chemistry.",
+      "correctResponseId": "en:lesson-23:session-38:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i09",
+      "correctText": "studied",
+      "correctResponseId": "en:lesson-23:session-38:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:word:physics",
+      "correctText": "physics",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i10",
+      "correctText": "He has studied physics.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i11",
+      "correctText": "He has studied physics.",
+      "correctResponseId": "en:lesson-23:session-38:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i12",
+      "correctText": "studied",
+      "correctResponseId": "en:lesson-23:session-38:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i14",
+      "correctText": "We can choose another subject.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i15",
+      "correctText": "You mustn't use your phone in class.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i16",
+      "correctText": "I have studied biology.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-38:i17",
+      "correctText": "She has studied geography.",
+      "correctResponseId": null
+    }
+  ]
+}

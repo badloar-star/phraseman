@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "King — король, queen — королева. I have read about a king — я читал о короле. После have нужна третья форма read. Она пишется так же, как начальная форма, но произносится «рэд». About здесь означает «о».",
+        "uk": "King — король, queen — королева. I have read about a king — я читав про короля. Після have потрібна третя форма read. Вона пишеться так само, як початкова форма, але вимовляється «ред». About тут означає «про»."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-36:intro1:r1",
+              "text": "I have read about a king."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro1:r2",
+              "text": "I has read about a king."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro1:r3",
+              "text": "I have reads about a king."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-36:intro1:r1",
+              "text": "I have read about a king."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro1:r2",
+              "text": "I has read about a king."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro1:r3",
+              "text": "I have reads about a king."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Prince — принц. We have seen a film about a prince — мы смотрели фильм о принце. Seen — третья форма see. Так мы рассказываем о просмотренном фильме, не указывая конкретный день.",
+        "uk": "Prince — принц. We have seen a film about a prince — ми дивилися фільм про принца. Seen — третя форма see. Так ми розповідаємо про переглянутий фільм, не зазначаючи конкретного дня."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-36:intro2:r1",
+              "text": "We have seen a film about a prince."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro2:r2",
+              "text": "We has seen a film about a prince."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro2:r3",
+              "text": "We have see a film about a prince."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-36:intro2:r1",
+              "text": "We have seen a film about a prince."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro2:r2",
+              "text": "We has seen a film about a prince."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro2:r3",
+              "text": "We have see a film about a prince."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Princess — принцесса. Prince и princess называют титулы членов королевской семьи. He has seen a film about a princess — он смотрел фильм о принцессе. С he используем has. Эти слова встречаются и в сказках, и в новостях.",
+        "uk": "Princess — принцеса. Prince і princess називають титули членів королівської родини. He has seen a film about a princess — він дивився фільм про принцесу. Із he використовуємо has. Ці слова трапляються і в казках, і в новинах."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-36:intro3:r1",
+              "text": "He has seen a film about a princess."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro3:r2",
+              "text": "He have seen a film about a princess."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro3:r3",
+              "text": "He has see a film about a princess."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-36:intro3:r1",
+              "text": "He has seen a film about a princess."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro3:r2",
+              "text": "He have seen a film about a princess."
+            },
+            {
+              "responseId": "en:lesson-23:session-36:intro3:r3",
+              "text": "He has see a film about a princess."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "362ce74849c8e47dd859a68c01103f24a5a22b254d1ad9f804d143cdeda2ccf1"
+}

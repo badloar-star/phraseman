@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-36:word:king",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — king",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:word:king:audio"
+      ],
+      "accessibilityLabel": "Картка слова — king",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:word:king:audio",
+          "transcript": "king"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:word:king:r1",
+            "targetText": "king",
+            "meaningByLocale": {
+              "ru": "король.",
+              "uk": "король."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "king",
+          "definitionByLocale": {
+            "ru": "король.",
+            "uk": "король."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я читав про короля.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я читав про короля.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have read about a king.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я читал о короле.»",
+          "uk": "Розкажіть про досвід: «Я читав про короля.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "read",
+          "about",
+          "a",
+          "king"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i02:r1",
+          "text": "I have read about a king."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i02:r2",
+          "text": "You have read about a king."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i02:r3",
+          "text": "They have read about a king."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i02:audio",
+          "transcript": "I have read about a king."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:i02:r1",
+            "targetText": "I have read about a king.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i02:r2",
+            "targetText": "You have read about a king.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i02:r3",
+            "targetText": "They have read about a king.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about a king.",
+              "uk": "У записі звучить I have read about a king."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about a king.",
+              "uk": "У записі звучить I have read about a king."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i03:r1",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i03:r2",
+          "text": "reads"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i03:r3",
+          "text": "reading"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ about a king.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-36:i03:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i03:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i03:r3",
+            "text": "reading"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: read.",
+              "uk": "Потрібна третя форма: read."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: read.",
+              "uk": "Потрібна третя форма: read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:word:queen",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — queen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:word:queen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — queen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:word:queen:audio",
+          "transcript": "queen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:word:queen:r1",
+            "targetText": "queen",
+            "meaningByLocale": {
+              "ru": "королева.",
+              "uk": "королева."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "queen",
+          "definitionByLocale": {
+            "ru": "королева.",
+            "uk": "королева."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона читала про королеву.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона читала про королеву.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has read about a queen.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она читала о королеве.»",
+          "uk": "Розкажіть про досвід: «Вона читала про королеву.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "read",
+          "about",
+          "a",
+          "queen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i05:r1",
+          "text": "She has read about a queen."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i05:r2",
+          "text": "You have read about a queen."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i05:r3",
+          "text": "They have read about a queen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i05:audio",
+          "transcript": "She has read about a queen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:i05:r1",
+            "targetText": "She has read about a queen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i05:r2",
+            "targetText": "You have read about a queen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i05:r3",
+            "targetText": "They have read about a queen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has read about a queen.",
+              "uk": "У записі звучить She has read about a queen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has read about a queen.",
+              "uk": "У записі звучить She has read about a queen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i06:r1",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i06:r2",
+          "text": "reads"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i06:r3",
+          "text": "reading"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ about a queen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-36:i06:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i06:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i06:r3",
+            "text": "reading"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: read.",
+              "uk": "Потрібна третя форма: read."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: read.",
+              "uk": "Потрібна третя форма: read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:word:prince",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — prince",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:word:prince:audio"
+      ],
+      "accessibilityLabel": "Картка слова — prince",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:word:prince:audio",
+          "transcript": "prince"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:word:prince:r1",
+            "targetText": "prince",
+            "meaningByLocale": {
+              "ru": "принц.",
+              "uk": "принц."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prince",
+          "definitionByLocale": {
+            "ru": "принц.",
+            "uk": "принц."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми дивилися фільм про принца.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми дивилися фільм про принца.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have seen a film about a prince.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы смотрели фильм о принце.»",
+          "uk": "Розкажіть про досвід: «Ми дивилися фільм про принца.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "seen",
+          "a",
+          "film",
+          "about",
+          "a",
+          "prince"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i08:r1",
+          "text": "We have seen a film about a prince."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i08:r2",
+          "text": "You have seen a film about a prince."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i08:r3",
+          "text": "They have seen a film about a prince."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i08:audio",
+          "transcript": "We have seen a film about a prince."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:i08:r1",
+            "targetText": "We have seen a film about a prince.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i08:r2",
+            "targetText": "You have seen a film about a prince.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i08:r3",
+            "targetText": "They have seen a film about a prince.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a film about a prince.",
+              "uk": "У записі звучить We have seen a film about a prince."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a film about a prince.",
+              "uk": "У записі звучить We have seen a film about a prince."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i09:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i09:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i09:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a film about a prince.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-36:i09:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i09:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i09:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:word:princess",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — princess",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:word:princess:audio"
+      ],
+      "accessibilityLabel": "Картка слова — princess",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:word:princess:audio",
+          "transcript": "princess"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:word:princess:r1",
+            "targetText": "princess",
+            "meaningByLocale": {
+              "ru": "принцесса.",
+              "uk": "принцеса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "princess",
+          "definitionByLocale": {
+            "ru": "принцесса.",
+            "uk": "принцеса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він дивився фільм про принцесу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він дивився фільм про принцесу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has seen a film about a princess.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он смотрел фильм о принцессе.»",
+          "uk": "Розкажіть про досвід: «Він дивився фільм про принцесу.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "seen",
+          "a",
+          "film",
+          "about",
+          "a",
+          "princess"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i11:r1",
+          "text": "He has seen a film about a princess."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i11:r2",
+          "text": "You have seen a film about a princess."
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i11:r3",
+          "text": "They have seen a film about a princess."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i11:audio",
+          "transcript": "He has seen a film about a princess."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-36:i11:r1",
+            "targetText": "He has seen a film about a princess.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i11:r2",
+            "targetText": "You have seen a film about a princess.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i11:r3",
+            "targetText": "They have seen a film about a princess.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has seen a film about a princess.",
+              "uk": "У записі звучить He has seen a film about a princess."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has seen a film about a princess.",
+              "uk": "У записі звучить He has seen a film about a princess."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-36:i12:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i12:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-36:i12:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a film about a princess.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-36:i12:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i12:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i12:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-36:i13:p1",
+            "target": "king",
+            "meaningByLocale": {
+              "ru": "король",
+              "uk": "король"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-36:i13:p2",
+            "target": "queen",
+            "meaningByLocale": {
+              "ru": "королева",
+              "uk": "королева"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-36:i13:p3",
+            "target": "prince",
+            "meaningByLocale": {
+              "ru": "принц",
+              "uk": "принц"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-36:i13:p4",
+            "target": "princess",
+            "meaningByLocale": {
+              "ru": "принцесса",
+              "uk": "принцеса"
+            }
+          }
+        ],
+        "leftColumn": [
+          "king",
+          "queen",
+          "prince",
+          "princess"
+        ],
+        "rightColumn": [
+          "король",
+          "королева",
+          "принц",
+          "принцеса"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i14:audio",
+          "transcript": "We can choose another story."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another story.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "story"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i15:audio",
+          "transcript": "You mustn't talk during the film."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't talk during the film.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "talk",
+          "during",
+          "the",
+          "film"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я читав про королеву.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я читав про королеву.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i16:audio",
+          "transcript": "I have read about a queen."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have read about a queen.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона дивилася фільм про принца.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона дивилася фільм про принца.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-36:i17:audio",
+          "transcript": "She has seen a film about a prince."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has seen a film about a prince.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "51675860f9b8cffbe005d206812b8493d0c3b1c42a729393ba216ddbb00b9a35"
+}

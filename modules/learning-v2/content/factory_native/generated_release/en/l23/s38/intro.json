@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Geography — география: предмет о Земле, её местах и людях. Biology — биология: предмет о живых организмах. I have studied geography — я изучал географию. Studied — третья форма study: y меняется на i, затем добавляется ed.",
+        "uk": "Geography — географія: предмет про Землю, її місця й людей. Biology — біологія: предмет про живі організми. I have studied geography — я вивчав географію. Studied — третя форма study: y змінюється на i, потім додається ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-38:intro1:r1",
+              "text": "I have studied geography."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro1:r2",
+              "text": "I has studied geography."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro1:r3",
+              "text": "I have study geography."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-38:intro1:r1",
+              "text": "I have studied geography."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro1:r2",
+              "text": "I has studied geography."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro1:r3",
+              "text": "I have study geography."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Chemistry — химия: предмет о веществах и их превращениях. We have studied chemistry — мы изучали химию. Перед названием школьного предмета в этой фразе нет артикля. Мы рассказываем об опыте учёбы, а не называем дату урока.",
+        "uk": "Chemistry — хімія: предмет про речовини та їхні перетворення. We have studied chemistry — ми вивчали хімію. Перед назвою шкільного предмета в цій фразі немає артикля. Ми розповідаємо про досвід навчання, а не називаємо дату уроку."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-38:intro2:r1",
+              "text": "We have studied chemistry."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro2:r2",
+              "text": "We has studied chemistry."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro2:r3",
+              "text": "We have study chemistry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-38:intro2:r1",
+              "text": "We have studied chemistry."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro2:r2",
+              "text": "We has studied chemistry."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro2:r3",
+              "text": "We have study chemistry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Physics — физика: предмет о движении, силах, свете и других явлениях природы. Окончание s — часть этого слова. He has studied physics — он изучал физику. С he нужно has. В обычном предложении о предмете говорим Physics is interesting, а не are.",
+        "uk": "Physics — фізика: предмет про рух, сили, світло та інші явища природи. Закінчення s — частина цього слова. He has studied physics — він вивчав фізику. Із he потрібно has. У звичайному реченні про предмет кажемо Physics is interesting, а не are."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-38:intro3:r1",
+              "text": "He has studied physics."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro3:r2",
+              "text": "He have studied physics."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro3:r3",
+              "text": "He has study physics."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-38:intro3:r1",
+              "text": "He has studied physics."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro3:r2",
+              "text": "He have studied physics."
+            },
+            {
+              "responseId": "en:lesson-23:session-38:intro3:r3",
+              "text": "He has study physics."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "09992cde7fd3cd896caddd30d16c7f9082d7daef8944ad844e3414ff6cfa7e0a"
+}

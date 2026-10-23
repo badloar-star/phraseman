@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-36:intro1:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-36:intro1:r3": {
+          "ru": "После have или has нужна третья форма: read.",
+          "uk": "Після have або has потрібна третя форма: read."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-36:intro2:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-36:intro2:r3": {
+          "ru": "После have или has нужна третья форма: seen.",
+          "uk": "Після have або has потрібна третя форма: seen."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-36:intro3:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-36:intro3:r3": {
+          "ru": "После have или has нужна третья форма: seen.",
+          "uk": "Після have або has потрібна третя форма: seen."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fc4858b7e35a0bf40ca3cfecd88e2d7cbefb9e1b716f5e8ee713fd523ecc769f"
+}

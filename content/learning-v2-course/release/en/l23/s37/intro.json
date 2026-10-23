@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Bear — медведь. Camel — верблюд. I have seen a bear — я видел медведя. Seen — третья форма see. She has ridden a camel — она каталась на верблюде. Ridden — третья форма ride. Эти фразы сообщают о разном опыте: увидеть животное и прокатиться на нём.",
+        "uk": "Bear — ведмідь. Camel — верблюд. I have seen a bear — я бачив ведмедя. Seen — третя форма see. She has ridden a camel — вона каталася на верблюді. Ridden — третя форма ride. Ці фрази повідомляють про різний досвід: побачити тварину й покататися на ній."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-37:intro1:r1",
+              "text": "I have seen a bear."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro1:r2",
+              "text": "I has seen a bear."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro1:r3",
+              "text": "I have see a bear."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-37:intro1:r1",
+              "text": "I have seen a bear."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro1:r2",
+              "text": "I has seen a bear."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro1:r3",
+              "text": "I have see a bear."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Rat — крыса. We have seen a rat — мы видели крысу. Это название другого животного, не знакомое mouse — мышь. С we используем have, затем третью форму seen.",
+        "uk": "Rat — щур. We have seen a rat — ми бачили щура. Це назва іншої тварини, не знайоме mouse — миша. Із we використовуємо have, потім третю форму seen."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-37:intro2:r1",
+              "text": "We have seen a rat."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro2:r2",
+              "text": "We has seen a rat."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro2:r3",
+              "text": "We have see a rat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-37:intro2:r1",
+              "text": "We have seen a rat."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro2:r2",
+              "text": "We has seen a rat."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro2:r3",
+              "text": "We have see a rat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Octopus — осьминог, морское животное с восемью щупальцами. He has seen an octopus — он видел осьминога. Перед octopus нужен an, потому что первый звук гласный. С he используем has.",
+        "uk": "Octopus — восьминіг, морська тварина з вісьмома щупальцями. He has seen an octopus — він бачив восьминога. Перед octopus потрібен an, бо перший звук голосний. Із he використовуємо has."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-37:intro3:r1",
+              "text": "He has seen an octopus."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro3:r2",
+              "text": "He have seen an octopus."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro3:r3",
+              "text": "He has see an octopus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-37:intro3:r1",
+              "text": "He has seen an octopus."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro3:r2",
+              "text": "He have seen an octopus."
+            },
+            {
+              "responseId": "en:lesson-23:session-37:intro3:r3",
+              "text": "He has see an octopus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3a8ce7b9a410c003928a45817f1b1adce7fdddd003627043e237af660f27b886"
+}

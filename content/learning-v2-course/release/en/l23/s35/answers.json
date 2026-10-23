@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-35:word:reporter",
+    "correctText": "reporter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i01",
+    "correctText": "I have met a reporter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i02",
+    "correctText": "I have met a reporter.",
+    "correctResponseId": "en:lesson-23:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i03",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:word:journalist",
+    "correctText": "journalist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i04",
+    "correctText": "She has spoken to a journalist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i05",
+    "correctText": "She has spoken to a journalist.",
+    "correctResponseId": "en:lesson-23:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i06",
+    "correctText": "spoken",
+    "correctResponseId": "en:lesson-23:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:word:soldier",
+    "correctText": "soldier",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i07",
+    "correctText": "We have met a soldier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i08",
+    "correctText": "We have met a soldier.",
+    "correctResponseId": "en:lesson-23:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i09",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:word:firefighter",
+    "correctText": "firefighter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i10",
+    "correctText": "He has spoken to a firefighter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i11",
+    "correctText": "He has spoken to a firefighter.",
+    "correctResponseId": "en:lesson-23:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i12",
+    "correctText": "spoken",
+    "correctResponseId": "en:lesson-23:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i13",
+    "correctText": "en:lesson-23:session-35:i13:p1=reporter\nen:lesson-23:session-35:i13:p2=journalist\nen:lesson-23:session-35:i13:p3=soldier\nen:lesson-23:session-35:i13:p4=firefighter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i14",
+    "correctText": "We can ask another person.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i15",
+    "correctText": "You mustn't interrupt the speaker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i16",
+    "correctText": "I have spoken to a firefighter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-35:i17",
+    "correctText": "She has met a reporter.",
+    "correctResponseId": null
+  }
+]

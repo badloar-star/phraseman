@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-37:word:bear",
+    "correctText": "bear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i01",
+    "correctText": "I have seen a bear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i02",
+    "correctText": "I have seen a bear.",
+    "correctResponseId": "en:lesson-23:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i03",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:word:camel",
+    "correctText": "camel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i04",
+    "correctText": "She has ridden a camel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i05",
+    "correctText": "She has ridden a camel.",
+    "correctResponseId": "en:lesson-23:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i06",
+    "correctText": "ridden",
+    "correctResponseId": "en:lesson-23:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:word:rat",
+    "correctText": "rat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i07",
+    "correctText": "We have seen a rat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i08",
+    "correctText": "We have seen a rat.",
+    "correctResponseId": "en:lesson-23:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i09",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:word:octopus",
+    "correctText": "octopus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i10",
+    "correctText": "He has seen an octopus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i11",
+    "correctText": "He has seen an octopus.",
+    "correctResponseId": "en:lesson-23:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i12",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i13",
+    "correctText": "en:lesson-23:session-37:i13:p1=bear\nen:lesson-23:session-37:i13:p2=camel\nen:lesson-23:session-37:i13:p3=rat\nen:lesson-23:session-37:i13:p4=octopus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i14",
+    "correctText": "We can take another photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i15",
+    "correctText": "You mustn't feed the animals.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i16",
+    "correctText": "I have ridden a camel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-37:i17",
+    "correctText": "We have seen an octopus.",
+    "correctResponseId": null
+  }
+]

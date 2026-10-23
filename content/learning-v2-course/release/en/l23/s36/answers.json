@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-36:word:king",
+    "correctText": "king",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i01",
+    "correctText": "I have read about a king.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i02",
+    "correctText": "I have read about a king.",
+    "correctResponseId": "en:lesson-23:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i03",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-23:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:word:queen",
+    "correctText": "queen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i04",
+    "correctText": "She has read about a queen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i05",
+    "correctText": "She has read about a queen.",
+    "correctResponseId": "en:lesson-23:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i06",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-23:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:word:prince",
+    "correctText": "prince",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i07",
+    "correctText": "We have seen a film about a prince.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i08",
+    "correctText": "We have seen a film about a prince.",
+    "correctResponseId": "en:lesson-23:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i09",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:word:princess",
+    "correctText": "princess",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i10",
+    "correctText": "He has seen a film about a princess.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i11",
+    "correctText": "He has seen a film about a princess.",
+    "correctResponseId": "en:lesson-23:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i12",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i13",
+    "correctText": "en:lesson-23:session-36:i13:p1=king\nen:lesson-23:session-36:i13:p2=queen\nen:lesson-23:session-36:i13:p3=prince\nen:lesson-23:session-36:i13:p4=princess",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i14",
+    "correctText": "We can choose another story.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i15",
+    "correctText": "You mustn't talk during the film.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i16",
+    "correctText": "I have read about a queen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-36:i17",
+    "correctText": "She has seen a film about a prince.",
+    "correctResponseId": null
+  }
+]

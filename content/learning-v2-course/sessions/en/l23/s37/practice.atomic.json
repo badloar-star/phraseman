@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-37:word:bear",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:bear:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:bear:audio",
+            "transcript": "bear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:bear:r1",
+              "targetText": "bear",
+              "meaningByLocale": {
+                "ru": "медведь.",
+                "uk": "ведмідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bear",
+            "definitionByLocale": {
+              "ru": "медведь.",
+              "uk": "ведмідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Я видел медведя.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Я видел медведя.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have seen a bear.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я видел медведя.»",
+            "uk": "Розкажіть про досвід: «Я бачив ведмедя.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "seen",
+            "a",
+            "bear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i02:r1",
+            "text": "I have seen a bear."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i02:r2",
+            "text": "You have seen a bear."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i02:r3",
+            "text": "They have seen a bear."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i02:audio",
+            "transcript": "I have seen a bear."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i02:r1",
+              "targetText": "I have seen a bear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i02:r2",
+              "targetText": "You have seen a bear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i02:r3",
+              "targetText": "They have seen a bear.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have seen a bear.",
+                "uk": "У записі звучить I have seen a bear."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have seen a bear.",
+                "uk": "У записі звучить I have seen a bear."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i03:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i03:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i03:r3",
+            "text": "sees"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ a bear.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i03:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i03:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i03:r3",
+              "text": "sees"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:word:camel",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — camel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:camel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — camel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:camel:audio",
+            "transcript": "camel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:camel:r1",
+              "targetText": "camel",
+              "meaningByLocale": {
+                "ru": "верблюд.",
+                "uk": "верблюд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "camel",
+            "definitionByLocale": {
+              "ru": "верблюд.",
+              "uk": "верблюд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Она каталась на верблюде.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Она каталась на верблюде.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has ridden a camel.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она каталась на верблюде.»",
+            "uk": "Розкажіть про досвід: «Вона каталася на верблюді.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "ridden",
+            "a",
+            "camel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i05:r1",
+            "text": "She has ridden a camel."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i05:r2",
+            "text": "You have ridden a camel."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i05:r3",
+            "text": "They have ridden a camel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i05:audio",
+            "transcript": "She has ridden a camel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i05:r1",
+              "targetText": "She has ridden a camel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i05:r2",
+              "targetText": "You have ridden a camel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i05:r3",
+              "targetText": "They have ridden a camel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has ridden a camel.",
+                "uk": "У записі звучить She has ridden a camel."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has ridden a camel.",
+                "uk": "У записі звучить She has ridden a camel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i06:r1",
+            "text": "ridden"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i06:r2",
+            "text": "ride"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i06:r3",
+            "text": "rides"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a camel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i06:r1",
+              "text": "ridden"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i06:r2",
+              "text": "ride"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i06:r3",
+              "text": "rides"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: ridden.",
+                "uk": "Потрібна третя форма: ridden."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: ridden.",
+                "uk": "Потрібна третя форма: ridden."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:word:rat",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:rat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:rat:audio",
+            "transcript": "rat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:rat:r1",
+              "targetText": "rat",
+              "meaningByLocale": {
+                "ru": "крыса.",
+                "uk": "щур."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rat",
+            "definitionByLocale": {
+              "ru": "крыса.",
+              "uk": "щур."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Мы видели крысу.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Мы видели крысу.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have seen a rat.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы видели крысу.»",
+            "uk": "Розкажіть про досвід: «Ми бачили щура.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "seen",
+            "a",
+            "rat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i08:r1",
+            "text": "We have seen a rat."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i08:r2",
+            "text": "You have seen a rat."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i08:r3",
+            "text": "They have seen a rat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i08:audio",
+            "transcript": "We have seen a rat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i08:r1",
+              "targetText": "We have seen a rat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i08:r2",
+              "targetText": "You have seen a rat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i08:r3",
+              "targetText": "They have seen a rat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have seen a rat.",
+                "uk": "У записі звучить We have seen a rat."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have seen a rat.",
+                "uk": "У записі звучить We have seen a rat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i09:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i09:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i09:r3",
+            "text": "sees"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a rat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i09:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i09:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i09:r3",
+              "text": "sees"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:word:octopus",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — octopus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:octopus:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — octopus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:octopus:audio",
+            "transcript": "octopus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:octopus:r1",
+              "targetText": "octopus",
+              "meaningByLocale": {
+                "ru": "осьминог.",
+                "uk": "восьминіг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "octopus",
+            "definitionByLocale": {
+              "ru": "осьминог.",
+              "uk": "восьминіг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Он видел осьминога.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Он видел осьминога.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has seen an octopus.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он видел осьминога.»",
+            "uk": "Розкажіть про досвід: «Він бачив восьминога.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "seen",
+            "an",
+            "octopus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i11:r1",
+            "text": "He has seen an octopus."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i11:r2",
+            "text": "You have seen an octopus."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i11:r3",
+            "text": "They have seen an octopus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i11:audio",
+            "transcript": "He has seen an octopus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i11:r1",
+              "targetText": "He has seen an octopus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i11:r2",
+              "targetText": "You have seen an octopus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i11:r3",
+              "targetText": "They have seen an octopus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has seen an octopus.",
+                "uk": "У записі звучить He has seen an octopus."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has seen an octopus.",
+                "uk": "У записі звучить He has seen an octopus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i12:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i12:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i12:r3",
+            "text": "sees"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ an octopus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i12:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i12:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i12:r3",
+              "text": "sees"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-37:i13:p1",
+              "target": "bear",
+              "meaningByLocale": {
+                "ru": "медведь",
+                "uk": "ведмідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-37:i13:p2",
+              "target": "camel",
+              "meaningByLocale": {
+                "ru": "верблюд",
+                "uk": "верблюд"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-37:i13:p3",
+              "target": "rat",
+              "meaningByLocale": {
+                "ru": "крыса",
+                "uk": "щур"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-37:i13:p4",
+              "target": "octopus",
+              "meaningByLocale": {
+                "ru": "осьминог",
+                "uk": "восьминіг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bear",
+            "camel",
+            "rat",
+            "octopus"
+          ],
+          "rightColumn": [
+            "медведь",
+            "верблюд",
+            "крыса",
+            "осьминог"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой вариант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой вариант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i14:audio",
+            "transcript": "We can take another photo."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can take another photo.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "take",
+            "another",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i15:audio",
+            "transcript": "You mustn't feed the animals."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't feed the animals.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "feed",
+            "the",
+            "animals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я катался на верблюде.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я катался на верблюде.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i16:audio",
+            "transcript": "I have ridden a camel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have ridden a camel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы видели осьминога.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы видели осьминога.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i17:audio",
+            "transcript": "We have seen an octopus."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have seen an octopus.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-37:word:bear",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:bear:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:bear:audio",
+            "transcript": "bear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:bear:r1",
+              "targetText": "bear",
+              "meaningByLocale": {
+                "ru": "медведь.",
+                "uk": "ведмідь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bear",
+            "definitionByLocale": {
+              "ru": "медведь.",
+              "uk": "ведмідь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Я бачив ведмедя.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Я бачив ведмедя.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have seen a bear.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я видел медведя.»",
+            "uk": "Розкажіть про досвід: «Я бачив ведмедя.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "seen",
+            "a",
+            "bear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i02:r1",
+            "text": "I have seen a bear."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i02:r2",
+            "text": "You have seen a bear."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i02:r3",
+            "text": "They have seen a bear."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i02:audio",
+            "transcript": "I have seen a bear."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i02:r1",
+              "targetText": "I have seen a bear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i02:r2",
+              "targetText": "You have seen a bear.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i02:r3",
+              "targetText": "They have seen a bear.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have seen a bear.",
+                "uk": "У записі звучить I have seen a bear."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have seen a bear.",
+                "uk": "У записі звучить I have seen a bear."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i03:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i03:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i03:r3",
+            "text": "sees"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ a bear.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i03:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i03:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i03:r3",
+              "text": "sees"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:word:camel",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — camel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:camel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — camel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:camel:audio",
+            "transcript": "camel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:camel:r1",
+              "targetText": "camel",
+              "meaningByLocale": {
+                "ru": "верблюд.",
+                "uk": "верблюд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "camel",
+            "definitionByLocale": {
+              "ru": "верблюд.",
+              "uk": "верблюд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Вона каталася на верблюді.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Вона каталася на верблюді.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has ridden a camel.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она каталась на верблюде.»",
+            "uk": "Розкажіть про досвід: «Вона каталася на верблюді.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "ridden",
+            "a",
+            "camel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i05:r1",
+            "text": "She has ridden a camel."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i05:r2",
+            "text": "You have ridden a camel."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i05:r3",
+            "text": "They have ridden a camel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i05:audio",
+            "transcript": "She has ridden a camel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i05:r1",
+              "targetText": "She has ridden a camel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i05:r2",
+              "targetText": "You have ridden a camel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i05:r3",
+              "targetText": "They have ridden a camel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has ridden a camel.",
+                "uk": "У записі звучить She has ridden a camel."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has ridden a camel.",
+                "uk": "У записі звучить She has ridden a camel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i06:r1",
+            "text": "ridden"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i06:r2",
+            "text": "ride"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i06:r3",
+            "text": "rides"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a camel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i06:r1",
+              "text": "ridden"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i06:r2",
+              "text": "ride"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i06:r3",
+              "text": "rides"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: ridden.",
+                "uk": "Потрібна третя форма: ridden."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: ridden.",
+                "uk": "Потрібна третя форма: ridden."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:word:rat",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:rat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:rat:audio",
+            "transcript": "rat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:rat:r1",
+              "targetText": "rat",
+              "meaningByLocale": {
+                "ru": "крыса.",
+                "uk": "щур."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rat",
+            "definitionByLocale": {
+              "ru": "крыса.",
+              "uk": "щур."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Ми бачили щура.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Ми бачили щура.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have seen a rat.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы видели крысу.»",
+            "uk": "Розкажіть про досвід: «Ми бачили щура.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "seen",
+            "a",
+            "rat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i08:r1",
+            "text": "We have seen a rat."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i08:r2",
+            "text": "You have seen a rat."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i08:r3",
+            "text": "They have seen a rat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i08:audio",
+            "transcript": "We have seen a rat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i08:r1",
+              "targetText": "We have seen a rat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i08:r2",
+              "targetText": "You have seen a rat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i08:r3",
+              "targetText": "They have seen a rat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have seen a rat.",
+                "uk": "У записі звучить We have seen a rat."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have seen a rat.",
+                "uk": "У записі звучить We have seen a rat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i09:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i09:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i09:r3",
+            "text": "sees"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a rat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i09:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i09:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i09:r3",
+              "text": "sees"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:word:octopus",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — octopus",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:word:octopus:audio"
+        ],
+        "accessibilityLabel": "Картка слова — octopus",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:word:octopus:audio",
+            "transcript": "octopus"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:word:octopus:r1",
+              "targetText": "octopus",
+              "meaningByLocale": {
+                "ru": "осьминог.",
+                "uk": "восьминіг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "octopus",
+            "definitionByLocale": {
+              "ru": "осьминог.",
+              "uk": "восьминіг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Він бачив восьминога.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Він бачив восьминога.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has seen an octopus.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он видел осьминога.»",
+            "uk": "Розкажіть про досвід: «Він бачив восьминога.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "seen",
+            "an",
+            "octopus"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i11:r1",
+            "text": "He has seen an octopus."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i11:r2",
+            "text": "You have seen an octopus."
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i11:r3",
+            "text": "They have seen an octopus."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i11:audio",
+            "transcript": "He has seen an octopus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-37:i11:r1",
+              "targetText": "He has seen an octopus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i11:r2",
+              "targetText": "You have seen an octopus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i11:r3",
+              "targetText": "They have seen an octopus.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has seen an octopus.",
+                "uk": "У записі звучить He has seen an octopus."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has seen an octopus.",
+                "uk": "У записі звучить He has seen an octopus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-37:i12:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i12:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-37:i12:r3",
+            "text": "sees"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ an octopus.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-37:i12:r1",
+              "text": "seen"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i12:r2",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i12:r3",
+              "text": "sees"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: seen.",
+                "uk": "Потрібна третя форма: seen."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-37:i13:p1",
+              "target": "bear",
+              "meaningByLocale": {
+                "ru": "медведь",
+                "uk": "ведмідь"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-37:i13:p2",
+              "target": "camel",
+              "meaningByLocale": {
+                "ru": "верблюд",
+                "uk": "верблюд"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-37:i13:p3",
+              "target": "rat",
+              "meaningByLocale": {
+                "ru": "крыса",
+                "uk": "щур"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-37:i13:p4",
+              "target": "octopus",
+              "meaningByLocale": {
+                "ru": "осьминог",
+                "uk": "восьминіг"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bear",
+            "camel",
+            "rat",
+            "octopus"
+          ],
+          "rightColumn": [
+            "ведмідь",
+            "верблюд",
+            "щур",
+            "восьминіг"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший варіант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший варіант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i14:audio",
+            "transcript": "We can take another photo."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can take another photo.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "take",
+            "another",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i15:audio",
+            "transcript": "You mustn't feed the animals."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't feed the animals.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "feed",
+            "the",
+            "animals"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я катався на верблюді.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я катався на верблюді.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i16:audio",
+            "transcript": "I have ridden a camel."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have ridden a camel.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми бачили восьминога.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми бачили восьминога.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-37:i17:audio",
+            "transcript": "We have seen an octopus."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have seen an octopus.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-37:word:bear",
+      "correctText": "bear",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i01",
+      "correctText": "I have seen a bear.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i02",
+      "correctText": "I have seen a bear.",
+      "correctResponseId": "en:lesson-23:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i03",
+      "correctText": "seen",
+      "correctResponseId": "en:lesson-23:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:word:camel",
+      "correctText": "camel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i04",
+      "correctText": "She has ridden a camel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i05",
+      "correctText": "She has ridden a camel.",
+      "correctResponseId": "en:lesson-23:session-37:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i06",
+      "correctText": "ridden",
+      "correctResponseId": "en:lesson-23:session-37:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:word:rat",
+      "correctText": "rat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i07",
+      "correctText": "We have seen a rat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i08",
+      "correctText": "We have seen a rat.",
+      "correctResponseId": "en:lesson-23:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i09",
+      "correctText": "seen",
+      "correctResponseId": "en:lesson-23:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:word:octopus",
+      "correctText": "octopus",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i10",
+      "correctText": "He has seen an octopus.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i11",
+      "correctText": "He has seen an octopus.",
+      "correctResponseId": "en:lesson-23:session-37:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i12",
+      "correctText": "seen",
+      "correctResponseId": "en:lesson-23:session-37:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i14",
+      "correctText": "We can take another photo.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i15",
+      "correctText": "You mustn't feed the animals.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i16",
+      "correctText": "I have ridden a camel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-37:i17",
+      "correctText": "We have seen an octopus.",
+      "correctResponseId": null
+    }
+  ]
+}

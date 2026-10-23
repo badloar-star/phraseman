@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-35:intro1:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-35:intro1:r3": {
+          "ru": "После have или has нужна третья форма: met.",
+          "uk": "Після have або has потрібна третя форма: met."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-35:intro2:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-35:intro2:r3": {
+          "ru": "После have или has нужна третья форма: met.",
+          "uk": "Після have або has потрібна третя форма: met."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-35:intro3:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-35:intro3:r3": {
+          "ru": "После have или has нужна третья форма: spoken.",
+          "uk": "Після have або has потрібна третя форма: spoken."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0430d614cb962434a1d283f276fccd8623c0b794a37c51c290c948de4aa7a998"
+}

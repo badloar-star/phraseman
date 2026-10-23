@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-34:intro1:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-34:intro1:r3": {
+          "ru": "После have или has нужна третья форма: visited.",
+          "uk": "Після have або has потрібна третя форма: visited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-34:intro2:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-34:intro2:r3": {
+          "ru": "После have или has нужна третья форма: climbed.",
+          "uk": "Після have або has потрібна третя форма: climbed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-34:intro3:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-34:intro3:r3": {
+          "ru": "После have или has нужна третья форма: seen.",
+          "uk": "Після have або has потрібна третя форма: seen."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "752a5e1be5d82d3adb00d51d216b70101b8100938b084a59468ab20487828d09"
+}

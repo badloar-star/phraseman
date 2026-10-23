@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-38:word:geography",
+    "correctText": "geography",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i01",
+    "correctText": "I have studied geography.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i02",
+    "correctText": "I have studied geography.",
+    "correctResponseId": "en:lesson-23:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i03",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:word:biology",
+    "correctText": "biology",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i04",
+    "correctText": "She has studied biology.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i05",
+    "correctText": "She has studied biology.",
+    "correctResponseId": "en:lesson-23:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i06",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:word:chemistry",
+    "correctText": "chemistry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i07",
+    "correctText": "We have studied chemistry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i08",
+    "correctText": "We have studied chemistry.",
+    "correctResponseId": "en:lesson-23:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i09",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:word:physics",
+    "correctText": "physics",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i10",
+    "correctText": "He has studied physics.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i11",
+    "correctText": "He has studied physics.",
+    "correctResponseId": "en:lesson-23:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i12",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i13",
+    "correctText": "en:lesson-23:session-38:i13:p1=geography\nen:lesson-23:session-38:i13:p2=biology\nen:lesson-23:session-38:i13:p3=chemistry\nen:lesson-23:session-38:i13:p4=physics",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i14",
+    "correctText": "We can choose another subject.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i15",
+    "correctText": "You mustn't use your phone in class.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i16",
+    "correctText": "I have studied biology.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-38:i17",
+    "correctText": "She has studied geography.",
+    "correctResponseId": null
+  }
+]

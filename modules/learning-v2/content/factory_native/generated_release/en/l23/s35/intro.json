@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Reporter — репортёр: он собирает сведения и сообщает новости. Journalist — журналист, более общее название профессии. Репортёр занимается одним из видов журналистской работы. I have met a reporter — я встречался с репортёром. Met — третья форма meet.",
+        "uk": "Reporter — репортер: він збирає відомості й повідомляє новини. Journalist — журналіст, загальніша назва професії. Репортер займається одним із видів журналістської роботи. I have met a reporter — я зустрічався з репортером. Met — третя форма meet."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-35:intro1:r1",
+              "text": "I have met a reporter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro1:r2",
+              "text": "I has met a reporter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro1:r3",
+              "text": "I have meet a reporter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-35:intro1:r1",
+              "text": "I have met a reporter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro1:r2",
+              "text": "I has met a reporter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro1:r3",
+              "text": "I have meet a reporter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Soldier — солдат, человек, который служит в армии. We have met a soldier — мы встречались с солдатом. Для разговора с человеком используем spoken to: She has spoken to a journalist — она говорила с журналистом. Spoken — третья форма speak.",
+        "uk": "Soldier — солдат, людина, яка служить в армії. We have met a soldier — ми зустрічалися із солдатом. Для розмови з людиною використовуємо spoken to: She has spoken to a journalist — вона говорила з журналістом. Spoken — третя форма speak."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-35:intro2:r1",
+              "text": "We have met a soldier."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro2:r2",
+              "text": "We has met a soldier."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro2:r3",
+              "text": "We have meet a soldier."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-35:intro2:r1",
+              "text": "We have met a soldier."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro2:r2",
+              "text": "We has met a soldier."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro2:r3",
+              "text": "We have meet a soldier."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Firefighter — пожарный: человек, который тушит пожары и участвует в спасении людей. He has spoken to a firefighter — он говорил с пожарным. После has нужна третья форма spoken, а перед названием человека — to.",
+        "uk": "Firefighter — пожежник: людина, яка гасить пожежі й бере участь у порятунку людей. He has spoken to a firefighter — він говорив із пожежником. Після has потрібна третя форма spoken, а перед назвою людини — to."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-35:intro3:r1",
+              "text": "He has spoken to a firefighter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro3:r2",
+              "text": "He have spoken to a firefighter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro3:r3",
+              "text": "He has speak to a firefighter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-35:intro3:r1",
+              "text": "He has spoken to a firefighter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro3:r2",
+              "text": "He have spoken to a firefighter."
+            },
+            {
+              "responseId": "en:lesson-23:session-35:intro3:r3",
+              "text": "He has speak to a firefighter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d42e760951fc4e6c35d690446bdf0c1edec59f9a98497fd0e31c55b4e95e63c9"
+}

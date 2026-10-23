@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Island — остров, участок суши, со всех сторон окружённый водой. I have visited an island — я побывал на острове. Visited — третья форма visit. Перед island нужен an: первый звук — гласный, а буква s в island не произносится.",
+        "uk": "Island — острів, ділянка суші, з усіх боків оточена водою. I have visited an island — я побував на острові. Visited — третя форма visit. Перед island потрібен an: перший звук — голосний, а літера s в island не вимовляється."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-34:intro1:r1",
+              "text": "I have visited an island."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro1:r2",
+              "text": "I has visited an island."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro1:r3",
+              "text": "I have visit an island."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-34:intro1:r1",
+              "text": "I have visited an island."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro1:r2",
+              "text": "I has visited an island."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro1:r3",
+              "text": "I have visit an island."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Forest — лес. Mountain — гора. We have climbed a mountain — мы поднимались на гору. Climbed — третья форма climb. She has walked through a forest — она гуляла по лесу; through показывает движение через лес.",
+        "uk": "Forest — ліс. Mountain — гора. We have climbed a mountain — ми підіймалися на гору. Climbed — третя форма climb. She has walked through a forest — вона гуляла лісом; through показує рух через ліс."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-34:intro2:r1",
+              "text": "We have climbed a mountain."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro2:r2",
+              "text": "We has climbed a mountain."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro2:r3",
+              "text": "We have climb a mountain."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-34:intro2:r1",
+              "text": "We have climbed a mountain."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro2:r2",
+              "text": "We has climbed a mountain."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro2:r3",
+              "text": "We have climb a mountain."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Ocean — океан. He has seen the ocean — он видел океан. Seen — третья форма see. Так мы рассказываем об опыте, не называя конкретную поездку. В этой фразе говорим the ocean: речь об океане как о знакомой части мира.",
+        "uk": "Ocean — океан. He has seen the ocean — він бачив океан. Seen — третя форма see. Так ми розповідаємо про досвід, не називаючи конкретної подорожі. У цій фразі кажемо the ocean: ідеться про океан як про знайому частину світу."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-34:intro3:r1",
+              "text": "He has seen the ocean."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro3:r2",
+              "text": "He have seen the ocean."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro3:r3",
+              "text": "He has see the ocean."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-34:intro3:r1",
+              "text": "He has seen the ocean."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro3:r2",
+              "text": "He have seen the ocean."
+            },
+            {
+              "responseId": "en:lesson-23:session-34:intro3:r3",
+              "text": "He has see the ocean."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a7b5662143cfe4ed89eea2f7c90cdd854d8cc8e85dfb2b1f87f9af6e67c15a82"
+}

@@ -6,18 +6,13 @@
   },
   {
     "interactionId": "en:lesson-25:session-49:i01",
-    "correctText": "We had left the city before it became humid.",
-    "correctResponseId": null
+    "correctText": "It is hot and humid today.",
+    "correctResponseId": "en:lesson-25:session-49:i01:r1"
   },
   {
     "interactionId": "en:lesson-25:session-49:i02",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-49:i02:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-49:i03",
-    "correctText": "We had left the city before it became humid.",
-    "correctResponseId": "en:lesson-25:session-49:i03:r1"
+    "correctText": "Can I open the window?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-49:word:frosty",
@@ -25,19 +20,14 @@
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-25:session-49:i03",
+    "correctText": "frosty",
+    "correctResponseId": "en:lesson-25:session-49:i03:r1"
+  },
+  {
     "interactionId": "en:lesson-25:session-49:i04",
-    "correctText": "We had reached home before it became frosty.",
+    "correctText": "Do not forget your gloves.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-49:i05",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-49:i05:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-49:i06",
-    "correctText": "We had reached home before it became frosty.",
-    "correctResponseId": "en:lesson-25:session-49:i06:r1"
   },
   {
     "interactionId": "en:lesson-25:session-49:word:sleet",
@@ -45,19 +35,14 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-49:i07",
-    "correctText": "The sleet had stopped before we left.",
+    "interactionId": "en:lesson-25:session-49:i05",
+    "correctText": "The rain turned to sleet.",
+    "correctResponseId": "en:lesson-25:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-49:i06",
+    "correctText": "Let us stay at home.",
     "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-25:session-49:i08",
-    "correctText": "had",
-    "correctResponseId": "en:lesson-25:session-49:i08:r1"
-  },
-  {
-    "interactionId": "en:lesson-25:session-49:i09",
-    "correctText": "The sleet had stopped before we left.",
-    "correctResponseId": "en:lesson-25:session-49:i09:r1"
   },
   {
     "interactionId": "en:lesson-25:session-49:word:hazy",
@@ -65,43 +50,58 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-49:i10",
-    "correctText": "The sky had become hazy by the time we reached the beach.",
+    "interactionId": "en:lesson-25:session-49:i07",
+    "correctText": "hazy",
+    "correctResponseId": "en:lesson-25:session-49:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-49:i08",
+    "correctText": "I can hardly see the hills.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-25:session-49:i11",
+    "interactionId": "en:lesson-25:session-49:i09",
+    "correctText": "en:lesson-25:session-49:i09:p1=humid\nen:lesson-25:session-49:i09:p2=frosty\nen:lesson-25:session-49:i09:p3=sleet\nen:lesson-25:session-49:i09:p4=hazy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-49:i10",
     "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-49:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-49:i11",
+    "correctText": "We stayed indoors yesterday.",
     "correctResponseId": "en:lesson-25:session-49:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-49:i12",
-    "correctText": "The sky had become hazy by the time we reached the beach.",
-    "correctResponseId": "en:lesson-25:session-49:i12:r1"
+    "correctText": "It used to be colder here.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-49:i13",
-    "correctText": "en:lesson-25:session-49:i13:p1=humid\nen:lesson-25:session-49:i13:p2=frosty\nen:lesson-25:session-49:i13:p3=sleet\nen:lesson-25:session-49:i13:p4=hazy",
+    "correctText": "The sun has already come out.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-49:i14",
-    "correctText": "She had finished before I called.",
-    "correctResponseId": null
+    "correctText": "before",
+    "correctResponseId": "en:lesson-25:session-49:i14:r1"
   },
   {
     "interactionId": "en:lesson-25:session-49:i15",
-    "correctText": "The train had left when we arrived.",
+    "correctText": "Please bring me a dry shirt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-49:i16",
-    "correctText": "The sleet had stopped before she left.",
-    "correctResponseId": null
+    "correctText": "another",
+    "correctResponseId": "en:lesson-25:session-49:i16:r1"
   },
   {
     "interactionId": "en:lesson-25:session-49:i17",
-    "correctText": "They had reached the hotel before it became frosty.",
+    "correctText": "We warmed up by the fire.",
     "correctResponseId": null
   }
 ]

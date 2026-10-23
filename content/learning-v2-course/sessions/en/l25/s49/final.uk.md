@@ -53,99 +53,99 @@ Hazy — оповитий серпанком, не зовсім ясний. The 
 <!-- interaction_id: en:lesson-25:session-49:word:humid; family: word_card -->
 > **humid** — Вологий. Humid описує повітря з великою кількістю вологи.
 
-**2 · Скажіть: «Ми поїхали з міста до того, як стало волого.»**
-<!-- interaction_id: en:lesson-25:session-49:i01; family: phrase_builder -->
-Плитки: `humid` `became` `it` `before` `city` `the` `left` `had` `We` → **We had left the city before it became humid.**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-49:i01; family: listen_choose -->
+🔊 *It is hot and humid today.* → **It is hot and humid today.** · It is cold and windy today. · It was hot and humid yesterday.
+- It is cold and windy today. — *У записі звучить It is hot and humid today.*
+- It was hot and humid yesterday. — *У записі звучить It is hot and humid today.*
 
-**3 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-49:i02; family: context_gap_grammar -->
-We ___ left the city before it became humid. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**3 · У кімнаті задушливо. Запитайте друга: «Можна відчинити вікно?»**
+<!-- interaction_id: en:lesson-25:session-49:i02; family: scripted_repeat_compare -->
+🎙 **Can I open the window?**
 
-**4 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-49:i03; family: listen_choose -->
-🔊 *We had left the city before it became humid.* → **We had left the city before it became humid.** · They had left the city before it became humid. · We had left the village before it became humid.
-- They had left the city before it became humid. — *У записі звучить We had left the city before it became humid.*
-- We had left the village before it became humid. — *У записі звучить We had left the city before it became humid.*
-
-**5 · Картка слова — frosty**
+**4 · Картка слова — frosty**
 <!-- interaction_id: en:lesson-25:session-49:word:frosty; family: word_card -->
 > **frosty** — Морозний. Frosty описує погоду з морозом або поверхню, вкриту інеєм.
 
-**6 · Скажіть: «Ми дісталися додому до того, як стало морозно.»**
-<!-- interaction_id: en:lesson-25:session-49:i04; family: phrase_builder -->
-Плитки: `frosty` `became` `it` `before` `home` `reached` `had` `We` → **We had reached home before it became frosty.**
+**5 · Ранок холодний, траву вкрито інеєм. Виберіть frosty.**
+<!-- interaction_id: en:lesson-25:session-49:i03; family: context_gap_grammar -->
+It is a ___ morning. → **frosty** · humid · boiling
+- humid — *Humid описує вологість повітря, а тут іній і мороз.*
+- boiling — *Boiling означає дуже спекотний, що суперечить ситуації.*
 
-**7 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-49:i05; family: context_gap_grammar -->
-We ___ reached home before it became frosty. → **had** · have · were
-- have — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- were — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**6 · Почуйте нагадування перед зимовою прогулянкою.**
+<!-- interaction_id: en:lesson-25:session-49:i04; family: listen_build_dictation -->
+🔊 *Do not forget your gloves.* Плитки: `gloves` `your` `forget` `not` `Do` → **Do not forget your gloves.**
 
-**8 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-49:i06; family: listen_choose -->
-🔊 *We had reached home before it became frosty.* → **We had reached home before it became frosty.** · They had reached home before it became frosty. · We had reached the hotel before it became frosty.
-- They had reached home before it became frosty. — *У записі звучить We had reached home before it became frosty.*
-- We had reached the hotel before it became frosty. — *У записі звучить We had reached home before it became frosty.*
-
-**9 · Картка слова — sleet**
+**7 · Картка слова — sleet**
 <!-- interaction_id: en:lesson-25:session-49:word:sleet; family: word_card -->
 > **sleet** — Дощ зі снігом. Sleet тут — суміш дощу й снігу.
 
-**10 · Скажіть: «Дощ зі снігом припинився до того, як ми пішли.»**
-<!-- interaction_id: en:lesson-25:session-49:i07; family: phrase_builder -->
-Плитки: `left` `we` `before` `stopped` `had` `sleet` `The` → **The sleet had stopped before we left.**
+**8 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-49:i05; family: listen_choose -->
+🔊 *The rain turned to sleet.* → **The rain turned to sleet.** · The rain turned to snow. · The sleet turned to rain.
+- The rain turned to snow. — *У записі звучить The rain turned to sleet.*
+- The sleet turned to rain. — *У записі звучить The rain turned to sleet.*
 
-**11 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-49:i08; family: context_gap_grammar -->
-The sleet ___ stopped before we left. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**9 · Погода зіпсувалася. Запропонуйте: «Давай залишимося вдома».**
+<!-- interaction_id: en:lesson-25:session-49:i06; family: scripted_repeat_compare -->
+🎙 **Let us stay at home.**
 
-**12 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-49:i09; family: listen_choose -->
-🔊 *The sleet had stopped before we left.* → **The sleet had stopped before we left.** · The sleet had stopped before they left. · The sleet had stopped before we arrived.
-- The sleet had stopped before they left. — *У записі звучить The sleet had stopped before we left.*
-- The sleet had stopped before we arrived. — *У записі звучить The sleet had stopped before we left.*
-
-**13 · Картка слова — hazy**
+**10 · Картка слова — hazy**
 <!-- interaction_id: en:lesson-25:session-49:word:hazy; family: word_card -->
 > **hazy** — Оповитий серпанком. Hazy — нечіткий через серпанок; тут ідеться про небо.
 
-**14 · Скажіть: «Небо вже затягло серпанком до того моменту, коли ми дісталися пляжу.»**
-<!-- interaction_id: en:lesson-25:session-49:i10; family: phrase_builder -->
-Плитки: `beach` `the` `reached` `we` `time` `the` `by` `hazy` `become` `had` `sky` `The` → **The sky had become hazy by the time we reached the beach.**
+**11 · Через серпанок далекі пагорби видно нечітко. Виберіть hazy.**
+<!-- interaction_id: en:lesson-25:session-49:i07; family: context_gap_grammar -->
+The view is ___. → **hazy** · clear · empty
+- clear — *Clear — ясний, чіткий; тут серпанок заважає бачити.*
+- empty — *Empty — порожній; тут ідеться про нечіткість краєвиду.*
 
-**15 · Доповніть розповідь про минуле.**
-<!-- interaction_id: en:lesson-25:session-49:i11; family: context_gap_grammar -->
-The sky ___ become hazy by the time we reached the beach. → **had** · has · was
-- has — *Для дії до іншої події в минулому потрібно had + третя форма.*
-- was — *Для дії до іншої події в минулому потрібно had + третя форма.*
+**12 · Опишіть, що видно вдалині: «Я ледве бачу пагорби».**
+<!-- interaction_id: en:lesson-25:session-49:i08; family: phrase_builder -->
+Плитки: `hills` `the` `see` `hardly` `can` `I` → **I can hardly see the hills.**
 
-**16 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-25:session-49:i12; family: listen_choose -->
-🔊 *The sky had become hazy by the time we reached the beach.* → **The sky had become hazy by the time we reached the beach.** · The sky had become hazy by the time they reached the beach. · The sky had become hazy by the time we reached the park.
-- The sky had become hazy by the time they reached the beach. — *У записі звучить The sky had become hazy by the time we reached the beach.*
-- The sky had become hazy by the time we reached the park. — *У записі звучить The sky had become hazy by the time we reached the beach.*
-
-**17 · Поєднайте форми з перекладом**
-<!-- interaction_id: en:lesson-25:session-49:i13; family: speed_match -->
+**13 · Зіставте описи погоди з перекладом**
+<!-- interaction_id: en:lesson-25:session-49:i09; family: speed_match -->
 humid — вологий · frosty — морозний · sleet — дощ зі снігом · hazy — оповитий серпанком
 
-**18 · Уже закінчив**
-<!-- interaction_id: en:lesson-25:session-49:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Дощ закінчився до вашого виходу. Виберіть had.**
+<!-- interaction_id: en:lesson-25:session-49:i10; family: context_gap_grammar -->
+The rain ___ stopped by the time we left. → **had** · has · is
+- has — *Has пов’язує результат із теперішнім, а left задає минулий момент.*
+- is — *Потрібно had stopped для завершення до виходу.*
 
-**19 · Потяг уже поїхав**
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-25:session-49:i11; family: listen_choose -->
+🔊 *We stayed indoors yesterday.* → **We stayed indoors yesterday.** · We played outside yesterday. · We stayed indoors last Sunday.
+- We played outside yesterday. — *У записі звучить We stayed indoors yesterday.*
+- We stayed indoors last Sunday. — *У записі звучить We stayed indoors yesterday.*
+
+**16 · Згадайте колишні зими: «Тут раніше було холодніше».**
+<!-- interaction_id: en:lesson-25:session-49:i12; family: phrase_builder -->
+Плитки: `here` `colder` `be` `to` `used` `It` → **It used to be colder here.**
+
+**17 · Друг хоче йти гуляти. Повідомте про зміну: «Сонце вже вийшло».**
+<!-- interaction_id: en:lesson-25:session-49:i13; family: scripted_repeat_compare -->
+🎙 **The sun has already come out.**
+
+**18 · Спочатку ви вдягнули пальто, потім вийшли. Виберіть before.**
+<!-- interaction_id: en:lesson-25:session-49:i14; family: context_gap_grammar -->
+I put my coat on ___ I went outside. → **before** · after · while
+- after — *After змінює порядок: пальто вдягли б після виходу.*
+- while — *While означає одночасність, а тут ви вдягнулися заздалегідь.*
+
+**19 · Почуйте прохання принести сухий одяг.**
 <!-- interaction_id: en:lesson-25:session-49:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *Please bring me a dry shirt.* Плитки: `shirt` `dry` `a` `me` `bring` `Please` → **Please bring me a dry shirt.**
 
-**20 · Скажіть: «Дощ зі снігом припинився до того, як вона пішла».**
-<!-- interaction_id: en:lesson-25:session-49:i16; family: scripted_repeat_compare -->
-🎙 **The sleet had stopped before she left.**
+**20 · Чай допоміг зігрітися. Ви просите ще чашку.**
+<!-- interaction_id: en:lesson-25:session-49:i16; family: context_gap_grammar -->
+Could I have ___ cup of tea? → **another** · other · others
+- other — *Cup в однині, тому another.*
+- others — *Others не ставиться перед cup.*
 
-**21 · Скажіть: «Вони дісталися готелю до того, як стало морозно».**
-<!-- interaction_id: en:lesson-25:session-49:i17; family: scripted_repeat_compare -->
-🎙 **They had reached the hotel before it became frosty.**
+**21 · Розкажіть, що зробили після прогулянки: «Ми зігрілися біля вогню».**
+<!-- interaction_id: en:lesson-25:session-49:i17; family: phrase_builder -->
+Плитки: `fire` `the` `by` `up` `warmed` `We` → **We warmed up by the fire.**
 

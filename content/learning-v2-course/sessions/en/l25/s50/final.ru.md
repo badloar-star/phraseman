@@ -53,99 +53,99 @@ Instantly — мгновенно, без заметной задержки. She 
 <!-- interaction_id: en:lesson-25:session-50:word:midday; family: word_card -->
 > **midday** — Полдень. Midday — середина дня, обычно около двенадцати часов.
 
-**2 · Скажите: «Раньше мы ели в полдень.»**
-<!-- interaction_id: en:lesson-25:session-50:i01; family: phrase_builder -->
-Плитки: `midday` `at` `eat` `to` `used` `We` → **We used to eat at midday.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-50:i01; family: listen_choose -->
+🔊 *The shop closes at midday.* → **The shop closes at midday.** · The shop opens at midday. · The shop closes at midnight.
+- The shop opens at midday. — *В записи звучит The shop closes at midday.*
+- The shop closes at midnight. — *В записи звучит The shop closes at midday.*
 
-**3 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-50:i02; family: context_gap_grammar -->
-We ___ to eat at midday. → **used** · use · using
-- use — *Прежняя привычка: used to + начальная форма.*
-- using — *Прежняя привычка: used to + начальная форма.*
+**3 · Вы договариваетесь о встрече. Спросите: «Тебе подходит двенадцать часов?»**
+<!-- interaction_id: en:lesson-25:session-50:i02; family: scripted_repeat_compare -->
+🎙 **Is twelve o’clock good for you?**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-50:i03; family: listen_choose -->
-🔊 *We used to eat at midday.* → **We used to eat at midday.** · They used to eat at midday. · We used to meet at midday.
-- They used to eat at midday. — *В записи звучит We used to eat at midday.*
-- We used to meet at midday. — *В записи звучит We used to eat at midday.*
-
-**5 · Карточка слова — mealtimes**
+**4 · Карточка слова — mealtimes**
 <!-- interaction_id: en:lesson-25:session-50:word:mealtimes; family: word_card -->
 > **mealtimes** — Время приёма пищи. Mealtime — время еды; mealtimes — несколько таких периодов.
 
-**6 · Скажите: «Раньше мы разговаривали во время еды.»**
-<!-- interaction_id: en:lesson-25:session-50:i04; family: phrase_builder -->
-Плитки: `mealtimes` `at` `talk` `to` `used` `We` → **We used to talk at mealtimes.**
+**5 · Расскажите о семейном правиле: «Во время еды мы убираем телефоны».**
+<!-- interaction_id: en:lesson-25:session-50:i03; family: phrase_builder -->
+Плитки: `mealtimes` `at` `away` `phones` `our` `put` `We` → **We put our phones away at mealtimes.**
 
-**7 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-50:i05; family: context_gap_grammar -->
-We ___ to talk at mealtimes. → **used** · use · using
-- use — *Прежняя привычка: used to + начальная форма.*
-- using — *Прежняя привычка: used to + начальная форма.*
+**6 · В детстве за ужином вы рассказывали о своём дне. Выберите would.**
+<!-- interaction_id: en:lesson-25:session-50:i04; family: context_gap_grammar -->
+As children we ___ talk about our day at dinner. → **would** · had · were
+- had — *Had talk неверно; здесь повторявшееся действие would talk.*
+- were — *Were talk неверно; здесь используем would talk.*
 
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-50:i06; family: listen_choose -->
-🔊 *We used to talk at mealtimes.* → **We used to talk at mealtimes.** · They used to talk at mealtimes. · We used to laugh at mealtimes.
-- They used to talk at mealtimes. — *В записи звучит We used to talk at mealtimes.*
-- We used to laugh at mealtimes. — *В записи звучит We used to talk at mealtimes.*
-
-**9 · Карточка слова — nightfall**
+**7 · Карточка слова — nightfall**
 <!-- interaction_id: en:lesson-25:session-50:word:nightfall; family: word_card -->
 > **nightfall** — Наступление темноты. Nightfall — время, когда вечером становится темно.
 
-**10 · Скажите: «Раньше мы возвращались домой до наступления темноты.»**
-<!-- interaction_id: en:lesson-25:session-50:i07; family: phrase_builder -->
-Плитки: `nightfall` `before` `home` `get` `to` `used` `We` → **We used to get home before nightfall.**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-50:i05; family: listen_choose -->
+🔊 *We reached the village before nightfall.* → **We reached the village before nightfall.** · We reached the village after nightfall. · We left the village before nightfall.
+- We reached the village after nightfall. — *В записи звучит We reached the village before nightfall.*
+- We left the village before nightfall. — *В записи звучит We reached the village before nightfall.*
 
-**11 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-50:i08; family: context_gap_grammar -->
-We ___ to get home before nightfall. → **used** · use · using
-- use — *Прежняя привычка: used to + начальная форма.*
-- using — *Прежняя привычка: used to + начальная форма.*
+**9 · Вечереет, и вы собираетесь домой. Скажите: «Пора идти».**
+<!-- interaction_id: en:lesson-25:session-50:i06; family: scripted_repeat_compare -->
+🎙 **It is time to go.**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-50:i09; family: listen_choose -->
-🔊 *We used to get home before nightfall.* → **We used to get home before nightfall.** · They used to get home before nightfall. · We used to get home after nightfall.
-- They used to get home before nightfall. — *В записи звучит We used to get home before nightfall.*
-- We used to get home after nightfall. — *В записи звучит We used to get home before nightfall.*
-
-**13 · Карточка слова — instantly**
+**10 · Карточка слова — instantly**
 <!-- interaction_id: en:lesson-25:session-50:word:instantly; family: word_card -->
 > **instantly** — Мгновенно. Instantly — сразу, без заметной задержки.
 
-**14 · Скажите: «Раньше она отвечала мгновенно.»**
-<!-- interaction_id: en:lesson-25:session-50:i10; family: phrase_builder -->
-Плитки: `instantly` `answer` `to` `used` `She` → **She used to answer instantly.**
+**11 · Вы узнали друга сразу, без паузы. Выберите instantly.**
+<!-- interaction_id: en:lesson-25:session-50:i07; family: context_gap_grammar -->
+I recognised him ___. → **instantly** · later · tomorrow
+- later — *Later — позже, а вы узнали его сразу.*
+- tomorrow — *Tomorrow — завтра; здесь событие уже произошло.*
 
-**15 · Вспомните, как было раньше.**
-<!-- interaction_id: en:lesson-25:session-50:i11; family: context_gap_grammar -->
-She ___ to answer instantly. → **used** · use · using
-- use — *Прежняя привычка: used to + начальная форма.*
-- using — *Прежняя привычка: used to + начальная форма.*
+**12 · Услышьте, когда пришёл ответ.**
+<!-- interaction_id: en:lesson-25:session-50:i08; family: listen_build_dictation -->
+🔊 *She replied a few minutes later.* Плитки: `later` `minutes` `few` `a` `replied` `She` → **She replied a few minutes later.**
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-50:i12; family: listen_choose -->
-🔊 *She used to answer instantly.* → **She used to answer instantly.** · He used to answer instantly. · She used to reply instantly.
-- He used to answer instantly. — *В записи звучит She used to answer instantly.*
-- She used to reply instantly. — *В записи звучит She used to answer instantly.*
-
-**17 · Соедините слова с переводом**
-<!-- interaction_id: en:lesson-25:session-50:i13; family: speed_match -->
+**13 · Соотнесите слова о времени с переводом**
+<!-- interaction_id: en:lesson-25:session-50:i09; family: speed_match -->
 midday — полдень · mealtimes — время приёма пищи · nightfall — наступление темноты · instantly — мгновенно
 
-**18 · Уже закончила к моему звонку**
-<!-- interaction_id: en:lesson-25:session-50:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Еда остыла до возвращения друга. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-50:i10; family: context_gap_grammar -->
+The food ___ gone cold by the time my friend returned. → **had** · has · was
+- has — *Has связывает результат с настоящим, а returned задаёт прошлый момент.*
+- was — *Нужно had gone cold для изменения до возвращения.*
 
-**19 · Раньше ездил на машине**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-50:i11; family: listen_choose -->
+🔊 *I sent the message an hour ago.* → **I sent the message an hour ago.** · I received the message an hour ago. · I sent the message ten minutes ago.
+- I received the message an hour ago. — *В записи звучит I sent the message an hour ago.*
+- I sent the message ten minutes ago. — *В записи звучит I sent the message an hour ago.*
+
+**16 · Вспомните прежний распорядок: «Я раньше завтракал в семь».**
+<!-- interaction_id: en:lesson-25:session-50:i12; family: phrase_builder -->
+Плитки: `seven` `at` `breakfast` `have` `to` `used` `I` → **I used to have breakfast at seven.**
+
+**17 · Сестра спрашивает о посуде. Ответьте: «Я уже помыл тарелки».**
+<!-- interaction_id: en:lesson-25:session-50:i13; family: scripted_repeat_compare -->
+🎙 **I have already washed the plates.**
+
+**18 · Вы поели, затем вымыли посуду. Выберите after.**
+<!-- interaction_id: en:lesson-25:session-50:i14; family: context_gap_grammar -->
+I washed the dishes ___ I ate. → **after** · before · while
+- before — *Before означало бы мытьё посуды до еды.*
+- while — *While означает одновременность, а здесь одно было после другого.*
+
+**19 · Услышьте просьбу предупредить о задержке.**
 <!-- interaction_id: en:lesson-25:session-50:i15; family: listen_build_dictation -->
-🔊 *I used to drive to work.* Плитки: `work` `to` `drive` `to` `used` `I` → **I used to drive to work.**
+🔊 *Please call me if you are late.* Плитки: `late` `are` `you` `if` `me` `call` `Please` → **Please call me if you are late.**
 
-**20 · Скажите: «Раньше он возвращался домой до наступления темноты».**
-<!-- interaction_id: en:lesson-25:session-50:i16; family: scripted_repeat_compare -->
-🎙 **He used to get home before nightfall.**
+**20 · Друг просит немного подождать. Ему нужна ещё минута.**
+<!-- interaction_id: en:lesson-25:session-50:i16; family: context_gap_grammar -->
+Give me ___ minute, please. → **another** · other · others
+- other — *Minute в единственном числе, поэтому another.*
+- others — *Others не ставится перед minute.*
 
-**21 · Скажите: «Раньше я отвечал мгновенно».**
-<!-- interaction_id: en:lesson-25:session-50:i17; family: scripted_repeat_compare -->
-🎙 **I used to answer instantly.**
+**21 · Подтвердите, что успели: «Мы прибыли вовремя».**
+<!-- interaction_id: en:lesson-25:session-50:i17; family: phrase_builder -->
+Плитки: `time` `on` `arrived` `We` → **We arrived on time.**
 

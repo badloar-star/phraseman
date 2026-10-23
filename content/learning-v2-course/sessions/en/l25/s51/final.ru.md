@@ -53,99 +53,99 @@ Reconsider — ещё раз обдумать решение или план. Sh
 <!-- interaction_id: en:lesson-25:session-51:word:regained; family: word_card -->
 > **regained** — Восстановил. Regain — вернуть утраченное, например силы или уверенность; regained — третья форма.
 
-**2 · Скажите: «Я восстановил силы до того, как вернулся на работу.»**
-<!-- interaction_id: en:lesson-25:session-51:i01; family: phrase_builder -->
-Плитки: `work` `to` `back` `went` `I` `before` `strength` `my` `regained` `had` `I` → **I had regained my strength before I went back to work.**
+**2 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-51:i01; family: listen_choose -->
+🔊 *I slowly regained my strength.* → **I slowly regained my strength.** · I quickly regained my strength. · She slowly regained her strength.
+- I quickly regained my strength. — *В записи звучит I slowly regained my strength.*
+- She slowly regained her strength. — *В записи звучит I slowly regained my strength.*
 
-**3 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-51:i02; family: context_gap_grammar -->
-I ___ regained my strength before I went back to work. → **had** · have · was
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**3 · Друг спрашивает, как вы себя чувствуете. Ответьте: «Сегодня мне намного лучше».**
+<!-- interaction_id: en:lesson-25:session-51:i02; family: scripted_repeat_compare -->
+🎙 **I feel much better today.**
 
-**4 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-51:i03; family: listen_choose -->
-🔊 *I had regained my strength before I went back to work.* → **I had regained my strength before I went back to work.** · She had regained her strength before she went back to work. · I had regained my strength before I went back to school.
-- She had regained her strength before she went back to work. — *В записи звучит I had regained my strength before I went back to work.*
-- I had regained my strength before I went back to school. — *В записи звучит I had regained my strength before I went back to work.*
-
-**5 · Карточка слова — reconsidered**
+**4 · Карточка слова — reconsidered**
 <!-- interaction_id: en:lesson-25:session-51:word:reconsidered; family: word_card -->
 > **reconsidered** — Пересмотрел. Reconsider — ещё раз обдумать решение; reconsidered — третья форма.
 
-**6 · Скажите: «Она пересмотрела свой план до того, как позвонила.»**
+**5 · Вы снова обдумали прежнее решение. Выберите reconsidered.**
+<!-- interaction_id: en:lesson-25:session-51:i03; family: context_gap_grammar -->
+I ___ my decision. → **reconsidered** · regained · carried
+- regained — *Regained — вернул утраченное, а здесь ещё раз обдумал.*
+- carried — *Carried — нёс; решение здесь обдумывают, а не несут.*
+
+**6 · Сообщите об изменении планов: «Мы решили остаться дома».**
 <!-- interaction_id: en:lesson-25:session-51:i04; family: phrase_builder -->
-Плитки: `called` `she` `before` `plan` `her` `reconsidered` `had` `She` → **She had reconsidered her plan before she called.**
+Плитки: `home` `at` `stay` `to` `decided` `We` → **We decided to stay at home.**
 
-**7 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-51:i05; family: context_gap_grammar -->
-She ___ reconsidered her plan before she called. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
-
-**8 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-51:i06; family: listen_choose -->
-🔊 *She had reconsidered her plan before she called.* → **She had reconsidered her plan before she called.** · He had reconsidered his plan before he called. · She had reconsidered her plan before she arrived.
-- He had reconsidered his plan before he called. — *В записи звучит She had reconsidered her plan before she called.*
-- She had reconsidered her plan before she arrived. — *В записи звучит She had reconsidered her plan before she called.*
-
-**9 · Карточка слова — endured**
+**7 · Карточка слова — endured**
 <!-- interaction_id: en:lesson-25:session-51:word:endured; family: word_card -->
 > **endured** — Вытерпел. Endure — выдержать что-то тяжёлое или неприятное; endured — третья форма.
 
-**10 · Скажите: «Мы вытерпели долгую дорогу до того, как добрались до гостиницы.»**
-<!-- interaction_id: en:lesson-25:session-51:i07; family: phrase_builder -->
-Плитки: `hotel` `the` `reached` `we` `before` `journey` `long` `a` `endured` `had` `We` → **We had endured a long journey before we reached the hotel.**
+**8 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-51:i05; family: listen_choose -->
+🔊 *We endured a long wait at the station.* → **We endured a long wait at the station.** · We endured a long wait at the airport. · They endured a long wait at the station.
+- We endured a long wait at the airport. — *В записи звучит We endured a long wait at the station.*
+- They endured a long wait at the station. — *В записи звучит We endured a long wait at the station.*
 
-**11 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-51:i08; family: context_gap_grammar -->
-We ___ endured a long journey before we reached the hotel. → **had** · have · were
-- have — *Для действия до другого события в прошлом нужно had + третья форма.*
-- were — *Для действия до другого события в прошлом нужно had + третья форма.*
+**9 · Поезд задерживается. Спросите сотрудника: «Сколько ещё нам ждать?»**
+<!-- interaction_id: en:lesson-25:session-51:i06; family: scripted_repeat_compare -->
+🎙 **How much longer do we have to wait?**
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-51:i09; family: listen_choose -->
-🔊 *We had endured a long journey before we reached the hotel.* → **We had endured a long journey before we reached the hotel.** · They had endured a long journey before they reached the hotel. · We had endured a long journey before we reached the village.
-- They had endured a long journey before they reached the hotel. — *В записи звучит We had endured a long journey before we reached the hotel.*
-- We had endured a long journey before we reached the village. — *В записи звучит We had endured a long journey before we reached the hotel.*
-
-**13 · Карточка слова — retrieved**
+**10 · Карточка слова — retrieved**
 <!-- interaction_id: en:lesson-25:session-51:word:retrieved; family: word_card -->
 > **retrieved** — Достал, вернул. Retrieve — забрать или достать то, что было оставлено, потеряно либо оказалось вне досягаемости; retrieved — третья форма.
 
-**14 · Скажите: «Он достал свои ключи до того, как ушёл.»**
-<!-- interaction_id: en:lesson-25:session-51:i10; family: phrase_builder -->
-Плитки: `left` `he` `before` `keys` `his` `retrieved` `had` `He` → **He had retrieved his keys before he left.**
+**11 · Услышьте, откуда достали мяч.**
+<!-- interaction_id: en:lesson-25:session-51:i07; family: listen_build_dictation -->
+🔊 *My brother retrieved the ball from the roof.* Плитки: `roof` `the` `from` `ball` `the` `retrieved` `brother` `My` → **My brother retrieved the ball from the roof.**
 
-**15 · Дополните рассказ о прошлом.**
-<!-- interaction_id: en:lesson-25:session-51:i11; family: context_gap_grammar -->
-He ___ retrieved his keys before he left. → **had** · has · was
-- has — *Для действия до другого события в прошлом нужно had + третья форма.*
-- was — *Для действия до другого события в прошлом нужно had + третья форма.*
+**12 · Вы забрали оставленную сумку из машины. Выберите retrieved.**
+<!-- interaction_id: en:lesson-25:session-51:i08; family: context_gap_grammar -->
+I ___ my bag from the car. → **retrieved** · forgot · lost
+- forgot — *Forgot означало бы, что вы забыли, а вы забрали сумку.*
+- lost — *Lost — потерял; по ситуации сумку уже достали.*
 
-**16 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-25:session-51:i12; family: listen_choose -->
-🔊 *He had retrieved his keys before he left.* → **He had retrieved his keys before he left.** · She had retrieved her keys before she left. · He had retrieved his keys before we left.
-- She had retrieved her keys before she left. — *В записи звучит He had retrieved his keys before he left.*
-- He had retrieved his keys before we left. — *В записи звучит He had retrieved his keys before he left.*
-
-**17 · Соедините формы с переводом**
-<!-- interaction_id: en:lesson-25:session-51:i13; family: speed_match -->
+**13 · Соотнесите действия с переводом**
+<!-- interaction_id: en:lesson-25:session-51:i09; family: speed_match -->
 regained — восстановил · reconsidered — пересмотрел · endured — вытерпел · retrieved — достал, вернул
 
-**18 · Уже закончил**
-<!-- interaction_id: en:lesson-25:session-51:i14; family: listen_build_dictation -->
-🔊 *She had finished before I called.* Плитки: `called` `I` `before` `finished` `had` `She` → **She had finished before I called.**
+**14 · Сумку нашли до звонка друга. Выберите had.**
+<!-- interaction_id: en:lesson-25:session-51:i10; family: context_gap_grammar -->
+I ___ found my bag by the time my friend called. → **had** · have · was
+- have — *Have связывает результат с настоящим, а called задаёт прошлый момент.*
+- was — *Нужно had found для более раннего завершённого действия.*
 
-**19 · Поезд уже ушёл**
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-25:session-51:i11; family: listen_choose -->
+🔊 *I changed my ticket yesterday.* → **I changed my ticket yesterday.** · I checked my ticket yesterday. · I changed my ticket last week.
+- I checked my ticket yesterday. — *В записи звучит I changed my ticket yesterday.*
+- I changed my ticket last week. — *В записи звучит I changed my ticket yesterday.*
+
+**16 · Уточните, что помощь уже не нужна: «Я уже нашёл свои ключи».**
+<!-- interaction_id: en:lesson-25:session-51:i12; family: phrase_builder -->
+Плитки: `keys` `my` `found` `already` `have` `I` → **I have already found my keys.**
+
+**17 · Друг терпеливо вас ждал. Поблагодарите: «Спасибо, что подождал».**
+<!-- interaction_id: en:lesson-25:session-51:i13; family: scripted_repeat_compare -->
+🎙 **Thank you for waiting.**
+
+**18 · Вы прочли расписание до покупки билета. Выберите before.**
+<!-- interaction_id: en:lesson-25:session-51:i14; family: context_gap_grammar -->
+I read the timetable ___ I bought the ticket. → **before** · after · while
+- after — *After меняет порядок: расписание прочли бы уже после покупки.*
+- while — *While означает одновременность, а здесь чтение было раньше.*
+
+**19 · Услышьте просьбу позвонить позже.**
 <!-- interaction_id: en:lesson-25:session-51:i15; family: listen_build_dictation -->
-🔊 *The train had left when we arrived.* Плитки: `arrived` `we` `when` `left` `had` `train` `The` → **The train had left when we arrived.**
+🔊 *Please call me after dinner.* Плитки: `dinner` `after` `me` `call` `Please` → **Please call me after dinner.**
 
-**20 · Скажите: «Я достал свои ключи до того, как ушёл».**
-<!-- interaction_id: en:lesson-25:session-51:i16; family: scripted_repeat_compare -->
-🎙 **I had retrieved my keys before I left.**
+**20 · Первый поезд ушёл. Вы решаете сесть на другой.**
+<!-- interaction_id: en:lesson-25:session-51:i16; family: context_gap_grammar -->
+We can take ___ train. → **another** · other · others
+- other — *Train в единственном числе, поэтому another.*
+- others — *Others не ставится перед train.*
 
-**21 · Скажите: «Мы пересмотрели свой план до того, как позвонили».**
-<!-- interaction_id: en:lesson-25:session-51:i17; family: scripted_repeat_compare -->
-🎙 **We had reconsidered our plan before we called.**
+**21 · Вспомните прежнюю привычку: «Я раньше всё делал в спешке».**
+<!-- interaction_id: en:lesson-25:session-51:i17; family: phrase_builder -->
+Плитки: `hurry` `a` `in` `everything` `do` `to` `used` `I` → **I used to do everything in a hurry.**
 

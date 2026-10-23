@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "French — французский язык, German — немецкий. I have studied French — я изучал французский язык. Названия языков в английском пишутся с большой буквы. В этой фразе перед French не нужен артикль.",
+        "uk": "French — французька мова, German — німецька. I have studied French — я вивчав французьку мову. Назви мов в англійській пишуться з великої літери. У цій фразі перед French не потрібен артикль."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-39:intro1:r1",
+              "text": "I have studied French."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro1:r2",
+              "text": "I has studied French."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro1:r3",
+              "text": "I have study French."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-39:intro1:r1",
+              "text": "I have studied French."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro1:r2",
+              "text": "I has studied French."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro1:r3",
+              "text": "I have study French."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Spanish — испанский язык. We have studied Spanish — мы изучали испанский язык. Studied — третья форма study. Фраза сообщает об опыте учёбы; она сама по себе не говорит, насколько хорошо мы сейчас владеем языком.",
+        "uk": "Spanish — іспанська мова. We have studied Spanish — ми вивчали іспанську мову. Studied — третя форма study. Фраза повідомляє про досвід навчання; сама по собі вона не каже, наскільки добре ми зараз володіємо мовою."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-39:intro2:r1",
+              "text": "We have studied Spanish."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro2:r2",
+              "text": "We has studied Spanish."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro2:r3",
+              "text": "We have study Spanish."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-39:intro2:r1",
+              "text": "We have studied Spanish."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro2:r2",
+              "text": "We has studied Spanish."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro2:r3",
+              "text": "We have study Spanish."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Italian — итальянский язык. He has studied Italian — он изучал итальянский язык. С he используем has. После studied достаточно названия Italian: отдельное слово language добавлять не нужно.",
+        "uk": "Italian — італійська мова. He has studied Italian — він вивчав італійську мову. Із he використовуємо has. Після studied достатньо назви Italian: окреме слово language додавати не потрібно."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-39:intro3:r1",
+              "text": "He has studied Italian."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro3:r2",
+              "text": "He have studied Italian."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro3:r3",
+              "text": "He has study Italian."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-39:intro3:r1",
+              "text": "He has studied Italian."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro3:r2",
+              "text": "He have studied Italian."
+            },
+            {
+              "responseId": "en:lesson-23:session-39:intro3:r3",
+              "text": "He has study Italian."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "de0b7a0d04128bdbda2bea1c64137ec08815c54ba9db1851b966ca8564df5c0a"
+}

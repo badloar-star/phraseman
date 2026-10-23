@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Новое животное дома",
+        "uk": "Нова тварина вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Adopt — взять в семью: например, животное из приюта. I have adopted a cat — я взял кошку в семью. Adopted — третья форма adopt. Это сообщает о важном результате: теперь кошка живёт у меня. Судя по занятому дивану, она считает, что это я живу у неё.",
+        "uk": "Adopt — взяти в родину: наприклад, тварину з притулку. I have adopted a cat — я взяв кішку в родину. Adopted — третя форма adopt. Це повідомляє про важливий результат: тепер кішка живе в мене. Судячи із зайнятого дивана, вона вважає, що це я живу в неї."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-43:intro1:r1",
+              "text": "I have adopted a cat."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro1:r2",
+              "text": "I has adopted a cat."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro1:r3",
+              "text": "I have adopt a cat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-43:intro1:r1",
+              "text": "I have adopted a cat."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro1:r2",
+              "text": "I has adopted a cat."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro1:r3",
+              "text": "I have adopt a cat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Помощь и опасность",
+        "uk": "Допомога й небезпека"
+      },
+      "bodyByLocale": {
+        "ru": "Rescue — спасти из опасности. She has rescued a dog — она спасла собаку. Survive — пережить опасное событие, выжить. We have survived a storm — мы пережили бурю. Третьи формы — rescued и survived.",
+        "uk": "Rescue — врятувати від небезпеки. She has rescued a dog — вона врятувала собаку. Survive — пережити небезпечну подію, вижити. We have survived a storm — ми пережили бурю. Треті форми — rescued і survived."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-43:intro2:r1",
+              "text": "We have survived a storm."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro2:r2",
+              "text": "We has survived a storm."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro2:r3",
+              "text": "We have survive a storm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-43:intro2:r1",
+              "text": "We have survived a storm."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro2:r2",
+              "text": "We has survived a storm."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro2:r3",
+              "text": "We have survive a storm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Изменение привычки",
+        "uk": "Зміна звички"
+      },
+      "bodyByLocale": {
+        "ru": "Quit — бросить, прекратить. He has quit smoking — он бросил курить. Запомните сочетание quit smoking целиком. Третья форма quit пишется так же, как начальная. С he используем has. Фраза сообщает об изменении, которое важно сейчас.",
+        "uk": "Quit — кинути, припинити. He has quit smoking — він кинув курити. Запам’ятайте сполучення quit smoking цілком. Третя форма quit пишеться так само, як початкова. Із he використовуємо has. Фраза повідомляє про зміну, яка важлива зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-43:intro3:r1",
+              "text": "He has quit smoking."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro3:r2",
+              "text": "He have quit smoking."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro3:r3",
+              "text": "He has quits smoking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-43:intro3:r1",
+              "text": "He has quit smoking."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro3:r2",
+              "text": "He have quit smoking."
+            },
+            {
+              "responseId": "en:lesson-23:session-43:intro3:r3",
+              "text": "He has quits smoking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8fe43440448f3dccd1c02f8d5888c2f5714e69ca04995313d64aee80fa3af28e"
+}

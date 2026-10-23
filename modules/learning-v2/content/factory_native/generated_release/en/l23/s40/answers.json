@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-40:word:Chinese",
+    "correctText": "Chinese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i01",
+    "correctText": "I have studied Chinese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i02",
+    "correctText": "I have studied Chinese.",
+    "correctResponseId": "en:lesson-23:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i03",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:word:Japanese",
+    "correctText": "Japanese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i04",
+    "correctText": "She has studied Japanese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i05",
+    "correctText": "She has studied Japanese.",
+    "correctResponseId": "en:lesson-23:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i06",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:word:Arabic",
+    "correctText": "Arabic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i07",
+    "correctText": "We have studied Arabic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i08",
+    "correctText": "We have studied Arabic.",
+    "correctResponseId": "en:lesson-23:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i09",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:word:Portuguese",
+    "correctText": "Portuguese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i10",
+    "correctText": "He has studied Portuguese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i11",
+    "correctText": "He has studied Portuguese.",
+    "correctResponseId": "en:lesson-23:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i12",
+    "correctText": "studied",
+    "correctResponseId": "en:lesson-23:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i13",
+    "correctText": "en:lesson-23:session-40:i13:p1=Chinese\nen:lesson-23:session-40:i13:p2=Japanese\nen:lesson-23:session-40:i13:p3=Arabic\nen:lesson-23:session-40:i13:p4=Portuguese",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i14",
+    "correctText": "We can try another course.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i15",
+    "correctText": "You mustn't disturb the other students.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i16",
+    "correctText": "I have studied Japanese.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-40:i17",
+    "correctText": "She has studied Arabic.",
+    "correctResponseId": null
+  }
+]

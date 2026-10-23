@@ -1,0 +1,2319 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-43:word:adopt",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — adopt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:adopt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — adopt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:adopt:audio",
+            "transcript": "adopt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:adopt:r1",
+              "targetText": "adopt",
+              "meaningByLocale": {
+                "ru": "взять в семью.",
+                "uk": "взяти в родину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adopt",
+            "definitionByLocale": {
+              "ru": "взять в семью.",
+              "uk": "взяти в родину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i01:r1",
+            "text": "adopted"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i01:r2",
+            "text": "adopt"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i01:r3",
+            "text": "adopts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ a cat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i01:r1",
+              "text": "adopted"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i01:r2",
+              "text": "adopt"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i01:r3",
+              "text": "adopts"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i01:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: adopted.",
+                "uk": "Потрібна третя форма: adopted."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i01:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: adopted.",
+                "uk": "Потрібна третя форма: adopted."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Я взял кошку в семью.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Я взял кошку в семью.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have adopted a cat.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Я взял кошку в семью.»",
+            "uk": "Повідомте: «Я взяв кішку в родину.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "adopted",
+            "a",
+            "cat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i03:r1",
+            "text": "I have adopted a cat."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i03:r2",
+            "text": "You have adopted a cat."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i03:r3",
+            "text": "They have adopted a cat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i03:audio",
+            "transcript": "I have adopted a cat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i03:r1",
+              "targetText": "I have adopted a cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i03:r2",
+              "targetText": "You have adopted a cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i03:r3",
+              "targetText": "They have adopted a cat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have adopted a cat.",
+                "uk": "У записі звучить I have adopted a cat."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have adopted a cat.",
+                "uk": "У записі звучить I have adopted a cat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:word:rescue",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rescue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:rescue:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rescue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:rescue:audio",
+            "transcript": "rescue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:rescue:r1",
+              "targetText": "rescue",
+              "meaningByLocale": {
+                "ru": "спасти из опасности.",
+                "uk": "врятувати від небезпеки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rescue",
+            "definitionByLocale": {
+              "ru": "спасти из опасности.",
+              "uk": "врятувати від небезпеки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i04:r1",
+            "text": "rescued"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i04:r2",
+            "text": "rescue"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i04:r3",
+            "text": "rescues"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a dog.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i04:r1",
+              "text": "rescued"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i04:r2",
+              "text": "rescue"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i04:r3",
+              "text": "rescues"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i04:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: rescued.",
+                "uk": "Потрібна третя форма: rescued."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i04:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: rescued.",
+                "uk": "Потрібна третя форма: rescued."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Она спасла собаку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Она спасла собаку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has rescued a dog.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Она спасла собаку.»",
+            "uk": "Повідомте: «Вона врятувала собаку.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "rescued",
+            "a",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i06:r1",
+            "text": "She has rescued a dog."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i06:r2",
+            "text": "You have rescued a dog."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i06:r3",
+            "text": "They have rescued a dog."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i06:audio",
+            "transcript": "She has rescued a dog."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i06:r1",
+              "targetText": "She has rescued a dog.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i06:r2",
+              "targetText": "You have rescued a dog.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i06:r3",
+              "targetText": "They have rescued a dog.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has rescued a dog.",
+                "uk": "У записі звучить She has rescued a dog."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has rescued a dog.",
+                "uk": "У записі звучить She has rescued a dog."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:word:survive",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — survive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:survive:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — survive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:survive:audio",
+            "transcript": "survive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:survive:r1",
+              "targetText": "survive",
+              "meaningByLocale": {
+                "ru": "пережить, выжить.",
+                "uk": "пережити, вижити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "survive",
+            "definitionByLocale": {
+              "ru": "пережить, выжить.",
+              "uk": "пережити, вижити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i07:r1",
+            "text": "survived"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i07:r2",
+            "text": "survive"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i07:r3",
+            "text": "survives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a storm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i07:r1",
+              "text": "survived"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i07:r2",
+              "text": "survive"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i07:r3",
+              "text": "survives"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i07:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: survived.",
+                "uk": "Потрібна третя форма: survived."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i07:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: survived.",
+                "uk": "Потрібна третя форма: survived."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Мы пережили бурю.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Мы пережили бурю.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have survived a storm.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Мы пережили бурю.»",
+            "uk": "Повідомте: «Ми пережили бурю.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "survived",
+            "a",
+            "storm"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i09:r1",
+            "text": "We have survived a storm."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i09:r2",
+            "text": "You have survived a storm."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i09:r3",
+            "text": "They have survived a storm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i09:audio",
+            "transcript": "We have survived a storm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i09:r1",
+              "targetText": "We have survived a storm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i09:r2",
+              "targetText": "You have survived a storm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i09:r3",
+              "targetText": "They have survived a storm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have survived a storm.",
+                "uk": "У записі звучить We have survived a storm."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have survived a storm.",
+                "uk": "У записі звучить We have survived a storm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:word:quit",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — quit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:quit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — quit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:quit:audio",
+            "transcript": "quit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:quit:r1",
+              "targetText": "quit",
+              "meaningByLocale": {
+                "ru": "бросить, прекратить.",
+                "uk": "кинути, припинити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quit",
+            "definitionByLocale": {
+              "ru": "бросить, прекратить.",
+              "uk": "кинути, припинити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i10:r1",
+            "text": "quit"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i10:r2",
+            "text": "quits"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i10:r3",
+            "text": "quitting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ smoking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i10:r1",
+              "text": "quit"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i10:r2",
+              "text": "quits"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i10:r3",
+              "text": "quitting"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i10:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: quit.",
+                "uk": "Потрібна третя форма: quit."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i10:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: quit.",
+                "uk": "Потрібна третя форма: quit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Он бросил курить.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Он бросил курить.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has quit smoking.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Он бросил курить.»",
+            "uk": "Повідомте: «Він кинув курити.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "quit",
+            "smoking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i12:r1",
+            "text": "He has quit smoking."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i12:r2",
+            "text": "You have quit smoking."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i12:r3",
+            "text": "They have quit smoking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i12:audio",
+            "transcript": "He has quit smoking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i12:r1",
+              "targetText": "He has quit smoking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i12:r2",
+              "targetText": "You have quit smoking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i12:r3",
+              "targetText": "They have quit smoking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has quit smoking.",
+                "uk": "У записі звучить He has quit smoking."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has quit smoking.",
+                "uk": "У записі звучить He has quit smoking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-43:i13:p1",
+              "target": "adopt",
+              "meaningByLocale": {
+                "ru": "взять в семью",
+                "uk": "взяти в родину"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-43:i13:p2",
+              "target": "rescue",
+              "meaningByLocale": {
+                "ru": "спасти из опасности",
+                "uk": "врятувати від небезпеки"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-43:i13:p3",
+              "target": "survive",
+              "meaningByLocale": {
+                "ru": "пережить, выжить",
+                "uk": "пережити, вижити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-43:i13:p4",
+              "target": "quit",
+              "meaningByLocale": {
+                "ru": "бросить, прекратить",
+                "uk": "кинути, припинити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "adopt",
+            "rescue",
+            "survive",
+            "quit"
+          ],
+          "rightColumn": [
+            "взять в семью",
+            "спасти из опасности",
+            "пережить, выжить",
+            "бросить, прекратить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другое животное",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другое животное",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i14:audio",
+            "transcript": "We can help another animal."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can help another animal.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "help",
+            "another",
+            "animal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i15:audio",
+            "transcript": "You mustn't leave the dog alone."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the dog alone.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "dog",
+            "alone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я спас собаку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я спас собаку».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i16:audio",
+            "transcript": "I have rescued a dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have rescued a dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она взяла кошку в семью».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она взяла кошку в семью».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i17:audio",
+            "transcript": "She has adopted a cat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has adopted a cat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-43:word:adopt",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — adopt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:adopt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — adopt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:adopt:audio",
+            "transcript": "adopt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:adopt:r1",
+              "targetText": "adopt",
+              "meaningByLocale": {
+                "ru": "взять в семью.",
+                "uk": "взяти в родину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adopt",
+            "definitionByLocale": {
+              "ru": "взять в семью.",
+              "uk": "взяти в родину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i01:r1",
+            "text": "adopted"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i01:r2",
+            "text": "adopt"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i01:r3",
+            "text": "adopts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ a cat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i01:r1",
+              "text": "adopted"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i01:r2",
+              "text": "adopt"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i01:r3",
+              "text": "adopts"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i01:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: adopted.",
+                "uk": "Потрібна третя форма: adopted."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i01:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: adopted.",
+                "uk": "Потрібна третя форма: adopted."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Я взяв кішку в родину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Я взяв кішку в родину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have adopted a cat.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Я взял кошку в семью.»",
+            "uk": "Повідомте: «Я взяв кішку в родину.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "adopted",
+            "a",
+            "cat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i03:r1",
+            "text": "I have adopted a cat."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i03:r2",
+            "text": "You have adopted a cat."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i03:r3",
+            "text": "They have adopted a cat."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i03:audio",
+            "transcript": "I have adopted a cat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i03:r1",
+              "targetText": "I have adopted a cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i03:r2",
+              "targetText": "You have adopted a cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i03:r3",
+              "targetText": "They have adopted a cat.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have adopted a cat.",
+                "uk": "У записі звучить I have adopted a cat."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have adopted a cat.",
+                "uk": "У записі звучить I have adopted a cat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:word:rescue",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rescue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:rescue:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rescue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:rescue:audio",
+            "transcript": "rescue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:rescue:r1",
+              "targetText": "rescue",
+              "meaningByLocale": {
+                "ru": "спасти из опасности.",
+                "uk": "врятувати від небезпеки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rescue",
+            "definitionByLocale": {
+              "ru": "спасти из опасности.",
+              "uk": "врятувати від небезпеки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i04:r1",
+            "text": "rescued"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i04:r2",
+            "text": "rescue"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i04:r3",
+            "text": "rescues"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a dog.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i04:r1",
+              "text": "rescued"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i04:r2",
+              "text": "rescue"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i04:r3",
+              "text": "rescues"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i04:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: rescued.",
+                "uk": "Потрібна третя форма: rescued."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i04:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: rescued.",
+                "uk": "Потрібна третя форма: rescued."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Вона врятувала собаку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Вона врятувала собаку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has rescued a dog.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Она спасла собаку.»",
+            "uk": "Повідомте: «Вона врятувала собаку.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "rescued",
+            "a",
+            "dog"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i06:r1",
+            "text": "She has rescued a dog."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i06:r2",
+            "text": "You have rescued a dog."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i06:r3",
+            "text": "They have rescued a dog."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i06:audio",
+            "transcript": "She has rescued a dog."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i06:r1",
+              "targetText": "She has rescued a dog.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i06:r2",
+              "targetText": "You have rescued a dog.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i06:r3",
+              "targetText": "They have rescued a dog.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has rescued a dog.",
+                "uk": "У записі звучить She has rescued a dog."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has rescued a dog.",
+                "uk": "У записі звучить She has rescued a dog."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:word:survive",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — survive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:survive:audio"
+        ],
+        "accessibilityLabel": "Картка слова — survive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:survive:audio",
+            "transcript": "survive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:survive:r1",
+              "targetText": "survive",
+              "meaningByLocale": {
+                "ru": "пережить, выжить.",
+                "uk": "пережити, вижити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "survive",
+            "definitionByLocale": {
+              "ru": "пережить, выжить.",
+              "uk": "пережити, вижити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i07:r1",
+            "text": "survived"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i07:r2",
+            "text": "survive"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i07:r3",
+            "text": "survives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a storm.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i07:r1",
+              "text": "survived"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i07:r2",
+              "text": "survive"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i07:r3",
+              "text": "survives"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i07:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: survived.",
+                "uk": "Потрібна третя форма: survived."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i07:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: survived.",
+                "uk": "Потрібна третя форма: survived."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Ми пережили бурю.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Ми пережили бурю.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have survived a storm.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Мы пережили бурю.»",
+            "uk": "Повідомте: «Ми пережили бурю.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "survived",
+            "a",
+            "storm"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i09:r1",
+            "text": "We have survived a storm."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i09:r2",
+            "text": "You have survived a storm."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i09:r3",
+            "text": "They have survived a storm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i09:audio",
+            "transcript": "We have survived a storm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i09:r1",
+              "targetText": "We have survived a storm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i09:r2",
+              "targetText": "You have survived a storm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i09:r3",
+              "targetText": "They have survived a storm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have survived a storm.",
+                "uk": "У записі звучить We have survived a storm."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have survived a storm.",
+                "uk": "У записі звучить We have survived a storm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:word:quit",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — quit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:word:quit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — quit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:word:quit:audio",
+            "transcript": "quit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:word:quit:r1",
+              "targetText": "quit",
+              "meaningByLocale": {
+                "ru": "бросить, прекратить.",
+                "uk": "кинути, припинити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "quit",
+            "definitionByLocale": {
+              "ru": "бросить, прекратить.",
+              "uk": "кинути, припинити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i10:r1",
+            "text": "quit"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i10:r2",
+            "text": "quits"
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i10:r3",
+            "text": "quitting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ smoking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-43:i10:r1",
+              "text": "quit"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i10:r2",
+              "text": "quits"
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i10:r3",
+              "text": "quitting"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i10:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: quit.",
+                "uk": "Потрібна третя форма: quit."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i10:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: quit.",
+                "uk": "Потрібна третя форма: quit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Він кинув курити.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Він кинув курити.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has quit smoking.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Он бросил курить.»",
+            "uk": "Повідомте: «Він кинув курити.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "quit",
+            "smoking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-43:i12:r1",
+            "text": "He has quit smoking."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i12:r2",
+            "text": "You have quit smoking."
+          },
+          {
+            "responseId": "en:lesson-23:session-43:i12:r3",
+            "text": "They have quit smoking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i12:audio",
+            "transcript": "He has quit smoking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-43:i12:r1",
+              "targetText": "He has quit smoking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i12:r2",
+              "targetText": "You have quit smoking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i12:r3",
+              "targetText": "They have quit smoking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has quit smoking.",
+                "uk": "У записі звучить He has quit smoking."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has quit smoking.",
+                "uk": "У записі звучить He has quit smoking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-43:i13:p1",
+              "target": "adopt",
+              "meaningByLocale": {
+                "ru": "взять в семью",
+                "uk": "взяти в родину"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-43:i13:p2",
+              "target": "rescue",
+              "meaningByLocale": {
+                "ru": "спасти из опасности",
+                "uk": "врятувати від небезпеки"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-43:i13:p3",
+              "target": "survive",
+              "meaningByLocale": {
+                "ru": "пережить, выжить",
+                "uk": "пережити, вижити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-43:i13:p4",
+              "target": "quit",
+              "meaningByLocale": {
+                "ru": "бросить, прекратить",
+                "uk": "кинути, припинити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "adopt",
+            "rescue",
+            "survive",
+            "quit"
+          ],
+          "rightColumn": [
+            "взяти в родину",
+            "врятувати від небезпеки",
+            "пережити, вижити",
+            "кинути, припинити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інша тварина",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інша тварина",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i14:audio",
+            "transcript": "We can help another animal."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can help another animal.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "help",
+            "another",
+            "animal"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i15:audio",
+            "transcript": "You mustn't leave the dog alone."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the dog alone.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "dog",
+            "alone"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я врятував собаку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я врятував собаку».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i16:audio",
+            "transcript": "I have rescued a dog."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have rescued a dog.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона взяла кішку в родину».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона взяла кішку в родину».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-43:i17:audio",
+            "transcript": "She has adopted a cat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has adopted a cat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-43:word:adopt",
+      "correctText": "adopt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i01",
+      "correctText": "adopted",
+      "correctResponseId": "en:lesson-23:session-43:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i02",
+      "correctText": "I have adopted a cat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i03",
+      "correctText": "I have adopted a cat.",
+      "correctResponseId": "en:lesson-23:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:word:rescue",
+      "correctText": "rescue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i04",
+      "correctText": "rescued",
+      "correctResponseId": "en:lesson-23:session-43:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i05",
+      "correctText": "She has rescued a dog.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i06",
+      "correctText": "She has rescued a dog.",
+      "correctResponseId": "en:lesson-23:session-43:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:word:survive",
+      "correctText": "survive",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i07",
+      "correctText": "survived",
+      "correctResponseId": "en:lesson-23:session-43:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i08",
+      "correctText": "We have survived a storm.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i09",
+      "correctText": "We have survived a storm.",
+      "correctResponseId": "en:lesson-23:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:word:quit",
+      "correctText": "quit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i10",
+      "correctText": "quit",
+      "correctResponseId": "en:lesson-23:session-43:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i11",
+      "correctText": "He has quit smoking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i12",
+      "correctText": "He has quit smoking.",
+      "correctResponseId": "en:lesson-23:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i14",
+      "correctText": "We can help another animal.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i15",
+      "correctText": "You mustn't leave the dog alone.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i16",
+      "correctText": "I have rescued a dog.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:i17",
+      "correctText": "She has adopted a cat.",
+      "correctResponseId": null
+    }
+  ]
+}

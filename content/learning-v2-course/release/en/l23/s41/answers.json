@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-41:word:shopkeeper",
+    "correctText": "shopkeeper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i01",
+    "correctText": "I have spoken to the shopkeeper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i02",
+    "correctText": "I have spoken to the shopkeeper.",
+    "correctResponseId": "en:lesson-23:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i03",
+    "correctText": "spoken",
+    "correctResponseId": "en:lesson-23:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:word:painter",
+    "correctText": "painter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i04",
+    "correctText": "She has called a painter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i05",
+    "correctText": "She has called a painter.",
+    "correctResponseId": "en:lesson-23:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i06",
+    "correctText": "called",
+    "correctResponseId": "en:lesson-23:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:word:worker",
+    "correctText": "worker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i07",
+    "correctText": "We have helped a worker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i08",
+    "correctText": "We have helped a worker.",
+    "correctResponseId": "en:lesson-23:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i09",
+    "correctText": "helped",
+    "correctResponseId": "en:lesson-23:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:word:buyer",
+    "correctText": "buyer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i10",
+    "correctText": "He has found a buyer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i11",
+    "correctText": "He has found a buyer.",
+    "correctResponseId": "en:lesson-23:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i12",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-23:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i13",
+    "correctText": "en:lesson-23:session-41:i13:p1=shopkeeper\nen:lesson-23:session-41:i13:p2=painter\nen:lesson-23:session-41:i13:p3=worker\nen:lesson-23:session-41:i13:p4=buyer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i14",
+    "correctText": "We can ask another worker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i15",
+    "correctText": "You mustn't block the shop entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i16",
+    "correctText": "I have found a buyer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-41:i17",
+    "correctText": "She has spoken to the shopkeeper.",
+    "correctResponseId": null
+  }
+]

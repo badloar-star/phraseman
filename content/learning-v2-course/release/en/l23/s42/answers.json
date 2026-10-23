@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-42:word:competition",
+    "correctText": "competition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i01",
+    "correctText": "I have entered a competition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i02",
+    "correctText": "I have entered a competition.",
+    "correctResponseId": "en:lesson-23:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i03",
+    "correctText": "entered",
+    "correctResponseId": "en:lesson-23:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:word:champion",
+    "correctText": "champion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i04",
+    "correctText": "She has met a champion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i05",
+    "correctText": "She has met a champion.",
+    "correctResponseId": "en:lesson-23:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i06",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:word:opponent",
+    "correctText": "opponent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i07",
+    "correctText": "We have spoken to an opponent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i08",
+    "correctText": "We have spoken to an opponent.",
+    "correctResponseId": "en:lesson-23:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i09",
+    "correctText": "spoken",
+    "correctResponseId": "en:lesson-23:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:word:competitor",
+    "correctText": "competitor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i10",
+    "correctText": "He has helped a competitor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i11",
+    "correctText": "He has helped a competitor.",
+    "correctResponseId": "en:lesson-23:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i12",
+    "correctText": "helped",
+    "correctResponseId": "en:lesson-23:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i13",
+    "correctText": "en:lesson-23:session-42:i13:p1=competition\nen:lesson-23:session-42:i13:p2=champion\nen:lesson-23:session-42:i13:p3=opponent\nen:lesson-23:session-42:i13:p4=competitor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i14",
+    "correctText": "We can enter another competition.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i15",
+    "correctText": "You mustn't push the other players.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i16",
+    "correctText": "I have met a champion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-42:i17",
+    "correctText": "She has helped a competitor.",
+    "correctResponseId": null
+  }
+]

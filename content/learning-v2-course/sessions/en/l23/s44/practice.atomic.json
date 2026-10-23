@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-44",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-44:word:discover",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — discover",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:discover:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — discover",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:discover:audio",
+            "transcript": "discover"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:discover:r1",
+              "targetText": "discover",
+              "meaningByLocale": {
+                "ru": "обнаружить.",
+                "uk": "виявити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discover",
+            "definitionByLocale": {
+              "ru": "обнаружить.",
+              "uk": "виявити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i01:r1",
+            "text": "discovered"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i01:r2",
+            "text": "discover"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i01:r3",
+            "text": "discovers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ a new cafe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i01:r1",
+              "text": "discovered"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i01:r2",
+              "text": "discover"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i01:r3",
+              "text": "discovers"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i01:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: discovered.",
+                "uk": "Потрібна третя форма: discovered."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i01:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: discovered.",
+                "uk": "Потрібна третя форма: discovered."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Я обнаружил новое кафе.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Я обнаружил новое кафе.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have discovered a new cafe.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Я обнаружил новое кафе.»",
+            "uk": "Повідомте: «Я виявив нове кафе.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "discovered",
+            "a",
+            "new",
+            "cafe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i03:r1",
+            "text": "I have discovered a new cafe."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i03:r2",
+            "text": "You have discovered a new cafe."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i03:r3",
+            "text": "They have discovered a new cafe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i03:audio",
+            "transcript": "I have discovered a new cafe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i03:r1",
+              "targetText": "I have discovered a new cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i03:r2",
+              "targetText": "You have discovered a new cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i03:r3",
+              "targetText": "They have discovered a new cafe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have discovered a new cafe.",
+                "uk": "У записі звучить I have discovered a new cafe."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have discovered a new cafe.",
+                "uk": "У записі звучить I have discovered a new cafe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:word:invent",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — invent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:invent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — invent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:invent:audio",
+            "transcript": "invent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:invent:r1",
+              "targetText": "invent",
+              "meaningByLocale": {
+                "ru": "придумать, изобрести.",
+                "uk": "вигадати, винайти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "invent",
+            "definitionByLocale": {
+              "ru": "придумать, изобрести.",
+              "uk": "вигадати, винайти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i04:r1",
+            "text": "invented"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i04:r2",
+            "text": "invent"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i04:r3",
+            "text": "invents"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a game.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i04:r1",
+              "text": "invented"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i04:r2",
+              "text": "invent"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i04:r3",
+              "text": "invents"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i04:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: invented.",
+                "uk": "Потрібна третя форма: invented."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i04:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: invented.",
+                "uk": "Потрібна третя форма: invented."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Она придумала игру.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Она придумала игру.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has invented a game.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Она придумала игру.»",
+            "uk": "Повідомте: «Вона вигадала гру.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "invented",
+            "a",
+            "game"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i06:r1",
+            "text": "She has invented a game."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i06:r2",
+            "text": "You have invented a game."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i06:r3",
+            "text": "They have invented a game."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i06:audio",
+            "transcript": "She has invented a game."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i06:r1",
+              "targetText": "She has invented a game.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i06:r2",
+              "targetText": "You have invented a game.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i06:r3",
+              "targetText": "They have invented a game.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has invented a game.",
+                "uk": "У записі звучить She has invented a game."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has invented a game.",
+                "uk": "У записі звучить She has invented a game."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:word:develop",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — develop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:develop:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — develop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:develop:audio",
+            "transcript": "develop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:develop:r1",
+              "targetText": "develop",
+              "meaningByLocale": {
+                "ru": "развить, выработать.",
+                "uk": "розвинути, виробити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "develop",
+            "definitionByLocale": {
+              "ru": "развить, выработать.",
+              "uk": "розвинути, виробити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i07:r1",
+            "text": "developed"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i07:r2",
+            "text": "develop"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i07:r3",
+            "text": "develops"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a good habit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i07:r1",
+              "text": "developed"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i07:r2",
+              "text": "develop"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i07:r3",
+              "text": "develops"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i07:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: developed.",
+                "uk": "Потрібна третя форма: developed."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i07:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: developed.",
+                "uk": "Потрібна третя форма: developed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Мы выработали хорошую привычку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Мы выработали хорошую привычку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have developed a good habit.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Мы выработали хорошую привычку.»",
+            "uk": "Повідомте: «Ми виробили добру звичку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "developed",
+            "a",
+            "good",
+            "habit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i09:r1",
+            "text": "We have developed a good habit."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i09:r2",
+            "text": "You have developed a good habit."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i09:r3",
+            "text": "They have developed a good habit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i09:audio",
+            "transcript": "We have developed a good habit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i09:r1",
+              "targetText": "We have developed a good habit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i09:r2",
+              "targetText": "You have developed a good habit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i09:r3",
+              "targetText": "They have developed a good habit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have developed a good habit.",
+                "uk": "У записі звучить We have developed a good habit."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have developed a good habit.",
+                "uk": "У записі звучить We have developed a good habit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:word:create",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — create",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:create:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — create",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:create:audio",
+            "transcript": "create"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:create:r1",
+              "targetText": "create",
+              "meaningByLocale": {
+                "ru": "создать.",
+                "uk": "створити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "create",
+            "definitionByLocale": {
+              "ru": "создать.",
+              "uk": "створити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i10:r1",
+            "text": "created"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i10:r2",
+            "text": "create"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i10:r3",
+            "text": "creates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ a picture.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i10:r1",
+              "text": "created"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i10:r2",
+              "text": "create"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i10:r3",
+              "text": "creates"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i10:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: created.",
+                "uk": "Потрібна третя форма: created."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i10:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: created.",
+                "uk": "Потрібна третя форма: created."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: «Он создал картину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: «Он создал картину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has created a picture.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Он создал картину.»",
+            "uk": "Повідомте: «Він створив картину.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "created",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i12:r1",
+            "text": "He has created a picture."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i12:r2",
+            "text": "You have created a picture."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i12:r3",
+            "text": "They have created a picture."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i12:audio",
+            "transcript": "He has created a picture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i12:r1",
+              "targetText": "He has created a picture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i12:r2",
+              "targetText": "You have created a picture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i12:r3",
+              "targetText": "They have created a picture.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has created a picture.",
+                "uk": "У записі звучить He has created a picture."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has created a picture.",
+                "uk": "У записі звучить He has created a picture."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-44:i13:p1",
+              "target": "discover",
+              "meaningByLocale": {
+                "ru": "обнаружить",
+                "uk": "виявити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-44:i13:p2",
+              "target": "invent",
+              "meaningByLocale": {
+                "ru": "придумать, изобрести",
+                "uk": "вигадати, винайти"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-44:i13:p3",
+              "target": "develop",
+              "meaningByLocale": {
+                "ru": "развить, выработать",
+                "uk": "розвинути, виробити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-44:i13:p4",
+              "target": "create",
+              "meaningByLocale": {
+                "ru": "создать",
+                "uk": "створити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "discover",
+            "invent",
+            "develop",
+            "create"
+          ],
+          "rightColumn": [
+            "обнаружить",
+            "придумать, изобрести",
+            "развить, выработать",
+            "создать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другая идея",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другая идея",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i14:audio",
+            "transcript": "We can try another idea."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can try another idea.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "try",
+            "another",
+            "idea"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i15:audio",
+            "transcript": "You mustn't touch the wet paint."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't touch the wet paint.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "touch",
+            "the",
+            "wet",
+            "paint"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я придумал игру».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я придумал игру».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i16:audio",
+            "transcript": "I have invented a game."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have invented a game.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она обнаружила новое кафе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она обнаружила новое кафе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i17:audio",
+            "transcript": "She has discovered a new cafe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has discovered a new cafe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-44:word:discover",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — discover",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:discover:audio"
+        ],
+        "accessibilityLabel": "Картка слова — discover",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:discover:audio",
+            "transcript": "discover"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:discover:r1",
+              "targetText": "discover",
+              "meaningByLocale": {
+                "ru": "обнаружить.",
+                "uk": "виявити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discover",
+            "definitionByLocale": {
+              "ru": "обнаружить.",
+              "uk": "виявити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i01:r1",
+            "text": "discovered"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i01:r2",
+            "text": "discover"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i01:r3",
+            "text": "discovers"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ a new cafe.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i01:r1",
+              "text": "discovered"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i01:r2",
+              "text": "discover"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i01:r3",
+              "text": "discovers"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i01:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: discovered.",
+                "uk": "Потрібна третя форма: discovered."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i01:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: discovered.",
+                "uk": "Потрібна третя форма: discovered."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Я виявив нове кафе.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Я виявив нове кафе.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have discovered a new cafe.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Я обнаружил новое кафе.»",
+            "uk": "Повідомте: «Я виявив нове кафе.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "discovered",
+            "a",
+            "new",
+            "cafe"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i03:r1",
+            "text": "I have discovered a new cafe."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i03:r2",
+            "text": "You have discovered a new cafe."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i03:r3",
+            "text": "They have discovered a new cafe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i03:audio",
+            "transcript": "I have discovered a new cafe."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i03:r1",
+              "targetText": "I have discovered a new cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i03:r2",
+              "targetText": "You have discovered a new cafe.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i03:r3",
+              "targetText": "They have discovered a new cafe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have discovered a new cafe.",
+                "uk": "У записі звучить I have discovered a new cafe."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have discovered a new cafe.",
+                "uk": "У записі звучить I have discovered a new cafe."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:word:invent",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — invent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:invent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — invent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:invent:audio",
+            "transcript": "invent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:invent:r1",
+              "targetText": "invent",
+              "meaningByLocale": {
+                "ru": "придумать, изобрести.",
+                "uk": "вигадати, винайти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "invent",
+            "definitionByLocale": {
+              "ru": "придумать, изобрести.",
+              "uk": "вигадати, винайти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i04:r1",
+            "text": "invented"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i04:r2",
+            "text": "invent"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i04:r3",
+            "text": "invents"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a game.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i04:r1",
+              "text": "invented"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i04:r2",
+              "text": "invent"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i04:r3",
+              "text": "invents"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i04:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: invented.",
+                "uk": "Потрібна третя форма: invented."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i04:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: invented.",
+                "uk": "Потрібна третя форма: invented."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Вона вигадала гру.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Вона вигадала гру.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has invented a game.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Она придумала игру.»",
+            "uk": "Повідомте: «Вона вигадала гру.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "invented",
+            "a",
+            "game"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i06:r1",
+            "text": "She has invented a game."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i06:r2",
+            "text": "You have invented a game."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i06:r3",
+            "text": "They have invented a game."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i06:audio",
+            "transcript": "She has invented a game."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i06:r1",
+              "targetText": "She has invented a game.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i06:r2",
+              "targetText": "You have invented a game.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i06:r3",
+              "targetText": "They have invented a game.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has invented a game.",
+                "uk": "У записі звучить She has invented a game."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has invented a game.",
+                "uk": "У записі звучить She has invented a game."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:word:develop",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — develop",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:develop:audio"
+        ],
+        "accessibilityLabel": "Картка слова — develop",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:develop:audio",
+            "transcript": "develop"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:develop:r1",
+              "targetText": "develop",
+              "meaningByLocale": {
+                "ru": "развить, выработать.",
+                "uk": "розвинути, виробити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "develop",
+            "definitionByLocale": {
+              "ru": "развить, выработать.",
+              "uk": "розвинути, виробити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i07:r1",
+            "text": "developed"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i07:r2",
+            "text": "develop"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i07:r3",
+            "text": "develops"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a good habit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i07:r1",
+              "text": "developed"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i07:r2",
+              "text": "develop"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i07:r3",
+              "text": "develops"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i07:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: developed.",
+                "uk": "Потрібна третя форма: developed."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i07:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: developed.",
+                "uk": "Потрібна третя форма: developed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Ми виробили добру звичку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Ми виробили добру звичку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have developed a good habit.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Мы выработали хорошую привычку.»",
+            "uk": "Повідомте: «Ми виробили добру звичку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "developed",
+            "a",
+            "good",
+            "habit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i09:r1",
+            "text": "We have developed a good habit."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i09:r2",
+            "text": "You have developed a good habit."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i09:r3",
+            "text": "They have developed a good habit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i09:audio",
+            "transcript": "We have developed a good habit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i09:r1",
+              "targetText": "We have developed a good habit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i09:r2",
+              "targetText": "You have developed a good habit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i09:r3",
+              "targetText": "They have developed a good habit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have developed a good habit.",
+                "uk": "У записі звучить We have developed a good habit."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have developed a good habit.",
+                "uk": "У записі звучить We have developed a good habit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:word:create",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — create",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:word:create:audio"
+        ],
+        "accessibilityLabel": "Картка слова — create",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:word:create:audio",
+            "transcript": "create"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:word:create:r1",
+              "targetText": "create",
+              "meaningByLocale": {
+                "ru": "создать.",
+                "uk": "створити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "create",
+            "definitionByLocale": {
+              "ru": "создать.",
+              "uk": "створити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i10:r1",
+            "text": "created"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i10:r2",
+            "text": "create"
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i10:r3",
+            "text": "creates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ a picture.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-44:i10:r1",
+              "text": "created"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i10:r2",
+              "text": "create"
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i10:r3",
+              "text": "creates"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i10:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: created.",
+                "uk": "Потрібна третя форма: created."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i10:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: created.",
+                "uk": "Потрібна третя форма: created."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: «Він створив картину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: «Він створив картину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has created a picture.",
+          "localizedMeaning": {
+            "ru": "Сообщите: «Он создал картину.»",
+            "uk": "Повідомте: «Він створив картину.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "created",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-44:i12:r1",
+            "text": "He has created a picture."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i12:r2",
+            "text": "You have created a picture."
+          },
+          {
+            "responseId": "en:lesson-23:session-44:i12:r3",
+            "text": "They have created a picture."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i12:audio",
+            "transcript": "He has created a picture."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-44:i12:r1",
+              "targetText": "He has created a picture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i12:r2",
+              "targetText": "You have created a picture.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i12:r3",
+              "targetText": "They have created a picture.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-44:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has created a picture.",
+                "uk": "У записі звучить He has created a picture."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-44:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has created a picture.",
+                "uk": "У записі звучить He has created a picture."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-44:i13:p1",
+              "target": "discover",
+              "meaningByLocale": {
+                "ru": "обнаружить",
+                "uk": "виявити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-44:i13:p2",
+              "target": "invent",
+              "meaningByLocale": {
+                "ru": "придумать, изобрести",
+                "uk": "вигадати, винайти"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-44:i13:p3",
+              "target": "develop",
+              "meaningByLocale": {
+                "ru": "развить, выработать",
+                "uk": "розвинути, виробити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-44:i13:p4",
+              "target": "create",
+              "meaningByLocale": {
+                "ru": "создать",
+                "uk": "створити"
+              }
+            }
+          ],
+          "leftColumn": [
+            "discover",
+            "invent",
+            "develop",
+            "create"
+          ],
+          "rightColumn": [
+            "виявити",
+            "вигадати, винайти",
+            "розвинути, виробити",
+            "створити"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інша ідея",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інша ідея",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i14:audio",
+            "transcript": "We can try another idea."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can try another idea.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "try",
+            "another",
+            "idea"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i15:audio",
+            "transcript": "You mustn't touch the wet paint."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't touch the wet paint.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "touch",
+            "the",
+            "wet",
+            "paint"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я вигадав гру».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я вигадав гру».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i16:audio",
+            "transcript": "I have invented a game."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have invented a game.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-44:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона виявила нове кафе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона виявила нове кафе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-44:i17:audio",
+            "transcript": "She has discovered a new cafe."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has discovered a new cafe.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-44:word:discover",
+      "correctText": "discover",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i01",
+      "correctText": "discovered",
+      "correctResponseId": "en:lesson-23:session-44:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i02",
+      "correctText": "I have discovered a new cafe.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i03",
+      "correctText": "I have discovered a new cafe.",
+      "correctResponseId": "en:lesson-23:session-44:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:word:invent",
+      "correctText": "invent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i04",
+      "correctText": "invented",
+      "correctResponseId": "en:lesson-23:session-44:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i05",
+      "correctText": "She has invented a game.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i06",
+      "correctText": "She has invented a game.",
+      "correctResponseId": "en:lesson-23:session-44:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:word:develop",
+      "correctText": "develop",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i07",
+      "correctText": "developed",
+      "correctResponseId": "en:lesson-23:session-44:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i08",
+      "correctText": "We have developed a good habit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i09",
+      "correctText": "We have developed a good habit.",
+      "correctResponseId": "en:lesson-23:session-44:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:word:create",
+      "correctText": "create",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i10",
+      "correctText": "created",
+      "correctResponseId": "en:lesson-23:session-44:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i11",
+      "correctText": "He has created a picture.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i12",
+      "correctText": "He has created a picture.",
+      "correctResponseId": "en:lesson-23:session-44:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i14",
+      "correctText": "We can try another idea.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i15",
+      "correctText": "You mustn't touch the wet paint.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i16",
+      "correctText": "I have invented a game.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:i17",
+      "correctText": "She has discovered a new cafe.",
+      "correctResponseId": null
+    }
+  ]
+}

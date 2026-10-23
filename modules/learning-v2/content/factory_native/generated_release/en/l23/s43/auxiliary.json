@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-43:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        },
+        "en:lesson-23:session-43:intro1:r3": {
+          "ru": "Нужна третья форма adopted.",
+          "uk": "Потрібна третя форма adopted."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-43:intro2:r2": {
+          "ru": "С we нужно have.",
+          "uk": "Із we потрібно have."
+        },
+        "en:lesson-23:session-43:intro2:r3": {
+          "ru": "Нужна третья форма survived.",
+          "uk": "Потрібна третя форма survived."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-43:intro3:r2": {
+          "ru": "С he нужно has.",
+          "uk": "Із he потрібно has."
+        },
+        "en:lesson-23:session-43:intro3:r3": {
+          "ru": "Третья форма — quit без s.",
+          "uk": "Третя форма — quit без s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ce4f6a6873188d9e01829f8da584c1da2a0f514aec5b497cd7bc4265f40c6cc2"
+}

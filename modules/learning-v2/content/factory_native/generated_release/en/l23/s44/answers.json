@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-44:word:discover",
+    "correctText": "discover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i01",
+    "correctText": "discovered",
+    "correctResponseId": "en:lesson-23:session-44:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i02",
+    "correctText": "I have discovered a new cafe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i03",
+    "correctText": "I have discovered a new cafe.",
+    "correctResponseId": "en:lesson-23:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:word:invent",
+    "correctText": "invent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i04",
+    "correctText": "invented",
+    "correctResponseId": "en:lesson-23:session-44:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i05",
+    "correctText": "She has invented a game.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i06",
+    "correctText": "She has invented a game.",
+    "correctResponseId": "en:lesson-23:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:word:develop",
+    "correctText": "develop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i07",
+    "correctText": "developed",
+    "correctResponseId": "en:lesson-23:session-44:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i08",
+    "correctText": "We have developed a good habit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i09",
+    "correctText": "We have developed a good habit.",
+    "correctResponseId": "en:lesson-23:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:word:create",
+    "correctText": "create",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i10",
+    "correctText": "created",
+    "correctResponseId": "en:lesson-23:session-44:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i11",
+    "correctText": "He has created a picture.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i12",
+    "correctText": "He has created a picture.",
+    "correctResponseId": "en:lesson-23:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i13",
+    "correctText": "en:lesson-23:session-44:i13:p1=discover\nen:lesson-23:session-44:i13:p2=invent\nen:lesson-23:session-44:i13:p3=develop\nen:lesson-23:session-44:i13:p4=create",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i14",
+    "correctText": "We can try another idea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i15",
+    "correctText": "You mustn't touch the wet paint.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i16",
+    "correctText": "I have invented a game.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-44:i17",
+    "correctText": "She has discovered a new cafe.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Shopkeeper — человек, который владеет небольшим магазином или управляет им. I have spoken to the shopkeeper — я поговорил с владельцем магазина. Spoken — третья форма speak. После spoken здесь нужно to: spoken to the shopkeeper.",
+        "uk": "Shopkeeper — людина, яка володіє невеликою крамницею або керує нею. I have spoken to the shopkeeper — я поговорив із власником крамниці. Spoken — третя форма speak. Після spoken тут потрібно to: spoken to the shopkeeper."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-41:intro1:r1",
+              "text": "I have spoken to the shopkeeper."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro1:r2",
+              "text": "I has spoken to the shopkeeper."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro1:r3",
+              "text": "I have speak to the shopkeeper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-41:intro1:r1",
+              "text": "I have spoken to the shopkeeper."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro1:r2",
+              "text": "I has spoken to the shopkeeper."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro1:r3",
+              "text": "I have speak to the shopkeeper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Painter может означать маляра или художника: смысл понятен из ситуации. Для покраски комнаты She has called a painter — она позвонила маляру. Worker — работник, общее название человека, который выполняет работу. We have helped a worker — мы помогли работнику.",
+        "uk": "Painter може означати маляра або художника: значення зрозуміле із ситуації. Для фарбування кімнати She has called a painter — вона зателефонувала маляру. Worker — працівник, загальна назва людини, яка виконує роботу. We have helped a worker — ми допомогли працівникові."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-41:intro2:r1",
+              "text": "We have helped a worker."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro2:r2",
+              "text": "We has helped a worker."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro2:r3",
+              "text": "We have help a worker."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-41:intro2:r1",
+              "text": "We have helped a worker."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro2:r2",
+              "text": "We has helped a worker."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro2:r3",
+              "text": "We have help a worker."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Buyer — покупатель. He has found a buyer — он нашёл покупателя, например на свой велосипед. Buyer называют того, кто покупает конкретную вещь; знакомое customer часто означает клиента магазина или сервиса. Found — третья форма find.",
+        "uk": "Buyer — покупець. He has found a buyer — він знайшов покупця, наприклад на свій велосипед. Buyer називають того, хто купує певну річ; знайоме customer часто означає клієнта магазину або сервісу. Found — третя форма find."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-41:intro3:r1",
+              "text": "He has found a buyer."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro3:r2",
+              "text": "He have found a buyer."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro3:r3",
+              "text": "He has find a buyer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-41:intro3:r1",
+              "text": "He has found a buyer."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro3:r2",
+              "text": "He have found a buyer."
+            },
+            {
+              "responseId": "en:lesson-23:session-41:intro3:r3",
+              "text": "He has find a buyer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "74ffb1649cddb654a6d8f71e048b7d780bb4e20f32f2c6e1396a880ea6e20667"
+}

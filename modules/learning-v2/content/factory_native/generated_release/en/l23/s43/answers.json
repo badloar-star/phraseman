@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-43:word:adopt",
+    "correctText": "adopt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i01",
+    "correctText": "adopted",
+    "correctResponseId": "en:lesson-23:session-43:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i02",
+    "correctText": "I have adopted a cat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i03",
+    "correctText": "I have adopted a cat.",
+    "correctResponseId": "en:lesson-23:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:word:rescue",
+    "correctText": "rescue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i04",
+    "correctText": "rescued",
+    "correctResponseId": "en:lesson-23:session-43:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i05",
+    "correctText": "She has rescued a dog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i06",
+    "correctText": "She has rescued a dog.",
+    "correctResponseId": "en:lesson-23:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:word:survive",
+    "correctText": "survive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i07",
+    "correctText": "survived",
+    "correctResponseId": "en:lesson-23:session-43:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i08",
+    "correctText": "We have survived a storm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i09",
+    "correctText": "We have survived a storm.",
+    "correctResponseId": "en:lesson-23:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:word:quit",
+    "correctText": "quit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i10",
+    "correctText": "quit",
+    "correctResponseId": "en:lesson-23:session-43:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i11",
+    "correctText": "He has quit smoking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i12",
+    "correctText": "He has quit smoking.",
+    "correctResponseId": "en:lesson-23:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i13",
+    "correctText": "en:lesson-23:session-43:i13:p1=adopt\nen:lesson-23:session-43:i13:p2=rescue\nen:lesson-23:session-43:i13:p3=survive\nen:lesson-23:session-43:i13:p4=quit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i14",
+    "correctText": "We can help another animal.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i15",
+    "correctText": "You mustn't leave the dog alone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i16",
+    "correctText": "I have rescued a dog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-43:i17",
+    "correctText": "She has adopted a cat.",
+    "correctResponseId": null
+  }
+]

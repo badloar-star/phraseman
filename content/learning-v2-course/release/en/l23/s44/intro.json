@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Новое место",
+        "uk": "Нове місце"
+      },
+      "bodyByLocale": {
+        "ru": "Discover — обнаружить, найти что-то новое для себя. I have discovered a new cafe — я обнаружил новое кафе. Это обычное открытие во время прогулки, не обязательно научное. Discovered — третья форма discover. Invent — придумать или изобрести то, чего раньше не было.",
+        "uk": "Discover — виявити, знайти щось нове для себе. I have discovered a new cafe — я виявив нове кафе. Це звичайне відкриття під час прогулянки, не обов’язково наукове. Discovered — третя форма discover. Invent — вигадати або винайти те, чого раніше не було."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-44:intro1:r1",
+              "text": "I have discovered a new cafe."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro1:r2",
+              "text": "I has discovered a new cafe."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro1:r3",
+              "text": "I have discover a new cafe."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-44:intro1:r1",
+              "text": "I have discovered a new cafe."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro1:r2",
+              "text": "I has discovered a new cafe."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro1:r3",
+              "text": "I have discover a new cafe."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Новая идея и привычка",
+        "uk": "Нова ідея та звичка"
+      },
+      "bodyByLocale": {
+        "ru": "Develop — развить или выработать. We have developed a good habit — мы выработали хорошую привычку, например гулять каждый день. Привычка покупать пирожное после прогулки выработалась ещё быстрее. Developed — третья форма develop. She has invented a game — она придумала игру. Invented — третья форма invent.",
+        "uk": "Develop — розвинути або виробити. We have developed a good habit — ми виробили добру звичку, наприклад гуляти щодня. Звичка купувати тістечко після прогулянки виробилася ще швидше. Developed — третя форма develop. She has invented a game — вона вигадала гру. Invented — третя форма invent."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-44:intro2:r1",
+              "text": "We have developed a good habit."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro2:r2",
+              "text": "We has developed a good habit."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro2:r3",
+              "text": "We have develop a good habit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-44:intro2:r1",
+              "text": "We have developed a good habit."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro2:r2",
+              "text": "We has developed a good habit."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro2:r3",
+              "text": "We have develop a good habit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Готовая работа",
+        "uk": "Готова робота"
+      },
+      "bodyByLocale": {
+        "ru": "Create — создать. He has created a picture — он создал картину. Created — третья форма create. Можно создать картину красками или из разных материалов. Фраза сообщает, что работа уже сделана.",
+        "uk": "Create — створити. He has created a picture — він створив картину. Created — третя форма create. Можна створити картину фарбами або з різних матеріалів. Фраза повідомляє, що роботу вже зроблено."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-44:intro3:r1",
+              "text": "He has created a picture."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro3:r2",
+              "text": "He have created a picture."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro3:r3",
+              "text": "He has create a picture."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-44:intro3:r1",
+              "text": "He has created a picture."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro3:r2",
+              "text": "He have created a picture."
+            },
+            {
+              "responseId": "en:lesson-23:session-44:intro3:r3",
+              "text": "He has create a picture."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7257be4c52d1db517eddc92ca3e66f65500ae008fd5907f2669e969307b493a6"
+}

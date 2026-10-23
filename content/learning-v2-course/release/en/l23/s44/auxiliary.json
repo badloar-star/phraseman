@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-44:intro1:r2": {
+          "ru": "С I и we нужно have, с he — has.",
+          "uk": "З I та we потрібно have, з he — has."
+        },
+        "en:lesson-23:session-44:intro1:r3": {
+          "ru": "Нужна третья форма: discovered.",
+          "uk": "Потрібна третя форма: discovered."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-44:intro2:r2": {
+          "ru": "С I и we нужно have, с he — has.",
+          "uk": "З I та we потрібно have, з he — has."
+        },
+        "en:lesson-23:session-44:intro2:r3": {
+          "ru": "Нужна третья форма: developed.",
+          "uk": "Потрібна третя форма: developed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-44:intro3:r2": {
+          "ru": "С I и we нужно have, с he — has.",
+          "uk": "З I та we потрібно have, з he — has."
+        },
+        "en:lesson-23:session-44:intro3:r3": {
+          "ru": "Нужна третья форма: created.",
+          "uk": "Потрібна третя форма: created."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ced222322dc37733f60dec639a6dc84516c0b7e579b967dd293e6174a0ef4010"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Competition — соревнование или конкурс. I have entered a competition — я записался на соревнование, стал его участником. Entered — третья форма enter. Champion — чемпион, обладатель чемпионского титула. She has met a champion — она встречалась с чемпионом.",
+        "uk": "Competition — змагання або конкурс. I have entered a competition — я записався на змагання, став його учасником. Entered — третя форма enter. Champion — чемпіон, володар чемпіонського титулу. She has met a champion — вона зустрічалася з чемпіоном."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-42:intro1:r1",
+              "text": "I have entered a competition."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro1:r2",
+              "text": "I has entered a competition."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro1:r3",
+              "text": "I have enter a competition."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-42:intro1:r1",
+              "text": "I have entered a competition."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro1:r2",
+              "text": "I has entered a competition."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro1:r3",
+              "text": "I have enter a competition."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Opponent — соперник, против которого вы играете или выступаете. We have spoken to an opponent — мы поговорили с соперником. Перед opponent нужен an: слово начинается с гласного звука. Spoken — третья форма speak.",
+        "uk": "Opponent — суперник, проти якого ви граєте або виступаєте. We have spoken to an opponent — ми поговорили із суперником. Перед opponent потрібен an: слово починається з голосного звука. Spoken — третя форма speak."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-42:intro2:r1",
+              "text": "We have spoken to an opponent."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro2:r2",
+              "text": "We has spoken to an opponent."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro2:r3",
+              "text": "We have speak to an opponent."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-42:intro2:r1",
+              "text": "We have spoken to an opponent."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro2:r2",
+              "text": "We has spoken to an opponent."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro2:r3",
+              "text": "We have speak to an opponent."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Competitor — участник соревнования. Он может участвовать в том же турнире, даже если вы не играете друг против друга. He has helped a competitor — он помог участнику соревнования. Helped — третья форма help.",
+        "uk": "Competitor — учасник змагання. Він може брати участь у тому самому турнірі, навіть якщо ви не граєте один проти одного. He has helped a competitor — він допоміг учасникові змагання. Helped — третя форма help."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-42:intro3:r1",
+              "text": "He has helped a competitor."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro3:r2",
+              "text": "He have helped a competitor."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro3:r3",
+              "text": "He has help a competitor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-42:intro3:r1",
+              "text": "He has helped a competitor."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro3:r2",
+              "text": "He have helped a competitor."
+            },
+            {
+              "responseId": "en:lesson-23:session-42:intro3:r3",
+              "text": "He has help a competitor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c2a4837e085c5e121dfb18e56c16a0a8687faa15a189e9a8c0be29839ebf1868"
+}

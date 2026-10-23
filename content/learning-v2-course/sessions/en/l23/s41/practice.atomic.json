@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-41:word:shopkeeper",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shopkeeper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:shopkeeper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shopkeeper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:shopkeeper:audio",
+            "transcript": "shopkeeper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:shopkeeper:r1",
+              "targetText": "shopkeeper",
+              "meaningByLocale": {
+                "ru": "владелец небольшого магазина.",
+                "uk": "власник невеликої крамниці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopkeeper",
+            "definitionByLocale": {
+              "ru": "владелец небольшого магазина.",
+              "uk": "власник невеликої крамниці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Я поговорил с владельцем магазина.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Я поговорил с владельцем магазина.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have spoken to the shopkeeper.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я поговорил с владельцем магазина.»",
+            "uk": "Розкажіть про досвід: «Я поговорив із власником крамниці.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "spoken",
+            "to",
+            "the",
+            "shopkeeper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i02:r1",
+            "text": "I have spoken to the shopkeeper."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i02:r2",
+            "text": "You have spoken to the shopkeeper."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i02:r3",
+            "text": "They have spoken to the shopkeeper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i02:audio",
+            "transcript": "I have spoken to the shopkeeper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i02:r1",
+              "targetText": "I have spoken to the shopkeeper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i02:r2",
+              "targetText": "You have spoken to the shopkeeper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i02:r3",
+              "targetText": "They have spoken to the shopkeeper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have spoken to the shopkeeper.",
+                "uk": "У записі звучить I have spoken to the shopkeeper."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have spoken to the shopkeeper.",
+                "uk": "У записі звучить I have spoken to the shopkeeper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i03:r1",
+            "text": "spoken"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i03:r2",
+            "text": "speak"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i03:r3",
+            "text": "speaks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ to the shopkeeper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i03:r1",
+              "text": "spoken"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i03:r2",
+              "text": "speak"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i03:r3",
+              "text": "speaks"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: spoken.",
+                "uk": "Потрібна третя форма: spoken."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: spoken.",
+                "uk": "Потрібна третя форма: spoken."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:word:painter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — painter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:painter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — painter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:painter:audio",
+            "transcript": "painter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:painter:r1",
+              "targetText": "painter",
+              "meaningByLocale": {
+                "ru": "маляр, художник.",
+                "uk": "маляр, художник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "painter",
+            "definitionByLocale": {
+              "ru": "маляр, художник.",
+              "uk": "маляр, художник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Она позвонила маляру.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Она позвонила маляру.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has called a painter.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она позвонила маляру.»",
+            "uk": "Розкажіть про досвід: «Вона зателефонувала маляру.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "called",
+            "a",
+            "painter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i05:r1",
+            "text": "She has called a painter."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i05:r2",
+            "text": "You have called a painter."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i05:r3",
+            "text": "They have called a painter."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i05:audio",
+            "transcript": "She has called a painter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i05:r1",
+              "targetText": "She has called a painter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i05:r2",
+              "targetText": "You have called a painter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i05:r3",
+              "targetText": "They have called a painter.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has called a painter.",
+                "uk": "У записі звучить She has called a painter."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has called a painter.",
+                "uk": "У записі звучить She has called a painter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i06:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i06:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i06:r3",
+            "text": "calls"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a painter.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i06:r1",
+              "text": "called"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i06:r2",
+              "text": "call"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i06:r3",
+              "text": "calls"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: called.",
+                "uk": "Потрібна третя форма: called."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: called.",
+                "uk": "Потрібна третя форма: called."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:word:worker",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — worker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:worker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — worker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:worker:audio",
+            "transcript": "worker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:worker:r1",
+              "targetText": "worker",
+              "meaningByLocale": {
+                "ru": "работник.",
+                "uk": "працівник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "worker",
+            "definitionByLocale": {
+              "ru": "работник.",
+              "uk": "працівник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Мы помогли работнику.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Мы помогли работнику.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have helped a worker.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы помогли работнику.»",
+            "uk": "Розкажіть про досвід: «Ми допомогли працівникові.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "helped",
+            "a",
+            "worker"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i08:r1",
+            "text": "We have helped a worker."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i08:r2",
+            "text": "You have helped a worker."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i08:r3",
+            "text": "They have helped a worker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i08:audio",
+            "transcript": "We have helped a worker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i08:r1",
+              "targetText": "We have helped a worker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i08:r2",
+              "targetText": "You have helped a worker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i08:r3",
+              "targetText": "They have helped a worker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have helped a worker.",
+                "uk": "У записі звучить We have helped a worker."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have helped a worker.",
+                "uk": "У записі звучить We have helped a worker."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i09:r1",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i09:r2",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i09:r3",
+            "text": "helps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a worker.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i09:r1",
+              "text": "helped"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i09:r2",
+              "text": "help"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i09:r3",
+              "text": "helps"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: helped.",
+                "uk": "Потрібна третя форма: helped."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: helped.",
+                "uk": "Потрібна третя форма: helped."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:word:buyer",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — buyer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:buyer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — buyer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:buyer:audio",
+            "transcript": "buyer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:buyer:r1",
+              "targetText": "buyer",
+              "meaningByLocale": {
+                "ru": "покупатель.",
+                "uk": "покупець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buyer",
+            "definitionByLocale": {
+              "ru": "покупатель.",
+              "uk": "покупець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Он нашёл покупателя.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Он нашёл покупателя.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has found a buyer.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он нашёл покупателя.»",
+            "uk": "Розкажіть про досвід: «Він знайшов покупця.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "found",
+            "a",
+            "buyer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i11:r1",
+            "text": "He has found a buyer."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i11:r2",
+            "text": "You have found a buyer."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i11:r3",
+            "text": "They have found a buyer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i11:audio",
+            "transcript": "He has found a buyer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i11:r1",
+              "targetText": "He has found a buyer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i11:r2",
+              "targetText": "You have found a buyer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i11:r3",
+              "targetText": "They have found a buyer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has found a buyer.",
+                "uk": "У записі звучить He has found a buyer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has found a buyer.",
+                "uk": "У записі звучить He has found a buyer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i12:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i12:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ a buyer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i12:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i12:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i12:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: found.",
+                "uk": "Потрібна третя форма: found."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: found.",
+                "uk": "Потрібна третя форма: found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-41:i13:p1",
+              "target": "shopkeeper",
+              "meaningByLocale": {
+                "ru": "владелец небольшого магазина",
+                "uk": "власник невеликої крамниці"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-41:i13:p2",
+              "target": "painter",
+              "meaningByLocale": {
+                "ru": "маляр, художник",
+                "uk": "маляр, художник"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-41:i13:p3",
+              "target": "worker",
+              "meaningByLocale": {
+                "ru": "работник",
+                "uk": "працівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-41:i13:p4",
+              "target": "buyer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shopkeeper",
+            "painter",
+            "worker",
+            "buyer"
+          ],
+          "rightColumn": [
+            "владелец небольшого магазина",
+            "маляр, художник",
+            "работник",
+            "покупатель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой вариант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой вариант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i14:audio",
+            "transcript": "We can ask another worker."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can ask another worker.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "ask",
+            "another",
+            "worker"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i15:audio",
+            "transcript": "You mustn't block the shop entrance."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't block the shop entrance.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "block",
+            "the",
+            "shop",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я нашёл покупателя.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я нашёл покупателя.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i16:audio",
+            "transcript": "I have found a buyer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have found a buyer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она поговорила с владельцем магазина.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она поговорила с владельцем магазина.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i17:audio",
+            "transcript": "She has spoken to the shopkeeper."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has spoken to the shopkeeper.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-41:word:shopkeeper",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shopkeeper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:shopkeeper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shopkeeper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:shopkeeper:audio",
+            "transcript": "shopkeeper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:shopkeeper:r1",
+              "targetText": "shopkeeper",
+              "meaningByLocale": {
+                "ru": "владелец небольшого магазина.",
+                "uk": "власник невеликої крамниці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopkeeper",
+            "definitionByLocale": {
+              "ru": "владелец небольшого магазина.",
+              "uk": "власник невеликої крамниці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Я поговорив із власником крамниці.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Я поговорив із власником крамниці.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have spoken to the shopkeeper.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я поговорил с владельцем магазина.»",
+            "uk": "Розкажіть про досвід: «Я поговорив із власником крамниці.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "spoken",
+            "to",
+            "the",
+            "shopkeeper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i02:r1",
+            "text": "I have spoken to the shopkeeper."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i02:r2",
+            "text": "You have spoken to the shopkeeper."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i02:r3",
+            "text": "They have spoken to the shopkeeper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i02:audio",
+            "transcript": "I have spoken to the shopkeeper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i02:r1",
+              "targetText": "I have spoken to the shopkeeper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i02:r2",
+              "targetText": "You have spoken to the shopkeeper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i02:r3",
+              "targetText": "They have spoken to the shopkeeper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have spoken to the shopkeeper.",
+                "uk": "У записі звучить I have spoken to the shopkeeper."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have spoken to the shopkeeper.",
+                "uk": "У записі звучить I have spoken to the shopkeeper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i03:r1",
+            "text": "spoken"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i03:r2",
+            "text": "speak"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i03:r3",
+            "text": "speaks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ to the shopkeeper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i03:r1",
+              "text": "spoken"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i03:r2",
+              "text": "speak"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i03:r3",
+              "text": "speaks"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: spoken.",
+                "uk": "Потрібна третя форма: spoken."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: spoken.",
+                "uk": "Потрібна третя форма: spoken."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:word:painter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — painter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:painter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — painter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:painter:audio",
+            "transcript": "painter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:painter:r1",
+              "targetText": "painter",
+              "meaningByLocale": {
+                "ru": "маляр, художник.",
+                "uk": "маляр, художник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "painter",
+            "definitionByLocale": {
+              "ru": "маляр, художник.",
+              "uk": "маляр, художник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Вона зателефонувала маляру.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Вона зателефонувала маляру.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has called a painter.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она позвонила маляру.»",
+            "uk": "Розкажіть про досвід: «Вона зателефонувала маляру.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "called",
+            "a",
+            "painter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i05:r1",
+            "text": "She has called a painter."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i05:r2",
+            "text": "You have called a painter."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i05:r3",
+            "text": "They have called a painter."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i05:audio",
+            "transcript": "She has called a painter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i05:r1",
+              "targetText": "She has called a painter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i05:r2",
+              "targetText": "You have called a painter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i05:r3",
+              "targetText": "They have called a painter.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has called a painter.",
+                "uk": "У записі звучить She has called a painter."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has called a painter.",
+                "uk": "У записі звучить She has called a painter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i06:r1",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i06:r2",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i06:r3",
+            "text": "calls"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a painter.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i06:r1",
+              "text": "called"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i06:r2",
+              "text": "call"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i06:r3",
+              "text": "calls"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: called.",
+                "uk": "Потрібна третя форма: called."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: called.",
+                "uk": "Потрібна третя форма: called."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:word:worker",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — worker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:worker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — worker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:worker:audio",
+            "transcript": "worker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:worker:r1",
+              "targetText": "worker",
+              "meaningByLocale": {
+                "ru": "работник.",
+                "uk": "працівник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "worker",
+            "definitionByLocale": {
+              "ru": "работник.",
+              "uk": "працівник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Ми допомогли працівникові.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Ми допомогли працівникові.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have helped a worker.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы помогли работнику.»",
+            "uk": "Розкажіть про досвід: «Ми допомогли працівникові.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "helped",
+            "a",
+            "worker"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i08:r1",
+            "text": "We have helped a worker."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i08:r2",
+            "text": "You have helped a worker."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i08:r3",
+            "text": "They have helped a worker."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i08:audio",
+            "transcript": "We have helped a worker."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i08:r1",
+              "targetText": "We have helped a worker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i08:r2",
+              "targetText": "You have helped a worker.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i08:r3",
+              "targetText": "They have helped a worker.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have helped a worker.",
+                "uk": "У записі звучить We have helped a worker."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have helped a worker.",
+                "uk": "У записі звучить We have helped a worker."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i09:r1",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i09:r2",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i09:r3",
+            "text": "helps"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a worker.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i09:r1",
+              "text": "helped"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i09:r2",
+              "text": "help"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i09:r3",
+              "text": "helps"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: helped.",
+                "uk": "Потрібна третя форма: helped."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: helped.",
+                "uk": "Потрібна третя форма: helped."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:word:buyer",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — buyer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:word:buyer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — buyer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:word:buyer:audio",
+            "transcript": "buyer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:word:buyer:r1",
+              "targetText": "buyer",
+              "meaningByLocale": {
+                "ru": "покупатель.",
+                "uk": "покупець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "buyer",
+            "definitionByLocale": {
+              "ru": "покупатель.",
+              "uk": "покупець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Він знайшов покупця.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Він знайшов покупця.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has found a buyer.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он нашёл покупателя.»",
+            "uk": "Розкажіть про досвід: «Він знайшов покупця.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "found",
+            "a",
+            "buyer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i11:r1",
+            "text": "He has found a buyer."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i11:r2",
+            "text": "You have found a buyer."
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i11:r3",
+            "text": "They have found a buyer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i11:audio",
+            "transcript": "He has found a buyer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-41:i11:r1",
+              "targetText": "He has found a buyer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i11:r2",
+              "targetText": "You have found a buyer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i11:r3",
+              "targetText": "They have found a buyer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has found a buyer.",
+                "uk": "У записі звучить He has found a buyer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has found a buyer.",
+                "uk": "У записі звучить He has found a buyer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-41:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i12:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-23:session-41:i12:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ a buyer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-41:i12:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i12:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i12:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: found.",
+                "uk": "Потрібна третя форма: found."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: found.",
+                "uk": "Потрібна третя форма: found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-41:i13:p1",
+              "target": "shopkeeper",
+              "meaningByLocale": {
+                "ru": "владелец небольшого магазина",
+                "uk": "власник невеликої крамниці"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-41:i13:p2",
+              "target": "painter",
+              "meaningByLocale": {
+                "ru": "маляр, художник",
+                "uk": "маляр, художник"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-41:i13:p3",
+              "target": "worker",
+              "meaningByLocale": {
+                "ru": "работник",
+                "uk": "працівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-41:i13:p4",
+              "target": "buyer",
+              "meaningByLocale": {
+                "ru": "покупатель",
+                "uk": "покупець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shopkeeper",
+            "painter",
+            "worker",
+            "buyer"
+          ],
+          "rightColumn": [
+            "власник невеликої крамниці",
+            "маляр, художник",
+            "працівник",
+            "покупець"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший варіант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший варіант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i14:audio",
+            "transcript": "We can ask another worker."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can ask another worker.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "ask",
+            "another",
+            "worker"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i15:audio",
+            "transcript": "You mustn't block the shop entrance."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't block the shop entrance.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "block",
+            "the",
+            "shop",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я знайшов покупця.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я знайшов покупця.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i16:audio",
+            "transcript": "I have found a buyer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have found a buyer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона поговорила із власником крамниці.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона поговорила із власником крамниці.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-41:i17:audio",
+            "transcript": "She has spoken to the shopkeeper."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has spoken to the shopkeeper.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-41:word:shopkeeper",
+      "correctText": "shopkeeper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i01",
+      "correctText": "I have spoken to the shopkeeper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i02",
+      "correctText": "I have spoken to the shopkeeper.",
+      "correctResponseId": "en:lesson-23:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i03",
+      "correctText": "spoken",
+      "correctResponseId": "en:lesson-23:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:word:painter",
+      "correctText": "painter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i04",
+      "correctText": "She has called a painter.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i05",
+      "correctText": "She has called a painter.",
+      "correctResponseId": "en:lesson-23:session-41:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i06",
+      "correctText": "called",
+      "correctResponseId": "en:lesson-23:session-41:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:word:worker",
+      "correctText": "worker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i07",
+      "correctText": "We have helped a worker.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i08",
+      "correctText": "We have helped a worker.",
+      "correctResponseId": "en:lesson-23:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i09",
+      "correctText": "helped",
+      "correctResponseId": "en:lesson-23:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:word:buyer",
+      "correctText": "buyer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i10",
+      "correctText": "He has found a buyer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i11",
+      "correctText": "He has found a buyer.",
+      "correctResponseId": "en:lesson-23:session-41:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i12",
+      "correctText": "found",
+      "correctResponseId": "en:lesson-23:session-41:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i14",
+      "correctText": "We can ask another worker.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i15",
+      "correctText": "You mustn't block the shop entrance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i16",
+      "correctText": "I have found a buyer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-41:i17",
+      "correctText": "She has spoken to the shopkeeper.",
+      "correctResponseId": null
+    }
+  ]
+}

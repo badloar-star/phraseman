@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-39:word:French",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — French",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:word:French:audio"
+      ],
+      "accessibilityLabel": "Картка слова — French",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:word:French:audio",
+          "transcript": "French"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:word:French:r1",
+            "targetText": "French",
+            "meaningByLocale": {
+              "ru": "французский язык.",
+              "uk": "французька мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "French",
+          "definitionByLocale": {
+            "ru": "французский язык.",
+            "uk": "французька мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я вивчав французьку мову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я вивчав французьку мову.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have studied French.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я изучал французский язык.»",
+          "uk": "Розкажіть про досвід: «Я вивчав французьку мову.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "studied",
+          "French"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i02:r1",
+          "text": "I have studied French."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i02:r2",
+          "text": "You have studied French."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i02:r3",
+          "text": "They have studied French."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i02:audio",
+          "transcript": "I have studied French."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:i02:r1",
+            "targetText": "I have studied French.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i02:r2",
+            "targetText": "You have studied French.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i02:r3",
+            "targetText": "They have studied French.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have studied French.",
+              "uk": "У записі звучить I have studied French."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have studied French.",
+              "uk": "У записі звучить I have studied French."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i03:r1",
+          "text": "studied"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i03:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i03:r3",
+          "text": "studies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ French.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-39:i03:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i03:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i03:r3",
+            "text": "studies"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:word:German",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — German",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:word:German:audio"
+      ],
+      "accessibilityLabel": "Картка слова — German",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:word:German:audio",
+          "transcript": "German"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:word:German:r1",
+            "targetText": "German",
+            "meaningByLocale": {
+              "ru": "немецкий язык.",
+              "uk": "німецька мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "German",
+          "definitionByLocale": {
+            "ru": "немецкий язык.",
+            "uk": "німецька мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона вивчала німецьку мову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона вивчала німецьку мову.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has studied German.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она изучала немецкий язык.»",
+          "uk": "Розкажіть про досвід: «Вона вивчала німецьку мову.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "studied",
+          "German"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i05:r1",
+          "text": "She has studied German."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i05:r2",
+          "text": "You have studied German."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i05:r3",
+          "text": "They have studied German."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i05:audio",
+          "transcript": "She has studied German."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:i05:r1",
+            "targetText": "She has studied German.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i05:r2",
+            "targetText": "You have studied German.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i05:r3",
+            "targetText": "They have studied German.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has studied German.",
+              "uk": "У записі звучить She has studied German."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has studied German.",
+              "uk": "У записі звучить She has studied German."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i06:r1",
+          "text": "studied"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i06:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i06:r3",
+          "text": "studies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ German.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-39:i06:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i06:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i06:r3",
+            "text": "studies"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:word:Spanish",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Spanish",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:word:Spanish:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Spanish",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:word:Spanish:audio",
+          "transcript": "Spanish"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:word:Spanish:r1",
+            "targetText": "Spanish",
+            "meaningByLocale": {
+              "ru": "испанский язык.",
+              "uk": "іспанська мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Spanish",
+          "definitionByLocale": {
+            "ru": "испанский язык.",
+            "uk": "іспанська мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми вивчали іспанську мову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми вивчали іспанську мову.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have studied Spanish.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы изучали испанский язык.»",
+          "uk": "Розкажіть про досвід: «Ми вивчали іспанську мову.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "studied",
+          "Spanish"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i08:r1",
+          "text": "We have studied Spanish."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i08:r2",
+          "text": "You have studied Spanish."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i08:r3",
+          "text": "They have studied Spanish."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i08:audio",
+          "transcript": "We have studied Spanish."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:i08:r1",
+            "targetText": "We have studied Spanish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i08:r2",
+            "targetText": "You have studied Spanish.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i08:r3",
+            "targetText": "They have studied Spanish.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have studied Spanish.",
+              "uk": "У записі звучить We have studied Spanish."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have studied Spanish.",
+              "uk": "У записі звучить We have studied Spanish."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i09:r1",
+          "text": "studied"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i09:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i09:r3",
+          "text": "studies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ Spanish.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-39:i09:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i09:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i09:r3",
+            "text": "studies"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:word:Italian",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — Italian",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:word:Italian:audio"
+      ],
+      "accessibilityLabel": "Картка слова — Italian",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:word:Italian:audio",
+          "transcript": "Italian"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:word:Italian:r1",
+            "targetText": "Italian",
+            "meaningByLocale": {
+              "ru": "итальянский язык.",
+              "uk": "італійська мова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "Italian",
+          "definitionByLocale": {
+            "ru": "итальянский язык.",
+            "uk": "італійська мова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він вивчав італійську мову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він вивчав італійську мову.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has studied Italian.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он изучал итальянский язык.»",
+          "uk": "Розкажіть про досвід: «Він вивчав італійську мову.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "studied",
+          "Italian"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i11:r1",
+          "text": "He has studied Italian."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i11:r2",
+          "text": "You have studied Italian."
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i11:r3",
+          "text": "They have studied Italian."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i11:audio",
+          "transcript": "He has studied Italian."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-39:i11:r1",
+            "targetText": "He has studied Italian.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i11:r2",
+            "targetText": "You have studied Italian.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i11:r3",
+            "targetText": "They have studied Italian.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has studied Italian.",
+              "uk": "У записі звучить He has studied Italian."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has studied Italian.",
+              "uk": "У записі звучить He has studied Italian."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-39:i12:r1",
+          "text": "studied"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i12:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-23:session-39:i12:r3",
+          "text": "studies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ Italian.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-39:i12:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i12:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i12:r3",
+            "text": "studies"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-39:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-39:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: studied.",
+              "uk": "Потрібна третя форма: studied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-39:i13:p1",
+            "target": "French",
+            "meaningByLocale": {
+              "ru": "французский язык",
+              "uk": "французька мова"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-39:i13:p2",
+            "target": "German",
+            "meaningByLocale": {
+              "ru": "немецкий язык",
+              "uk": "німецька мова"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-39:i13:p3",
+            "target": "Spanish",
+            "meaningByLocale": {
+              "ru": "испанский язык",
+              "uk": "іспанська мова"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-39:i13:p4",
+            "target": "Italian",
+            "meaningByLocale": {
+              "ru": "итальянский язык",
+              "uk": "італійська мова"
+            }
+          }
+        ],
+        "leftColumn": [
+          "French",
+          "German",
+          "Spanish",
+          "Italian"
+        ],
+        "rightColumn": [
+          "французька мова",
+          "німецька мова",
+          "іспанська мова",
+          "італійська мова"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i14:audio",
+          "transcript": "We can learn another language."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can learn another language.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "learn",
+          "another",
+          "language"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i15:audio",
+          "transcript": "You mustn't laugh at other students."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't laugh at other students.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "laugh",
+          "at",
+          "other",
+          "students"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я вивчав німецьку мову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я вивчав німецьку мову.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i16:audio",
+          "transcript": "I have studied German."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have studied German.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-39:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона вивчала французьку мову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона вивчала французьку мову.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-39:i17:audio",
+          "transcript": "She has studied French."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has studied French.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9f30488421c910d4379f2dedc39713cb3aa9ee785195d0df10d76e7c127e628f"
+}

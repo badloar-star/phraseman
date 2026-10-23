@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-29:word:van",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — van",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:word:van:audio"
+      ],
+      "accessibilityLabel": "Картка слова — van",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:word:van:audio",
+          "transcript": "van"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:word:van:r1",
+            "targetText": "van",
+            "meaningByLocale": {
+              "ru": "фургон.",
+              "uk": "фургон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "van",
+          "definitionByLocale": {
+            "ru": "фургон.",
+            "uk": "фургон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я водив фургон.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я водив фургон.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have driven a van.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я водил фургон.»",
+          "uk": "Розкажіть про досвід: «Я водив фургон.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "driven",
+          "a",
+          "van"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i02:r1",
+          "text": "I have driven a van."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i02:r2",
+          "text": "You have driven a van."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i02:r3",
+          "text": "They have driven a van."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i02:audio",
+          "transcript": "I have driven a van."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:i02:r1",
+            "targetText": "I have driven a van.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i02:r2",
+            "targetText": "You have driven a van.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i02:r3",
+            "targetText": "They have driven a van.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have driven a van.",
+              "uk": "У записі звучить I have driven a van."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have driven a van.",
+              "uk": "У записі звучить I have driven a van."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i03:r1",
+          "text": "driven"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i03:r2",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i03:r3",
+          "text": "drives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ a van.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-29:i03:r1",
+            "text": "driven"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i03:r2",
+            "text": "drive"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i03:r3",
+            "text": "drives"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: driven.",
+              "uk": "Потрібна третя форма: driven."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: driven.",
+              "uk": "Потрібна третя форма: driven."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:word:motorbike",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — motorbike",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:word:motorbike:audio"
+      ],
+      "accessibilityLabel": "Картка слова — motorbike",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:word:motorbike:audio",
+          "transcript": "motorbike"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:word:motorbike:r1",
+            "targetText": "motorbike",
+            "meaningByLocale": {
+              "ru": "мотоцикл.",
+              "uk": "мотоцикл."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "motorbike",
+          "definitionByLocale": {
+            "ru": "мотоцикл.",
+            "uk": "мотоцикл."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона їздила на мотоциклі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона їздила на мотоциклі.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has ridden a motorbike.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она ездила на мотоцикле.»",
+          "uk": "Розкажіть про досвід: «Вона їздила на мотоциклі.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "ridden",
+          "a",
+          "motorbike"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i05:r1",
+          "text": "She has ridden a motorbike."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i05:r2",
+          "text": "You have ridden a motorbike."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i05:r3",
+          "text": "They have ridden a motorbike."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i05:audio",
+          "transcript": "She has ridden a motorbike."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:i05:r1",
+            "targetText": "She has ridden a motorbike.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i05:r2",
+            "targetText": "You have ridden a motorbike.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i05:r3",
+            "targetText": "They have ridden a motorbike.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has ridden a motorbike.",
+              "uk": "У записі звучить She has ridden a motorbike."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has ridden a motorbike.",
+              "uk": "У записі звучить She has ridden a motorbike."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i06:r1",
+          "text": "ridden"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i06:r2",
+          "text": "ride"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i06:r3",
+          "text": "rides"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a motorbike.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-29:i06:r1",
+            "text": "ridden"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i06:r2",
+            "text": "ride"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i06:r3",
+            "text": "rides"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: ridden.",
+              "uk": "Потрібна третя форма: ridden."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: ridden.",
+              "uk": "Потрібна третя форма: ridden."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:word:helicopter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — helicopter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:word:helicopter:audio"
+      ],
+      "accessibilityLabel": "Картка слова — helicopter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:word:helicopter:audio",
+          "transcript": "helicopter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:word:helicopter:r1",
+            "targetText": "helicopter",
+            "meaningByLocale": {
+              "ru": "вертолёт.",
+              "uk": "гелікоптер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "helicopter",
+          "definitionByLocale": {
+            "ru": "вертолёт.",
+            "uk": "гелікоптер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми бачили гелікоптер.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми бачили гелікоптер.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have seen a helicopter.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы видели вертолёт.»",
+          "uk": "Розкажіть про досвід: «Ми бачили гелікоптер.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "seen",
+          "a",
+          "helicopter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i08:r1",
+          "text": "We have seen a helicopter."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i08:r2",
+          "text": "You have seen a helicopter."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i08:r3",
+          "text": "They have seen a helicopter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i08:audio",
+          "transcript": "We have seen a helicopter."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:i08:r1",
+            "targetText": "We have seen a helicopter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i08:r2",
+            "targetText": "You have seen a helicopter.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i08:r3",
+            "targetText": "They have seen a helicopter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a helicopter.",
+              "uk": "У записі звучить We have seen a helicopter."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a helicopter.",
+              "uk": "У записі звучить We have seen a helicopter."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i09:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i09:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i09:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a helicopter.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-29:i09:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i09:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i09:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:word:tractor",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tractor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:word:tractor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tractor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:word:tractor:audio",
+          "transcript": "tractor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:word:tractor:r1",
+            "targetText": "tractor",
+            "meaningByLocale": {
+              "ru": "трактор.",
+              "uk": "трактор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tractor",
+          "definitionByLocale": {
+            "ru": "трактор.",
+            "uk": "трактор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він водив трактор.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він водив трактор.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has driven a tractor.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он водил трактор.»",
+          "uk": "Розкажіть про досвід: «Він водив трактор.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "driven",
+          "a",
+          "tractor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i11:r1",
+          "text": "He has driven a tractor."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i11:r2",
+          "text": "You have driven a tractor."
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i11:r3",
+          "text": "They have driven a tractor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i11:audio",
+          "transcript": "He has driven a tractor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-29:i11:r1",
+            "targetText": "He has driven a tractor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i11:r2",
+            "targetText": "You have driven a tractor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i11:r3",
+            "targetText": "They have driven a tractor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has driven a tractor.",
+              "uk": "У записі звучить He has driven a tractor."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has driven a tractor.",
+              "uk": "У записі звучить He has driven a tractor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-29:i12:r1",
+          "text": "driven"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i12:r2",
+          "text": "drive"
+        },
+        {
+          "responseId": "en:lesson-23:session-29:i12:r3",
+          "text": "drives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a tractor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-29:i12:r1",
+            "text": "driven"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i12:r2",
+            "text": "drive"
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i12:r3",
+            "text": "drives"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: driven.",
+              "uk": "Потрібна третя форма: driven."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: driven.",
+              "uk": "Потрібна третя форма: driven."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-29:i13:p1",
+            "target": "van",
+            "meaningByLocale": {
+              "ru": "фургон",
+              "uk": "фургон"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-29:i13:p2",
+            "target": "motorbike",
+            "meaningByLocale": {
+              "ru": "мотоцикл",
+              "uk": "мотоцикл"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-29:i13:p3",
+            "target": "helicopter",
+            "meaningByLocale": {
+              "ru": "вертолёт",
+              "uk": "гелікоптер"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-29:i13:p4",
+            "target": "tractor",
+            "meaningByLocale": {
+              "ru": "трактор",
+              "uk": "трактор"
+            }
+          }
+        ],
+        "leftColumn": [
+          "van",
+          "motorbike",
+          "helicopter",
+          "tractor"
+        ],
+        "rightColumn": [
+          "фургон",
+          "мотоцикл",
+          "гелікоптер",
+          "трактор"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я їздив на мотоциклі.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я їздив на мотоциклі.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i16:audio",
+          "transcript": "I have ridden a motorbike."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have ridden a motorbike.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми водили фургон.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми водили фургон.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-29:i17:audio",
+          "transcript": "We have driven a van."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have driven a van.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "90eb62392d5c9c16c55fd8e60b0c236d4b3eb5dbe97a3d87287784b327df4fbf"
+}

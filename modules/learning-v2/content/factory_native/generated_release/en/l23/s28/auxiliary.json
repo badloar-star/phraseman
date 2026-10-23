@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-28:intro1:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-28:intro1:r3": {
+          "ru": "После have или has нужна третья форма: washed.",
+          "uk": "Після have або has потрібна третя форма: washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-28:intro2:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-28:intro2:r3": {
+          "ru": "После have или has нужна третья форма: ironed.",
+          "uk": "Після have або has потрібна третя форма: ironed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-28:intro3:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-28:intro3:r3": {
+          "ru": "После have или has нужна третья форма: bought.",
+          "uk": "Після have або has потрібна третя форма: bought."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b9eccf1220a8fdf08ce5f472302d4831f204ca1d73b441f87caf928778b17fc2"
+}

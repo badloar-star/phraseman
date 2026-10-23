@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что уже сделано",
+        "uk": "Що вже зроблено"
+      },
+      "bodyByLocale": {
+        "ru": "Blouse — блузка. I have washed a blouse — я постирал блузку. Washed — третья форма wash. Так можно сообщить о сделанном: блузка уже постирана. Blouse — исчисляемое существительное: здесь нужна форма a blouse.",
+        "uk": "Blouse — блузка. I have washed a blouse — я виправ блузку. Washed — третя форма wash. Так можна повідомити про зроблене: блузку вже випрано. Blouse — злічуваний іменник: тут потрібна форма a blouse."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-28:intro1:r1",
+              "text": "I have washed a blouse."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro1:r2",
+              "text": "I has washed a blouse."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro1:r3",
+              "text": "I have wash a blouse."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-28:intro1:r1",
+              "text": "I have washed a blouse."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro1:r2",
+              "text": "I has washed a blouse."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro1:r3",
+              "text": "I have wash a blouse."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Shorts — шорты, trousers — брюки. Оба слова имеют форму множественного числа, даже когда речь об одной вещи. He has ironed his trousers — он погладил свои брюки. Ironed — третья форма iron. Перед trousers не ставим a.",
+        "uk": "Shorts — шорти, trousers — штани. Обидва слова мають форму множини, навіть коли йдеться про одну річ. He has ironed his trousers — він попрасував свої штани. Ironed — третя форма iron. Перед trousers не ставимо a."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-28:intro2:r1",
+              "text": "He has ironed his trousers."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro2:r2",
+              "text": "He have ironed his trousers."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro2:r3",
+              "text": "He has iron his trousers."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-28:intro2:r1",
+              "text": "He has ironed his trousers."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro2:r2",
+              "text": "He have ironed his trousers."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro2:r3",
+              "text": "He has iron his trousers."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Leggings — легинсы, облегающие эластичные брюки. Это тоже форма множественного числа. I have bought new leggings — я купил новые легинсы. Bought — третья форма buy. Прилагательное new не меняется перед словом во множественном числе.",
+        "uk": "Leggings — легінси, еластичні штани, що облягають тіло. Це теж форма множини. I have bought new leggings — я купив нові легінси. Bought — третя форма buy. Прикметник new не змінюється перед словом у множині."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-28:intro3:r1",
+              "text": "I have bought new leggings."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro3:r2",
+              "text": "I has bought new leggings."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro3:r3",
+              "text": "I have buy new leggings."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-28:intro3:r1",
+              "text": "I have bought new leggings."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro3:r2",
+              "text": "I has bought new leggings."
+            },
+            {
+              "responseId": "en:lesson-23:session-28:intro3:r3",
+              "text": "I have buy new leggings."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "57dba62664c270168adbc584870db984a77ccfc23e8c4841572fb12e8b214f8c"
+}

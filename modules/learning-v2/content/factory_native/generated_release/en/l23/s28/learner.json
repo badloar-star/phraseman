@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-28:word:blouse",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blouse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:word:blouse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blouse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:word:blouse:audio",
+          "transcript": "blouse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:word:blouse:r1",
+            "targetText": "blouse",
+            "meaningByLocale": {
+              "ru": "блузка.",
+              "uk": "блузка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blouse",
+          "definitionByLocale": {
+            "ru": "блузка.",
+            "uk": "блузка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: «Я постирал блузку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: «Я постирал блузку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have washed a blouse.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Я постирал блузку.»",
+          "uk": "Повідомте: «Я виправ блузку.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "washed",
+          "a",
+          "blouse"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i02:r1",
+          "text": "I have washed a blouse."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i02:r2",
+          "text": "You have washed a blouse."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i02:r3",
+          "text": "They have washed a blouse."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i02:audio",
+          "transcript": "I have washed a blouse."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:i02:r1",
+            "targetText": "I have washed a blouse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i02:r2",
+            "targetText": "You have washed a blouse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i02:r3",
+            "targetText": "They have washed a blouse.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have washed a blouse.",
+              "uk": "У записі звучить I have washed a blouse."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have washed a blouse.",
+              "uk": "У записі звучить I have washed a blouse."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i03:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i03:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i03:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ a blouse.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-28:i03:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i03:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i03:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: washed.",
+              "uk": "Потрібна третя форма: washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: washed.",
+              "uk": "Потрібна третя форма: washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:word:shorts",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shorts",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:word:shorts:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shorts",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:word:shorts:audio",
+          "transcript": "shorts"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:word:shorts:r1",
+            "targetText": "shorts",
+            "meaningByLocale": {
+              "ru": "шорты.",
+              "uk": "шорти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shorts",
+          "definitionByLocale": {
+            "ru": "шорты.",
+            "uk": "шорти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: «Она упаковала свои шорты.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: «Она упаковала свои шорты.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has packed her shorts.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Она упаковала свои шорты.»",
+          "uk": "Повідомте: «Вона спакувала свої шорти.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "packed",
+          "her",
+          "shorts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i05:r1",
+          "text": "She has packed her shorts."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i05:r2",
+          "text": "You have packed your shorts."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i05:r3",
+          "text": "They have packed their shorts."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i05:audio",
+          "transcript": "She has packed her shorts."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:i05:r1",
+            "targetText": "She has packed her shorts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i05:r2",
+            "targetText": "You have packed your shorts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i05:r3",
+            "targetText": "They have packed their shorts.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has packed her shorts.",
+              "uk": "У записі звучить She has packed her shorts."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has packed her shorts.",
+              "uk": "У записі звучить She has packed her shorts."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i06:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i06:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i06:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ her shorts.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-28:i06:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i06:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i06:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: packed.",
+              "uk": "Потрібна третя форма: packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: packed.",
+              "uk": "Потрібна третя форма: packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:word:trousers",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — trousers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:word:trousers:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — trousers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:word:trousers:audio",
+          "transcript": "trousers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:word:trousers:r1",
+            "targetText": "trousers",
+            "meaningByLocale": {
+              "ru": "брюки.",
+              "uk": "штани."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trousers",
+          "definitionByLocale": {
+            "ru": "брюки.",
+            "uk": "штани."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: «Он погладил свои брюки.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: «Он погладил свои брюки.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has ironed his trousers.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Он погладил свои брюки.»",
+          "uk": "Повідомте: «Він попрасував свої штани.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "ironed",
+          "his",
+          "trousers"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i08:r1",
+          "text": "He has ironed his trousers."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i08:r2",
+          "text": "You have ironed your trousers."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i08:r3",
+          "text": "They have ironed their trousers."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i08:audio",
+          "transcript": "He has ironed his trousers."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:i08:r1",
+            "targetText": "He has ironed his trousers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i08:r2",
+            "targetText": "You have ironed your trousers.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i08:r3",
+            "targetText": "They have ironed their trousers.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has ironed his trousers.",
+              "uk": "У записі звучить He has ironed his trousers."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has ironed his trousers.",
+              "uk": "У записі звучить He has ironed his trousers."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i09:r1",
+          "text": "ironed"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i09:r2",
+          "text": "iron"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i09:r3",
+          "text": "irons"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ his trousers.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-28:i09:r1",
+            "text": "ironed"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i09:r2",
+            "text": "iron"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i09:r3",
+            "text": "irons"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: ironed.",
+              "uk": "Потрібна третя форма: ironed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: ironed.",
+              "uk": "Потрібна третя форма: ironed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:word:leggings",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — leggings",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:word:leggings:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — leggings",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:word:leggings:audio",
+          "transcript": "leggings"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:word:leggings:r1",
+            "targetText": "leggings",
+            "meaningByLocale": {
+              "ru": "легинсы.",
+              "uk": "легінси."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leggings",
+          "definitionByLocale": {
+            "ru": "легинсы.",
+            "uk": "легінси."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: «Я купил новые легинсы.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: «Я купил новые легинсы.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have bought new leggings.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Я купил новые легинсы.»",
+          "uk": "Повідомте: «Я купив нові легінси.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "bought",
+          "new",
+          "leggings"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i11:r1",
+          "text": "I have bought new leggings."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i11:r2",
+          "text": "You have bought new leggings."
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i11:r3",
+          "text": "They have bought new leggings."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i11:audio",
+          "transcript": "I have bought new leggings."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-28:i11:r1",
+            "targetText": "I have bought new leggings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i11:r2",
+            "targetText": "You have bought new leggings.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i11:r3",
+            "targetText": "They have bought new leggings.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have bought new leggings.",
+              "uk": "У записі звучить I have bought new leggings."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have bought new leggings.",
+              "uk": "У записі звучить I have bought new leggings."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-28:i12:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i12:r2",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-23:session-28:i12:r3",
+          "text": "buys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ new leggings.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-28:i12:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i12:r2",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i12:r3",
+            "text": "buys"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: bought.",
+              "uk": "Потрібна третя форма: bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: bought.",
+              "uk": "Потрібна третя форма: bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-28:i13:p1",
+            "target": "blouse",
+            "meaningByLocale": {
+              "ru": "блузка",
+              "uk": "блузка"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-28:i13:p2",
+            "target": "shorts",
+            "meaningByLocale": {
+              "ru": "шорты",
+              "uk": "шорти"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-28:i13:p3",
+            "target": "trousers",
+            "meaningByLocale": {
+              "ru": "брюки",
+              "uk": "штани"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-28:i13:p4",
+            "target": "leggings",
+            "meaningByLocale": {
+              "ru": "легинсы",
+              "uk": "легінси"
+            }
+          }
+        ],
+        "leftColumn": [
+          "blouse",
+          "shorts",
+          "trousers",
+          "leggings"
+        ],
+        "rightColumn": [
+          "блузка",
+          "шорты",
+          "брюки",
+          "легинсы"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: другой вариант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: другой вариант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я упаковал свои шорты.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я упаковал свои шорты.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i16:audio",
+          "transcript": "I have packed my shorts."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have packed my shorts.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-28:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она постирала блузку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она постирала блузку.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-28:i17:audio",
+          "transcript": "She has washed a blouse."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has washed a blouse.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fbefdae9dfd6e63ba2140536b7ea4668d2ca4de094226a907ee90b1aaf0c5b67"
+}

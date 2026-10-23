@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-30:word:ant",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:word:ant:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:word:ant:audio",
+          "transcript": "ant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:word:ant:r1",
+            "targetText": "ant",
+            "meaningByLocale": {
+              "ru": "муравей.",
+              "uk": "мураха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ant",
+          "definitionByLocale": {
+            "ru": "муравей.",
+            "uk": "мураха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Я бачив мураху.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Я бачив мураху.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have seen an ant.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я видел муравья.»",
+          "uk": "Розкажіть про досвід: «Я бачив мураху.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "seen",
+          "an",
+          "ant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i02:r1",
+          "text": "I have seen an ant."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i02:r2",
+          "text": "You have seen an ant."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i02:r3",
+          "text": "They have seen an ant."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i02:audio",
+          "transcript": "I have seen an ant."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:i02:r1",
+            "targetText": "I have seen an ant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i02:r2",
+            "targetText": "You have seen an ant.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i02:r3",
+            "targetText": "They have seen an ant.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen an ant.",
+              "uk": "У записі звучить I have seen an ant."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen an ant.",
+              "uk": "У записі звучить I have seen an ant."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i03:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i03:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i03:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ an ant.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-30:i03:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i03:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i03:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:word:spider",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — spider",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:word:spider:audio"
+      ],
+      "accessibilityLabel": "Картка слова — spider",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:word:spider:audio",
+          "transcript": "spider"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:word:spider:r1",
+            "targetText": "spider",
+            "meaningByLocale": {
+              "ru": "паук.",
+              "uk": "павук."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spider",
+          "definitionByLocale": {
+            "ru": "паук.",
+            "uk": "павук."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Вона бачила павука.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Вона бачила павука.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has seen a spider.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она видела паука.»",
+          "uk": "Розкажіть про досвід: «Вона бачила павука.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "seen",
+          "a",
+          "spider"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i05:r1",
+          "text": "She has seen a spider."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i05:r2",
+          "text": "You have seen a spider."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i05:r3",
+          "text": "They have seen a spider."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i05:audio",
+          "transcript": "She has seen a spider."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:i05:r1",
+            "targetText": "She has seen a spider.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i05:r2",
+            "targetText": "You have seen a spider.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i05:r3",
+            "targetText": "They have seen a spider.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has seen a spider.",
+              "uk": "У записі звучить She has seen a spider."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has seen a spider.",
+              "uk": "У записі звучить She has seen a spider."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i06:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i06:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i06:r3",
+          "text": "sees"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a spider.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-30:i06:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i06:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i06:r3",
+            "text": "sees"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: seen.",
+              "uk": "Потрібна третя форма: seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:word:mosquito",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mosquito",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:word:mosquito:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mosquito",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:word:mosquito:audio",
+          "transcript": "mosquito"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:word:mosquito:r1",
+            "targetText": "mosquito",
+            "meaningByLocale": {
+              "ru": "комар.",
+              "uk": "комар."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mosquito",
+          "definitionByLocale": {
+            "ru": "комар.",
+            "uk": "комар."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Ми чули комара.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Ми чули комара.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have heard a mosquito.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы слышали комара.»",
+          "uk": "Розкажіть про досвід: «Ми чули комара.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "heard",
+          "a",
+          "mosquito"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i08:r1",
+          "text": "We have heard a mosquito."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i08:r2",
+          "text": "You have heard a mosquito."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i08:r3",
+          "text": "They have heard a mosquito."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i08:audio",
+          "transcript": "We have heard a mosquito."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:i08:r1",
+            "targetText": "We have heard a mosquito.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i08:r2",
+            "targetText": "You have heard a mosquito.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i08:r3",
+            "targetText": "They have heard a mosquito.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have heard a mosquito.",
+              "uk": "У записі звучить We have heard a mosquito."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have heard a mosquito.",
+              "uk": "У записі звучить We have heard a mosquito."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i09:r1",
+          "text": "heard"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i09:r2",
+          "text": "hear"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i09:r3",
+          "text": "hears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a mosquito.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-30:i09:r1",
+            "text": "heard"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i09:r2",
+            "text": "hear"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i09:r3",
+            "text": "hears"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: heard.",
+              "uk": "Потрібна третя форма: heard."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: heard.",
+              "uk": "Потрібна третя форма: heard."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:word:worm",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — worm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:word:worm:audio"
+      ],
+      "accessibilityLabel": "Картка слова — worm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:word:worm:audio",
+          "transcript": "worm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:word:worm:r1",
+            "targetText": "worm",
+            "meaningByLocale": {
+              "ru": "червь.",
+              "uk": "черв’як."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worm",
+          "definitionByLocale": {
+            "ru": "червь.",
+            "uk": "черв’як."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть про досвід: «Він знайшов черв’яка.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про досвід: «Він знайшов черв’яка.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has found a worm.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он нашёл червя.»",
+          "uk": "Розкажіть про досвід: «Він знайшов черв’яка.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "found",
+          "a",
+          "worm"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i11:r1",
+          "text": "He has found a worm."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i11:r2",
+          "text": "You have found a worm."
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i11:r3",
+          "text": "They have found a worm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i11:audio",
+          "transcript": "He has found a worm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-30:i11:r1",
+            "targetText": "He has found a worm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i11:r2",
+            "targetText": "You have found a worm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i11:r3",
+            "targetText": "They have found a worm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has found a worm.",
+              "uk": "У записі звучить He has found a worm."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has found a worm.",
+              "uk": "У записі звучить He has found a worm."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-30:i12:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i12:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-23:session-30:i12:r3",
+          "text": "finds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a worm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-30:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i12:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i12:r3",
+            "text": "finds"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: found.",
+              "uk": "Потрібна третя форма: found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-30:i13:p1",
+            "target": "ant",
+            "meaningByLocale": {
+              "ru": "муравей",
+              "uk": "мураха"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-30:i13:p2",
+            "target": "spider",
+            "meaningByLocale": {
+              "ru": "паук",
+              "uk": "павук"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-30:i13:p3",
+            "target": "mosquito",
+            "meaningByLocale": {
+              "ru": "комар",
+              "uk": "комар"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-30:i13:p4",
+            "target": "worm",
+            "meaningByLocale": {
+              "ru": "червь",
+              "uk": "черв’як"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ant",
+          "spider",
+          "mosquito",
+          "worm"
+        ],
+        "rightColumn": [
+          "мураха",
+          "павук",
+          "комар",
+          "черв’як"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я бачив павука.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я бачив павука.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i16:audio",
+          "transcript": "I have seen a spider."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have seen a spider.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми знайшли черв’яка.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми знайшли черв’яка.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-30:i17:audio",
+          "transcript": "We have found a worm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have found a worm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c479421a57de9777a54e1028d8b7f6a288240d6e20d11d150b380aed9fa006d7"
+}

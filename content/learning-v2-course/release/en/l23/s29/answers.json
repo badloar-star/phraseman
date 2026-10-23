@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-29:word:van",
+    "correctText": "van",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i01",
+    "correctText": "I have driven a van.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i02",
+    "correctText": "I have driven a van.",
+    "correctResponseId": "en:lesson-23:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i03",
+    "correctText": "driven",
+    "correctResponseId": "en:lesson-23:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:word:motorbike",
+    "correctText": "motorbike",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i04",
+    "correctText": "She has ridden a motorbike.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i05",
+    "correctText": "She has ridden a motorbike.",
+    "correctResponseId": "en:lesson-23:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i06",
+    "correctText": "ridden",
+    "correctResponseId": "en:lesson-23:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:word:helicopter",
+    "correctText": "helicopter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i07",
+    "correctText": "We have seen a helicopter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i08",
+    "correctText": "We have seen a helicopter.",
+    "correctResponseId": "en:lesson-23:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i09",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:word:tractor",
+    "correctText": "tractor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i10",
+    "correctText": "He has driven a tractor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i11",
+    "correctText": "He has driven a tractor.",
+    "correctResponseId": "en:lesson-23:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i12",
+    "correctText": "driven",
+    "correctResponseId": "en:lesson-23:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i13",
+    "correctText": "en:lesson-23:session-29:i13:p1=van\nen:lesson-23:session-29:i13:p2=motorbike\nen:lesson-23:session-29:i13:p3=helicopter\nen:lesson-23:session-29:i13:p4=tractor",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i14",
+    "correctText": "We can choose another place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i15",
+    "correctText": "You mustn't leave the door open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i16",
+    "correctText": "I have ridden a motorbike.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-29:i17",
+    "correctText": "We have driven a van.",
+    "correctResponseId": null
+  }
+]

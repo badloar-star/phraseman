@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что случилось",
+        "uk": "Що сталося"
+      },
+      "bodyByLocale": {
+        "ru": "Elbow — локоть, место сгиба руки. Knee — колено, место сгиба ноги. I have hurt my elbow — я повредил локоть. Hurt после have — третья форма; она совпадает с начальной формой. My elbow уточняет, что речь о моём локте.",
+        "uk": "Elbow — лікоть, місце згину руки. Knee — коліно, місце згину ноги. I have hurt my elbow — я пошкодив лікоть. Hurt після have — третя форма; вона збігається з початковою формою. My elbow уточнює, що йдеться про мій лікоть."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-27:intro1:r1",
+              "text": "I have hurt my elbow."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro1:r2",
+              "text": "I has hurt my elbow."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro1:r3",
+              "text": "I have hurting my elbow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-27:intro1:r1",
+              "text": "I have hurt my elbow."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro1:r2",
+              "text": "I has hurt my elbow."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro1:r3",
+              "text": "I have hurting my elbow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Hip — область бедра у тазобедренного сустава: сбоку, там, где нога соединяется с туловищем. He has hurt his hip — он повредил бедро. His означает «его». С he используем has.",
+        "uk": "Hip — ділянка стегна біля кульшового суглоба: збоку, там, де нога з’єднується з тулубом. He has hurt his hip — він пошкодив стегно. His означає «його». Із he використовуємо has."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-27:intro2:r1",
+              "text": "He has hurt his hip."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro2:r2",
+              "text": "He have hurt his hip."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro2:r3",
+              "text": "He has hurting his hip."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-27:intro2:r1",
+              "text": "He has hurt his hip."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro2:r2",
+              "text": "He have hurt his hip."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro2:r3",
+              "text": "He has hurting his hip."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Neck — шея. I have hurt my neck — я повредил шею. Present perfect помогает сообщить, что случилось и почему сейчас больно. Мы не называем здесь точное время травмы. She has hurt her knee — она повредила колено.",
+        "uk": "Neck — шия. I have hurt my neck — я пошкодив шию. Present perfect допомагає повідомити, що сталося й чому зараз боляче. Ми не називаємо тут точного часу травми. She has hurt her knee — вона пошкодила коліно."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-27:intro3:r1",
+              "text": "I have hurt my neck."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro3:r2",
+              "text": "I has hurt my neck."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro3:r3",
+              "text": "I have hurting my neck."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-27:intro3:r1",
+              "text": "I have hurt my neck."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro3:r2",
+              "text": "I has hurt my neck."
+            },
+            {
+              "responseId": "en:lesson-23:session-27:intro3:r3",
+              "text": "I have hurting my neck."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "959d2e96fb7433f3124c4222eea8e88c79f600576d982e35a903c62457c5e1da"
+}

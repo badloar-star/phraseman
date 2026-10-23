@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Ant — муравей. Spider — паук. I have seen an ant — я видел муравья. Перед ant нужен an: слово начинается с гласного звука. Seen — третья форма see. She has seen a spider — она видела паука.",
+        "uk": "Ant — мураха. Spider — павук. I have seen an ant — я бачив мураху. Перед ant потрібен an: слово починається з голосного звука. Seen — третя форма see. She has seen a spider — вона бачила павука."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-30:intro1:r1",
+              "text": "I have seen an ant."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro1:r2",
+              "text": "I has seen an ant."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro1:r3",
+              "text": "I have see an ant."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-30:intro1:r1",
+              "text": "I have seen an ant."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro1:r2",
+              "text": "I has seen an ant."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro1:r3",
+              "text": "I have see an ant."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Mosquito — комар. We have heard a mosquito — мы слышали комара: например, его писк в комнате. Heard — третья форма hear. С we нужно have.",
+        "uk": "Mosquito — комар. We have heard a mosquito — ми чули комара: наприклад, його писк у кімнаті. Heard — третя форма hear. Із we потрібно have."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-30:intro2:r1",
+              "text": "We have heard a mosquito."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro2:r2",
+              "text": "We has heard a mosquito."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro2:r3",
+              "text": "We have hear a mosquito."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-30:intro2:r1",
+              "text": "We have heard a mosquito."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro2:r2",
+              "text": "We has heard a mosquito."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro2:r3",
+              "text": "We have hear a mosquito."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Worm — червь, например дождевой червь в земле. He has found a worm — он нашёл червя. Found — третья форма find. С he используем has. Так можно сообщить, что человек только что заметил в саду.",
+        "uk": "Worm — черв’як, наприклад дощовий черв’як у землі. He has found a worm — він знайшов черв’яка. Found — третя форма find. Із he використовуємо has. Так можна повідомити, що людина щойно помітила в саду."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-30:intro3:r1",
+              "text": "He has found a worm."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro3:r2",
+              "text": "He have found a worm."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro3:r3",
+              "text": "He has find a worm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-30:intro3:r1",
+              "text": "He has found a worm."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro3:r2",
+              "text": "He have found a worm."
+            },
+            {
+              "responseId": "en:lesson-23:session-30:intro3:r3",
+              "text": "He has find a worm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cd61208143ceda821c0094e886ee24e1c0ae799de3cafb8d414d933b33d96fb2"
+}

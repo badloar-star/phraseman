@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-27:word:elbow",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — elbow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:word:elbow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — elbow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:word:elbow:audio",
+          "transcript": "elbow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:word:elbow:r1",
+            "targetText": "elbow",
+            "meaningByLocale": {
+              "ru": "локоть.",
+              "uk": "лікоть."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "elbow",
+          "definitionByLocale": {
+            "ru": "локоть.",
+            "uk": "лікоть."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть: «Я пошкодив лікоть.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть: «Я пошкодив лікоть.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have hurt my elbow.",
+        "localizedMeaning": {
+          "ru": "Объясните: «Я повредил локоть.»",
+          "uk": "Поясніть: «Я пошкодив лікоть.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "hurt",
+          "my",
+          "elbow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i02:r1",
+          "text": "I have hurt my elbow."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i02:r2",
+          "text": "You have hurt your elbow."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i02:r3",
+          "text": "They have hurt their elbows."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i02:audio",
+          "transcript": "I have hurt my elbow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:i02:r1",
+            "targetText": "I have hurt my elbow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i02:r2",
+            "targetText": "You have hurt your elbow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i02:r3",
+            "targetText": "They have hurt their elbows.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have hurt my elbow.",
+              "uk": "У записі звучить I have hurt my elbow."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have hurt my elbow.",
+              "uk": "У записі звучить I have hurt my elbow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i03:r1",
+          "text": "hurt"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i03:r2",
+          "text": "hurts"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i03:r3",
+          "text": "hurting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ my elbow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-27:i03:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i03:r2",
+            "text": "hurts"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i03:r3",
+            "text": "hurting"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:word:knee",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — knee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:word:knee:audio"
+      ],
+      "accessibilityLabel": "Картка слова — knee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:word:knee:audio",
+          "transcript": "knee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:word:knee:r1",
+            "targetText": "knee",
+            "meaningByLocale": {
+              "ru": "колено.",
+              "uk": "коліно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knee",
+          "definitionByLocale": {
+            "ru": "колено.",
+            "uk": "коліно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть: «Вона пошкодила коліно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть: «Вона пошкодила коліно.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has hurt her knee.",
+        "localizedMeaning": {
+          "ru": "Объясните: «Она повредила колено.»",
+          "uk": "Поясніть: «Вона пошкодила коліно.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "hurt",
+          "her",
+          "knee"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i05:r1",
+          "text": "She has hurt her knee."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i05:r2",
+          "text": "You have hurt your knee."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i05:r3",
+          "text": "They have hurt their knees."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i05:audio",
+          "transcript": "She has hurt her knee."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:i05:r1",
+            "targetText": "She has hurt her knee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i05:r2",
+            "targetText": "You have hurt your knee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i05:r3",
+            "targetText": "They have hurt their knees.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has hurt her knee.",
+              "uk": "У записі звучить She has hurt her knee."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has hurt her knee.",
+              "uk": "У записі звучить She has hurt her knee."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i06:r1",
+          "text": "hurt"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i06:r2",
+          "text": "hurts"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i06:r3",
+          "text": "hurting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ her knee.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-27:i06:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i06:r2",
+            "text": "hurts"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i06:r3",
+            "text": "hurting"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:word:hip",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:word:hip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:word:hip:audio",
+          "transcript": "hip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:word:hip:r1",
+            "targetText": "hip",
+            "meaningByLocale": {
+              "ru": "бедро у тазобедренного сустава.",
+              "uk": "стегно біля кульшового суглоба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hip",
+          "definitionByLocale": {
+            "ru": "бедро у тазобедренного сустава.",
+            "uk": "стегно біля кульшового суглоба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть: «Він пошкодив стегно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть: «Він пошкодив стегно.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has hurt his hip.",
+        "localizedMeaning": {
+          "ru": "Объясните: «Он повредил бедро.»",
+          "uk": "Поясніть: «Він пошкодив стегно.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "hurt",
+          "his",
+          "hip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i08:r1",
+          "text": "He has hurt his hip."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i08:r2",
+          "text": "You have hurt your hip."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i08:r3",
+          "text": "They have hurt their hips."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i08:audio",
+          "transcript": "He has hurt his hip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:i08:r1",
+            "targetText": "He has hurt his hip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i08:r2",
+            "targetText": "You have hurt your hip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i08:r3",
+            "targetText": "They have hurt their hips.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has hurt his hip.",
+              "uk": "У записі звучить He has hurt his hip."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has hurt his hip.",
+              "uk": "У записі звучить He has hurt his hip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i09:r1",
+          "text": "hurt"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i09:r2",
+          "text": "hurts"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i09:r3",
+          "text": "hurting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ his hip.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-27:i09:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i09:r2",
+            "text": "hurts"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i09:r3",
+            "text": "hurting"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:word:neck",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — neck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:word:neck:audio"
+      ],
+      "accessibilityLabel": "Картка слова — neck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:word:neck:audio",
+          "transcript": "neck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:word:neck:r1",
+            "targetText": "neck",
+            "meaningByLocale": {
+              "ru": "шея.",
+              "uk": "шия."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "neck",
+          "definitionByLocale": {
+            "ru": "шея.",
+            "uk": "шия."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть: «Я пошкодив шию.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть: «Я пошкодив шию.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have hurt my neck.",
+        "localizedMeaning": {
+          "ru": "Объясните: «Я повредил шею.»",
+          "uk": "Поясніть: «Я пошкодив шию.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "hurt",
+          "my",
+          "neck"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i11:r1",
+          "text": "I have hurt my neck."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i11:r2",
+          "text": "You have hurt your neck."
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i11:r3",
+          "text": "They have hurt their necks."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i11:audio",
+          "transcript": "I have hurt my neck."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-27:i11:r1",
+            "targetText": "I have hurt my neck.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i11:r2",
+            "targetText": "You have hurt your neck.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i11:r3",
+            "targetText": "They have hurt their necks.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have hurt my neck.",
+              "uk": "У записі звучить I have hurt my neck."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have hurt my neck.",
+              "uk": "У записі звучить I have hurt my neck."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-27:i12:r1",
+          "text": "hurt"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i12:r2",
+          "text": "hurts"
+        },
+        {
+          "responseId": "en:lesson-23:session-27:i12:r3",
+          "text": "hurting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ my neck.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-27:i12:r1",
+            "text": "hurt"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i12:r2",
+            "text": "hurts"
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i12:r3",
+            "text": "hurting"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: hurt.",
+              "uk": "Потрібна третя форма: hurt."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-27:i13:p1",
+            "target": "elbow",
+            "meaningByLocale": {
+              "ru": "локоть",
+              "uk": "лікоть"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-27:i13:p2",
+            "target": "knee",
+            "meaningByLocale": {
+              "ru": "колено",
+              "uk": "коліно"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-27:i13:p3",
+            "target": "hip",
+            "meaningByLocale": {
+              "ru": "бедро у тазобедренного сустава",
+              "uk": "стегно біля кульшового суглоба"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-27:i13:p4",
+            "target": "neck",
+            "meaningByLocale": {
+              "ru": "шея",
+              "uk": "шия"
+            }
+          }
+        ],
+        "leftColumn": [
+          "elbow",
+          "knee",
+          "hip",
+          "neck"
+        ],
+        "rightColumn": [
+          "лікоть",
+          "коліно",
+          "стегно біля кульшового суглоба",
+          "шия"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я пошкодив коліно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я пошкодив коліно.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i16:audio",
+          "transcript": "I have hurt my knee."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have hurt my knee.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона пошкодила лікоть.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона пошкодила лікоть.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-27:i17:audio",
+          "transcript": "She has hurt her elbow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has hurt her elbow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2fe69be4045162beb7f36a0f7e4f655bd51cb4fc7bdf64836a64d5d10ed4f123"
+}

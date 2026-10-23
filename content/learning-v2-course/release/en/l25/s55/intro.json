@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Свободный фасон",
+        "uk": "Вільний фасон"
+      },
+      "bodyByLocale": {
+        "ru": "Oversized — увеличенного размера. She used to wear oversized sweaters — раньше она носила свитеры увеличенного размера. В одежде oversized часто означает намеренно свободный фасон, а не ошибку при выборе размера. Used to wear описывает прежнюю привычку. После used to нужен wear, не wore.",
+        "uk": "Oversized — збільшеного розміру. She used to wear oversized sweaters — раніше вона носила светри збільшеного розміру. В одязі oversized часто означає навмисно вільний фасон, а не помилку у виборі розміру. Used to wear описує колишню звичку. Після used to потрібне wear, не wore."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-55:intro1:r1",
+              "text": "She used to wear oversized sweaters."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro1:r2",
+              "text": "She use to wear oversized sweaters."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro1:r3",
+              "text": "She using to wear oversized sweaters."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-55:intro1:r1",
+              "text": "She used to wear oversized sweaters."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro1:r2",
+              "text": "She use to wear oversized sweaters."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro1:r3",
+              "text": "She using to wear oversized sweaters."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Материал и ощущение",
+        "uk": "Матеріал і відчуття"
+      },
+      "bodyByLocale": {
+        "ru": "Woollen — шерстяной: I used to wear woollen socks — раньше я носил шерстяные носки. Silky — шелковистый, гладкий и мягкий на ощупь: She used to wear a silky scarf — раньше она носила шелковистый шарф. Silky не гарантирует, что вещь сделана из настоящего шёлка: это описание ощущения. Woollen говорит о материале, silky — о похожей на шёлк поверхности.",
+        "uk": "Woollen — вовняний: I used to wear woollen socks — раніше я носив вовняні шкарпетки. Silky — шовковистий, гладенький і м’який на дотик: She used to wear a silky scarf — раніше вона носила шовковистий шарф. Silky не гарантує, що річ зроблена зі справжнього шовку: це опис відчуття. Woollen говорить про матеріал, silky — про схожу на шовк поверхню."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-55:intro2:r1",
+              "text": "I used to wear woollen socks."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro2:r2",
+              "text": "I use to wear woollen socks."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro2:r3",
+              "text": "I using to wear woollen socks."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-55:intro2:r1",
+              "text": "I used to wear woollen socks."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro2:r2",
+              "text": "I use to wear woollen socks."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro2:r3",
+              "text": "I using to wear woollen socks."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пояс на резинке",
+        "uk": "Пояс на гумці"
+      },
+      "bodyByLocale": {
+        "ru": "Elastic — эластичный: растягивается и возвращается к прежней форме. I used to wear trousers with an elastic waist — раньше я носил брюки с эластичным поясом. Здесь waist — часть брюк на талии; elastic waist означает пояс на резинке. Так удобно описать одежду в магазине. В рассказе о прежней привычке используем used to wear.",
+        "uk": "Elastic — еластичний: розтягується й повертається до попередньої форми. I used to wear trousers with an elastic waist — раніше я носив штани з еластичним поясом. Тут waist — частина штанів на талії; elastic waist означає пояс на гумці. Так зручно описати одяг у магазині. У розповіді про колишню звичку використовуємо used to wear."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-55:intro3:r1",
+              "text": "I used to wear trousers with an elastic waist."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro3:r2",
+              "text": "I use to wear trousers with an elastic waist."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro3:r3",
+              "text": "I using to wear trousers with an elastic waist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-55:intro3:r1",
+              "text": "I used to wear trousers with an elastic waist."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro3:r2",
+              "text": "I use to wear trousers with an elastic waist."
+            },
+            {
+              "responseId": "en:lesson-25:session-55:intro3:r3",
+              "text": "I using to wear trousers with an elastic waist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d5acf8d440ede2cfe0caf5ea7b8320a776a960726705bcbb9638af1375ee6c67"
+}

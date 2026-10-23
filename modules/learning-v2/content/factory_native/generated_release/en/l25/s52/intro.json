@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "past simple for finished past time",
+    "uk": "past simple for finished past time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подарок очень порадовал",
+        "uk": "Подарунок дуже потішив"
+      },
+      "bodyByLocale": {
+        "ru": "Delighted — очень рад, в восторге. I was delighted with the gift yesterday — вчера я был очень рад подарку. Delighted сильнее обычного happy: подарок действительно порадовал. Yesterday задаёт законченный момент в прошлом, поэтому was, а не is. В этом примере with the gift показывает, чему именно вы были рады.",
+        "uk": "Delighted — дуже радий, у захваті. I was delighted with the gift yesterday — учора я був дуже радий подарунку. Delighted сильніше за звичайне happy: подарунок справді потішив. Yesterday задає завершений момент у минулому, тому was, а не is. У цьому прикладі with the gift показує, чому саме ви були раді."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-52:intro1:r1",
+              "text": "I was delighted with the gift yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro1:r2",
+              "text": "I is delighted with the gift yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro1:r3",
+              "text": "I been delighted with the gift yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-52:intro1:r1",
+              "text": "I was delighted with the gift yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro1:r2",
+              "text": "I is delighted with the gift yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro1:r3",
+              "text": "I been delighted with the gift yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Удивление и тревога",
+        "uk": "Здивування й тривога"
+      },
+      "bodyByLocale": {
+        "ru": "Astonished — изумлённый, очень сильно удивлённый. I was astonished by the price yesterday — вчера я был изумлён ценой. Она могла оказаться неожиданно высокой или низкой: само слово не говорит, приятным ли было удивление. Uneasy — встревоженный, испытывающий беспокойство. I was uneasy before the journey yesterday — вчера перед поездкой мне было тревожно. В обоих примерах рассказываем о конкретном вчерашнем состоянии: I was.",
+        "uk": "Astonished — вражений, дуже сильно здивований. I was astonished by the price yesterday — учора я був вражений ціною. Вона могла виявитися несподівано високою або низькою: саме слово не каже, чи було здивування приємним. Uneasy — стривожений, той, хто відчуває неспокій. I was uneasy before the journey yesterday — учора перед поїздкою мені було тривожно. В обох прикладах розповідаємо про конкретний учорашній стан: I was."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-52:intro2:r1",
+              "text": "I was astonished by the price yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro2:r2",
+              "text": "I is astonished by the price yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro2:r3",
+              "text": "I been astonished by the price yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-52:intro2:r1",
+              "text": "I was astonished by the price yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro2:r2",
+              "text": "I is astonished by the price yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro2:r3",
+              "text": "I been astonished by the price yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сильное горе",
+        "uk": "Сильне горе"
+      },
+      "bodyByLocale": {
+        "ru": "Heartbroken — убитый горем, испытывающий очень сильную душевную боль. She was heartbroken after the news yesterday — вчера после этих новостей она была убита горем. Это гораздо сильнее, чем небольшое огорчение. After показывает порядок: сначала новости, потом её реакция. Yesterday относит рассказ к законченному времени в прошлом. С she здесь тоже was: she was heartbroken.",
+        "uk": "Heartbroken — убитий горем, той, хто відчуває дуже сильний душевний біль. She was heartbroken after the news yesterday — учора після цих новин вона була вбита горем. Це набагато сильніше за невелике засмучення. After показує порядок: спочатку новини, потім її реакція. Yesterday відносить розповідь до завершеного часу в минулому. Із she тут теж was: she was heartbroken."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-52:intro3:r1",
+              "text": "She was heartbroken after the news yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro3:r2",
+              "text": "She is heartbroken after the news yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro3:r3",
+              "text": "She been heartbroken after the news yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-52:intro3:r1",
+              "text": "She was heartbroken after the news yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro3:r2",
+              "text": "She is heartbroken after the news yesterday."
+            },
+            {
+              "responseId": "en:lesson-25:session-52:intro3:r3",
+              "text": "She been heartbroken after the news yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f2175c7f44386900e33a9ff08bfd0e7d64c9db873209ab38c061907bebd2e6d5"
+}

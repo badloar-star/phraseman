@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-52:word:delighted",
+    "correctText": "delighted",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i01",
+    "correctText": "I was delighted with the gift yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i02",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i03",
+    "correctText": "I was delighted with the gift yesterday.",
+    "correctResponseId": "en:lesson-25:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:word:astonished",
+    "correctText": "astonished",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i04",
+    "correctText": "I was astonished by the price yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i05",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i06",
+    "correctText": "I was astonished by the price yesterday.",
+    "correctResponseId": "en:lesson-25:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:word:uneasy",
+    "correctText": "uneasy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i07",
+    "correctText": "I was uneasy before the journey yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i09",
+    "correctText": "I was uneasy before the journey yesterday.",
+    "correctResponseId": "en:lesson-25:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:word:heartbroken",
+    "correctText": "heartbroken",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i10",
+    "correctText": "She was heartbroken after the news yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-25:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i12",
+    "correctText": "She was heartbroken after the news yesterday.",
+    "correctResponseId": "en:lesson-25:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i13",
+    "correctText": "en:lesson-25:session-52:i13:p1=delighted\nen:lesson-25:session-52:i13:p2=astonished\nen:lesson-25:session-52:i13:p3=uneasy\nen:lesson-25:session-52:i13:p4=heartbroken",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i14",
+    "correctText": "She was happy yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i15",
+    "correctText": "I used to be afraid of travelling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i16",
+    "correctText": "He was delighted with the gift yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-52:i17",
+    "correctText": "She was uneasy before the journey yesterday.",
+    "correctResponseId": null
+  }
+]

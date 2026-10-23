@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В сторону парка",
+        "uk": "У бік парку"
+      },
+      "bodyByLocale": {
+        "ru": "Вспоминаем прогулки с семьёй в детстве. We would walk towards the park — мы обычно шли по направлению к парку. Towards показывает направление: из этой фразы ещё не следует, что мы дошли до парка. Здесь would walk — повторявшееся действие в уже названном прошлом, не обещание на будущее. После would ставим walk, не walked.",
+        "uk": "Згадуємо прогулянки з родиною в дитинстві. We would walk towards the park — ми зазвичай ішли в напрямку до парку. Towards показує напрямок: із цієї фрази ще не випливає, що ми дійшли до парку. Тут would walk — повторювана дія у вже названому минулому, а не обіцянка на майбутнє. Після would ставимо walk, не walked."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-53:intro1:r1",
+              "text": "We would walk towards the park."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro1:r2",
+              "text": "We would walked towards the park."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro1:r3",
+              "text": "We would walking towards the park."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-53:intro1:r1",
+              "text": "We would walk towards the park."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro1:r2",
+              "text": "We would walked towards the park."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro1:r3",
+              "text": "We would walking towards the park."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вдоль реки и под деревом",
+        "uk": "Уздовж річки й під деревом"
+      },
+      "bodyByLocale": {
+        "ru": "Продолжаем то же воспоминание о детских прогулках. Alongside — вдоль, рядом с. We would walk alongside the river — мы обычно шли вдоль реки, рядом с водой. Beneath — под, ниже чего-то. We would sit beneath a tree — мы обычно сидели под деревом. Beneath здесь близко к знакомому under. Walk и sit после would стоят в начальной форме, хотя вся история о прошлом.",
+        "uk": "Продовжуємо той самий спогад про дитячі прогулянки. Alongside — уздовж, поруч із. We would walk alongside the river — ми зазвичай ішли вздовж річки, поруч із водою. Beneath — під, нижче за щось. We would sit beneath a tree — ми зазвичай сиділи під деревом. Beneath тут близьке до знайомого under. Walk і sit після would стоять у початковій формі, хоча вся історія про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-53:intro2:r1",
+              "text": "We would walk alongside the river."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro2:r2",
+              "text": "We would walked alongside the river."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro2:r3",
+              "text": "We would walking alongside the river."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-53:intro2:r1",
+              "text": "We would walk alongside the river."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro2:r2",
+              "text": "We would walked alongside the river."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro2:r3",
+              "text": "We would walking alongside the river."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разговор на всю дорогу",
+        "uk": "Розмова на всю дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "В детстве мы часто ездили к родственникам. We would talk throughout the journey — мы обычно разговаривали всю дорогу. Throughout подчёркивает весь период, от начала до конца; during само по себе этого не подчёркивает. Здесь would talk передаёт привычку во время тех поездок. Не добавляем -ed: would talk, а не would talked.",
+        "uk": "У дитинстві ми часто їздили до родичів. We would talk throughout the journey — ми зазвичай розмовляли всю дорогу. Throughout підкреслює весь період, від початку до кінця; during саме собою цього не підкреслює. Тут would talk передає звичку під час тих поїздок. Не додаємо -ed: would talk, а не would talked."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-53:intro3:r1",
+              "text": "We would talk throughout the journey."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro3:r2",
+              "text": "We would talked throughout the journey."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro3:r3",
+              "text": "We would talking throughout the journey."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-53:intro3:r1",
+              "text": "We would talk throughout the journey."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro3:r2",
+              "text": "We would talked throughout the journey."
+            },
+            {
+              "responseId": "en:lesson-25:session-53:intro3:r3",
+              "text": "We would talking throughout the journey."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aa857efa1e2b0166ddddf117eb5c59b0eadbb04f38ada37589a745b96210b569"
+}

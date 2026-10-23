@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-51:word:regained",
+    "correctText": "regained",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i01",
+    "correctText": "I had regained my strength before I went back to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i03",
+    "correctText": "I had regained my strength before I went back to work.",
+    "correctResponseId": "en:lesson-25:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:word:reconsidered",
+    "correctText": "reconsidered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i04",
+    "correctText": "She had reconsidered her plan before she called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i06",
+    "correctText": "She had reconsidered her plan before she called.",
+    "correctResponseId": "en:lesson-25:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:word:endured",
+    "correctText": "endured",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i07",
+    "correctText": "We had endured a long journey before we reached the hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i09",
+    "correctText": "We had endured a long journey before we reached the hotel.",
+    "correctResponseId": "en:lesson-25:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:word:retrieved",
+    "correctText": "retrieved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i10",
+    "correctText": "He had retrieved his keys before he left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i12",
+    "correctText": "He had retrieved his keys before he left.",
+    "correctResponseId": "en:lesson-25:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i13",
+    "correctText": "en:lesson-25:session-51:i13:p1=regained\nen:lesson-25:session-51:i13:p2=reconsidered\nen:lesson-25:session-51:i13:p3=endured\nen:lesson-25:session-51:i13:p4=retrieved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i16",
+    "correctText": "I had retrieved my keys before I left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-51:i17",
+    "correctText": "We had reconsidered our plan before we called.",
+    "correctResponseId": null
+  }
+]

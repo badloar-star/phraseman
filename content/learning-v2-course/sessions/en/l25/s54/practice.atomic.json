@@ -1,0 +1,2357 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-54:word:gravy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gravy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:gravy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gravy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:gravy:audio",
+            "transcript": "gravy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:gravy:r1",
+              "targetText": "gravy",
+              "meaningByLocale": {
+                "ru": "Подливка. Gravy — соус к мясу и другим блюдам, часто приготовленный на основе мясного сока.",
+                "uk": "Підлива. Gravy — соус до м’яса та інших страв, часто приготований на основі м’ясного соку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gravy",
+            "definitionByLocale": {
+              "ru": "Подливка. Gravy — соус к мясу и другим блюдам, часто приготовленный на основе мясного сока.",
+              "uk": "Підлива. Gravy — соус до м’яса та інших страв, часто приготований на основі м’ясного соку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы приготовили подливку до того, как пришли гости.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы приготовили подливку до того, как пришли гости.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had made the gravy before the guests arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы приготовили подливку до того, как пришли гости.»",
+            "uk": "Скажіть: «Ми приготували підливу до того, як прийшли гості.»"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "made",
+            "the",
+            "gravy",
+            "before",
+            "the",
+            "guests",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i02:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i02:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "We ___ made the gravy before the guests arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i02:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i02:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i03:r1",
+            "text": "We had made the gravy before the guests arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i03:r2",
+            "text": "They had made the gravy before the guests arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i03:r3",
+            "text": "We had made the gravy before the guests called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i03:audio",
+            "transcript": "We had made the gravy before the guests arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i03:r1",
+              "targetText": "We had made the gravy before the guests arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i03:r2",
+              "targetText": "They had made the gravy before the guests arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i03:r3",
+              "targetText": "We had made the gravy before the guests called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had made the gravy before the guests arrived.",
+                "uk": "У записі звучить We had made the gravy before the guests arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had made the gravy before the guests arrived.",
+                "uk": "У записі звучить We had made the gravy before the guests arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:word:topping",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — topping",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:topping:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — topping",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:topping:audio",
+            "transcript": "topping"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:topping:r1",
+              "targetText": "topping",
+              "meaningByLocale": {
+                "ru": "Добавка сверху. Topping — продукт, который кладут поверх блюда, например пиццы или мороженого.",
+                "uk": "Добавка зверху. Topping — продукт, який кладуть поверх страви, наприклад піци чи морозива."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "topping",
+            "definitionByLocale": {
+              "ru": "Добавка сверху. Topping — продукт, который кладут поверх блюда, например пиццы или мороженого.",
+              "uk": "Добавка зверху. Topping — продукт, який кладуть поверх страви, наприклад піци чи морозива."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она выбрала добавку сверху до того, как я сделал заказ.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она выбрала добавку сверху до того, как я сделал заказ.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had chosen the topping before I ordered.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она выбрала добавку сверху до того, как я сделал заказ.»",
+            "uk": "Скажіть: «Вона вибрала добавку зверху до того, як я зробив замовлення.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "chosen",
+            "the",
+            "topping",
+            "before",
+            "I",
+            "ordered"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ chosen the topping before I ordered.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i06:r1",
+            "text": "She had chosen the topping before I ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i06:r2",
+            "text": "He had chosen the topping before I ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i06:r3",
+            "text": "She had chosen the topping before we ordered."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i06:audio",
+            "transcript": "She had chosen the topping before I ordered."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i06:r1",
+              "targetText": "She had chosen the topping before I ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i06:r2",
+              "targetText": "He had chosen the topping before I ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i06:r3",
+              "targetText": "She had chosen the topping before we ordered.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had chosen the topping before I ordered.",
+                "uk": "У записі звучить She had chosen the topping before I ordered."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had chosen the topping before I ordered.",
+                "uk": "У записі звучить She had chosen the topping before I ordered."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:word:herbs",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — herbs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:herbs:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — herbs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:herbs:audio",
+            "transcript": "herbs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:herbs:r1",
+              "targetText": "herbs",
+              "meaningByLocale": {
+                "ru": "Пряные травы. Herb — ароматная трава, используемая в готовке; herbs — множественное число.",
+                "uk": "Пряні трави. Herb — ароматна трава, яку використовують у готуванні; herbs — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "herbs",
+            "definitionByLocale": {
+              "ru": "Пряные травы. Herb — ароматная трава, используемая в готовке; herbs — множественное число.",
+              "uk": "Пряні трави. Herb — ароматна трава, яку використовують у готуванні; herbs — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я нарезал пряные травы до того, как она начала готовить.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я нарезал пряные травы до того, как она начала готовить.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had chopped the herbs before she started cooking.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я нарезал пряные травы до того, как она начала готовить.»",
+            "uk": "Скажіть: «Я нарізав пряні трави до того, як вона почала готувати.»"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "chopped",
+            "the",
+            "herbs",
+            "before",
+            "she",
+            "started",
+            "cooking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ chopped the herbs before she started cooking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i09:r1",
+            "text": "I had chopped the herbs before she started cooking."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i09:r2",
+            "text": "He had chopped the herbs before she started cooking."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i09:r3",
+            "text": "I had chopped the herbs before he started cooking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i09:audio",
+            "transcript": "I had chopped the herbs before she started cooking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i09:r1",
+              "targetText": "I had chopped the herbs before she started cooking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i09:r2",
+              "targetText": "He had chopped the herbs before she started cooking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i09:r3",
+              "targetText": "I had chopped the herbs before he started cooking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had chopped the herbs before she started cooking.",
+                "uk": "У записі звучить I had chopped the herbs before she started cooking."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had chopped the herbs before she started cooking.",
+                "uk": "У записі звучить I had chopped the herbs before she started cooking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:word:spices",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spices",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:spices:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spices",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:spices:audio",
+            "transcript": "spices"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:spices:r1",
+              "targetText": "spices",
+              "meaningByLocale": {
+                "ru": "Специи. Spice — пряность; spices — множественное число.",
+                "uk": "Спеції. Spice — пряність; spices — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spices",
+            "definitionByLocale": {
+              "ru": "Специи. Spice — пряность; spices — множественное число.",
+              "uk": "Спеції. Spice — пряність; spices — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он добавил специи до того, как я попробовал суп.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он добавил специи до того, как я попробовал суп.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had added the spices before I tasted the soup.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он добавил специи до того, как я попробовал суп.»",
+            "uk": "Скажіть: «Він додав спеції до того, як я скуштував суп.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "added",
+            "the",
+            "spices",
+            "before",
+            "I",
+            "tasted",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ added the spices before I tasted the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i12:r1",
+            "text": "He had added the spices before I tasted the soup."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i12:r2",
+            "text": "She had added the spices before I tasted the soup."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i12:r3",
+            "text": "He had added the spices before we tasted the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i12:audio",
+            "transcript": "He had added the spices before I tasted the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i12:r1",
+              "targetText": "He had added the spices before I tasted the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i12:r2",
+              "targetText": "She had added the spices before I tasted the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i12:r3",
+              "targetText": "He had added the spices before we tasted the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had added the spices before I tasted the soup.",
+                "uk": "У записі звучить He had added the spices before I tasted the soup."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had added the spices before I tasted the soup.",
+                "uk": "У записі звучить He had added the spices before I tasted the soup."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-54:i13:p1",
+              "target": "gravy",
+              "meaningByLocale": {
+                "ru": "подливка",
+                "uk": "підлива"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-54:i13:p2",
+              "target": "topping",
+              "meaningByLocale": {
+                "ru": "добавка сверху",
+                "uk": "добавка зверху"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-54:i13:p3",
+              "target": "herbs",
+              "meaningByLocale": {
+                "ru": "пряные травы",
+                "uk": "пряні трави"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-54:i13:p4",
+              "target": "spices",
+              "meaningByLocale": {
+                "ru": "специи",
+                "uk": "спеції"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gravy",
+            "topping",
+            "herbs",
+            "spices"
+          ],
+          "rightColumn": [
+            "подливка",
+            "добавка сверху",
+            "пряные травы",
+            "специи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончил",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поезд уже ушёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Поезд уже ушёл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она приготовила подливку до того, как пришли гости».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она приготовила подливку до того, как пришли гости».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i16:audio",
+            "transcript": "She had made the gravy before the guests arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She had made the gravy before the guests arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы добавили специи до того, как она попробовала суп».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы добавили специи до того, как она попробовала суп».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i17:audio",
+            "transcript": "We had added the spices before she tasted the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had added the spices before she tasted the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-54:word:gravy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gravy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:gravy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gravy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:gravy:audio",
+            "transcript": "gravy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:gravy:r1",
+              "targetText": "gravy",
+              "meaningByLocale": {
+                "ru": "Подливка. Gravy — соус к мясу и другим блюдам, часто приготовленный на основе мясного сока.",
+                "uk": "Підлива. Gravy — соус до м’яса та інших страв, часто приготований на основі м’ясного соку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gravy",
+            "definitionByLocale": {
+              "ru": "Подливка. Gravy — соус к мясу и другим блюдам, часто приготовленный на основе мясного сока.",
+              "uk": "Підлива. Gravy — соус до м’яса та інших страв, часто приготований на основі м’ясного соку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми приготували підливу до того, як прийшли гості.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми приготували підливу до того, як прийшли гості.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had made the gravy before the guests arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы приготовили подливку до того, как пришли гости.»",
+            "uk": "Скажіть: «Ми приготували підливу до того, як прийшли гості.»"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "made",
+            "the",
+            "gravy",
+            "before",
+            "the",
+            "guests",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i02:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i02:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "We ___ made the gravy before the guests arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i02:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i02:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i03:r1",
+            "text": "We had made the gravy before the guests arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i03:r2",
+            "text": "They had made the gravy before the guests arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i03:r3",
+            "text": "We had made the gravy before the guests called."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i03:audio",
+            "transcript": "We had made the gravy before the guests arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i03:r1",
+              "targetText": "We had made the gravy before the guests arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i03:r2",
+              "targetText": "They had made the gravy before the guests arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i03:r3",
+              "targetText": "We had made the gravy before the guests called.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had made the gravy before the guests arrived.",
+                "uk": "У записі звучить We had made the gravy before the guests arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had made the gravy before the guests arrived.",
+                "uk": "У записі звучить We had made the gravy before the guests arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:word:topping",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — topping",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:topping:audio"
+        ],
+        "accessibilityLabel": "Картка слова — topping",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:topping:audio",
+            "transcript": "topping"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:topping:r1",
+              "targetText": "topping",
+              "meaningByLocale": {
+                "ru": "Добавка сверху. Topping — продукт, который кладут поверх блюда, например пиццы или мороженого.",
+                "uk": "Добавка зверху. Topping — продукт, який кладуть поверх страви, наприклад піци чи морозива."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "topping",
+            "definitionByLocale": {
+              "ru": "Добавка сверху. Topping — продукт, который кладут поверх блюда, например пиццы или мороженого.",
+              "uk": "Добавка зверху. Topping — продукт, який кладуть поверх страви, наприклад піци чи морозива."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона вибрала добавку зверху до того, як я зробив замовлення.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона вибрала добавку зверху до того, як я зробив замовлення.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had chosen the topping before I ordered.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она выбрала добавку сверху до того, как я сделал заказ.»",
+            "uk": "Скажіть: «Вона вибрала добавку зверху до того, як я зробив замовлення.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "chosen",
+            "the",
+            "topping",
+            "before",
+            "I",
+            "ordered"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ chosen the topping before I ordered.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i06:r1",
+            "text": "She had chosen the topping before I ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i06:r2",
+            "text": "He had chosen the topping before I ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i06:r3",
+            "text": "She had chosen the topping before we ordered."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i06:audio",
+            "transcript": "She had chosen the topping before I ordered."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i06:r1",
+              "targetText": "She had chosen the topping before I ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i06:r2",
+              "targetText": "He had chosen the topping before I ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i06:r3",
+              "targetText": "She had chosen the topping before we ordered.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had chosen the topping before I ordered.",
+                "uk": "У записі звучить She had chosen the topping before I ordered."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had chosen the topping before I ordered.",
+                "uk": "У записі звучить She had chosen the topping before I ordered."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:word:herbs",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — herbs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:herbs:audio"
+        ],
+        "accessibilityLabel": "Картка слова — herbs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:herbs:audio",
+            "transcript": "herbs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:herbs:r1",
+              "targetText": "herbs",
+              "meaningByLocale": {
+                "ru": "Пряные травы. Herb — ароматная трава, используемая в готовке; herbs — множественное число.",
+                "uk": "Пряні трави. Herb — ароматна трава, яку використовують у готуванні; herbs — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "herbs",
+            "definitionByLocale": {
+              "ru": "Пряные травы. Herb — ароматная трава, используемая в готовке; herbs — множественное число.",
+              "uk": "Пряні трави. Herb — ароматна трава, яку використовують у готуванні; herbs — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я нарізав пряні трави до того, як вона почала готувати.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я нарізав пряні трави до того, як вона почала готувати.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had chopped the herbs before she started cooking.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я нарезал пряные травы до того, как она начала готовить.»",
+            "uk": "Скажіть: «Я нарізав пряні трави до того, як вона почала готувати.»"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "chopped",
+            "the",
+            "herbs",
+            "before",
+            "she",
+            "started",
+            "cooking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ chopped the herbs before she started cooking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i09:r1",
+            "text": "I had chopped the herbs before she started cooking."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i09:r2",
+            "text": "He had chopped the herbs before she started cooking."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i09:r3",
+            "text": "I had chopped the herbs before he started cooking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i09:audio",
+            "transcript": "I had chopped the herbs before she started cooking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i09:r1",
+              "targetText": "I had chopped the herbs before she started cooking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i09:r2",
+              "targetText": "He had chopped the herbs before she started cooking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i09:r3",
+              "targetText": "I had chopped the herbs before he started cooking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had chopped the herbs before she started cooking.",
+                "uk": "У записі звучить I had chopped the herbs before she started cooking."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had chopped the herbs before she started cooking.",
+                "uk": "У записі звучить I had chopped the herbs before she started cooking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:word:spices",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spices",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:word:spices:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spices",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:word:spices:audio",
+            "transcript": "spices"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:word:spices:r1",
+              "targetText": "spices",
+              "meaningByLocale": {
+                "ru": "Специи. Spice — пряность; spices — множественное число.",
+                "uk": "Спеції. Spice — пряність; spices — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spices",
+            "definitionByLocale": {
+              "ru": "Специи. Spice — пряность; spices — множественное число.",
+              "uk": "Спеції. Spice — пряність; spices — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він додав спеції до того, як я скуштував суп.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він додав спеції до того, як я скуштував суп.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had added the spices before I tasted the soup.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он добавил специи до того, как я попробовал суп.»",
+            "uk": "Скажіть: «Він додав спеції до того, як я скуштував суп.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "added",
+            "the",
+            "spices",
+            "before",
+            "I",
+            "tasted",
+            "the",
+            "soup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ added the spices before I tasted the soup.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-54:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-54:i12:r1",
+            "text": "He had added the spices before I tasted the soup."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i12:r2",
+            "text": "She had added the spices before I tasted the soup."
+          },
+          {
+            "responseId": "en:lesson-25:session-54:i12:r3",
+            "text": "He had added the spices before we tasted the soup."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i12:audio",
+            "transcript": "He had added the spices before I tasted the soup."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-54:i12:r1",
+              "targetText": "He had added the spices before I tasted the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i12:r2",
+              "targetText": "She had added the spices before I tasted the soup.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i12:r3",
+              "targetText": "He had added the spices before we tasted the soup.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had added the spices before I tasted the soup.",
+                "uk": "У записі звучить He had added the spices before I tasted the soup."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had added the spices before I tasted the soup.",
+                "uk": "У записі звучить He had added the spices before I tasted the soup."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте форми з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-54:i13:p1",
+              "target": "gravy",
+              "meaningByLocale": {
+                "ru": "подливка",
+                "uk": "підлива"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-54:i13:p2",
+              "target": "topping",
+              "meaningByLocale": {
+                "ru": "добавка сверху",
+                "uk": "добавка зверху"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-54:i13:p3",
+              "target": "herbs",
+              "meaningByLocale": {
+                "ru": "пряные травы",
+                "uk": "пряні трави"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-54:i13:p4",
+              "target": "spices",
+              "meaningByLocale": {
+                "ru": "специи",
+                "uk": "спеції"
+              }
+            }
+          ],
+          "leftColumn": [
+            "gravy",
+            "topping",
+            "herbs",
+            "spices"
+          ],
+          "rightColumn": [
+            "підлива",
+            "добавка зверху",
+            "пряні трави",
+            "спеції"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчив",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Потяг уже поїхав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Потяг уже поїхав",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона приготувала підливу до того, як прийшли гості».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона приготувала підливу до того, як прийшли гості».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i16:audio",
+            "transcript": "She had made the gravy before the guests arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She had made the gravy before the guests arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми додали спеції до того, як вона скуштувала суп».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми додали спеції до того, як вона скуштувала суп».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-54:i17:audio",
+            "transcript": "We had added the spices before she tasted the soup."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had added the spices before she tasted the soup.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-54:word:gravy",
+      "correctText": "gravy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i01",
+      "correctText": "We had made the gravy before the guests arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i02",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-54:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i03",
+      "correctText": "We had made the gravy before the guests arrived.",
+      "correctResponseId": "en:lesson-25:session-54:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:word:topping",
+      "correctText": "topping",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i04",
+      "correctText": "She had chosen the topping before I ordered.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i05",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-54:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i06",
+      "correctText": "She had chosen the topping before I ordered.",
+      "correctResponseId": "en:lesson-25:session-54:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:word:herbs",
+      "correctText": "herbs",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i07",
+      "correctText": "I had chopped the herbs before she started cooking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i08",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i09",
+      "correctText": "I had chopped the herbs before she started cooking.",
+      "correctResponseId": "en:lesson-25:session-54:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:word:spices",
+      "correctText": "spices",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i10",
+      "correctText": "He had added the spices before I tasted the soup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i11",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-54:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i12",
+      "correctText": "He had added the spices before I tasted the soup.",
+      "correctResponseId": "en:lesson-25:session-54:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i15",
+      "correctText": "The train had left when we arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i16",
+      "correctText": "She had made the gravy before the guests arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-54:i17",
+      "correctText": "We had added the spices before she tasted the soup.",
+      "correctResponseId": null
+    }
+  ]
+}

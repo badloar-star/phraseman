@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-55:word:oversized",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — oversized",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:oversized:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — oversized",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:oversized:audio",
+            "transcript": "oversized"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:oversized:r1",
+              "targetText": "oversized",
+              "meaningByLocale": {
+                "ru": "Увеличенного размера. Oversized — намеренно больше обычного, например о свободной одежде.",
+                "uk": "Збільшеного розміру. Oversized — навмисно більший за звичайний, наприклад про вільний одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oversized",
+            "definitionByLocale": {
+              "ru": "Увеличенного размера. Oversized — намеренно больше обычного, например о свободной одежде.",
+              "uk": "Збільшеного розміру. Oversized — навмисно більший за звичайний, наприклад про вільний одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше она носила свитеры увеличенного размера.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше она носила свитеры увеличенного размера.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to wear oversized sweaters.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она носила свитеры увеличенного размера.»",
+            "uk": "Скажіть: «Раніше вона носила светри збільшеного розміру.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "wear",
+            "oversized",
+            "sweaters"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i02:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "She ___ to wear oversized sweaters.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i02:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i02:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i02:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i03:r1",
+            "text": "She used to wear oversized sweaters."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i03:r2",
+            "text": "He used to wear oversized sweaters."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i03:r3",
+            "text": "She used to wear oversized shirts."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i03:audio",
+            "transcript": "She used to wear oversized sweaters."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i03:r1",
+              "targetText": "She used to wear oversized sweaters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i03:r2",
+              "targetText": "He used to wear oversized sweaters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i03:r3",
+              "targetText": "She used to wear oversized shirts.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear oversized sweaters.",
+                "uk": "У записі звучить She used to wear oversized sweaters."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear oversized sweaters.",
+                "uk": "У записі звучить She used to wear oversized sweaters."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:word:woollen",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — woollen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:woollen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — woollen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:woollen:audio",
+            "transcript": "woollen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:woollen:r1",
+              "targetText": "woollen",
+              "meaningByLocale": {
+                "ru": "Шерстяной. Woollen — сделанный из шерсти.",
+                "uk": "Вовняний. Woollen — зроблений із вовни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "woollen",
+            "definitionByLocale": {
+              "ru": "Шерстяной. Woollen — сделанный из шерсти.",
+              "uk": "Вовняний. Woollen — зроблений із вовни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше я носил шерстяные носки.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше я носил шерстяные носки.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to wear woollen socks.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я носил шерстяные носки.»",
+            "uk": "Скажіть: «Раніше я носив вовняні шкарпетки.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "wear",
+            "woollen",
+            "socks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i05:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "I ___ to wear woollen socks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i05:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i05:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i05:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i06:r1",
+            "text": "I used to wear woollen socks."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i06:r2",
+            "text": "She used to wear woollen socks."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i06:r3",
+            "text": "I used to wear woollen gloves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i06:audio",
+            "transcript": "I used to wear woollen socks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i06:r1",
+              "targetText": "I used to wear woollen socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i06:r2",
+              "targetText": "She used to wear woollen socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i06:r3",
+              "targetText": "I used to wear woollen gloves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear woollen socks.",
+                "uk": "У записі звучить I used to wear woollen socks."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear woollen socks.",
+                "uk": "У записі звучить I used to wear woollen socks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:word:silky",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — silky",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:silky:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — silky",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:silky:audio",
+            "transcript": "silky"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:silky:r1",
+              "targetText": "silky",
+              "meaningByLocale": {
+                "ru": "Шелковистый. Silky — гладкий и мягкий, похожий на шёлк на ощупь.",
+                "uk": "Шовковистий. Silky — гладенький і м’який, схожий на шовк на дотик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "silky",
+            "definitionByLocale": {
+              "ru": "Шелковистый. Silky — гладкий и мягкий, похожий на шёлк на ощупь.",
+              "uk": "Шовковистий. Silky — гладенький і м’який, схожий на шовк на дотик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше она носила шелковистый шарф.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше она носила шелковистый шарф.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to wear a silky scarf.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она носила шелковистый шарф.»",
+            "uk": "Скажіть: «Раніше вона носила шовковистий шарф.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "wear",
+            "a",
+            "silky",
+            "scarf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i08:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "She ___ to wear a silky scarf.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i08:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i08:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i08:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i09:r1",
+            "text": "She used to wear a silky scarf."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i09:r2",
+            "text": "He used to wear a silky scarf."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i09:r3",
+            "text": "She used to wear a silky blouse."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i09:audio",
+            "transcript": "She used to wear a silky scarf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i09:r1",
+              "targetText": "She used to wear a silky scarf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i09:r2",
+              "targetText": "He used to wear a silky scarf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i09:r3",
+              "targetText": "She used to wear a silky blouse.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear a silky scarf.",
+                "uk": "У записі звучить She used to wear a silky scarf."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear a silky scarf.",
+                "uk": "У записі звучить She used to wear a silky scarf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:word:elastic",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — elastic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:elastic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — elastic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:elastic:audio",
+            "transcript": "elastic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:elastic:r1",
+              "targetText": "elastic",
+              "meaningByLocale": {
+                "ru": "Эластичный. Elastic — растягивающийся и возвращающий прежнюю форму.",
+                "uk": "Еластичний. Elastic — той, що розтягується й повертає попередню форму."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elastic",
+            "definitionByLocale": {
+              "ru": "Эластичный. Elastic — растягивающийся и возвращающий прежнюю форму.",
+              "uk": "Еластичний. Elastic — той, що розтягується й повертає попередню форму."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше я носил брюки с эластичным поясом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше я носил брюки с эластичным поясом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to wear trousers with an elastic waist.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я носил брюки с эластичным поясом.»",
+            "uk": "Скажіть: «Раніше я носив штани з еластичним поясом.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "wear",
+            "trousers",
+            "with",
+            "an",
+            "elastic",
+            "waist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i11:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "I ___ to wear trousers with an elastic waist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i11:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i11:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i11:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i12:r1",
+            "text": "I used to wear trousers with an elastic waist."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i12:r2",
+            "text": "She used to wear trousers with an elastic waist."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i12:r3",
+            "text": "I used to wear shorts with an elastic waist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i12:audio",
+            "transcript": "I used to wear trousers with an elastic waist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i12:r1",
+              "targetText": "I used to wear trousers with an elastic waist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i12:r2",
+              "targetText": "She used to wear trousers with an elastic waist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i12:r3",
+              "targetText": "I used to wear shorts with an elastic waist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear trousers with an elastic waist.",
+                "uk": "У записі звучить I used to wear trousers with an elastic waist."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear trousers with an elastic waist.",
+                "uk": "У записі звучить I used to wear trousers with an elastic waist."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-55:i13:p1",
+              "target": "oversized",
+              "meaningByLocale": {
+                "ru": "увеличенного размера",
+                "uk": "збільшеного розміру"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-55:i13:p2",
+              "target": "woollen",
+              "meaningByLocale": {
+                "ru": "шерстяной",
+                "uk": "вовняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-55:i13:p3",
+              "target": "silky",
+              "meaningByLocale": {
+                "ru": "шелковистый",
+                "uk": "шовковистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-55:i13:p4",
+              "target": "elastic",
+              "meaningByLocale": {
+                "ru": "эластичный",
+                "uk": "еластичний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "oversized",
+            "woollen",
+            "silky",
+            "elastic"
+          ],
+          "rightColumn": [
+            "увеличенного размера",
+            "шерстяной",
+            "шелковистый",
+            "эластичный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончила к моему звонку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончила к моему звонку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Раньше ездил на машине",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Раньше ездил на машине",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i15:audio",
+            "transcript": "I used to drive to work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to drive to work.",
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "drive",
+            "to",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Раньше он носил шерстяные перчатки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Раньше он носил шерстяные перчатки».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i16:audio",
+            "transcript": "He used to wear woollen gloves."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He used to wear woollen gloves.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Раньше я носил шелковистый шарф».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Раньше я носил шелковистый шарф».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i17:audio",
+            "transcript": "I used to wear a silky scarf."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used to wear a silky scarf.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-55:word:oversized",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — oversized",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:oversized:audio"
+        ],
+        "accessibilityLabel": "Картка слова — oversized",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:oversized:audio",
+            "transcript": "oversized"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:oversized:r1",
+              "targetText": "oversized",
+              "meaningByLocale": {
+                "ru": "Увеличенного размера. Oversized — намеренно больше обычного, например о свободной одежде.",
+                "uk": "Збільшеного розміру. Oversized — навмисно більший за звичайний, наприклад про вільний одяг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oversized",
+            "definitionByLocale": {
+              "ru": "Увеличенного размера. Oversized — намеренно больше обычного, например о свободной одежде.",
+              "uk": "Збільшеного розміру. Oversized — навмисно більший за звичайний, наприклад про вільний одяг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше вона носила светри збільшеного розміру.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше вона носила светри збільшеного розміру.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to wear oversized sweaters.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она носила свитеры увеличенного размера.»",
+            "uk": "Скажіть: «Раніше вона носила светри збільшеного розміру.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "wear",
+            "oversized",
+            "sweaters"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i02:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "She ___ to wear oversized sweaters.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i02:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i02:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i02:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i03:r1",
+            "text": "She used to wear oversized sweaters."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i03:r2",
+            "text": "He used to wear oversized sweaters."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i03:r3",
+            "text": "She used to wear oversized shirts."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i03:audio",
+            "transcript": "She used to wear oversized sweaters."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i03:r1",
+              "targetText": "She used to wear oversized sweaters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i03:r2",
+              "targetText": "He used to wear oversized sweaters.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i03:r3",
+              "targetText": "She used to wear oversized shirts.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear oversized sweaters.",
+                "uk": "У записі звучить She used to wear oversized sweaters."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear oversized sweaters.",
+                "uk": "У записі звучить She used to wear oversized sweaters."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:word:woollen",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — woollen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:woollen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — woollen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:woollen:audio",
+            "transcript": "woollen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:woollen:r1",
+              "targetText": "woollen",
+              "meaningByLocale": {
+                "ru": "Шерстяной. Woollen — сделанный из шерсти.",
+                "uk": "Вовняний. Woollen — зроблений із вовни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "woollen",
+            "definitionByLocale": {
+              "ru": "Шерстяной. Woollen — сделанный из шерсти.",
+              "uk": "Вовняний. Woollen — зроблений із вовни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше я носив вовняні шкарпетки.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше я носив вовняні шкарпетки.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to wear woollen socks.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я носил шерстяные носки.»",
+            "uk": "Скажіть: «Раніше я носив вовняні шкарпетки.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "wear",
+            "woollen",
+            "socks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i05:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "I ___ to wear woollen socks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i05:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i05:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i05:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i06:r1",
+            "text": "I used to wear woollen socks."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i06:r2",
+            "text": "She used to wear woollen socks."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i06:r3",
+            "text": "I used to wear woollen gloves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i06:audio",
+            "transcript": "I used to wear woollen socks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i06:r1",
+              "targetText": "I used to wear woollen socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i06:r2",
+              "targetText": "She used to wear woollen socks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i06:r3",
+              "targetText": "I used to wear woollen gloves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear woollen socks.",
+                "uk": "У записі звучить I used to wear woollen socks."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear woollen socks.",
+                "uk": "У записі звучить I used to wear woollen socks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:word:silky",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — silky",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:silky:audio"
+        ],
+        "accessibilityLabel": "Картка слова — silky",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:silky:audio",
+            "transcript": "silky"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:silky:r1",
+              "targetText": "silky",
+              "meaningByLocale": {
+                "ru": "Шелковистый. Silky — гладкий и мягкий, похожий на шёлк на ощупь.",
+                "uk": "Шовковистий. Silky — гладенький і м’який, схожий на шовк на дотик."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "silky",
+            "definitionByLocale": {
+              "ru": "Шелковистый. Silky — гладкий и мягкий, похожий на шёлк на ощупь.",
+              "uk": "Шовковистий. Silky — гладенький і м’який, схожий на шовк на дотик."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше вона носила шовковистий шарф.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше вона носила шовковистий шарф.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to wear a silky scarf.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она носила шелковистый шарф.»",
+            "uk": "Скажіть: «Раніше вона носила шовковистий шарф.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "wear",
+            "a",
+            "silky",
+            "scarf"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i08:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "She ___ to wear a silky scarf.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i08:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i08:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i08:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i09:r1",
+            "text": "She used to wear a silky scarf."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i09:r2",
+            "text": "He used to wear a silky scarf."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i09:r3",
+            "text": "She used to wear a silky blouse."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i09:audio",
+            "transcript": "She used to wear a silky scarf."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i09:r1",
+              "targetText": "She used to wear a silky scarf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i09:r2",
+              "targetText": "He used to wear a silky scarf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i09:r3",
+              "targetText": "She used to wear a silky blouse.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear a silky scarf.",
+                "uk": "У записі звучить She used to wear a silky scarf."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to wear a silky scarf.",
+                "uk": "У записі звучить She used to wear a silky scarf."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:word:elastic",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — elastic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:word:elastic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — elastic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:word:elastic:audio",
+            "transcript": "elastic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:word:elastic:r1",
+              "targetText": "elastic",
+              "meaningByLocale": {
+                "ru": "Эластичный. Elastic — растягивающийся и возвращающий прежнюю форму.",
+                "uk": "Еластичний. Elastic — той, що розтягується й повертає попередню форму."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "elastic",
+            "definitionByLocale": {
+              "ru": "Эластичный. Elastic — растягивающийся и возвращающий прежнюю форму.",
+              "uk": "Еластичний. Elastic — той, що розтягується й повертає попередню форму."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше я носив штани з еластичним поясом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше я носив штани з еластичним поясом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to wear trousers with an elastic waist.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я носил брюки с эластичным поясом.»",
+            "uk": "Скажіть: «Раніше я носив штани з еластичним поясом.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "wear",
+            "trousers",
+            "with",
+            "an",
+            "elastic",
+            "waist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i11:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "I ___ to wear trousers with an elastic waist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-55:i11:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i11:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i11:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-55:i12:r1",
+            "text": "I used to wear trousers with an elastic waist."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i12:r2",
+            "text": "She used to wear trousers with an elastic waist."
+          },
+          {
+            "responseId": "en:lesson-25:session-55:i12:r3",
+            "text": "I used to wear shorts with an elastic waist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i12:audio",
+            "transcript": "I used to wear trousers with an elastic waist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-55:i12:r1",
+              "targetText": "I used to wear trousers with an elastic waist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i12:r2",
+              "targetText": "She used to wear trousers with an elastic waist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i12:r3",
+              "targetText": "I used to wear shorts with an elastic waist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear trousers with an elastic waist.",
+                "uk": "У записі звучить I used to wear trousers with an elastic waist."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to wear trousers with an elastic waist.",
+                "uk": "У записі звучить I used to wear trousers with an elastic waist."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-55:i13:p1",
+              "target": "oversized",
+              "meaningByLocale": {
+                "ru": "увеличенного размера",
+                "uk": "збільшеного розміру"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-55:i13:p2",
+              "target": "woollen",
+              "meaningByLocale": {
+                "ru": "шерстяной",
+                "uk": "вовняний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-55:i13:p3",
+              "target": "silky",
+              "meaningByLocale": {
+                "ru": "шелковистый",
+                "uk": "шовковистий"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-55:i13:p4",
+              "target": "elastic",
+              "meaningByLocale": {
+                "ru": "эластичный",
+                "uk": "еластичний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "oversized",
+            "woollen",
+            "silky",
+            "elastic"
+          ],
+          "rightColumn": [
+            "збільшеного розміру",
+            "вовняний",
+            "шовковистий",
+            "еластичний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчила до мого дзвінка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчила до мого дзвінка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Раніше їздив машиною",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Раніше їздив машиною",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i15:audio",
+            "transcript": "I used to drive to work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to drive to work.",
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "drive",
+            "to",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Раніше він носив вовняні рукавички».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Раніше він носив вовняні рукавички».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i16:audio",
+            "transcript": "He used to wear woollen gloves."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He used to wear woollen gloves.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Раніше я носив шовковистий шарф».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Раніше я носив шовковистий шарф».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-55:i17:audio",
+            "transcript": "I used to wear a silky scarf."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used to wear a silky scarf.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-55:word:oversized",
+      "correctText": "oversized",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i01",
+      "correctText": "She used to wear oversized sweaters.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i02",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i03",
+      "correctText": "She used to wear oversized sweaters.",
+      "correctResponseId": "en:lesson-25:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:word:woollen",
+      "correctText": "woollen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i04",
+      "correctText": "I used to wear woollen socks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i05",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i06",
+      "correctText": "I used to wear woollen socks.",
+      "correctResponseId": "en:lesson-25:session-55:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:word:silky",
+      "correctText": "silky",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i07",
+      "correctText": "She used to wear a silky scarf.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i08",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i09",
+      "correctText": "She used to wear a silky scarf.",
+      "correctResponseId": "en:lesson-25:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:word:elastic",
+      "correctText": "elastic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i10",
+      "correctText": "I used to wear trousers with an elastic waist.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i11",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-55:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i12",
+      "correctText": "I used to wear trousers with an elastic waist.",
+      "correctResponseId": "en:lesson-25:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i15",
+      "correctText": "I used to drive to work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i16",
+      "correctText": "He used to wear woollen gloves.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-55:i17",
+      "correctText": "I used to wear a silky scarf.",
+      "correctResponseId": null
+    }
+  ]
+}

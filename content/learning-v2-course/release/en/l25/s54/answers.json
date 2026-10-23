@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-54:word:gravy",
+    "correctText": "gravy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i01",
+    "correctText": "We had made the gravy before the guests arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i03",
+    "correctText": "We had made the gravy before the guests arrived.",
+    "correctResponseId": "en:lesson-25:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:word:topping",
+    "correctText": "topping",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i04",
+    "correctText": "She had chosen the topping before I ordered.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i06",
+    "correctText": "She had chosen the topping before I ordered.",
+    "correctResponseId": "en:lesson-25:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:word:herbs",
+    "correctText": "herbs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i07",
+    "correctText": "I had chopped the herbs before she started cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i09",
+    "correctText": "I had chopped the herbs before she started cooking.",
+    "correctResponseId": "en:lesson-25:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:word:spices",
+    "correctText": "spices",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i10",
+    "correctText": "He had added the spices before I tasted the soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i12",
+    "correctText": "He had added the spices before I tasted the soup.",
+    "correctResponseId": "en:lesson-25:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i13",
+    "correctText": "en:lesson-25:session-54:i13:p1=gravy\nen:lesson-25:session-54:i13:p2=topping\nen:lesson-25:session-54:i13:p3=herbs\nen:lesson-25:session-54:i13:p4=spices",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i16",
+    "correctText": "She had made the gravy before the guests arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-54:i17",
+    "correctText": "We had added the spices before she tasted the soup.",
+    "correctResponseId": null
+  }
+]

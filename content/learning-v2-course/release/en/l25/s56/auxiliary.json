@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-56:intro1:r2": {
+          "ru": "Состояние в названный момент прошлого: was.",
+          "uk": "Стан у названий момент минулого: was."
+        },
+        "en:lesson-25:session-56:intro1:r3": {
+          "ru": "Для единственного числа в Past Simple нужна форма was.",
+          "uk": "Для однини в Past Simple потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-56:intro2:r2": {
+          "ru": "Состояние в названный момент прошлого: was.",
+          "uk": "Стан у названий момент минулого: was."
+        },
+        "en:lesson-25:session-56:intro2:r3": {
+          "ru": "Для единственного числа в Past Simple нужна форма was.",
+          "uk": "Для однини в Past Simple потрібна форма was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-56:intro3:r2": {
+          "ru": "Состояние в названный момент прошлого: was.",
+          "uk": "Стан у названий момент минулого: was."
+        },
+        "en:lesson-25:session-56:intro3:r3": {
+          "ru": "Для единственного числа в Past Simple нужна форма was.",
+          "uk": "Для однини в Past Simple потрібна форма was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0585c51e390fa1e4140f7d094aad145943f81eb9dddfab403b19a8de972b2316"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-55:word:oversized",
+    "correctText": "oversized",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i01",
+    "correctText": "She used to wear oversized sweaters.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i02",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i03",
+    "correctText": "She used to wear oversized sweaters.",
+    "correctResponseId": "en:lesson-25:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:word:woollen",
+    "correctText": "woollen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i04",
+    "correctText": "I used to wear woollen socks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i05",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i06",
+    "correctText": "I used to wear woollen socks.",
+    "correctResponseId": "en:lesson-25:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:word:silky",
+    "correctText": "silky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i07",
+    "correctText": "She used to wear a silky scarf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i08",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i09",
+    "correctText": "She used to wear a silky scarf.",
+    "correctResponseId": "en:lesson-25:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:word:elastic",
+    "correctText": "elastic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i10",
+    "correctText": "I used to wear trousers with an elastic waist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i11",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i12",
+    "correctText": "I used to wear trousers with an elastic waist.",
+    "correctResponseId": "en:lesson-25:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i13",
+    "correctText": "en:lesson-25:session-55:i13:p1=oversized\nen:lesson-25:session-55:i13:p2=woollen\nen:lesson-25:session-55:i13:p3=silky\nen:lesson-25:session-55:i13:p4=elastic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i15",
+    "correctText": "I used to drive to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i16",
+    "correctText": "He used to wear woollen gloves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-55:i17",
+    "correctText": "I used to wear a silky scarf.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-17:word:renovate",
+    "correctText": "renovate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i01",
+    "correctText": "We want to renovate this house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i02",
+    "correctText": "been",
+    "correctResponseId": "en:lesson-24:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i03",
+    "correctText": "We have been renovating this house for a month.",
+    "correctResponseId": "en:lesson-24:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:word:restore",
+    "correctText": "restore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i04",
+    "correctText": "I want to restore this old table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i06",
+    "correctText": "She has been restoring this old table all day.",
+    "correctResponseId": "en:lesson-24:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:word:insulation",
+    "correctText": "insulation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i07",
+    "correctText": "They have been adding insulation since Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i08",
+    "correctText": "adding",
+    "correctResponseId": "en:lesson-24:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i09",
+    "correctText": "They have been adding insulation since Monday.",
+    "correctResponseId": "en:lesson-24:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:word:flooring",
+    "correctText": "flooring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i10",
+    "correctText": "We have been choosing flooring for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i11",
+    "correctText": "for",
+    "correctResponseId": "en:lesson-24:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i12",
+    "correctText": "We have been choosing flooring for an hour.",
+    "correctResponseId": "en:lesson-24:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i13",
+    "correctText": "en:lesson-24:session-17:i13:p1=renovate\nen:lesson-24:session-17:i13:p2=restore\nen:lesson-24:session-17:i13:p3=insulation\nen:lesson-24:session-17:i13:p4=flooring",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i15",
+    "correctText": "They have been working all day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i16",
+    "correctText": "He has been restoring this old table all day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-17:i17",
+    "correctText": "They have been choosing flooring for an hour.",
+    "correctResponseId": null
+  }
+]

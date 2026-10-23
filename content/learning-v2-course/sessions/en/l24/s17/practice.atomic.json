@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-17:word:renovate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — renovate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:renovate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — renovate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:renovate:audio",
+            "transcript": "renovate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:renovate:r1",
+              "targetText": "renovate",
+              "meaningByLocale": {
+                "ru": "ремонтировать, обновлять здание.",
+                "uk": "ремонтувати, оновлювати будівлю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "renovate",
+            "definitionByLocale": {
+              "ru": "ремонтировать, обновлять здание.",
+              "uk": "ремонтувати, оновлювати будівлю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы хотим отремонтировать этот дом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы хотим отремонтировать этот дом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We want to renovate this house.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы хотим отремонтировать этот дом.»",
+            "uk": "Скажіть: «Ми хочемо відремонтувати цей будинок.»"
+          },
+          "orderedTokens": [
+            "We",
+            "want",
+            "to",
+            "renovate",
+            "this",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о продолжающейся работе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i02:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i02:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i02:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о продолжающейся работе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "We have ___ renovating this house for a month.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i02:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i02:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i02:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о продолжающейся работе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "Нужна связка have been renovating.",
+                "uk": "Потрібна зв’язка have been renovating."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "Нужна связка have been renovating.",
+                "uk": "Потрібна зв’язка have been renovating."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i03:r1",
+            "text": "We have been renovating this house for a month."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i03:r2",
+            "text": "They have been renovating this house for a month."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i03:r3",
+            "text": "We have been renovating this house for a year."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i03:audio",
+            "transcript": "We have been renovating this house for a month."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i03:r1",
+              "targetText": "We have been renovating this house for a month.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i03:r2",
+              "targetText": "They have been renovating this house for a month.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i03:r3",
+              "targetText": "We have been renovating this house for a year.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been renovating this house for a month.",
+                "uk": "У записі звучить We have been renovating this house for a month."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been renovating this house for a month.",
+                "uk": "У записі звучить We have been renovating this house for a month."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:word:restore",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — restore",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:restore:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — restore",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:restore:audio",
+            "transcript": "restore"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:restore:r1",
+              "targetText": "restore",
+              "meaningByLocale": {
+                "ru": "восстанавливать.",
+                "uk": "відновлювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "restore",
+            "definitionByLocale": {
+              "ru": "восстанавливать.",
+              "uk": "відновлювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу восстановить этот старый стол.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу восстановить этот старый стол.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to restore this old table.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу восстановить этот старый стол.»",
+            "uk": "Скажіть: «Я хочу відновити цей старий стіл.»"
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "restore",
+            "this",
+            "old",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о продолжающейся работе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о продолжающейся работе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "She ___ been restoring this old table all day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о продолжающейся работе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i06:r1",
+            "text": "She has been restoring this old table all day."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i06:r2",
+            "text": "He has been restoring this old table all day."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i06:r3",
+            "text": "They have been restoring this old table all day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i06:audio",
+            "transcript": "She has been restoring this old table all day."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i06:r1",
+              "targetText": "She has been restoring this old table all day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i06:r2",
+              "targetText": "He has been restoring this old table all day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i06:r3",
+              "targetText": "They have been restoring this old table all day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been restoring this old table all day.",
+                "uk": "У записі звучить She has been restoring this old table all day."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been restoring this old table all day.",
+                "uk": "У записі звучить She has been restoring this old table all day."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:word:insulation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — insulation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:insulation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — insulation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:insulation:audio",
+            "transcript": "insulation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:insulation:r1",
+              "targetText": "insulation",
+              "meaningByLocale": {
+                "ru": "теплоизоляция.",
+                "uk": "теплоізоляція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "insulation",
+            "definitionByLocale": {
+              "ru": "теплоизоляция.",
+              "uk": "теплоізоляція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Они добавляют теплоизоляцию с понедельника.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Они добавляют теплоизоляцию с понедельника.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have been adding insulation since Monday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они добавляют теплоизоляцию с понедельника.»",
+            "uk": "Скажіть: «Вони додають теплоізоляцію з понеділка.»"
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "adding",
+            "insulation",
+            "since",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о продолжающейся работе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i08:r1",
+            "text": "adding"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i08:r2",
+            "text": "add"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i08:r3",
+            "text": "added"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о продолжающейся работе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "They have been ___ insulation since Monday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i08:r1",
+              "text": "adding"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i08:r2",
+              "text": "add"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i08:r3",
+              "text": "added"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о продолжающейся работе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма adding.",
+                "uk": "Після have been потрібна форма adding."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма adding.",
+                "uk": "Після have been потрібна форма adding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i09:r1",
+            "text": "They have been adding insulation since Monday."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i09:r2",
+            "text": "We have been adding insulation since Monday."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i09:r3",
+            "text": "They have been adding insulation since Tuesday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i09:audio",
+            "transcript": "They have been adding insulation since Monday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i09:r1",
+              "targetText": "They have been adding insulation since Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i09:r2",
+              "targetText": "We have been adding insulation since Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i09:r3",
+              "targetText": "They have been adding insulation since Tuesday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been adding insulation since Monday.",
+                "uk": "У записі звучить They have been adding insulation since Monday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been adding insulation since Monday.",
+                "uk": "У записі звучить They have been adding insulation since Monday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:word:flooring",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flooring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:flooring:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flooring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:flooring:audio",
+            "transcript": "flooring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:flooring:r1",
+              "targetText": "flooring",
+              "meaningByLocale": {
+                "ru": "напольное покрытие.",
+                "uk": "покриття для підлоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flooring",
+            "definitionByLocale": {
+              "ru": "напольное покрытие.",
+              "uk": "покриття для підлоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы выбираем напольное покрытие уже час.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы выбираем напольное покрытие уже час.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been choosing flooring for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы выбираем напольное покрытие уже час.»",
+            "uk": "Скажіть: «Ми вибираємо покриття для підлоги вже годину.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "choosing",
+            "flooring",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о продолжающейся работе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i11:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i11:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i11:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о продолжающейся работе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "We have been choosing flooring ___ an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i11:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i11:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i11:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о продолжающейся работе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "An hour — длительность, нужен for.",
+                "uk": "An hour — тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о продолжающейся работе.",
+              "feedbackByLocale": {
+                "ru": "An hour — длительность, нужен for.",
+                "uk": "An hour — тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i12:r1",
+            "text": "We have been choosing flooring for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i12:r2",
+            "text": "They have been choosing flooring for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i12:r3",
+            "text": "We have been choosing flooring for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i12:audio",
+            "transcript": "We have been choosing flooring for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i12:r1",
+              "targetText": "We have been choosing flooring for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i12:r2",
+              "targetText": "They have been choosing flooring for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i12:r3",
+              "targetText": "We have been choosing flooring for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been choosing flooring for an hour.",
+                "uk": "У записі звучить We have been choosing flooring for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been choosing flooring for an hour.",
+                "uk": "У записі звучить We have been choosing flooring for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-17:i13:p1",
+              "target": "renovate",
+              "meaningByLocale": {
+                "ru": "ремонтировать, обновлять здание",
+                "uk": "ремонтувати, оновлювати будівлю"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-17:i13:p2",
+              "target": "restore",
+              "meaningByLocale": {
+                "ru": "восстанавливать",
+                "uk": "відновлювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-17:i13:p3",
+              "target": "insulation",
+              "meaningByLocale": {
+                "ru": "теплоизоляция",
+                "uk": "теплоізоляція"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-17:i13:p4",
+              "target": "flooring",
+              "meaningByLocale": {
+                "ru": "напольное покрытие",
+                "uk": "покриття для підлоги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "renovate",
+            "restore",
+            "insulation",
+            "flooring"
+          ],
+          "rightColumn": [
+            "ремонтировать, обновлять здание",
+            "восстанавливать",
+            "теплоизоляция",
+            "напольное покрытие"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работают весь день",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Работают весь день",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i15:audio",
+            "transcript": "They have been working all day."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They have been working all day.",
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "working",
+            "all",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Он весь день восстанавливает этот старый стол».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Он весь день восстанавливает этот старый стол».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i16:audio",
+            "transcript": "He has been restoring this old table all day."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has been restoring this old table all day.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Они выбирают напольное покрытие уже час».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Они выбирают напольное покрытие уже час».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i17:audio",
+            "transcript": "They have been choosing flooring for an hour."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been choosing flooring for an hour.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-17:word:renovate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — renovate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:renovate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — renovate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:renovate:audio",
+            "transcript": "renovate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:renovate:r1",
+              "targetText": "renovate",
+              "meaningByLocale": {
+                "ru": "ремонтировать, обновлять здание.",
+                "uk": "ремонтувати, оновлювати будівлю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "renovate",
+            "definitionByLocale": {
+              "ru": "ремонтировать, обновлять здание.",
+              "uk": "ремонтувати, оновлювати будівлю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми хочемо відремонтувати цей будинок.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми хочемо відремонтувати цей будинок.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We want to renovate this house.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы хотим отремонтировать этот дом.»",
+            "uk": "Скажіть: «Ми хочемо відремонтувати цей будинок.»"
+          },
+          "orderedTokens": [
+            "We",
+            "want",
+            "to",
+            "renovate",
+            "this",
+            "house"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу, що триває.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i02:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i02:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i02:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу, що триває.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "We have ___ renovating this house for a month.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i02:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i02:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i02:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу, що триває.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "Нужна связка have been renovating.",
+                "uk": "Потрібна зв’язка have been renovating."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "Нужна связка have been renovating.",
+                "uk": "Потрібна зв’язка have been renovating."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i03:r1",
+            "text": "We have been renovating this house for a month."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i03:r2",
+            "text": "They have been renovating this house for a month."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i03:r3",
+            "text": "We have been renovating this house for a year."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i03:audio",
+            "transcript": "We have been renovating this house for a month."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i03:r1",
+              "targetText": "We have been renovating this house for a month.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i03:r2",
+              "targetText": "They have been renovating this house for a month.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i03:r3",
+              "targetText": "We have been renovating this house for a year.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been renovating this house for a month.",
+                "uk": "У записі звучить We have been renovating this house for a month."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been renovating this house for a month.",
+                "uk": "У записі звучить We have been renovating this house for a month."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:word:restore",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — restore",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:restore:audio"
+        ],
+        "accessibilityLabel": "Картка слова — restore",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:restore:audio",
+            "transcript": "restore"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:restore:r1",
+              "targetText": "restore",
+              "meaningByLocale": {
+                "ru": "восстанавливать.",
+                "uk": "відновлювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "restore",
+            "definitionByLocale": {
+              "ru": "восстанавливать.",
+              "uk": "відновлювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу відновити цей старий стіл.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу відновити цей старий стіл.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to restore this old table.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу восстановить этот старый стол.»",
+            "uk": "Скажіть: «Я хочу відновити цей старий стіл.»"
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "restore",
+            "this",
+            "old",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу, що триває.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу, що триває.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "She ___ been restoring this old table all day.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу, що триває.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i06:r1",
+            "text": "She has been restoring this old table all day."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i06:r2",
+            "text": "He has been restoring this old table all day."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i06:r3",
+            "text": "They have been restoring this old table all day."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i06:audio",
+            "transcript": "She has been restoring this old table all day."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i06:r1",
+              "targetText": "She has been restoring this old table all day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i06:r2",
+              "targetText": "He has been restoring this old table all day.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i06:r3",
+              "targetText": "They have been restoring this old table all day.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been restoring this old table all day.",
+                "uk": "У записі звучить She has been restoring this old table all day."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been restoring this old table all day.",
+                "uk": "У записі звучить She has been restoring this old table all day."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:word:insulation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — insulation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:insulation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — insulation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:insulation:audio",
+            "transcript": "insulation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:insulation:r1",
+              "targetText": "insulation",
+              "meaningByLocale": {
+                "ru": "теплоизоляция.",
+                "uk": "теплоізоляція."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "insulation",
+            "definitionByLocale": {
+              "ru": "теплоизоляция.",
+              "uk": "теплоізоляція."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вони додають теплоізоляцію з понеділка.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вони додають теплоізоляцію з понеділка.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have been adding insulation since Monday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Они добавляют теплоизоляцию с понедельника.»",
+            "uk": "Скажіть: «Вони додають теплоізоляцію з понеділка.»"
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "adding",
+            "insulation",
+            "since",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу, що триває.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i08:r1",
+            "text": "adding"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i08:r2",
+            "text": "add"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i08:r3",
+            "text": "added"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу, що триває.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "They have been ___ insulation since Monday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i08:r1",
+              "text": "adding"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i08:r2",
+              "text": "add"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i08:r3",
+              "text": "added"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу, що триває.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма adding.",
+                "uk": "Після have been потрібна форма adding."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма adding.",
+                "uk": "Після have been потрібна форма adding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i09:r1",
+            "text": "They have been adding insulation since Monday."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i09:r2",
+            "text": "We have been adding insulation since Monday."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i09:r3",
+            "text": "They have been adding insulation since Tuesday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i09:audio",
+            "transcript": "They have been adding insulation since Monday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i09:r1",
+              "targetText": "They have been adding insulation since Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i09:r2",
+              "targetText": "We have been adding insulation since Monday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i09:r3",
+              "targetText": "They have been adding insulation since Tuesday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been adding insulation since Monday.",
+                "uk": "У записі звучить They have been adding insulation since Monday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have been adding insulation since Monday.",
+                "uk": "У записі звучить They have been adding insulation since Monday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:word:flooring",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flooring",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:word:flooring:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flooring",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:word:flooring:audio",
+            "transcript": "flooring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:word:flooring:r1",
+              "targetText": "flooring",
+              "meaningByLocale": {
+                "ru": "напольное покрытие.",
+                "uk": "покриття для підлоги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flooring",
+            "definitionByLocale": {
+              "ru": "напольное покрытие.",
+              "uk": "покриття для підлоги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми вибираємо покриття для підлоги вже годину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми вибираємо покриття для підлоги вже годину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been choosing flooring for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы выбираем напольное покрытие уже час.»",
+            "uk": "Скажіть: «Ми вибираємо покриття для підлоги вже годину.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "choosing",
+            "flooring",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу, що триває.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i11:r1",
+            "text": "for"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i11:r2",
+            "text": "since"
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i11:r3",
+            "text": "at"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу, що триває.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о продолжающейся работе.",
+            "uk": "Доповніть розповідь про роботу, що триває."
+          },
+          "gappedTargetPhrase": "We have been choosing flooring ___ an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-17:i11:r1",
+              "text": "for"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i11:r2",
+              "text": "since"
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i11:r3",
+              "text": "at"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу, що триває.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "An hour — длительность, нужен for.",
+                "uk": "An hour — тривалість, потрібне for."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу, що триває.",
+              "feedbackByLocale": {
+                "ru": "An hour — длительность, нужен for.",
+                "uk": "An hour — тривалість, потрібне for."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-17:i12:r1",
+            "text": "We have been choosing flooring for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i12:r2",
+            "text": "They have been choosing flooring for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-17:i12:r3",
+            "text": "We have been choosing flooring for two hours."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i12:audio",
+            "transcript": "We have been choosing flooring for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-17:i12:r1",
+              "targetText": "We have been choosing flooring for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i12:r2",
+              "targetText": "They have been choosing flooring for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i12:r3",
+              "targetText": "We have been choosing flooring for two hours.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been choosing flooring for an hour.",
+                "uk": "У записі звучить We have been choosing flooring for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been choosing flooring for an hour.",
+                "uk": "У записі звучить We have been choosing flooring for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-17:i13:p1",
+              "target": "renovate",
+              "meaningByLocale": {
+                "ru": "ремонтировать, обновлять здание",
+                "uk": "ремонтувати, оновлювати будівлю"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-17:i13:p2",
+              "target": "restore",
+              "meaningByLocale": {
+                "ru": "восстанавливать",
+                "uk": "відновлювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-17:i13:p3",
+              "target": "insulation",
+              "meaningByLocale": {
+                "ru": "теплоизоляция",
+                "uk": "теплоізоляція"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-17:i13:p4",
+              "target": "flooring",
+              "meaningByLocale": {
+                "ru": "напольное покрытие",
+                "uk": "покриття для підлоги"
+              }
+            }
+          ],
+          "leftColumn": [
+            "renovate",
+            "restore",
+            "insulation",
+            "flooring"
+          ],
+          "rightColumn": [
+            "ремонтувати, оновлювати будівлю",
+            "відновлювати",
+            "теплоізоляція",
+            "покриття для підлоги"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працюють увесь день",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Працюють увесь день",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i15:audio",
+            "transcript": "They have been working all day."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "They have been working all day.",
+          "orderedTokens": [
+            "They",
+            "have",
+            "been",
+            "working",
+            "all",
+            "day"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Він увесь день відновлює цей старий стіл».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Він увесь день відновлює цей старий стіл».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i16:audio",
+            "transcript": "He has been restoring this old table all day."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He has been restoring this old table all day.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вони вибирають покриття для підлоги вже годину».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вони вибирають покриття для підлоги вже годину».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-17:i17:audio",
+            "transcript": "They have been choosing flooring for an hour."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been choosing flooring for an hour.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-17:word:renovate",
+      "correctText": "renovate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i01",
+      "correctText": "We want to renovate this house.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i02",
+      "correctText": "been",
+      "correctResponseId": "en:lesson-24:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i03",
+      "correctText": "We have been renovating this house for a month.",
+      "correctResponseId": "en:lesson-24:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:word:restore",
+      "correctText": "restore",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i04",
+      "correctText": "I want to restore this old table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i05",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-24:session-17:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i06",
+      "correctText": "She has been restoring this old table all day.",
+      "correctResponseId": "en:lesson-24:session-17:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:word:insulation",
+      "correctText": "insulation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i07",
+      "correctText": "They have been adding insulation since Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i08",
+      "correctText": "adding",
+      "correctResponseId": "en:lesson-24:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i09",
+      "correctText": "They have been adding insulation since Monday.",
+      "correctResponseId": "en:lesson-24:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:word:flooring",
+      "correctText": "flooring",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i10",
+      "correctText": "We have been choosing flooring for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i11",
+      "correctText": "for",
+      "correctResponseId": "en:lesson-24:session-17:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i12",
+      "correctText": "We have been choosing flooring for an hour.",
+      "correctResponseId": "en:lesson-24:session-17:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i15",
+      "correctText": "They have been working all day.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i16",
+      "correctText": "He has been restoring this old table all day.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:i17",
+      "correctText": "They have been choosing flooring for an hour.",
+      "correctResponseId": null
+    }
+  ]
+}

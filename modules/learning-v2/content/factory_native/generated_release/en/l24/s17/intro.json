@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "have|has been + verb-ing",
+    "uk": "have|has been + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Работа идёт уже месяц",
+        "uk": "Робота триває вже місяць"
+      },
+      "bodyByLocale": {
+        "ru": "Renovate — ремонтировать, обновлять здание. We want to renovate this house — мы хотим отремонтировать этот дом. А если работа началась месяц назад и ещё идёт: We have been renovating this house for a month. Новая форма: have been + действие с -ing. Здесь важен длительный процесс, а не готовый результат.",
+        "uk": "Renovate — ремонтувати, оновлювати будівлю. We want to renovate this house — ми хочемо відремонтувати цей будинок. А якщо робота почалася місяць тому й ще триває: We have been renovating this house for a month. Нова форма: have been + дія з -ing. Тут важливий тривалий процес, а не готовий результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-17:intro1:r1",
+              "text": "We have been renovating this house for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro1:r2",
+              "text": "We have renovating this house for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro1:r3",
+              "text": "We has been renovating this house for a month."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-17:intro1:r1",
+              "text": "We have been renovating this house for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro1:r2",
+              "text": "We have renovating this house for a month."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro1:r3",
+              "text": "We has been renovating this house for a month."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Весь день со старым столом",
+        "uk": "Увесь день зі старим столом"
+      },
+      "bodyByLocale": {
+        "ru": "Restore — восстанавливать, возвращать прежний вид. She has been restoring this old table all day — она весь день восстанавливает этот старый стол. С she используем has been, потом restoring. Стол ещё не готов, хотя сосед уже попросил такой же. У renovate и restore перед -ing убирается конечная e.",
+        "uk": "Restore — відновлювати, повертати колишній вигляд. She has been restoring this old table all day — вона весь день відновлює цей старий стіл. Із she використовуємо has been, потім restoring. Стіл іще не готовий, хоча сусід уже попросив такий самий. У renovate та restore перед -ing забираємо кінцеву e."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-17:intro2:r1",
+              "text": "She has been restoring this old table all day."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro2:r2",
+              "text": "She have been restoring this old table all day."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro2:r3",
+              "text": "She has been restore this old table all day."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-17:intro2:r1",
+              "text": "She has been restoring this old table all day."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro2:r2",
+              "text": "She have been restoring this old table all day."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro2:r3",
+              "text": "She has been restore this old table all day."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что делаем и как давно",
+        "uk": "Що робимо й як давно"
+      },
+      "bodyByLocale": {
+        "ru": "Insulation — теплоизоляция; flooring — напольное покрытие. They have been adding insulation since Monday — они добавляют теплоизоляцию с понедельника. We have been choosing flooring for an hour — мы выбираем покрытие уже час. Since называет начало, for — длительность, как и раньше. Been остаётся одинаковым после have и has.",
+        "uk": "Insulation — теплоізоляція; flooring — покриття для підлоги. They have been adding insulation since Monday — вони додають теплоізоляцію з понеділка. We have been choosing flooring for an hour — ми вибираємо покриття вже годину. Since називає початок, for — тривалість, як і раніше. Been залишається однаковим після have та has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-17:intro3:r1",
+              "text": "We have been choosing flooring for an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro3:r2",
+              "text": "We have been choosing flooring since an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro3:r3",
+              "text": "We have been choose flooring for an hour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-17:intro3:r1",
+              "text": "We have been choosing flooring for an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro3:r2",
+              "text": "We have been choosing flooring since an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-17:intro3:r3",
+              "text": "We have been choose flooring for an hour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6c8fec341b5fcf19ea1446eb5c1b9e3f7f6f53195f47d51a22c9e37475b56bbd"
+}

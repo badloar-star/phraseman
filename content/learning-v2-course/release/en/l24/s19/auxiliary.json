@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-19:intro1:r2": {
+          "ru": "Перед действием с -ing нужно been.",
+          "uk": "Перед дією з -ing потрібне been."
+        },
+        "en:lesson-24:session-19:intro1:r3": {
+          "ru": "С I и we нужно have, с she — has.",
+          "uk": "З I та we потрібно have, з she — has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-19:intro2:r2": {
+          "ru": "Перед действием с -ing нужно been.",
+          "uk": "Перед дією з -ing потрібне been."
+        },
+        "en:lesson-24:session-19:intro2:r3": {
+          "ru": "С I и we нужно have, с she — has.",
+          "uk": "З I та we потрібно have, з she — has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-19:intro3:r2": {
+          "ru": "Перед действием с -ing нужно been.",
+          "uk": "Перед дією з -ing потрібне been."
+        },
+        "en:lesson-24:session-19:intro3:r3": {
+          "ru": "С I и we нужно have, с she — has.",
+          "uk": "З I та we потрібно have, з she — has."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b31dd615232743139a4451e16b766746c436b00b8b553774ef6e6c1efc32865c"
+}

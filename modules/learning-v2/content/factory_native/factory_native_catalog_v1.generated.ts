@@ -9135,4 +9135,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have/has + past participle; just/already; How long","uk":"have/has + past participle; just/already; How long"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 17,
+    sourceFingerprint: "e92c78fbf5bc5bc024e5d355e0b61f8b9cf45616f45603b4720fefd2de28340a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 18,
+    sourceFingerprint: "95e7e62ba32d90e89cd5eac9e390f4a96c4a94383dd1962310ea17f29024a20e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 19,
+    sourceFingerprint: "2f348d82203507722568fb0708494d39bd4ddc1394c96e440f701348f1e26774",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

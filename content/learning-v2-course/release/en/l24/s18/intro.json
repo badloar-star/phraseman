@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "have|has been + verb-ing",
+    "uk": "have|has been + verb-ing"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Замешиваем тесто",
+        "uk": "Замішуємо тісто"
+      },
+      "bodyByLocale": {
+        "ru": "Dough — тесто, обычно достаточно густое, чтобы его месить или раскатывать. Жидкое batter вы уже знаете. I have been mixing dough for ten minutes — я смешиваю тесто уже десять минут. Have been mixing показывает работу, которая началась раньше и ещё идёт.",
+        "uk": "Dough — тісто, зазвичай досить густе, щоб його місити або розкачувати. Рідке batter ви вже знаєте. I have been mixing dough for ten minutes — я змішую тісто вже десять хвилин. Have been mixing показує роботу, яка почалася раніше й ще триває."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-18:intro1:r1",
+              "text": "I have been mixing dough for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro1:r2",
+              "text": "I have mixing dough for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro1:r3",
+              "text": "I has been mixing dough for ten minutes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-18:intro1:r1",
+              "text": "I have been mixing dough for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro1:r2",
+              "text": "I have mixing dough for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro1:r3",
+              "text": "I has been mixing dough for ten minutes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начинка и основа",
+        "uk": "Начинка й основа"
+      },
+      "bodyByLocale": {
+        "ru": "Filling — начинка. She has been preparing the filling for an hour — она готовит начинку уже час. Crust — корочка или основа пирога. We have been baking the crust for twenty minutes — мы выпекаем основу уже двадцать минут. В обоих предложениях называем длительность процесса, не утверждаем, что всё готово.",
+        "uk": "Filling — начинка. She has been preparing the filling for an hour — вона готує начинку вже годину. Crust — скоринка або основа пирога. We have been baking the crust for twenty minutes — ми випікаємо основу вже двадцять хвилин. В обох реченнях називаємо тривалість процесу, не стверджуємо, що все готове."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-18:intro2:r1",
+              "text": "She has been preparing the filling for an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro2:r2",
+              "text": "She has preparing the filling for an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro2:r3",
+              "text": "She have been preparing the filling for an hour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-18:intro2:r1",
+              "text": "She has been preparing the filling for an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro2:r2",
+              "text": "She has preparing the filling for an hour."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro2:r3",
+              "text": "She have been preparing the filling for an hour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Убираем крошки",
+        "uk": "Прибираємо крихти"
+      },
+      "bodyByLocale": {
+        "ru": "Crumbs — крошки; одна крошка — a crumb. He has been sweeping up crumbs for ten minutes — он подметает крошки уже десять минут. Sweep up здесь — собрать, подметая. Пирог ещё в духовке, а крошки уже устроили прогулку по кухне. После has been используем sweeping.",
+        "uk": "Crumbs — крихти; одна крихта — a crumb. He has been sweeping up crumbs for ten minutes — він підмітає крихти вже десять хвилин. Sweep up тут — зібрати, підмітаючи. Пиріг іще в духовці, а крихти вже влаштували прогулянку кухнею. Після has been використовуємо sweeping."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-18:intro3:r1",
+              "text": "He has been sweeping up crumbs for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro3:r2",
+              "text": "He has sweeping up crumbs for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro3:r3",
+              "text": "He have been sweeping up crumbs for ten minutes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-18:intro3:r1",
+              "text": "He has been sweeping up crumbs for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro3:r2",
+              "text": "He has sweeping up crumbs for ten minutes."
+            },
+            {
+              "responseId": "en:lesson-24:session-18:intro3:r3",
+              "text": "He have been sweeping up crumbs for ten minutes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fcc0fd89dd97fbe9e98462525e23ff9158f461a44ef93458c050af3b75aa7b52"
+}

@@ -1,0 +1,2357 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-18",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-18:word:dough",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:dough:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:dough:audio",
+            "transcript": "dough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:dough:r1",
+              "targetText": "dough",
+              "meaningByLocale": {
+                "ru": "тесто.",
+                "uk": "тісто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dough",
+            "definitionByLocale": {
+              "ru": "тесто.",
+              "uk": "тісто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я смешиваю тесто уже десять минут.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я смешиваю тесто уже десять минут.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have been mixing dough for ten minutes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я смешиваю тесто уже десять минут.»",
+            "uk": "Скажіть: «Я змішую тісто вже десять хвилин.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "mixing",
+            "dough",
+            "for",
+            "ten",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о работе на кухне.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о работе на кухне.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "I ___ been mixing dough for ten minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о работе на кухне.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i03:r1",
+            "text": "I have been mixing dough for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i03:r2",
+            "text": "We have been mixing dough for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i03:r3",
+            "text": "I have been mixing dough for five minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i03:audio",
+            "transcript": "I have been mixing dough for ten minutes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i03:r1",
+              "targetText": "I have been mixing dough for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i03:r2",
+              "targetText": "We have been mixing dough for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i03:r3",
+              "targetText": "I have been mixing dough for five minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been mixing dough for ten minutes.",
+                "uk": "У записі звучить I have been mixing dough for ten minutes."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been mixing dough for ten minutes.",
+                "uk": "У записі звучить I have been mixing dough for ten minutes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:word:filling",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — filling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:filling:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — filling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:filling:audio",
+            "transcript": "filling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:filling:r1",
+              "targetText": "filling",
+              "meaningByLocale": {
+                "ru": "начинка.",
+                "uk": "начинка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "filling",
+            "definitionByLocale": {
+              "ru": "начинка.",
+              "uk": "начинка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она готовит начинку уже час.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она готовит начинку уже час.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been preparing the filling for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она готовит начинку уже час.»",
+            "uk": "Скажіть: «Вона готує начинку вже годину.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "preparing",
+            "the",
+            "filling",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о работе на кухне.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о работе на кухне.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "She ___ been preparing the filling for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о работе на кухне.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i06:r1",
+            "text": "She has been preparing the filling for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i06:r2",
+            "text": "He has been preparing the filling for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i06:r3",
+            "text": "They have been preparing the filling for an hour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i06:audio",
+            "transcript": "She has been preparing the filling for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i06:r1",
+              "targetText": "She has been preparing the filling for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i06:r2",
+              "targetText": "He has been preparing the filling for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i06:r3",
+              "targetText": "They have been preparing the filling for an hour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been preparing the filling for an hour.",
+                "uk": "У записі звучить She has been preparing the filling for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been preparing the filling for an hour.",
+                "uk": "У записі звучить She has been preparing the filling for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:word:crust",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crust",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:crust:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crust",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:crust:audio",
+            "transcript": "crust"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:crust:r1",
+              "targetText": "crust",
+              "meaningByLocale": {
+                "ru": "корочка, основа пирога.",
+                "uk": "скоринка, основа пирога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crust",
+            "definitionByLocale": {
+              "ru": "корочка, основа пирога.",
+              "uk": "скоринка, основа пирога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы выпекаем основу пирога уже двадцать минут.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы выпекаем основу пирога уже двадцать минут.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been baking the crust for twenty minutes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы выпекаем основу пирога уже двадцать минут.»",
+            "uk": "Скажіть: «Ми випікаємо основу пирога вже двадцять хвилин.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "baking",
+            "the",
+            "crust",
+            "for",
+            "twenty",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о работе на кухне.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i08:r1",
+            "text": "baking"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i08:r2",
+            "text": "bake"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i08:r3",
+            "text": "baked"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о работе на кухне.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "We have been ___ the crust for twenty minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i08:r1",
+              "text": "baking"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i08:r2",
+              "text": "bake"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i08:r3",
+              "text": "baked"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о работе на кухне.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма baking.",
+                "uk": "Після have been потрібна форма baking."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма baking.",
+                "uk": "Після have been потрібна форма baking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i09:r1",
+            "text": "We have been baking the crust for twenty minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i09:r2",
+            "text": "They have been baking the crust for twenty minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i09:r3",
+            "text": "We have been baking the crust for ten minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i09:audio",
+            "transcript": "We have been baking the crust for twenty minutes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i09:r1",
+              "targetText": "We have been baking the crust for twenty minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i09:r2",
+              "targetText": "They have been baking the crust for twenty minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i09:r3",
+              "targetText": "We have been baking the crust for ten minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been baking the crust for twenty minutes.",
+                "uk": "У записі звучить We have been baking the crust for twenty minutes."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been baking the crust for twenty minutes.",
+                "uk": "У записі звучить We have been baking the crust for twenty minutes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:word:crumbs",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crumbs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:crumbs:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crumbs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:crumbs:audio",
+            "transcript": "crumbs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:crumbs:r1",
+              "targetText": "crumbs",
+              "meaningByLocale": {
+                "ru": "крошки.",
+                "uk": "крихти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crumbs",
+            "definitionByLocale": {
+              "ru": "крошки.",
+              "uk": "крихти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он подметает крошки уже десять минут.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он подметает крошки уже десять минут.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has been sweeping up crumbs for ten minutes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он подметает крошки уже десять минут.»",
+            "uk": "Скажіть: «Він підмітає крихти вже десять хвилин.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "been",
+            "sweeping",
+            "up",
+            "crumbs",
+            "for",
+            "ten",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о работе на кухне.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i11:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i11:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i11:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о работе на кухне.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "He has ___ sweeping up crumbs for ten minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i11:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i11:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i11:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о работе на кухне.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "Между has и sweeping нужно been.",
+                "uk": "Між has та sweeping потрібне been."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о работе на кухне.",
+              "feedbackByLocale": {
+                "ru": "Между has и sweeping нужно been.",
+                "uk": "Між has та sweeping потрібне been."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i12:r1",
+            "text": "He has been sweeping up crumbs for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i12:r2",
+            "text": "She has been sweeping up crumbs for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i12:r3",
+            "text": "He has been sweeping up crumbs for five minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i12:audio",
+            "transcript": "He has been sweeping up crumbs for ten minutes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i12:r1",
+              "targetText": "He has been sweeping up crumbs for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i12:r2",
+              "targetText": "She has been sweeping up crumbs for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i12:r3",
+              "targetText": "He has been sweeping up crumbs for five minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been sweeping up crumbs for ten minutes.",
+                "uk": "У записі звучить He has been sweeping up crumbs for ten minutes."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been sweeping up crumbs for ten minutes.",
+                "uk": "У записі звучить He has been sweeping up crumbs for ten minutes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-18:i13:p1",
+              "target": "dough",
+              "meaningByLocale": {
+                "ru": "тесто",
+                "uk": "тісто"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-18:i13:p2",
+              "target": "filling",
+              "meaningByLocale": {
+                "ru": "начинка",
+                "uk": "начинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-18:i13:p3",
+              "target": "crust",
+              "meaningByLocale": {
+                "ru": "корочка, основа пирога",
+                "uk": "скоринка, основа пирога"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-18:i13:p4",
+              "target": "crumbs",
+              "meaningByLocale": {
+                "ru": "крошки",
+                "uk": "крихти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dough",
+            "filling",
+            "crust",
+            "crumbs"
+          ],
+          "rightColumn": [
+            "тесто",
+            "начинка",
+            "корочка, основа пирога",
+            "крошки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы смешиваем тесто уже пять минут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы смешиваем тесто уже пять минут».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i16:audio",
+            "transcript": "We have been mixing dough for five minutes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been mixing dough for five minutes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Они готовят начинку уже час».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Они готовят начинку уже час».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i17:audio",
+            "transcript": "They have been preparing the filling for an hour."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been preparing the filling for an hour.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-18:word:dough",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:dough:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dough",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:dough:audio",
+            "transcript": "dough"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:dough:r1",
+              "targetText": "dough",
+              "meaningByLocale": {
+                "ru": "тесто.",
+                "uk": "тісто."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dough",
+            "definitionByLocale": {
+              "ru": "тесто.",
+              "uk": "тісто."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я змішую тісто вже десять хвилин.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я змішую тісто вже десять хвилин.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have been mixing dough for ten minutes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я смешиваю тесто уже десять минут.»",
+            "uk": "Скажіть: «Я змішую тісто вже десять хвилин.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "mixing",
+            "dough",
+            "for",
+            "ten",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу на кухні.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i02:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу на кухні.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "I ___ been mixing dough for ten minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i02:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу на кухні.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i03:r1",
+            "text": "I have been mixing dough for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i03:r2",
+            "text": "We have been mixing dough for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i03:r3",
+            "text": "I have been mixing dough for five minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i03:audio",
+            "transcript": "I have been mixing dough for ten minutes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i03:r1",
+              "targetText": "I have been mixing dough for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i03:r2",
+              "targetText": "We have been mixing dough for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i03:r3",
+              "targetText": "I have been mixing dough for five minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been mixing dough for ten minutes.",
+                "uk": "У записі звучить I have been mixing dough for ten minutes."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have been mixing dough for ten minutes.",
+                "uk": "У записі звучить I have been mixing dough for ten minutes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:word:filling",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — filling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:filling:audio"
+        ],
+        "accessibilityLabel": "Картка слова — filling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:filling:audio",
+            "transcript": "filling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:filling:r1",
+              "targetText": "filling",
+              "meaningByLocale": {
+                "ru": "начинка.",
+                "uk": "начинка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "filling",
+            "definitionByLocale": {
+              "ru": "начинка.",
+              "uk": "начинка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона готує начинку вже годину.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона готує начинку вже годину.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has been preparing the filling for an hour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она готовит начинку уже час.»",
+            "uk": "Скажіть: «Вона готує начинку вже годину.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "preparing",
+            "the",
+            "filling",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу на кухні.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу на кухні.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "She ___ been preparing the filling for an hour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу на кухні.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i06:r1",
+            "text": "She has been preparing the filling for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i06:r2",
+            "text": "He has been preparing the filling for an hour."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i06:r3",
+            "text": "They have been preparing the filling for an hour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i06:audio",
+            "transcript": "She has been preparing the filling for an hour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i06:r1",
+              "targetText": "She has been preparing the filling for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i06:r2",
+              "targetText": "He has been preparing the filling for an hour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i06:r3",
+              "targetText": "They have been preparing the filling for an hour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been preparing the filling for an hour.",
+                "uk": "У записі звучить She has been preparing the filling for an hour."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has been preparing the filling for an hour.",
+                "uk": "У записі звучить She has been preparing the filling for an hour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:word:crust",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crust",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:crust:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crust",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:crust:audio",
+            "transcript": "crust"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:crust:r1",
+              "targetText": "crust",
+              "meaningByLocale": {
+                "ru": "корочка, основа пирога.",
+                "uk": "скоринка, основа пирога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crust",
+            "definitionByLocale": {
+              "ru": "корочка, основа пирога.",
+              "uk": "скоринка, основа пирога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми випікаємо основу пирога вже двадцять хвилин.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми випікаємо основу пирога вже двадцять хвилин.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have been baking the crust for twenty minutes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы выпекаем основу пирога уже двадцать минут.»",
+            "uk": "Скажіть: «Ми випікаємо основу пирога вже двадцять хвилин.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "been",
+            "baking",
+            "the",
+            "crust",
+            "for",
+            "twenty",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу на кухні.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i08:r1",
+            "text": "baking"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i08:r2",
+            "text": "bake"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i08:r3",
+            "text": "baked"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу на кухні.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "We have been ___ the crust for twenty minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i08:r1",
+              "text": "baking"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i08:r2",
+              "text": "bake"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i08:r3",
+              "text": "baked"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу на кухні.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма baking.",
+                "uk": "Після have been потрібна форма baking."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "После have been нужна форма baking.",
+                "uk": "Після have been потрібна форма baking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i09:r1",
+            "text": "We have been baking the crust for twenty minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i09:r2",
+            "text": "They have been baking the crust for twenty minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i09:r3",
+            "text": "We have been baking the crust for ten minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i09:audio",
+            "transcript": "We have been baking the crust for twenty minutes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i09:r1",
+              "targetText": "We have been baking the crust for twenty minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i09:r2",
+              "targetText": "They have been baking the crust for twenty minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i09:r3",
+              "targetText": "We have been baking the crust for ten minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been baking the crust for twenty minutes.",
+                "uk": "У записі звучить We have been baking the crust for twenty minutes."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have been baking the crust for twenty minutes.",
+                "uk": "У записі звучить We have been baking the crust for twenty minutes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:word:crumbs",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crumbs",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:word:crumbs:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crumbs",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:word:crumbs:audio",
+            "transcript": "crumbs"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:word:crumbs:r1",
+              "targetText": "crumbs",
+              "meaningByLocale": {
+                "ru": "крошки.",
+                "uk": "крихти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crumbs",
+            "definitionByLocale": {
+              "ru": "крошки.",
+              "uk": "крихти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він підмітає крихти вже десять хвилин.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він підмітає крихти вже десять хвилин.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has been sweeping up crumbs for ten minutes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он подметает крошки уже десять минут.»",
+            "uk": "Скажіть: «Він підмітає крихти вже десять хвилин.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "been",
+            "sweeping",
+            "up",
+            "crumbs",
+            "for",
+            "ten",
+            "minutes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про роботу на кухні.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i11:r1",
+            "text": "been"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i11:r2",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i11:r3",
+            "text": "being"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про роботу на кухні.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о работе на кухне.",
+            "uk": "Доповніть розповідь про роботу на кухні."
+          },
+          "gappedTargetPhrase": "He has ___ sweeping up crumbs for ten minutes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-18:i11:r1",
+              "text": "been"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i11:r2",
+              "text": "be"
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i11:r3",
+              "text": "being"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про роботу на кухні.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "Между has и sweeping нужно been.",
+                "uk": "Між has та sweeping потрібне been."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про роботу на кухні.",
+              "feedbackByLocale": {
+                "ru": "Между has и sweeping нужно been.",
+                "uk": "Між has та sweeping потрібне been."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-18:i12:r1",
+            "text": "He has been sweeping up crumbs for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i12:r2",
+            "text": "She has been sweeping up crumbs for ten minutes."
+          },
+          {
+            "responseId": "en:lesson-24:session-18:i12:r3",
+            "text": "He has been sweeping up crumbs for five minutes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i12:audio",
+            "transcript": "He has been sweeping up crumbs for ten minutes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-18:i12:r1",
+              "targetText": "He has been sweeping up crumbs for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i12:r2",
+              "targetText": "She has been sweeping up crumbs for ten minutes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i12:r3",
+              "targetText": "He has been sweeping up crumbs for five minutes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been sweeping up crumbs for ten minutes.",
+                "uk": "У записі звучить He has been sweeping up crumbs for ten minutes."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has been sweeping up crumbs for ten minutes.",
+                "uk": "У записі звучить He has been sweeping up crumbs for ten minutes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-18:i13:p1",
+              "target": "dough",
+              "meaningByLocale": {
+                "ru": "тесто",
+                "uk": "тісто"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-18:i13:p2",
+              "target": "filling",
+              "meaningByLocale": {
+                "ru": "начинка",
+                "uk": "начинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-18:i13:p3",
+              "target": "crust",
+              "meaningByLocale": {
+                "ru": "корочка, основа пирога",
+                "uk": "скоринка, основа пирога"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-18:i13:p4",
+              "target": "crumbs",
+              "meaningByLocale": {
+                "ru": "крошки",
+                "uk": "крихти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dough",
+            "filling",
+            "crust",
+            "crumbs"
+          ],
+          "rightColumn": [
+            "тісто",
+            "начинка",
+            "скоринка, основа пирога",
+            "крихти"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми змішуємо тісто вже п’ять хвилин».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми змішуємо тісто вже п’ять хвилин».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i16:audio",
+            "transcript": "We have been mixing dough for five minutes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have been mixing dough for five minutes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вони готують начинку вже годину».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вони готують начинку вже годину».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-18:i17:audio",
+            "transcript": "They have been preparing the filling for an hour."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have been preparing the filling for an hour.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-18:word:dough",
+      "correctText": "dough",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i01",
+      "correctText": "I have been mixing dough for ten minutes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-18:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i03",
+      "correctText": "I have been mixing dough for ten minutes.",
+      "correctResponseId": "en:lesson-24:session-18:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:word:filling",
+      "correctText": "filling",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i04",
+      "correctText": "She has been preparing the filling for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i05",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-24:session-18:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i06",
+      "correctText": "She has been preparing the filling for an hour.",
+      "correctResponseId": "en:lesson-24:session-18:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:word:crust",
+      "correctText": "crust",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i07",
+      "correctText": "We have been baking the crust for twenty minutes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i08",
+      "correctText": "baking",
+      "correctResponseId": "en:lesson-24:session-18:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i09",
+      "correctText": "We have been baking the crust for twenty minutes.",
+      "correctResponseId": "en:lesson-24:session-18:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:word:crumbs",
+      "correctText": "crumbs",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i10",
+      "correctText": "He has been sweeping up crumbs for ten minutes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i11",
+      "correctText": "been",
+      "correctResponseId": "en:lesson-24:session-18:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i12",
+      "correctText": "He has been sweeping up crumbs for ten minutes.",
+      "correctResponseId": "en:lesson-24:session-18:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i16",
+      "correctText": "We have been mixing dough for five minutes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-18:i17",
+      "correctText": "They have been preparing the filling for an hour.",
+      "correctResponseId": null
+    }
+  ]
+}

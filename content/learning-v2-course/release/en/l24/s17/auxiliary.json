@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-17:intro1:r2": {
+          "ru": "Между have и renovating нужно been.",
+          "uk": "Між have та renovating потрібне been."
+        },
+        "en:lesson-24:session-17:intro1:r3": {
+          "ru": "С we используем have.",
+          "uk": "Із we використовуємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-17:intro2:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-24:session-17:intro2:r3": {
+          "ru": "После been здесь нужна форма restoring.",
+          "uk": "Після been тут потрібна форма restoring."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-17:intro3:r2": {
+          "ru": "An hour — длительность, нужен for.",
+          "uk": "An hour — тривалість, потрібне for."
+        },
+        "en:lesson-24:session-17:intro3:r3": {
+          "ru": "После been здесь нужно choosing.",
+          "uk": "Після been тут потрібне choosing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2bbb967ac417a1b689ebd6f312ee34dc2773f8d97cab3376dfa5f9bc33720dc1"
+}

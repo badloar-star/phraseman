@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-30",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-30:word:grammar",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — grammar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:grammar:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — grammar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:grammar:audio",
+            "transcript": "grammar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:grammar:r1",
+              "targetText": "grammar",
+              "meaningByLocale": {
+                "ru": "грамматика.",
+                "uk": "граматика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grammar",
+            "definitionByLocale": {
+              "ru": "грамматика.",
+              "uk": "граматика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы уже изучали эту грамматику раньше.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы уже изучали эту грамматику раньше.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied this grammar before.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы уже изучали эту грамматику раньше.»",
+            "uk": "Скажіть: «Ми вже вивчали цю граматику раніше.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "this",
+            "grammar",
+            "before"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об изучении языка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i02:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об изучении языка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "We ___ studied this grammar before.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i02:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об изучении языка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед studied.",
+                "uk": "Із we потрібно have перед studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед studied.",
+                "uk": "Із we потрібно have перед studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i03:r1",
+            "text": "We have studied this grammar before."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i03:r2",
+            "text": "They have studied this grammar before."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i03:r3",
+            "text": "We have taught this grammar before."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i03:audio",
+            "transcript": "We have studied this grammar before."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i03:r1",
+              "targetText": "We have studied this grammar before.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i03:r2",
+              "targetText": "They have studied this grammar before.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i03:r3",
+              "targetText": "We have taught this grammar before.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied this grammar before.",
+                "uk": "У записі звучить We have studied this grammar before."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied this grammar before.",
+                "uk": "У записі звучить We have studied this grammar before."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:word:vocabulary",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vocabulary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:vocabulary:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vocabulary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:vocabulary:audio",
+            "transcript": "vocabulary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:vocabulary:r1",
+              "targetText": "vocabulary",
+              "meaningByLocale": {
+                "ru": "словарный запас.",
+                "uk": "словниковий запас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vocabulary",
+            "definitionByLocale": {
+              "ru": "словарный запас.",
+              "uk": "словниковий запас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера она упражнялась в употреблении слов.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера она упражнялась в употреблении слов.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She practised vocabulary yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она упражнялась в употреблении слов.»",
+            "uk": "Скажіть: «Учора вона вправлялася у вживанні слів.»"
+          },
+          "orderedTokens": [
+            "She",
+            "practised",
+            "vocabulary",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об изучении языка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i05:r1",
+            "text": "practised"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i05:r2",
+            "text": "has practised"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i05:r3",
+            "text": "practise"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об изучении языка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "She ___ vocabulary yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i05:r1",
+              "text": "practised"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i05:r2",
+              "text": "has practised"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i05:r3",
+              "text": "practise"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об изучении языка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма practised без has.",
+                "uk": "Із yesterday потрібна форма practised без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма practised без has.",
+                "uk": "Із yesterday потрібна форма practised без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i06:r1",
+            "text": "She practised vocabulary yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i06:r2",
+            "text": "He practised vocabulary yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i06:r3",
+            "text": "She practised vocabulary last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i06:audio",
+            "transcript": "She practised vocabulary yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i06:r1",
+              "targetText": "She practised vocabulary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i06:r2",
+              "targetText": "He practised vocabulary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i06:r3",
+              "targetText": "She practised vocabulary last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She practised vocabulary yesterday.",
+                "uk": "У записі звучить She practised vocabulary yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She practised vocabulary yesterday.",
+                "uk": "У записі звучить She practised vocabulary yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:word:pronunciation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pronunciation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:pronunciation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pronunciation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:pronunciation:audio",
+            "transcript": "pronunciation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:pronunciation:r1",
+              "targetText": "pronunciation",
+              "meaningByLocale": {
+                "ru": "произношение.",
+                "uk": "вимова."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pronunciation",
+            "definitionByLocale": {
+              "ru": "произношение.",
+              "uk": "вимова."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я улучшил своё произношение.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я улучшил своё произношение.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have improved my pronunciation.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я улучшил своё произношение.»",
+            "uk": "Скажіть: «Я поліпшив свою вимову.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "improved",
+            "my",
+            "pronunciation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об изучении языка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об изучении языка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "I ___ improved my pronunciation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об изучении языка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед improved.",
+                "uk": "Із I потрібно have перед improved."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед improved.",
+                "uk": "Із I потрібно have перед improved."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i09:r1",
+            "text": "I have improved my pronunciation."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i09:r2",
+            "text": "She has improved her pronunciation."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i09:r3",
+            "text": "We have improved our pronunciation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i09:audio",
+            "transcript": "I have improved my pronunciation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i09:r1",
+              "targetText": "I have improved my pronunciation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i09:r2",
+              "targetText": "She has improved her pronunciation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i09:r3",
+              "targetText": "We have improved our pronunciation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have improved my pronunciation.",
+                "uk": "У записі звучить I have improved my pronunciation."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have improved my pronunciation.",
+                "uk": "У записі звучить I have improved my pronunciation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:word:meaning",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — meaning",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:meaning:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — meaning",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:meaning:audio",
+            "transcript": "meaning"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:meaning:r1",
+              "targetText": "meaning",
+              "meaningByLocale": {
+                "ru": "значение.",
+                "uk": "значення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meaning",
+            "definitionByLocale": {
+              "ru": "значение.",
+              "uk": "значення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Вчера они проверили значение.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Вчера они проверили значение.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They checked the meaning yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера они проверили значение.»",
+            "uk": "Скажіть: «Учора вони перевірили значення.»"
+          },
+          "orderedTokens": [
+            "They",
+            "checked",
+            "the",
+            "meaning",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ об изучении языка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i11:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i11:r2",
+            "text": "have checked"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i11:r3",
+            "text": "check"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ об изучении языка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "They ___ the meaning yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i11:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i11:r2",
+              "text": "have checked"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i11:r3",
+              "text": "check"
+            }
+          ],
+          "testedDimension": "Дополните рассказ об изучении языка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма checked без have.",
+                "uk": "Із yesterday потрібна форма checked без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ об изучении языка.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма checked без have.",
+                "uk": "Із yesterday потрібна форма checked без have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i12:r1",
+            "text": "They checked the meaning yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i12:r2",
+            "text": "We checked the meaning yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i12:r3",
+            "text": "They checked the meaning last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i12:audio",
+            "transcript": "They checked the meaning yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i12:r1",
+              "targetText": "They checked the meaning yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i12:r2",
+              "targetText": "We checked the meaning yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i12:r3",
+              "targetText": "They checked the meaning last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They checked the meaning yesterday.",
+                "uk": "У записі звучить They checked the meaning yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They checked the meaning yesterday.",
+                "uk": "У записі звучить They checked the meaning yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-30:i13:p1",
+              "target": "grammar",
+              "meaningByLocale": {
+                "ru": "грамматика",
+                "uk": "граматика"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-30:i13:p2",
+              "target": "vocabulary",
+              "meaningByLocale": {
+                "ru": "словарный запас",
+                "uk": "словниковий запас"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-30:i13:p3",
+              "target": "pronunciation",
+              "meaningByLocale": {
+                "ru": "произношение",
+                "uk": "вимова"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-30:i13:p4",
+              "target": "meaning",
+              "meaningByLocale": {
+                "ru": "значение",
+                "uk": "значення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "grammar",
+            "vocabulary",
+            "pronunciation",
+            "meaning"
+          ],
+          "rightColumn": [
+            "грамматика",
+            "словарный запас",
+            "произношение",
+            "значение"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы проверили значение вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы проверили значение вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i16:audio",
+            "transcript": "We checked the meaning yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We checked the meaning yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я тренировал произношение вчера».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я тренировал произношение вчера».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i17:audio",
+            "transcript": "I practised my pronunciation yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I practised my pronunciation yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-30:word:grammar",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — grammar",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:grammar:audio"
+        ],
+        "accessibilityLabel": "Картка слова — grammar",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:grammar:audio",
+            "transcript": "grammar"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:grammar:r1",
+              "targetText": "grammar",
+              "meaningByLocale": {
+                "ru": "грамматика.",
+                "uk": "граматика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "grammar",
+            "definitionByLocale": {
+              "ru": "грамматика.",
+              "uk": "граматика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми вже вивчали цю граматику раніше.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми вже вивчали цю граматику раніше.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have studied this grammar before.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы уже изучали эту грамматику раньше.»",
+            "uk": "Скажіть: «Ми вже вивчали цю граматику раніше.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "studied",
+            "this",
+            "grammar",
+            "before"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про вивчення мови.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i02:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про вивчення мови.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "We ___ studied this grammar before.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i02:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i02:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про вивчення мови.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед studied.",
+                "uk": "Із we потрібно have перед studied."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С we нужно have перед studied.",
+                "uk": "Із we потрібно have перед studied."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i03:r1",
+            "text": "We have studied this grammar before."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i03:r2",
+            "text": "They have studied this grammar before."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i03:r3",
+            "text": "We have taught this grammar before."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i03:audio",
+            "transcript": "We have studied this grammar before."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i03:r1",
+              "targetText": "We have studied this grammar before.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i03:r2",
+              "targetText": "They have studied this grammar before.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i03:r3",
+              "targetText": "We have taught this grammar before.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied this grammar before.",
+                "uk": "У записі звучить We have studied this grammar before."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have studied this grammar before.",
+                "uk": "У записі звучить We have studied this grammar before."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:word:vocabulary",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vocabulary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:vocabulary:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vocabulary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:vocabulary:audio",
+            "transcript": "vocabulary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:vocabulary:r1",
+              "targetText": "vocabulary",
+              "meaningByLocale": {
+                "ru": "словарный запас.",
+                "uk": "словниковий запас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vocabulary",
+            "definitionByLocale": {
+              "ru": "словарный запас.",
+              "uk": "словниковий запас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вона вправлялася у вживанні слів.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вона вправлялася у вживанні слів.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She practised vocabulary yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера она упражнялась в употреблении слов.»",
+            "uk": "Скажіть: «Учора вона вправлялася у вживанні слів.»"
+          },
+          "orderedTokens": [
+            "She",
+            "practised",
+            "vocabulary",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про вивчення мови.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i05:r1",
+            "text": "practised"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i05:r2",
+            "text": "has practised"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i05:r3",
+            "text": "practise"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про вивчення мови.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "She ___ vocabulary yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i05:r1",
+              "text": "practised"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i05:r2",
+              "text": "has practised"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i05:r3",
+              "text": "practise"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про вивчення мови.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма practised без has.",
+                "uk": "Із yesterday потрібна форма practised без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма practised без has.",
+                "uk": "Із yesterday потрібна форма practised без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i06:r1",
+            "text": "She practised vocabulary yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i06:r2",
+            "text": "He practised vocabulary yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i06:r3",
+            "text": "She practised vocabulary last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i06:audio",
+            "transcript": "She practised vocabulary yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i06:r1",
+              "targetText": "She practised vocabulary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i06:r2",
+              "targetText": "He practised vocabulary yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i06:r3",
+              "targetText": "She practised vocabulary last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She practised vocabulary yesterday.",
+                "uk": "У записі звучить She practised vocabulary yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She practised vocabulary yesterday.",
+                "uk": "У записі звучить She practised vocabulary yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:word:pronunciation",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pronunciation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:pronunciation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pronunciation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:pronunciation:audio",
+            "transcript": "pronunciation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:pronunciation:r1",
+              "targetText": "pronunciation",
+              "meaningByLocale": {
+                "ru": "произношение.",
+                "uk": "вимова."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pronunciation",
+            "definitionByLocale": {
+              "ru": "произношение.",
+              "uk": "вимова."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я поліпшив свою вимову.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я поліпшив свою вимову.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have improved my pronunciation.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я улучшил своё произношение.»",
+            "uk": "Скажіть: «Я поліпшив свою вимову.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "improved",
+            "my",
+            "pronunciation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про вивчення мови.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про вивчення мови.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "I ___ improved my pronunciation.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про вивчення мови.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед improved.",
+                "uk": "Із I потрібно have перед improved."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед improved.",
+                "uk": "Із I потрібно have перед improved."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i09:r1",
+            "text": "I have improved my pronunciation."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i09:r2",
+            "text": "She has improved her pronunciation."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i09:r3",
+            "text": "We have improved our pronunciation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i09:audio",
+            "transcript": "I have improved my pronunciation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i09:r1",
+              "targetText": "I have improved my pronunciation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i09:r2",
+              "targetText": "She has improved her pronunciation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i09:r3",
+              "targetText": "We have improved our pronunciation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have improved my pronunciation.",
+                "uk": "У записі звучить I have improved my pronunciation."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have improved my pronunciation.",
+                "uk": "У записі звучить I have improved my pronunciation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:word:meaning",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — meaning",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:word:meaning:audio"
+        ],
+        "accessibilityLabel": "Картка слова — meaning",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:word:meaning:audio",
+            "transcript": "meaning"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:word:meaning:r1",
+              "targetText": "meaning",
+              "meaningByLocale": {
+                "ru": "значение.",
+                "uk": "значення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meaning",
+            "definitionByLocale": {
+              "ru": "значение.",
+              "uk": "значення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Учора вони перевірили значення.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Учора вони перевірили значення.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They checked the meaning yesterday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Вчера они проверили значение.»",
+            "uk": "Скажіть: «Учора вони перевірили значення.»"
+          },
+          "orderedTokens": [
+            "They",
+            "checked",
+            "the",
+            "meaning",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про вивчення мови.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i11:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i11:r2",
+            "text": "have checked"
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i11:r3",
+            "text": "check"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про вивчення мови.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ об изучении языка.",
+            "uk": "Доповніть розповідь про вивчення мови."
+          },
+          "gappedTargetPhrase": "They ___ the meaning yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-30:i11:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i11:r2",
+              "text": "have checked"
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i11:r3",
+              "text": "check"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про вивчення мови.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма checked без have.",
+                "uk": "Із yesterday потрібна форма checked без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про вивчення мови.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужна форма checked без have.",
+                "uk": "Із yesterday потрібна форма checked без have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-30:i12:r1",
+            "text": "They checked the meaning yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i12:r2",
+            "text": "We checked the meaning yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-30:i12:r3",
+            "text": "They checked the meaning last week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i12:audio",
+            "transcript": "They checked the meaning yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-30:i12:r1",
+              "targetText": "They checked the meaning yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i12:r2",
+              "targetText": "We checked the meaning yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i12:r3",
+              "targetText": "They checked the meaning last week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-30:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They checked the meaning yesterday.",
+                "uk": "У записі звучить They checked the meaning yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-30:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They checked the meaning yesterday.",
+                "uk": "У записі звучить They checked the meaning yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-30:i13:p1",
+              "target": "grammar",
+              "meaningByLocale": {
+                "ru": "грамматика",
+                "uk": "граматика"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-30:i13:p2",
+              "target": "vocabulary",
+              "meaningByLocale": {
+                "ru": "словарный запас",
+                "uk": "словниковий запас"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-30:i13:p3",
+              "target": "pronunciation",
+              "meaningByLocale": {
+                "ru": "произношение",
+                "uk": "вимова"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-30:i13:p4",
+              "target": "meaning",
+              "meaningByLocale": {
+                "ru": "значение",
+                "uk": "значення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "grammar",
+            "vocabulary",
+            "pronunciation",
+            "meaning"
+          ],
+          "rightColumn": [
+            "граматика",
+            "словниковий запас",
+            "вимова",
+            "значення"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми перевірили значення вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми перевірили значення вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i16:audio",
+            "transcript": "We checked the meaning yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We checked the meaning yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-30:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я тренував вимову вчора».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-30:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я тренував вимову вчора».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-30:i17:audio",
+            "transcript": "I practised my pronunciation yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I practised my pronunciation yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-30:word:grammar",
+      "correctText": "grammar",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i01",
+      "correctText": "We have studied this grammar before.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i02",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-30:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i03",
+      "correctText": "We have studied this grammar before.",
+      "correctResponseId": "en:lesson-24:session-30:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:word:vocabulary",
+      "correctText": "vocabulary",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i04",
+      "correctText": "She practised vocabulary yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i05",
+      "correctText": "practised",
+      "correctResponseId": "en:lesson-24:session-30:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i06",
+      "correctText": "She practised vocabulary yesterday.",
+      "correctResponseId": "en:lesson-24:session-30:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:word:pronunciation",
+      "correctText": "pronunciation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i07",
+      "correctText": "I have improved my pronunciation.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-30:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i09",
+      "correctText": "I have improved my pronunciation.",
+      "correctResponseId": "en:lesson-24:session-30:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:word:meaning",
+      "correctText": "meaning",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i10",
+      "correctText": "They checked the meaning yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i11",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-24:session-30:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i12",
+      "correctText": "They checked the meaning yesterday.",
+      "correctResponseId": "en:lesson-24:session-30:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i16",
+      "correctText": "We checked the meaning yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-30:i17",
+      "correctText": "I practised my pronunciation yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

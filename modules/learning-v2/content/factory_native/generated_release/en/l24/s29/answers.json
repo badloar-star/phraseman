@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-29:word:score",
+    "correctText": "score",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i01",
+    "correctText": "I have checked the score.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i03",
+    "correctText": "I have checked the score.",
+    "correctResponseId": "en:lesson-24:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:word:cricket",
+    "correctText": "cricket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i04",
+    "correctText": "She played cricket yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i05",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-24:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i06",
+    "correctText": "She played cricket yesterday.",
+    "correctResponseId": "en:lesson-24:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:word:boxing",
+    "correctText": "boxing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i07",
+    "correctText": "We have tried boxing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i09",
+    "correctText": "We have tried boxing.",
+    "correctResponseId": "en:lesson-24:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:word:tournament",
+    "correctText": "tournament",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i10",
+    "correctText": "They won the tournament last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i11",
+    "correctText": "won",
+    "correctResponseId": "en:lesson-24:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i12",
+    "correctText": "They won the tournament last year.",
+    "correctResponseId": "en:lesson-24:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i13",
+    "correctText": "en:lesson-24:session-29:i13:p1=score\nen:lesson-24:session-29:i13:p2=cricket\nen:lesson-24:session-29:i13:p3=boxing\nen:lesson-24:session-29:i13:p4=tournament",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i16",
+    "correctText": "We played cricket yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-29:i17",
+    "correctText": "She checked the score yesterday.",
+    "correctResponseId": null
+  }
+]

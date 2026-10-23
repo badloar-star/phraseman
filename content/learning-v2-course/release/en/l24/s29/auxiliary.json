@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-29:intro1:r2": {
+          "ru": "С yesterday нужно checked без have.",
+          "uk": "Із yesterday потрібне checked без have."
+        },
+        "en:lesson-24:session-29:intro1:r3": {
+          "ru": "Для прошлого нужна форма checked.",
+          "uk": "Для минулого потрібна форма checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-29:intro2:r2": {
+          "ru": "С yesterday нужно played без has.",
+          "uk": "Із yesterday потрібне played без has."
+        },
+        "en:lesson-24:session-29:intro2:r3": {
+          "ru": "Для прошлого нужна форма played.",
+          "uk": "Для минулого потрібна форма played."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-29:intro3:r2": {
+          "ru": "С last year нужен won без have.",
+          "uk": "Із last year потрібне won без have."
+        },
+        "en:lesson-24:session-29:intro3:r3": {
+          "ru": "Для прошлого нужна форма won.",
+          "uk": "Для минулого потрібна форма won."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "803f67c8706329fcfb16f5ffffa23ec645f24b06d2bee9fedcd7c79297eeba52"
+}

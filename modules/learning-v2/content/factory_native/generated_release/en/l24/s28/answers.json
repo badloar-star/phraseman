@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-28:word:rob",
+    "correctText": "rob",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i01",
+    "correctText": "Someone tried to rob me yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i02",
+    "correctText": "tried",
+    "correctResponseId": "en:lesson-24:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i03",
+    "correctText": "Someone tried to rob me yesterday.",
+    "correctResponseId": "en:lesson-24:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:word:burglar",
+    "correctText": "burglar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i04",
+    "correctText": "The police have caught the burglar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i05",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i06",
+    "correctText": "The police have caught the burglar.",
+    "correctResponseId": "en:lesson-24:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:word:criminal",
+    "correctText": "criminal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i07",
+    "correctText": "She saw the criminal yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i08",
+    "correctText": "saw",
+    "correctResponseId": "en:lesson-24:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i09",
+    "correctText": "She saw the criminal yesterday.",
+    "correctResponseId": "en:lesson-24:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:word:prison",
+    "correctText": "prison",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i10",
+    "correctText": "He went to prison last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i11",
+    "correctText": "went",
+    "correctResponseId": "en:lesson-24:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i12",
+    "correctText": "He went to prison last year.",
+    "correctResponseId": "en:lesson-24:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i13",
+    "correctText": "en:lesson-24:session-28:i13:p1=rob\nen:lesson-24:session-28:i13:p2=burglar\nen:lesson-24:session-28:i13:p3=criminal\nen:lesson-24:session-28:i13:p4=prison",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i16",
+    "correctText": "The police caught the burglar yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-28:i17",
+    "correctText": "She went to prison last year.",
+    "correctResponseId": null
+  }
+]

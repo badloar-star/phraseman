@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-29:word:score",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — score",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:word:score:audio"
+      ],
+      "accessibilityLabel": "Картка слова — score",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:word:score:audio",
+          "transcript": "score"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:word:score:r1",
+            "targetText": "score",
+            "meaningByLocale": {
+              "ru": "счёт в игре.",
+              "uk": "рахунок у грі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "score",
+          "definitionByLocale": {
+            "ru": "счёт в игре.",
+            "uk": "рахунок у грі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я перевірив рахунок.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я перевірив рахунок.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have checked the score.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я проверил счёт.»",
+          "uk": "Скажіть: «Я перевірив рахунок.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "checked",
+          "the",
+          "score"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про спорт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про спорт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о спорте.",
+          "uk": "Доповніть розповідь про спорт."
+        },
+        "gappedTargetPhrase": "I ___ checked the score.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-29:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про спорт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед checked.",
+              "uk": "Із I потрібно have перед checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед checked.",
+              "uk": "Із I потрібно have перед checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i03:r1",
+          "text": "I have checked the score."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i03:r2",
+          "text": "We have checked the score."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i03:r3",
+          "text": "I have changed the score."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i03:audio",
+          "transcript": "I have checked the score."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:i03:r1",
+            "targetText": "I have checked the score.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i03:r2",
+            "targetText": "We have checked the score.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i03:r3",
+            "targetText": "I have changed the score.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have checked the score.",
+              "uk": "У записі звучить I have checked the score."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have checked the score.",
+              "uk": "У записі звучить I have checked the score."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:word:cricket",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cricket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:word:cricket:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cricket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:word:cricket:audio",
+          "transcript": "cricket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:word:cricket:r1",
+            "targetText": "cricket",
+            "meaningByLocale": {
+              "ru": "крикет.",
+              "uk": "крикет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cricket",
+          "definitionByLocale": {
+            "ru": "крикет.",
+            "uk": "крикет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона грала в крикет.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона грала в крикет.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She played cricket yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она играла в крикет.»",
+          "uk": "Скажіть: «Учора вона грала в крикет.»"
+        },
+        "orderedTokens": [
+          "She",
+          "played",
+          "cricket",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про спорт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i05:r1",
+          "text": "played"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i05:r2",
+          "text": "has played"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i05:r3",
+          "text": "play"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про спорт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о спорте.",
+          "uk": "Доповніть розповідь про спорт."
+        },
+        "gappedTargetPhrase": "She ___ cricket yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-29:i05:r1",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i05:r2",
+            "text": "has played"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i05:r3",
+            "text": "play"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про спорт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма played без has.",
+              "uk": "Із yesterday потрібна форма played без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма played без has.",
+              "uk": "Із yesterday потрібна форма played без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i06:r1",
+          "text": "She played cricket yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i06:r2",
+          "text": "He played cricket yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i06:r3",
+          "text": "She played cricket last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i06:audio",
+          "transcript": "She played cricket yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:i06:r1",
+            "targetText": "She played cricket yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i06:r2",
+            "targetText": "He played cricket yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i06:r3",
+            "targetText": "She played cricket last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She played cricket yesterday.",
+              "uk": "У записі звучить She played cricket yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She played cricket yesterday.",
+              "uk": "У записі звучить She played cricket yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:word:boxing",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — boxing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:word:boxing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — boxing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:word:boxing:audio",
+          "transcript": "boxing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:word:boxing:r1",
+            "targetText": "boxing",
+            "meaningByLocale": {
+              "ru": "бокс.",
+              "uk": "бокс."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boxing",
+          "definitionByLocale": {
+            "ru": "бокс.",
+            "uk": "бокс."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми спробували займатися боксом.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми спробували займатися боксом.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have tried boxing.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы попробовали заниматься боксом.»",
+          "uk": "Скажіть: «Ми спробували займатися боксом.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "tried",
+          "boxing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про спорт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про спорт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о спорте.",
+          "uk": "Доповніть розповідь про спорт."
+        },
+        "gappedTargetPhrase": "We ___ tried boxing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-29:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про спорт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед tried.",
+              "uk": "Із we потрібно have перед tried."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед tried.",
+              "uk": "Із we потрібно have перед tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i09:r1",
+          "text": "We have tried boxing."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i09:r2",
+          "text": "They have tried boxing."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i09:r3",
+          "text": "We have watched boxing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i09:audio",
+          "transcript": "We have tried boxing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:i09:r1",
+            "targetText": "We have tried boxing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i09:r2",
+            "targetText": "They have tried boxing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i09:r3",
+            "targetText": "We have watched boxing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have tried boxing.",
+              "uk": "У записі звучить We have tried boxing."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have tried boxing.",
+              "uk": "У записі звучить We have tried boxing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:word:tournament",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tournament",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:word:tournament:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tournament",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:word:tournament:audio",
+          "transcript": "tournament"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:word:tournament:r1",
+            "targetText": "tournament",
+            "meaningByLocale": {
+              "ru": "турнир.",
+              "uk": "турнір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tournament",
+          "definitionByLocale": {
+            "ru": "турнир.",
+            "uk": "турнір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Торік вони виграли турнір.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Торік вони виграли турнір.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They won the tournament last year.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В прошлом году они выиграли турнир.»",
+          "uk": "Скажіть: «Торік вони виграли турнір.»"
+        },
+        "orderedTokens": [
+          "They",
+          "won",
+          "the",
+          "tournament",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про спорт.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i11:r1",
+          "text": "won"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i11:r2",
+          "text": "have won"
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i11:r3",
+          "text": "win"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про спорт.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о спорте.",
+          "uk": "Доповніть розповідь про спорт."
+        },
+        "gappedTargetPhrase": "They ___ the tournament last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-29:i11:r1",
+            "text": "won"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i11:r2",
+            "text": "have won"
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i11:r3",
+            "text": "win"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про спорт.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма won без have.",
+              "uk": "Із last year потрібна форма won без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про спорт.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма won без have.",
+              "uk": "Із last year потрібна форма won без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-29:i12:r1",
+          "text": "They won the tournament last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i12:r2",
+          "text": "We won the tournament last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-29:i12:r3",
+          "text": "They won the tournament last month."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i12:audio",
+          "transcript": "They won the tournament last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-29:i12:r1",
+            "targetText": "They won the tournament last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i12:r2",
+            "targetText": "We won the tournament last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i12:r3",
+            "targetText": "They won the tournament last month.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They won the tournament last year.",
+              "uk": "У записі звучить They won the tournament last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They won the tournament last year.",
+              "uk": "У записі звучить They won the tournament last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-29:i13:p1",
+            "target": "score",
+            "meaningByLocale": {
+              "ru": "счёт в игре",
+              "uk": "рахунок у грі"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-29:i13:p2",
+            "target": "cricket",
+            "meaningByLocale": {
+              "ru": "крикет",
+              "uk": "крикет"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-29:i13:p3",
+            "target": "boxing",
+            "meaningByLocale": {
+              "ru": "бокс",
+              "uk": "бокс"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-29:i13:p4",
+            "target": "tournament",
+            "meaningByLocale": {
+              "ru": "турнир",
+              "uk": "турнір"
+            }
+          }
+        ],
+        "leftColumn": [
+          "score",
+          "cricket",
+          "boxing",
+          "tournament"
+        ],
+        "rightColumn": [
+          "рахунок у грі",
+          "крикет",
+          "бокс",
+          "турнір"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми грали в крикет учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми грали в крикет учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i16:audio",
+          "transcript": "We played cricket yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We played cricket yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона перевірила рахунок учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона перевірила рахунок учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-29:i17:audio",
+          "transcript": "She checked the score yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She checked the score yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cf557adf9fca66fb96aa9f90c787fa92a04404b0cba9c21dfbd2fe5c6eead0f0"
+}

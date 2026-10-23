@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-28:intro1:r2": {
+          "ru": "С yesterday нужно tried без has.",
+          "uk": "Із yesterday потрібне tried без has."
+        },
+        "en:lesson-24:session-28:intro1:r3": {
+          "ru": "Для прошлого нужна форма tried.",
+          "uk": "Для минулого потрібна форма tried."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-28:intro2:r2": {
+          "ru": "С police нужно have.",
+          "uk": "Із police потрібне have."
+        },
+        "en:lesson-24:session-28:intro2:r3": {
+          "ru": "После have нужна форма caught.",
+          "uk": "Після have потрібна форма caught."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-28:intro3:r2": {
+          "ru": "С last year используем went без has.",
+          "uk": "Із last year використовуємо went без has."
+        },
+        "en:lesson-24:session-28:intro3:r3": {
+          "ru": "Для прошлого нужна форма went.",
+          "uk": "Для минулого потрібна форма went."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "da8603f7ea42f5f25c11889026b37c8148ff29e94529b3c11cc0571849cf808d"
+}

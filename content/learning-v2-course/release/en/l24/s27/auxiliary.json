@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-27:intro1:r2": {
+          "ru": "С yesterday нужен spent без have.",
+          "uk": "Із yesterday потрібне spent без have."
+        },
+        "en:lesson-24:session-27:intro1:r3": {
+          "ru": "Для прошлого нужна форма spent.",
+          "uk": "Для минулого потрібна форма spent."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-27:intro2:r2": {
+          "ru": "С yesterday нужно bought без has.",
+          "uk": "Із yesterday потрібне bought без has."
+        },
+        "en:lesson-24:session-27:intro2:r3": {
+          "ru": "Для прошлого нужна форма bought.",
+          "uk": "Для минулого потрібна форма bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-27:intro3:r2": {
+          "ru": "С yesterday используем was.",
+          "uk": "Із yesterday використовуємо was."
+        },
+        "en:lesson-24:session-27:intro3:r3": {
+          "ru": "Вчера — прошлое: was, а не is.",
+          "uk": "Учора — минуле: was, а не is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "48189fcd2a8009f9529591787b702112efd86f24a6601fc3bd0f4cdfae635704"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Украсть вещь или ограбить человека",
+        "uk": "Украсти річ чи пограбувати людину"
+      },
+      "bodyByLocale": {
+        "ru": "Rob — ограбить человека или место. Someone tried to rob me yesterday — вчера кто-то пытался меня ограбить. Знакомое steal называет то, что украли: steal a bag. Rob называет того, кого ограбили: rob me. С yesterday рассказываем о прошлом: tried, без has.",
+        "uk": "Rob — пограбувати людину або місце. Someone tried to rob me yesterday — учора хтось намагався мене пограбувати. Знайоме steal називає те, що вкрали: steal a bag. Rob називає того, кого пограбували: rob me. Із yesterday розповідаємо про минуле: tried, без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-28:intro1:r1",
+              "text": "Someone tried to rob me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro1:r2",
+              "text": "Someone has tried to rob me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro1:r3",
+              "text": "Someone try to rob me yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-28:intro1:r1",
+              "text": "Someone tried to rob me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro1:r2",
+              "text": "Someone has tried to rob me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro1:r3",
+              "text": "Someone try to rob me yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полиция поймала вора",
+        "uk": "Поліція спіймала злодія"
+      },
+      "bodyByLocale": {
+        "ru": "Burglar — вор, который проникает в здание, чтобы украсть. The police have caught the burglar — полиция поймала домушника: сообщаем свежий результат. Police согласуется как множественное число, поэтому have. Caught — форма catch, «поймать». С yesterday фраза стала бы The police caught the burglar yesterday.",
+        "uk": "Burglar — злодій, який проникає до будівлі, щоб украсти. The police have caught the burglar — поліція спіймала квартирного злодія: повідомляємо свіжий результат. Police узгоджується як множина, тому have. Caught — форма catch, «спіймати». Із yesterday фраза стала б The police caught the burglar yesterday."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-28:intro2:r1",
+              "text": "The police have caught the burglar."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro2:r2",
+              "text": "The police has caught the burglar."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro2:r3",
+              "text": "The police have catch the burglar."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-28:intro2:r1",
+              "text": "The police have caught the burglar."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro2:r2",
+              "text": "The police has caught the burglar."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro2:r3",
+              "text": "The police have catch the burglar."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что произошло в прошлом году",
+        "uk": "Що сталося торік"
+      },
+      "bodyByLocale": {
+        "ru": "Criminal — преступник, prison — тюрьма. She saw the criminal yesterday — вчера она видела преступника. He went to prison last year — в прошлом году он попал в тюрьму. Go to prison без the означает оказаться там заключённым. Yesterday и last year — законченные периоды: saw и went, без has.",
+        "uk": "Criminal — злочинець, prison — в’язниця. She saw the criminal yesterday — учора вона бачила злочинця. He went to prison last year — торік він потрапив до в’язниці. Go to prison без the означає опинитися там ув’язненим. Yesterday і last year — завершені періоди: saw і went, без has."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-28:intro3:r1",
+              "text": "He went to prison last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro3:r2",
+              "text": "He has gone to prison last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro3:r3",
+              "text": "He go to prison last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-28:intro3:r1",
+              "text": "He went to prison last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro3:r2",
+              "text": "He has gone to prison last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-28:intro3:r3",
+              "text": "He go to prison last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e3d538f49020ac84483c595ff3c3cf21aac6c2a9740c5264568677c346cd5e95"
+}

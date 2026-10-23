@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-27:word:exactly",
+    "correctText": "exactly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i01",
+    "correctText": "I have spent exactly ten pounds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i03",
+    "correctText": "I have spent exactly ten pounds.",
+    "correctResponseId": "en:lesson-24:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:word:several",
+    "correctText": "several",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i04",
+    "correctText": "She bought several books yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i05",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-24:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i06",
+    "correctText": "She bought several books yesterday.",
+    "correctResponseId": "en:lesson-24:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:word:plenty",
+    "correctText": "plenty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i07",
+    "correctText": "We have bought plenty of food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i09",
+    "correctText": "We have bought plenty of food.",
+    "correctResponseId": "en:lesson-24:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:word:rather",
+    "correctText": "rather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i10",
+    "correctText": "It was rather cold yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i11",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-24:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i12",
+    "correctText": "It was rather cold yesterday.",
+    "correctResponseId": "en:lesson-24:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i13",
+    "correctText": "en:lesson-24:session-27:i13:p1=exactly\nen:lesson-24:session-27:i13:p2=several\nen:lesson-24:session-27:i13:p3=plenty\nen:lesson-24:session-27:i13:p4=rather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i16",
+    "correctText": "We bought several books yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-27:i17",
+    "correctText": "It was rather warm yesterday.",
+    "correctResponseId": null
+  }
+]

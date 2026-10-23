@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ровно десять",
+        "uk": "Рівно десять"
+      },
+      "bodyByLocale": {
+        "ru": "Exactly — ровно, точно. I have spent exactly ten pounds — я потратил ровно десять фунтов: ни девять, ни одиннадцать. Сообщаем результат без законченного прошлого времени. Если добавим yesterday, получится I spent exactly ten pounds yesterday — без have.",
+        "uk": "Exactly — рівно, точно. I have spent exactly ten pounds — я витратив рівно десять фунтів: ні дев’ять, ні одинадцять. Повідомляємо результат без завершеного минулого часу. Якщо додамо yesterday, вийде I spent exactly ten pounds yesterday — без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-27:intro1:r1",
+              "text": "I spent exactly ten pounds yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro1:r2",
+              "text": "I have spent exactly ten pounds yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro1:r3",
+              "text": "I spend exactly ten pounds yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-27:intro1:r1",
+              "text": "I spent exactly ten pounds yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro1:r2",
+              "text": "I have spent exactly ten pounds yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro1:r3",
+              "text": "I spend exactly ten pounds yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько книг и еда с запасом",
+        "uk": "Кілька книжок і їжа із запасом"
+      },
+      "bodyByLocale": {
+        "ru": "Several — несколько. She bought several books yesterday — вчера она купила несколько книг. Several стоит перед множественным числом: several books. Plenty of — много, достаточно с запасом. We have bought plenty of food — мы купили много еды, её хватит. Перед food после plenty нужно of. Число гостей то же, а бутербродов теперь с запасом.",
+        "uk": "Several — кілька. She bought several books yesterday — учора вона купила кілька книжок. Several стоїть перед множиною: several books. Plenty of — багато, достатньо із запасом. We have bought plenty of food — ми купили багато їжі, її вистачить. Перед food після plenty потрібне of. Кількість гостей та сама, а бутербродів тепер із запасом."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-27:intro2:r1",
+              "text": "She bought several books yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro2:r2",
+              "text": "She has bought several books yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro2:r3",
+              "text": "She buy several books yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-27:intro2:r1",
+              "text": "She bought several books yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro2:r2",
+              "text": "She has bought several books yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro2:r3",
+              "text": "She buy several books yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Довольно холодный день",
+        "uk": "Доволі холодний день"
+      },
+      "bodyByLocale": {
+        "ru": "Rather — довольно: усиливает следующее прилагательное. It was rather cold yesterday — вчера было довольно холодно. Мы не просто называем cold, а уточняем степень. Yesterday — законченное прошлое, поэтому was. Rather cold — не «скорее холодно, чем жарко», а «довольно холодно».",
+        "uk": "Rather — доволі: підсилює наступний прикметник. It was rather cold yesterday — учора було доволі холодно. Ми не просто називаємо cold, а уточнюємо ступінь. Yesterday — завершене минуле, тому was. Rather cold — тут «доволі холодно»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-27:intro3:r1",
+              "text": "It was rather cold yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro3:r2",
+              "text": "It has been rather cold yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro3:r3",
+              "text": "It is rather cold yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-27:intro3:r1",
+              "text": "It was rather cold yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro3:r2",
+              "text": "It has been rather cold yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-27:intro3:r3",
+              "text": "It is rather cold yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "01ace2a602d68e8cd5cf22ed4e7e68b83448695130d170802864fe118da866c1"
+}

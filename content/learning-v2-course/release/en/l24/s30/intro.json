@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Звучит лучше",
+        "uk": "Звучить краще"
+      },
+      "bodyByLocale": {
+        "ru": "Pronunciation — произношение: как звучат слова. I have improved my pronunciation — я улучшил своё произношение. Сообщаем о результате, который заметен сейчас. С yesterday нужен Past Simple: I practised my pronunciation yesterday — я тренировал произношение вчера.",
+        "uk": "Pronunciation — вимова: як звучать слова. I have improved my pronunciation — я поліпшив свою вимову. Повідомляємо про результат, який помітний зараз. Із yesterday потрібен Past Simple: I practised my pronunciation yesterday — я тренував вимову вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-30:intro1:r1",
+              "text": "I have improved my pronunciation."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro1:r2",
+              "text": "I has improved my pronunciation."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro1:r3",
+              "text": "I have improve my pronunciation."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-30:intro1:r1",
+              "text": "I have improved my pronunciation."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro1:r2",
+              "text": "I has improved my pronunciation."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro1:r3",
+              "text": "I have improve my pronunciation."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Слова и правила",
+        "uk": "Слова й правила"
+      },
+      "bodyByLocale": {
+        "ru": "Vocabulary — словарный запас, слова, которые мы знаем и используем. She practised vocabulary yesterday — вчера она упражнялась в употреблении слов. Grammar — грамматика, правила построения фраз. We have studied this grammar before — мы уже изучали эту грамматику раньше. Before не называет конкретную законченную дату, поэтому здесь подходит have studied.",
+        "uk": "Vocabulary — словниковий запас, слова, які ми знаємо й використовуємо. She practised vocabulary yesterday — учора вона вправлялася у вживанні слів. Grammar — граматика, правила побудови фраз. We have studied this grammar before — ми вже вивчали цю граматику раніше. Before не називає конкретної завершеної дати, тому тут підходить have studied."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-30:intro2:r1",
+              "text": "She practised vocabulary yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro2:r2",
+              "text": "She has practised vocabulary yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro2:r3",
+              "text": "She practise vocabulary yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-30:intro2:r1",
+              "text": "She practised vocabulary yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro2:r2",
+              "text": "She has practised vocabulary yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro2:r3",
+              "text": "She practise vocabulary yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверили значение",
+        "uk": "Перевірили значення"
+      },
+      "bodyByLocale": {
+        "ru": "Meaning — значение слова или фразы. They checked the meaning yesterday — вчера они проверили значение. С yesterday используем checked без have. They have checked the meaning — значение уже проверено, точное прошлое время не называем. Произнести слово уверенно приятно; знать его значение ещё полезнее.",
+        "uk": "Meaning — значення слова або фрази. They checked the meaning yesterday — учора вони перевірили значення. Із yesterday використовуємо checked без have. They have checked the meaning — значення вже перевірено, точного минулого часу не називаємо. Вимовити слово впевнено приємно; знати його значення ще корисніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-30:intro3:r1",
+              "text": "They checked the meaning yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro3:r2",
+              "text": "They have checked the meaning yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro3:r3",
+              "text": "They check the meaning yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-30:intro3:r1",
+              "text": "They checked the meaning yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro3:r2",
+              "text": "They have checked the meaning yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-30:intro3:r3",
+              "text": "They check the meaning yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "06e252b67d458a9c77ab5db329f1987cd9fda4852e750a0f83f607e5215e79f0"
+}

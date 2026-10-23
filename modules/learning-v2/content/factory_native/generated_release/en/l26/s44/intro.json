@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, just, yet; by the time",
+    "uk": "if, when, unless; already, just, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти бумагу и ручку",
+        "uk": "Знайти папір і ручку"
+      },
+      "bodyByLocale": {
+        "ru": "Stationery — канцелярские принадлежности: бумага, ручки и подобные вещи. Это общее неисчисляемое слово. Where is the stationery? — где канцелярские принадлежности? Paperclip — скрепка. I need a paperclip — мне нужна скрепка. Вы хотите скрепить несколько листов. Попросите: Could you pass me one? — можешь передать мне одну? Для будущей помощи: I will bring some paper when I come back — я принесу бумагу, когда вернусь. После when здесь come без will.",
+        "uk": "Stationery — канцелярське приладдя: папір, ручки й подібні речі. Це загальне незлічуване слово. Where is the stationery? — де канцелярське приладдя? Paperclip — скріпка. I need a paperclip — мені потрібна скріпка. Ви хочете скріпити кілька аркушів. Попросіть: Could you pass me one? — можеш передати мені одну? Для майбутньої допомоги: I will bring some paper when I come back — я принесу папір, коли повернуся. Після when тут come без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-44:intro1:r1",
+              "text": "I will bring some paper when I come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro1:r2",
+              "text": "I will bring some paper when I will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro1:r3",
+              "text": "I will bring some paper when I comes back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-44:intro1:r1",
+              "text": "I will bring some paper when I come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro1:r2",
+              "text": "I will bring some paper when I will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro1:r3",
+              "text": "I will bring some paper when I comes back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рисовать и писать наспех",
+        "uk": "Малювати й писати нашвидкуруч"
+      },
+      "bodyByLocale": {
+        "ru": "Doodle — рисовать машинально, например простые узоры во время ожидания. I sometimes doodle when I wait — я иногда рисую что-нибудь, когда жду. Scribble — писать или рисовать наспех, небрежными штрихами. Please do not scribble on this page — пожалуйста, не черкай на этой странице. Эти глаголы не означают одно и то же: doodle — обычно машинальный рисунок, scribble подчёркивает небрежность. Предложите чистую обратную сторону: If the back is blank, you can use it — если оборот пустой, можешь его использовать. Условие можно поставить в конец.",
+        "uk": "Doodle — малювати машинально, наприклад прості візерунки під час очікування. I sometimes doodle when I wait — я іноді щось малюю, коли чекаю. Scribble — писати або малювати нашвидкуруч, недбалими штрихами. Please do not scribble on this page — будь ласка, не черкай на цій сторінці. Ці дієслова не означають те саме: doodle — зазвичай машинальний малюнок, scribble підкреслює недбалість. Запропонуйте чистий зворотний бік: If the back is blank, you can use it — якщо зворотний бік порожній, можеш його використати. Умову можна поставити в кінець."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-44:intro2:r1",
+              "text": "You can use it if the back is blank."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro2:r2",
+              "text": "You can use it unless the back is blank."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro2:r3",
+              "text": "You can use it if the back will be blank."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-44:intro2:r1",
+              "text": "You can use it if the back is blank."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro2:r2",
+              "text": "You can use it unless the back is blank."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro2:r3",
+              "text": "You can use it if the back will be blank."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оставить понятную записку",
+        "uk": "Залишити зрозумілу записку"
+      },
+      "bodyByLocale": {
+        "ru": "Have you written the address yet? — ты уже записал адрес? I have already written it — я уже его записал. I have just checked it — я только что его проверил. Эти ответы сообщают о результате сейчас. О вчерашней записке: I had written the note by the time he left — я написал записку к тому времени, как он ушёл. Had written показывает более раннее действие. Сохранить лист можно так: I will keep it unless you need it — я оставлю его себе, если он тебе не нужен. Не тратить бумагу зря: Do not waste paper — не трать бумагу зря.",
+        "uk": "Have you written the address yet? — ти вже записав адресу? I have already written it — я вже її записав. I have just checked it — я щойно її перевірив. Ці відповіді повідомляють про результат зараз. Про вчорашню записку: I had written the note by the time he left — я написав записку до того часу, як він пішов. Had written показує ранішу дію. Зберегти аркуш можна так: I will keep it unless you need it — я залишу його собі, якщо він тобі не потрібен. Не витрачати папір марно: Do not waste paper — не витрачай папір марно."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-44:intro3:r1",
+              "text": "I had written the note by the time he left."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro3:r2",
+              "text": "I have written the note by the time he left."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro3:r3",
+              "text": "I had wrote the note by the time he left."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-44:intro3:r1",
+              "text": "I had written the note by the time he left."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro3:r2",
+              "text": "I have written the note by the time he left."
+            },
+            {
+              "responseId": "en:lesson-26:session-44:intro3:r3",
+              "text": "I had wrote the note by the time he left."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ecbb44c57b24e96bd69af89d569777fd48632b7b9f677617235dbb1503b1d2ae"
+}

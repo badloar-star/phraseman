@@ -1,0 +1,1071 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-44:word:stationery",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stationery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:word:stationery:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stationery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:word:stationery:audio",
+          "transcript": "stationery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-44:word:stationery:r1",
+            "targetText": "stationery",
+            "meaningByLocale": {
+              "ru": "Канцелярские принадлежности; неисчисляемое слово.",
+              "uk": "Канцелярське приладдя; незлічуване слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stationery",
+          "definitionByLocale": {
+            "ru": "Канцелярские принадлежности; неисчисляемое слово.",
+            "uk": "Канцелярське приладдя; незлічуване слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, где канцелярские принадлежности.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i01:audio"
+      ],
+      "accessibilityLabel": "Спросите, где канцелярские принадлежности.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i01:audio",
+          "transcript": "Where is the stationery?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the stationery?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i02:r1",
+          "text": "It is in the top drawer."
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i02:r2",
+          "text": "It is in the bottom drawer."
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i02:r3",
+          "text": "It is on the desk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i02:audio",
+          "transcript": "It is in the top drawer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-44:i02:r1",
+            "targetText": "It is in the top drawer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i02:r2",
+            "targetText": "It is in the bottom drawer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i02:r3",
+            "targetText": "It is on the desk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is in the top drawer.",
+              "uk": "У записі звучить It is in the top drawer."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is in the top drawer.",
+              "uk": "У записі звучить It is in the top drawer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:word:paperclip",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — paperclip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:word:paperclip:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — paperclip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:word:paperclip:audio",
+          "transcript": "paperclip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-44:word:paperclip:r1",
+            "targetText": "paperclip",
+            "meaningByLocale": {
+              "ru": "Скрепка для бумаги.",
+              "uk": "Скріпка для паперу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "paperclip",
+          "definitionByLocale": {
+            "ru": "Скрепка для бумаги.",
+            "uk": "Скріпка для паперу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что вам нужна скрепка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что вам нужна скрепка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need a paperclip.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам нужна скрепка.",
+          "uk": "Скажіть, що вам потрібна скріпка."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "a",
+          "paperclip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу передать одну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i04:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу передать одну.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i04:audio",
+          "transcript": "Could you pass me one?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you pass me one?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "pass",
+          "me",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы принесёте бумагу после возвращения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i05:r1",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i05:r2",
+          "text": "will come"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i05:r3",
+          "text": "comes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы принесёте бумагу после возвращения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы принесёте бумагу после возвращения.",
+          "uk": "Ви принесете папір після повернення."
+        },
+        "gappedTargetPhrase": "I will bring some paper when I ___ back.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-44:i05:r1",
+            "text": "come"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i05:r2",
+            "text": "will come"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i05:r3",
+            "text": "comes"
+          }
+        ],
+        "testedDimension": "Вы принесёте бумагу после возвращения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы принесёте бумагу после возвращения.",
+            "feedbackByLocale": {
+              "ru": "После when здесь come без will.",
+              "uk": "Після when тут come без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы принесёте бумагу после возвращения.",
+            "feedbackByLocale": {
+              "ru": "С I нужно come без -s.",
+              "uk": "З I потрібно come без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:word:doodle",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — doodle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:word:doodle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — doodle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:word:doodle:audio",
+          "transcript": "doodle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-44:word:doodle:r1",
+            "targetText": "doodle",
+            "meaningByLocale": {
+              "ru": "Машинально рисовать узоры или простые картинки.",
+              "uk": "Машинально малювати візерунки або прості картинки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doodle",
+          "definitionByLocale": {
+            "ru": "Машинально рисовать узоры или простые картинки.",
+            "uk": "Машинально малювати візерунки або прості картинки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i06:r1",
+          "text": "I sometimes doodle when I wait."
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i06:r2",
+          "text": "I sometimes read when I wait."
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i06:r3",
+          "text": "I sometimes doodle when I listen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i06:audio",
+          "transcript": "I sometimes doodle when I wait."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-44:i06:r1",
+            "targetText": "I sometimes doodle when I wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i06:r2",
+            "targetText": "I sometimes read when I wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i06:r3",
+            "targetText": "I sometimes doodle when I listen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I sometimes doodle when I wait.",
+              "uk": "У записі звучить I sometimes doodle when I wait."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I sometimes doodle when I wait.",
+              "uk": "У записі звучить I sometimes doodle when I wait."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите карандаш на минуту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i07:audio"
+      ],
+      "accessibilityLabel": "Попросите карандаш на минуту.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i07:audio",
+          "transcript": "Can I borrow your pencil?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I borrow your pencil?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:word:scribble",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scribble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:word:scribble:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scribble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:word:scribble:audio",
+          "transcript": "scribble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-44:word:scribble:r1",
+            "targetText": "scribble",
+            "meaningByLocale": {
+              "ru": "Писать или рисовать наспех, небрежными штрихами.",
+              "uk": "Писати або малювати нашвидкуруч, недбалими штрихами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scribble",
+          "definitionByLocale": {
+            "ru": "Писать или рисовать наспех, небрежными штрихами.",
+            "uk": "Писати або малювати нашвидкуруч, недбалими штрихами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите не черкать на этой странице.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите не черкать на этой странице.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please do not scribble on this page.",
+        "localizedMeaning": {
+          "ru": "Попросите не черкать на этой странице.",
+          "uk": "Попросіть не черкати на цій сторінці."
+        },
+        "orderedTokens": [
+          "Please",
+          "do",
+          "not",
+          "scribble",
+          "on",
+          "this",
+          "page"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишите привычку записывать нужные сведения, когда слышите их.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i09:r1",
+          "text": "write"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i09:r2",
+          "text": "writes"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i09:r3",
+          "text": "writing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите привычку записывать нужные сведения, когда слышите их.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите привычку записывать нужные сведения, когда слышите их.",
+          "uk": "Опишіть звичку записувати потрібні відомості, коли чуєте їх."
+        },
+        "gappedTargetPhrase": "I ___ things down when I hear them.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-44:i09:r1",
+            "text": "write"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i09:r2",
+            "text": "writes"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i09:r3",
+            "text": "writing"
+          }
+        ],
+        "testedDimension": "Опишите привычку записывать нужные сведения, когда слышите их.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Опишите привычку записывать нужные сведения, когда слышите их.",
+            "feedbackByLocale": {
+              "ru": "С I нужно write без -s.",
+              "uk": "З I потрібно write без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Опишите привычку записывать нужные сведения, когда слышите их.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужна форма write.",
+              "uk": "Для звички потрібна форма write."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о записанном адресе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i10:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о записанном адресе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i10:audio",
+          "transcript": "Have you written the address yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you written the address yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "written",
+          "the",
+          "address",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i11:r1",
+          "text": "I have already written it."
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i11:r2",
+          "text": "I have already read it."
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i11:r3",
+          "text": "I have just found it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i11:audio",
+          "transcript": "I have already written it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-44:i11:r1",
+            "targetText": "I have already written it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i11:r2",
+            "targetText": "I have already read it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i11:r3",
+            "targetText": "I have just found it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already written it.",
+              "uk": "У записі звучить I have already written it."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already written it.",
+              "uk": "У записі звучить I have already written it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Начните с условия: You can use it if the back is blank.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i12:audio"
+      ],
+      "accessibilityLabel": "Начните с условия: You can use it if the back is blank.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i12:audio",
+          "transcript": "If the back is blank, you can use it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "If the back is blank, you can use it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы только что проверили адрес.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i13:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i13:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i13:r3",
+          "text": "checking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы только что проверили адрес.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы только что проверили адрес.",
+          "uk": "Ви щойно перевірили адресу."
+        },
+        "gappedTargetPhrase": "I have just ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-44:i13:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i13:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i13:r3",
+            "text": "checking"
+          }
+        ],
+        "testedDimension": "Вы только что проверили адрес.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы только что проверили адрес.",
+            "feedbackByLocale": {
+              "ru": "После have нужна форма checked.",
+              "uk": "Після have потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы только что проверили адрес.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно checked, не checking.",
+              "uk": "Тут потрібно checked, не checking."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу не тратить бумагу зря.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу не тратить бумагу зря.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i14:audio",
+          "transcript": "Do not waste paper."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do not waste paper.",
+        "orderedTokens": [
+          "Do",
+          "not",
+          "waste",
+          "paper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера записка была готова до того, как друг ушёл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i15:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i15:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i15:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера записка была готова до того, как друг ушёл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера записка была готова до того, как друг ушёл.",
+          "uk": "Учора записка була готова до того, як друг пішов."
+        },
+        "gappedTargetPhrase": "I ___ written the note by the time he left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-44:i15:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i15:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i15:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вчера записка была готова до того, как друг ушёл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i15:r2",
+            "correct": false,
+            "testedDimension": "Вчера записка была готова до того, как друг ушёл.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+              "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i15:r3",
+            "correct": false,
+            "testedDimension": "Вчера записка была готова до того, как друг ушёл.",
+            "feedbackByLocale": {
+              "ru": "Am written не означает, что я написал записку.",
+              "uk": "Am written не означає, що я написав записку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы оставите лист себе, только если другу он не нужен.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-44:i16:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i16:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-44:i16:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы оставите лист себе, только если другу он не нужен.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы оставите лист себе, только если другу он не нужен.",
+          "uk": "Ви залишите аркуш собі, тільки якщо другу він не потрібен."
+        },
+        "gappedTargetPhrase": "I will keep it ___ you need it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-44:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i16:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Вы оставите лист себе, только если другу он не нужен.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-44:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы оставите лист себе, только если другу он не нужен.",
+            "feedbackByLocale": {
+              "ru": "If означало бы оставить себе именно нужный другу лист.",
+              "uk": "If означало б залишити собі саме потрібний другу аркуш."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-44:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы оставите лист себе, только если другу он не нужен.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы потребность друга причиной оставить лист себе.",
+              "uk": "Because зробило б потребу друга причиною залишити аркуш собі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг помог разобрать неясную записку. Поблагодарите за объяснение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Друг помог разобрать неясную записку. Поблагодарите за объяснение.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-44:i17:audio",
+          "transcript": "Thanks for explaining."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thanks for explaining.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aa16bbbbe1feca7c4c2203ba412d16aea9e3fd03c01dffb257c315bef059081f"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-44:word:stationery",
+    "correctText": "stationery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i01",
+    "correctText": "Where is the stationery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i02",
+    "correctText": "It is in the top drawer.",
+    "correctResponseId": "en:lesson-26:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:word:paperclip",
+    "correctText": "paperclip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i03",
+    "correctText": "I need a paperclip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i04",
+    "correctText": "Could you pass me one?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i05",
+    "correctText": "come",
+    "correctResponseId": "en:lesson-26:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:word:doodle",
+    "correctText": "doodle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i06",
+    "correctText": "I sometimes doodle when I wait.",
+    "correctResponseId": "en:lesson-26:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i07",
+    "correctText": "Can I borrow your pencil?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:word:scribble",
+    "correctText": "scribble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i08",
+    "correctText": "Please do not scribble on this page.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i09",
+    "correctText": "write",
+    "correctResponseId": "en:lesson-26:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i10",
+    "correctText": "Have you written the address yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i11",
+    "correctText": "I have already written it.",
+    "correctResponseId": "en:lesson-26:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i12",
+    "correctText": "If the back is blank, you can use it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i13",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-26:session-44:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i14",
+    "correctText": "Do not waste paper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i15",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-44:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-44:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-44:i17",
+    "correctText": "Thanks for explaining.",
+    "correctResponseId": null
+  }
+]

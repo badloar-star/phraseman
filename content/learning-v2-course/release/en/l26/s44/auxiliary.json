@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-44:intro1:r2": {
+          "ru": "После when здесь come без will.",
+          "uk": "Після when тут come без will."
+        },
+        "en:lesson-26:session-44:intro1:r3": {
+          "ru": "С I нужно come без -s.",
+          "uk": "З I потрібно come без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-44:intro2:r2": {
+          "ru": "Unless меняет условие: если оборот не пустой.",
+          "uk": "Unless змінює умову: якщо зворотний бік не порожній."
+        },
+        "en:lesson-26:session-44:intro2:r3": {
+          "ru": "После if здесь is без will.",
+          "uk": "Після if тут is без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-44:intro3:r2": {
+          "ru": "Left задаёт прошлое; более раннее действие — had written.",
+          "uk": "Left задає минуле; раніша дія — had written."
+        },
+        "en:lesson-26:session-44:intro3:r3": {
+          "ru": "После had нужна форма written, не wrote.",
+          "uk": "Після had потрібна форма written, не wrote."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f22cd00f83f1f4653975b9f772ba92ce23b0ff9f4c2add3756d4b1b86f53ea63"
+}

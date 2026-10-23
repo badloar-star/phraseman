@@ -118,6 +118,32 @@ const internalGrammarMetaphors = {
   uk: /скріп(?:к|ц)\p{L}*/giu,
 };
 
+// Literal translations of the physical object are not grammar nicknames.
+// Exempt complete, narrowly described sentences, never an entire lesson or
+// interaction merely because it mentions paperclip somewhere.
+function hasInternalGrammarMetaphor(text, locale, physicalPaperclipTarget = false) {
+  const metaphor = internalGrammarMetaphors[locale];
+  if (!metaphor) return false;
+  const plain = String(text).replace(/<!--[^]*?-->/gu, "")
+    .replace(/[*`>]/gu, "").replace(/^\s*\d+\s*·\s*/u, "").trim();
+  const definition = locale === "uk"
+    ? /^(?:paperclip\s*[—–-]\s*)?скріпка\s+для\s+паперу$/iu
+    : /^(?:paperclip\s*[—–-]\s*)?скрепка\s+для\s+бумаги$/iu;
+  const gloss = locale === "uk" ? /^paperclip\s*[—–-]\s*скріпка$/iu : /^paperclip\s*[—–-]\s*скрепка$/iu;
+  const need = locale === "uk"
+    ? /^(?:скажіть,?\s+що\s+вам\s+потрібна\s+скріпка|мені\s+потрібна\s+скріпка)$/iu
+    : /^(?:скажите,?\s+что\s+вам\s+нужна\s+скрепка|мне\s+нужна\s+скрепка)$/iu;
+  return plain.split(/[.!?\n]+/u).some((sentence) => {
+    const part = sentence.trim();
+    metaphor.lastIndex = 0;
+    if (!metaphor.test(part)) return false;
+    if (definition.test(part) || gloss.test(part)) return false;
+    const translation = part.match(/^I need a paperclip\s*[—–-]\s*(.+)$/iu);
+    if (translation && need.test(translation[1])) return false;
+    return !(physicalPaperclipTarget && need.test(part));
+  });
+}
+
 // В задании нельзя скрывать референт за «парнем», «женщиной» или «кем-то».
 // Это не запрет словаря вообще: проверяются только видимые инструкции задания,
 // где ученик должен однозначно понять, о ком строится фраза.
@@ -162,6 +188,9 @@ function atomicMaritalRingFindings(atomic, relative) {
 
 function atomicActorFindings(atomic, relative) {
   const out = [];
+  const physicalPaperclipAnswers = new Set((atomic?.answers ?? [])
+    .filter((answer) => /^I need a paperclip\.?$/iu.test(String(answer.correctText ?? "").trim()))
+    .map((answer) => answer.interactionId));
   for (const [locale, interactions] of Object.entries(atomic?.interactionsByLocale ?? {})) {
     if (!Array.isArray(interactions)) continue;
     for (const interaction of interactions) {
@@ -185,10 +214,8 @@ function atomicActorFindings(atomic, relative) {
         excerpt: `${locale}:${interaction?.interactionId ?? "unknown"}`,
       });
       for (const text of allStrings(interaction)) {
-        const metaphor = internalGrammarMetaphors[locale];
-        if (metaphor) {
-          metaphor.lastIndex = 0;
-          if (metaphor.test(text)) out.push({
+        if (internalGrammarMetaphors[locale]) {
+          if (hasInternalGrammarMetaphor(text, locale, physicalPaperclipAnswers.has(interaction?.interactionId))) out.push({
             file: relative,
             line: null,
             rule: `atomic_${locale}_internal_grammar_metaphor`,
@@ -267,9 +294,18 @@ for (const file of files) {
       if (match) findings.push({ file: relative, line: index + 1, rule: rule.id, excerpt: line.trim() });
     }
     if (learnerFacing) {
-      const metaphor = internalGrammarMetaphors[locale];
-      metaphor.lastIndex = 0;
-      if (metaphor.test(line)) findings.push({ file: relative, line: index + 1, rule: `${locale}_internal_grammar_metaphor`, excerpt: line.trim() });
+      // The following authored target belongs to this prompt, stopping before
+      // the next task heading. A paperclip elsewhere cannot exempt this line.
+      let physicalPaperclipTarget = false;
+      if (/^\*\*\d+\s*·/u.test(line)) {
+        for (let next = index + 1; next < lines.length && !/^\*\*\d+\s*·|^##/u.test(lines[next]); next++) {
+          if (/→\s*\*\*I need a paperclip\.\*\*\s*$/iu.test(lines[next])) {
+            physicalPaperclipTarget = true;
+            break;
+          }
+        }
+      }
+      if (hasInternalGrammarMetaphor(line, locale, physicalPaperclipTarget)) findings.push({ file: relative, line: index + 1, rule: `${locale}_internal_grammar_metaphor`, excerpt: line.trim() });
     }
     if (learnerFacing && /\/final\.uk\.md$/u.test(relative) && ukRussianLearnerText.test(line)) {
       findings.push({ file: relative, line: index + 1, rule: "uk_russian_learner_text", excerpt: line.trim() });

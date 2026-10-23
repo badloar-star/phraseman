@@ -1,0 +1,1069 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-16:word:oops",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — oops",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:word:oops:audio"
+      ],
+      "accessibilityLabel": "Картка слова — oops",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:word:oops:audio",
+          "transcript": "oops"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-16:word:oops:r1",
+            "targetText": "oops",
+            "meaningByLocale": {
+              "ru": "Ой! Реакция на небольшую ошибку или неловкость: пролили воду, взяли не тот предмет.",
+              "uk": "Ой! Реакція на невелику помилку або незручність: розлили воду, взяли не той предмет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oops",
+          "definitionByLocale": {
+            "ru": "Ой! Реакция на небольшую ошибку или неловкость: пролили воду, взяли не тот предмет.",
+            "uk": "Ой! Реакція на невелику помилку або незручність: розлили воду, взяли не той предмет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви випадково розлили трохи води. Ніхто не постраждав. Виберіть реакцію на незручність.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i01:r1",
+          "text": "Oops"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i01:r2",
+          "text": "Goodbye"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i01:r3",
+          "text": "Welcome"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви випадково розлили трохи води. Ніхто не постраждав. Виберіть реакцію на незручність.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы случайно пролили немного воды. Никто не пострадал. Выберите реакцию на неловкость.",
+          "uk": "Ви випадково розлили трохи води. Ніхто не постраждав. Виберіть реакцію на незручність."
+        },
+        "gappedTargetPhrase": "___!",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-16:i01:r1",
+            "text": "Oops"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i01:r2",
+            "text": "Goodbye"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i01:r3",
+            "text": "Welcome"
+          }
+        ],
+        "testedDimension": "Ви випадково розлили трохи води. Ніхто не постраждав. Виберіть реакцію на незручність.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i01:r2",
+            "correct": false,
+            "testedDimension": "Ви випадково розлили трохи води. Ніхто не постраждав. Виберіть реакцію на незручність.",
+            "feedbackByLocale": {
+              "ru": "Goodbye — прощание, а вы заметили свою ошибку.",
+              "uk": "Goodbye — прощання, а ви помітили свою помилку."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i01:r3",
+            "correct": false,
+            "testedDimension": "Ви випадково розлили трохи води. Ніхто не постраждав. Виберіть реакцію на незручність.",
+            "feedbackByLocale": {
+              "ru": "Welcome — приветствие, а здесь небольшая неловкость.",
+              "uk": "Welcome — привітання, а тут невелика незручність."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг шукає, чим витерти воду. Запропонуйте: «Я принесу рушник».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг шукає, чим витерти воду. Запропонуйте: «Я принесу рушник».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will get a towel.",
+        "localizedMeaning": {
+          "ru": "Друг ищет, чем вытереть воду. Предложите: «Я принесу полотенце».",
+          "uk": "Друг шукає, чим витерти воду. Запропонуйте: «Я принесу рушник»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "get",
+          "a",
+          "towel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:word:ouch",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ouch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:word:ouch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ouch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:word:ouch:audio",
+          "transcript": "ouch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-16:word:ouch:r1",
+            "targetText": "ouch",
+            "meaningByLocale": {
+              "ru": "Ай! Короткая реакция на боль, например если ударились.",
+              "uk": "Ай! Коротка реакція на біль, наприклад якщо вдарилися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ouch",
+          "definitionByLocale": {
+            "ru": "Ай! Короткая реакция на боль, например если ударились.",
+            "uk": "Ай! Коротка реакція на біль, наприклад якщо вдарилися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i03",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви вдарили лікоть. Відреагуйте одним англійським словом: «Ай!»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Ви вдарили лікоть. Відреагуйте одним англійським словом: «Ай!»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i03:audio",
+          "transcript": "Ouch!"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ouch!",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i04:r1",
+          "text": "Are you all right?"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i04:r2",
+          "text": "Are you ready?"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i04:r3",
+          "text": "Are you still here?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i04:audio",
+          "transcript": "Are you all right?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-16:i04:r1",
+            "targetText": "Are you all right?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i04:r2",
+            "targetText": "Are you ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i04:r3",
+            "targetText": "Are you still here?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you all right?",
+              "uk": "У записі звучить Are you all right?"
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you all right?",
+              "uk": "У записі звучить Are you all right?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:word:wow",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:word:wow:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:word:wow:audio",
+          "transcript": "wow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-16:word:wow:r1",
+            "targetText": "wow",
+            "meaningByLocale": {
+              "ru": "Ух ты! Реакция на удивительное или впечатляющее.",
+              "uk": "Ого! Реакція на дивовижне або вражаюче."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wow",
+          "definitionByLocale": {
+            "ru": "Ух ты! Реакция на удивительное или впечатляющее.",
+            "uk": "Ого! Реакція на дивовижне або вражаюче."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга показує гарний торт, який спекла сама. Ви приємно здивовані. Виберіть реакцію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i05:r1",
+          "text": "Wow"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i05:r2",
+          "text": "Ouch"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i05:r3",
+          "text": "Oops"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга показує гарний торт, який спекла сама. Ви приємно здивовані. Виберіть реакцію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга показывает красивый торт, который испекла сама. Вы приятно удивлены. Выберите реакцию.",
+          "uk": "Подруга показує гарний торт, який спекла сама. Ви приємно здивовані. Виберіть реакцію."
+        },
+        "gappedTargetPhrase": "___!",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-16:i05:r1",
+            "text": "Wow"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i05:r2",
+            "text": "Ouch"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i05:r3",
+            "text": "Oops"
+          }
+        ],
+        "testedDimension": "Подруга показує гарний торт, який спекла сама. Ви приємно здивовані. Виберіть реакцію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Подруга показує гарний торт, який спекла сама. Ви приємно здивовані. Виберіть реакцію.",
+            "feedbackByLocale": {
+              "ru": "Ouch — реакция на боль; здесь вы впечатлены тортом.",
+              "uk": "Ouch — реакція на біль; тут ви вражені тортом."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Подруга показує гарний торт, який спекла сама. Ви приємно здивовані. Виберіть реакцію.",
+            "feedbackByLocale": {
+              "ru": "Oops — реакция на ошибку, которой здесь не было.",
+              "uk": "Oops — реакція на помилку, якої тут не було."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте питання до господині про приготування.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Почуйте питання до господині про приготування.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i06:audio",
+          "transcript": "Did you make it yourself?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did you make it yourself?",
+        "orderedTokens": [
+          "Did",
+          "you",
+          "make",
+          "it",
+          "yourself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:word:cheers",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cheers",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:word:cheers:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cheers",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:word:cheers:audio",
+          "transcript": "cheers"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-16:word:cheers:r1",
+            "targetText": "cheers",
+            "meaningByLocale": {
+              "ru": "Спасибо! Непринуждённая благодарность в британской речи; также бывает тостом.",
+              "uk": "Дякую! Невимушена подяка в британському мовленні; також буває тостом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cheers",
+          "definitionByLocale": {
+            "ru": "Спасибо! Непринуждённая благодарность в британской речи; также бывает тостом.",
+            "uk": "Дякую! Невимушена подяка в британському мовленні; також буває тостом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг передав вам чашку. Неформально подякуйте словом cheers.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Друг передав вам чашку. Неформально подякуйте словом cheers.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i07:audio",
+          "transcript": "Cheers!"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Cheers!",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Чашки вже наповнені. Повідомте про це другові.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i08:r1",
+          "text": "already"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i08:r2",
+          "text": "yet"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i08:r3",
+          "text": "tomorrow"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Чашки вже наповнені. Повідомте про це другові.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Чашки уже наполнены. Сообщите об этом другу.",
+          "uk": "Чашки вже наповнені. Повідомте про це другові."
+        },
+        "gappedTargetPhrase": "I have ___ filled the cups.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-16:i08:r1",
+            "text": "already"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i08:r2",
+            "text": "yet"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i08:r3",
+            "text": "tomorrow"
+          }
+        ],
+        "testedDimension": "Чашки вже наповнені. Повідомте про це другові.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Чашки вже наповнені. Повідомте про це другові.",
+            "feedbackByLocale": {
+              "ru": "Yet не подходит здесь в утвердительном сообщении перед filled.",
+              "uk": "Yet не підходить тут у ствердному повідомленні перед filled."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Чашки вже наповнені. Повідомте про це другові.",
+            "feedbackByLocale": {
+              "ru": "Tomorrow означает завтра, а действие уже выполнено.",
+              "uk": "Tomorrow означає завтра, а дію вже виконано."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i09:r1",
+          "text": "I will refill your cup if it is empty."
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i09:r2",
+          "text": "I will wash your cup if it is empty."
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i09:r3",
+          "text": "I will refill your bottle if it is empty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i09:audio",
+          "transcript": "I will refill your cup if it is empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-16:i09:r1",
+            "targetText": "I will refill your cup if it is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i09:r2",
+            "targetText": "I will wash your cup if it is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i09:r3",
+            "targetText": "I will refill your bottle if it is empty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will refill your cup if it is empty.",
+              "uk": "У записі звучить I will refill your cup if it is empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will refill your cup if it is empty.",
+              "uk": "У записі звучить I will refill your cup if it is empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви щойно взяли чужу сумку. Скажіть: «Це не моя сумка».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви щойно взяли чужу сумку. Скажіть: «Це не моя сумка».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is not my bag.",
+        "localizedMeaning": {
+          "ru": "Вы только что взяли чужую сумку. Скажите: «Это не моя сумка».",
+          "uk": "Ви щойно взяли чужу сумку. Скажіть: «Це не моя сумка»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "not",
+          "my",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вже взяли не ту сумку, коли помітили помилку. Доповніть ранішу дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i11:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i11:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i11:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже взяли не ту сумку, коли помітили помилку. Доповніть ранішу дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже взяли не ту сумку, когда заметили ошибку. Дополните более раннее действие.",
+          "uk": "Ви вже взяли не ту сумку, коли помітили помилку. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "I ___ taken the wrong bag by the time I noticed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-16:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i11:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Ви вже взяли не ту сумку, коли помітили помилку. Доповніть ранішу дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Ви вже взяли не ту сумку, коли помітили помилку. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Noticed задаёт прошлый момент; более раннее событие — had taken.",
+              "uk": "Noticed задає минулий момент; раніша подія — had taken."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Ви вже взяли не ту сумку, коли помітили помилку. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Нужно had taken для действия, которое вы выполнили раньше.",
+              "uk": "Потрібно had taken для дії, яку ви виконали раніше."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Господиня запитує, чи не боляче після удару. Дайте відповідь: «Тепер усе гаразд, дякую».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i12:audio"
+      ],
+      "accessibilityLabel": "Господиня запитує, чи не боляче після удару. Дайте відповідь: «Тепер усе гаразд, дякую».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i12:audio",
+          "transcript": "I am fine now, thanks."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am fine now, thanks.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте питання про повідомлення другові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i13:audio"
+      ],
+      "accessibilityLabel": "Почуйте питання про повідомлення другові.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i13:audio",
+          "transcript": "Have you texted Sam yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you texted Sam yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "texted",
+          "Sam",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишіть свою звичку вибачатися після помилки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i14:r1",
+          "text": "say"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i14:r2",
+          "text": "says"
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i14:r3",
+          "text": "saying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишіть свою звичку вибачатися після помилки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите свою привычку извиняться после ошибки.",
+          "uk": "Опишіть свою звичку вибачатися після помилки."
+        },
+        "gappedTargetPhrase": "If I make a mistake, I ___ sorry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-16:i14:r1",
+            "text": "say"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i14:r2",
+            "text": "says"
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i14:r3",
+            "text": "saying"
+          }
+        ],
+        "testedDimension": "Опишіть свою звичку вибачатися після помилки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i14:r2",
+            "correct": false,
+            "testedDimension": "Опишіть свою звичку вибачатися після помилки.",
+            "feedbackByLocale": {
+              "ru": "С I нужен say без -s.",
+              "uk": "З I потрібне say без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i14:r3",
+            "correct": false,
+            "testedDimension": "Опишіть свою звичку вибачатися після помилки.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужно сказуемое say, не отдельное saying.",
+              "uk": "Для звички потрібен присудок say, а не окреме saying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-16:i15:r1",
+          "text": "I will book the seats if they are available."
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i15:r2",
+          "text": "I will book the room if it is available."
+        },
+        {
+          "responseId": "en:lesson-26:session-16:i15:r3",
+          "text": "I will change the seats if they are available."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i15:audio",
+          "transcript": "I will book the seats if they are available."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-16:i15:r1",
+            "targetText": "I will book the seats if they are available.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i15:r2",
+            "targetText": "I will book the room if it is available.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i15:r3",
+            "targetText": "I will change the seats if they are available.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-16:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will book the seats if they are available.",
+              "uk": "У записі звучить I will book the seats if they are available."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-16:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will book the seats if they are available.",
+              "uk": "У записі звучить I will book the seats if they are available."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг пропонує надіслати час зустрічі. Дайте відповідь: «Я відповім, якщо ти напишеш мені».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг пропонує надіслати час зустрічі. Дайте відповідь: «Я відповім, якщо ти напишеш мені».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will reply if you text me.",
+        "localizedMeaning": {
+          "ru": "Друг предлагает прислать время встречи. Ответьте: «Я отвечу, если ты напишешь мне».",
+          "uk": "Друг пропонує надіслати час зустрічі. Дайте відповідь: «Я відповім, якщо ти напишеш мені»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "reply",
+          "if",
+          "you",
+          "text",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви побачили результат ремонту кімнати. Знову висловіть приємне здивування: «Ого!»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Ви побачили результат ремонту кімнати. Знову висловіть приємне здивування: «Ого!»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-16:i17:audio",
+          "transcript": "Wow!"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Wow!",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5200cafc06b8b7e4dbddc28467affb356c3e73271ded6ca04f59578eadf0ead8"
+}

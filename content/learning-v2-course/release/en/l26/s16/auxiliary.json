@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-16:intro1:r2": {
+          "ru": "После if здесь need без will.",
+          "uk": "Після if тут need без will."
+        },
+        "en:lesson-26:session-16:intro1:r3": {
+          "ru": "После will нужна форма get без -s.",
+          "uk": "Після will потрібна форма get без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-16:intro2:r2": {
+          "ru": "После have нужна третья форма filled.",
+          "uk": "Після have потрібна третя форма filled."
+        },
+        "en:lesson-26:session-16:intro2:r3": {
+          "ru": "С I используем have.",
+          "uk": "З I вживаємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-16:intro3:r2": {
+          "ru": "С I используем make без -s.",
+          "uk": "З I вживаємо make без -s."
+        },
+        "en:lesson-26:session-16:intro3:r3": {
+          "ru": "Нужно сказуемое say, не saying без вспомогательного глагола.",
+          "uk": "Потрібен присудок say, а не saying без допоміжного дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "500301e03c96c3e7425154a46125a031a10fb108cc0746254a88f8b31c03cba9"
+}

@@ -1,0 +1,1079 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-15:word:shin",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:word:shin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:word:shin:audio",
+          "transcript": "shin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:word:shin:r1",
+            "targetText": "shin",
+            "meaningByLocale": {
+              "ru": "Передняя часть голени между коленом и щиколоткой. My shin — моя голень спереди.",
+              "uk": "Передня частина гомілки між коліном і щиколоткою. My shin — моя гомілка спереду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shin",
+          "definitionByLocale": {
+            "ru": "Передняя часть голени между коленом и щиколоткой. My shin — моя голень спереди.",
+            "uk": "Передня частина гомілки між коліном і щиколоткою. My shin — моя гомілка спереду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i01:r1",
+          "text": "I hit my shin on the chair."
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i01:r2",
+          "text": "I hit my knee on the chair."
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i01:r3",
+          "text": "I hit my shin on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i01:audio",
+          "transcript": "I hit my shin on the chair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:i01:r1",
+            "targetText": "I hit my shin on the chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i01:r2",
+            "targetText": "I hit my knee on the chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i01:r3",
+            "targetText": "I hit my shin on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hit my shin on the chair.",
+              "uk": "У записі звучить I hit my shin on the chair."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I hit my shin on the chair.",
+              "uk": "У записі звучить I hit my shin on the chair."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг ждёт у двери. Попросите: «Подожди меня минуту».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг ждёт у двери. Попросите: «Подожди меня минуту».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Wait for me a minute.",
+        "localizedMeaning": {
+          "ru": "Друг ждёт у двери. Попросите: «Подожди меня минуту».",
+          "uk": "Друг чекає біля дверей. Попросіть: «Зачекай на мене хвилину»."
+        },
+        "orderedTokens": [
+          "Wait",
+          "for",
+          "me",
+          "a",
+          "minute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:word:scalp",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scalp",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:word:scalp:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scalp",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:word:scalp:audio",
+          "transcript": "scalp"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:word:scalp:r1",
+            "targetText": "scalp",
+            "meaningByLocale": {
+              "ru": "Кожа головы под волосами. A dry scalp — сухая кожа головы.",
+              "uk": "Шкіра голови під волоссям. A dry scalp — суха шкіра голови."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scalp",
+          "definitionByLocale": {
+            "ru": "Кожа головы под волосами. A dry scalp — сухая кожа головы.",
+            "uk": "Шкіра голови під волоссям. A dry scalp — суха шкіра голови."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i03",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Парикмахер спрашивает, что вас беспокоит. Скажите: «Кожа головы кажется сухой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i03:audio"
+      ],
+      "accessibilityLabel": "Парикмахер спрашивает, что вас беспокоит. Скажите: «Кожа головы кажется сухой».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i03:audio",
+          "transcript": "My scalp feels dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "My scalp feels dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i04:r1",
+          "text": "hit"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i04:r2",
+          "text": "hitted"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i04:r3",
+          "text": "hitting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
+          "uk": "Сестра запитує, що сталося. Ви щойно вдарили гомілку. Доповніть недавню дію."
+        },
+        "gappedTargetPhrase": "I have just ___ my shin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-15:i04:r1",
+            "text": "hit"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i04:r2",
+            "text": "hitted"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i04:r3",
+            "text": "hitting"
+          }
+        ],
+        "testedDimension": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
+            "feedbackByLocale": {
+              "ru": "У hit третья форма hit, не hitted.",
+              "uk": "У hit третя форма hit, не hitted."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i04:r3",
+            "correct": false,
+            "testedDimension": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
+            "feedbackByLocale": {
+              "ru": "После have здесь нужна третья форма hit.",
+              "uk": "Після have тут потрібна третя форма hit."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:word:armpit",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — armpit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:word:armpit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — armpit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:word:armpit:audio",
+          "transcript": "armpit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:word:armpit:r1",
+            "targetText": "armpit",
+            "meaningByLocale": {
+              "ru": "Подмышка. My armpit — моя подмышка.",
+              "uk": "Пахва. My armpit — моя пахва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "armpit",
+          "definitionByLocale": {
+            "ru": "Подмышка. My armpit — моя подмышка.",
+            "uk": "Пахва. My armpit — моя пахва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На вопрос врача, где болит, ответьте: «У меня болит подмышка».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На вопрос врача, где болит, ответьте: «У меня болит подмышка».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My armpit hurts.",
+        "localizedMeaning": {
+          "ru": "На вопрос врача, где болит, ответьте: «У меня болит подмышка».",
+          "uk": "На запитання лікаря, де болить, дайте відповідь: «У мене болить пахва»."
+        },
+        "orderedTokens": [
+          "My",
+          "armpit",
+          "hurts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i06:r1",
+          "text": "Could you say that again?"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i06:r2",
+          "text": "Could you write that down?"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i06:r3",
+          "text": "Could you say it more slowly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i06:audio",
+          "transcript": "Could you say that again?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:i06:r1",
+            "targetText": "Could you say that again?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i06:r2",
+            "targetText": "Could you write that down?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i06:r3",
+            "targetText": "Could you say it more slowly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you say that again?",
+              "uk": "У записі звучить Could you say that again?"
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you say that again?",
+              "uk": "У записі звучить Could you say that again?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:word:pimple",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pimple",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:word:pimple:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pimple",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:word:pimple:audio",
+          "transcript": "pimple"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:word:pimple:r1",
+            "targetText": "pimple",
+            "meaningByLocale": {
+              "ru": "Прыщ. A pimple on my chin — прыщ на подбородке.",
+              "uk": "Прищ. A pimple on my chin — прищ на підборідді."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pimple",
+          "definitionByLocale": {
+            "ru": "Прыщ. A pimple on my chin — прыщ на подбородке.",
+            "uk": "Прищ. A pimple on my chin — прищ на підборідді."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы заметили на подбородке небольшой прыщ. Дополните описание.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i07:r1",
+          "text": "pimple"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i07:r2",
+          "text": "scalp"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i07:r3",
+          "text": "shin"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы заметили на подбородке небольшой прыщ. Дополните описание.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы заметили на подбородке небольшой прыщ. Дополните описание.",
+          "uk": "Ви помітили на підборідді невеликий прищ. Доповніть опис."
+        },
+        "gappedTargetPhrase": "There is a ___ on my chin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-15:i07:r1",
+            "text": "pimple"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i07:r2",
+            "text": "scalp"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i07:r3",
+            "text": "shin"
+          }
+        ],
+        "testedDimension": "Вы заметили на подбородке небольшой прыщ. Дополните описание.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i07:r2",
+            "correct": false,
+            "testedDimension": "Вы заметили на подбородке небольшой прыщ. Дополните описание.",
+            "feedbackByLocale": {
+              "ru": "Scalp — кожа головы под волосами, не прыщ.",
+              "uk": "Scalp — шкіра голови під волоссям, а не прищ."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i07:r3",
+            "correct": false,
+            "testedDimension": "Вы заметили на подбородке небольшой прыщ. Дополните описание.",
+            "feedbackByLocale": {
+              "ru": "Shin — голень, часть ноги.",
+              "uk": "Shin — гомілка, частина ноги."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос перед выходом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос перед выходом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i08:audio",
+          "transcript": "Have you found the mirror yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you found the mirror yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "found",
+          "the",
+          "mirror",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга предлагает помощь. Пообещайте: «Я дам тебе знать, если мне что-нибудь понадобится».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i09:audio"
+      ],
+      "accessibilityLabel": "Подруга предлагает помощь. Пообещайте: «Я дам тебе знать, если мне что-нибудь понадобится».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i09:audio",
+          "transcript": "I will let you know if I need anything."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will let you know if I need anything.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишите свою обычную реакцию: если вы причиняете себе боль, вы останавливаетесь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i10:r1",
+          "text": "stop"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i10:r2",
+          "text": "stops"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i10:r3",
+          "text": "stopping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишите свою обычную реакцию: если вы причиняете себе боль, вы останавливаетесь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите свою обычную реакцию: если вы причиняете себе боль, вы останавливаетесь.",
+          "uk": "Опишіть свою звичайну реакцію: якщо ви завдаєте собі болю, ви зупиняєтеся."
+        },
+        "gappedTargetPhrase": "If I hurt myself, I ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-15:i10:r1",
+            "text": "stop"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i10:r2",
+            "text": "stops"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i10:r3",
+            "text": "stopping"
+          }
+        ],
+        "testedDimension": "Опишите свою обычную реакцию: если вы причиняете себе боль, вы останавливаетесь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i10:r2",
+            "correct": false,
+            "testedDimension": "Опишите свою обычную реакцию: если вы причиняете себе боль, вы останавливаетесь.",
+            "feedbackByLocale": {
+              "ru": "С I нужно stop без -s.",
+              "uk": "З I потрібно stop без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i10:r3",
+            "correct": false,
+            "testedDimension": "Опишите свою обычную реакцию: если вы причиняете себе боль, вы останавливаетесь.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужен глагол stop.",
+              "uk": "Для звички потрібне дієслово stop."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i11:r1",
+          "text": "My scalp is itchy today."
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i11:r2",
+          "text": "My scalp is dry today."
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i11:r3",
+          "text": "My arm is itchy today."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i11:audio",
+          "transcript": "My scalp is itchy today."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:i11:r1",
+            "targetText": "My scalp is itchy today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i11:r2",
+            "targetText": "My scalp is dry today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i11:r3",
+            "targetText": "My arm is itchy today.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My scalp is itchy today.",
+              "uk": "У записі звучить My scalp is itchy today."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My scalp is itchy today.",
+              "uk": "У записі звучить My scalp is itchy today."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг зовёт выходить. Ответьте: «Я уже готов».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг зовёт выходить. Ответьте: «Я уже готов».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am already ready.",
+        "localizedMeaning": {
+          "ru": "Друг зовёт выходить. Ответьте: «Я уже готов».",
+          "uk": "Друг кличе виходити. Дайте відповідь: «Я вже готовий»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "already",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы умылись до прихода Анны. Дополните более раннее действие.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i13:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы умылись до прихода Анны. Дополните более раннее действие.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы умылись до прихода Анны. Дополните более раннее действие.",
+          "uk": "Ви вмилися до приходу Анни. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "I ___ washed my face by the time Anna arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-15:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i13:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Вы умылись до прихода Анны. Дополните более раннее действие.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы умылись до прихода Анны. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Arrived задаёт прошлый момент; для более раннего события had washed.",
+              "uk": "Arrived задає минулий момент; для ранішої події had washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы умылись до прихода Анны. Дополните более раннее действие.",
+            "feedbackByLocale": {
+              "ru": "Нужно had washed для действия, которое вы выполнили раньше.",
+              "uk": "Потрібно had washed для дії, яку ви виконали раніше."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте уточнение места боли.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте уточнение места боли.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i14:audio",
+          "transcript": "It is my left armpit."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is my left armpit.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "my",
+          "left",
+          "armpit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат спрашивает, что вы заметили в зеркале. Ответьте: «Этот прыщ совсем маленький».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Брат спрашивает, что вы заметили в зеркале. Ответьте: «Этот прыщ совсем маленький».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i15:audio",
+          "transcript": "This pimple is very small."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This pimple is very small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-15:i16:r1",
+          "text": "I will pay you back if you buy the tickets."
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i16:r2",
+          "text": "I will call you back if you buy the tickets."
+        },
+        {
+          "responseId": "en:lesson-26:session-15:i16:r3",
+          "text": "I will pay you back if you book the room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-15:i16:audio",
+          "transcript": "I will pay you back if you buy the tickets."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-15:i16:r1",
+            "targetText": "I will pay you back if you buy the tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i16:r2",
+            "targetText": "I will call you back if you buy the tickets.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i16:r3",
+            "targetText": "I will pay you back if you book the room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-15:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will pay you back if you buy the tickets.",
+              "uk": "У записі звучить I will pay you back if you buy the tickets."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-15:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will pay you back if you buy the tickets.",
+              "uk": "У записі звучить I will pay you back if you buy the tickets."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг оплатил билеты. Пообещайте: «Я переведу деньги, если ты пришлёшь мне свои данные».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг оплатил билеты. Пообещайте: «Я переведу деньги, если ты пришлёшь мне свои данные».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will transfer the money if you send me your details.",
+        "localizedMeaning": {
+          "ru": "Друг оплатил билеты. Пообещайте: «Я переведу деньги, если ты пришлёшь мне свои данные».",
+          "uk": "Друг оплатив квитки. Пообіцяйте: «Я перекажу гроші, якщо ти надішлеш мені свої дані»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "transfer",
+          "the",
+          "money",
+          "if",
+          "you",
+          "send",
+          "me",
+          "your",
+          "details"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2fd398b3cbe9c2ff1b830d5656ab16ddb98a472fcbe78cfa2fee753c462170ad"
+}

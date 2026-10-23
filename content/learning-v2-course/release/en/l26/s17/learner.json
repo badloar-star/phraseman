@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-17",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-17:word:cab",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cab",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:word:cab:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cab",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:word:cab:audio",
+          "transcript": "cab"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:word:cab:r1",
+            "targetText": "cab",
+            "meaningByLocale": {
+              "ru": "Такси; обычное разговорное название. A cab — машина такси.",
+              "uk": "Таксі; звичайна розмовна назва. A cab — машина таксі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cab",
+          "definitionByLocale": {
+            "ru": "Такси; обычное разговорное название. A cab — машина такси.",
+            "uk": "Таксі; звичайна розмовна назва. A cab — машина таксі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i01:r1",
+          "text": "I will text you when the cab arrives."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i01:r2",
+          "text": "I will call you when the cab arrives."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i01:r3",
+          "text": "I will text you when the bus arrives."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i01:audio",
+          "transcript": "I will text you when the cab arrives."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:i01:r1",
+            "targetText": "I will text you when the cab arrives.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i01:r2",
+            "targetText": "I will call you when the cab arrives.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i01:r3",
+            "targetText": "I will text you when the bus arrives.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will text you when the cab arrives.",
+              "uk": "У записі звучить I will text you when the cab arrives."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will text you when the cab arrives.",
+              "uk": "У записі звучить I will text you when the cab arrives."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Такси приедет позже. Дополните момент, когда вы выйдете из дома.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i02:r1",
+          "text": "arrives"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i02:r2",
+          "text": "will arrive"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i02:r3",
+          "text": "arrive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Такси приедет позже. Дополните момент, когда вы выйдете из дома.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Такси приедет позже. Дополните момент, когда вы выйдете из дома.",
+          "uk": "Таксі приїде пізніше. Доповніть момент, коли ви вийдете з дому."
+        },
+        "gappedTargetPhrase": "I will come outside when the cab ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-17:i02:r1",
+            "text": "arrives"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i02:r2",
+            "text": "will arrive"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i02:r3",
+            "text": "arrive"
+          }
+        ],
+        "testedDimension": "Такси приедет позже. Дополните момент, когда вы выйдете из дома.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Такси приедет позже. Дополните момент, когда вы выйдете из дома.",
+            "feedbackByLocale": {
+              "ru": "После when в придаточном времени о будущем нужна форма arrives без will.",
+              "uk": "Після when у підрядному часу про майбутнє потрібна форма arrives без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Такси приедет позже. Дополните момент, когда вы выйдете из дома.",
+            "feedbackByLocale": {
+              "ru": "The cab — единственное число, поэтому arrives.",
+              "uk": "The cab — однина, тому arrives."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:word:vacation",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — vacation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:word:vacation:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — vacation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:word:vacation:audio",
+          "transcript": "vacation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:word:vacation:r1",
+            "targetText": "vacation",
+            "meaningByLocale": {
+              "ru": "Отпуск, каникулы. Обычное американское слово для отдыха от работы или учёбы.",
+              "uk": "Відпустка, канікули. Звичайне американське слово для відпочинку від роботи або навчання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "vacation",
+          "definitionByLocale": {
+            "ru": "Отпуск, каникулы. Обычное американское слово для отдыха от работы или учёбы.",
+            "uk": "Відпустка, канікули. Звичайне американське слово для відпочинку від роботи або навчання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пообещайте сестре: «Я пришлю фотографии, когда начнётся мой отпуск».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте сестре: «Я пришлю фотографии, когда начнётся мой отпуск».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will send photos when my vacation starts.",
+        "localizedMeaning": {
+          "ru": "Пообещайте сестре: «Я пришлю фотографии, когда начнётся мой отпуск».",
+          "uk": "Пообіцяйте сестрі: «Я надішлю фотографії, коли почнеться моя відпустка»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "send",
+          "photos",
+          "when",
+          "my",
+          "vacation",
+          "starts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг ждёт вашего звонка после приезда. Пообещайте: «Я позвоню, когда распакую вещи».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i04:audio"
+      ],
+      "accessibilityLabel": "Друг ждёт вашего звонка после приезда. Пообещайте: «Я позвоню, когда распакую вещи».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i04:audio",
+          "transcript": "I will call when I unpack."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will call when I unpack.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:word:pier",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pier",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:word:pier:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pier",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:word:pier:audio",
+          "transcript": "pier"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:word:pier:r1",
+            "targetText": "pier",
+            "meaningByLocale": {
+              "ru": "Пирс, помост, который выступает с берега в воду. At the pier — на пирсе или у пирса по ситуации.",
+              "uk": "Пірс, поміст, який виступає з берега у воду. At the pier — на пірсі або біля пірса за ситуацією."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pier",
+          "definitionByLocale": {
+            "ru": "Пирс, помост, который выступает с берега в воду. At the pier — на пирсе или у пирса по ситуации.",
+            "uk": "Пірс, поміст, який виступає з берега у воду. At the pier — на пірсі або біля пірса за ситуацією."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i05:r1",
+          "text": "We will walk to the pier after lunch."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i05:r2",
+          "text": "We will walk to the park after lunch."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i05:r3",
+          "text": "We will walk to the pier before lunch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i05:audio",
+          "transcript": "We will walk to the pier after lunch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:i05:r1",
+            "targetText": "We will walk to the pier after lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i05:r2",
+            "targetText": "We will walk to the park after lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i05:r3",
+            "targetText": "We will walk to the pier before lunch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will walk to the pier after lunch.",
+              "uk": "У записі звучить We will walk to the pier after lunch."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will walk to the pier after lunch.",
+              "uk": "У записі звучить We will walk to the pier after lunch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Встреча на пирсе назначена после приезда друга. Дополните фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i06:r1",
+          "text": "arrive"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i06:r2",
+          "text": "will arrive"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i06:r3",
+          "text": "arrives"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Встреча на пирсе назначена после приезда друга. Дополните фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Встреча на пирсе назначена после приезда друга. Дополните фразу.",
+          "uk": "Зустріч на пірсі призначена після приїзду друга. Доповніть фразу."
+        },
+        "gappedTargetPhrase": "I will meet you at the pier when you ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-17:i06:r1",
+            "text": "arrive"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i06:r2",
+            "text": "will arrive"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i06:r3",
+            "text": "arrives"
+          }
+        ],
+        "testedDimension": "Встреча на пирсе назначена после приезда друга. Дополните фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Встреча на пирсе назначена после приезда друга. Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "После when в придаточном времени о будущем arrive без will.",
+              "uk": "Після when у підрядному часу про майбутнє arrive без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Встреча на пирсе назначена после приезда друга. Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "С you используется arrive без -s.",
+              "uk": "З you використовується arrive без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:word:hassle",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hassle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:word:hassle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hassle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:word:hassle:audio",
+          "transcript": "hassle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:word:hassle:r1",
+            "targetText": "hassle",
+            "meaningByLocale": {
+              "ru": "Хлопоты, морока. Разговорное too much hassle — слишком хлопотно.",
+              "uk": "Клопіт, морока. Розмовне too much hassle — надто клопітно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hassle",
+          "definitionByLocale": {
+            "ru": "Хлопоты, морока. Разговорное too much hassle — слишком хлопотно.",
+            "uk": "Клопіт, морока. Розмовне too much hassle — надто клопітно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Брат предлагает ехать с тремя пересадками и тяжёлой сумкой. Ответьте: «Это слишком хлопотно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Брат предлагает ехать с тремя пересадками и тяжёлой сумкой. Ответьте: «Это слишком хлопотно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i07:audio",
+          "transcript": "It is too much hassle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is too much hassle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте порядок действий перед выходом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Услышьте порядок действий перед выходом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i08:audio",
+          "transcript": "I will check the address before I leave."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will check the address before I leave.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "check",
+          "the",
+          "address",
+          "before",
+          "I",
+          "leave"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сначала сестра придёт, затем вы поедите вместе. Дополните будущее время еды.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i09:r1",
+          "text": "comes"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i09:r2",
+          "text": "will come"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i09:r3",
+          "text": "come"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сначала сестра придёт, затем вы поедите вместе. Дополните будущее время еды.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сначала сестра придёт, затем вы поедите вместе. Дополните будущее время еды.",
+          "uk": "Спочатку сестра прийде, потім ви поїсте разом. Доповніть майбутній час їжі."
+        },
+        "gappedTargetPhrase": "We will eat after she ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-17:i09:r1",
+            "text": "comes"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i09:r2",
+            "text": "will come"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i09:r3",
+            "text": "come"
+          }
+        ],
+        "testedDimension": "Сначала сестра придёт, затем вы поедите вместе. Дополните будущее время еды.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Сначала сестра придёт, затем вы поедите вместе. Дополните будущее время еды.",
+            "feedbackByLocale": {
+              "ru": "После after в придаточном времени о будущем comes без will.",
+              "uk": "Після after у підрядному часу про майбутнє comes без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Сначала сестра придёт, затем вы поедите вместе. Дополните будущее время еды.",
+            "feedbackByLocale": {
+              "ru": "С she нужна форма comes с -s.",
+              "uk": "З she потрібна форма comes із -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i10:r1",
+          "text": "We will take a cab when we leave the station."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i10:r2",
+          "text": "We will take a bus when we leave the station."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i10:r3",
+          "text": "We will take a cab when we leave the hotel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i10:audio",
+          "transcript": "We will take a cab when we leave the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:i10:r1",
+            "targetText": "We will take a cab when we leave the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i10:r2",
+            "targetText": "We will take a bus when we leave the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i10:r3",
+            "targetText": "We will take a cab when we leave the hotel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will take a cab when we leave the station.",
+              "uk": "У записі звучить We will take a cab when we leave the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We will take a cab when we leave the station.",
+              "uk": "У записі звучить We will take a cab when we leave the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пообещайте маме: «Я напишу, когда самолёт приземлится».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообещайте маме: «Я напишу, когда самолёт приземлится».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will text when the plane lands.",
+        "localizedMeaning": {
+          "ru": "Пообещайте маме: «Я напишу, когда самолёт приземлится».",
+          "uk": "Пообіцяйте мамі: «Я напишу, коли літак приземлиться»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "text",
+          "when",
+          "the",
+          "plane",
+          "lands"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Отпуск уже запланирован. Вы обещаете позвонить после его окончания. Дополните время звонка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i12:r1",
+          "text": "ends"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i12:r2",
+          "text": "will end"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i12:r3",
+          "text": "end"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Отпуск уже запланирован. Вы обещаете позвонить после его окончания. Дополните время звонка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Отпуск уже запланирован. Вы обещаете позвонить после его окончания. Дополните время звонка.",
+          "uk": "Відпустку вже заплановано. Ви обіцяєте зателефонувати після її закінчення. Доповніть час дзвінка."
+        },
+        "gappedTargetPhrase": "I will call after my vacation ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-17:i12:r1",
+            "text": "ends"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i12:r2",
+            "text": "will end"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i12:r3",
+            "text": "end"
+          }
+        ],
+        "testedDimension": "Отпуск уже запланирован. Вы обещаете позвонить после его окончания. Дополните время звонка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i12:r2",
+            "correct": false,
+            "testedDimension": "Отпуск уже запланирован. Вы обещаете позвонить после его окончания. Дополните время звонка.",
+            "feedbackByLocale": {
+              "ru": "После after в этом придаточном времени ends без will.",
+              "uk": "Після after у цьому підрядному часу ends без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i12:r3",
+            "correct": false,
+            "testedDimension": "Отпуск уже запланирован. Вы обещаете позвонить после его окончания. Дополните время звонка.",
+            "feedbackByLocale": {
+              "ru": "My vacation — единственное число: ends.",
+              "uk": "My vacation — однина: ends."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг предлагает встретиться прямо у гостиницы. Скажите: «Так меньше хлопот».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Друг предлагает встретиться прямо у гостиницы. Скажите: «Так меньше хлопот».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i13:audio",
+          "transcript": "That is less hassle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is less hassle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, что сделаете перед прогулкой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что сделаете перед прогулкой.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i14:audio",
+          "transcript": "We will leave our bags before we walk to the pier."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will leave our bags before we walk to the pier.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "leave",
+          "our",
+          "bags",
+          "before",
+          "we",
+          "walk",
+          "to",
+          "the",
+          "pier"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы ждёте определённого события — открытия магазина. Покупка будет после этого. Выберите «когда».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i15:r1",
+          "text": "when"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i15:r2",
+          "text": "before"
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i15:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы ждёте определённого события — открытия магазина. Покупка будет после этого. Выберите «когда».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы ждёте определённого события — открытия магазина. Покупка будет после этого. Выберите «когда».",
+          "uk": "Ви чекаєте певної події — відкриття магазину. Покупка буде після цього. Виберіть «коли»."
+        },
+        "gappedTargetPhrase": "I will buy water ___ the shop opens.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-17:i15:r1",
+            "text": "when"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i15:r2",
+            "text": "before"
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i15:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Вы ждёте определённого события — открытия магазина. Покупка будет после этого. Выберите «когда».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i15:r2",
+            "correct": false,
+            "testedDimension": "Вы ждёте определённого события — открытия магазина. Покупка будет после этого. Выберите «когда».",
+            "feedbackByLocale": {
+              "ru": "Before означало бы покупку до открытия, а вы ждёте открытия.",
+              "uk": "Before означало б покупку до відкриття, а ви чекаєте відкриття."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i15:r3",
+            "correct": false,
+            "testedDimension": "Вы ждёте определённого события — открытия магазина. Покупка будет после этого. Выберите «когда».",
+            "feedbackByLocale": {
+              "ru": "Because даёт причину, а здесь назван момент будущего действия.",
+              "uk": "Because дає причину, а тут названо момент майбутньої дії."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-17:i16:r1",
+          "text": "I will lock the door after you leave."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i16:r2",
+          "text": "I will lock the door before you leave."
+        },
+        {
+          "responseId": "en:lesson-26:session-17:i16:r3",
+          "text": "I will open the door after you leave."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-17:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-17:i16:audio",
+          "transcript": "I will lock the door after you leave."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-17:i16:r1",
+            "targetText": "I will lock the door after you leave.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i16:r2",
+            "targetText": "I will lock the door before you leave.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i16:r3",
+            "targetText": "I will open the door after you leave.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-17:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will lock the door after you leave.",
+              "uk": "У записі звучить I will lock the door after you leave."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-17:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will lock the door after you leave.",
+              "uk": "У записі звучить I will lock the door after you leave."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите другу: «Мы обсудим планы, когда ты вернёшься».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите другу: «Мы обсудим планы, когда ты вернёшься».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will discuss the plans when you get back.",
+        "localizedMeaning": {
+          "ru": "Скажите другу: «Мы обсудим планы, когда ты вернёшься».",
+          "uk": "Скажіть другові: «Ми обговоримо плани, коли ти повернешся»."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "discuss",
+          "the",
+          "plans",
+          "when",
+          "you",
+          "get",
+          "back"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "13fee7aebf14b82cdbe0823a1e7f053fd3143f397bebc05d9ee524c8cd3fafc4"
+}

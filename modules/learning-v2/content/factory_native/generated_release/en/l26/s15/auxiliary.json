@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-15:intro1:r2": {
+          "ru": "Третья форма hit — тоже hit.",
+          "uk": "Третя форма hit — теж hit."
+        },
+        "en:lesson-26:session-15:intro1:r3": {
+          "ru": "С I нужен have.",
+          "uk": "З I потрібне have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-15:intro2:r2": {
+          "ru": "После if в этом условии need без will.",
+          "uk": "Після if у цій умові need без will."
+        },
+        "en:lesson-26:session-15:intro2:r3": {
+          "ru": "После will нужно call без -s.",
+          "uk": "Після will потрібно call без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-15:intro3:r2": {
+          "ru": "После had нужна форма washed.",
+          "uk": "Після had потрібна форма washed."
+        },
+        "en:lesson-26:session-15:intro3:r3": {
+          "ru": "Arrived задаёт прошлый момент; более раннее действие — had washed.",
+          "uk": "Arrived задає минулий момент; раніша дія — had washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "58b4e5640df205616e2b76373ea126aea98e0200493780fba68164d7d43dcafa"
+}

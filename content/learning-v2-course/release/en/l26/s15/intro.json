@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "just, already, yet; first conditional; zero conditional; past perfect + by the time",
+    "uk": "just, already, yet; first conditional; zero conditional; past perfect + by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удариться о мебель",
+        "uk": "Вдаритися об меблі"
+      },
+      "bodyByLocale": {
+        "ru": "Shin — передняя часть голени, между коленом и щиколоткой. I have just hit my shin — я только что ударил голень. У hit одинаковые формы: hit — hit — hit. Just показывает недавнее действие. Не нужно говорить have hitted. Для обычной реакции используем Present Simple: If I hurt myself, I stop — если я причиняю себе боль, я останавливаюсь.",
+        "uk": "Shin — передня частина гомілки, між коліном і щиколоткою. I have just hit my shin — я щойно вдарив гомілку. У hit однакові форми: hit — hit — hit. Just показує недавню дію. Не потрібно казати have hitted. Для звичайної реакції використовуємо Present Simple: If I hurt myself, I stop — якщо я завдаю собі болю, я зупиняюся."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-15:intro1:r1",
+              "text": "I have just hit my shin."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro1:r2",
+              "text": "I have just hitted my shin."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro1:r3",
+              "text": "I has just hit my shin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-15:intro1:r1",
+              "text": "I have just hit my shin."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro1:r2",
+              "text": "I have just hitted my shin."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro1:r3",
+              "text": "I has just hit my shin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Объяснить парикмахеру",
+        "uk": "Пояснити перукарю"
+      },
+      "bodyByLocale": {
+        "ru": "Scalp — кожа головы под волосами. My scalp feels dry — кожа головы кажется сухой. Armpit — подмышка. My armpit hurts — у меня болит подмышка. Эти слова уточняют место, а не говорят, в чём причина. Для обещания после разговора: I will call you if I need help — я позвоню, если понадобится помощь. После if — need без will.",
+        "uk": "Scalp — шкіра голови під волоссям. My scalp feels dry — шкіра голови здається сухою. Armpit — пахва. My armpit hurts — у мене болить пахва. Ці слова уточнюють місце, а не кажуть, у чому причина. Для обіцянки після розмови: I will call you if I need help — я зателефоную, якщо знадобиться допомога. Після if — need без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-15:intro2:r1",
+              "text": "I will call you if I need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro2:r2",
+              "text": "I will call you if I will need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro2:r3",
+              "text": "I will calls you if I need help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-15:intro2:r1",
+              "text": "I will call you if I need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro2:r2",
+              "text": "I will call you if I will need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro2:r3",
+              "text": "I will calls you if I need help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перед выходом",
+        "uk": "Перед виходом"
+      },
+      "bodyByLocale": {
+        "ru": "Pimple — прыщ, небольшой бугорок на коже. There is a pimple on my chin — у меня прыщ на подбородке. К другу можно обратиться с бытовой просьбой: Have you found the mirror yet? — ты уже нашёл зеркало? О вчерашних сборах: I had washed my face by the time Anna arrived — я уже умылся к тому времени, как пришла Анна. Had washed — раньше, arrived — позже.",
+        "uk": "Pimple — прищ, невеликий горбик на шкірі. There is a pimple on my chin — у мене прищ на підборідді. До друга можна звернутися з побутовим проханням: Have you found the mirror yet? — ти вже знайшов дзеркало? Про вчорашні збори: I had washed my face by the time Anna arrived — я вже вмився на той час, коли прийшла Анна. Had washed — раніше, arrived — пізніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-15:intro3:r1",
+              "text": "I had washed my face by the time Anna arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro3:r2",
+              "text": "I had wash my face by the time Anna arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro3:r3",
+              "text": "I have washed my face by the time Anna arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-15:intro3:r1",
+              "text": "I had washed my face by the time Anna arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro3:r2",
+              "text": "I had wash my face by the time Anna arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-15:intro3:r3",
+              "text": "I have washed my face by the time Anna arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f3802ce2a77b584a82d6c91c300766812c7a0fd1111fbfe199502dc5c4617ed1"
+}

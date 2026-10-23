@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-15:word:shin",
+    "correctText": "shin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i01",
+    "correctText": "I hit my shin on the chair.",
+    "correctResponseId": "en:lesson-26:session-15:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i02",
+    "correctText": "Wait for me a minute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:word:scalp",
+    "correctText": "scalp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i03",
+    "correctText": "My scalp feels dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i04",
+    "correctText": "hit",
+    "correctResponseId": "en:lesson-26:session-15:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:word:armpit",
+    "correctText": "armpit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i05",
+    "correctText": "My armpit hurts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i06",
+    "correctText": "Could you say that again?",
+    "correctResponseId": "en:lesson-26:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:word:pimple",
+    "correctText": "pimple",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i07",
+    "correctText": "pimple",
+    "correctResponseId": "en:lesson-26:session-15:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i08",
+    "correctText": "Have you found the mirror yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i09",
+    "correctText": "I will let you know if I need anything.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i10",
+    "correctText": "stop",
+    "correctResponseId": "en:lesson-26:session-15:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i11",
+    "correctText": "My scalp is itchy today.",
+    "correctResponseId": "en:lesson-26:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i12",
+    "correctText": "I am already ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-15:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i14",
+    "correctText": "It is my left armpit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i15",
+    "correctText": "This pimple is very small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i16",
+    "correctText": "I will pay you back if you buy the tickets.",
+    "correctResponseId": "en:lesson-26:session-15:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-15:i17",
+    "correctText": "I will transfer the money if you send me your details.",
+    "correctResponseId": null
+  }
+]

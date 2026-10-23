@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-17:intro1:r2": {
+          "ru": "В придаточном времени о будущем после when здесь arrives без will.",
+          "uk": "У підрядному часу про майбутнє після when тут arrives без will."
+        },
+        "en:lesson-26:session-17:intro1:r3": {
+          "ru": "The cab — единственное число: arrives с -s.",
+          "uk": "The cab — однина: arrives із -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-17:intro2:r2": {
+          "ru": "После after в придаточном времени о будущем используем ends без will.",
+          "uk": "Після after у підрядному часу про майбутнє використовуємо ends без will."
+        },
+        "en:lesson-26:session-17:intro2:r3": {
+          "ru": "My vacation — единственное число: ends.",
+          "uk": "My vacation — однина: ends."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-17:intro3:r2": {
+          "ru": "После when в этом придаточном времени arrive без will.",
+          "uk": "Після when у цьому підрядному часу arrive без will."
+        },
+        "en:lesson-26:session-17:intro3:r3": {
+          "ru": "С you глагол arrive без -s.",
+          "uk": "З you дієслово arrive без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3e820c8689f71e92d8b9a3aba6559897a9ec4bbcef68513b59d0045e9bdd1be2"
+}

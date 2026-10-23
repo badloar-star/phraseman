@@ -9905,4 +9905,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional; first conditional; just, already, yet; past perfect + by the time","uk":"zero conditional; first conditional; just, already, yet; past perfect + by the time"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 15,
+    sourceFingerprint: "ae1403cea4f24c1fa7e6791b17a36547bdce26a998e0362a4d3cc5d49fdac5dd",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"just, already, yet; first conditional; zero conditional; past perfect + by the time","uk":"just, already, yet; first conditional; zero conditional; past perfect + by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 16,
+    sourceFingerprint: "d4fe6b0c420e25d1646a27f2e7194bebf98eaa9c94ff15ccaac65715cd27697f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional; first conditional; already, yet; past perfect + by the time","uk":"zero conditional; first conditional; already, yet; past perfect + by the time"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 17,
+    sourceFingerprint: "f6c32ad4ee84e5dd27bae370d2c5c309ccaf798896105614eb5af009720cf5ce",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future main clause + time clause in present simple: when, after, before","uk":"future main clause + time clause in present simple: when, after, before"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

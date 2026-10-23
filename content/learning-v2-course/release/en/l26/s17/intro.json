@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "future main clause + time clause in present simple: when, after, before",
+    "uk": "future main clause + time clause in present simple: when, after, before"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда приедет машина",
+        "uk": "Коли приїде машина"
+      },
+      "bodyByLocale": {
+        "ru": "Cab — такси, обычное разговорное название. I will text you when the cab arrives — я напишу тебе, когда приедет такси. Всё произойдёт в будущем, но после when здесь Present Simple: arrives, без will. В главной части — will text. When означает «когда»: мы ожидаем событие и называем момент следующего действия. If означало бы «если»: действие зависело бы от того, случится ли событие вообще.",
+        "uk": "Cab — таксі, звичайна розмовна назва. I will text you when the cab arrives — я напишу тобі, коли приїде таксі. Усе відбудеться в майбутньому, але після when тут Present Simple: arrives, без will. У головній частині — will text. When означає «коли»: ми очікуємо подію й називаємо момент наступної дії. If означало б «якщо»: дія залежала б від того, чи станеться подія взагалі."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-17:intro1:r1",
+              "text": "I will text you when the cab arrives."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro1:r2",
+              "text": "I will text you when the cab will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro1:r3",
+              "text": "I will text you when the cab arrive."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-17:intro1:r1",
+              "text": "I will text you when the cab arrives."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro1:r2",
+              "text": "I will text you when the cab will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro1:r3",
+              "text": "I will text you when the cab arrive."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После отдыха",
+        "uk": "Після відпочинку"
+      },
+      "bodyByLocale": {
+        "ru": "Vacation — отпуск, каникулы; обычное американское слово для такого отдыха. I will call you after my vacation ends — я позвоню тебе после окончания отпуска. После after в придаточном времени тоже Present Simple: ends. Можно назвать действие до события: I will pack before I leave — я соберу вещи перед отъездом. После before — leave, не will leave. Это правило относится именно к придаточным времени, которые сообщают, когда произойдёт действие.",
+        "uk": "Vacation — відпустка, канікули; звичайне американське слово для такого відпочинку. I will call you after my vacation ends — я зателефоную тобі після закінчення відпустки. Після after у підрядному часу теж Present Simple: ends. Можна назвати дію до події: I will pack before I leave — я зберу речі перед від’їздом. Після before — leave, не will leave. Це правило стосується саме підрядних часу, які повідомляють, коли відбудеться дія."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-17:intro2:r1",
+              "text": "I will call you after my vacation ends."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro2:r2",
+              "text": "I will call you after my vacation will end."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro2:r3",
+              "text": "I will call you after my vacation end."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-17:intro2:r1",
+              "text": "I will call you after my vacation ends."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro2:r2",
+              "text": "I will call you after my vacation will end."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro2:r3",
+              "text": "I will call you after my vacation end."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Встреча у воды",
+        "uk": "Зустріч біля води"
+      },
+      "bodyByLocale": {
+        "ru": "Pier — пирс, помост, который выступает с берега в воду. We will meet at the pier when you arrive — мы встретимся на пирсе, когда ты приедешь. Hassle — хлопоты, морока; разговорное слово. Если ехать с пересадками неудобно, можно сказать It is too much hassle — это слишком хлопотно. Порядок частей можно поменять: When you arrive, we will meet at the pier. Если часть с when стоит первой, после неё ставим запятую.",
+        "uk": "Pier — пірс, поміст, який виступає з берега у воду. We will meet at the pier when you arrive — ми зустрінемося на пірсі, коли ти приїдеш. Hassle — клопіт, морока; розмовне слово. Якщо їхати з пересадками незручно, можна сказати It is too much hassle — це надто клопітно. Порядок частин можна поміняти: When you arrive, we will meet at the pier. Якщо частина з when стоїть першою, після неї ставимо кому."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-17:intro3:r1",
+              "text": "We will meet at the pier when you arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro3:r2",
+              "text": "We will meet at the pier when you will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro3:r3",
+              "text": "We will meet at the pier when you arrives."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-17:intro3:r1",
+              "text": "We will meet at the pier when you arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro3:r2",
+              "text": "We will meet at the pier when you will arrive."
+            },
+            {
+              "responseId": "en:lesson-26:session-17:intro3:r3",
+              "text": "We will meet at the pier when you arrives."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8848302d9e802189c2d52eaaa9fc6c99e96067ec56470d9a26a800ace20952d7"
+}

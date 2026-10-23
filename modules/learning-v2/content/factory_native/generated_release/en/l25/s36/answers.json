@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-36:word:entertained",
+    "correctText": "entertained",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i01",
+    "correctText": "He had entertained the children by the time dinner was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i03",
+    "correctText": "He had entertained the children by the time dinner was ready.",
+    "correctResponseId": "en:lesson-25:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:word:amazed",
+    "correctText": "amazed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i04",
+    "correctText": "Her story had amazed me by the time we got home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i06",
+    "correctText": "Her story had amazed me by the time we got home.",
+    "correctResponseId": "en:lesson-25:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:word:irritated",
+    "correctText": "irritated",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i07",
+    "correctText": "The smoke had irritated my eyes by the time I opened the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i09",
+    "correctText": "The smoke had irritated my eyes by the time I opened the window.",
+    "correctResponseId": "en:lesson-25:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:word:flattered",
+    "correctText": "flattered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i10",
+    "correctText": "He had flattered me before he asked for money.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i12",
+    "correctText": "He had flattered me before he asked for money.",
+    "correctResponseId": "en:lesson-25:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i13",
+    "correctText": "en:lesson-25:session-36:i13:p1=entertained\nen:lesson-25:session-36:i13:p2=amazed\nen:lesson-25:session-36:i13:p3=irritated\nen:lesson-25:session-36:i13:p4=flattered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i16",
+    "correctText": "She had entertained the guests by the time dinner was ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-36:i17",
+    "correctText": "His story had amazed us by the time we got home.",
+    "correctResponseId": null
+  }
+]

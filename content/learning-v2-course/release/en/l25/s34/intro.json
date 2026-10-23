@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect + by the time + past simple",
+    "uk": "past perfect + by the time + past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "К приходу медсестры",
+        "uk": "До приходу медсестри"
+      },
+      "bodyByLocale": {
+        "ru": "Nostril — ноздря, одно из двух отверстий носа. My nostril had stopped bleeding by the time the nurse arrived — из моей ноздри уже перестала идти кровь к приходу медсестры. Had stopped bleeding означает, что кровотечение прекратилось раньше. By the time the nurse arrived называет момент, к которому это уже произошло. Это рассказ о случившемся, а не указание на длительность.",
+        "uk": "Nostril — ніздря, один із двох отворів носа. My nostril had stopped bleeding by the time the nurse arrived — з моєї ніздрі вже перестала йти кров до приходу медсестри. Had stopped bleeding означає, що кровотеча припинилася раніше. By the time the nurse arrived називає момент, до якого це вже сталося. Це розповідь про подію, а не вказівка на тривалість."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-34:intro1:r1",
+              "text": "My nostril had stopped bleeding by the time the nurse arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro1:r2",
+              "text": "My nostril has stopped bleeding by the time the nurse arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro1:r3",
+              "text": "My nostril was stopped bleeding by the time the nurse arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-34:intro1:r1",
+              "text": "My nostril had stopped bleeding by the time the nurse arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro1:r2",
+              "text": "My nostril has stopped bleeding by the time the nurse arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro1:r3",
+              "text": "My nostril was stopped bleeding by the time the nurse arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что изменилось к возвращению",
+        "uk": "Що змінилося до повернення"
+      },
+      "bodyByLocale": {
+        "ru": "Knuckle — костяшка пальца, сустав, который виден на сжатом кулаке. My knuckle had swollen by the time we got home — костяшка моего пальца уже опухла к тому моменту, когда мы добрались домой. Swollen — третья форма знакомого swell. Fingernails — ногти на руках. I had cut my fingernails by the time she found the file — я уже подстриг ногти на руках к тому моменту, когда она нашла пилочку. Cut в третьей форме пишется так же, как начальная форма.",
+        "uk": "Knuckle — кісточка пальця, суглоб, який видно на стиснутому кулаці. My knuckle had swollen by the time we got home — кісточка мого пальця вже набрякла до того моменту, коли ми дісталися додому. Swollen — третя форма знайомого swell. Fingernails — нігті на руках. I had cut my fingernails by the time she found the file — я вже підстриг нігті на руках до того моменту, коли вона знайшла пилочку. Cut у третій формі пишеться так само, як початкова форма."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-34:intro2:r1",
+              "text": "My knuckle had swollen by the time we got home."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro2:r2",
+              "text": "My knuckle has swollen by the time we got home."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro2:r3",
+              "text": "My knuckle was swollen by the time we got home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-34:intro2:r1",
+              "text": "My knuckle had swollen by the time we got home."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro2:r2",
+              "text": "My knuckle has swollen by the time we got home."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro2:r3",
+              "text": "My knuckle was swollen by the time we got home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Успела до приезда",
+        "uk": "Встигла до приїзду"
+      },
+      "bodyByLocale": {
+        "ru": "Toenails — ногти на ногах; fingernails — на руках. I had painted my toenails by the time she arrived — я уже накрасила ногти на ногах к её приезду. Сначала закончила красить, потом она приехала. Painted здесь употребляется с ногтями и значит «накрасила». Had painted показывает завершённое действие к моменту arrived.",
+        "uk": "Toenails — нігті на ногах; fingernails — на руках. I had painted my toenails by the time she arrived — я вже нафарбувала нігті на ногах до її приїзду. Спочатку закінчила фарбувати, потім вона приїхала. Painted тут уживається з нігтями й означає «нафарбувала». Had painted показує завершену дію до моменту arrived."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-34:intro3:r1",
+              "text": "I had painted my toenails by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro3:r2",
+              "text": "I have painted my toenails by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro3:r3",
+              "text": "I was painted my toenails by the time she arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-34:intro3:r1",
+              "text": "I had painted my toenails by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro3:r2",
+              "text": "I have painted my toenails by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-34:intro3:r3",
+              "text": "I was painted my toenails by the time she arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "582bbf53956e9a0226a708c6e4487e4e562b69efb2282eeff13a97266ce30682"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-35:intro1:r2": {
+          "ru": "Результат к моменту в прошлом: had + третья форма.",
+          "uk": "Результат до моменту в минулому: had + третя форма."
+        },
+        "en:lesson-25:session-35:intro1:r3": {
+          "ru": "Здесь нужен Past Perfect: had + третья форма.",
+          "uk": "Тут потрібен Past Perfect: had + третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-35:intro2:r2": {
+          "ru": "Результат к моменту в прошлом: had + третья форма.",
+          "uk": "Результат до моменту в минулому: had + третя форма."
+        },
+        "en:lesson-25:session-35:intro2:r3": {
+          "ru": "Здесь нужен Past Perfect: had + третья форма.",
+          "uk": "Тут потрібен Past Perfect: had + третя форма."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-35:intro3:r2": {
+          "ru": "Результат к моменту в прошлом: had + третья форма.",
+          "uk": "Результат до моменту в минулому: had + третя форма."
+        },
+        "en:lesson-25:session-35:intro3:r3": {
+          "ru": "Здесь нужен Past Perfect: had + третья форма.",
+          "uk": "Тут потрібен Past Perfect: had + третя форма."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "73fae30a0497a72dd1499565206908119e2673043e6ae6d67df5965c7e1677be"
+}

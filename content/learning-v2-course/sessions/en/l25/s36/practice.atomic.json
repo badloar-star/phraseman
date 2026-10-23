@@ -1,0 +1,2373 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-36",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-36:word:entertained",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — entertained",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:entertained:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — entertained",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:entertained:audio",
+            "transcript": "entertained"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:entertained:r1",
+              "targetText": "entertained",
+              "meaningByLocale": {
+                "ru": "Развлёк. Entertain — развлекать; entertained — третья форма.",
+                "uk": "Розважив. Entertain — розважати; entertained — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entertained",
+            "definitionByLocale": {
+              "ru": "Развлёк. Entertain — развлекать; entertained — третья форма.",
+              "uk": "Розважив. Entertain — розважати; entertained — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он уже развлёк детей к тому моменту, когда ужин был готов.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он уже развлёк детей к тому моменту, когда ужин был готов.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had entertained the children by the time dinner was ready.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он уже развлёк детей к тому моменту, когда ужин был готов.»",
+            "uk": "Скажіть: «Він уже розважив дітей до того моменту, коли вечеря була готова.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "entertained",
+            "the",
+            "children",
+            "by",
+            "the",
+            "time",
+            "dinner",
+            "was",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ entertained the children by the time dinner was ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i03:r1",
+            "text": "He had entertained the children by the time dinner was ready."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i03:r2",
+            "text": "She had entertained the children by the time dinner was ready."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i03:r3",
+            "text": "He had entertained the guests by the time dinner was ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i03:audio",
+            "transcript": "He had entertained the children by the time dinner was ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i03:r1",
+              "targetText": "He had entertained the children by the time dinner was ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i03:r2",
+              "targetText": "She had entertained the children by the time dinner was ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i03:r3",
+              "targetText": "He had entertained the guests by the time dinner was ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had entertained the children by the time dinner was ready.",
+                "uk": "У записі звучить He had entertained the children by the time dinner was ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had entertained the children by the time dinner was ready.",
+                "uk": "У записі звучить He had entertained the children by the time dinner was ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:word:amazed",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — amazed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:amazed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — amazed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:amazed:audio",
+            "transcript": "amazed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:amazed:r1",
+              "targetText": "amazed",
+              "meaningByLocale": {
+                "ru": "Поразил. Amaze — сильно удивить; amazed — третья форма.",
+                "uk": "Вразив. Amaze — сильно здивувати; amazed — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "amazed",
+            "definitionByLocale": {
+              "ru": "Поразил. Amaze — сильно удивить; amazed — третья форма.",
+              "uk": "Вразив. Amaze — сильно здивувати; amazed — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Её рассказ уже поразил меня к тому моменту, когда мы добрались домой.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Её рассказ уже поразил меня к тому моменту, когда мы добрались домой.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Her story had amazed me by the time we got home.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Её рассказ уже поразил меня к тому моменту, когда мы добрались домой.»",
+            "uk": "Скажіть: «Її розповідь уже вразила мене до того моменту, коли ми дісталися додому.»"
+          },
+          "orderedTokens": [
+            "Her",
+            "story",
+            "had",
+            "amazed",
+            "me",
+            "by",
+            "the",
+            "time",
+            "we",
+            "got",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "Her story ___ amazed me by the time we got home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i06:r1",
+            "text": "Her story had amazed me by the time we got home."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i06:r2",
+            "text": "His story had amazed me by the time we got home."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i06:r3",
+            "text": "Her story had amazed us by the time we got home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i06:audio",
+            "transcript": "Her story had amazed me by the time we got home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i06:r1",
+              "targetText": "Her story had amazed me by the time we got home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i06:r2",
+              "targetText": "His story had amazed me by the time we got home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i06:r3",
+              "targetText": "Her story had amazed us by the time we got home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Her story had amazed me by the time we got home.",
+                "uk": "У записі звучить Her story had amazed me by the time we got home."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Her story had amazed me by the time we got home.",
+                "uk": "У записі звучить Her story had amazed me by the time we got home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:word:irritated",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — irritated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:irritated:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — irritated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:irritated:audio",
+            "transcript": "irritated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:irritated:r1",
+              "targetText": "irritated",
+              "meaningByLocale": {
+                "ru": "Вызвал раздражение. Irritate — раздражать человека или часть тела; irritated — третья форма.",
+                "uk": "Спричинив подразнення. Irritate — дратувати людину або подразнювати частину тіла; irritated — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "irritated",
+            "definitionByLocale": {
+              "ru": "Вызвал раздражение. Irritate — раздражать человека или часть тела; irritated — третья форма.",
+              "uk": "Спричинив подразнення. Irritate — дратувати людину або подразнювати частину тіла; irritated — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Дым уже вызвал раздражение глаз к тому моменту, когда я открыл окно.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Дым уже вызвал раздражение глаз к тому моменту, когда я открыл окно.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The smoke had irritated my eyes by the time I opened the window.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Дым уже вызвал раздражение глаз к тому моменту, когда я открыл окно.»",
+            "uk": "Скажіть: «Дим уже спричинив подразнення очей до того моменту, коли я відчинив вікно.»"
+          },
+          "orderedTokens": [
+            "The",
+            "smoke",
+            "had",
+            "irritated",
+            "my",
+            "eyes",
+            "by",
+            "the",
+            "time",
+            "I",
+            "opened",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The smoke ___ irritated my eyes by the time I opened the window.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i09:r1",
+            "text": "The smoke had irritated my eyes by the time I opened the window."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i09:r2",
+            "text": "The smoke had irritated her eyes by the time she opened the window."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i09:r3",
+            "text": "The smoke had irritated my eyes by the time I opened the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i09:audio",
+            "transcript": "The smoke had irritated my eyes by the time I opened the window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i09:r1",
+              "targetText": "The smoke had irritated my eyes by the time I opened the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i09:r2",
+              "targetText": "The smoke had irritated her eyes by the time she opened the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i09:r3",
+              "targetText": "The smoke had irritated my eyes by the time I opened the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The smoke had irritated my eyes by the time I opened the window.",
+                "uk": "У записі звучить The smoke had irritated my eyes by the time I opened the window."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The smoke had irritated my eyes by the time I opened the window.",
+                "uk": "У записі звучить The smoke had irritated my eyes by the time I opened the window."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:word:flattered",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flattered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:flattered:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flattered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:flattered:audio",
+            "transcript": "flattered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:flattered:r1",
+              "targetText": "flattered",
+              "meaningByLocale": {
+                "ru": "Польстил. Flatter — льстить, часто хвалить больше заслуженного ради расположения; flattered — третья форма.",
+                "uk": "Полестив. Flatter — лестити, часто хвалити більше заслуженого задля прихильності; flattered — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flattered",
+            "definitionByLocale": {
+              "ru": "Польстил. Flatter — льстить, часто хвалить больше заслуженного ради расположения; flattered — третья форма.",
+              "uk": "Полестив. Flatter — лестити, часто хвалити більше заслуженого задля прихильності; flattered — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Он польстил мне до того, как попросил денег.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Он польстил мне до того, как попросил денег.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had flattered me before he asked for money.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он польстил мне до того, как попросил денег.»",
+            "uk": "Скажіть: «Він полестив мені до того, як попросив грошей.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "flattered",
+            "me",
+            "before",
+            "he",
+            "asked",
+            "for",
+            "money"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ flattered me before he asked for money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i12:r1",
+            "text": "He had flattered me before he asked for money."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i12:r2",
+            "text": "She had flattered me before she asked for money."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i12:r3",
+            "text": "He had flattered her before he asked for money."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i12:audio",
+            "transcript": "He had flattered me before he asked for money."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i12:r1",
+              "targetText": "He had flattered me before he asked for money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i12:r2",
+              "targetText": "She had flattered me before she asked for money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i12:r3",
+              "targetText": "He had flattered her before he asked for money.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had flattered me before he asked for money.",
+                "uk": "У записі звучить He had flattered me before he asked for money."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had flattered me before he asked for money.",
+                "uk": "У записі звучить He had flattered me before he asked for money."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-36:i13:p1",
+              "target": "entertained",
+              "meaningByLocale": {
+                "ru": "развлёк",
+                "uk": "розважив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-36:i13:p2",
+              "target": "amazed",
+              "meaningByLocale": {
+                "ru": "поразил",
+                "uk": "вразив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-36:i13:p3",
+              "target": "irritated",
+              "meaningByLocale": {
+                "ru": "вызвал раздражение",
+                "uk": "спричинив подразнення"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-36:i13:p4",
+              "target": "flattered",
+              "meaningByLocale": {
+                "ru": "польстил",
+                "uk": "полестив"
+              }
+            }
+          ],
+          "leftColumn": [
+            "entertained",
+            "amazed",
+            "irritated",
+            "flattered"
+          ],
+          "rightColumn": [
+            "развлёк",
+            "поразил",
+            "вызвал раздражение",
+            "польстил"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончил",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поезд уже ушёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Поезд уже ушёл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она уже развлекла гостей к тому моменту, когда ужин был готов».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она уже развлекла гостей к тому моменту, когда ужин был готов».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i16:audio",
+            "transcript": "She had entertained the guests by the time dinner was ready."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She had entertained the guests by the time dinner was ready.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Его рассказ уже поразил нас к тому моменту, когда мы добрались домой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Его рассказ уже поразил нас к тому моменту, когда мы добрались домой».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i17:audio",
+            "transcript": "His story had amazed us by the time we got home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "His story had amazed us by the time we got home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-36:word:entertained",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — entertained",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:entertained:audio"
+        ],
+        "accessibilityLabel": "Картка слова — entertained",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:entertained:audio",
+            "transcript": "entertained"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:entertained:r1",
+              "targetText": "entertained",
+              "meaningByLocale": {
+                "ru": "Развлёк. Entertain — развлекать; entertained — третья форма.",
+                "uk": "Розважив. Entertain — розважати; entertained — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entertained",
+            "definitionByLocale": {
+              "ru": "Развлёк. Entertain — развлекать; entertained — третья форма.",
+              "uk": "Розважив. Entertain — розважати; entertained — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він уже розважив дітей до того моменту, коли вечеря була готова.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він уже розважив дітей до того моменту, коли вечеря була готова.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had entertained the children by the time dinner was ready.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он уже развлёк детей к тому моменту, когда ужин был готов.»",
+            "uk": "Скажіть: «Він уже розважив дітей до того моменту, коли вечеря була готова.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "entertained",
+            "the",
+            "children",
+            "by",
+            "the",
+            "time",
+            "dinner",
+            "was",
+            "ready"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ entertained the children by the time dinner was ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i02:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i03:r1",
+            "text": "He had entertained the children by the time dinner was ready."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i03:r2",
+            "text": "She had entertained the children by the time dinner was ready."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i03:r3",
+            "text": "He had entertained the guests by the time dinner was ready."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i03:audio",
+            "transcript": "He had entertained the children by the time dinner was ready."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i03:r1",
+              "targetText": "He had entertained the children by the time dinner was ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i03:r2",
+              "targetText": "She had entertained the children by the time dinner was ready.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i03:r3",
+              "targetText": "He had entertained the guests by the time dinner was ready.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had entertained the children by the time dinner was ready.",
+                "uk": "У записі звучить He had entertained the children by the time dinner was ready."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had entertained the children by the time dinner was ready.",
+                "uk": "У записі звучить He had entertained the children by the time dinner was ready."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:word:amazed",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — amazed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:amazed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — amazed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:amazed:audio",
+            "transcript": "amazed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:amazed:r1",
+              "targetText": "amazed",
+              "meaningByLocale": {
+                "ru": "Поразил. Amaze — сильно удивить; amazed — третья форма.",
+                "uk": "Вразив. Amaze — сильно здивувати; amazed — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "amazed",
+            "definitionByLocale": {
+              "ru": "Поразил. Amaze — сильно удивить; amazed — третья форма.",
+              "uk": "Вразив. Amaze — сильно здивувати; amazed — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Її розповідь уже вразила мене до того моменту, коли ми дісталися додому.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Її розповідь уже вразила мене до того моменту, коли ми дісталися додому.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Her story had amazed me by the time we got home.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Её рассказ уже поразил меня к тому моменту, когда мы добрались домой.»",
+            "uk": "Скажіть: «Її розповідь уже вразила мене до того моменту, коли ми дісталися додому.»"
+          },
+          "orderedTokens": [
+            "Her",
+            "story",
+            "had",
+            "amazed",
+            "me",
+            "by",
+            "the",
+            "time",
+            "we",
+            "got",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "Her story ___ amazed me by the time we got home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i06:r1",
+            "text": "Her story had amazed me by the time we got home."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i06:r2",
+            "text": "His story had amazed me by the time we got home."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i06:r3",
+            "text": "Her story had amazed us by the time we got home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i06:audio",
+            "transcript": "Her story had amazed me by the time we got home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i06:r1",
+              "targetText": "Her story had amazed me by the time we got home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i06:r2",
+              "targetText": "His story had amazed me by the time we got home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i06:r3",
+              "targetText": "Her story had amazed us by the time we got home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Her story had amazed me by the time we got home.",
+                "uk": "У записі звучить Her story had amazed me by the time we got home."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Her story had amazed me by the time we got home.",
+                "uk": "У записі звучить Her story had amazed me by the time we got home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:word:irritated",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — irritated",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:irritated:audio"
+        ],
+        "accessibilityLabel": "Картка слова — irritated",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:irritated:audio",
+            "transcript": "irritated"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:irritated:r1",
+              "targetText": "irritated",
+              "meaningByLocale": {
+                "ru": "Вызвал раздражение. Irritate — раздражать человека или часть тела; irritated — третья форма.",
+                "uk": "Спричинив подразнення. Irritate — дратувати людину або подразнювати частину тіла; irritated — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "irritated",
+            "definitionByLocale": {
+              "ru": "Вызвал раздражение. Irritate — раздражать человека или часть тела; irritated — третья форма.",
+              "uk": "Спричинив подразнення. Irritate — дратувати людину або подразнювати частину тіла; irritated — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Дим уже спричинив подразнення очей до того моменту, коли я відчинив вікно.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Дим уже спричинив подразнення очей до того моменту, коли я відчинив вікно.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The smoke had irritated my eyes by the time I opened the window.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Дым уже вызвал раздражение глаз к тому моменту, когда я открыл окно.»",
+            "uk": "Скажіть: «Дим уже спричинив подразнення очей до того моменту, коли я відчинив вікно.»"
+          },
+          "orderedTokens": [
+            "The",
+            "smoke",
+            "had",
+            "irritated",
+            "my",
+            "eyes",
+            "by",
+            "the",
+            "time",
+            "I",
+            "opened",
+            "the",
+            "window"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The smoke ___ irritated my eyes by the time I opened the window.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i09:r1",
+            "text": "The smoke had irritated my eyes by the time I opened the window."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i09:r2",
+            "text": "The smoke had irritated her eyes by the time she opened the window."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i09:r3",
+            "text": "The smoke had irritated my eyes by the time I opened the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i09:audio",
+            "transcript": "The smoke had irritated my eyes by the time I opened the window."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i09:r1",
+              "targetText": "The smoke had irritated my eyes by the time I opened the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i09:r2",
+              "targetText": "The smoke had irritated her eyes by the time she opened the window.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i09:r3",
+              "targetText": "The smoke had irritated my eyes by the time I opened the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The smoke had irritated my eyes by the time I opened the window.",
+                "uk": "У записі звучить The smoke had irritated my eyes by the time I opened the window."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The smoke had irritated my eyes by the time I opened the window.",
+                "uk": "У записі звучить The smoke had irritated my eyes by the time I opened the window."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:word:flattered",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flattered",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:word:flattered:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flattered",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:word:flattered:audio",
+            "transcript": "flattered"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:word:flattered:r1",
+              "targetText": "flattered",
+              "meaningByLocale": {
+                "ru": "Польстил. Flatter — льстить, часто хвалить больше заслуженного ради расположения; flattered — третья форма.",
+                "uk": "Полестив. Flatter — лестити, часто хвалити більше заслуженого задля прихильності; flattered — третя форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flattered",
+            "definitionByLocale": {
+              "ru": "Польстил. Flatter — льстить, часто хвалить больше заслуженного ради расположения; flattered — третья форма.",
+              "uk": "Полестив. Flatter — лестити, часто хвалити більше заслуженого задля прихильності; flattered — третя форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Він полестив мені до того, як попросив грошей.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Він полестив мені до того, як попросив грошей.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He had flattered me before he asked for money.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Он польстил мне до того, как попросил денег.»",
+            "uk": "Скажіть: «Він полестив мені до того, як попросив грошей.»"
+          },
+          "orderedTokens": [
+            "He",
+            "had",
+            "flattered",
+            "me",
+            "before",
+            "he",
+            "asked",
+            "for",
+            "money"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i11:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "He ___ flattered me before he asked for money.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-36:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i11:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-36:i12:r1",
+            "text": "He had flattered me before he asked for money."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i12:r2",
+            "text": "She had flattered me before she asked for money."
+          },
+          {
+            "responseId": "en:lesson-25:session-36:i12:r3",
+            "text": "He had flattered her before he asked for money."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i12:audio",
+            "transcript": "He had flattered me before he asked for money."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-36:i12:r1",
+              "targetText": "He had flattered me before he asked for money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i12:r2",
+              "targetText": "She had flattered me before she asked for money.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i12:r3",
+              "targetText": "He had flattered her before he asked for money.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-36:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had flattered me before he asked for money.",
+                "uk": "У записі звучить He had flattered me before he asked for money."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-36:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He had flattered me before he asked for money.",
+                "uk": "У записі звучить He had flattered me before he asked for money."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте форми з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-36:i13:p1",
+              "target": "entertained",
+              "meaningByLocale": {
+                "ru": "развлёк",
+                "uk": "розважив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-36:i13:p2",
+              "target": "amazed",
+              "meaningByLocale": {
+                "ru": "поразил",
+                "uk": "вразив"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-36:i13:p3",
+              "target": "irritated",
+              "meaningByLocale": {
+                "ru": "вызвал раздражение",
+                "uk": "спричинив подразнення"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-36:i13:p4",
+              "target": "flattered",
+              "meaningByLocale": {
+                "ru": "польстил",
+                "uk": "полестив"
+              }
+            }
+          ],
+          "leftColumn": [
+            "entertained",
+            "amazed",
+            "irritated",
+            "flattered"
+          ],
+          "rightColumn": [
+            "розважив",
+            "вразив",
+            "спричинив подразнення",
+            "полестив"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчив",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Потяг уже поїхав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i15:audio"
+        ],
+        "accessibilityLabel": "Потяг уже поїхав",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона вже розважила гостей до того моменту, коли вечеря була готова».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона вже розважила гостей до того моменту, коли вечеря була готова».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i16:audio",
+            "transcript": "She had entertained the guests by the time dinner was ready."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She had entertained the guests by the time dinner was ready.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-36:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Його розповідь уже вразила нас до того моменту, коли ми дісталися додому».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-36:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Його розповідь уже вразила нас до того моменту, коли ми дісталися додому».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-36:i17:audio",
+            "transcript": "His story had amazed us by the time we got home."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "His story had amazed us by the time we got home.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-36:word:entertained",
+      "correctText": "entertained",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i01",
+      "correctText": "He had entertained the children by the time dinner was ready.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i02",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-36:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i03",
+      "correctText": "He had entertained the children by the time dinner was ready.",
+      "correctResponseId": "en:lesson-25:session-36:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:word:amazed",
+      "correctText": "amazed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i04",
+      "correctText": "Her story had amazed me by the time we got home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i05",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i06",
+      "correctText": "Her story had amazed me by the time we got home.",
+      "correctResponseId": "en:lesson-25:session-36:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:word:irritated",
+      "correctText": "irritated",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i07",
+      "correctText": "The smoke had irritated my eyes by the time I opened the window.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i08",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-36:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i09",
+      "correctText": "The smoke had irritated my eyes by the time I opened the window.",
+      "correctResponseId": "en:lesson-25:session-36:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:word:flattered",
+      "correctText": "flattered",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i10",
+      "correctText": "He had flattered me before he asked for money.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i11",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-36:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i12",
+      "correctText": "He had flattered me before he asked for money.",
+      "correctResponseId": "en:lesson-25:session-36:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i15",
+      "correctText": "The train had left when we arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i16",
+      "correctText": "She had entertained the guests by the time dinner was ready.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-36:i17",
+      "correctText": "His story had amazed us by the time we got home.",
+      "correctResponseId": null
+    }
+  ]
+}

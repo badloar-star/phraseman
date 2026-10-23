@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У пруда",
+        "uk": "Біля ставка"
+      },
+      "bodyByLocale": {
+        "ru": "Duck — утка. I have seen a duck near the pond — я увидел утку возле пруда. Сейчас рассказываем об увиденном без законченной даты: have seen. Одну утку можно посчитать: a duck, two ducks.",
+        "uk": "Duck — качка. I have seen a duck near the pond — я побачив качку біля ставка. Зараз розповідаємо про побачене без завершеної дати: have seen. Одну качку можна порахувати: a duck, two ducks."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-42:intro1:r1",
+              "text": "I have seen a duck near the pond."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro1:r2",
+              "text": "I has seen a duck near the pond."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro1:r3",
+              "text": "I have see a duck near the pond."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-42:intro1:r1",
+              "text": "I have seen a duck near the pond."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro1:r2",
+              "text": "I has seen a duck near the pond."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro1:r3",
+              "text": "I have see a duck near the pond."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Утро уже прошло",
+        "uk": "Ранок уже минув"
+      },
+      "bodyByLocale": {
+        "ru": "Rooster — петух. Представьте, что сейчас вечер: She heard the rooster this morning — она слышала петуха сегодня утром. Утро уже закончилось, поэтому heard без has. Heard — прошедшая форма знакомого hear. Этот будильник нельзя выключить кнопкой.",
+        "uk": "Rooster — півень. Уявіть, що зараз вечір: She heard the rooster this morning — вона чула півня сьогодні вранці. Ранок уже закінчився, тому heard без has. Heard — минула форма знайомого hear. Цей будильник не можна вимкнути кнопкою."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-42:intro2:r1",
+              "text": "She heard the rooster this morning."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro2:r2",
+              "text": "She hear the rooster this morning."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro2:r3",
+              "text": "She hearing the rooster this morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-42:intro2:r1",
+              "text": "She heard the rooster this morning."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro2:r2",
+              "text": "She hear the rooster this morning."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro2:r3",
+              "text": "She hearing the rooster this morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Покупка и хранение",
+        "uk": "Купівля та зберігання"
+      },
+      "bodyByLocale": {
+        "ru": "Corn — кукуруза, grain — зерно. Здесь corn означает кукурузу как продукт. We have bought some corn — мы купили немного кукурузы. They stored the grain yesterday — вчера они убрали зерно на хранение. Grain здесь обозначает зерно в целом. Покупка без даты — have bought, действие с yesterday — stored.",
+        "uk": "Corn — кукурудза, grain — зерно. Тут corn означає кукурудзу як продукт. We have bought some corn — ми купили трохи кукурудзи. They stored the grain yesterday — учора вони поклали зерно на зберігання. Grain тут позначає зерно загалом. Купівля без дати — have bought, дія із yesterday — stored."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-42:intro3:r1",
+              "text": "They stored the grain yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro3:r2",
+              "text": "They have stored the grain yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro3:r3",
+              "text": "They store the grain yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-42:intro3:r1",
+              "text": "They stored the grain yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro3:r2",
+              "text": "They have stored the grain yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-42:intro3:r3",
+              "text": "They store the grain yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e94e58bac0733043f5042d72f348e7c1978e81ab59042962bb90ed256b156f56"
+}

@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-42:word:duck",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — duck",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:word:duck:audio"
+      ],
+      "accessibilityLabel": "Картка слова — duck",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:word:duck:audio",
+          "transcript": "duck"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:word:duck:r1",
+            "targetText": "duck",
+            "meaningByLocale": {
+              "ru": "утка.",
+              "uk": "качка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "duck",
+          "definitionByLocale": {
+            "ru": "утка.",
+            "uk": "качка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я побачив качку біля ставка.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я побачив качку біля ставка.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have seen a duck near the pond.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я увидел утку возле пруда.»",
+          "uk": "Скажіть: «Я побачив качку біля ставка.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "seen",
+          "a",
+          "duck",
+          "near",
+          "the",
+          "pond"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть вечірню розповідь про ферму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть вечірню розповідь про ферму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вечерний рассказ о ферме.",
+          "uk": "Доповніть вечірню розповідь про ферму."
+        },
+        "gappedTargetPhrase": "I ___ seen a duck near the pond.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-42:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть вечірню розповідь про ферму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед seen.",
+              "uk": "Із I потрібно have перед seen."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед seen.",
+              "uk": "Із I потрібно have перед seen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i03:r1",
+          "text": "I have seen a duck near the pond."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i03:r2",
+          "text": "We have seen a duck near the pond."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i03:r3",
+          "text": "I have seen a duck near the river."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i03:audio",
+          "transcript": "I have seen a duck near the pond."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:i03:r1",
+            "targetText": "I have seen a duck near the pond.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i03:r2",
+            "targetText": "We have seen a duck near the pond.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i03:r3",
+            "targetText": "I have seen a duck near the river.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen a duck near the pond.",
+              "uk": "У записі звучить I have seen a duck near the pond."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen a duck near the pond.",
+              "uk": "У записі звучить I have seen a duck near the pond."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:word:rooster",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rooster",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:word:rooster:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rooster",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:word:rooster:audio",
+          "transcript": "rooster"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:word:rooster:r1",
+            "targetText": "rooster",
+            "meaningByLocale": {
+              "ru": "петух.",
+              "uk": "півень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rooster",
+          "definitionByLocale": {
+            "ru": "петух.",
+            "uk": "півень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вона чула півня сьогодні вранці.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Вона чула півня сьогодні вранці.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She heard the rooster this morning.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она слышала петуха сегодня утром.»",
+          "uk": "Скажіть: «Вона чула півня сьогодні вранці.»"
+        },
+        "orderedTokens": [
+          "She",
+          "heard",
+          "the",
+          "rooster",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть вечірню розповідь про ферму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i05:r1",
+          "text": "heard"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i05:r2",
+          "text": "has heard"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i05:r3",
+          "text": "hear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть вечірню розповідь про ферму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вечерний рассказ о ферме.",
+          "uk": "Доповніть вечірню розповідь про ферму."
+        },
+        "gappedTargetPhrase": "She ___ the rooster this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-42:i05:r1",
+            "text": "heard"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i05:r2",
+            "text": "has heard"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i05:r3",
+            "text": "hear"
+          }
+        ],
+        "testedDimension": "Доповніть вечірню розповідь про ферму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "Сейчас вечер, утро закончилось: нужна форма heard.",
+              "uk": "Зараз вечір, ранок закінчився: потрібна форма heard."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "Сейчас вечер, утро закончилось: нужна форма heard.",
+              "uk": "Зараз вечір, ранок закінчився: потрібна форма heard."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i06:r1",
+          "text": "She heard the rooster this morning."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i06:r2",
+          "text": "He heard the rooster this morning."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i06:r3",
+          "text": "She heard the rooster yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i06:audio",
+          "transcript": "She heard the rooster this morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:i06:r1",
+            "targetText": "She heard the rooster this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i06:r2",
+            "targetText": "He heard the rooster this morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i06:r3",
+            "targetText": "She heard the rooster yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She heard the rooster this morning.",
+              "uk": "У записі звучить She heard the rooster this morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She heard the rooster this morning.",
+              "uk": "У записі звучить She heard the rooster this morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:word:corn",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — corn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:word:corn:audio"
+      ],
+      "accessibilityLabel": "Картка слова — corn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:word:corn:audio",
+          "transcript": "corn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:word:corn:r1",
+            "targetText": "corn",
+            "meaningByLocale": {
+              "ru": "кукуруза.",
+              "uk": "кукурудза."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "corn",
+          "definitionByLocale": {
+            "ru": "кукуруза.",
+            "uk": "кукурудза."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми купили трохи кукурудзи.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми купили трохи кукурудзи.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have bought some corn.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы купили немного кукурузы.»",
+          "uk": "Скажіть: «Ми купили трохи кукурудзи.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "bought",
+          "some",
+          "corn"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть вечірню розповідь про ферму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть вечірню розповідь про ферму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вечерний рассказ о ферме.",
+          "uk": "Доповніть вечірню розповідь про ферму."
+        },
+        "gappedTargetPhrase": "We ___ bought some corn.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-42:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть вечірню розповідь про ферму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед bought.",
+              "uk": "Із we потрібно have перед bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед bought.",
+              "uk": "Із we потрібно have перед bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i09:r1",
+          "text": "We have bought some corn."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i09:r2",
+          "text": "They have bought some corn."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i09:r3",
+          "text": "We have cooked some corn."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i09:audio",
+          "transcript": "We have bought some corn."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:i09:r1",
+            "targetText": "We have bought some corn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i09:r2",
+            "targetText": "They have bought some corn.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i09:r3",
+            "targetText": "We have cooked some corn.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have bought some corn.",
+              "uk": "У записі звучить We have bought some corn."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have bought some corn.",
+              "uk": "У записі звучить We have bought some corn."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:word:grain",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — grain",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:word:grain:audio"
+      ],
+      "accessibilityLabel": "Картка слова — grain",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:word:grain:audio",
+          "transcript": "grain"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:word:grain:r1",
+            "targetText": "grain",
+            "meaningByLocale": {
+              "ru": "зерно.",
+              "uk": "зерно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grain",
+          "definitionByLocale": {
+            "ru": "зерно.",
+            "uk": "зерно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вони поклали зерно на зберігання.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вони поклали зерно на зберігання.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They stored the grain yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера они убрали зерно на хранение.»",
+          "uk": "Скажіть: «Учора вони поклали зерно на зберігання.»"
+        },
+        "orderedTokens": [
+          "They",
+          "stored",
+          "the",
+          "grain",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть вечірню розповідь про ферму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i11:r1",
+          "text": "stored"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i11:r2",
+          "text": "have stored"
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i11:r3",
+          "text": "store"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть вечірню розповідь про ферму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вечерний рассказ о ферме.",
+          "uk": "Доповніть вечірню розповідь про ферму."
+        },
+        "gappedTargetPhrase": "They ___ the grain yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-42:i11:r1",
+            "text": "stored"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i11:r2",
+            "text": "have stored"
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i11:r3",
+            "text": "store"
+          }
+        ],
+        "testedDimension": "Доповніть вечірню розповідь про ферму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма stored без have.",
+              "uk": "Із yesterday потрібна форма stored без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть вечірню розповідь про ферму.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма stored без have.",
+              "uk": "Із yesterday потрібна форма stored без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-42:i12:r1",
+          "text": "They stored the grain yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i12:r2",
+          "text": "We stored the grain yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-42:i12:r3",
+          "text": "They stored the grain last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i12:audio",
+          "transcript": "They stored the grain yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-42:i12:r1",
+            "targetText": "They stored the grain yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i12:r2",
+            "targetText": "We stored the grain yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i12:r3",
+            "targetText": "They stored the grain last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They stored the grain yesterday.",
+              "uk": "У записі звучить They stored the grain yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They stored the grain yesterday.",
+              "uk": "У записі звучить They stored the grain yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-42:i13:p1",
+            "target": "duck",
+            "meaningByLocale": {
+              "ru": "утка",
+              "uk": "качка"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-42:i13:p2",
+            "target": "rooster",
+            "meaningByLocale": {
+              "ru": "петух",
+              "uk": "півень"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-42:i13:p3",
+            "target": "corn",
+            "meaningByLocale": {
+              "ru": "кукуруза",
+              "uk": "кукурудза"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-42:i13:p4",
+            "target": "grain",
+            "meaningByLocale": {
+              "ru": "зерно",
+              "uk": "зерно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "duck",
+          "rooster",
+          "corn",
+          "grain"
+        ],
+        "rightColumn": [
+          "качка",
+          "півень",
+          "кукурудза",
+          "зерно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми купили трохи кукурудзи вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми купили трохи кукурудзи вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i16:audio",
+          "transcript": "We bought some corn yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We bought some corn yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона чула півня вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона чула півня вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-42:i17:audio",
+          "transcript": "She heard the rooster yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She heard the rooster yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "75cf375ceddde71a758da1f94be85b5058e1db9ef04dcae51861f15ea76bc39e"
+}

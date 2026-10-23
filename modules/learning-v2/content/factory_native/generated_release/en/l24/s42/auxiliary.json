@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-42:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-42:intro1:r3": {
+          "ru": "После have нужна форма seen.",
+          "uk": "Після have потрібна форма seen."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-42:intro2:r2": {
+          "ru": "Для законченного прошлого нужна форма heard.",
+          "uk": "Для завершеного минулого потрібна форма heard."
+        },
+        "en:lesson-24:session-42:intro2:r3": {
+          "ru": "Здесь нужна форма heard.",
+          "uk": "Тут потрібна форма heard."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-42:intro3:r2": {
+          "ru": "С yesterday нужно stored без have.",
+          "uk": "Із yesterday потрібне stored без have."
+        },
+        "en:lesson-24:session-42:intro3:r3": {
+          "ru": "Для прошлого нужна форма stored.",
+          "uk": "Для минулого потрібна форма stored."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4a68651e283f58f9ca6cb9c83f2d29d6c545b09e28cc58aaa42a9ab52d52c25d"
+}

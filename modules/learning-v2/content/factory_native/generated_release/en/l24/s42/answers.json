@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-42:word:duck",
+    "correctText": "duck",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i01",
+    "correctText": "I have seen a duck near the pond.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i03",
+    "correctText": "I have seen a duck near the pond.",
+    "correctResponseId": "en:lesson-24:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:word:rooster",
+    "correctText": "rooster",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i04",
+    "correctText": "She heard the rooster this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i05",
+    "correctText": "heard",
+    "correctResponseId": "en:lesson-24:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i06",
+    "correctText": "She heard the rooster this morning.",
+    "correctResponseId": "en:lesson-24:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:word:corn",
+    "correctText": "corn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i07",
+    "correctText": "We have bought some corn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i09",
+    "correctText": "We have bought some corn.",
+    "correctResponseId": "en:lesson-24:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:word:grain",
+    "correctText": "grain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i10",
+    "correctText": "They stored the grain yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i11",
+    "correctText": "stored",
+    "correctResponseId": "en:lesson-24:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i12",
+    "correctText": "They stored the grain yesterday.",
+    "correctResponseId": "en:lesson-24:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i13",
+    "correctText": "en:lesson-24:session-42:i13:p1=duck\nen:lesson-24:session-42:i13:p2=rooster\nen:lesson-24:session-42:i13:p3=corn\nen:lesson-24:session-42:i13:p4=grain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i16",
+    "correctText": "We bought some corn yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-42:i17",
+    "correctText": "She heard the rooster yesterday.",
+    "correctResponseId": null
+  }
+]

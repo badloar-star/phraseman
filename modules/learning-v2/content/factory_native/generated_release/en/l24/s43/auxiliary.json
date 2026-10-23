@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-43:intro1:r2": {
+          "ru": "С I используем walk без s.",
+          "uk": "Із I використовуємо walk без s."
+        },
+        "en:lesson-24:session-43:intro1:r3": {
+          "ru": "Для привычки здесь нужно walk.",
+          "uk": "Для звички тут потрібне walk."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-43:intro2:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-24:session-43:intro2:r3": {
+          "ru": "Нужно has been feeling.",
+          "uk": "Потрібно has been feeling."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-43:intro3:r2": {
+          "ru": "С we нужно have.",
+          "uk": "Із we потрібно have."
+        },
+        "en:lesson-24:session-43:intro3:r3": {
+          "ru": "После have нужна форма enjoyed.",
+          "uk": "Після have потрібна форма enjoyed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "339522da428de21059d4da708b929e70bb2fb38cd7ed5019f0ad8bc4a2058d00"
+}

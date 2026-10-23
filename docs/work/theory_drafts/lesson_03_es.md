@@ -24,6 +24,9 @@ En esta lección aprendes a nombrar las cosas que te rodean: «es una silla», �
 | Those flowers are fresh. | Esas flores están frescas. | Those |
 | It is a red cup. | Es una taza roja. | red |
 
+**tip**
+En las correcciones verás la palabra «artículo»: es a, an o the delante de una cosa: a lamp, an oven, the bag.
+
 ---
 
 ## 02 · Una cosa: a delante *(abierta al inicio)*

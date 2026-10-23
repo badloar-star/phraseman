@@ -24,6 +24,9 @@ Di pelajaran ini kamu belajar menyebut benda di sekitarmu: «ini kursi», «ini 
 | Those flowers are fresh. | Bunga-bunga itu segar. | Those |
 | It is a red cup. | Ini cangkir merah. | red |
 
+**tip**
+Di penjelasan kesalahan akan muncul kata «artikel» — yaitu a, an, atau the di depan benda: a lamp, an oven, the bag.
+
 ---
 
 ## 02 · Satu benda — di depannya a *(terbuka sejak awal)*

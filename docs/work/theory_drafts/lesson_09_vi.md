@@ -22,6 +22,9 @@
 | She is not tasting the jam. | Cô ấy không đang nếm mứt. | is not tasting |
 | Is the zipper working? | Khóa kéo có đang chạy không? | Is |
 
+**tip**
+Từ trong phần giải thích lỗi: danh từ là đồ vật hoặc người (the ice, a visitor); từ nối là am, is, are; Present Continuous là dạng «lúc này» (I am watching), Present Simple là dạng «thường» ở bài 6 (I watch).
+
 ---
 
 ## 02 · am / is / are + hành động có -ing *(mở sẵn)*

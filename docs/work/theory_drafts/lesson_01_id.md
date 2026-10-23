@@ -27,6 +27,9 @@ Di pelajaran ini kamu belajar bicara tentang dirimu, lawan bicaramu, orang lain,
 **tip**
 Tiga kata ini seperti penjepit: tidak menambah arti, tapi tanpa mereka kalimat bahasa Inggris jadi berantakan.
 
+**tip**
+Kata di penjelasan kesalahan: kata kerja adalah kegiatan atau penjepit (work, am, is, are); kalimat negatif memakai «tidak»: I am not ready.
+
 ---
 
 ## 02 · Rumus utama *(terbuka sejak awal)*

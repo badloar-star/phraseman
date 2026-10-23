@@ -23,6 +23,9 @@ Na lição 6 você falava do que acontece sempre: I work, she cooks. Agora vai f
 | She is not tasting the jam. | Ela não está provando a geleia. | is not tasting |
 | Is the zipper working? | O zíper está funcionando? | Is |
 
+**tip**
+Palavras das correções: substantivo é uma coisa ou pessoa (the ice, a visitor); verbo de ligação é am, is, are; Present Continuous é a forma «agora» (I am watching), Present Simple é a forma «normalmente» da lição 6 (I watch).
+
 ---
 
 ## 02 · Peça + ação com -ing *(aberta de início)*

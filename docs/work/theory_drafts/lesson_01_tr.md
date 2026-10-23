@@ -27,6 +27,9 @@ Bu derste kendinden, karşındakinden, başka insanlardan ve eşyalardan bahsetm
 **tip**
 «Hazır-ım» kelimesindeki «-ım» ekini düşün: İngilizcede o ek ayrı bir kelime olur ve öne geçer — I am ready.
 
+**tip**
+Hata açıklamalarındaki kelimeler: fiil bir eylem ya da bağlayıcıdır (work, am, is, are); olumsuz cümle «değil» anlamı taşır: I am not ready.
+
 ---
 
 ## 02 · Ana formül *(baştan açık)*

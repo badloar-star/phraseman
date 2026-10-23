@@ -24,6 +24,9 @@ Nesta lição você aprende a dar nome às coisas ao redor: «é uma cadeira», 
 | Those flowers are fresh. | Aquelas flores estão frescas. | Those |
 | It is a red cup. | É uma xícara vermelha. | red |
 
+**tip**
+Nas correções aparece a palavra «artigo» — é a, an ou the antes de uma coisa: a lamp, an oven, the bag.
+
 ---
 
 ## 02 · Uma coisa: a na frente *(aberta de início)*

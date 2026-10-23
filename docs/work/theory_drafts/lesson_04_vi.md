@@ -23,6 +23,9 @@ Trong bài này bạn học nói cái gì có ở đâu: «gần đây có hiệ
 | There isn't a doorbell. | Không có chuông cửa. | isn't |
 | The key is under the doormat. | Chìa khóa ở dưới thảm chùi chân. | under |
 
+**tip**
+Từ trong phần giải thích lỗi: số ít là một vật (a bank), số nhiều là nhiều vật (banks).
+
 ---
 
 ## 02 · There is — «có» *(mở sẵn)*

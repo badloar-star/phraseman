@@ -23,6 +23,9 @@ W lekcji 6 mówiłeś o tym, co dzieje się regularnie: I work, she cooks. Teraz
 | She is not tasting the jam. | Ona nie próbuje dżemu. | is not tasting |
 | Is the zipper working? | Czy zamek działa? | Is |
 
+**tip**
+Słowa z wyjaśnień błędów: rzeczownik to rzecz albo osoba (the ice, a visitor); łącznik to am, is, are; Present Continuous to forma «teraz» (I am watching), Present Simple — forma «zwykle» z lekcji 6 (I watch).
+
 ---
 
 ## 02 · am / is / are + czynność z -ing *(otwarta od razu)*

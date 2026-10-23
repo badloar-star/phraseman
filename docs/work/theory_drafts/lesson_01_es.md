@@ -27,6 +27,9 @@ En esta lección aprendes a hablar de ti, de la otra persona, de otras personas 
 **tip**
 Fíjate: en español a veces decimos «estar», a veces «tener» y a veces otro verbo. En inglés, en todas estas frases, la pieza es la misma: am, is o are.
 
+**tip**
+Palabras de las correcciones: el verbo es una acción o una pieza (work, am, is, are); la negación es una frase con «no»: I am not ready.
+
 ---
 
 ## 02 · La fórmula principal *(abierta al inicio)*

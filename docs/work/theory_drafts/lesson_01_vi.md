@@ -26,6 +26,9 @@ Trong bài này, bạn học cách nói về mình, về người đối diện,
 **tip**
 Ba từ này giống cái móc nối: tự chúng không mang thêm nghĩa, nhưng thiếu chúng thì câu tiếng Anh bị gãy.
 
+**tip**
+Từ trong phần giải thích lỗi: động từ là hành động hoặc từ nối (work, am, is, are); câu phủ định là câu có «không»: I am not ready.
+
 ---
 
 ## 02 · Công thức chính *(mở sẵn)*

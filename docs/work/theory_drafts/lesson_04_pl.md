@@ -24,6 +24,9 @@ W tej lekcji uczysz się opowiadać, co gdzie jest: «w pobliżu jest apteka», 
 | There isn't a doorbell. | Nie ma dzwonka. | isn't |
 | The key is under the doormat. | Klucz jest pod wycieraczką. | under |
 
+**tip**
+Słowa z wyjaśnień błędów: liczba pojedyncza to jedna rzecz (a bank), liczba mnoga — kilka (banks).
+
 ---
 
 ## 02 · There is — «tutaj jest» *(otwarta od razu)*

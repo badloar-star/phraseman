@@ -24,6 +24,9 @@ Bu derste neyin nerede olduğunu anlatmayı öğreniyorsun: «yakında eczane va
 | There isn't a doorbell. | Zil yok. | isn't |
 | The key is under the doormat. | Anahtar paspasın altında. | under |
 
+**tip**
+Hata açıklamalarındaki kelimeler: tekil tek bir şeydir (a bank), çoğul birkaç şeydir (banks).
+
 ---
 
 ## 02 · There is — «var» *(baştan açık)*

@@ -24,6 +24,9 @@ Di pelajaran ini kamu belajar menyebut apa yang ada di mana: «di dekat sini ada
 | There isn't a doorbell. | Tidak ada bel pintu. | isn't |
 | The key is under the doormat. | Kuncinya ada di bawah keset. | under |
 
+**tip**
+Kata di penjelasan kesalahan: bentuk tunggal berarti satu benda (a bank), bentuk jamak berarti beberapa (banks).
+
 ---
 
 ## 02 · There is — «ada» *(terbuka sejak awal)*

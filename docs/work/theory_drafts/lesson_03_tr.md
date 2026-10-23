@@ -24,6 +24,9 @@ Bu derste etrafındaki eşyaların adını söylemeyi öğreniyorsun: «bu bir s
 | Those flowers are fresh. | Şu çiçekler taze. | Those |
 | It is a red cup. | Bu kırmızı bir fincan. | red |
 
+**tip**
+Hata açıklamalarında «tanımlık» kelimesi geçer — bir şeyin önündeki a, an ya da the: a lamp, an oven, the bag.
+
 ---
 
 ## 02 · Tek eşya — önünde a *(baştan açık)*

@@ -24,6 +24,9 @@ En esta lección aprendes a contar qué hay dónde: «cerca hay una farmacia», 
 | There isn't a doorbell. | No hay timbre. | isn't |
 | The key is under the doormat. | La llave está debajo del felpudo. | under |
 
+**tip**
+Palabras de las correcciones: singular es una cosa (a bank); plural, varias (banks).
+
 ---
 
 ## 02 · There is — «aquí hay» *(abierta al inicio)*

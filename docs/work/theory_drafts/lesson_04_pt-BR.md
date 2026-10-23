@@ -24,6 +24,9 @@ Nesta lição você aprende a contar o que tem onde: «tem uma farmácia por per
 | There isn't a doorbell. | Não tem campainha. | isn't |
 | The key is under the doormat. | A chave está embaixo do capacho. | under |
 
+**tip**
+Palavras das correções: singular é uma coisa (a bank); plural, várias (banks).
+
 ---
 
 ## 02 · There is — «aqui tem» *(aberta de início)*

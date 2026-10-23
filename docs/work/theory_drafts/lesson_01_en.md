@@ -27,6 +27,9 @@ In this lesson you learn to talk about yourself, the person in front of you, oth
 **tip**
 Think of am, is and are as clips. They don't add meaning, but without them the sentence falls apart.
 
+**tip**
+Words from feedback: a verb is an action or a clip (work, am, is, are); a negative is a sentence with «not»: I am not ready.
+
 ---
 
 ## 02 · The main pattern *(open at start)*

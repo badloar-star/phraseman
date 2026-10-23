@@ -24,6 +24,9 @@ In this lesson you learn to say what is where: «there's a pharmacy nearby», «
 | There isn't a doorbell. | The door has no bell. | isn't |
 | The key is under the doormat. | The key is below the mat. | under |
 
+**tip**
+Words from feedback: singular means one thing (a bank), plural means several (banks).
+
 ---
 
 ## 02 · There is: «something exists here» *(open at start)*

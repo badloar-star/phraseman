@@ -23,6 +23,9 @@ In lesson 6 you talked about things that happen regularly: I work, she cooks. No
 | She is not tasting the jam. | She isn't trying the jam now. | is not tasting |
 | Is the zipper working? | Does the zipper open and close now? | Is |
 
+**tip**
+Words from feedback: a noun is a thing or a person (the ice, a visitor); a linking verb is am, is, are; Present Continuous is the «right now» form (I am watching), Present Simple is the «usually» form from lesson 6 (I watch).
+
 ---
 
 ## 02 · The clip + action with -ing *(open at start)*

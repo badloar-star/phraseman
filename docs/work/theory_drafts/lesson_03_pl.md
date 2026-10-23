@@ -23,6 +23,9 @@ W tej lekcji uczysz się nazywać rzeczy wokół siebie: «to krzesło», «to b
 | Those flowers are fresh. | Tamte kwiaty są świeże. | Those |
 | It is a red cup. | To czerwony kubek. | red |
 
+**tip**
+W wyjaśnieniach błędów pojawi się słowo «przedimek» — to a, an albo the przed rzeczą: a lamp, an oven, the bag.
+
 ---
 
 ## 02 · Jedna rzecz — przed nią a *(otwarta od razu)*

@@ -27,6 +27,9 @@ W tej lekcji uczysz się mówić o sobie, o rozmówcy, o innych ludziach i o rze
 **tip**
 Po polsku raz mówimy «jestem», raz «mam», a raz «jest mi». Po angielsku w tych zdaniach zawsze stoi to samo: am, is albo are.
 
+**tip**
+Słowa z wyjaśnień błędów: czasownik to czynność albo łącznik (work, am, is, are); przeczenie to zdanie z «nie»: I am not ready.
+
 ---
 
 ## 02 · Główny wzór *(otwarta od razu)*

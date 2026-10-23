@@ -23,6 +23,9 @@ Di pelajaran 6 kamu bercerita tentang hal yang rutin: I work, she cooks. Sekaran
 | She is not tasting the jam. | Dia tidak sedang mencicipi selai. | is not tasting |
 | Is the zipper working? | Ritsletingnya berfungsi? | Is |
 
+**tip**
+Kata di penjelasan kesalahan: kata benda adalah benda atau orang (the ice, a visitor); kata penghubung adalah am, is, are; Present Continuous adalah bentuk «sekarang» (I am watching), Present Simple bentuk «biasanya» dari pelajaran 6 (I watch).
+
 ---
 
 ## 02 · Penjepit + kegiatan dengan -ing *(terbuka sejak awal)*

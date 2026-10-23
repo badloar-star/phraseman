@@ -23,6 +23,9 @@
 | She is not tasting the jam. | Reçeli tatmıyor. | is not tasting |
 | Is the zipper working? | Fermuar çalışıyor mu? | Is |
 
+**tip**
+Hata açıklamalarındaki kelimeler: isim bir şey ya da kişidir (the ice, a visitor); bağlayıcı am, is, are; Present Continuous «şu an» biçimidir (I am watching), Present Simple 6. dersteki «genelde» biçimidir (I watch).
+
 ---
 
 ## 02 · Bağlayıcı + -ing'li eylem *(baştan açık)*

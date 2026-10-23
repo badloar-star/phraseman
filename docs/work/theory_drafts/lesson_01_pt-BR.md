@@ -27,6 +27,9 @@ Nesta lição você aprende a falar de você, da pessoa com quem conversa, de ou
 **tip**
 Em português às vezes usamos «estar», às vezes «ser», «ter» ou «estar com». Em inglês, em todas essas frases, a peça é sempre a mesma: am, is ou are.
 
+**tip**
+Palavras das correções: o verbo é uma ação ou uma peça (work, am, is, are); a negação é uma frase com «não»: I am not ready.
+
 ---
 
 ## 02 · A fórmula principal *(aberta de início)*

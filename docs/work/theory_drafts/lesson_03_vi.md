@@ -23,6 +23,9 @@ Trong bài này bạn học gọi tên đồ vật xung quanh: «đây là cái 
 | Those flowers are fresh. | Mấy bông hoa kia còn tươi. | Those |
 | It is a red cup. | Đây là cái cốc đỏ. | red |
 
+**tip**
+Trong phần giải thích lỗi sẽ có từ «mạo từ» — đó là a, an hoặc the đứng trước đồ vật: a lamp, an oven, the bag.
+
 ---
 
 ## 02 · Một đồ vật — đặt a phía trước *(mở sẵn)*

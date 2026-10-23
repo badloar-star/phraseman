@@ -24,6 +24,9 @@ In this lesson you learn to name the things around you: «it's a chair», «they
 | Those flowers are fresh. | The flowers over there are fresh. | Those |
 | It is a red cup. | One cup, and it is red. | red |
 
+**tip**
+In feedback you will see the word «article» — that is a, an or the before a thing: a lamp, an oven, the bag.
+
 ---
 
 ## 02 · One thing: put a in front *(open at start)*

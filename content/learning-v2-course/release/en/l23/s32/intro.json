@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Actor — актёр, человек, который играет роли в кино или театре. Singer — певец или певица. I have met an actor — я встречался с актёром. Met — третья форма meet. Перед actor нужен an: слово начинается с гласного звука.",
+        "uk": "Actor — актор, людина, яка грає ролі в кіно або театрі. Singer — співак або співачка. I have met an actor — я зустрічався з актором. Met — третя форма meet. Перед actor потрібен an: слово починається з голосного звука."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-32:intro1:r1",
+              "text": "I have met an actor."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro1:r2",
+              "text": "I has met an actor."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro1:r3",
+              "text": "I have meet an actor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-32:intro1:r1",
+              "text": "I have met an actor."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro1:r2",
+              "text": "I has met an actor."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro1:r3",
+              "text": "I have meet an actor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Dancer — танцор или танцовщица. We have met a dancer — мы встречались с танцором. Dancer называет человека, а знакомое dance — действие «танцевать». Present perfect здесь сообщает об опыте встречи, без конкретной даты.",
+        "uk": "Dancer — танцівник або танцівниця. We have met a dancer — ми зустрічалися з танцівником. Dancer називає людину, а знайоме dance — дію «танцювати». Present perfect тут повідомляє про досвід зустрічі, без конкретної дати."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-32:intro2:r1",
+              "text": "We have met a dancer."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro2:r2",
+              "text": "We has met a dancer."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro2:r3",
+              "text": "We have meet a dancer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-32:intro2:r1",
+              "text": "We have met a dancer."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro2:r2",
+              "text": "We has met a dancer."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro2:r3",
+              "text": "We have meet a dancer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Musician — музыкант. He has met a musician — он встречался с музыкантом. Перед musician нужен a: слово начинается с согласного звука. С he используем has. Meet в этих фразах означает личную встречу, а не просмотр выступления на экране.",
+        "uk": "Musician — музикант. He has met a musician — він зустрічався з музикантом. Перед musician потрібен a: слово починається з приголосного звука. Із he використовуємо has. Meet у цих фразах означає особисту зустріч, а не перегляд виступу на екрані."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-32:intro3:r1",
+              "text": "He has met a musician."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro3:r2",
+              "text": "He have met a musician."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro3:r3",
+              "text": "He has meet a musician."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-32:intro3:r1",
+              "text": "He has met a musician."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro3:r2",
+              "text": "He have met a musician."
+            },
+            {
+              "responseId": "en:lesson-23:session-32:intro3:r3",
+              "text": "He has meet a musician."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cab82d4b054f64e8cd498c30ca37b30df9089f8d410399d0e6b363a381ecb488"
+}

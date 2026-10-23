@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-31:intro1:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-31:intro1:r3": {
+          "ru": "После have или has нужна третья форма: cleaned.",
+          "uk": "Після have або has потрібна третя форма: cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-31:intro2:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-31:intro2:r3": {
+          "ru": "После have или has нужна третья форма: cleaned.",
+          "uk": "Після have або has потрібна третя форма: cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-31:intro3:r2": {
+          "ru": "Выберите have или has по подлежащему.",
+          "uk": "Виберіть have або has за підметом."
+        },
+        "en:lesson-23:session-31:intro3:r3": {
+          "ru": "После have или has нужна третья форма: decorated.",
+          "uk": "Після have або has потрібна третя форма: decorated."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c6ad351db653222869cdb56dfeff0f3426a624a263efc1b784657d4260c98b96"
+}

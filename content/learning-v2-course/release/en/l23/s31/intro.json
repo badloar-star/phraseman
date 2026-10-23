@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что уже сделано",
+        "uk": "Що вже зроблено"
+      },
+      "bodyByLocale": {
+        "ru": "Corridor — коридор, проход, который соединяет комнаты. Cabinet — шкафчик для хранения вещей. Это слово близко знакомому cupboard; здесь речь о предмете мебели, а не о комнате. I have cleaned the corridor — я убрал коридор. Cleaned — третья форма clean.",
+        "uk": "Corridor — коридор, прохід, який сполучає кімнати. Cabinet — шафка для зберігання речей. Це слово близьке до знайомого cupboard; тут ідеться про предмет меблів, а не про кімнату. I have cleaned the corridor — я прибрав коридор. Cleaned — третя форма clean."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-31:intro1:r1",
+              "text": "I have cleaned the corridor."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro1:r2",
+              "text": "I has cleaned the corridor."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro1:r3",
+              "text": "I have clean the corridor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-31:intro1:r1",
+              "text": "I have cleaned the corridor."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro1:r2",
+              "text": "I has cleaned the corridor."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro1:r3",
+              "text": "I have clean the corridor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Различаем слова",
+        "uk": "Розрізняємо слова"
+      },
+      "bodyByLocale": {
+        "ru": "Basin — раковина для умывания; это обычное британское слово для раковины в ванной. We have cleaned the basin — мы почистили раковину. После have используем cleaned. The показывает, что говорим об определённой раковине в доме.",
+        "uk": "Basin — умивальник; це звичайне британське слово для раковини у ванній. We have cleaned the basin — ми почистили умивальник. Після have використовуємо cleaned. The показує, що говоримо про певний умивальник у будинку."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-31:intro2:r1",
+              "text": "We have cleaned the basin."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro2:r2",
+              "text": "We has cleaned the basin."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro2:r3",
+              "text": "We have clean the basin."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-31:intro2:r1",
+              "text": "We have cleaned the basin."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro2:r2",
+              "text": "We has cleaned the basin."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro2:r3",
+              "text": "We have clean the basin."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё один пример",
+        "uk": "Ще один приклад"
+      },
+      "bodyByLocale": {
+        "ru": "Lounge — гостиная; в британском английском так называют комнату, где сидят и отдыхают дома. Вы уже знаете living room: здесь lounge означает ту же комнату. He has decorated the lounge — он украсил гостиную. Decorated — третья форма decorate.",
+        "uk": "Lounge — вітальня; у британській англійській так називають кімнату, де сидять і відпочивають удома. Ви вже знаєте living room: тут lounge означає ту саму кімнату. He has decorated the lounge — він прикрасив вітальню. Decorated — третя форма decorate."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-31:intro3:r1",
+              "text": "He has decorated the lounge."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro3:r2",
+              "text": "He have decorated the lounge."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro3:r3",
+              "text": "He has decorate the lounge."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-31:intro3:r1",
+              "text": "He has decorated the lounge."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro3:r2",
+              "text": "He have decorated the lounge."
+            },
+            {
+              "responseId": "en:lesson-23:session-31:intro3:r3",
+              "text": "He has decorate the lounge."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f2de431e9527569edddb6832c179c9aef9d07870be796c515d34f0f636d4cf2c"
+}

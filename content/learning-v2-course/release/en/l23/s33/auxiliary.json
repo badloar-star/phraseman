@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-33:intro1:r2": {
+          "ru": "Нужна третья форма met.",
+          "uk": "Потрібна третя форма met."
+        },
+        "en:lesson-23:session-33:intro1:r3": {
+          "ru": "С I нужно have.",
+          "uk": "З I потрібно have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-33:intro2:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-23:session-33:intro2:r3": {
+          "ru": "После has нужна третья форма met.",
+          "uk": "Після has потрібна третя форма met."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-33:intro3:r2": {
+          "ru": "Нужна третья форма met.",
+          "uk": "Потрібна третя форма met."
+        },
+        "en:lesson-23:session-33:intro3:r3": {
+          "ru": "С you нужно have.",
+          "uk": "Із you потрібно have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "37ab8bd3b502559fcaed67172d7d5c2c774fa007dc1efbf814cd9e2a7114f10e"
+}

@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-32:word:actor",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — actor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:actor:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — actor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:actor:audio",
+            "transcript": "actor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:actor:r1",
+              "targetText": "actor",
+              "meaningByLocale": {
+                "ru": "актёр.",
+                "uk": "актор."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "actor",
+            "definitionByLocale": {
+              "ru": "актёр.",
+              "uk": "актор."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Я встречался с актёром.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Я встречался с актёром.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have met an actor.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я встречался с актёром.»",
+            "uk": "Розкажіть про досвід: «Я зустрічався з актором.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "met",
+            "an",
+            "actor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i02:r1",
+            "text": "I have met an actor."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i02:r2",
+            "text": "You have met an actor."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i02:r3",
+            "text": "They have met an actor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i02:audio",
+            "transcript": "I have met an actor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i02:r1",
+              "targetText": "I have met an actor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i02:r2",
+              "targetText": "You have met an actor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i02:r3",
+              "targetText": "They have met an actor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have met an actor.",
+                "uk": "У записі звучить I have met an actor."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have met an actor.",
+                "uk": "У записі звучить I have met an actor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i03:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i03:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i03:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ an actor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i03:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i03:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i03:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:word:singer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — singer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:singer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — singer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:singer:audio",
+            "transcript": "singer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:singer:r1",
+              "targetText": "singer",
+              "meaningByLocale": {
+                "ru": "певец, певица.",
+                "uk": "співак, співачка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "singer",
+            "definitionByLocale": {
+              "ru": "певец, певица.",
+              "uk": "співак, співачка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Она встречалась с певцом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Она встречалась с певцом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has met a singer.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она встречалась с певцом.»",
+            "uk": "Розкажіть про досвід: «Вона зустрічалася зі співаком.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "met",
+            "a",
+            "singer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i05:r1",
+            "text": "She has met a singer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i05:r2",
+            "text": "You have met a singer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i05:r3",
+            "text": "They have met a singer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i05:audio",
+            "transcript": "She has met a singer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i05:r1",
+              "targetText": "She has met a singer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i05:r2",
+              "targetText": "You have met a singer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i05:r3",
+              "targetText": "They have met a singer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has met a singer.",
+                "uk": "У записі звучить She has met a singer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has met a singer.",
+                "uk": "У записі звучить She has met a singer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i06:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i06:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i06:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a singer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i06:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i06:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i06:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:word:dancer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dancer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:dancer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dancer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:dancer:audio",
+            "transcript": "dancer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:dancer:r1",
+              "targetText": "dancer",
+              "meaningByLocale": {
+                "ru": "танцор, танцовщица.",
+                "uk": "танцівник, танцівниця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dancer",
+            "definitionByLocale": {
+              "ru": "танцор, танцовщица.",
+              "uk": "танцівник, танцівниця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Мы встречались с танцором.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Мы встречались с танцором.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have met a dancer.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы встречались с танцором.»",
+            "uk": "Розкажіть про досвід: «Ми зустрічалися з танцівником.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "met",
+            "a",
+            "dancer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i08:r1",
+            "text": "We have met a dancer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i08:r2",
+            "text": "You have met a dancer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i08:r3",
+            "text": "They have met a dancer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i08:audio",
+            "transcript": "We have met a dancer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i08:r1",
+              "targetText": "We have met a dancer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i08:r2",
+              "targetText": "You have met a dancer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i08:r3",
+              "targetText": "They have met a dancer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have met a dancer.",
+                "uk": "У записі звучить We have met a dancer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have met a dancer.",
+                "uk": "У записі звучить We have met a dancer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i09:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i09:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i09:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a dancer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i09:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i09:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i09:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:word:musician",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — musician",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:musician:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — musician",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:musician:audio",
+            "transcript": "musician"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:musician:r1",
+              "targetText": "musician",
+              "meaningByLocale": {
+                "ru": "музыкант.",
+                "uk": "музикант."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "musician",
+            "definitionByLocale": {
+              "ru": "музыкант.",
+              "uk": "музикант."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите об опыте: «Он встречался с музыкантом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите об опыте: «Он встречался с музыкантом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has met a musician.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он встречался с музыкантом.»",
+            "uk": "Розкажіть про досвід: «Він зустрічався з музикантом.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "met",
+            "a",
+            "musician"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i11:r1",
+            "text": "He has met a musician."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i11:r2",
+            "text": "You have met a musician."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i11:r3",
+            "text": "They have met a musician."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i11:audio",
+            "transcript": "He has met a musician."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i11:r1",
+              "targetText": "He has met a musician.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i11:r2",
+              "targetText": "You have met a musician.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i11:r3",
+              "targetText": "They have met a musician.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has met a musician.",
+                "uk": "У записі звучить He has met a musician."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has met a musician.",
+                "uk": "У записі звучить He has met a musician."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i12:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i12:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i12:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ a musician.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i12:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i12:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i12:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-32:i13:p1",
+              "target": "actor",
+              "meaningByLocale": {
+                "ru": "актёр",
+                "uk": "актор"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-32:i13:p2",
+              "target": "singer",
+              "meaningByLocale": {
+                "ru": "певец, певица",
+                "uk": "співак, співачка"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-32:i13:p3",
+              "target": "dancer",
+              "meaningByLocale": {
+                "ru": "танцор, танцовщица",
+                "uk": "танцівник, танцівниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-32:i13:p4",
+              "target": "musician",
+              "meaningByLocale": {
+                "ru": "музыкант",
+                "uk": "музикант"
+              }
+            }
+          ],
+          "leftColumn": [
+            "actor",
+            "singer",
+            "dancer",
+            "musician"
+          ],
+          "rightColumn": [
+            "актёр",
+            "певец, певица",
+            "танцор, танцовщица",
+            "музыкант"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой вариант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой вариант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i14:audio",
+            "transcript": "We can choose another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i15:audio",
+            "transcript": "You mustn't leave the door open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the door open.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я встречался с певцом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я встречался с певцом.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i16:audio",
+            "transcript": "I have met a singer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have met a singer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она встречалась с актёром.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она встречалась с актёром.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i17:audio",
+            "transcript": "She has met an actor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has met an actor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-32:word:actor",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — actor",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:actor:audio"
+        ],
+        "accessibilityLabel": "Картка слова — actor",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:actor:audio",
+            "transcript": "actor"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:actor:r1",
+              "targetText": "actor",
+              "meaningByLocale": {
+                "ru": "актёр.",
+                "uk": "актор."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "actor",
+            "definitionByLocale": {
+              "ru": "актёр.",
+              "uk": "актор."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Я зустрічався з актором.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Я зустрічався з актором.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have met an actor.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Я встречался с актёром.»",
+            "uk": "Розкажіть про досвід: «Я зустрічався з актором.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "met",
+            "an",
+            "actor"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i02:r1",
+            "text": "I have met an actor."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i02:r2",
+            "text": "You have met an actor."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i02:r3",
+            "text": "They have met an actor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i02:audio",
+            "transcript": "I have met an actor."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i02:r1",
+              "targetText": "I have met an actor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i02:r2",
+              "targetText": "You have met an actor.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i02:r3",
+              "targetText": "They have met an actor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have met an actor.",
+                "uk": "У записі звучить I have met an actor."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have met an actor.",
+                "uk": "У записі звучить I have met an actor."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i03:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i03:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i03:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have ___ an actor.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i03:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i03:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i03:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:word:singer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — singer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:singer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — singer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:singer:audio",
+            "transcript": "singer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:singer:r1",
+              "targetText": "singer",
+              "meaningByLocale": {
+                "ru": "певец, певица.",
+                "uk": "співак, співачка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "singer",
+            "definitionByLocale": {
+              "ru": "певец, певица.",
+              "uk": "співак, співачка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Вона зустрічалася зі співаком.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Вона зустрічалася зі співаком.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has met a singer.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Она встречалась с певцом.»",
+            "uk": "Розкажіть про досвід: «Вона зустрічалася зі співаком.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "met",
+            "a",
+            "singer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i05:r1",
+            "text": "She has met a singer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i05:r2",
+            "text": "You have met a singer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i05:r3",
+            "text": "They have met a singer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i05:audio",
+            "transcript": "She has met a singer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i05:r1",
+              "targetText": "She has met a singer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i05:r2",
+              "targetText": "You have met a singer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i05:r3",
+              "targetText": "They have met a singer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has met a singer.",
+                "uk": "У записі звучить She has met a singer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has met a singer.",
+                "uk": "У записі звучить She has met a singer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i06:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i06:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i06:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has ___ a singer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i06:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i06:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i06:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:word:dancer",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dancer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:dancer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dancer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:dancer:audio",
+            "transcript": "dancer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:dancer:r1",
+              "targetText": "dancer",
+              "meaningByLocale": {
+                "ru": "танцор, танцовщица.",
+                "uk": "танцівник, танцівниця."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dancer",
+            "definitionByLocale": {
+              "ru": "танцор, танцовщица.",
+              "uk": "танцівник, танцівниця."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Ми зустрічалися з танцівником.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Ми зустрічалися з танцівником.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have met a dancer.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Мы встречались с танцором.»",
+            "uk": "Розкажіть про досвід: «Ми зустрічалися з танцівником.»"
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "met",
+            "a",
+            "dancer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i08:r1",
+            "text": "We have met a dancer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i08:r2",
+            "text": "You have met a dancer."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i08:r3",
+            "text": "They have met a dancer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i08:audio",
+            "transcript": "We have met a dancer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i08:r1",
+              "targetText": "We have met a dancer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i08:r2",
+              "targetText": "You have met a dancer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i08:r3",
+              "targetText": "They have met a dancer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have met a dancer.",
+                "uk": "У записі звучить We have met a dancer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have met a dancer.",
+                "uk": "У записі звучить We have met a dancer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i09:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i09:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i09:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We have ___ a dancer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i09:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i09:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i09:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:word:musician",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — musician",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:word:musician:audio"
+        ],
+        "accessibilityLabel": "Картка слова — musician",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:word:musician:audio",
+            "transcript": "musician"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:word:musician:r1",
+              "targetText": "musician",
+              "meaningByLocale": {
+                "ru": "музыкант.",
+                "uk": "музикант."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "musician",
+            "definitionByLocale": {
+              "ru": "музыкант.",
+              "uk": "музикант."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про досвід: «Він зустрічався з музикантом.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про досвід: «Він зустрічався з музикантом.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He has met a musician.",
+          "localizedMeaning": {
+            "ru": "Расскажите об опыте: «Он встречался с музыкантом.»",
+            "uk": "Розкажіть про досвід: «Він зустрічався з музикантом.»"
+          },
+          "orderedTokens": [
+            "He",
+            "has",
+            "met",
+            "a",
+            "musician"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i11:r1",
+            "text": "He has met a musician."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i11:r2",
+            "text": "You have met a musician."
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i11:r3",
+            "text": "They have met a musician."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i11:audio",
+            "transcript": "He has met a musician."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-32:i11:r1",
+              "targetText": "He has met a musician.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i11:r2",
+              "targetText": "You have met a musician.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i11:r3",
+              "targetText": "They have met a musician.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has met a musician.",
+                "uk": "У записі звучить He has met a musician."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has met a musician.",
+                "uk": "У записі звучить He has met a musician."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-32:i12:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i12:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-32:i12:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "He has ___ a musician.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-32:i12:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i12:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i12:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-32:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-32:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "Нужна третья форма: met.",
+                "uk": "Потрібна третя форма: met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-32:i13:p1",
+              "target": "actor",
+              "meaningByLocale": {
+                "ru": "актёр",
+                "uk": "актор"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-32:i13:p2",
+              "target": "singer",
+              "meaningByLocale": {
+                "ru": "певец, певица",
+                "uk": "співак, співачка"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-32:i13:p3",
+              "target": "dancer",
+              "meaningByLocale": {
+                "ru": "танцор, танцовщица",
+                "uk": "танцівник, танцівниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-32:i13:p4",
+              "target": "musician",
+              "meaningByLocale": {
+                "ru": "музыкант",
+                "uk": "музикант"
+              }
+            }
+          ],
+          "leftColumn": [
+            "actor",
+            "singer",
+            "dancer",
+            "musician"
+          ],
+          "rightColumn": [
+            "актор",
+            "співак, співачка",
+            "танцівник, танцівниця",
+            "музикант"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший варіант",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший варіант",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i14:audio",
+            "transcript": "We can choose another place."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can choose another place.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "choose",
+            "another",
+            "place"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i15:audio",
+            "transcript": "You mustn't leave the door open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't leave the door open.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "leave",
+            "the",
+            "door",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я зустрічався зі співаком.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я зустрічався зі співаком.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i16:audio",
+            "transcript": "I have met a singer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have met a singer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона зустрічалася з актором.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона зустрічалася з актором.»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-32:i17:audio",
+            "transcript": "She has met an actor."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has met an actor.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-32:word:actor",
+      "correctText": "actor",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i01",
+      "correctText": "I have met an actor.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i02",
+      "correctText": "I have met an actor.",
+      "correctResponseId": "en:lesson-23:session-32:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i03",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:word:singer",
+      "correctText": "singer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i04",
+      "correctText": "She has met a singer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i05",
+      "correctText": "She has met a singer.",
+      "correctResponseId": "en:lesson-23:session-32:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i06",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-32:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:word:dancer",
+      "correctText": "dancer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i07",
+      "correctText": "We have met a dancer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i08",
+      "correctText": "We have met a dancer.",
+      "correctResponseId": "en:lesson-23:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i09",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-32:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:word:musician",
+      "correctText": "musician",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i10",
+      "correctText": "He has met a musician.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i11",
+      "correctText": "He has met a musician.",
+      "correctResponseId": "en:lesson-23:session-32:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i12",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-32:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i14",
+      "correctText": "We can choose another place.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i15",
+      "correctText": "You mustn't leave the door open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i16",
+      "correctText": "I have met a singer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-32:i17",
+      "correctText": "She has met an actor.",
+      "correctResponseId": null
+    }
+  ]
+}

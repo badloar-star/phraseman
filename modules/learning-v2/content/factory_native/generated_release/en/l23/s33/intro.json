@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "have + just|already + participle; yet at end",
+    "uk": "have + just|already + participle; yet at end"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Только что",
+        "uk": "Щойно"
+      },
+      "bodyByLocale": {
+        "ru": "Scientist — учёный, человек, который занимается наукой. I have just met a scientist — я только что встретился с учёным. Just стоит между have и третьей формой met. В этой фразе just означает, что встреча произошла совсем недавно.",
+        "uk": "Scientist — науковець, людина, яка займається наукою. I have just met a scientist — я щойно зустрівся з науковцем. Just стоїть між have і третьою формою met. У цій фразі just означає, що зустріч відбулася зовсім недавно."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-33:intro1:r1",
+              "text": "I have just met a scientist."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro1:r2",
+              "text": "I have just meet a scientist."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro1:r3",
+              "text": "I has just met a scientist."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-33:intro1:r1",
+              "text": "I have just met a scientist."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro1:r2",
+              "text": "I have just meet a scientist."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro1:r3",
+              "text": "I has just met a scientist."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже",
+        "uk": "Уже"
+      },
+      "bodyByLocale": {
+        "ru": "Engineer — инженер: например, специалист, который разрабатывает машины или мосты. Architect — архитектор, который проектирует здания. She has already met an engineer — она уже встретилась с инженером. Already означает «уже» и стоит перед met.",
+        "uk": "Engineer — інженер: наприклад, фахівець, який розробляє машини або мости. Architect — архітектор, який проєктує будівлі. She has already met an engineer — вона вже зустрілася з інженером. Already означає «вже» і стоїть перед met."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-33:intro2:r1",
+              "text": "She has already met an engineer."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro2:r2",
+              "text": "She have already met an engineer."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro2:r3",
+              "text": "She has already meet an engineer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-33:intro2:r1",
+              "text": "She has already met an engineer."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro2:r2",
+              "text": "She have already met an engineer."
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro2:r3",
+              "text": "She has already meet an engineer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё не — или уже?",
+        "uk": "Ще не — чи вже?"
+      },
+      "bodyByLocale": {
+        "ru": "Builder — строитель. Have you met a builder yet? — ты уже встретился со строителем? Yet стоит в конце вопроса и здесь означает «уже». В отрицании yet означает «ещё»: We haven’t met an architect yet — мы ещё не встретились с архитектором. Haven’t = have not. Короткие ответы: Yes, I have. / No, I haven’t.",
+        "uk": "Builder — будівельник. Have you met a builder yet? — ти вже зустрівся з будівельником? Yet стоїть у кінці запитання й тут означає «вже». У запереченні yet означає «ще»: We haven’t met an architect yet — ми ще не зустрілися з архітектором. Haven’t = have not. Короткі відповіді: Yes, I have. / No, I haven’t."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-33:intro3:r1",
+              "text": "Have you met a builder yet?"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro3:r2",
+              "text": "Have you meet a builder yet?"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro3:r3",
+              "text": "Has you met a builder yet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-33:intro3:r1",
+              "text": "Have you met a builder yet?"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro3:r2",
+              "text": "Have you meet a builder yet?"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:intro3:r3",
+              "text": "Has you met a builder yet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "96c9e3b85d9d88eff66c12b2930b61a8aee934175266003e962a72566348885a"
+}

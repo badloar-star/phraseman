@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-31:word:corridor",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — corridor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:word:corridor:audio"
+      ],
+      "accessibilityLabel": "Картка слова — corridor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:word:corridor:audio",
+          "transcript": "corridor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:word:corridor:r1",
+            "targetText": "corridor",
+            "meaningByLocale": {
+              "ru": "коридор.",
+              "uk": "коридор."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "corridor",
+          "definitionByLocale": {
+            "ru": "коридор.",
+            "uk": "коридор."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: «Я прибрав коридор.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: «Я прибрав коридор.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have cleaned the corridor.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Я убрал коридор.»",
+          "uk": "Повідомте: «Я прибрав коридор.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "cleaned",
+          "the",
+          "corridor"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i02:r1",
+          "text": "I have cleaned the corridor."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i02:r2",
+          "text": "You have cleaned the corridor."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i02:r3",
+          "text": "They have cleaned the corridor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i02:audio",
+          "transcript": "I have cleaned the corridor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:i02:r1",
+            "targetText": "I have cleaned the corridor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i02:r2",
+            "targetText": "You have cleaned the corridor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i02:r3",
+            "targetText": "They have cleaned the corridor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have cleaned the corridor.",
+              "uk": "У записі звучить I have cleaned the corridor."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have cleaned the corridor.",
+              "uk": "У записі звучить I have cleaned the corridor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i03:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i03:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i03:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ the corridor.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-31:i03:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i03:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i03:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cleaned.",
+              "uk": "Потрібна третя форма: cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cleaned.",
+              "uk": "Потрібна третя форма: cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:word:cabinet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cabinet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:word:cabinet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cabinet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:word:cabinet:audio",
+          "transcript": "cabinet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:word:cabinet:r1",
+            "targetText": "cabinet",
+            "meaningByLocale": {
+              "ru": "шкафчик.",
+              "uk": "шафка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cabinet",
+          "definitionByLocale": {
+            "ru": "шкафчик.",
+            "uk": "шафка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: «Вона полагодила шафку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: «Вона полагодила шафку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has repaired the cabinet.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Она починила шкафчик.»",
+          "uk": "Повідомте: «Вона полагодила шафку.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "repaired",
+          "the",
+          "cabinet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i05:r1",
+          "text": "She has repaired the cabinet."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i05:r2",
+          "text": "You have repaired the cabinet."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i05:r3",
+          "text": "They have repaired the cabinet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i05:audio",
+          "transcript": "She has repaired the cabinet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:i05:r1",
+            "targetText": "She has repaired the cabinet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i05:r2",
+            "targetText": "You have repaired the cabinet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i05:r3",
+            "targetText": "They have repaired the cabinet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has repaired the cabinet.",
+              "uk": "У записі звучить She has repaired the cabinet."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has repaired the cabinet.",
+              "uk": "У записі звучить She has repaired the cabinet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i06:r1",
+          "text": "repaired"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i06:r2",
+          "text": "repair"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i06:r3",
+          "text": "repairs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ the cabinet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-31:i06:r1",
+            "text": "repaired"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i06:r2",
+            "text": "repair"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i06:r3",
+            "text": "repairs"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: repaired.",
+              "uk": "Потрібна третя форма: repaired."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: repaired.",
+              "uk": "Потрібна третя форма: repaired."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:word:basin",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — basin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:word:basin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — basin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:word:basin:audio",
+          "transcript": "basin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:word:basin:r1",
+            "targetText": "basin",
+            "meaningByLocale": {
+              "ru": "раковина для умывания.",
+              "uk": "умивальник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "basin",
+          "definitionByLocale": {
+            "ru": "раковина для умывания.",
+            "uk": "умивальник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: «Ми почистили умивальник.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: «Ми почистили умивальник.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have cleaned the basin.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Мы почистили раковину для умывания.»",
+          "uk": "Повідомте: «Ми почистили умивальник.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "cleaned",
+          "the",
+          "basin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i08:r1",
+          "text": "We have cleaned the basin."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i08:r2",
+          "text": "You have cleaned the basin."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i08:r3",
+          "text": "They have cleaned the basin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i08:audio",
+          "transcript": "We have cleaned the basin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:i08:r1",
+            "targetText": "We have cleaned the basin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i08:r2",
+            "targetText": "You have cleaned the basin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i08:r3",
+            "targetText": "They have cleaned the basin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have cleaned the basin.",
+              "uk": "У записі звучить We have cleaned the basin."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have cleaned the basin.",
+              "uk": "У записі звучить We have cleaned the basin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i09:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i09:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i09:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ the basin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-31:i09:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i09:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i09:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cleaned.",
+              "uk": "Потрібна третя форма: cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: cleaned.",
+              "uk": "Потрібна третя форма: cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:word:lounge",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lounge",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:word:lounge:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lounge",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:word:lounge:audio",
+          "transcript": "lounge"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:word:lounge:r1",
+            "targetText": "lounge",
+            "meaningByLocale": {
+              "ru": "гостиная.",
+              "uk": "вітальня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lounge",
+          "definitionByLocale": {
+            "ru": "гостиная.",
+            "uk": "вітальня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: «Він прикрасив вітальню.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: «Він прикрасив вітальню.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has decorated the lounge.",
+        "localizedMeaning": {
+          "ru": "Сообщите: «Он украсил гостиную.»",
+          "uk": "Повідомте: «Він прикрасив вітальню.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "decorated",
+          "the",
+          "lounge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i11:r1",
+          "text": "He has decorated the lounge."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i11:r2",
+          "text": "You have decorated the lounge."
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i11:r3",
+          "text": "They have decorated the lounge."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i11:audio",
+          "transcript": "He has decorated the lounge."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-31:i11:r1",
+            "targetText": "He has decorated the lounge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i11:r2",
+            "targetText": "You have decorated the lounge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i11:r3",
+            "targetText": "They have decorated the lounge.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has decorated the lounge.",
+              "uk": "У записі звучить He has decorated the lounge."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has decorated the lounge.",
+              "uk": "У записі звучить He has decorated the lounge."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-31:i12:r1",
+          "text": "decorated"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i12:r2",
+          "text": "decorate"
+        },
+        {
+          "responseId": "en:lesson-23:session-31:i12:r3",
+          "text": "decorates"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ the lounge.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-31:i12:r1",
+            "text": "decorated"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i12:r2",
+            "text": "decorate"
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i12:r3",
+            "text": "decorates"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: decorated.",
+              "uk": "Потрібна третя форма: decorated."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму.",
+            "feedbackByLocale": {
+              "ru": "Нужна третья форма: decorated.",
+              "uk": "Потрібна третя форма: decorated."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-31:i13:p1",
+            "target": "corridor",
+            "meaningByLocale": {
+              "ru": "коридор",
+              "uk": "коридор"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-31:i13:p2",
+            "target": "cabinet",
+            "meaningByLocale": {
+              "ru": "шкафчик",
+              "uk": "шафка"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-31:i13:p3",
+            "target": "basin",
+            "meaningByLocale": {
+              "ru": "раковина для умывания",
+              "uk": "умивальник"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-31:i13:p4",
+            "target": "lounge",
+            "meaningByLocale": {
+              "ru": "гостиная",
+              "uk": "вітальня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "corridor",
+          "cabinet",
+          "basin",
+          "lounge"
+        ],
+        "rightColumn": [
+          "коридор",
+          "шафка",
+          "умивальник",
+          "вітальня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інший варіант",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інший варіант",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i14:audio",
+          "transcript": "We can choose another place."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can choose another place.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "choose",
+          "another",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i15:audio",
+          "transcript": "You mustn't leave the door open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the door open.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "door",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я полагодив шафку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я полагодив шафку.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i16:audio",
+          "transcript": "I have repaired the cabinet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have repaired the cabinet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона прибрала коридор.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона прибрала коридор.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-31:i17:audio",
+          "transcript": "She has cleaned the corridor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She has cleaned the corridor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8470ae68079c5da4951bb65e6e443aa169cea0d509c946440fdecb0776b9a98c"
+}

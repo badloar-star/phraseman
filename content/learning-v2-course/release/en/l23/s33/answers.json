@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-33:word:scientist",
+    "correctText": "scientist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i01",
+    "correctText": "I have just met a scientist.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i02",
+    "correctText": "I have just met a scientist.",
+    "correctResponseId": "en:lesson-23:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i03",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:word:engineer",
+    "correctText": "engineer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i04",
+    "correctText": "She has already met an engineer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i05",
+    "correctText": "She has already met an engineer.",
+    "correctResponseId": "en:lesson-23:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i06",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:word:architect",
+    "correctText": "architect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i07",
+    "correctText": "We haven't met an architect yet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i08",
+    "correctText": "We haven't met an architect yet.",
+    "correctResponseId": "en:lesson-23:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i09",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:word:builder",
+    "correctText": "builder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i10",
+    "correctText": "Have you met a builder yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i11",
+    "correctText": "Have you met a builder yet?",
+    "correctResponseId": "en:lesson-23:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i12",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-23:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i13",
+    "correctText": "en:lesson-23:session-33:i13:p1=scientist\nen:lesson-23:session-33:i13:p2=engineer\nen:lesson-23:session-33:i13:p3=architect\nen:lesson-23:session-33:i13:p4=builder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i14",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-23:session-33:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i15",
+    "correctText": "haven't",
+    "correctResponseId": "en:lesson-23:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i16",
+    "correctText": "I have already met an architect.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-33:i17",
+    "correctText": "I haven't met a builder yet.",
+    "correctResponseId": null
+  }
+]

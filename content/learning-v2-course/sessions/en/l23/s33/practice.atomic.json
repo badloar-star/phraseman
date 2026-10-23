@@ -1,0 +1,2455 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-33",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-33:word:scientist",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scientist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:scientist:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scientist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:scientist:audio",
+            "transcript": "scientist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:scientist:r1",
+              "targetText": "scientist",
+              "meaningByLocale": {
+                "ru": "учёный.",
+                "uk": "науковець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scientist",
+            "definitionByLocale": {
+              "ru": "учёный.",
+              "uk": "науковець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я только что встретился с учёным.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я только что встретился с учёным.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have just met a scientist.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я только что встретился с учёным.»",
+            "uk": "Скажіть: «Я щойно зустрівся з науковцем.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "just",
+            "met",
+            "a",
+            "scientist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i02:r1",
+            "text": "I have just met a scientist."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i02:r2",
+            "text": "You have just met a scientist."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i02:r3",
+            "text": "We have just met a scientist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i02:audio",
+            "transcript": "I have just met a scientist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i02:r1",
+              "targetText": "I have just met a scientist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i02:r2",
+              "targetText": "You have just met a scientist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i02:r3",
+              "targetText": "We have just met a scientist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just met a scientist.",
+                "uk": "У записі звучить I have just met a scientist."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just met a scientist.",
+                "uk": "У записі звучить I have just met a scientist."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i03:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i03:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i03:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have just ___ a scientist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i03:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i03:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i03:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:word:engineer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — engineer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:engineer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — engineer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:engineer:audio",
+            "transcript": "engineer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:engineer:r1",
+              "targetText": "engineer",
+              "meaningByLocale": {
+                "ru": "инженер.",
+                "uk": "інженер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "engineer",
+            "definitionByLocale": {
+              "ru": "инженер.",
+              "uk": "інженер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она уже встретилась с инженером.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она уже встретилась с инженером.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has already met an engineer.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она уже встретилась с инженером.»",
+            "uk": "Скажіть: «Вона вже зустрілася з інженером.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "already",
+            "met",
+            "an",
+            "engineer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i05:r1",
+            "text": "She has already met an engineer."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i05:r2",
+            "text": "You have already met an engineer."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i05:r3",
+            "text": "We have already met an engineer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i05:audio",
+            "transcript": "She has already met an engineer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i05:r1",
+              "targetText": "She has already met an engineer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i05:r2",
+              "targetText": "You have already met an engineer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i05:r3",
+              "targetText": "We have already met an engineer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has already met an engineer.",
+                "uk": "У записі звучить She has already met an engineer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has already met an engineer.",
+                "uk": "У записі звучить She has already met an engineer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i06:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i06:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i06:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has already ___ an engineer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i06:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i06:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i06:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:word:architect",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — architect",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:architect:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — architect",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:architect:audio",
+            "transcript": "architect"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:architect:r1",
+              "targetText": "architect",
+              "meaningByLocale": {
+                "ru": "архитектор.",
+                "uk": "архітектор."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "architect",
+            "definitionByLocale": {
+              "ru": "архитектор.",
+              "uk": "архітектор."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы ещё не встретились с архитектором.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы ещё не встретились с архитектором.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We haven't met an architect yet.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы ещё не встретились с архитектором.»",
+            "uk": "Скажіть: «Ми ще не зустрілися з архітектором.»"
+          },
+          "orderedTokens": [
+            "We",
+            "haven't",
+            "met",
+            "an",
+            "architect",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i08:r1",
+            "text": "We haven't met an architect yet."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i08:r2",
+            "text": "They haven't met an architect yet."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i08:r3",
+            "text": "I haven't met an architect yet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i08:audio",
+            "transcript": "We haven't met an architect yet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i08:r1",
+              "targetText": "We haven't met an architect yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i08:r2",
+              "targetText": "They haven't met an architect yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i08:r3",
+              "targetText": "I haven't met an architect yet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We haven't met an architect yet.",
+                "uk": "У записі звучить We haven't met an architect yet."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We haven't met an architect yet.",
+                "uk": "У записі звучить We haven't met an architect yet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i09:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i09:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i09:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We haven't ___ an architect yet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i09:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i09:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i09:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:word:builder",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — builder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:builder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — builder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:builder:audio",
+            "transcript": "builder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:builder:r1",
+              "targetText": "builder",
+              "meaningByLocale": {
+                "ru": "строитель.",
+                "uk": "будівельник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "builder",
+            "definitionByLocale": {
+              "ru": "строитель.",
+              "uk": "будівельник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Ты уже встретился со строителем?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Ты уже встретился со строителем?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you met a builder yet?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Ты уже встретился со строителем?»",
+            "uk": "Скажіть: «Ти вже зустрівся з будівельником?»"
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "met",
+            "a",
+            "builder",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i11:r1",
+            "text": "Have you met a builder yet?"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i11:r2",
+            "text": "Have they met a builder yet?"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i11:r3",
+            "text": "Has she met a builder yet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i11:audio",
+            "transcript": "Have you met a builder yet?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i11:r1",
+              "targetText": "Have you met a builder yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i11:r2",
+              "targetText": "Have they met a builder yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i11:r3",
+              "targetText": "Has she met a builder yet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you met a builder yet?",
+                "uk": "У записі звучить Have you met a builder yet?"
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you met a builder yet?",
+                "uk": "У записі звучить Have you met a builder yet?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i12:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i12:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i12:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "Have you ___ a builder yet?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i12:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i12:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i12:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-33:i13:p1",
+              "target": "scientist",
+              "meaningByLocale": {
+                "ru": "учёный",
+                "uk": "науковець"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-33:i13:p2",
+              "target": "engineer",
+              "meaningByLocale": {
+                "ru": "инженер",
+                "uk": "інженер"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-33:i13:p3",
+              "target": "architect",
+              "meaningByLocale": {
+                "ru": "архитектор",
+                "uk": "архітектор"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-33:i13:p4",
+              "target": "builder",
+              "meaningByLocale": {
+                "ru": "строитель",
+                "uk": "будівельник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "scientist",
+            "engineer",
+            "architect",
+            "builder"
+          ],
+          "rightColumn": [
+            "учёный",
+            "инженер",
+            "архитектор",
+            "строитель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уже встретились. Ответьте: Have you met the engineer yet?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i14:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i14:r3",
+            "text": "do"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уже встретились. Ответьте: Have you met the engineer yet?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже встретились. Ответьте: Have you met the engineer yet?",
+            "uk": "Ви вже зустрілися. Дайте відповідь: Have you met the engineer yet?"
+          },
+          "gappedTargetPhrase": "Yes, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i14:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i14:r3",
+              "text": "do"
+            }
+          ],
+          "testedDimension": "Вы уже встретились. Ответьте: Have you met the engineer yet?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы уже встретились. Ответьте: Have you met the engineer yet?",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "З I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы уже встретились. Ответьте: Have you met the engineer yet?",
+              "feedbackByLocale": {
+                "ru": "Вопрос с have: ответ тоже с have.",
+                "uk": "Запитання з have: відповідь теж із have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Встречи ещё не было. Ответьте: Have you met the builder yet?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i15:r1",
+            "text": "haven't"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i15:r2",
+            "text": "hasn't"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i15:r3",
+            "text": "don't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Встречи ещё не было. Ответьте: Have you met the builder yet?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Встречи ещё не было. Ответьте: Have you met the builder yet?",
+            "uk": "Зустрічі ще не було. Дайте відповідь: Have you met the builder yet?"
+          },
+          "gappedTargetPhrase": "No, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i15:r1",
+              "text": "haven't"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i15:r2",
+              "text": "hasn't"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i15:r3",
+              "text": "don't"
+            }
+          ],
+          "testedDimension": "Встречи ещё не было. Ответьте: Have you met the builder yet?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Встречи ещё не было. Ответьте: Have you met the builder yet?",
+              "feedbackByLocale": {
+                "ru": "С I нужно haven’t.",
+                "uk": "З I потрібно haven’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Встречи ещё не было. Ответьте: Have you met the builder yet?",
+              "feedbackByLocale": {
+                "ru": "Вопрос с have: отрицательный ответ с haven’t.",
+                "uk": "Запитання з have: заперечна відповідь з haven’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я уже встретился с архитектором».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я уже встретился с архитектором».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i16:audio",
+            "transcript": "I have already met an architect."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already met an architect.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Я ещё не встретился со строителем».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Я ещё не встретился со строителем».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i17:audio",
+            "transcript": "I haven't met a builder yet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I haven't met a builder yet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-33:word:scientist",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scientist",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:scientist:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scientist",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:scientist:audio",
+            "transcript": "scientist"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:scientist:r1",
+              "targetText": "scientist",
+              "meaningByLocale": {
+                "ru": "учёный.",
+                "uk": "науковець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scientist",
+            "definitionByLocale": {
+              "ru": "учёный.",
+              "uk": "науковець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я щойно зустрівся з науковцем.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я щойно зустрівся з науковцем.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have just met a scientist.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я только что встретился с учёным.»",
+            "uk": "Скажіть: «Я щойно зустрівся з науковцем.»"
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "just",
+            "met",
+            "a",
+            "scientist"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i02:r1",
+            "text": "I have just met a scientist."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i02:r2",
+            "text": "You have just met a scientist."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i02:r3",
+            "text": "We have just met a scientist."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i02:audio",
+            "transcript": "I have just met a scientist."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i02:r1",
+              "targetText": "I have just met a scientist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i02:r2",
+              "targetText": "You have just met a scientist.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i02:r3",
+              "targetText": "We have just met a scientist.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just met a scientist.",
+                "uk": "У записі звучить I have just met a scientist."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just met a scientist.",
+                "uk": "У записі звучить I have just met a scientist."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i03:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i03:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i03:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "I have just ___ a scientist.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i03:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i03:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i03:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:word:engineer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — engineer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:engineer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — engineer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:engineer:audio",
+            "transcript": "engineer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:engineer:r1",
+              "targetText": "engineer",
+              "meaningByLocale": {
+                "ru": "инженер.",
+                "uk": "інженер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "engineer",
+            "definitionByLocale": {
+              "ru": "инженер.",
+              "uk": "інженер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона вже зустрілася з інженером.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона вже зустрілася з інженером.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has already met an engineer.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она уже встретилась с инженером.»",
+            "uk": "Скажіть: «Вона вже зустрілася з інженером.»"
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "already",
+            "met",
+            "an",
+            "engineer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i05:r1",
+            "text": "She has already met an engineer."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i05:r2",
+            "text": "You have already met an engineer."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i05:r3",
+            "text": "We have already met an engineer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i05:audio",
+            "transcript": "She has already met an engineer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i05:r1",
+              "targetText": "She has already met an engineer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i05:r2",
+              "targetText": "You have already met an engineer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i05:r3",
+              "targetText": "We have already met an engineer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has already met an engineer.",
+                "uk": "У записі звучить She has already met an engineer."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has already met an engineer.",
+                "uk": "У записі звучить She has already met an engineer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i06:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i06:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i06:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "She has already ___ an engineer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i06:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i06:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i06:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:word:architect",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — architect",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:architect:audio"
+        ],
+        "accessibilityLabel": "Картка слова — architect",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:architect:audio",
+            "transcript": "architect"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:architect:r1",
+              "targetText": "architect",
+              "meaningByLocale": {
+                "ru": "архитектор.",
+                "uk": "архітектор."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "architect",
+            "definitionByLocale": {
+              "ru": "архитектор.",
+              "uk": "архітектор."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми ще не зустрілися з архітектором.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми ще не зустрілися з архітектором.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We haven't met an architect yet.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы ещё не встретились с архитектором.»",
+            "uk": "Скажіть: «Ми ще не зустрілися з архітектором.»"
+          },
+          "orderedTokens": [
+            "We",
+            "haven't",
+            "met",
+            "an",
+            "architect",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i08:r1",
+            "text": "We haven't met an architect yet."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i08:r2",
+            "text": "They haven't met an architect yet."
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i08:r3",
+            "text": "I haven't met an architect yet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i08:audio",
+            "transcript": "We haven't met an architect yet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i08:r1",
+              "targetText": "We haven't met an architect yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i08:r2",
+              "targetText": "They haven't met an architect yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i08:r3",
+              "targetText": "I haven't met an architect yet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We haven't met an architect yet.",
+                "uk": "У записі звучить We haven't met an architect yet."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We haven't met an architect yet.",
+                "uk": "У записі звучить We haven't met an architect yet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i09:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i09:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i09:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "We haven't ___ an architect yet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i09:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i09:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i09:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:word:builder",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — builder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:word:builder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — builder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:word:builder:audio",
+            "transcript": "builder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:word:builder:r1",
+              "targetText": "builder",
+              "meaningByLocale": {
+                "ru": "строитель.",
+                "uk": "будівельник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "builder",
+            "definitionByLocale": {
+              "ru": "строитель.",
+              "uk": "будівельник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ти вже зустрівся з будівельником?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ти вже зустрівся з будівельником?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you met a builder yet?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Ты уже встретился со строителем?»",
+            "uk": "Скажіть: «Ти вже зустрівся з будівельником?»"
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "met",
+            "a",
+            "builder",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i11:r1",
+            "text": "Have you met a builder yet?"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i11:r2",
+            "text": "Have they met a builder yet?"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i11:r3",
+            "text": "Has she met a builder yet?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i11:audio",
+            "transcript": "Have you met a builder yet?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-33:i11:r1",
+              "targetText": "Have you met a builder yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i11:r2",
+              "targetText": "Have they met a builder yet?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i11:r3",
+              "targetText": "Has she met a builder yet?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you met a builder yet?",
+                "uk": "У записі звучить Have you met a builder yet?"
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Have you met a builder yet?",
+                "uk": "У записі звучить Have you met a builder yet?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i12:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i12:r2",
+            "text": "meet"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i12:r3",
+            "text": "meets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму.",
+            "uk": "Виберіть третю форму."
+          },
+          "gappedTargetPhrase": "Have you ___ a builder yet?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i12:r1",
+              "text": "met"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i12:r2",
+              "text": "meet"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i12:r3",
+              "text": "meets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма met.",
+                "uk": "Після have або has потрібна третя форма met."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-33:i13:p1",
+              "target": "scientist",
+              "meaningByLocale": {
+                "ru": "учёный",
+                "uk": "науковець"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-33:i13:p2",
+              "target": "engineer",
+              "meaningByLocale": {
+                "ru": "инженер",
+                "uk": "інженер"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-33:i13:p3",
+              "target": "architect",
+              "meaningByLocale": {
+                "ru": "архитектор",
+                "uk": "архітектор"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-33:i13:p4",
+              "target": "builder",
+              "meaningByLocale": {
+                "ru": "строитель",
+                "uk": "будівельник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "scientist",
+            "engineer",
+            "architect",
+            "builder"
+          ],
+          "rightColumn": [
+            "науковець",
+            "інженер",
+            "архітектор",
+            "будівельник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вже зустрілися. Дайте відповідь: Have you met the engineer yet?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i14:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i14:r3",
+            "text": "do"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вже зустрілися. Дайте відповідь: Have you met the engineer yet?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже встретились. Ответьте: Have you met the engineer yet?",
+            "uk": "Ви вже зустрілися. Дайте відповідь: Have you met the engineer yet?"
+          },
+          "gappedTargetPhrase": "Yes, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i14:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i14:r3",
+              "text": "do"
+            }
+          ],
+          "testedDimension": "Ви вже зустрілися. Дайте відповідь: Have you met the engineer yet?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви вже зустрілися. Дайте відповідь: Have you met the engineer yet?",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "З I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви вже зустрілися. Дайте відповідь: Have you met the engineer yet?",
+              "feedbackByLocale": {
+                "ru": "Вопрос с have: ответ тоже с have.",
+                "uk": "Запитання з have: відповідь теж із have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зустрічі ще не було. Дайте відповідь: Have you met the builder yet?",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-33:i15:r1",
+            "text": "haven't"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i15:r2",
+            "text": "hasn't"
+          },
+          {
+            "responseId": "en:lesson-23:session-33:i15:r3",
+            "text": "don't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зустрічі ще не було. Дайте відповідь: Have you met the builder yet?",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Встречи ещё не было. Ответьте: Have you met the builder yet?",
+            "uk": "Зустрічі ще не було. Дайте відповідь: Have you met the builder yet?"
+          },
+          "gappedTargetPhrase": "No, I ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-33:i15:r1",
+              "text": "haven't"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i15:r2",
+              "text": "hasn't"
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i15:r3",
+              "text": "don't"
+            }
+          ],
+          "testedDimension": "Зустрічі ще не було. Дайте відповідь: Have you met the builder yet?",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-33:i15:r2",
+              "correct": false,
+              "testedDimension": "Зустрічі ще не було. Дайте відповідь: Have you met the builder yet?",
+              "feedbackByLocale": {
+                "ru": "С I нужно haven’t.",
+                "uk": "З I потрібно haven’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-33:i15:r3",
+              "correct": false,
+              "testedDimension": "Зустрічі ще не було. Дайте відповідь: Have you met the builder yet?",
+              "feedbackByLocale": {
+                "ru": "Вопрос с have: отрицательный ответ с haven’t.",
+                "uk": "Запитання з have: заперечна відповідь з haven’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я вже зустрівся з архітектором».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я вже зустрівся з архітектором».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i16:audio",
+            "transcript": "I have already met an architect."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already met an architect.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-33:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Я ще не зустрівся з будівельником».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-33:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Я ще не зустрівся з будівельником».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-33:i17:audio",
+            "transcript": "I haven't met a builder yet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I haven't met a builder yet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-33:word:scientist",
+      "correctText": "scientist",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i01",
+      "correctText": "I have just met a scientist.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i02",
+      "correctText": "I have just met a scientist.",
+      "correctResponseId": "en:lesson-23:session-33:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i03",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-33:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:word:engineer",
+      "correctText": "engineer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i04",
+      "correctText": "She has already met an engineer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i05",
+      "correctText": "She has already met an engineer.",
+      "correctResponseId": "en:lesson-23:session-33:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i06",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-33:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:word:architect",
+      "correctText": "architect",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i07",
+      "correctText": "We haven't met an architect yet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i08",
+      "correctText": "We haven't met an architect yet.",
+      "correctResponseId": "en:lesson-23:session-33:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i09",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-33:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:word:builder",
+      "correctText": "builder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i10",
+      "correctText": "Have you met a builder yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i11",
+      "correctText": "Have you met a builder yet?",
+      "correctResponseId": "en:lesson-23:session-33:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i12",
+      "correctText": "met",
+      "correctResponseId": "en:lesson-23:session-33:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i14",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-23:session-33:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i15",
+      "correctText": "haven't",
+      "correctResponseId": "en:lesson-23:session-33:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i16",
+      "correctText": "I have already met an architect.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-33:i17",
+      "correctText": "I haven't met a builder yet.",
+      "correctResponseId": null
+    }
+  ]
+}

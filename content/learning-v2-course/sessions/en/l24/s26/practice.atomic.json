@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-26:word:contain",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — contain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:contain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — contain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:contain:audio",
+            "transcript": "contain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:contain:r1",
+              "targetText": "contain",
+              "meaningByLocale": {
+                "ru": "содержать.",
+                "uk": "містити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "contain",
+            "definitionByLocale": {
+              "ru": "содержать.",
+              "uk": "містити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Что находится в этой коробке?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Что находится в этой коробке?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What does this box contain?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Что находится в этой коробке?»",
+            "uk": "Скажіть: «Що міститься в цій коробці?»"
+          },
+          "orderedTokens": [
+            "What",
+            "does",
+            "this",
+            "box",
+            "contain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i02:r1",
+            "text": "contained"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i02:r2",
+            "text": "contain"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i02:r3",
+            "text": "containing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The box ___ books.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i02:r1",
+              "text": "contained"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i02:r2",
+              "text": "contain"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i02:r3",
+              "text": "containing"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Открыли коробку в прошлом: нужна форма contained.",
+                "uk": "Відкрили коробку в минулому: потрібна форма contained."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Открыли коробку в прошлом: нужна форма contained.",
+                "uk": "Відкрили коробку в минулому: потрібна форма contained."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i03:r1",
+            "text": "The box contained books."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i03:r2",
+            "text": "The box contained clothes."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i03:r3",
+            "text": "The bag contained books."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i03:audio",
+            "transcript": "The box contained books."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i03:r1",
+              "targetText": "The box contained books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i03:r2",
+              "targetText": "The box contained clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i03:r3",
+              "targetText": "The bag contained books.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The box contained books.",
+                "uk": "У записі звучить The box contained books."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The box contained books.",
+                "uk": "У записі звучить The box contained books."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:word:require",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — require",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:require:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — require",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:require:audio",
+            "transcript": "require"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:require:r1",
+              "targetText": "require",
+              "meaningByLocale": {
+                "ru": "требовать.",
+                "uk": "вимагати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "require",
+            "definitionByLocale": {
+              "ru": "требовать.",
+              "uk": "вимагати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «В этом отеле нужен залог?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «В этом отеле нужен залог?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does this hotel require a deposit?",
+          "localizedMeaning": {
+            "ru": "Скажите: «В этом отеле нужен залог?»",
+            "uk": "Скажіть: «У цьому готелі потрібна застава?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "this",
+            "hotel",
+            "require",
+            "a",
+            "deposit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i05:r1",
+            "text": "required"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i05:r2",
+            "text": "has required"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i05:r3",
+            "text": "require"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The hotel ___ a deposit last year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i05:r1",
+              "text": "required"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i05:r2",
+              "text": "has required"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i05:r3",
+              "text": "require"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма required без has.",
+                "uk": "Із last year потрібна форма required без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма required без has.",
+                "uk": "Із last year потрібна форма required без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i06:r1",
+            "text": "The hotel required a deposit last year."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i06:r2",
+            "text": "The hotel required a deposit last month."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i06:r3",
+            "text": "The flat required a deposit last year."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i06:audio",
+            "transcript": "The hotel required a deposit last year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i06:r1",
+              "targetText": "The hotel required a deposit last year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i06:r2",
+              "targetText": "The hotel required a deposit last month.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i06:r3",
+              "targetText": "The flat required a deposit last year.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hotel required a deposit last year.",
+                "uk": "У записі звучить The hotel required a deposit last year."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hotel required a deposit last year.",
+                "uk": "У записі звучить The hotel required a deposit last year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:word:wonder",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wonder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:wonder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wonder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:wonder:audio",
+            "transcript": "wonder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:wonder:r1",
+              "targetText": "wonder",
+              "meaningByLocale": {
+                "ru": "задумываться, задаваться вопросом.",
+                "uk": "замислюватися, ставити собі запитання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wonder",
+            "definitionByLocale": {
+              "ru": "задумываться, задаваться вопросом.",
+              "uk": "замислюватися, ставити собі запитання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Ты когда-нибудь задумываешься об этом?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Ты когда-нибудь задумываешься об этом?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you ever wonder about that?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Ты когда-нибудь задумываешься об этом?»",
+            "uk": "Скажіть: «Ти коли-небудь замислюєшся про це?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "ever",
+            "wonder",
+            "about",
+            "that"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ often wondered about that.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед wondered.",
+                "uk": "Із I потрібно have перед wondered."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед wondered.",
+                "uk": "Із I потрібно have перед wondered."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i09:r1",
+            "text": "I have often wondered about that."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i09:r2",
+            "text": "We have often wondered about that."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i09:r3",
+            "text": "I have never wondered about that."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i09:audio",
+            "transcript": "I have often wondered about that."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i09:r1",
+              "targetText": "I have often wondered about that.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i09:r2",
+              "targetText": "We have often wondered about that.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i09:r3",
+              "targetText": "I have never wondered about that.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have often wondered about that.",
+                "uk": "У записі звучить I have often wondered about that."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have often wondered about that.",
+                "uk": "У записі звучить I have often wondered about that."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:word:chase",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:chase:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:chase:audio",
+            "transcript": "chase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:chase:r1",
+              "targetText": "chase",
+              "meaningByLocale": {
+                "ru": "гнаться за.",
+                "uk": "гнатися за."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chase",
+            "definitionByLocale": {
+              "ru": "гнаться за.",
+              "uk": "гнатися за."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Эта собака гоняется за кошками?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Эта собака гоняется за кошками?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does that dog chase cats?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Эта собака гоняется за кошками?»",
+            "uk": "Скажіть: «Цей собака ганяється за котами?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "that",
+            "dog",
+            "chase",
+            "cats"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i11:r1",
+            "text": "chased"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i11:r2",
+            "text": "has chased"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i11:r3",
+            "text": "chase"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The dog ___ me yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i11:r1",
+              "text": "chased"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i11:r2",
+              "text": "has chased"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i11:r3",
+              "text": "chase"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужен Past Simple: chased без has.",
+                "uk": "Із yesterday потрібен Past Simple: chased без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужен Past Simple: chased без has.",
+                "uk": "Із yesterday потрібен Past Simple: chased без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i12:r1",
+            "text": "The dog chased me yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i12:r2",
+            "text": "The dog chased me last week."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i12:r3",
+            "text": "The dog chased her yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i12:audio",
+            "transcript": "The dog chased me yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i12:r1",
+              "targetText": "The dog chased me yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i12:r2",
+              "targetText": "The dog chased me last week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i12:r3",
+              "targetText": "The dog chased her yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog chased me yesterday.",
+                "uk": "У записі звучить The dog chased me yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog chased me yesterday.",
+                "uk": "У записі звучить The dog chased me yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-26:i13:p1",
+              "target": "contain",
+              "meaningByLocale": {
+                "ru": "содержать",
+                "uk": "містити"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-26:i13:p2",
+              "target": "require",
+              "meaningByLocale": {
+                "ru": "требовать",
+                "uk": "вимагати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-26:i13:p3",
+              "target": "wonder",
+              "meaningByLocale": {
+                "ru": "задумываться, задаваться вопросом",
+                "uk": "замислюватися, ставити собі запитання"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-26:i13:p4",
+              "target": "chase",
+              "meaningByLocale": {
+                "ru": "гнаться за",
+                "uk": "гнатися за"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contain",
+            "require",
+            "wonder",
+            "chase"
+          ],
+          "rightColumn": [
+            "содержать",
+            "требовать",
+            "задумываться, задаваться вопросом",
+            "гнаться за"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Жду уже час",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Жду уже час",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Работает с утра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Работает с утра",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Этот отель требовал залог в прошлом году».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Этот отель требовал залог в прошлом году».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i16:audio",
+            "transcript": "This hotel required a deposit last year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This hotel required a deposit last year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Вчера собака гналась за мной».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Вчера собака гналась за мной».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i17:audio",
+            "transcript": "The dog chased me yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The dog chased me yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-26:word:contain",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — contain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:contain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — contain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:contain:audio",
+            "transcript": "contain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:contain:r1",
+              "targetText": "contain",
+              "meaningByLocale": {
+                "ru": "содержать.",
+                "uk": "містити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "contain",
+            "definitionByLocale": {
+              "ru": "содержать.",
+              "uk": "містити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Що міститься в цій коробці?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Що міститься в цій коробці?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "What does this box contain?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Что находится в этой коробке?»",
+            "uk": "Скажіть: «Що міститься в цій коробці?»"
+          },
+          "orderedTokens": [
+            "What",
+            "does",
+            "this",
+            "box",
+            "contain"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i02:r1",
+            "text": "contained"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i02:r2",
+            "text": "contain"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i02:r3",
+            "text": "containing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The box ___ books.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i02:r1",
+              "text": "contained"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i02:r2",
+              "text": "contain"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i02:r3",
+              "text": "containing"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Открыли коробку в прошлом: нужна форма contained.",
+                "uk": "Відкрили коробку в минулому: потрібна форма contained."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Открыли коробку в прошлом: нужна форма contained.",
+                "uk": "Відкрили коробку в минулому: потрібна форма contained."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i03:r1",
+            "text": "The box contained books."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i03:r2",
+            "text": "The box contained clothes."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i03:r3",
+            "text": "The bag contained books."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i03:audio",
+            "transcript": "The box contained books."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i03:r1",
+              "targetText": "The box contained books.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i03:r2",
+              "targetText": "The box contained clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i03:r3",
+              "targetText": "The bag contained books.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The box contained books.",
+                "uk": "У записі звучить The box contained books."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The box contained books.",
+                "uk": "У записі звучить The box contained books."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:word:require",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — require",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:require:audio"
+        ],
+        "accessibilityLabel": "Картка слова — require",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:require:audio",
+            "transcript": "require"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:require:r1",
+              "targetText": "require",
+              "meaningByLocale": {
+                "ru": "требовать.",
+                "uk": "вимагати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "require",
+            "definitionByLocale": {
+              "ru": "требовать.",
+              "uk": "вимагати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «У цьому готелі потрібна застава?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «У цьому готелі потрібна застава?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does this hotel require a deposit?",
+          "localizedMeaning": {
+            "ru": "Скажите: «В этом отеле нужен залог?»",
+            "uk": "Скажіть: «У цьому готелі потрібна застава?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "this",
+            "hotel",
+            "require",
+            "a",
+            "deposit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i05:r1",
+            "text": "required"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i05:r2",
+            "text": "has required"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i05:r3",
+            "text": "require"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The hotel ___ a deposit last year.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i05:r1",
+              "text": "required"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i05:r2",
+              "text": "has required"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i05:r3",
+              "text": "require"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма required без has.",
+                "uk": "Із last year потрібна форма required без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "С last year нужна форма required без has.",
+                "uk": "Із last year потрібна форма required без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i06:r1",
+            "text": "The hotel required a deposit last year."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i06:r2",
+            "text": "The hotel required a deposit last month."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i06:r3",
+            "text": "The flat required a deposit last year."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i06:audio",
+            "transcript": "The hotel required a deposit last year."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i06:r1",
+              "targetText": "The hotel required a deposit last year.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i06:r2",
+              "targetText": "The hotel required a deposit last month.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i06:r3",
+              "targetText": "The flat required a deposit last year.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hotel required a deposit last year.",
+                "uk": "У записі звучить The hotel required a deposit last year."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hotel required a deposit last year.",
+                "uk": "У записі звучить The hotel required a deposit last year."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:word:wonder",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wonder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:wonder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wonder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:wonder:audio",
+            "transcript": "wonder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:wonder:r1",
+              "targetText": "wonder",
+              "meaningByLocale": {
+                "ru": "задумываться, задаваться вопросом.",
+                "uk": "замислюватися, ставити собі запитання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wonder",
+            "definitionByLocale": {
+              "ru": "задумываться, задаваться вопросом.",
+              "uk": "замислюватися, ставити собі запитання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ти коли-небудь замислюєшся про це?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ти коли-небудь замислюєшся про це?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Do you ever wonder about that?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Ты когда-нибудь задумываешься об этом?»",
+            "uk": "Скажіть: «Ти коли-небудь замислюєшся про це?»"
+          },
+          "orderedTokens": [
+            "Do",
+            "you",
+            "ever",
+            "wonder",
+            "about",
+            "that"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i08:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ often wondered about that.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i08:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i08:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед wondered.",
+                "uk": "Із I потрібно have перед wondered."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have перед wondered.",
+                "uk": "Із I потрібно have перед wondered."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i09:r1",
+            "text": "I have often wondered about that."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i09:r2",
+            "text": "We have often wondered about that."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i09:r3",
+            "text": "I have never wondered about that."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i09:audio",
+            "transcript": "I have often wondered about that."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i09:r1",
+              "targetText": "I have often wondered about that.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i09:r2",
+              "targetText": "We have often wondered about that.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i09:r3",
+              "targetText": "I have never wondered about that.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have often wondered about that.",
+                "uk": "У записі звучить I have often wondered about that."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have often wondered about that.",
+                "uk": "У записі звучить I have often wondered about that."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:word:chase",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chase",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:word:chase:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chase",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:word:chase:audio",
+            "transcript": "chase"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:word:chase:r1",
+              "targetText": "chase",
+              "meaningByLocale": {
+                "ru": "гнаться за.",
+                "uk": "гнатися за."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chase",
+            "definitionByLocale": {
+              "ru": "гнаться за.",
+              "uk": "гнатися за."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Цей собака ганяється за котами?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Цей собака ганяється за котами?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Does that dog chase cats?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Эта собака гоняется за кошками?»",
+            "uk": "Скажіть: «Цей собака ганяється за котами?»"
+          },
+          "orderedTokens": [
+            "Does",
+            "that",
+            "dog",
+            "chase",
+            "cats"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i11:r1",
+            "text": "chased"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i11:r2",
+            "text": "has chased"
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i11:r3",
+            "text": "chase"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "The dog ___ me yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-26:i11:r1",
+              "text": "chased"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i11:r2",
+              "text": "has chased"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i11:r3",
+              "text": "chase"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужен Past Simple: chased без has.",
+                "uk": "Із yesterday потрібен Past Simple: chased без has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "С yesterday нужен Past Simple: chased без has.",
+                "uk": "Із yesterday потрібен Past Simple: chased без has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-26:i12:r1",
+            "text": "The dog chased me yesterday."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i12:r2",
+            "text": "The dog chased me last week."
+          },
+          {
+            "responseId": "en:lesson-24:session-26:i12:r3",
+            "text": "The dog chased her yesterday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i12:audio",
+            "transcript": "The dog chased me yesterday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-26:i12:r1",
+              "targetText": "The dog chased me yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i12:r2",
+              "targetText": "The dog chased me last week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i12:r3",
+              "targetText": "The dog chased her yesterday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog chased me yesterday.",
+                "uk": "У записі звучить The dog chased me yesterday."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The dog chased me yesterday.",
+                "uk": "У записі звучить The dog chased me yesterday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-26:i13:p1",
+              "target": "contain",
+              "meaningByLocale": {
+                "ru": "содержать",
+                "uk": "містити"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-26:i13:p2",
+              "target": "require",
+              "meaningByLocale": {
+                "ru": "требовать",
+                "uk": "вимагати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-26:i13:p3",
+              "target": "wonder",
+              "meaningByLocale": {
+                "ru": "задумываться, задаваться вопросом",
+                "uk": "замислюватися, ставити собі запитання"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-26:i13:p4",
+              "target": "chase",
+              "meaningByLocale": {
+                "ru": "гнаться за",
+                "uk": "гнатися за"
+              }
+            }
+          ],
+          "leftColumn": [
+            "contain",
+            "require",
+            "wonder",
+            "chase"
+          ],
+          "rightColumn": [
+            "містити",
+            "вимагати",
+            "замислюватися, ставити собі запитання",
+            "гнатися за"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Чекаю вже годину",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Чекаю вже годину",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i14:audio",
+            "transcript": "I have been waiting for an hour."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have been waiting for an hour.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "been",
+            "waiting",
+            "for",
+            "an",
+            "hour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Працює з ранку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Працює з ранку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i15:audio",
+            "transcript": "She has been working since this morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has been working since this morning.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "been",
+            "working",
+            "since",
+            "this",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Цей готель вимагав заставу торік».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Цей готель вимагав заставу торік».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i16:audio",
+            "transcript": "This hotel required a deposit last year."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This hotel required a deposit last year.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Учора собака гнався за мною».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Учора собака гнався за мною».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-26:i17:audio",
+            "transcript": "The dog chased me yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The dog chased me yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-26:word:contain",
+      "correctText": "contain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i01",
+      "correctText": "What does this box contain?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i02",
+      "correctText": "contained",
+      "correctResponseId": "en:lesson-24:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i03",
+      "correctText": "The box contained books.",
+      "correctResponseId": "en:lesson-24:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:word:require",
+      "correctText": "require",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i04",
+      "correctText": "Does this hotel require a deposit?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i05",
+      "correctText": "required",
+      "correctResponseId": "en:lesson-24:session-26:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i06",
+      "correctText": "The hotel required a deposit last year.",
+      "correctResponseId": "en:lesson-24:session-26:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:word:wonder",
+      "correctText": "wonder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i07",
+      "correctText": "Do you ever wonder about that?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i09",
+      "correctText": "I have often wondered about that.",
+      "correctResponseId": "en:lesson-24:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:word:chase",
+      "correctText": "chase",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i10",
+      "correctText": "Does that dog chase cats?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i11",
+      "correctText": "chased",
+      "correctResponseId": "en:lesson-24:session-26:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i12",
+      "correctText": "The dog chased me yesterday.",
+      "correctResponseId": "en:lesson-24:session-26:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i14",
+      "correctText": "I have been waiting for an hour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i15",
+      "correctText": "She has been working since this morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i16",
+      "correctText": "This hotel required a deposit last year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:i17",
+      "correctText": "The dog chased me yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

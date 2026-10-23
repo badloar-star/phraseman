@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-26:intro1:r2": {
+          "ru": "После does нужна исходная форма contain.",
+          "uk": "Після does потрібна початкова форма contain."
+        },
+        "en:lesson-24:session-26:intro1:r3": {
+          "ru": "В этом вопросе перед this box нужно does.",
+          "uk": "У цьому запитанні перед this box потрібне does."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-26:intro2:r2": {
+          "ru": "С last year нужен required без has.",
+          "uk": "Із last year потрібне required без has."
+        },
+        "en:lesson-24:session-26:intro2:r3": {
+          "ru": "Для прошлого нужна форма required.",
+          "uk": "Для минулого потрібна форма required."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-26:intro3:r2": {
+          "ru": "С yesterday используем chased без has.",
+          "uk": "Із yesterday використовуємо chased без has."
+        },
+        "en:lesson-24:session-26:intro3:r3": {
+          "ru": "Для прошлого нужна форма chased.",
+          "uk": "Для минулого потрібна форма chased."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7307f809ed2d4733fa773f58f10b52acf4444527b56480a45f072686afd87308"
+}

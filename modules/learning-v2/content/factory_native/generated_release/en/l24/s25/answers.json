@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-25:word:dollar",
+    "correctText": "dollar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i01",
+    "correctText": "I have found a dollar.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i03",
+    "correctText": "I have found a dollar.",
+    "correctResponseId": "en:lesson-24:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:word:pound",
+    "correctText": "pound",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i04",
+    "correctText": "She spent a pound yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i05",
+    "correctText": "spent",
+    "correctResponseId": "en:lesson-24:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i06",
+    "correctText": "She spent a pound yesterday.",
+    "correctResponseId": "en:lesson-24:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:word:cent",
+    "correctText": "cent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i07",
+    "correctText": "We have saved every cent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i09",
+    "correctText": "We have saved every cent.",
+    "correctResponseId": "en:lesson-24:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:word:penny",
+    "correctText": "penny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i10",
+    "correctText": "They found a penny last week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i11",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-24:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i12",
+    "correctText": "They found a penny last week.",
+    "correctResponseId": "en:lesson-24:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i13",
+    "correctText": "en:lesson-24:session-25:i13:p1=dollar\nen:lesson-24:session-25:i13:p2=pound\nen:lesson-24:session-25:i13:p3=cent\nen:lesson-24:session-25:i13:p4=penny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i16",
+    "correctText": "We found a dollar yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-25:i17",
+    "correctText": "She spent a pound last week.",
+    "correctResponseId": null
+  }
+]

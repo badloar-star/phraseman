@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что в коробке",
+        "uk": "Що в коробці"
+      },
+      "bodyByLocale": {
+        "ru": "Contain — содержать. What does this box contain? — что находится в этой коробке? Если рассказываем о коробке, которую открыли вчера: The box contained books — в коробке были книги. Contained описывает содержимое тогда; contain — исходная форма после does.",
+        "uk": "Contain — містити. What does this box contain? — що міститься в цій коробці? Якщо розповідаємо про коробку, яку відкрили вчора: The box contained books — у коробці були книжки. Contained описує вміст тоді; contain — початкова форма після does."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-26:intro1:r1",
+              "text": "What does this box contain?"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro1:r2",
+              "text": "What does this box contains?"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro1:r3",
+              "text": "What this box contain?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-26:intro1:r1",
+              "text": "What does this box contain?"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro1:r2",
+              "text": "What does this box contains?"
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro1:r3",
+              "text": "What this box contain?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Залог в прошлом году",
+        "uk": "Застава торік"
+      },
+      "bodyByLocale": {
+        "ru": "Require — требовать. Does this hotel require a deposit? — в этом отеле нужен залог? The hotel required a deposit last year — в прошлом году отель требовал залог. Last year относится к законченному прошлому: required без has. Так можно уточнить условия перед бронированием.",
+        "uk": "Require — вимагати. Does this hotel require a deposit? — у цьому готелі потрібна застава? The hotel required a deposit last year — торік готель вимагав заставу. Last year стосується завершеного минулого: required без has. Так можна уточнити умови перед бронюванням."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-26:intro2:r1",
+              "text": "The hotel required a deposit last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro2:r2",
+              "text": "The hotel has required a deposit last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro2:r3",
+              "text": "The hotel require a deposit last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-26:intro2:r1",
+              "text": "The hotel required a deposit last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro2:r2",
+              "text": "The hotel has required a deposit last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro2:r3",
+              "text": "The hotel require a deposit last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "О чём думал и что случилось",
+        "uk": "Про що думав і що сталося"
+      },
+      "bodyByLocale": {
+        "ru": "Wonder — задумываться, задаваться вопросом. I have often wondered about that — я часто об этом задумывался: не называем законченное прошлое время. Chase — гнаться за. The dog chased me yesterday — вчера собака гналась за мной. Здесь yesterday, поэтому chased без has. После chase ставим того, за кем гонятся: chase cats, без for.",
+        "uk": "Wonder — замислюватися, ставити собі запитання. I have often wondered about that — я часто про це замислювався: не називаємо завершеного минулого часу. Chase — гнатися за. The dog chased me yesterday — учора собака гнався за мною. Тут yesterday, тому chased без has. Після chase ставимо того, за ким женуться: chase cats, без for."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-26:intro3:r1",
+              "text": "The dog chased me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro3:r2",
+              "text": "The dog has chased me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro3:r3",
+              "text": "The dog chase me yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-26:intro3:r1",
+              "text": "The dog chased me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro3:r2",
+              "text": "The dog has chased me yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-26:intro3:r3",
+              "text": "The dog chase me yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fafe2ebbc11315c78bb4533c7a5dd30ec6da3cd1734e28fe304eac936b946139"
+}

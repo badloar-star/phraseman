@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-25:word:dollar",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dollar",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:word:dollar:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dollar",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:word:dollar:audio",
+          "transcript": "dollar"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:word:dollar:r1",
+            "targetText": "dollar",
+            "meaningByLocale": {
+              "ru": "доллар.",
+              "uk": "долар."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dollar",
+          "definitionByLocale": {
+            "ru": "доллар.",
+            "uk": "долар."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я нашёл доллар.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я нашёл доллар.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have found a dollar.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я нашёл доллар.»",
+          "uk": "Скажіть: «Я знайшов долар.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "found",
+          "a",
+          "dollar"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о деньгах.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о деньгах.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о деньгах.",
+          "uk": "Доповніть розповідь про гроші."
+        },
+        "gappedTargetPhrase": "I ___ found a dollar.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-25:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о деньгах.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед found.",
+              "uk": "Із I потрібно have перед found."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед found.",
+              "uk": "Із I потрібно have перед found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i03:r1",
+          "text": "I have found a dollar."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i03:r2",
+          "text": "She has found a dollar."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i03:r3",
+          "text": "I have found two dollars."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i03:audio",
+          "transcript": "I have found a dollar."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:i03:r1",
+            "targetText": "I have found a dollar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i03:r2",
+            "targetText": "She has found a dollar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i03:r3",
+            "targetText": "I have found two dollars.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have found a dollar.",
+              "uk": "У записі звучить I have found a dollar."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have found a dollar.",
+              "uk": "У записі звучить I have found a dollar."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:word:pound",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pound",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:word:pound:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pound",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:word:pound:audio",
+          "transcript": "pound"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:word:pound:r1",
+            "targetText": "pound",
+            "meaningByLocale": {
+              "ru": "фунт стерлингов.",
+              "uk": "фунт стерлінгів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pound",
+          "definitionByLocale": {
+            "ru": "фунт стерлингов.",
+            "uk": "фунт стерлінгів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Вчера она потратила фунт.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Вчера она потратила фунт.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She spent a pound yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она потратила фунт.»",
+          "uk": "Скажіть: «Учора вона витратила фунт.»"
+        },
+        "orderedTokens": [
+          "She",
+          "spent",
+          "a",
+          "pound",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о деньгах.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i05:r1",
+          "text": "spent"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i05:r2",
+          "text": "has spent"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i05:r3",
+          "text": "spend"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о деньгах.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о деньгах.",
+          "uk": "Доповніть розповідь про гроші."
+        },
+        "gappedTargetPhrase": "She ___ a pound yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-25:i05:r1",
+            "text": "spent"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i05:r2",
+            "text": "has spent"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i05:r3",
+            "text": "spend"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о деньгах.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма spent без has.",
+              "uk": "Із yesterday потрібна форма spent без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма spent без has.",
+              "uk": "Із yesterday потрібна форма spent без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i06:r1",
+          "text": "She spent a pound yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i06:r2",
+          "text": "She spent a pound last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i06:r3",
+          "text": "He spent a pound yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i06:audio",
+          "transcript": "She spent a pound yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:i06:r1",
+            "targetText": "She spent a pound yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i06:r2",
+            "targetText": "She spent a pound last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i06:r3",
+            "targetText": "He spent a pound yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She spent a pound yesterday.",
+              "uk": "У записі звучить She spent a pound yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She spent a pound yesterday.",
+              "uk": "У записі звучить She spent a pound yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:word:cent",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:word:cent:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:word:cent:audio",
+          "transcript": "cent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:word:cent:r1",
+            "targetText": "cent",
+            "meaningByLocale": {
+              "ru": "цент.",
+              "uk": "цент."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cent",
+          "definitionByLocale": {
+            "ru": "цент.",
+            "uk": "цент."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Мы сберегли каждый цент.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Мы сберегли каждый цент.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have saved every cent.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы сберегли каждый цент.»",
+          "uk": "Скажіть: «Ми зберегли кожен цент.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "saved",
+          "every",
+          "cent"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о деньгах.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о деньгах.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о деньгах.",
+          "uk": "Доповніть розповідь про гроші."
+        },
+        "gappedTargetPhrase": "We ___ saved every cent.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-25:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о деньгах.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед saved.",
+              "uk": "Із we потрібно have перед saved."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед saved.",
+              "uk": "Із we потрібно have перед saved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i09:r1",
+          "text": "We have saved every cent."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i09:r2",
+          "text": "They have saved every cent."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i09:r3",
+          "text": "We have spent every cent."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i09:audio",
+          "transcript": "We have saved every cent."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:i09:r1",
+            "targetText": "We have saved every cent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i09:r2",
+            "targetText": "They have saved every cent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i09:r3",
+            "targetText": "We have spent every cent.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have saved every cent.",
+              "uk": "У записі звучить We have saved every cent."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have saved every cent.",
+              "uk": "У записі звучить We have saved every cent."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:word:penny",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — penny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:word:penny:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — penny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:word:penny:audio",
+          "transcript": "penny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:word:penny:r1",
+            "targetText": "penny",
+            "meaningByLocale": {
+              "ru": "пенни.",
+              "uk": "пенні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "penny",
+          "definitionByLocale": {
+            "ru": "пенни.",
+            "uk": "пенні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «На прошлой неделе они нашли пенни.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «На прошлой неделе они нашли пенни.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They found a penny last week.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На прошлой неделе они нашли пенни.»",
+          "uk": "Скажіть: «Минулого тижня вони знайшли пенні.»"
+        },
+        "orderedTokens": [
+          "They",
+          "found",
+          "a",
+          "penny",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о деньгах.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i11:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i11:r2",
+          "text": "have found"
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i11:r3",
+          "text": "find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о деньгах.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о деньгах.",
+          "uk": "Доповніть розповідь про гроші."
+        },
+        "gappedTargetPhrase": "They ___ a penny last week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-25:i11:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i11:r2",
+            "text": "have found"
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i11:r3",
+            "text": "find"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о деньгах.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С last week нужен Past Simple: found без have.",
+              "uk": "Із last week потрібен Past Simple: found без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о деньгах.",
+            "feedbackByLocale": {
+              "ru": "С last week нужен Past Simple: found без have.",
+              "uk": "Із last week потрібен Past Simple: found без have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-25:i12:r1",
+          "text": "They found a penny last week."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i12:r2",
+          "text": "They found a penny yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-25:i12:r3",
+          "text": "We found a penny last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i12:audio",
+          "transcript": "They found a penny last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-25:i12:r1",
+            "targetText": "They found a penny last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i12:r2",
+            "targetText": "They found a penny yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i12:r3",
+            "targetText": "We found a penny last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They found a penny last week.",
+              "uk": "У записі звучить They found a penny last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They found a penny last week.",
+              "uk": "У записі звучить They found a penny last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-25:i13:p1",
+            "target": "dollar",
+            "meaningByLocale": {
+              "ru": "доллар",
+              "uk": "долар"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-25:i13:p2",
+            "target": "pound",
+            "meaningByLocale": {
+              "ru": "фунт стерлингов",
+              "uk": "фунт стерлінгів"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-25:i13:p3",
+            "target": "cent",
+            "meaningByLocale": {
+              "ru": "цент",
+              "uk": "цент"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-25:i13:p4",
+            "target": "penny",
+            "meaningByLocale": {
+              "ru": "пенни",
+              "uk": "пенні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dollar",
+          "pound",
+          "cent",
+          "penny"
+        ],
+        "rightColumn": [
+          "доллар",
+          "фунт стерлингов",
+          "цент",
+          "пенни"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы нашли доллар вчера».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы нашли доллар вчера».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i16:audio",
+          "transcript": "We found a dollar yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We found a dollar yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она потратила фунт на прошлой неделе».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она потратила фунт на прошлой неделе».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-25:i17:audio",
+          "transcript": "She spent a pound last week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She spent a pound last week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "94b1d61a355a7c7523539ac4969bbae88ad79fdc80ac9d114a6d2a616521ca6b"
+}

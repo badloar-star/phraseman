@@ -9191,4 +9191,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 25,
+    sourceFingerprint: "7ca501d146d9db128a88cba8d5fd3c095bab218257b11ad13fb53e29b49b10c4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect и Past Simple","uk":"Present Perfect и Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 26,
+    sourceFingerprint: "316ebbd9f96a7e22cfc324d637ca2065a0e088088cf5b5ecbfa2742d5ecbf571",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-25:intro1:r2": {
+          "ru": "С yesterday нужен Past Simple: found без have.",
+          "uk": "Із yesterday потрібен Past Simple: found без have."
+        },
+        "en:lesson-24:session-25:intro1:r3": {
+          "ru": "Yesterday — прошлое, поэтому found, а не find.",
+          "uk": "Yesterday — минуле, тому found, а не find."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-25:intro2:r2": {
+          "ru": "С yesterday используем spent без has.",
+          "uk": "Із yesterday використовуємо spent без has."
+        },
+        "en:lesson-24:session-25:intro2:r3": {
+          "ru": "Для законченного прошлого нужна форма spent.",
+          "uk": "Для завершеного минулого потрібна форма spent."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-25:intro3:r2": {
+          "ru": "Last week требует Past Simple: found без have.",
+          "uk": "Last week потребує Past Simple: found без have."
+        },
+        "en:lesson-24:session-25:intro3:r3": {
+          "ru": "Для прошлого нужна форма found.",
+          "uk": "Для минулого потрібна форма found."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a50db3ed3128d700bfeb8d8ef0bacf80f20bf7d7bb20b9d8a2955cb07bfe1088"
+}

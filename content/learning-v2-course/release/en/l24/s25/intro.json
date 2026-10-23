@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect и Past Simple",
+    "uk": "Present Perfect и Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нашёл — и он у меня",
+        "uk": "Знайшов — і він у мене"
+      },
+      "bodyByLocale": {
+        "ru": "Dollar — доллар. I have found a dollar — я нашёл доллар: он теперь у меня, время находки не называем. I found a dollar yesterday — я нашёл доллар вчера. Yesterday помещает находку в законченное прошлое, поэтому используем Past Simple: found без have. Found — форма от знакомого find.",
+        "uk": "Dollar — долар. I have found a dollar — я знайшов долар: він тепер у мене, час знахідки не називаємо. I found a dollar yesterday — я знайшов долар учора. Yesterday поміщає знахідку в завершене минуле, тому використовуємо Past Simple: found без have. Found — форма від знайомого find."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-25:intro1:r1",
+              "text": "I found a dollar yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro1:r2",
+              "text": "I have found a dollar yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro1:r3",
+              "text": "I find a dollar yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-25:intro1:r1",
+              "text": "I found a dollar yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro1:r2",
+              "text": "I have found a dollar yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro1:r3",
+              "text": "I find a dollar yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда потратила",
+        "uk": "Коли витратила"
+      },
+      "bodyByLocale": {
+        "ru": "Pound здесь — британский фунт, деньги. She has spent a pound — она потратила фунт: сообщаем результат. She spent a pound yesterday — она потратила фунт вчера: рассказываем, что произошло в конкретное прошлое время. С yesterday не добавляем has. Spent — прошедшая форма spend.",
+        "uk": "Pound тут — британський фунт, гроші. She has spent a pound — вона витратила фунт: повідомляємо результат. She spent a pound yesterday — вона витратила фунт учора: розповідаємо, що сталося в конкретний минулий час. Із yesterday не додаємо has. Spent — минула форма spend."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-25:intro2:r1",
+              "text": "She spent a pound yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro2:r2",
+              "text": "She has spent a pound yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro2:r3",
+              "text": "She spend a pound yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-25:intro2:r1",
+              "text": "She spent a pound yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro2:r2",
+              "text": "She has spent a pound yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro2:r3",
+              "text": "She spend a pound yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Монетка на прошлой неделе",
+        "uk": "Монетка минулого тижня"
+      },
+      "bodyByLocale": {
+        "ru": "Cent — цент, penny — пенни. We have saved every cent — мы сберегли каждый цент: важен результат сейчас. They found a penny last week — они нашли пенни на прошлой неделе. Last week — законченный период, нужен found без have. Даже маленькая монетка помогает заметить большую разницу между «уже сделал» и «сделал тогда».",
+        "uk": "Cent — цент, penny — пенні. We have saved every cent — ми зберегли кожен цент: важливий результат зараз. They found a penny last week — вони знайшли пенні минулого тижня. Last week — завершений період, потрібне found без have. Навіть маленька монетка допомагає помітити велику різницю між «уже зробив» і «зробив тоді»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-25:intro3:r1",
+              "text": "They found a penny last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro3:r2",
+              "text": "They have found a penny last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro3:r3",
+              "text": "They find a penny last week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-25:intro3:r1",
+              "text": "They found a penny last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro3:r2",
+              "text": "They have found a penny last week."
+            },
+            {
+              "responseId": "en:lesson-24:session-25:intro3:r3",
+              "text": "They find a penny last week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa2c50f15092f3c47568b39396c1a5110e9a01ec56fcef3e33c73a650b3a899d"
+}

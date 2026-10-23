@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-26:word:contain",
+    "correctText": "contain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i01",
+    "correctText": "What does this box contain?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i02",
+    "correctText": "contained",
+    "correctResponseId": "en:lesson-24:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i03",
+    "correctText": "The box contained books.",
+    "correctResponseId": "en:lesson-24:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:word:require",
+    "correctText": "require",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i04",
+    "correctText": "Does this hotel require a deposit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i05",
+    "correctText": "required",
+    "correctResponseId": "en:lesson-24:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i06",
+    "correctText": "The hotel required a deposit last year.",
+    "correctResponseId": "en:lesson-24:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:word:wonder",
+    "correctText": "wonder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i07",
+    "correctText": "Do you ever wonder about that?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i09",
+    "correctText": "I have often wondered about that.",
+    "correctResponseId": "en:lesson-24:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:word:chase",
+    "correctText": "chase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i10",
+    "correctText": "Does that dog chase cats?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i11",
+    "correctText": "chased",
+    "correctResponseId": "en:lesson-24:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i12",
+    "correctText": "The dog chased me yesterday.",
+    "correctResponseId": "en:lesson-24:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i13",
+    "correctText": "en:lesson-24:session-26:i13:p1=contain\nen:lesson-24:session-26:i13:p2=require\nen:lesson-24:session-26:i13:p3=wonder\nen:lesson-24:session-26:i13:p4=chase",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i16",
+    "correctText": "This hotel required a deposit last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-26:i17",
+    "correctText": "The dog chased me yesterday.",
+    "correctResponseId": null
+  }
+]

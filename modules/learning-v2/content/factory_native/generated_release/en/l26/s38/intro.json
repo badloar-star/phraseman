@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; just, already, yet; by the time",
+    "uk": "if, when, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Корм и прогулка",
+        "uk": "Корм і прогулянка"
+      },
+      "bodyByLocale": {
+        "ru": "Kibble — сухой корм в гранулах для домашних животных. The kibble is in the cupboard — сухой корм в шкафу. В этом значении слово неисчисляемое: some kibble, без a. Muzzle — намордник. Where is the muzzle? — где намордник? Вы распределяете дела: I will walk the dog when you get home — я погуляю с собакой, когда ты придёшь домой. После when здесь get, без will. Сохранить что-то на потом можно фразой Save some for later — оставь немного на потом.",
+        "uk": "Kibble — сухий корм у гранулах для домашніх тварин. The kibble is in the cupboard — сухий корм у шафі. У цьому значенні слово незлічуване: some kibble, без a. Muzzle — намордник. Where is the muzzle? — де намордник? Ви розподіляєте справи: I will walk the dog when you get home — я погуляю із собакою, коли ти прийдеш додому. Після when тут get, без will. Залишити щось на потім можна фразою Save some for later — залиш трохи на потім."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-38:intro1:r1",
+              "text": "I will walk the dog when you get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro1:r2",
+              "text": "I will walk the dog when you will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro1:r3",
+              "text": "I will walk the dog when you gets home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-38:intro1:r1",
+              "text": "I will walk the dog when you get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro1:r2",
+              "text": "I will walk the dog when you will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro1:r3",
+              "text": "I will walk the dog when you gets home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать то, что заметили",
+        "uk": "Назвати те, що помітили"
+      },
+      "bodyByLocale": {
+        "ru": "Flea — блоха. Tick — клещ. I think this is a flea — думаю, это блоха. Is that a tick? — это клещ? Эти фразы позволяют назвать замеченное и задать вопрос, не утверждая то, в чём вы не уверены. I have just noticed it — я только что это заметил. Have you seen it yet? — ты уже это видел? Just и yet связывают ситуацию с настоящим. Если нужна помощь: If you are unsure, you can ask — если ты не уверен, можешь спросить. В конце условие звучит так: You can ask if you are unsure.",
+        "uk": "Flea — блоха. Tick — кліщ. I think this is a flea — думаю, це блоха. Is that a tick? — це кліщ? Ці фрази дають змогу назвати помічене й поставити запитання, не стверджуючи того, у чому ви не впевнені. I have just noticed it — я щойно це помітив. Have you seen it yet? — ти вже це бачив? Just і yet пов’язують ситуацію з теперішнім. Якщо потрібна допомога: If you are unsure, you can ask — якщо ти не впевнений, можеш запитати. У кінці умова звучить так: You can ask if you are unsure."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-38:intro2:r1",
+              "text": "You can ask if you are unsure."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro2:r2",
+              "text": "You can ask unless you are unsure."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro2:r3",
+              "text": "You can ask if you will be unsure."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-38:intro2:r1",
+              "text": "You can ask if you are unsure."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro2:r2",
+              "text": "You can ask unless you are unsure."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro2:r3",
+              "text": "You can ask if you will be unsure."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не сделать одно дело дважды",
+        "uk": "Не зробити одну справу двічі"
+      },
+      "bodyByLocale": {
+        "ru": "I have already fed the dog — я уже покормил собаку. Вы сообщаете о готовом результате, чтобы другой человек знал о нём. О вчерашнем вечере: I had filled the bowl by the time you came home — я наполнил миску к тому времени, как ты пришёл домой. Had filled — действие раньше прихода. О привычке: I take a bag when I walk the dog — я беру пакет, когда гуляю с собакой. О сегодняшнем плане: We will go out unless it rains — мы выйдем, если не пойдёт дождь. Unless задаёт исключение из плана.",
+        "uk": "I have already fed the dog — я вже погодував собаку. Ви повідомляєте про готовий результат, щоб інша людина знала про нього. Про вчорашній вечір: I had filled the bowl by the time you came home — я наповнив миску до того часу, як ти прийшов додому. Had filled — дія раніше за прихід. Про звичку: I take a bag when I walk the dog — я беру пакет, коли гуляю із собакою. Про сьогоднішній план: We will go out unless it rains — ми вийдемо, якщо не піде дощ. Unless задає виняток із плану."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-38:intro3:r1",
+              "text": "I had filled the bowl by the time you came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro3:r2",
+              "text": "I have filled the bowl by the time you came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro3:r3",
+              "text": "I had fill the bowl by the time you came home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-38:intro3:r1",
+              "text": "I had filled the bowl by the time you came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro3:r2",
+              "text": "I have filled the bowl by the time you came home."
+            },
+            {
+              "responseId": "en:lesson-26:session-38:intro3:r3",
+              "text": "I had fill the bowl by the time you came home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f1677d25a33e04aac035441fa19e8029ac64cae071572daf355d21f746d4cc80"
+}

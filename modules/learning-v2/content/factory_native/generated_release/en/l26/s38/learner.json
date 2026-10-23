@@ -1,0 +1,1073 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-38",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-38:word:kibble",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kibble",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:word:kibble:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kibble",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:word:kibble:audio",
+          "transcript": "kibble"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:word:kibble:r1",
+            "targetText": "kibble",
+            "meaningByLocale": {
+              "ru": "Сухой корм в гранулах для домашних животных.",
+              "uk": "Сухий корм у гранулах для домашніх тварин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kibble",
+          "definitionByLocale": {
+            "ru": "Сухой корм в гранулах для домашних животных.",
+            "uk": "Сухий корм у гранулах для домашніх тварин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i01:r1",
+          "text": "The kibble is in the cupboard."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i01:r2",
+          "text": "The kibble is in the bowl."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i01:r3",
+          "text": "The bag is in the cupboard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i01:audio",
+          "transcript": "The kibble is in the cupboard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:i01:r1",
+            "targetText": "The kibble is in the cupboard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i01:r2",
+            "targetText": "The kibble is in the bowl.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i01:r3",
+            "targetText": "The bag is in the cupboard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The kibble is in the cupboard.",
+              "uk": "У записі звучить The kibble is in the cupboard."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The kibble is in the cupboard.",
+              "uk": "У записі звучить The kibble is in the cupboard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу оставить немного на потом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу оставить немного на потом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i02:audio",
+          "transcript": "Save some for later."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Save some for later.",
+        "orderedTokens": [
+          "Save",
+          "some",
+          "for",
+          "later"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы погуляете с собакой после возвращения друга.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i03:r1",
+          "text": "get"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i03:r2",
+          "text": "will get"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i03:r3",
+          "text": "gets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы погуляете с собакой после возвращения друга.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы погуляете с собакой после возвращения друга.",
+          "uk": "Ви погуляєте із собакою після повернення друга."
+        },
+        "gappedTargetPhrase": "I will walk the dog when you ___ home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-38:i03:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i03:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i03:r3",
+            "text": "gets"
+          }
+        ],
+        "testedDimension": "Вы погуляете с собакой после возвращения друга.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы погуляете с собакой после возвращения друга.",
+            "feedbackByLocale": {
+              "ru": "После when здесь get без will.",
+              "uk": "Після when тут get без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы погуляете с собакой после возвращения друга.",
+            "feedbackByLocale": {
+              "ru": "С you используется get без -s.",
+              "uk": "З you вживається get без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:word:muzzle",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — muzzle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:word:muzzle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — muzzle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:word:muzzle:audio",
+          "transcript": "muzzle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:word:muzzle:r1",
+            "targetText": "muzzle",
+            "meaningByLocale": {
+              "ru": "Намордник.",
+              "uk": "Намордник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muzzle",
+          "definitionByLocale": {
+            "ru": "Намордник.",
+            "uk": "Намордник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед выходом спросите, где намордник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i04:audio"
+      ],
+      "accessibilityLabel": "Перед выходом спросите, где намордник.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i04:audio",
+          "transcript": "Where is the muzzle?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the muzzle?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что собаку уже покормили вы.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что собаку уже покормили вы.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already fed the dog.",
+        "localizedMeaning": {
+          "ru": "Скажите, что собаку уже покормили вы.",
+          "uk": "Скажіть, що собаку вже погодували ви."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "fed",
+          "the",
+          "dog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i06:r1",
+          "text": "Thanks for telling me."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i06:r2",
+          "text": "Thanks for helping me."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i06:r3",
+          "text": "Please tell me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i06:audio",
+          "transcript": "Thanks for telling me."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:i06:r1",
+            "targetText": "Thanks for telling me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i06:r2",
+            "targetText": "Thanks for helping me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i06:r3",
+            "targetText": "Please tell me.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Thanks for telling me.",
+              "uk": "У записі звучить Thanks for telling me."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Thanks for telling me.",
+              "uk": "У записі звучить Thanks for telling me."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:word:flea",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flea",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:word:flea:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flea",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:word:flea:audio",
+          "transcript": "flea"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:word:flea:r1",
+            "targetText": "flea",
+            "meaningByLocale": {
+              "ru": "Блоха.",
+              "uk": "Блоха."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flea",
+          "definitionByLocale": {
+            "ru": "Блоха.",
+            "uk": "Блоха."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы не уверены. Скажите: «Думаю, это блоха».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Вы не уверены. Скажите: «Думаю, это блоха».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i07:audio",
+          "transcript": "I think this is a flea."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think this is a flea.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы заметили это только что.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i08:r1",
+          "text": "noticed"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i08:r2",
+          "text": "notice"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i08:r3",
+          "text": "noticing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы заметили это только что.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы заметили это только что.",
+          "uk": "Ви помітили це щойно."
+        },
+        "gappedTargetPhrase": "I have just ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-38:i08:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i08:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i08:r3",
+            "text": "noticing"
+          }
+        ],
+        "testedDimension": "Вы заметили это только что.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы заметили это только что.",
+            "feedbackByLocale": {
+              "ru": "После have нужна форма noticed.",
+              "uk": "Після have потрібна форма noticed."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы заметили это только что.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно noticed, не noticing.",
+              "uk": "Тут потрібно noticed, не noticing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:word:tick",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tick",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:word:tick:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tick",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:word:tick:audio",
+          "transcript": "tick"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:word:tick:r1",
+            "targetText": "tick",
+            "meaningByLocale": {
+              "ru": "Клещ.",
+              "uk": "Кліщ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tick",
+          "definitionByLocale": {
+            "ru": "Клещ.",
+            "uk": "Кліщ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Задайте вопрос: «Это клещ?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Задайте вопрос: «Это клещ?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is that a tick?",
+        "localizedMeaning": {
+          "ru": "Задайте вопрос: «Это клещ?»",
+          "uk": "Поставте запитання: «Це кліщ?»"
+        },
+        "orderedTokens": [
+          "Is",
+          "that",
+          "a",
+          "tick"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i10:r1",
+          "text": "I am not sure."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i10:r2",
+          "text": "I am quite sure."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i10:r3",
+          "text": "I was not there."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i10:audio",
+          "transcript": "I am not sure."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:i10:r1",
+            "targetText": "I am not sure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i10:r2",
+            "targetText": "I am quite sure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i10:r3",
+            "targetText": "I was not there.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not sure.",
+              "uk": "У записі звучить I am not sure."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am not sure.",
+              "uk": "У записі звучить I am not sure."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Начните с условия: You can ask if you are unsure.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Начните с условия: You can ask if you are unsure.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i11:audio",
+          "transcript": "If you are unsure, you can ask."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "If you are unsure, you can ask.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о том, видел ли друг это к настоящему моменту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о том, видел ли друг это к настоящему моменту.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i12:audio",
+          "transcript": "Have you seen it yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you seen it yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "seen",
+          "it",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера миска была наполнена до прихода друга.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i13:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i13:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера миска была наполнена до прихода друга.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера миска была наполнена до прихода друга.",
+          "uk": "Учора миска була наповнена до приходу друга."
+        },
+        "gappedTargetPhrase": "I ___ filled the bowl by the time you came home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-38:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i13:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вчера миска была наполнена до прихода друга.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i13:r2",
+            "correct": false,
+            "testedDimension": "Вчера миска была наполнена до прихода друга.",
+            "feedbackByLocale": {
+              "ru": "Have относится к результату сейчас; здесь два прошлых события.",
+              "uk": "Have стосується результату зараз; тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i13:r3",
+            "correct": false,
+            "testedDimension": "Вчера миска была наполнена до прихода друга.",
+            "feedbackByLocale": {
+              "ru": "Am filled не означает, что я наполнил миску.",
+              "uk": "Am filled не означає, що я наповнив миску."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i14:r1",
+          "text": "I take a bag when I walk the dog."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i14:r2",
+          "text": "I take a ball when I walk the dog."
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i14:r3",
+          "text": "I take a bag when I go shopping."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i14:audio",
+          "transcript": "I take a bag when I walk the dog."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-38:i14:r1",
+            "targetText": "I take a bag when I walk the dog.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i14:r2",
+            "targetText": "I take a ball when I walk the dog.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i14:r3",
+            "targetText": "I take a bag when I go shopping.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i14:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I take a bag when I walk the dog.",
+              "uk": "У записі звучить I take a bag when I walk the dog."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i14:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I take a bag when I walk the dog.",
+              "uk": "У записі звучить I take a bag when I walk the dog."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогулка состоится, если дождь не изменит план.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-38:i15:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i15:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-38:i15:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогулка состоится, если дождь не изменит план.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогулка состоится, если дождь не изменит план.",
+          "uk": "Прогулянка відбудеться, якщо дощ не змінить план."
+        },
+        "gappedTargetPhrase": "We will go out ___ it rains.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-38:i15:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i15:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i15:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Прогулка состоится, если дождь не изменит план.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-38:i15:r2",
+            "correct": false,
+            "testedDimension": "Прогулка состоится, если дождь не изменит план.",
+            "feedbackByLocale": {
+              "ru": "If означало бы выйти именно при дожде.",
+              "uk": "If означало б вийти саме під час дощу."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-38:i15:r3",
+            "correct": false,
+            "testedDimension": "Прогулка состоится, если дождь не изменит план.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы дождь причиной выйти.",
+              "uk": "Because зробило б дощ причиною вийти."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите понести тяжёлую сумку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите понести тяжёлую сумку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will carry the bag.",
+        "localizedMeaning": {
+          "ru": "Предложите понести тяжёлую сумку.",
+          "uk": "Запропонуйте понести важку сумку."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "carry",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг собирается на прогулку. Спросите, можно ли пойти с ним.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-38:i17:audio"
+      ],
+      "accessibilityLabel": "Друг собирается на прогулку. Спросите, можно ли пойти с ним.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-38:i17:audio",
+          "transcript": "Can I come with you?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I come with you?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d391b2f172678b20ae7dc3520b07e6a76da1d2a4831242e0f968e042b066fc2c"
+}

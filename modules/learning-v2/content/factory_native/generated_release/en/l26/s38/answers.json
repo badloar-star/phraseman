@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-38:word:kibble",
+    "correctText": "kibble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i01",
+    "correctText": "The kibble is in the cupboard.",
+    "correctResponseId": "en:lesson-26:session-38:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i02",
+    "correctText": "Save some for later.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i03",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-26:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:word:muzzle",
+    "correctText": "muzzle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i04",
+    "correctText": "Where is the muzzle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i05",
+    "correctText": "I have already fed the dog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i06",
+    "correctText": "Thanks for telling me.",
+    "correctResponseId": "en:lesson-26:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:word:flea",
+    "correctText": "flea",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i07",
+    "correctText": "I think this is a flea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i08",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-26:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:word:tick",
+    "correctText": "tick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i09",
+    "correctText": "Is that a tick?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i10",
+    "correctText": "I am not sure.",
+    "correctResponseId": "en:lesson-26:session-38:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i11",
+    "correctText": "If you are unsure, you can ask.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i12",
+    "correctText": "Have you seen it yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-38:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i14",
+    "correctText": "I take a bag when I walk the dog.",
+    "correctResponseId": "en:lesson-26:session-38:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i15",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-38:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i16",
+    "correctText": "I will carry the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-38:i17",
+    "correctText": "Can I come with you?",
+    "correctResponseId": null
+  }
+]

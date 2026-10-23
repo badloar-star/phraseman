@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; just, already, yet; by the time",
+    "uk": "if, when, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попробовать перед покупкой",
+        "uk": "Спробувати перед покупкою"
+      },
+      "bodyByLocale": {
+        "ru": "Mandarin — мандарин. Would you like a mandarin? — хочешь мандарин? Продавец предлагает попробовать фрукт: Try one if you want — попробуй один, если хочешь. Условие можно перенести в начало: If you want, try one. Это всё ещё предложение попробовать, а не обещание. Вы принимаете решение: I will buy some if they are sweet — я куплю несколько, если они сладкие. После if здесь are, без will.",
+        "uk": "Mandarin — мандарин. Would you like a mandarin? — хочеш мандарин? Продавець пропонує спробувати фрукт: Try one if you want — спробуй один, якщо хочеш. Умову можна перенести на початок: If you want, try one. Це все ще пропозиція спробувати, а не обіцянка. Ви приймаєте рішення: I will buy some if they are sweet — я куплю кілька, якщо вони солодкі. Після if тут are, без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-37:intro1:r1",
+              "text": "I will buy some if they are sweet."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro1:r2",
+              "text": "I will buy some if they will be sweet."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro1:r3",
+              "text": "I will buy some unless they are sweet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-37:intro1:r1",
+              "text": "I will buy some if they are sweet."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro1:r2",
+              "text": "I will buy some if they will be sweet."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro1:r3",
+              "text": "I will buy some unless they are sweet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Зелень для супа",
+        "uk": "Зелень до супу"
+      },
+      "bodyByLocale": {
+        "ru": "Dill — укроп. Scallion — зелёный лук, обычно одна луковица с зелёными перьями. We need dill and two scallions — нам нужен укроп и две луковицы зелёного лука. Вы спрашиваете о подготовке: Have you washed the herbs yet? — ты уже помыл зелень? I have already washed them — я уже её помыл. Herbs в английском во множественном числе, поэтому в ответе them. Для обычной привычки: I wash herbs when I get home — я мою зелень, когда прихожу домой. Оба действия стоят в Present Simple.",
+        "uk": "Dill — кріп. Scallion — зелена цибуля, зазвичай одна цибулина із зеленим пір’ям. We need dill and two scallions — нам потрібен кріп і дві цибулини зеленої цибулі. Ви запитуєте про підготовку: Have you washed the herbs yet? — ти вже помив зелень? I have already washed them — я вже її помив. Herbs в англійській у множині, тому у відповіді them. Для звичайної звички: I wash herbs when I get home — я мию зелень, коли приходжу додому. Обидві дії стоять у Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-37:intro2:r1",
+              "text": "I have already washed them."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro2:r2",
+              "text": "I have already wash them."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro2:r3",
+              "text": "I already washing them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-37:intro2:r1",
+              "text": "I have already washed them."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro2:r2",
+              "text": "I have already wash them."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro2:r3",
+              "text": "I already washing them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "У каждого свой вкус",
+        "uk": "У кожного свій смак"
+      },
+      "bodyByLocale": {
+        "ru": "Cilantro — кинза, зелень кориандра; это другое название знакомого coriander, когда речь о листьях. Please leave out the cilantro — пожалуйста, не добавляй кинзу. Можно договориться: I will add it to your bowl unless you say no — я добавлю её в твою тарелку, если ты не откажешься. Для времени подачи: We will eat when everyone is ready — мы поедим, когда все будут готовы. О вчерашнем ужине: The soup had cooled by the time we sat down — суп остыл к тому времени, как мы сели. Had cooled показывает более раннее действие.",
+        "uk": "Cilantro — кінза, зелень коріандру; це інша назва знайомого coriander, коли йдеться про листя. Please leave out the cilantro — будь ласка, не додавай кінзу. Можна домовитися: I will add it to your bowl unless you say no — я додам її у твою тарілку, якщо ти не відмовишся. Для часу подачі: We will eat when everyone is ready — ми поїмо, коли всі будуть готові. Про вчорашню вечерю: The soup had cooled by the time we sat down — суп охолов до того часу, як ми сіли. Had cooled показує ранішу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-37:intro3:r1",
+              "text": "The soup had cooled by the time we sat down."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro3:r2",
+              "text": "The soup has cooled by the time we sat down."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro3:r3",
+              "text": "The soup had cooling by the time we sat down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-37:intro3:r1",
+              "text": "The soup had cooled by the time we sat down."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro3:r2",
+              "text": "The soup has cooled by the time we sat down."
+            },
+            {
+              "responseId": "en:lesson-26:session-37:intro3:r3",
+              "text": "The soup had cooling by the time we sat down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ff4690e2e48c1df4198ce60b8c99610ea7403bf31b703eb5a68f62aaf3dbf6db"
+}

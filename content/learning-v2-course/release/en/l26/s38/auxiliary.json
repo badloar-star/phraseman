@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-38:intro1:r2": {
+          "ru": "После when в этом будущем придаточном get без will.",
+          "uk": "Після when у цьому майбутньому підрядному get без will."
+        },
+        "en:lesson-26:session-38:intro1:r3": {
+          "ru": "С you нужно get без -s.",
+          "uk": "З you потрібно get без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-38:intro2:r2": {
+          "ru": "Unless меняет смысл: если ты не сомневаешься.",
+          "uk": "Unless змінює зміст: якщо ти не сумніваєшся."
+        },
+        "en:lesson-26:session-38:intro2:r3": {
+          "ru": "В условии после if здесь are без will.",
+          "uk": "В умові після if тут are без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-38:intro3:r2": {
+          "ru": "Came home задаёт прошлое; более раннее действие — had filled.",
+          "uk": "Came home задає минуле; раніша дія — had filled."
+        },
+        "en:lesson-26:session-38:intro3:r3": {
+          "ru": "После had нужна форма filled.",
+          "uk": "Після had потрібна форма filled."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "05b0851454e10b341d38513b3fb2ab275ccafe09d55ec22aa114f19a6d99edcc"
+}

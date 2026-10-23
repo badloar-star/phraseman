@@ -1,0 +1,1075 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-37",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-37:word:mandarin",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mandarin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:word:mandarin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mandarin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:word:mandarin:audio",
+          "transcript": "mandarin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-37:word:mandarin:r1",
+            "targetText": "mandarin",
+            "meaningByLocale": {
+              "ru": "Мандарин, цитрусовый фрукт.",
+              "uk": "Мандарин, цитрусовий фрукт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mandarin",
+          "definitionByLocale": {
+            "ru": "Мандарин, цитрусовый фрукт.",
+            "uk": "Мандарин, цитрусовий фрукт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте другу мандарин.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте другу мандарин.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Would you like a mandarin?",
+        "localizedMeaning": {
+          "ru": "Предложите другу мандарин.",
+          "uk": "Запропонуйте другу мандарин."
+        },
+        "orderedTokens": [
+          "Would",
+          "you",
+          "like",
+          "a",
+          "mandarin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i02:r1",
+          "text": "Yes, please."
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i02:r2",
+          "text": "No, thank you."
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i02:r3",
+          "text": "Not yet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i02:audio",
+          "transcript": "Yes, please."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-37:i02:r1",
+            "targetText": "Yes, please.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i02:r2",
+            "targetText": "No, thank you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i02:r3",
+            "targetText": "Not yet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Yes, please.",
+              "uk": "У записі звучить Yes, please."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Yes, please.",
+              "uk": "У записі звучить Yes, please."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купите фрукти, якщо вони солодкі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i03:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купите фрукти, якщо вони солодкі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купите фрукты, если они сладкие.",
+          "uk": "Ви купите фрукти, якщо вони солодкі."
+        },
+        "gappedTargetPhrase": "I will buy some if they ___ sweet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-37:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i03:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Ви купите фрукти, якщо вони солодкі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви купите фрукти, якщо вони солодкі.",
+            "feedbackByLocale": {
+              "ru": "После if здесь are без will.",
+              "uk": "Після if тут are без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви купите фрукти, якщо вони солодкі.",
+            "feedbackByLocale": {
+              "ru": "С they нужно are.",
+              "uk": "З they потрібно are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:word:dill",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:word:dill:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:word:dill:audio",
+          "transcript": "dill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-37:word:dill:r1",
+            "targetText": "dill",
+            "meaningByLocale": {
+              "ru": "Укроп, зелень для еды.",
+              "uk": "Кріп, зелень до їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dill",
+          "definitionByLocale": {
+            "ru": "Укроп, зелень для еды.",
+            "uk": "Кріп, зелень до їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть продавцю, що вам потрібен кріп.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть продавцю, що вам потрібен кріп.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i04:audio",
+          "transcript": "I need some dill."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need some dill.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про підготовлену зелень.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про підготовлену зелень.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i05:audio",
+          "transcript": "Have you washed the herbs yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you washed the herbs yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "washed",
+          "the",
+          "herbs",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:word:scallion",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scallion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:word:scallion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scallion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:word:scallion:audio",
+          "transcript": "scallion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-37:word:scallion:r1",
+            "targetText": "scallion",
+            "meaningByLocale": {
+              "ru": "Зелёный лук; одна луковица с зелёными перьями.",
+              "uk": "Зелена цибуля; одна цибулина із зеленим пір’ям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scallion",
+          "definitionByLocale": {
+            "ru": "Зелёный лук; одна луковица с зелёными перьями.",
+            "uk": "Зелена цибуля; одна цибулина із зеленим пір’ям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Одна цибулина зеленої цибулі залишилася. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одна цибулина зеленої цибулі залишилася. Скажіть про це.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have one scallion left.",
+        "localizedMeaning": {
+          "ru": "Одна луковица зелёного лука осталась. Скажите об этом.",
+          "uk": "Одна цибулина зеленої цибулі залишилася. Скажіть про це."
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "one",
+          "scallion",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Розкажіть, що зазвичай миєте зелень після повернення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i07:r1",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i07:r2",
+          "text": "washes"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i07:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть, що зазвичай миєте зелень після повернення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите, что обычно моете зелень после возвращения.",
+          "uk": "Розкажіть, що зазвичай миєте зелень після повернення."
+        },
+        "gappedTargetPhrase": "I ___ herbs when I get home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-37:i07:r1",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i07:r2",
+            "text": "washes"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i07:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Розкажіть, що зазвичай миєте зелень після повернення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i07:r2",
+            "correct": false,
+            "testedDimension": "Розкажіть, що зазвичай миєте зелень після повернення.",
+            "feedbackByLocale": {
+              "ru": "С I нужно wash без -s.",
+              "uk": "З I потрібно wash без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i07:r3",
+            "correct": false,
+            "testedDimension": "Розкажіть, що зазвичай миєте зелень після повернення.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужна форма wash.",
+              "uk": "Для звички потрібна форма wash."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i08:r1",
+          "text": "I have already washed them."
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i08:r2",
+          "text": "I have already bought them."
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i08:r3",
+          "text": "I have just cut them."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i08:audio",
+          "transcript": "I have already washed them."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-37:i08:r1",
+            "targetText": "I have already washed them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i08:r2",
+            "targetText": "I have already bought them.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i08:r3",
+            "targetText": "I have just cut them.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already washed them.",
+              "uk": "У записі звучить I have already washed them."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already washed them.",
+              "uk": "У записі звучить I have already washed them."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:word:cilantro",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cilantro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:word:cilantro:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cilantro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:word:cilantro:audio",
+          "transcript": "cilantro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-37:word:cilantro:r1",
+            "targetText": "cilantro",
+            "meaningByLocale": {
+              "ru": "Кинза; зелень кориандра, другое название листьев coriander.",
+              "uk": "Кінза; зелень коріандру, інша назва листя coriander."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cilantro",
+          "definitionByLocale": {
+            "ru": "Кинза; зелень кориандра, другое название листьев coriander.",
+            "uk": "Кінза; зелень коріандру, інша назва листя coriander."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви не любите кінзу. Попросіть не додавати її.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Ви не любите кінзу. Попросіть не додавати її.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i09:audio",
+          "transcript": "Please leave out the cilantro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please leave out the cilantro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте прохання передати миску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Почуйте прохання передати миску.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i10:audio",
+          "transcript": "Could you pass me the bowl?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you pass me the bowl?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "pass",
+          "me",
+          "the",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зелень щойно нарізали. Доповніть повідомлення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i11:r1",
+          "text": "cut"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i11:r2",
+          "text": "cutting"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i11:r3",
+          "text": "cuts"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зелень щойно нарізали. Доповніть повідомлення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Зелень только что нарезали. Дополните сообщение.",
+          "uk": "Зелень щойно нарізали. Доповніть повідомлення."
+        },
+        "gappedTargetPhrase": "I have just ___ the herbs.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-37:i11:r1",
+            "text": "cut"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i11:r2",
+            "text": "cutting"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i11:r3",
+            "text": "cuts"
+          }
+        ],
+        "testedDimension": "Зелень щойно нарізали. Доповніть повідомлення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Зелень щойно нарізали. Доповніть повідомлення.",
+            "feedbackByLocale": {
+              "ru": "После have здесь cut, не cutting.",
+              "uk": "Після have тут cut, не cutting."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Зелень щойно нарізали. Доповніть повідомлення.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма cut, не cuts.",
+              "uk": "Потрібна форма cut, не cuts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i12:r1",
+          "text": "If the soup is hot, we can wait."
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i12:r2",
+          "text": "If the soup is cold, we can wait."
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i12:r3",
+          "text": "If the soup is hot, we can eat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i12:audio",
+          "transcript": "If the soup is hot, we can wait."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-37:i12:r1",
+            "targetText": "If the soup is hot, we can wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i12:r2",
+            "targetText": "If the soup is cold, we can wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i12:r3",
+            "targetText": "If the soup is hot, we can eat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит If the soup is hot, we can wait.",
+              "uk": "У записі звучить If the soup is hot, we can wait."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит If the soup is hot, we can wait.",
+              "uk": "У записі звучить If the soup is hot, we can wait."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте If the soup is hot, we can wait, почавши з рішення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i13:audio"
+      ],
+      "accessibilityLabel": "Передайте If the soup is hot, we can wait, почавши з рішення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i13:audio",
+          "transcript": "We can wait if the soup is hot."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can wait if the soup is hot.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора суп охолов до того, як ви сіли за стіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i14:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i14:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора суп охолов до того, як ви сіли за стіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера суп остыл до того, как вы сели за стол.",
+          "uk": "Учора суп охолов до того, як ви сіли за стіл."
+        },
+        "gappedTargetPhrase": "The soup ___ cooled by the time we sat down.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-37:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i14:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Учора суп охолов до того, як ви сіли за стіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i14:r2",
+            "correct": false,
+            "testedDimension": "Учора суп охолов до того, як ви сіли за стіл.",
+            "feedbackByLocale": {
+              "ru": "Has относится к результату сейчас, а здесь прошлые события.",
+              "uk": "Has стосується результату зараз, а тут минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i14:r3",
+            "correct": false,
+            "testedDimension": "Учора суп охолов до того, як ви сіли за стіл.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно had cooled для более раннего действия.",
+              "uk": "Тут потрібно had cooled для ранішої дії."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пообіцяйте подати вечерю, коли всі будуть готові.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пообіцяйте подати вечерю, коли всі будуть готові.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will eat when everyone is ready.",
+        "localizedMeaning": {
+          "ru": "Пообещайте подать ужин, когда все будут готовы.",
+          "uk": "Пообіцяйте подати вечерю, коли всі будуть готові."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "eat",
+          "when",
+          "everyone",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви додасте зелень, якщо друг не відмовиться.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-37:i16:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i16:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-37:i16:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви додасте зелень, якщо друг не відмовиться.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы добавите зелень, если друг не откажется.",
+          "uk": "Ви додасте зелень, якщо друг не відмовиться."
+        },
+        "gappedTargetPhrase": "I will add it to your bowl ___ you say no.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-37:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i16:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Ви додасте зелень, якщо друг не відмовиться.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-37:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви додасте зелень, якщо друг не відмовиться.",
+            "feedbackByLocale": {
+              "ru": "If означало бы добавить именно после отказа.",
+              "uk": "If означало б додати саме після відмови."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-37:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви додасте зелень, якщо друг не відмовиться.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы отказ причиной добавить зелень.",
+              "uk": "Because зробило б відмову причиною додати зелень."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію спробувати трохи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-37:i17:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію спробувати трохи.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-37:i17:audio",
+          "transcript": "Try some if you want."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Try some if you want.",
+        "orderedTokens": [
+          "Try",
+          "some",
+          "if",
+          "you",
+          "want"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ed0bdf67ed5392539e3f340b4d44500d59851c2efd4223c31561e8581e67269"
+}

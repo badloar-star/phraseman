@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-37:word:mandarin",
+    "correctText": "mandarin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i01",
+    "correctText": "Would you like a mandarin?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i02",
+    "correctText": "Yes, please.",
+    "correctResponseId": "en:lesson-26:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-26:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:word:dill",
+    "correctText": "dill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i04",
+    "correctText": "I need some dill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i05",
+    "correctText": "Have you washed the herbs yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:word:scallion",
+    "correctText": "scallion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i06",
+    "correctText": "We have one scallion left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i07",
+    "correctText": "wash",
+    "correctResponseId": "en:lesson-26:session-37:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i08",
+    "correctText": "I have already washed them.",
+    "correctResponseId": "en:lesson-26:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:word:cilantro",
+    "correctText": "cilantro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i09",
+    "correctText": "Please leave out the cilantro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i10",
+    "correctText": "Could you pass me the bowl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i11",
+    "correctText": "cut",
+    "correctResponseId": "en:lesson-26:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i12",
+    "correctText": "If the soup is hot, we can wait.",
+    "correctResponseId": "en:lesson-26:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i13",
+    "correctText": "We can wait if the soup is hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-37:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i15",
+    "correctText": "We will eat when everyone is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-37:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-37:i17",
+    "correctText": "Try some if you want.",
+    "correctResponseId": null
+  }
+]

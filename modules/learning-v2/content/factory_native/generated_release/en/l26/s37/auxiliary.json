@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-37:intro1:r2": {
+          "ru": "В условии после if здесь are без will.",
+          "uk": "В умові після if тут are без will."
+        },
+        "en:lesson-26:session-37:intro1:r3": {
+          "ru": "Unless изменит условие: если они не сладкие.",
+          "uk": "Unless змінить умову: якщо вони не солодкі."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-37:intro2:r2": {
+          "ru": "После have нужна форма washed.",
+          "uk": "Після have потрібна форма washed."
+        },
+        "en:lesson-26:session-37:intro2:r3": {
+          "ru": "Результат сейчас выражаем через have washed.",
+          "uk": "Результат зараз виражаємо через have washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-37:intro3:r2": {
+          "ru": "Sat down задаёт прошлое; более раннее действие — had cooled.",
+          "uk": "Sat down задає минуле; раніша дія — had cooled."
+        },
+        "en:lesson-26:session-37:intro3:r3": {
+          "ru": "После had нужна форма cooled.",
+          "uk": "Після had потрібна форма cooled."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c058641f9da6cffaadf99445e624d4360109dadff35306250f23bac93629733b"
+}

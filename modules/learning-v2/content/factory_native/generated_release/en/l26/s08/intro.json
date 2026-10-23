@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional: if/when + present simple, present simple",
+    "uk": "zero conditional: if/when + present simple, present simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда продукта не хватает",
+        "uk": "Коли продукту бракує"
+      },
+      "bodyByLocale": {
+        "ru": "Shortage — нехватка. I use frozen fruit when there is a shortage of fresh fruit — я использую замороженные фрукты, когда не хватает свежих. A shortage of показывает, чего именно не хватает. Это мой обычный способ заменить продукт, поэтому use в Present Simple. When there is a shortage описывает условие, при котором я так поступаю.",
+        "uk": "Shortage — нестача. I use frozen fruit when there is a shortage of fresh fruit — я використовую заморожені фрукти, коли бракує свіжих. A shortage of показує, чого саме бракує. Це мій звичайний спосіб замінити продукт, тому use в Present Simple. When there is a shortage описує умову, за якої я так роблю."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-08:intro1:r1",
+              "text": "I use frozen fruit when there is a shortage of fresh fruit."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro1:r2",
+              "text": "I uses frozen fruit when there is a shortage of fresh fruit."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro1:r3",
+              "text": "I using frozen fruit when there is a shortage of fresh fruit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-08:intro1:r1",
+              "text": "I use frozen fruit when there is a shortage of fresh fruit."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro1:r2",
+              "text": "I uses frozen fruit when there is a shortage of fresh fruit."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro1:r3",
+              "text": "I using frozen fruit when there is a shortage of fresh fruit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Лишний жир и кусочки овощей",
+        "uk": "Зайвий жир і шматочки овочів"
+      },
+      "bodyByLocale": {
+        "ru": "Excess здесь значит «лишний»: excess fat — лишний жир. I remove excess fat when I cook meat — я удаляю лишний жир, когда готовлю мясо. Chunk — плотный кусок, chunks — кусочки. I use small chunks of potato when I make soup — я использую небольшие кусочки картофеля, когда готовлю суп. Chunks — не тонкие slices и не крошки crumbs. В обеих фразах рассказываю о своей привычке готовить.",
+        "uk": "Excess тут означає «зайвий»: excess fat — зайвий жир. I remove excess fat when I cook meat — я видаляю зайвий жир, коли готую м’ясо. Chunk — щільний шматок, chunks — шматочки. I use small chunks of potato when I make soup — я використовую невеликі шматочки картоплі, коли готую суп. Chunks — не тонкі slices і не крихти crumbs. В обох фразах розповідаю про свою звичку готувати."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-08:intro2:r1",
+              "text": "I remove excess fat when I cook meat."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro2:r2",
+              "text": "I removes excess fat when I cook meat."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro2:r3",
+              "text": "I removing excess fat when I cook meat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-08:intro2:r1",
+              "text": "I remove excess fat when I cook meat."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro2:r2",
+              "text": "I removes excess fat when I cook meat."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro2:r3",
+              "text": "I removing excess fat when I cook meat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если вкуса не хватает",
+        "uk": "Якщо смаку бракує"
+      },
+      "bodyByLocale": {
+        "ru": "Lack — не иметь чего-то в нужном количестве. I add salt if the soup lacks flavour — я добавляю соль, если супу не хватает вкуса. После глагола lack сразу называем, чего не хватает: lacks flavour, без of. У существительного shortage другая форма: a shortage of fruit. После I — add без -s; soup — единственное число, поэтому lacks. If обозначает условие, при котором я обычно добавляю соль.",
+        "uk": "Lack — не мати чогось у потрібній кількості. I add salt if the soup lacks flavour — я додаю сіль, якщо супу бракує смаку. Після дієслова lack одразу називаємо, чого бракує: lacks flavour, без of. В іменника shortage інша форма: a shortage of fruit. Після I — add без -s; soup — однина, тому lacks. If позначає умову, за якої я зазвичай додаю сіль."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-08:intro3:r1",
+              "text": "I add salt if the soup lacks flavour."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro3:r2",
+              "text": "I adds salt if the soup lacks flavour."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro3:r3",
+              "text": "I adding salt if the soup lacks flavour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-08:intro3:r1",
+              "text": "I add salt if the soup lacks flavour."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro3:r2",
+              "text": "I adds salt if the soup lacks flavour."
+            },
+            {
+              "responseId": "en:lesson-26:session-08:intro3:r3",
+              "text": "I adding salt if the soup lacks flavour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99e4d5d67eb419db87541f793bf0782ae8038c597623958b737a8535e7b2e766"
+}

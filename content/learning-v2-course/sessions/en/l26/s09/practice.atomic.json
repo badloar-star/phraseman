@@ -1,0 +1,2373 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-09:word:stuff",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stuff",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:stuff:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stuff",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:stuff:audio",
+            "transcript": "stuff"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:stuff:r1",
+              "targetText": "stuff",
+              "meaningByLocale": {
+                "ru": "Вещи. Stuff — разговорное общее название вещей; здесь неисчисляемое: my stuff, без окончания -s.",
+                "uk": "Речі. Stuff — розмовна загальна назва речей; тут незлічуване: my stuff, без закінчення -s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stuff",
+            "definitionByLocale": {
+              "ru": "Вещи. Stuff — разговорное общее название вещей; здесь неисчисляемое: my stuff, без окончания -s.",
+              "uk": "Речі. Stuff — розмовна загальна назва речей; тут незлічуване: my stuff, без закінчення -s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Условие: сумка окажется маленькой. Скажите: «Я оставлю свои вещи здесь, если сумка будет слишком маленькой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Условие: сумка окажется маленькой. Скажите: «Я оставлю свои вещи здесь, если сумка будет слишком маленькой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will leave my stuff here if the bag is too small.",
+          "localizedMeaning": {
+            "ru": "Условие: сумка окажется маленькой. Скажите: «Я оставлю свои вещи здесь, если сумка будет слишком маленькой».",
+            "uk": "Умова: сумка виявиться малою. Скажіть: «Я залишу свої речі тут, якщо сумка буде замалою»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "leave",
+            "my",
+            "stuff",
+            "here",
+            "if",
+            "the",
+            "bag",
+            "is",
+            "too",
+            "small"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обещаете убрать за собой, если прольёте сок. Дополните условие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i02:r1",
+            "text": "spill"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i02:r2",
+            "text": "will spill"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i02:r3",
+            "text": "spilling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обещаете убрать за собой, если прольёте сок. Дополните условие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обещаете убрать за собой, если прольёте сок. Дополните условие.",
+            "uk": "Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову."
+          },
+          "gappedTargetPhrase": "I will get a cloth if I ___ the juice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i02:r1",
+              "text": "spill"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i02:r2",
+              "text": "will spill"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i02:r3",
+              "text": "spilling"
+            }
+          ],
+          "testedDimension": "Вы обещаете убрать за собой, если прольёте сок. Дополните условие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Вы обещаете убрать за собой, если прольёте сок. Дополните условие.",
+              "feedbackByLocale": {
+                "ru": "Будущее условие после if выражаем через Present Simple: spill.",
+                "uk": "Майбутню умову після if виражаємо через Present Simple: spill."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Вы обещаете убрать за собой, если прольёте сок. Дополните условие.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужен личный глагол spill; spilling не образует сказуемое.",
+                "uk": "Тут потрібне дієслово spill; spilling не утворює присудок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:word:mess",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mess",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:mess:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mess",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:mess:audio",
+            "transcript": "mess"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:mess:r1",
+              "targetText": "mess",
+              "meaningByLocale": {
+                "ru": "Беспорядок. Mess — беспорядок или грязь, которые нужно убрать; clean up the mess — убрать всё это.",
+                "uk": "Безлад. Mess — безлад або бруд, які треба прибрати; clean up the mess — прибрати все це."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mess",
+            "definitionByLocale": {
+              "ru": "Беспорядок. Mess — беспорядок или грязь, которые нужно убрать; clean up the mess — убрать всё это.",
+              "uk": "Безлад. Mess — безлад або бруд, які треба прибрати; clean up the mess — прибрати все це."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i03:r1",
+            "text": "We will clean up the mess if you bring a cloth."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i03:r2",
+            "text": "We will clean up the mess if you bring a brush."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i03:r3",
+            "text": "You will clean up the mess if we bring a cloth."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i03:audio",
+            "transcript": "We will clean up the mess if you bring a cloth."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i03:r1",
+              "targetText": "We will clean up the mess if you bring a cloth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i03:r2",
+              "targetText": "We will clean up the mess if you bring a brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i03:r3",
+              "targetText": "You will clean up the mess if we bring a cloth.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will clean up the mess if you bring a cloth.",
+                "uk": "У записі звучить We will clean up the mess if you bring a cloth."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will clean up the mess if you bring a cloth.",
+                "uk": "У записі звучить We will clean up the mess if you bring a cloth."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Восстановите услышанное обещание.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i04:audio"
+        ],
+        "accessibilityLabel": "Восстановите услышанное обещание.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i04:audio",
+            "transcript": "I will call if I am late."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will call if I am late.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "call",
+            "if",
+            "I",
+            "am",
+            "late"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:word:kids",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — kids",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:kids:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — kids",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:kids:audio",
+            "transcript": "kids"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:kids:r1",
+              "targetText": "kids",
+              "meaningByLocale": {
+                "ru": "Дети. Kid — ребёнок в разговорной речи; kids — дети. Нейтральное слово child вам уже знакомо.",
+                "uk": "Діти. Kid — дитина в розмовному мовленні; kids — діти. Нейтральне слово child вам уже знайоме."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kids",
+            "definitionByLocale": {
+              "ru": "Дети. Kid — ребёнок в разговорной речи; kids — дети. Нейтральное слово child вам уже знакомо.",
+              "uk": "Діти. Kid — дитина в розмовному мовленні; kids — діти. Нейтральне слово child вам уже знайоме."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дождь может изменить планы. Скажите: «Дети останутся дома, если пойдёт дождь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дождь может изменить планы. Скажите: «Дети останутся дома, если пойдёт дождь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The kids will stay home if it rains.",
+          "localizedMeaning": {
+            "ru": "Дождь может изменить планы. Скажите: «Дети останутся дома, если пойдёт дождь».",
+            "uk": "Дощ може змінити плани. Скажіть: «Діти залишаться вдома, якщо піде дощ»."
+          },
+          "orderedTokens": [
+            "The",
+            "kids",
+            "will",
+            "stay",
+            "home",
+            "if",
+            "it",
+            "rains"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i06:r1",
+            "text": "will buy"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i06:r2",
+            "text": "buying"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i06:r3",
+            "text": "will buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.",
+            "uk": "Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок."
+          },
+          "gappedTargetPhrase": "We ___ more food if our friends come.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i06:r1",
+              "text": "will buy"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i06:r2",
+              "text": "buying"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i06:r3",
+              "text": "will buying"
+            }
+          ],
+          "testedDimension": "Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.",
+              "feedbackByLocale": {
+                "ru": "Для будущего решения нужно will buy; buying без вспомогательного глагола не подходит.",
+                "uk": "Для майбутнього рішення потрібно will buy; buying без допоміжного дієслова не підходить."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.",
+              "feedbackByLocale": {
+                "ru": "После will ставим buy, не buying.",
+                "uk": "Після will ставимо buy, не buying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:word:guy",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:guy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:guy:audio",
+            "transcript": "guy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:guy:r1",
+              "targetText": "guy",
+              "meaningByLocale": {
+                "ru": "Парень. Guy — разговорное слово для мужчины или парня: that guy — тот парень.",
+                "uk": "Хлопець. Guy — розмовне слово для чоловіка або хлопця: that guy — той хлопець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guy",
+            "definitionByLocale": {
+              "ru": "Парень. Guy — разговорное слово для мужчины или парня: that guy — тот парень.",
+              "uk": "Хлопець. Guy — розмовне слово для чоловіка або хлопця: that guy — той хлопець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i07:r1",
+            "text": "That guy will help us if we ask."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i07:r2",
+            "text": "That guy will help her if she asks."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i07:r3",
+            "text": "That guy will call us if we ask."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i07:audio",
+            "transcript": "That guy will help us if we ask."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i07:r1",
+              "targetText": "That guy will help us if we ask.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i07:r2",
+              "targetText": "That guy will help her if she asks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i07:r3",
+              "targetText": "That guy will call us if we ask.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That guy will help us if we ask.",
+                "uk": "У записі звучить That guy will help us if we ask."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That guy will help us if we ask.",
+                "uk": "У записі звучить That guy will help us if we ask."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Вспомните разговорные слова",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните разговорные слова",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-26:session-09:i08:p1",
+              "target": "stuff",
+              "meaningByLocale": {
+                "ru": "вещи",
+                "uk": "речі"
+              }
+            },
+            {
+              "pairId": "en:lesson-26:session-09:i08:p2",
+              "target": "mess",
+              "meaningByLocale": {
+                "ru": "беспорядок",
+                "uk": "безлад"
+              }
+            },
+            {
+              "pairId": "en:lesson-26:session-09:i08:p3",
+              "target": "kids",
+              "meaningByLocale": {
+                "ru": "дети",
+                "uk": "діти"
+              }
+            },
+            {
+              "pairId": "en:lesson-26:session-09:i08:p4",
+              "target": "guy",
+              "meaningByLocale": {
+                "ru": "парень",
+                "uk": "хлопець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stuff",
+            "mess",
+            "kids",
+            "guy"
+          ],
+          "rightColumn": [
+            "вещи",
+            "беспорядок",
+            "дети",
+            "парень"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг может потерять билет. Предложите помощь: «Я помогу тебе, если ты потеряешь билет».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг может потерять билет. Предложите помощь: «Я помогу тебе, если ты потеряешь билет».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will help you if you lose your ticket.",
+          "localizedMeaning": {
+            "ru": "Друг может потерять билет. Предложите помощь: «Я помогу тебе, если ты потеряешь билет».",
+            "uk": "Друг може загубити квиток. Запропонуйте допомогу: «Я допоможу тобі, якщо ти загубиш квиток»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "help",
+            "you",
+            "if",
+            "you",
+            "lose",
+            "your",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните отрицание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i10:r1",
+            "text": "does not"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i10:r2",
+            "text": "will not"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i10:r3",
+            "text": "do not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните отрицание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните отрицание.",
+            "uk": "Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення."
+          },
+          "gappedTargetPhrase": "We will walk if the bus ___ come.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i10:r1",
+              "text": "does not"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i10:r2",
+              "text": "will not"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i10:r3",
+              "text": "do not"
+            }
+          ],
+          "testedDimension": "Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните отрицание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i10:r2",
+              "correct": false,
+              "testedDimension": "Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните отрицание.",
+              "feedbackByLocale": {
+                "ru": "В этом условии после if нужен Present Simple: does not come.",
+                "uk": "У цій умові після if потрібен Present Simple: does not come."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i10:r3",
+              "correct": false,
+              "testedDimension": "Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните отрицание.",
+              "feedbackByLocale": {
+                "ru": "The bus — единственное число: does not, не do not.",
+                "uk": "The bus — однина: does not, не do not."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i11:r1",
+            "text": "I will turn down the music if the baby wakes up."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i11:r2",
+            "text": "I will turn off the music if the baby wakes up."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i11:r3",
+            "text": "I will turn down the music if the baby falls asleep."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i11:audio",
+            "transcript": "I will turn down the music if the baby wakes up."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i11:r1",
+              "targetText": "I will turn down the music if the baby wakes up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i11:r2",
+              "targetText": "I will turn off the music if the baby wakes up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i11:r3",
+              "targetText": "I will turn down the music if the baby falls asleep.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will turn down the music if the baby wakes up.",
+                "uk": "У записі звучить I will turn down the music if the baby wakes up."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will turn down the music if the baby wakes up.",
+                "uk": "У записі звучить I will turn down the music if the baby wakes up."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, что произойдёт с вещами.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i12:audio"
+        ],
+        "accessibilityLabel": "Услышьте, что произойдёт с вещами.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i12:audio",
+            "transcript": "Your stuff will get wet if you leave it outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Your stuff will get wet if you leave it outside.",
+          "orderedTokens": [
+            "Your",
+            "stuff",
+            "will",
+            "get",
+            "wet",
+            "if",
+            "you",
+            "leave",
+            "it",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дождь ещё не начался. Зонт нужен на случай дождя, а не потому, что дождь уже идёт. Выберите союз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i13:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i13:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i13:r3",
+            "text": "although"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дождь ещё не начался. Зонт нужен на случай дождя, а не потому, что дождь уже идёт. Выберите союз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дождь ещё не начался. Зонт нужен на случай дождя, а не потому, что дождь уже идёт. Выберите союз.",
+            "uk": "Дощ іще не почався. Парасоля потрібна на випадок дощу, а не тому, що дощ уже йде. Виберіть сполучник."
+          },
+          "gappedTargetPhrase": "I will take an umbrella ___ it rains.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i13:r1",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i13:r2",
+              "text": "because"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i13:r3",
+              "text": "although"
+            }
+          ],
+          "testedDimension": "Дождь ещё не начался. Зонт нужен на случай дождя, а не потому, что дождь уже идёт. Выберите союз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i13:r2",
+              "correct": false,
+              "testedDimension": "Дождь ещё не начался. Зонт нужен на случай дождя, а не потому, что дождь уже идёт. Выберите союз.",
+              "feedbackByLocale": {
+                "ru": "Because сообщает причину как факт; здесь дождь — лишь возможное условие.",
+                "uk": "Because повідомляє причину як факт; тут дощ — лише можлива умова."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i13:r3",
+              "correct": false,
+              "testedDimension": "Дождь ещё не начался. Зонт нужен на случай дождя, а не потому, что дождь уже идёт. Выберите союз.",
+              "feedbackByLocale": {
+                "ru": "Although значит «хотя» и выражает уступку, а здесь нужно условие «если».",
+                "uk": "Although означає «хоча» й виражає поступку, а тут потрібна умова «якщо»."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Дети могут устать на прогулке. Скажите: «Мы сделаем перерыв, если дети устанут».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Дети могут устать на прогулке. Скажите: «Мы сделаем перерыв, если дети устанут».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i14:audio",
+            "transcript": "We will take a break if the kids get tired."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We will take a break if the kids get tired.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i15:r1",
+            "text": "We will eat outside if the weather is warm."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i15:r2",
+            "text": "We will eat inside if the weather is warm."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i15:r3",
+            "text": "We will eat outside if the weather is cold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i15:audio",
+            "transcript": "We will eat outside if the weather is warm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i15:r1",
+              "targetText": "We will eat outside if the weather is warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i15:r2",
+              "targetText": "We will eat inside if the weather is warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i15:r3",
+              "targetText": "We will eat outside if the weather is cold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat outside if the weather is warm.",
+                "uk": "У записі звучить We will eat outside if the weather is warm."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat outside if the weather is warm.",
+                "uk": "У записі звучить We will eat outside if the weather is warm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите сделку: «Я уберу беспорядок, если ты помоешь посуду».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите сделку: «Я уберу беспорядок, если ты помоешь посуду».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will clean up the mess if you wash the dishes.",
+          "localizedMeaning": {
+            "ru": "Предложите сделку: «Я уберу беспорядок, если ты помоешь посуду».",
+            "uk": "Запропонуйте домовленість: «Я приберу безлад, якщо ти помиєш посуд»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "clean",
+            "up",
+            "the",
+            "mess",
+            "if",
+            "you",
+            "wash",
+            "the",
+            "dishes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы ждёте Алекса. Скажите: «Я открою дверь, если Алекс придёт».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Вы ждёте Алекса. Скажите: «Я открою дверь, если Алекс придёт».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i17:audio",
+            "transcript": "I will open the door if Alex comes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will open the door if Alex comes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-09:word:stuff",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stuff",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:stuff:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stuff",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:stuff:audio",
+            "transcript": "stuff"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:stuff:r1",
+              "targetText": "stuff",
+              "meaningByLocale": {
+                "ru": "Вещи. Stuff — разговорное общее название вещей; здесь неисчисляемое: my stuff, без окончания -s.",
+                "uk": "Речі. Stuff — розмовна загальна назва речей; тут незлічуване: my stuff, без закінчення -s."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stuff",
+            "definitionByLocale": {
+              "ru": "Вещи. Stuff — разговорное общее название вещей; здесь неисчисляемое: my stuff, без окончания -s.",
+              "uk": "Речі. Stuff — розмовна загальна назва речей; тут незлічуване: my stuff, без закінчення -s."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Умова: сумка виявиться малою. Скажіть: «Я залишу свої речі тут, якщо сумка буде замалою».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Умова: сумка виявиться малою. Скажіть: «Я залишу свої речі тут, якщо сумка буде замалою».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will leave my stuff here if the bag is too small.",
+          "localizedMeaning": {
+            "ru": "Условие: сумка окажется маленькой. Скажите: «Я оставлю свои вещи здесь, если сумка будет слишком маленькой».",
+            "uk": "Умова: сумка виявиться малою. Скажіть: «Я залишу свої речі тут, якщо сумка буде замалою»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "leave",
+            "my",
+            "stuff",
+            "here",
+            "if",
+            "the",
+            "bag",
+            "is",
+            "too",
+            "small"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i02:r1",
+            "text": "spill"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i02:r2",
+            "text": "will spill"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i02:r3",
+            "text": "spilling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обещаете убрать за собой, если прольёте сок. Дополните условие.",
+            "uk": "Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову."
+          },
+          "gappedTargetPhrase": "I will get a cloth if I ___ the juice.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i02:r1",
+              "text": "spill"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i02:r2",
+              "text": "will spill"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i02:r3",
+              "text": "spilling"
+            }
+          ],
+          "testedDimension": "Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову.",
+              "feedbackByLocale": {
+                "ru": "Будущее условие после if выражаем через Present Simple: spill.",
+                "uk": "Майбутню умову після if виражаємо через Present Simple: spill."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Ви обіцяєте прибрати за собою, якщо розіллєте сік. Доповніть умову.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужен личный глагол spill; spilling не образует сказуемое.",
+                "uk": "Тут потрібне дієслово spill; spilling не утворює присудок."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:word:mess",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mess",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:mess:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mess",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:mess:audio",
+            "transcript": "mess"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:mess:r1",
+              "targetText": "mess",
+              "meaningByLocale": {
+                "ru": "Беспорядок. Mess — беспорядок или грязь, которые нужно убрать; clean up the mess — убрать всё это.",
+                "uk": "Безлад. Mess — безлад або бруд, які треба прибрати; clean up the mess — прибрати все це."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mess",
+            "definitionByLocale": {
+              "ru": "Беспорядок. Mess — беспорядок или грязь, которые нужно убрать; clean up the mess — убрать всё это.",
+              "uk": "Безлад. Mess — безлад або бруд, які треба прибрати; clean up the mess — прибрати все це."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i03:r1",
+            "text": "We will clean up the mess if you bring a cloth."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i03:r2",
+            "text": "We will clean up the mess if you bring a brush."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i03:r3",
+            "text": "You will clean up the mess if we bring a cloth."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i03:audio",
+            "transcript": "We will clean up the mess if you bring a cloth."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i03:r1",
+              "targetText": "We will clean up the mess if you bring a cloth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i03:r2",
+              "targetText": "We will clean up the mess if you bring a brush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i03:r3",
+              "targetText": "You will clean up the mess if we bring a cloth.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will clean up the mess if you bring a cloth.",
+                "uk": "У записі звучить We will clean up the mess if you bring a cloth."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will clean up the mess if you bring a cloth.",
+                "uk": "У записі звучить We will clean up the mess if you bring a cloth."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Відновіть почуту обіцянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i04:audio"
+        ],
+        "accessibilityLabel": "Відновіть почуту обіцянку.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i04:audio",
+            "transcript": "I will call if I am late."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will call if I am late.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "call",
+            "if",
+            "I",
+            "am",
+            "late"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:word:kids",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — kids",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:kids:audio"
+        ],
+        "accessibilityLabel": "Картка слова — kids",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:kids:audio",
+            "transcript": "kids"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:kids:r1",
+              "targetText": "kids",
+              "meaningByLocale": {
+                "ru": "Дети. Kid — ребёнок в разговорной речи; kids — дети. Нейтральное слово child вам уже знакомо.",
+                "uk": "Діти. Kid — дитина в розмовному мовленні; kids — діти. Нейтральне слово child вам уже знайоме."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "kids",
+            "definitionByLocale": {
+              "ru": "Дети. Kid — ребёнок в разговорной речи; kids — дети. Нейтральное слово child вам уже знакомо.",
+              "uk": "Діти. Kid — дитина в розмовному мовленні; kids — діти. Нейтральне слово child вам уже знайоме."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дощ може змінити плани. Скажіть: «Діти залишаться вдома, якщо піде дощ».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дощ може змінити плани. Скажіть: «Діти залишаться вдома, якщо піде дощ».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The kids will stay home if it rains.",
+          "localizedMeaning": {
+            "ru": "Дождь может изменить планы. Скажите: «Дети останутся дома, если пойдёт дождь».",
+            "uk": "Дощ може змінити плани. Скажіть: «Діти залишаться вдома, якщо піде дощ»."
+          },
+          "orderedTokens": [
+            "The",
+            "kids",
+            "will",
+            "stay",
+            "home",
+            "if",
+            "it",
+            "rains"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i06:r1",
+            "text": "will buy"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i06:r2",
+            "text": "buying"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i06:r3",
+            "text": "will buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы ещё не знаете, придут ли гости. Дополните решение на этот случай.",
+            "uk": "Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок."
+          },
+          "gappedTargetPhrase": "We ___ more food if our friends come.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i06:r1",
+              "text": "will buy"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i06:r2",
+              "text": "buying"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i06:r3",
+              "text": "will buying"
+            }
+          ],
+          "testedDimension": "Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок.",
+              "feedbackByLocale": {
+                "ru": "Для будущего решения нужно will buy; buying без вспомогательного глагола не подходит.",
+                "uk": "Для майбутнього рішення потрібно will buy; buying без допоміжного дієслова не підходить."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок.",
+              "feedbackByLocale": {
+                "ru": "После will ставим buy, не buying.",
+                "uk": "Після will ставимо buy, не buying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:word:guy",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:word:guy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:word:guy:audio",
+            "transcript": "guy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:word:guy:r1",
+              "targetText": "guy",
+              "meaningByLocale": {
+                "ru": "Парень. Guy — разговорное слово для мужчины или парня: that guy — тот парень.",
+                "uk": "Хлопець. Guy — розмовне слово для чоловіка або хлопця: that guy — той хлопець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guy",
+            "definitionByLocale": {
+              "ru": "Парень. Guy — разговорное слово для мужчины или парня: that guy — тот парень.",
+              "uk": "Хлопець. Guy — розмовне слово для чоловіка або хлопця: that guy — той хлопець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i07:r1",
+            "text": "That guy will help us if we ask."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i07:r2",
+            "text": "That guy will help her if she asks."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i07:r3",
+            "text": "That guy will call us if we ask."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i07:audio",
+            "transcript": "That guy will help us if we ask."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i07:r1",
+              "targetText": "That guy will help us if we ask.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i07:r2",
+              "targetText": "That guy will help her if she asks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i07:r3",
+              "targetText": "That guy will call us if we ask.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That guy will help us if we ask.",
+                "uk": "У записі звучить That guy will help us if we ask."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит That guy will help us if we ask.",
+                "uk": "У записі звучить That guy will help us if we ask."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Пригадайте розмовні слова",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте розмовні слова",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-26:session-09:i08:p1",
+              "target": "stuff",
+              "meaningByLocale": {
+                "ru": "вещи",
+                "uk": "речі"
+              }
+            },
+            {
+              "pairId": "en:lesson-26:session-09:i08:p2",
+              "target": "mess",
+              "meaningByLocale": {
+                "ru": "беспорядок",
+                "uk": "безлад"
+              }
+            },
+            {
+              "pairId": "en:lesson-26:session-09:i08:p3",
+              "target": "kids",
+              "meaningByLocale": {
+                "ru": "дети",
+                "uk": "діти"
+              }
+            },
+            {
+              "pairId": "en:lesson-26:session-09:i08:p4",
+              "target": "guy",
+              "meaningByLocale": {
+                "ru": "парень",
+                "uk": "хлопець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stuff",
+            "mess",
+            "kids",
+            "guy"
+          ],
+          "rightColumn": [
+            "речі",
+            "безлад",
+            "діти",
+            "хлопець"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг може загубити квиток. Запропонуйте допомогу: «Я допоможу тобі, якщо ти загубиш квиток».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг може загубити квиток. Запропонуйте допомогу: «Я допоможу тобі, якщо ти загубиш квиток».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will help you if you lose your ticket.",
+          "localizedMeaning": {
+            "ru": "Друг может потерять билет. Предложите помощь: «Я помогу тебе, если ты потеряешь билет».",
+            "uk": "Друг може загубити квиток. Запропонуйте допомогу: «Я допоможу тобі, якщо ти загубиш квиток»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "help",
+            "you",
+            "if",
+            "you",
+            "lose",
+            "your",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i10:r1",
+            "text": "does not"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i10:r2",
+            "text": "will not"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i10:r3",
+            "text": "do not"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Договорились ждать только десять минут. Если автобус не придёт, пойдём пешком. Дополните отрицание.",
+            "uk": "Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення."
+          },
+          "gappedTargetPhrase": "We will walk if the bus ___ come.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i10:r1",
+              "text": "does not"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i10:r2",
+              "text": "will not"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i10:r3",
+              "text": "do not"
+            }
+          ],
+          "testedDimension": "Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i10:r2",
+              "correct": false,
+              "testedDimension": "Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення.",
+              "feedbackByLocale": {
+                "ru": "В этом условии после if нужен Present Simple: does not come.",
+                "uk": "У цій умові після if потрібен Present Simple: does not come."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i10:r3",
+              "correct": false,
+              "testedDimension": "Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення.",
+              "feedbackByLocale": {
+                "ru": "The bus — единственное число: does not, не do not.",
+                "uk": "The bus — однина: does not, не do not."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i11:r1",
+            "text": "I will turn down the music if the baby wakes up."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i11:r2",
+            "text": "I will turn off the music if the baby wakes up."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i11:r3",
+            "text": "I will turn down the music if the baby falls asleep."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i11:audio",
+            "transcript": "I will turn down the music if the baby wakes up."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i11:r1",
+              "targetText": "I will turn down the music if the baby wakes up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i11:r2",
+              "targetText": "I will turn off the music if the baby wakes up.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i11:r3",
+              "targetText": "I will turn down the music if the baby falls asleep.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will turn down the music if the baby wakes up.",
+                "uk": "У записі звучить I will turn down the music if the baby wakes up."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will turn down the music if the baby wakes up.",
+                "uk": "У записі звучить I will turn down the music if the baby wakes up."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, що станеться з речами.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i12:audio"
+        ],
+        "accessibilityLabel": "Почуйте, що станеться з речами.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i12:audio",
+            "transcript": "Your stuff will get wet if you leave it outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Your stuff will get wet if you leave it outside.",
+          "orderedTokens": [
+            "Your",
+            "stuff",
+            "will",
+            "get",
+            "wet",
+            "if",
+            "you",
+            "leave",
+            "it",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дощ іще не почався. Парасоля потрібна на випадок дощу, а не тому, що дощ уже йде. Виберіть сполучник.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i13:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i13:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i13:r3",
+            "text": "although"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дощ іще не почався. Парасоля потрібна на випадок дощу, а не тому, що дощ уже йде. Виберіть сполучник.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дождь ещё не начался. Зонт нужен на случай дождя, а не потому, что дождь уже идёт. Выберите союз.",
+            "uk": "Дощ іще не почався. Парасоля потрібна на випадок дощу, а не тому, що дощ уже йде. Виберіть сполучник."
+          },
+          "gappedTargetPhrase": "I will take an umbrella ___ it rains.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-09:i13:r1",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i13:r2",
+              "text": "because"
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i13:r3",
+              "text": "although"
+            }
+          ],
+          "testedDimension": "Дощ іще не почався. Парасоля потрібна на випадок дощу, а не тому, що дощ уже йде. Виберіть сполучник.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i13:r2",
+              "correct": false,
+              "testedDimension": "Дощ іще не почався. Парасоля потрібна на випадок дощу, а не тому, що дощ уже йде. Виберіть сполучник.",
+              "feedbackByLocale": {
+                "ru": "Because сообщает причину как факт; здесь дождь — лишь возможное условие.",
+                "uk": "Because повідомляє причину як факт; тут дощ — лише можлива умова."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i13:r3",
+              "correct": false,
+              "testedDimension": "Дощ іще не почався. Парасоля потрібна на випадок дощу, а не тому, що дощ уже йде. Виберіть сполучник.",
+              "feedbackByLocale": {
+                "ru": "Although значит «хотя» и выражает уступку, а здесь нужно условие «если».",
+                "uk": "Although означає «хоча» й виражає поступку, а тут потрібна умова «якщо»."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Діти можуть втомитися на прогулянці. Скажіть: «Ми зробимо перерву, якщо діти втомляться».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Діти можуть втомитися на прогулянці. Скажіть: «Ми зробимо перерву, якщо діти втомляться».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i14:audio",
+            "transcript": "We will take a break if the kids get tired."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We will take a break if the kids get tired.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-09:i15:r1",
+            "text": "We will eat outside if the weather is warm."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i15:r2",
+            "text": "We will eat inside if the weather is warm."
+          },
+          {
+            "responseId": "en:lesson-26:session-09:i15:r3",
+            "text": "We will eat outside if the weather is cold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i15:audio",
+            "transcript": "We will eat outside if the weather is warm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-09:i15:r1",
+              "targetText": "We will eat outside if the weather is warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i15:r2",
+              "targetText": "We will eat inside if the weather is warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i15:r3",
+              "targetText": "We will eat outside if the weather is cold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-09:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat outside if the weather is warm.",
+                "uk": "У записі звучить We will eat outside if the weather is warm."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-09:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat outside if the weather is warm.",
+                "uk": "У записі звучить We will eat outside if the weather is warm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте домовленість: «Я приберу безлад, якщо ти помиєш посуд».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте домовленість: «Я приберу безлад, якщо ти помиєш посуд».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will clean up the mess if you wash the dishes.",
+          "localizedMeaning": {
+            "ru": "Предложите сделку: «Я уберу беспорядок, если ты помоешь посуду».",
+            "uk": "Запропонуйте домовленість: «Я приберу безлад, якщо ти помиєш посуд»."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "clean",
+            "up",
+            "the",
+            "mess",
+            "if",
+            "you",
+            "wash",
+            "the",
+            "dishes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви чекаєте Алекса. Скажіть: «Я відчиню двері, якщо Алекс прийде».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Ви чекаєте Алекса. Скажіть: «Я відчиню двері, якщо Алекс прийде».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-09:i17:audio",
+            "transcript": "I will open the door if Alex comes."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will open the door if Alex comes.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-09:word:stuff",
+      "correctText": "stuff",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i01",
+      "correctText": "I will leave my stuff here if the bag is too small.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i02",
+      "correctText": "spill",
+      "correctResponseId": "en:lesson-26:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:word:mess",
+      "correctText": "mess",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i03",
+      "correctText": "We will clean up the mess if you bring a cloth.",
+      "correctResponseId": "en:lesson-26:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i04",
+      "correctText": "I will call if I am late.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:word:kids",
+      "correctText": "kids",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i05",
+      "correctText": "The kids will stay home if it rains.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i06",
+      "correctText": "will buy",
+      "correctResponseId": "en:lesson-26:session-09:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:word:guy",
+      "correctText": "guy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i07",
+      "correctText": "That guy will help us if we ask.",
+      "correctResponseId": "en:lesson-26:session-09:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i08",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i09",
+      "correctText": "I will help you if you lose your ticket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i10",
+      "correctText": "does not",
+      "correctResponseId": "en:lesson-26:session-09:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i11",
+      "correctText": "I will turn down the music if the baby wakes up.",
+      "correctResponseId": "en:lesson-26:session-09:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i12",
+      "correctText": "Your stuff will get wet if you leave it outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i13",
+      "correctText": "if",
+      "correctResponseId": "en:lesson-26:session-09:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i14",
+      "correctText": "We will take a break if the kids get tired.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i15",
+      "correctText": "We will eat outside if the weather is warm.",
+      "correctResponseId": "en:lesson-26:session-09:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i16",
+      "correctText": "I will clean up the mess if you wash the dishes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:i17",
+      "correctText": "I will open the door if Alex comes.",
+      "correctResponseId": null
+    }
+  ]
+}

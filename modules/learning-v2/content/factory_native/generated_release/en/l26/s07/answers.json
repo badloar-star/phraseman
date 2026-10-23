@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-07:word:rigid",
+    "correctText": "rigid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i01",
+    "correctText": "I choose a rigid box when I pack glasses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i02",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-26:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i03",
+    "correctText": "I choose a rigid box when I pack glasses.",
+    "correctResponseId": "en:lesson-26:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:word:brittle",
+    "correctText": "brittle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i04",
+    "correctText": "Brittle plastic breaks if you bend it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i05",
+    "correctText": "breaks",
+    "correctResponseId": "en:lesson-26:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i06",
+    "correctText": "Brittle plastic breaks if you bend it.",
+    "correctResponseId": "en:lesson-26:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:word:transparent",
+    "correctText": "transparent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i07",
+    "correctText": "I use transparent jars when I store spices.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i08",
+    "correctText": "use",
+    "correctResponseId": "en:lesson-26:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i09",
+    "correctText": "I use transparent jars when I store spices.",
+    "correctResponseId": "en:lesson-26:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:word:opaque",
+    "correctText": "opaque",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i10",
+    "correctText": "I choose opaque curtains when I want a dark room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i11",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-26:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i12",
+    "correctText": "I choose opaque curtains when I want a dark room.",
+    "correctResponseId": "en:lesson-26:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i13",
+    "correctText": "en:lesson-26:session-07:i13:p1=rigid\nen:lesson-26:session-07:i13:p2=brittle\nen:lesson-26:session-07:i13:p3=transparent\nen:lesson-26:session-07:i13:p4=opaque",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i14",
+    "correctText": "I rest when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i15",
+    "correctText": "I stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i16",
+    "correctText": "I use transparent jars when I store flour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-07:i17",
+    "correctText": "He chooses a rigid box when he packs glasses.",
+    "correctResponseId": null
+  }
+]

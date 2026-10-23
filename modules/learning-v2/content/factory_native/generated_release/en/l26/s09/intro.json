@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "first conditional: if + present simple, will + base verb",
+    "uk": "first conditional: if + present simple, will + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "План на случай раннего выезда",
+        "uk": "План на випадок раннього виїзду"
+      },
+      "bodyByLocale": {
+        "ru": "Пока неизвестно, уедем ли мы рано. I will pack my stuff if we leave early — я соберу вещи, если мы уедем рано. Это first conditional: говорим о возможной будущей ситуации и своём действии при этом условии. После if ставим Present Simple: if we leave, без will. В результате — will + начальная форма: will pack. Stuff — разговорное «вещи»; my stuff, не my stuffs.",
+        "uk": "Поки невідомо, чи поїдемо ми рано. I will pack my stuff if we leave early — я зберу речі, якщо ми поїдемо рано. Це first conditional: говоримо про можливу майбутню ситуацію та свою дію за цієї умови. Після if ставимо Present Simple: if we leave, без will. У результаті — will + початкова форма: will pack. Stuff — розмовне «речі»; my stuff, не my stuffs."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-09:intro1:r1",
+              "text": "I will pack my stuff if we leave early."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro1:r2",
+              "text": "I will pack my stuff if we will leave early."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro1:r3",
+              "text": "I will packs my stuff if we leave early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-09:intro1:r1",
+              "text": "I will pack my stuff if we leave early."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro1:r2",
+              "text": "I will pack my stuff if we will leave early."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro1:r3",
+              "text": "I will packs my stuff if we leave early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Если прольётся сок",
+        "uk": "Якщо розіллється сік"
+      },
+      "bodyByLocale": {
+        "ru": "Вы несёте сок и обещаете убрать за собой, если прольёте его. I will clean up the mess if I spill the juice. Mess здесь — беспорядок и грязь от разлитого сока. Если условие стоит после результата, запятая между ними не нужна. Можно начать с условия: If I spill the juice, I will clean up the mess. Тогда ставим запятую. В обоих порядках spill — Present Simple, will clean — будущий результат.",
+        "uk": "Ви несете сік і обіцяєте прибрати за собою, якщо розіллєте його. I will clean up the mess if I spill the juice. Mess тут — безлад і бруд від розлитого соку. Якщо умова стоїть після результату, кома між ними не потрібна. Можна почати з умови: If I spill the juice, I will clean up the mess. Тоді ставимо кому. В обох порядках spill — Present Simple, will clean — майбутній результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-09:intro2:r1",
+              "text": "I will clean up the mess if I spill the juice."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro2:r2",
+              "text": "I will clean up the mess if I will spill the juice."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro2:r3",
+              "text": "I will cleaning up the mess if I spill the juice."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-09:intro2:r1",
+              "text": "I will clean up the mess if I spill the juice."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro2:r2",
+              "text": "I will clean up the mess if I will spill the juice."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro2:r3",
+              "text": "I will cleaning up the mess if I spill the juice."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто придёт и кого спросить",
+        "uk": "Хто прийде й кого запитати"
+      },
+      "bodyByLocale": {
+        "ru": "Kid — разговорное «ребёнок», kids — «дети». I will bring a game if the kids come — я принесу игру, если придут дети. Guy — разговорное «парень» или «мужчина»: I will ask that guy if I need help — я спрошу того парня, если понадобится помощь. Это возможные будущие действия, поэтому will bring и will ask. В условиях — come и need в Present Simple. В отличие от zero conditional, мы сейчас описываем не обычную привычку, а план на возможный случай.",
+        "uk": "Kid — розмовне «дитина», kids — «діти». I will bring a game if the kids come — я принесу гру, якщо прийдуть діти. Guy — розмовне «хлопець» або «чоловік»: I will ask that guy if I need help — я запитаю того хлопця, якщо знадобиться допомога. Це можливі майбутні дії, тому will bring і will ask. В умовах — come та need у Present Simple. На відміну від zero conditional, ми зараз описуємо не звичайну звичку, а план на можливий випадок."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-09:intro3:r1",
+              "text": "I will bring a game if the kids come."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro3:r2",
+              "text": "I will bring a game if the kids will come."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro3:r3",
+              "text": "I will brings a game if the kids come."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-09:intro3:r1",
+              "text": "I will bring a game if the kids come."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro3:r2",
+              "text": "I will bring a game if the kids will come."
+            },
+            {
+              "responseId": "en:lesson-26:session-09:intro3:r3",
+              "text": "I will brings a game if the kids come."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3398b6c3ef2d3e762f0584dff06c6191f210dc5b8599e6a77ace3238afc44401"
+}

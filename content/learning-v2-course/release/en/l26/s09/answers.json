@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-09:word:stuff",
+    "correctText": "stuff",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i01",
+    "correctText": "I will leave my stuff here if the bag is too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i02",
+    "correctText": "spill",
+    "correctResponseId": "en:lesson-26:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:word:mess",
+    "correctText": "mess",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i03",
+    "correctText": "We will clean up the mess if you bring a cloth.",
+    "correctResponseId": "en:lesson-26:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i04",
+    "correctText": "I will call if I am late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:word:kids",
+    "correctText": "kids",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i05",
+    "correctText": "The kids will stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i06",
+    "correctText": "will buy",
+    "correctResponseId": "en:lesson-26:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:word:guy",
+    "correctText": "guy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i07",
+    "correctText": "That guy will help us if we ask.",
+    "correctResponseId": "en:lesson-26:session-09:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i08",
+    "correctText": "en:lesson-26:session-09:i08:p1=stuff\nen:lesson-26:session-09:i08:p2=mess\nen:lesson-26:session-09:i08:p3=kids\nen:lesson-26:session-09:i08:p4=guy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i09",
+    "correctText": "I will help you if you lose your ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i10",
+    "correctText": "does not",
+    "correctResponseId": "en:lesson-26:session-09:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i11",
+    "correctText": "I will turn down the music if the baby wakes up.",
+    "correctResponseId": "en:lesson-26:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i12",
+    "correctText": "Your stuff will get wet if you leave it outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i13",
+    "correctText": "if",
+    "correctResponseId": "en:lesson-26:session-09:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i14",
+    "correctText": "We will take a break if the kids get tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i15",
+    "correctText": "We will eat outside if the weather is warm.",
+    "correctResponseId": "en:lesson-26:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i16",
+    "correctText": "I will clean up the mess if you wash the dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-09:i17",
+    "correctText": "I will open the door if Alex comes.",
+    "correctResponseId": null
+  }
+]

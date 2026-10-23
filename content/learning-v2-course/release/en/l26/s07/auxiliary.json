@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-07:intro1:r2": {
+          "ru": "В Present Simple нужна форма choose.",
+          "uk": "У Present Simple потрібна форма choose."
+        },
+        "en:lesson-26:session-07:intro1:r3": {
+          "ru": "Обычное свойство или привычка: Present Simple в обеих частях.",
+          "uk": "Звичайна властивість або звичка: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-07:intro2:r2": {
+          "ru": "В Present Simple нужна форма breaks.",
+          "uk": "У Present Simple потрібна форма breaks."
+        },
+        "en:lesson-26:session-07:intro2:r3": {
+          "ru": "Обычное свойство или привычка: Present Simple в обеих частях.",
+          "uk": "Звичайна властивість або звичка: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-07:intro3:r2": {
+          "ru": "В Present Simple нужна форма choose.",
+          "uk": "У Present Simple потрібна форма choose."
+        },
+        "en:lesson-26:session-07:intro3:r3": {
+          "ru": "Обычное свойство или привычка: Present Simple в обеих частях.",
+          "uk": "Звичайна властивість або звичка: Present Simple в обох частинах."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9b805571c25ff56e35bd24bd71cac661441c73c608ab5399bfac7a10096b5f29"
+}

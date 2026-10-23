@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-08:intro1:r2": {
+          "ru": "После I в Present Simple нужна форма use.",
+          "uk": "Після I в Present Simple потрібна форма use."
+        },
+        "en:lesson-26:session-08:intro1:r3": {
+          "ru": "Обычный выбор при условии: Present Simple в обеих частях.",
+          "uk": "Звичайний вибір за умови: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-08:intro2:r2": {
+          "ru": "После I в Present Simple нужна форма remove.",
+          "uk": "Після I в Present Simple потрібна форма remove."
+        },
+        "en:lesson-26:session-08:intro2:r3": {
+          "ru": "Обычный выбор при условии: Present Simple в обеих частях.",
+          "uk": "Звичайний вибір за умови: Present Simple в обох частинах."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-08:intro3:r2": {
+          "ru": "После I в Present Simple нужна форма add.",
+          "uk": "Після I в Present Simple потрібна форма add."
+        },
+        "en:lesson-26:session-08:intro3:r3": {
+          "ru": "Обычный выбор при условии: Present Simple в обеих частях.",
+          "uk": "Звичайний вибір за умови: Present Simple в обох частинах."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "93fe4b32a9c6fe8a8b44a2eb344b9ce5d8fed2af8c31099a7c6037daff7523ed"
+}

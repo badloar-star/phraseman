@@ -9849,4 +9849,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional: when + present simple, present simple","uk":"zero conditional: when + present simple, present simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 7,
+    sourceFingerprint: "13154e2a8ad5e7bbc9eff421234ec79913412994f864ae4fa94786643b7b539a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional: if/when + present simple, present simple","uk":"zero conditional: if/when + present simple, present simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 8,
+    sourceFingerprint: "cbae0150ca630907ee0c34e8e62601657d480b464e3cdaea16c3b20fe52ceefc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"zero conditional: if/when + present simple, present simple","uk":"zero conditional: if/when + present simple, present simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 9,
+    sourceFingerprint: "e0fd1f5203cbc835a89faaeda463ffa9a29e2b8078883974500a23caa0b4b2e1",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"first conditional: if + present simple, will + base verb","uk":"first conditional: if + present simple, will + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

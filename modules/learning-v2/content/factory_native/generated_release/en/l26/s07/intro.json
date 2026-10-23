@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "zero conditional: if/when + present simple, present simple",
+    "uk": "zero conditional: if/when + present simple, present simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коробка держит форму",
+        "uk": "Коробка тримає форму"
+      },
+      "bodyByLocale": {
+        "ru": "Rigid — жёсткий, почти не гнущийся. I choose a rigid box when I pack glasses — я выбираю жёсткую коробку, когда упаковываю стаканы. Так я описываю свою привычку при упаковке. После I — choose и pack без -s. When связывает ситуацию и обычный выбор. Rigid описывает форму коробки: её стенки не должны легко сгибаться.",
+        "uk": "Rigid — жорсткий, той, що майже не гнеться. I choose a rigid box when I pack glasses — я вибираю жорстку коробку, коли пакую склянки. Так я описую свою звичку під час пакування. Після I — choose і pack без -s. When пов’язує ситуацію та звичайний вибір. Rigid описує форму коробки: її стінки не мають легко згинатися."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-07:intro1:r1",
+              "text": "I choose a rigid box when I pack glasses."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro1:r2",
+              "text": "I chooses a rigid box when I pack glasses."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro1:r3",
+              "text": "I choosing a rigid box when I pack glasses."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-07:intro1:r1",
+              "text": "I choose a rigid box when I pack glasses."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro1:r2",
+              "text": "I chooses a rigid box when I pack glasses."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro1:r3",
+              "text": "I choosing a rigid box when I pack glasses."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ломкий пластик и прозрачные банки",
+        "uk": "Ламкий пластик і прозорі банки"
+      },
+      "bodyByLocale": {
+        "ru": "Brittle — ломкий. Brittle plastic breaks if you bend it — ломкий пластик ломается, если его согнуть. Это характеристика именно ломкого пластика, а не любого пластика. Plastic — неисчисляемое, форма глагола как с it: breaks. Transparent — прозрачный. I use transparent jars when I store spices — я использую прозрачные банки для хранения специй. Сквозь стенки видно, что внутри.",
+        "uk": "Brittle — ламкий. Brittle plastic breaks if you bend it — ламкий пластик ламається, якщо його зігнути. Це характеристика саме ламкого пластику, а не будь-якого пластику. Plastic — незлічуване, форма дієслова як з it: breaks. Transparent — прозорий. I use transparent jars when I store spices — я використовую прозорі банки для зберігання спецій. Крізь стінки видно, що всередині."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-07:intro2:r1",
+              "text": "Brittle plastic breaks if you bend it."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro2:r2",
+              "text": "Brittle plastic break if you bend it."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro2:r3",
+              "text": "Brittle plastic breaking if you bend it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-07:intro2:r1",
+              "text": "Brittle plastic breaks if you bend it."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro2:r2",
+              "text": "Brittle plastic break if you bend it."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro2:r3",
+              "text": "Brittle plastic breaking if you bend it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не видно насквозь",
+        "uk": "Не видно наскрізь"
+      },
+      "bodyByLocale": {
+        "ru": "Opaque — непрозрачный, противоположность transparent. I choose opaque curtains when I want a dark room — я выбираю непрозрачные шторы, когда хочу тёмную комнату. Сквозь такую ткань не видно. Это пример моего обычного выбора, поэтому choose и want в Present Simple. If подчёркивает условие, when — ситуацию, в которой это обычно происходит; в zero conditional результат тоже в Present Simple.",
+        "uk": "Opaque — непрозорий, протилежність transparent. I choose opaque curtains when I want a dark room — я вибираю непрозорі штори, коли хочу темну кімнату. Крізь таку тканину не видно. Це приклад мого звичайного вибору, тому choose і want в Present Simple. If підкреслює умову, when — ситуацію, у якій це зазвичай відбувається; у zero conditional результат теж у Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-07:intro3:r1",
+              "text": "I choose opaque curtains when I want a dark room."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro3:r2",
+              "text": "I chooses opaque curtains when I want a dark room."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro3:r3",
+              "text": "I choosing opaque curtains when I want a dark room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-07:intro3:r1",
+              "text": "I choose opaque curtains when I want a dark room."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro3:r2",
+              "text": "I chooses opaque curtains when I want a dark room."
+            },
+            {
+              "responseId": "en:lesson-26:session-07:intro3:r3",
+              "text": "I choosing opaque curtains when I want a dark room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8e0794385f05b533d04ddb6842dbff7f0ed2f908ea04347245dcf8902e9c4552"
+}

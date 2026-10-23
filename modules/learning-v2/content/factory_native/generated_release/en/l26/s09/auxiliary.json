@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-09:intro1:r2": {
+          "ru": "В условии о будущем после if здесь нужен Present Simple: if we leave.",
+          "uk": "В умові про майбутнє після if тут потрібен Present Simple: if we leave."
+        },
+        "en:lesson-26:session-09:intro1:r3": {
+          "ru": "После will нужна начальная форма pack без -s.",
+          "uk": "Після will потрібна початкова форма pack без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-09:intro2:r2": {
+          "ru": "После if в этом условии нужна форма spill, без will.",
+          "uk": "Після if у цій умові потрібна форма spill, без will."
+        },
+        "en:lesson-26:session-09:intro2:r3": {
+          "ru": "После will нужно clean, не cleaning.",
+          "uk": "Після will потрібно clean, не cleaning."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-09:intro3:r2": {
+          "ru": "После if здесь нужно come, без will.",
+          "uk": "Після if тут потрібно come, без will."
+        },
+        "en:lesson-26:session-09:intro3:r3": {
+          "ru": "После will используем bring без -s.",
+          "uk": "Після will використовуємо bring без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "30a15116ac447e373f22c699b59f6d9f70d2d97e3e61c4d71bb6a81b17775c8d"
+}

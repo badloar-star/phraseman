@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-08:word:shortage",
+    "correctText": "shortage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i01",
+    "correctText": "I use frozen fruit when there is a shortage of fresh fruit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i02",
+    "correctText": "use",
+    "correctResponseId": "en:lesson-26:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i03",
+    "correctText": "I use frozen fruit when there is a shortage of fresh fruit.",
+    "correctResponseId": "en:lesson-26:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:word:excess",
+    "correctText": "excess",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i04",
+    "correctText": "I remove excess fat when I cook meat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i05",
+    "correctText": "remove",
+    "correctResponseId": "en:lesson-26:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i06",
+    "correctText": "I remove excess fat when I cook meat.",
+    "correctResponseId": "en:lesson-26:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:word:chunks",
+    "correctText": "chunks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i07",
+    "correctText": "I use small chunks of potato when I make soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i08",
+    "correctText": "use",
+    "correctResponseId": "en:lesson-26:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i09",
+    "correctText": "I use small chunks of potato when I make soup.",
+    "correctResponseId": "en:lesson-26:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:word:lacks",
+    "correctText": "lacks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i10",
+    "correctText": "I add salt if the soup lacks flavour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i11",
+    "correctText": "add",
+    "correctResponseId": "en:lesson-26:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i12",
+    "correctText": "I add salt if the soup lacks flavour.",
+    "correctResponseId": "en:lesson-26:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i13",
+    "correctText": "en:lesson-26:session-08:i13:p1=shortage\nen:lesson-26:session-08:i13:p2=excess\nen:lesson-26:session-08:i13:p3=chunks\nen:lesson-26:session-08:i13:p4=lacks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i14",
+    "correctText": "I rest when I am tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i15",
+    "correctText": "I stay home if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i16",
+    "correctText": "He removes excess fat when he cooks meat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-08:i17",
+    "correctText": "I add pepper if the soup lacks flavour.",
+    "correctResponseId": null
+  }
+]

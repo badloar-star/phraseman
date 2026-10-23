@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-08:word:shortage",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shortage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:word:shortage:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shortage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:word:shortage:audio",
+          "transcript": "shortage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:word:shortage:r1",
+            "targetText": "shortage",
+            "meaningByLocale": {
+              "ru": "Нехватка. Shortage — ситуация, когда чего-то меньше, чем нужно.",
+              "uk": "Нестача. Shortage — ситуація, коли чогось менше, ніж потрібно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shortage",
+          "definitionByLocale": {
+            "ru": "Нехватка. Shortage — ситуация, когда чего-то меньше, чем нужно.",
+            "uk": "Нестача. Shortage — ситуація, коли чогось менше, ніж потрібно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я использую замороженные фрукты, когда не хватает свежих фруктов.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я использую замороженные фрукты, когда не хватает свежих фруктов.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use frozen fruit when there is a shortage of fresh fruit.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я использую замороженные фрукты, когда не хватает свежих фруктов.»",
+          "uk": "Скажіть: «Я використовую заморожені фрукти, коли бракує свіжих фруктів.»"
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "frozen",
+          "fruit",
+          "when",
+          "there",
+          "is",
+          "a",
+          "shortage",
+          "of",
+          "fresh",
+          "fruit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i02:r1",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i02:r2",
+          "text": "uses"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i02:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ frozen fruit when there is a shortage of fresh fruit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-08:i02:r1",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i02:r2",
+            "text": "uses"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i02:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i03:r1",
+          "text": "I use frozen fruit when there is a shortage of fresh fruit."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i03:r2",
+          "text": "She uses frozen fruit when there is a shortage of fresh fruit."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i03:r3",
+          "text": "I use frozen vegetables when there is a shortage of fresh vegetables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i03:audio",
+          "transcript": "I use frozen fruit when there is a shortage of fresh fruit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:i03:r1",
+            "targetText": "I use frozen fruit when there is a shortage of fresh fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i03:r2",
+            "targetText": "She uses frozen fruit when there is a shortage of fresh fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i03:r3",
+            "targetText": "I use frozen vegetables when there is a shortage of fresh vegetables.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use frozen fruit when there is a shortage of fresh fruit.",
+              "uk": "У записі звучить I use frozen fruit when there is a shortage of fresh fruit."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use frozen fruit when there is a shortage of fresh fruit.",
+              "uk": "У записі звучить I use frozen fruit when there is a shortage of fresh fruit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:word:excess",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — excess",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:word:excess:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — excess",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:word:excess:audio",
+          "transcript": "excess"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:word:excess:r1",
+            "targetText": "excess",
+            "meaningByLocale": {
+              "ru": "Лишний. Excess здесь — превышающий нужное количество.",
+              "uk": "Зайвий. Excess тут — той, що перевищує потрібну кількість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "excess",
+          "definitionByLocale": {
+            "ru": "Лишний. Excess здесь — превышающий нужное количество.",
+            "uk": "Зайвий. Excess тут — той, що перевищує потрібну кількість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я удаляю лишний жир, когда готовлю мясо.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я удаляю лишний жир, когда готовлю мясо.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I remove excess fat when I cook meat.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я удаляю лишний жир, когда готовлю мясо.»",
+          "uk": "Скажіть: «Я видаляю зайвий жир, коли готую м’ясо.»"
+        },
+        "orderedTokens": [
+          "I",
+          "remove",
+          "excess",
+          "fat",
+          "when",
+          "I",
+          "cook",
+          "meat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i05:r1",
+          "text": "remove"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i05:r2",
+          "text": "removes"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i05:r3",
+          "text": "removing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ excess fat when I cook meat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-08:i05:r1",
+            "text": "remove"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i05:r2",
+            "text": "removes"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i05:r3",
+            "text": "removing"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма remove.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма remove."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма remove.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма remove."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i06:r1",
+          "text": "I remove excess fat when I cook meat."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i06:r2",
+          "text": "She removes excess fat when she cooks meat."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i06:r3",
+          "text": "I remove excess fat when I cook chicken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i06:audio",
+          "transcript": "I remove excess fat when I cook meat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:i06:r1",
+            "targetText": "I remove excess fat when I cook meat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i06:r2",
+            "targetText": "She removes excess fat when she cooks meat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i06:r3",
+            "targetText": "I remove excess fat when I cook chicken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I remove excess fat when I cook meat.",
+              "uk": "У записі звучить I remove excess fat when I cook meat."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I remove excess fat when I cook meat.",
+              "uk": "У записі звучить I remove excess fat when I cook meat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:word:chunks",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chunks",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:word:chunks:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chunks",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:word:chunks:audio",
+          "transcript": "chunks"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:word:chunks:r1",
+            "targetText": "chunks",
+            "meaningByLocale": {
+              "ru": "Кусочки. Chunk — плотный кусок; chunks — множественное число.",
+              "uk": "Шматочки. Chunk — щільний шматок; chunks — множина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chunks",
+          "definitionByLocale": {
+            "ru": "Кусочки. Chunk — плотный кусок; chunks — множественное число.",
+            "uk": "Шматочки. Chunk — щільний шматок; chunks — множина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я использую небольшие кусочки картофеля, когда готовлю суп.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я использую небольшие кусочки картофеля, когда готовлю суп.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I use small chunks of potato when I make soup.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я использую небольшие кусочки картофеля, когда готовлю суп.»",
+          "uk": "Скажіть: «Я використовую невеликі шматочки картоплі, коли готую суп.»"
+        },
+        "orderedTokens": [
+          "I",
+          "use",
+          "small",
+          "chunks",
+          "of",
+          "potato",
+          "when",
+          "I",
+          "make",
+          "soup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i08:r1",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i08:r2",
+          "text": "uses"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i08:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ small chunks of potato when I make soup.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-08:i08:r1",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i08:r2",
+            "text": "uses"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i08:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма use.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма use."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i09:r1",
+          "text": "I use small chunks of potato when I make soup."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i09:r2",
+          "text": "She uses small chunks of potato when she makes soup."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i09:r3",
+          "text": "I use small chunks of carrot when I make soup."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i09:audio",
+          "transcript": "I use small chunks of potato when I make soup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:i09:r1",
+            "targetText": "I use small chunks of potato when I make soup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i09:r2",
+            "targetText": "She uses small chunks of potato when she makes soup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i09:r3",
+            "targetText": "I use small chunks of carrot when I make soup.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use small chunks of potato when I make soup.",
+              "uk": "У записі звучить I use small chunks of potato when I make soup."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I use small chunks of potato when I make soup.",
+              "uk": "У записі звучить I use small chunks of potato when I make soup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:word:lacks",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lacks",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:word:lacks:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lacks",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:word:lacks:audio",
+          "transcript": "lacks"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:word:lacks:r1",
+            "targetText": "lacks",
+            "meaningByLocale": {
+              "ru": "Не хватает. Lack — не иметь чего-то в нужном количестве; lacks — форма с окончанием -s.",
+              "uk": "Бракує. Lack — не мати чогось у потрібній кількості; lacks — форма із закінченням -s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lacks",
+          "definitionByLocale": {
+            "ru": "Не хватает. Lack — не иметь чего-то в нужном количестве; lacks — форма с окончанием -s.",
+            "uk": "Бракує. Lack — не мати чогось у потрібній кількості; lacks — форма із закінченням -s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я добавляю соль, если супу не хватает вкуса.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я добавляю соль, если супу не хватает вкуса.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I add salt if the soup lacks flavour.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я добавляю соль, если супу не хватает вкуса.»",
+          "uk": "Скажіть: «Я додаю сіль, якщо супу бракує смаку.»"
+        },
+        "orderedTokens": [
+          "I",
+          "add",
+          "salt",
+          "if",
+          "the",
+          "soup",
+          "lacks",
+          "flavour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните обычную закономерность.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i11:r1",
+          "text": "add"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i11:r2",
+          "text": "adds"
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i11:r3",
+          "text": "adding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните обычную закономерность.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните обычную закономерность.",
+          "uk": "Доповніть звичайну закономірність."
+        },
+        "gappedTargetPhrase": "I ___ salt if the soup lacks flavour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-08:i11:r1",
+            "text": "add"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i11:r2",
+            "text": "adds"
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i11:r3",
+            "text": "adding"
+          }
+        ],
+        "testedDimension": "Дополните обычную закономерность.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма add.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма add."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните обычную закономерность.",
+            "feedbackByLocale": {
+              "ru": "Обычная закономерность: Present Simple. Нужна форма add.",
+              "uk": "Звичайна закономірність: Present Simple. Потрібна форма add."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-08:i12:r1",
+          "text": "I add salt if the soup lacks flavour."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i12:r2",
+          "text": "She adds salt if the soup lacks flavour."
+        },
+        {
+          "responseId": "en:lesson-26:session-08:i12:r3",
+          "text": "I add herbs if the soup lacks flavour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i12:audio",
+          "transcript": "I add salt if the soup lacks flavour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-08:i12:r1",
+            "targetText": "I add salt if the soup lacks flavour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i12:r2",
+            "targetText": "She adds salt if the soup lacks flavour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i12:r3",
+            "targetText": "I add herbs if the soup lacks flavour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I add salt if the soup lacks flavour.",
+              "uk": "У записі звучить I add salt if the soup lacks flavour."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I add salt if the soup lacks flavour.",
+              "uk": "У записі звучить I add salt if the soup lacks flavour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-26:session-08:i13:p1",
+            "target": "shortage",
+            "meaningByLocale": {
+              "ru": "нехватка",
+              "uk": "нестача"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-08:i13:p2",
+            "target": "excess",
+            "meaningByLocale": {
+              "ru": "лишний",
+              "uk": "зайвий"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-08:i13:p3",
+            "target": "chunks",
+            "meaningByLocale": {
+              "ru": "кусочки",
+              "uk": "шматочки"
+            }
+          },
+          {
+            "pairId": "en:lesson-26:session-08:i13:p4",
+            "target": "lacks",
+            "meaningByLocale": {
+              "ru": "не хватает",
+              "uk": "бракує"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shortage",
+          "excess",
+          "chunks",
+          "lacks"
+        ],
+        "rightColumn": [
+          "нехватка",
+          "лишний",
+          "кусочки",
+          "не хватает"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Отдыхаю, когда устаю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Отдыхаю, когда устаю",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i14:audio",
+          "transcript": "I rest when I am tired."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I rest when I am tired.",
+        "orderedTokens": [
+          "I",
+          "rest",
+          "when",
+          "I",
+          "am",
+          "tired"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Если идёт дождь, остаюсь дома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Если идёт дождь, остаюсь дома",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i15:audio",
+          "transcript": "I stay home if it rains."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I stay home if it rains.",
+        "orderedTokens": [
+          "I",
+          "stay",
+          "home",
+          "if",
+          "it",
+          "rains"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Он удаляет лишний жир, когда готовит мясо».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Он удаляет лишний жир, когда готовит мясо».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i16:audio",
+          "transcript": "He removes excess fat when he cooks meat."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He removes excess fat when he cooks meat.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я добавляю перец, если супу не хватает вкуса».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я добавляю перец, если супу не хватает вкуса».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-08:i17:audio",
+          "transcript": "I add pepper if the soup lacks flavour."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I add pepper if the soup lacks flavour.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "571d6f56b5df762acf4ffd53b622a4e57a84cbcd1831abbff2c235ca2dc04bf2"
+}

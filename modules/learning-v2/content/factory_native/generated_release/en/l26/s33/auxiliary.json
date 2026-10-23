@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-33:intro1:r2": {
+          "ru": "Порядок частей не разрешает will после if в этом условии.",
+          "uk": "Порядок частин не дозволяє will після if у цій умові."
+        },
+        "en:lesson-26:session-33:intro1:r3": {
+          "ru": "В условии нужно is; обещанное решение здесь will take.",
+          "uk": "В умові потрібно is; обіцяне рішення тут will take."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-33:intro2:r2": {
+          "ru": "You will call — сообщение о будущем; здесь нужна просьба call.",
+          "uk": "You will call — повідомлення про майбутнє; тут потрібне прохання call."
+        },
+        "en:lesson-26:session-33:intro2:r3": {
+          "ru": "После if в этом условии need без will.",
+          "uk": "Після if у цій умові need без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-33:intro3:r2": {
+          "ru": "После if здесь is, независимо от порядка частей.",
+          "uk": "Після if тут is, незалежно від порядку частин."
+        },
+        "en:lesson-26:session-33:intro3:r3": {
+          "ru": "Unless меняет условие: еду навынос возьмём, если кафе не заполнено.",
+          "uk": "Unless змінює умову: їжу навинос візьмемо, якщо кафе не заповнене."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "27852bf73e6f3d311ef673cf13ea8e6015b0834249ef6ca1bd50d30c1941a4da"
+}

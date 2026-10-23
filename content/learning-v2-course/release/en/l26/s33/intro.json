@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "conditional clause first or second",
+    "uk": "conditional clause first or second"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Условие в начале или в конце",
+        "uk": "Умова на початку або в кінці"
+      },
+      "bodyByLocale": {
+        "ru": "Subway — метро. If the subway is closed, we will take a bus — если метро закрыто, мы поедем на автобусе. То же условие можно поставить после решения: We will take a bus if the subway is closed. Смысл сохраняется. Когда часть с if стоит первой, после неё обычно пишут запятую; когда она идёт второй, запятая обычно не нужна. Перестановка не меняет времена: после if остаётся is, в результате — will take.",
+        "uk": "Subway — метро. If the subway is closed, we will take a bus — якщо метро закрито, ми поїдемо автобусом. Ту саму умову можна поставити після рішення: We will take a bus if the subway is closed. Зміст зберігається. Коли частина з if стоїть першою, після неї зазвичай пишуть кому; коли вона йде другою, кома зазвичай не потрібна. Перестановка не змінює часів: після if залишається is, у результаті — will take."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-33:intro1:r1",
+              "text": "We will take a bus if the subway is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro1:r2",
+              "text": "We will take a bus if the subway will be closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro1:r3",
+              "text": "We take a bus if the subway will be closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-33:intro1:r1",
+              "text": "We will take a bus if the subway is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro1:r2",
+              "text": "We will take a bus if the subway will be closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro1:r3",
+              "text": "We take a bus if the subway will be closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сначала просьба или сначала условие",
+        "uk": "Спочатку прохання чи спочатку умова"
+      },
+      "bodyByLocale": {
+        "ru": "Railroad — железная дорога. Diner — небольшое простое кафе, где можно поесть. The diner is near the railroad — кафе рядом с железной дорогой. Вы можете попросить If you need help, call me — если нужна помощь, позвони мне. Или начать с просьбы: Call me if you need help. Это одна договорённость в двух порядках. Повелительное call не превращается в will call при перестановке.",
+        "uk": "Railroad — залізниця. Diner — невелике просте кафе, де можна поїсти. The diner is near the railroad — кафе поруч із залізницею. Можна попросити If you need help, call me — якщо потрібна допомога, зателефонуй мені. Або почати з прохання: Call me if you need help. Це одна домовленість у двох порядках. Наказове call не перетворюється на will call під час перестановки."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-33:intro2:r1",
+              "text": "Call me if you need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro2:r2",
+              "text": "You will call me if you need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro2:r3",
+              "text": "Call me if you will need help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-33:intro2:r1",
+              "text": "Call me if you need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro2:r2",
+              "text": "You will call me if you need help."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro2:r3",
+              "text": "Call me if you will need help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Изменить план ужина",
+        "uk": "Змінити план вечері"
+      },
+      "bodyByLocale": {
+        "ru": "Takeout — готовая еда навынос. We will get takeout if the diner is full — мы возьмём еду навынос, если в кафе нет мест. Можно начать с условия: If the diner is full, we will get takeout. В обоих вариантах кафе без свободных мест — условие, еда навынос — решение. Отдельно можно сказать We will eat there unless it is full — мы поедим там, если в нём есть места. Не заменяйте if на unless только ради другого порядка: unless меняет само условие.",
+        "uk": "Takeout — готова їжа навинос. We will get takeout if the diner is full — ми візьмемо їжу навинос, якщо в кафе немає місць. Можна почати з умови: If the diner is full, we will get takeout. В обох варіантах кафе без вільних місць — умова, їжа навинос — рішення. Окремо можна сказати We will eat there unless it is full — ми поїмо там, якщо в ньому є місця. Не замінюйте if на unless лише заради іншого порядку: unless змінює саму умову."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-33:intro3:r1",
+              "text": "If the diner is full, we will get takeout."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro3:r2",
+              "text": "If the diner will be full, we will get takeout."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro3:r3",
+              "text": "Unless the diner is full, we will get takeout."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-33:intro3:r1",
+              "text": "If the diner is full, we will get takeout."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro3:r2",
+              "text": "If the diner will be full, we will get takeout."
+            },
+            {
+              "responseId": "en:lesson-26:session-33:intro3:r3",
+              "text": "Unless the diner is full, we will get takeout."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b31af92ceed83761cee697bd3d8012a9b9b4c3e1d1bd87f9ce49fbe38111811f"
+}

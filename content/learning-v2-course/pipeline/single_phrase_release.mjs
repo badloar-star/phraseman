@@ -47,9 +47,13 @@ function hasCommaSeparatedIndependentClauses(value) {
   const pronounSubject = /^(?:this|that|these|those|it|i|you|we|they|he|she|there)\b/iu;
   const nounSubject = /^(?:(?:the|a|an|my|your|his|her|our|their)\s+)?\p{L}[\p{L}'’\-]*\s+/u;
   const imperative = /^(?:be|come|go|stop|start|open|close|sit|stand|look|listen|say|tell|give|take|put|keep|make|let|wait|help|show|find|turn|walk|run|smile|laugh|sleep|wake|dance|sing|read|write|choose|match|repeat|build)\b/iu;
-  const independentClause = (part) => (
+  // A complete copular condition is dependent, not a second assessed sentence.
+  // Match the whole segment: a prefix-only exception would hide an appended
+  // main clause (e.g. "If you are tired James can drive, I will rest").
+  const copularCondition = /^(?:if|unless)\s+(?:(?:i|you|we|they|he|she|it|this|that)|(?:the|a|an|my|your|his|her|our|their)\s+[a-z]+)\s+(?:am|are|is|was|were|_{2,})\s+(?:not\s+)?[a-z]+$/iu;
+  const independentClause = (part) => !copularCondition.test(part) && ((
     (pronounSubject.test(part) || nounSubject.test(part)) && finiteVerb.test(part)
-  ) || imperative.test(part);
+  ) || imperative.test(part));
   return parts.filter((part) => !tagQuestion.test(part)).filter(independentClause).length >= 2;
 }
 

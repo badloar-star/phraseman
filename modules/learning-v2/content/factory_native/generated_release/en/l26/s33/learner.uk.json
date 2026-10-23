@@ -1,0 +1,1084 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-33:word:subway",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — subway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:word:subway:audio"
+      ],
+      "accessibilityLabel": "Картка слова — subway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:word:subway:audio",
+          "transcript": "subway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:word:subway:r1",
+            "targetText": "subway",
+            "meaningByLocale": {
+              "ru": "Метро, городская подземная железная дорога.",
+              "uk": "Метро, міська підземна залізниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "subway",
+          "definitionByLocale": {
+            "ru": "Метро, городская подземная железная дорога.",
+            "uk": "Метро, міська підземна залізниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i01:r1",
+          "text": "The subway is closed tonight."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i01:r2",
+          "text": "The subway is open tonight."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i01:r3",
+          "text": "The shop is closed tonight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i01:audio",
+          "transcript": "The subway is closed tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:i01:r1",
+            "targetText": "The subway is closed tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i01:r2",
+            "targetText": "The subway is open tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i01:r3",
+            "targetText": "The shop is closed tonight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The subway is closed tonight.",
+              "uk": "У записі звучить The subway is closed tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The subway is closed tonight.",
+              "uk": "У записі звучить The subway is closed tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте If it rains, we will take a taxi, почавши з рішення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте If it rains, we will take a taxi, почавши з рішення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will take a taxi if it rains.",
+        "localizedMeaning": {
+          "ru": "Передайте If it rains, we will take a taxi, начав с решения.",
+          "uk": "Передайте If it rains, we will take a taxi, почавши з рішення."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "take",
+          "a",
+          "taxi",
+          "if",
+          "it",
+          "rains"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:word:railroad",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — railroad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:word:railroad:audio"
+      ],
+      "accessibilityLabel": "Картка слова — railroad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:word:railroad:audio",
+          "transcript": "railroad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:word:railroad:r1",
+            "targetText": "railroad",
+            "meaningByLocale": {
+              "ru": "Железная дорога.",
+              "uk": "Залізниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "railroad",
+          "definitionByLocale": {
+            "ru": "Железная дорога.",
+            "uk": "Залізниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i03",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть другові розташування готелю: «Він поруч із залізницею».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Поясніть другові розташування готелю: «Він поруч із залізницею».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i03:audio",
+          "transcript": "It is near the railroad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is near the railroad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Умова стоїть першою. Доповніть обіцяне рішення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i04:r1",
+          "text": "will"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i04:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i04:r3",
+          "text": "did"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Умова стоїть першою. Доповніть обіцяне рішення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Условие стоит первым. Дополните обещанное решение.",
+          "uk": "Умова стоїть першою. Доповніть обіцяне рішення."
+        },
+        "gappedTargetPhrase": "If the subway is closed, we ___ take a bus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-33:i04:r1",
+            "text": "will"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i04:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i04:r3",
+            "text": "did"
+          }
+        ],
+        "testedDimension": "Умова стоїть першою. Доповніть обіцяне рішення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Умова стоїть першою. Доповніть обіцяне рішення.",
+            "feedbackByLocale": {
+              "ru": "Are не подходит перед take; здесь будущее решение will take.",
+              "uk": "Are не підходить перед take; тут майбутнє рішення will take."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Умова стоїть першою. Доповніть обіцяне рішення.",
+            "feedbackByLocale": {
+              "ru": "Did отнесло бы действие к прошлому, а здесь будущий план.",
+              "uk": "Did віднесло б дію до минулого, а тут майбутній план."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:word:diner",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — diner",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:word:diner:audio"
+      ],
+      "accessibilityLabel": "Картка слова — diner",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:word:diner:audio",
+          "transcript": "diner"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:word:diner:r1",
+            "targetText": "diner",
+            "meaningByLocale": {
+              "ru": "Небольшое простое кафе, где можно поесть.",
+              "uk": "Невелике просте кафе, де можна поїсти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diner",
+          "definitionByLocale": {
+            "ru": "Небольшое простое кафе, где можно поесть.",
+            "uk": "Невелике просте кафе, де можна поїсти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію місця зустрічі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію місця зустрічі.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i05:audio",
+          "transcript": "Meet me at the diner."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Meet me at the diner.",
+        "orderedTokens": [
+          "Meet",
+          "me",
+          "at",
+          "the",
+          "diner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть If you need help, call me, почавши з прохання зателефонувати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть If you need help, call me, почавши з прохання зателефонувати.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i06:audio",
+          "transcript": "Call me if you need help."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Call me if you need help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:word:takeout",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — takeout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:word:takeout:audio"
+      ],
+      "accessibilityLabel": "Картка слова — takeout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:word:takeout:audio",
+          "transcript": "takeout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:word:takeout:r1",
+            "targetText": "takeout",
+            "meaningByLocale": {
+              "ru": "Готовая еда навынос.",
+              "uk": "Готова їжа навинос."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "takeout",
+          "definitionByLocale": {
+            "ru": "Готовая еда навынос.",
+            "uk": "Готова їжа навинос."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i07:r1",
+          "text": "We can get takeout."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i07:r2",
+          "text": "We can cook dinner."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i07:r3",
+          "text": "They can get takeout."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i07:audio",
+          "transcript": "We can get takeout."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:i07:r1",
+            "targetText": "We can get takeout.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i07:r2",
+            "targetText": "We can cook dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i07:r3",
+            "targetText": "They can get takeout.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can get takeout.",
+              "uk": "У записі звучить We can get takeout."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can get takeout.",
+              "uk": "У записі звучить We can get takeout."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте If the cafe is full, we will eat at home, почавши з рішення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте If the cafe is full, we will eat at home, почавши з рішення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We will eat at home if the cafe is full.",
+        "localizedMeaning": {
+          "ru": "Передайте If the cafe is full, we will eat at home, начав с решения.",
+          "uk": "Передайте If the cafe is full, we will eat at home, почавши з рішення."
+        },
+        "orderedTokens": [
+          "We",
+          "will",
+          "eat",
+          "at",
+          "home",
+          "if",
+          "the",
+          "cafe",
+          "is",
+          "full"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У кінці стоїть та сама умова, що в If it rains, we will stay inside.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i09:r1",
+          "text": "rains"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i09:r2",
+          "text": "will rain"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i09:r3",
+          "text": "raining"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У кінці стоїть та сама умова, що в If it rains, we will stay inside.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В конце стоит то же условие, что в If it rains, we will stay inside.",
+          "uk": "У кінці стоїть та сама умова, що в If it rains, we will stay inside."
+        },
+        "gappedTargetPhrase": "We will stay inside if it ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-33:i09:r1",
+            "text": "rains"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i09:r2",
+            "text": "will rain"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i09:r3",
+            "text": "raining"
+          }
+        ],
+        "testedDimension": "У кінці стоїть та сама умова, що в If it rains, we will stay inside.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "У кінці стоїть та сама умова, що в If it rains, we will stay inside.",
+            "feedbackByLocale": {
+              "ru": "Перестановка частей не добавляет will после if.",
+              "uk": "Перестановка частин не додає will після if."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "У кінці стоїть та сама умова, що в If it rains, we will stay inside.",
+            "feedbackByLocale": {
+              "ru": "Нужен глагол rains, не отдельное raining.",
+              "uk": "Потрібне дієслово rains, не окреме raining."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i10:r1",
+          "text": "If you are hungry, we can stop here."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i10:r2",
+          "text": "If you are tired, we can stop here."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i10:r3",
+          "text": "If you are hungry, we can eat later."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i10:audio",
+          "transcript": "If you are hungry, we can stop here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:i10:r1",
+            "targetText": "If you are hungry, we can stop here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i10:r2",
+            "targetText": "If you are tired, we can stop here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i10:r3",
+            "targetText": "If you are hungry, we can eat later.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит If you are hungry, we can stop here.",
+              "uk": "У записі звучить If you are hungry, we can stop here."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит If you are hungry, we can stop here.",
+              "uk": "У записі звучить If you are hungry, we can stop here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг не знає, як знайти кафе. Запитайте: «Тобі потрібна допомога?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не знає, як знайти кафе. Запитайте: «Тобі потрібна допомога?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you need help?",
+        "localizedMeaning": {
+          "ru": "Друг не знает, как найти кафе. Спросите: «Тебе нужна помощь?»",
+          "uk": "Друг не знає, як знайти кафе. Запитайте: «Тобі потрібна допомога?»"
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "need",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Умову «немає місць» потрібно зберегти після перестановки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i12:r1",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i12:r2",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i12:r3",
+          "text": "before"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Умову «немає місць» потрібно зберегти після перестановки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Условие «нет мест» нужно сохранить после перестановки.",
+          "uk": "Умову «немає місць» потрібно зберегти після перестановки."
+        },
+        "gappedTargetPhrase": "We will get takeout ___ the diner is full.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-33:i12:r1",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i12:r2",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i12:r3",
+            "text": "before"
+          }
+        ],
+        "testedDimension": "Умову «немає місць» потрібно зберегти після перестановки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Умову «немає місць» потрібно зберегти після перестановки.",
+            "feedbackByLocale": {
+              "ru": "Unless означало бы брать еду навынос при незаполненном кафе.",
+              "uk": "Unless означало б брати їжу навинос за незаповненого кафе."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Умову «немає місць» потрібно зберегти після перестановки.",
+            "feedbackByLocale": {
+              "ru": "Before задаёт время до заполнения, а здесь условие if.",
+              "uk": "Before задає час до заповнення, а тут умова if."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте If you are cold, close the window, почавши з прохання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Передайте If you are cold, close the window, почавши з прохання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i13:audio",
+          "transcript": "Close the window if you are cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Close the window if you are cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про розташування кафе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про розташування кафе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i14:audio",
+          "transcript": "Is the diner near the station?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is the diner near the station?",
+        "orderedTokens": [
+          "Is",
+          "the",
+          "diner",
+          "near",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви починаєте з умови, зберігаючи зміст We will wait if you are late.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i15:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i15:r2",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i15:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви починаєте з умови, зберігаючи зміст We will wait if you are late.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы начинаете с условия, сохраняя смысл We will wait if you are late.",
+          "uk": "Ви починаєте з умови, зберігаючи зміст We will wait if you are late."
+        },
+        "gappedTargetPhrase": "If you ___ late, we will wait.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-33:i15:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i15:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i15:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Ви починаєте з умови, зберігаючи зміст We will wait if you are late.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i15:r2",
+            "correct": false,
+            "testedDimension": "Ви починаєте з умови, зберігаючи зміст We will wait if you are late.",
+            "feedbackByLocale": {
+              "ru": "После if здесь are без will.",
+              "uk": "Після if тут are без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i15:r3",
+            "correct": false,
+            "testedDimension": "Ви починаєте з умови, зберігаючи зміст We will wait if you are late.",
+            "feedbackByLocale": {
+              "ru": "С you используется are, не is.",
+              "uk": "З you вживається are, не is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-33:i16:r1",
+          "text": "We can walk if the weather is nice."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i16:r2",
+          "text": "We can walk if the weather is bad."
+        },
+        {
+          "responseId": "en:lesson-26:session-33:i16:r3",
+          "text": "We can wait if the weather is nice."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-33:i16:audio",
+          "transcript": "We can walk if the weather is nice."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-33:i16:r1",
+            "targetText": "We can walk if the weather is nice.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i16:r2",
+            "targetText": "We can walk if the weather is bad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i16:r3",
+            "targetText": "We can wait if the weather is nice.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-33:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can walk if the weather is nice.",
+              "uk": "У записі звучить We can walk if the weather is nice."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-33:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can walk if the weather is nice.",
+              "uk": "У записі звучить We can walk if the weather is nice."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-33:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте If you have time, join us, почавши із запрошення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте If you have time, join us, почавши із запрошення.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Join us if you have time.",
+        "localizedMeaning": {
+          "ru": "Передайте If you have time, join us, начав с приглашения.",
+          "uk": "Передайте If you have time, join us, почавши із запрошення."
+        },
+        "orderedTokens": [
+          "Join",
+          "us",
+          "if",
+          "you",
+          "have",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ab86f5d89ac89c53eb2bea54cfb2300a9af52f84da66f944656f7af42ddbc372"
+}

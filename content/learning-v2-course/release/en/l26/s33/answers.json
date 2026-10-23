@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-33:word:subway",
+    "correctText": "subway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i01",
+    "correctText": "The subway is closed tonight.",
+    "correctResponseId": "en:lesson-26:session-33:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i02",
+    "correctText": "We will take a taxi if it rains.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:word:railroad",
+    "correctText": "railroad",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i03",
+    "correctText": "It is near the railroad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i04",
+    "correctText": "will",
+    "correctResponseId": "en:lesson-26:session-33:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:word:diner",
+    "correctText": "diner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i05",
+    "correctText": "Meet me at the diner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i06",
+    "correctText": "Call me if you need help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:word:takeout",
+    "correctText": "takeout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i07",
+    "correctText": "We can get takeout.",
+    "correctResponseId": "en:lesson-26:session-33:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i08",
+    "correctText": "We will eat at home if the cafe is full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i09",
+    "correctText": "rains",
+    "correctResponseId": "en:lesson-26:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i10",
+    "correctText": "If you are hungry, we can stop here.",
+    "correctResponseId": "en:lesson-26:session-33:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i11",
+    "correctText": "Do you need help?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i12",
+    "correctText": "if",
+    "correctResponseId": "en:lesson-26:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i13",
+    "correctText": "Close the window if you are cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i14",
+    "correctText": "Is the diner near the station?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i15",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-26:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i16",
+    "correctText": "We can walk if the weather is nice.",
+    "correctResponseId": "en:lesson-26:session-33:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-33:i17",
+    "correctText": "Join us if you have time.",
+    "correctResponseId": null
+  }
+]

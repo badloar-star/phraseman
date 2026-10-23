@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-05:word:deaf",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — deaf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:deaf:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — deaf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:deaf:audio",
+            "transcript": "deaf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:deaf:r1",
+              "targetText": "deaf",
+              "meaningByLocale": {
+                "ru": "глухой.",
+                "uk": "глухий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deaf",
+            "definitionByLocale": {
+              "ru": "глухой.",
+              "uk": "глухий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше она учила глухих детей.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше она учила глухих детей.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to teach deaf children.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она учила глухих детей.»",
+            "uk": "Скажіть: «Раніше вона навчала глухих дітей.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "teach",
+            "deaf",
+            "children"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i02:r1",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i02:r2",
+            "text": "taught"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i02:r3",
+            "text": "teaching"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "She used to ___ deaf children.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i02:r1",
+              "text": "teach"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i02:r2",
+              "text": "taught"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i02:r3",
+              "text": "teaching"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i03:r1",
+            "text": "She used to teach deaf children."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i03:r2",
+            "text": "He used to teach deaf children."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i03:r3",
+            "text": "She used to teach deaf adults."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i03:audio",
+            "transcript": "She used to teach deaf children."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i03:r1",
+              "targetText": "She used to teach deaf children.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i03:r2",
+              "targetText": "He used to teach deaf children.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i03:r3",
+              "targetText": "She used to teach deaf adults.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to teach deaf children.",
+                "uk": "У записі звучить She used to teach deaf children."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to teach deaf children.",
+                "uk": "У записі звучить She used to teach deaf children."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:word:disabled",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — disabled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:disabled:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — disabled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:disabled:audio",
+            "transcript": "disabled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:disabled:r1",
+              "targetText": "disabled",
+              "meaningByLocale": {
+                "ru": "с инвалидностью.",
+                "uk": "з інвалідністю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disabled",
+            "definitionByLocale": {
+              "ru": "с инвалидностью.",
+              "uk": "з інвалідністю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше я работал со взрослыми с инвалидностью.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше я работал со взрослыми с инвалидностью.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to work with disabled adults.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я работал со взрослыми с инвалидностью.»",
+            "uk": "Скажіть: «Раніше я працював із дорослими з інвалідністю.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "work",
+            "with",
+            "disabled",
+            "adults"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i05:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i05:r2",
+            "text": "worked"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i05:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "I used to ___ with disabled adults.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i05:r1",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i05:r2",
+              "text": "worked"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i05:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i06:r1",
+            "text": "I used to work with disabled adults."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i06:r2",
+            "text": "We used to work with disabled adults."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i06:r3",
+            "text": "I used to work with disabled children."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i06:audio",
+            "transcript": "I used to work with disabled adults."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i06:r1",
+              "targetText": "I used to work with disabled adults.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i06:r2",
+              "targetText": "We used to work with disabled adults.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i06:r3",
+              "targetText": "I used to work with disabled children.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to work with disabled adults.",
+                "uk": "У записі звучить I used to work with disabled adults."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to work with disabled adults.",
+                "uk": "У записі звучить I used to work with disabled adults."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:word:homeless",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — homeless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:homeless:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — homeless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:homeless:audio",
+            "transcript": "homeless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:homeless:r1",
+              "targetText": "homeless",
+              "meaningByLocale": {
+                "ru": "бездомный.",
+                "uk": "бездомний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "homeless",
+            "definitionByLocale": {
+              "ru": "бездомный.",
+              "uk": "бездомний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше мы помогали бездомным людям.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше мы помогали бездомным людям.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to help homeless people.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы помогали бездомным людям.»",
+            "uk": "Скажіть: «Раніше ми допомагали бездомним людям.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "help",
+            "homeless",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i08:r1",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i08:r2",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i08:r3",
+            "text": "helping"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "We used to ___ homeless people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i08:r1",
+              "text": "help"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i08:r2",
+              "text": "helped"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i08:r3",
+              "text": "helping"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма help.",
+                "uk": "Після used to потрібна форма help."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма help.",
+                "uk": "Після used to потрібна форма help."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i09:r1",
+            "text": "We used to help homeless people."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i09:r2",
+            "text": "They used to help homeless people."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i09:r3",
+            "text": "We used to help homeless families."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i09:audio",
+            "transcript": "We used to help homeless people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i09:r1",
+              "targetText": "We used to help homeless people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i09:r2",
+              "targetText": "They used to help homeless people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i09:r3",
+              "targetText": "We used to help homeless families.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to help homeless people.",
+                "uk": "У записі звучить We used to help homeless people."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to help homeless people.",
+                "uk": "У записі звучить We used to help homeless people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:word:wealthy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wealthy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:wealthy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wealthy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:wealthy:audio",
+            "transcript": "wealthy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:wealthy:r1",
+              "targetText": "wealthy",
+              "meaningByLocale": {
+                "ru": "состоятельный, богатый.",
+                "uk": "заможний, багатий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wealthy",
+            "definitionByLocale": {
+              "ru": "состоятельный, богатый.",
+              "uk": "заможний, багатий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше он жил в богатом районе.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше он жил в богатом районе.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He used to live in a wealthy area.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше он жил в богатом районе.»",
+            "uk": "Скажіть: «Раніше він жив у заможному районі.»"
+          },
+          "orderedTokens": [
+            "He",
+            "used",
+            "to",
+            "live",
+            "in",
+            "a",
+            "wealthy",
+            "area"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i11:r1",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i11:r2",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i11:r3",
+            "text": "living"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "He used to ___ in a wealthy area.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i11:r1",
+              "text": "live"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i11:r2",
+              "text": "lived"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i11:r3",
+              "text": "living"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i12:r1",
+            "text": "He used to live in a wealthy area."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i12:r2",
+            "text": "She used to live in a wealthy area."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i12:r3",
+            "text": "He used to work in a wealthy area."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i12:audio",
+            "transcript": "He used to live in a wealthy area."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i12:r1",
+              "targetText": "He used to live in a wealthy area.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i12:r2",
+              "targetText": "She used to live in a wealthy area.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i12:r3",
+              "targetText": "He used to work in a wealthy area.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to live in a wealthy area.",
+                "uk": "У записі звучить He used to live in a wealthy area."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to live in a wealthy area.",
+                "uk": "У записі звучить He used to live in a wealthy area."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-05:i13:p1",
+              "target": "deaf",
+              "meaningByLocale": {
+                "ru": "глухой",
+                "uk": "глухий"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-05:i13:p2",
+              "target": "disabled",
+              "meaningByLocale": {
+                "ru": "с инвалидностью",
+                "uk": "з інвалідністю"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-05:i13:p3",
+              "target": "homeless",
+              "meaningByLocale": {
+                "ru": "бездомный",
+                "uk": "бездомний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-05:i13:p4",
+              "target": "wealthy",
+              "meaningByLocale": {
+                "ru": "состоятельный, богатый",
+                "uk": "заможний, багатий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "deaf",
+            "disabled",
+            "homeless",
+            "wealthy"
+          ],
+          "rightColumn": [
+            "глухой",
+            "с инвалидностью",
+            "бездомный",
+            "состоятельный, богатый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Нашёл другую работу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Нашёл другую работу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i14:audio",
+            "transcript": "I have found another job."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have found another job.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "found",
+            "another",
+            "job"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Другие семьи переехали",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Другие семьи переехали",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i15:audio",
+            "transcript": "The other families moved last year."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The other families moved last year.",
+          "orderedTokens": [
+            "The",
+            "other",
+            "families",
+            "moved",
+            "last",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы раньше учили глухих детей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы раньше учили глухих детей».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i16:audio",
+            "transcript": "We used to teach deaf children."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to teach deaf children.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она раньше жила в богатом районе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она раньше жила в богатом районе».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i17:audio",
+            "transcript": "She used to live in a wealthy area."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to live in a wealthy area.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-05:word:deaf",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — deaf",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:deaf:audio"
+        ],
+        "accessibilityLabel": "Картка слова — deaf",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:deaf:audio",
+            "transcript": "deaf"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:deaf:r1",
+              "targetText": "deaf",
+              "meaningByLocale": {
+                "ru": "глухой.",
+                "uk": "глухий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "deaf",
+            "definitionByLocale": {
+              "ru": "глухой.",
+              "uk": "глухий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше вона навчала глухих дітей.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше вона навчала глухих дітей.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to teach deaf children.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она учила глухих детей.»",
+            "uk": "Скажіть: «Раніше вона навчала глухих дітей.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "teach",
+            "deaf",
+            "children"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i02:r1",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i02:r2",
+            "text": "taught"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i02:r3",
+            "text": "teaching"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "She used to ___ deaf children.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i02:r1",
+              "text": "teach"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i02:r2",
+              "text": "taught"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i02:r3",
+              "text": "teaching"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i03:r1",
+            "text": "She used to teach deaf children."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i03:r2",
+            "text": "He used to teach deaf children."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i03:r3",
+            "text": "She used to teach deaf adults."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i03:audio",
+            "transcript": "She used to teach deaf children."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i03:r1",
+              "targetText": "She used to teach deaf children.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i03:r2",
+              "targetText": "He used to teach deaf children.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i03:r3",
+              "targetText": "She used to teach deaf adults.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to teach deaf children.",
+                "uk": "У записі звучить She used to teach deaf children."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to teach deaf children.",
+                "uk": "У записі звучить She used to teach deaf children."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:word:disabled",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — disabled",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:disabled:audio"
+        ],
+        "accessibilityLabel": "Картка слова — disabled",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:disabled:audio",
+            "transcript": "disabled"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:disabled:r1",
+              "targetText": "disabled",
+              "meaningByLocale": {
+                "ru": "с инвалидностью.",
+                "uk": "з інвалідністю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disabled",
+            "definitionByLocale": {
+              "ru": "с инвалидностью.",
+              "uk": "з інвалідністю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше я працював із дорослими з інвалідністю.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше я працював із дорослими з інвалідністю.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to work with disabled adults.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я работал со взрослыми с инвалидностью.»",
+            "uk": "Скажіть: «Раніше я працював із дорослими з інвалідністю.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "work",
+            "with",
+            "disabled",
+            "adults"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i05:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i05:r2",
+            "text": "worked"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i05:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "I used to ___ with disabled adults.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i05:r1",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i05:r2",
+              "text": "worked"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i05:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i06:r1",
+            "text": "I used to work with disabled adults."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i06:r2",
+            "text": "We used to work with disabled adults."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i06:r3",
+            "text": "I used to work with disabled children."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i06:audio",
+            "transcript": "I used to work with disabled adults."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i06:r1",
+              "targetText": "I used to work with disabled adults.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i06:r2",
+              "targetText": "We used to work with disabled adults.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i06:r3",
+              "targetText": "I used to work with disabled children.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to work with disabled adults.",
+                "uk": "У записі звучить I used to work with disabled adults."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to work with disabled adults.",
+                "uk": "У записі звучить I used to work with disabled adults."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:word:homeless",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — homeless",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:homeless:audio"
+        ],
+        "accessibilityLabel": "Картка слова — homeless",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:homeless:audio",
+            "transcript": "homeless"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:homeless:r1",
+              "targetText": "homeless",
+              "meaningByLocale": {
+                "ru": "бездомный.",
+                "uk": "бездомний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "homeless",
+            "definitionByLocale": {
+              "ru": "бездомный.",
+              "uk": "бездомний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше ми допомагали бездомним людям.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше ми допомагали бездомним людям.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to help homeless people.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы помогали бездомным людям.»",
+            "uk": "Скажіть: «Раніше ми допомагали бездомним людям.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "help",
+            "homeless",
+            "people"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i08:r1",
+            "text": "help"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i08:r2",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i08:r3",
+            "text": "helping"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "We used to ___ homeless people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i08:r1",
+              "text": "help"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i08:r2",
+              "text": "helped"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i08:r3",
+              "text": "helping"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма help.",
+                "uk": "Після used to потрібна форма help."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма help.",
+                "uk": "Після used to потрібна форма help."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i09:r1",
+            "text": "We used to help homeless people."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i09:r2",
+            "text": "They used to help homeless people."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i09:r3",
+            "text": "We used to help homeless families."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i09:audio",
+            "transcript": "We used to help homeless people."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i09:r1",
+              "targetText": "We used to help homeless people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i09:r2",
+              "targetText": "They used to help homeless people.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i09:r3",
+              "targetText": "We used to help homeless families.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to help homeless people.",
+                "uk": "У записі звучить We used to help homeless people."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to help homeless people.",
+                "uk": "У записі звучить We used to help homeless people."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:word:wealthy",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wealthy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:word:wealthy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wealthy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:word:wealthy:audio",
+            "transcript": "wealthy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:word:wealthy:r1",
+              "targetText": "wealthy",
+              "meaningByLocale": {
+                "ru": "состоятельный, богатый.",
+                "uk": "заможний, багатий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wealthy",
+            "definitionByLocale": {
+              "ru": "состоятельный, богатый.",
+              "uk": "заможний, багатий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше він жив у заможному районі.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше він жив у заможному районі.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He used to live in a wealthy area.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше он жил в богатом районе.»",
+            "uk": "Скажіть: «Раніше він жив у заможному районі.»"
+          },
+          "orderedTokens": [
+            "He",
+            "used",
+            "to",
+            "live",
+            "in",
+            "a",
+            "wealthy",
+            "area"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i11:r1",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i11:r2",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i11:r3",
+            "text": "living"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "He used to ___ in a wealthy area.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-05:i11:r1",
+              "text": "live"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i11:r2",
+              "text": "lived"
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i11:r3",
+              "text": "living"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-05:i12:r1",
+            "text": "He used to live in a wealthy area."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i12:r2",
+            "text": "She used to live in a wealthy area."
+          },
+          {
+            "responseId": "en:lesson-25:session-05:i12:r3",
+            "text": "He used to work in a wealthy area."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i12:audio",
+            "transcript": "He used to live in a wealthy area."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-05:i12:r1",
+              "targetText": "He used to live in a wealthy area.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i12:r2",
+              "targetText": "She used to live in a wealthy area.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i12:r3",
+              "targetText": "He used to work in a wealthy area.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to live in a wealthy area.",
+                "uk": "У записі звучить He used to live in a wealthy area."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to live in a wealthy area.",
+                "uk": "У записі звучить He used to live in a wealthy area."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-05:i13:p1",
+              "target": "deaf",
+              "meaningByLocale": {
+                "ru": "глухой",
+                "uk": "глухий"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-05:i13:p2",
+              "target": "disabled",
+              "meaningByLocale": {
+                "ru": "с инвалидностью",
+                "uk": "з інвалідністю"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-05:i13:p3",
+              "target": "homeless",
+              "meaningByLocale": {
+                "ru": "бездомный",
+                "uk": "бездомний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-05:i13:p4",
+              "target": "wealthy",
+              "meaningByLocale": {
+                "ru": "состоятельный, богатый",
+                "uk": "заможний, багатий"
+              }
+            }
+          ],
+          "leftColumn": [
+            "deaf",
+            "disabled",
+            "homeless",
+            "wealthy"
+          ],
+          "rightColumn": [
+            "глухий",
+            "з інвалідністю",
+            "бездомний",
+            "заможний, багатий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Знайшов іншу роботу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Знайшов іншу роботу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i14:audio",
+            "transcript": "I have found another job."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have found another job.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "found",
+            "another",
+            "job"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Інші сім’ї переїхали",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Інші сім’ї переїхали",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i15:audio",
+            "transcript": "The other families moved last year."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The other families moved last year.",
+          "orderedTokens": [
+            "The",
+            "other",
+            "families",
+            "moved",
+            "last",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми раніше навчали глухих дітей».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми раніше навчали глухих дітей».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i16:audio",
+            "transcript": "We used to teach deaf children."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to teach deaf children.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона раніше жила в заможному районі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона раніше жила в заможному районі».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-05:i17:audio",
+            "transcript": "She used to live in a wealthy area."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to live in a wealthy area.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-05:word:deaf",
+      "correctText": "deaf",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i01",
+      "correctText": "She used to teach deaf children.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i02",
+      "correctText": "teach",
+      "correctResponseId": "en:lesson-25:session-05:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i03",
+      "correctText": "She used to teach deaf children.",
+      "correctResponseId": "en:lesson-25:session-05:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:word:disabled",
+      "correctText": "disabled",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i04",
+      "correctText": "I used to work with disabled adults.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i05",
+      "correctText": "work",
+      "correctResponseId": "en:lesson-25:session-05:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i06",
+      "correctText": "I used to work with disabled adults.",
+      "correctResponseId": "en:lesson-25:session-05:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:word:homeless",
+      "correctText": "homeless",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i07",
+      "correctText": "We used to help homeless people.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i08",
+      "correctText": "help",
+      "correctResponseId": "en:lesson-25:session-05:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i09",
+      "correctText": "We used to help homeless people.",
+      "correctResponseId": "en:lesson-25:session-05:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:word:wealthy",
+      "correctText": "wealthy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i10",
+      "correctText": "He used to live in a wealthy area.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i11",
+      "correctText": "live",
+      "correctResponseId": "en:lesson-25:session-05:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i12",
+      "correctText": "He used to live in a wealthy area.",
+      "correctResponseId": "en:lesson-25:session-05:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i14",
+      "correctText": "I have found another job.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i15",
+      "correctText": "The other families moved last year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i16",
+      "correctText": "We used to teach deaf children.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-05:i17",
+      "correctText": "She used to live in a wealthy area.",
+      "correctResponseId": null
+    }
+  ]
+}

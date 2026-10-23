@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-03:word:everybody",
+    "correctText": "everybody",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i01",
+    "correctText": "Everybody used to know my name.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i02",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-25:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i03",
+    "correctText": "Everybody used to know my name.",
+    "correctResponseId": "en:lesson-25:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:word:anybody",
+    "correctText": "anybody",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i04",
+    "correctText": "I used to talk to anybody.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i05",
+    "correctText": "talk",
+    "correctResponseId": "en:lesson-25:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i06",
+    "correctText": "I used to talk to anybody.",
+    "correctResponseId": "en:lesson-25:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:word:something",
+    "correctText": "something",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i07",
+    "correctText": "She used to eat something before school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i08",
+    "correctText": "eat",
+    "correctResponseId": "en:lesson-25:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i09",
+    "correctText": "She used to eat something before school.",
+    "correctResponseId": "en:lesson-25:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:word:nowhere",
+    "correctText": "nowhere",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i10",
+    "correctText": "We used to have nowhere to play.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i11",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-25:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i12",
+    "correctText": "We used to have nowhere to play.",
+    "correctResponseId": "en:lesson-25:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i13",
+    "correctText": "en:lesson-25:session-03:i13:p1=everybody\nen:lesson-25:session-03:i13:p2=anybody\nen:lesson-25:session-03:i13:p3=something\nen:lesson-25:session-03:i13:p4=nowhere",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i16",
+    "correctText": "He used to eat something before school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-03:i17",
+    "correctText": "They used to have nowhere to sit.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-04:word:former",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — former",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:former:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — former",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:former:audio",
+            "transcript": "former"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:former:r1",
+              "targetText": "former",
+              "meaningByLocale": {
+                "ru": "бывший, прежний.",
+                "uk": "колишній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "former",
+            "definitionByLocale": {
+              "ru": "бывший, прежний.",
+              "uk": "колишній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше я навещал своего бывшего соседа.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше я навещал своего бывшего соседа.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to visit my former neighbour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я навещал своего бывшего соседа.»",
+            "uk": "Скажіть: «Раніше я навідував свого колишнього сусіда.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "visit",
+            "my",
+            "former",
+            "neighbour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i02:r1",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i02:r2",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i02:r3",
+            "text": "visiting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "I used to ___ my former neighbour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i02:r1",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i02:r2",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i02:r3",
+              "text": "visiting"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма visit.",
+                "uk": "Після used to потрібна форма visit."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма visit.",
+                "uk": "Після used to потрібна форма visit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i03:r1",
+            "text": "I used to visit my former neighbour."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i03:r2",
+            "text": "We used to visit my former neighbour."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i03:r3",
+            "text": "I used to call my former neighbour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i03:audio",
+            "transcript": "I used to visit my former neighbour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i03:r1",
+              "targetText": "I used to visit my former neighbour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i03:r2",
+              "targetText": "We used to visit my former neighbour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i03:r3",
+              "targetText": "I used to call my former neighbour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to visit my former neighbour.",
+                "uk": "У записі звучить I used to visit my former neighbour."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to visit my former neighbour.",
+                "uk": "У записі звучить I used to visit my former neighbour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:word:frequent",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — frequent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:frequent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — frequent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:frequent:audio",
+            "transcript": "frequent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:frequent:r1",
+              "targetText": "frequent",
+              "meaningByLocale": {
+                "ru": "частый.",
+                "uk": "частий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frequent",
+            "definitionByLocale": {
+              "ru": "частый.",
+              "uk": "частий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше она часто делала перерывы.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше она часто делала перерывы.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to take frequent breaks.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она часто делала перерывы.»",
+            "uk": "Скажіть: «Раніше вона часто робила перерви.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "take",
+            "frequent",
+            "breaks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i05:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i05:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i05:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "She used to ___ frequent breaks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i05:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i05:r2",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i05:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма take.",
+                "uk": "Після used to потрібна форма take."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма take.",
+                "uk": "Після used to потрібна форма take."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i06:r1",
+            "text": "She used to take frequent breaks."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i06:r2",
+            "text": "He used to take frequent breaks."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i06:r3",
+            "text": "She used to need frequent breaks."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i06:audio",
+            "transcript": "She used to take frequent breaks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i06:r1",
+              "targetText": "She used to take frequent breaks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i06:r2",
+              "targetText": "He used to take frequent breaks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i06:r3",
+              "targetText": "She used to need frequent breaks.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to take frequent breaks.",
+                "uk": "У записі звучить She used to take frequent breaks."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to take frequent breaks.",
+                "uk": "У записі звучить She used to take frequent breaks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:word:occasional",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — occasional",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:occasional:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — occasional",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:occasional:audio",
+            "transcript": "occasional"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:occasional:r1",
+              "targetText": "occasional",
+              "meaningByLocale": {
+                "ru": "случающийся время от времени.",
+                "uk": "такий, що трапляється час від часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "occasional",
+            "definitionByLocale": {
+              "ru": "случающийся время от времени.",
+              "uk": "такий, що трапляється час від часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше к нам время от времени приходили гости.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше к нам время от времени приходили гости.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to have occasional guests.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше к нам время от времени приходили гости.»",
+            "uk": "Скажіть: «Раніше до нас час від часу приходили гості.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "have",
+            "occasional",
+            "guests"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i08:r2",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i08:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "We used to ___ occasional guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i08:r2",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i08:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма have.",
+                "uk": "Після used to потрібна форма have."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма have.",
+                "uk": "Після used to потрібна форма have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i09:r1",
+            "text": "We used to have occasional guests."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i09:r2",
+            "text": "They used to have occasional guests."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i09:r3",
+            "text": "We used to have occasional visitors."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i09:audio",
+            "transcript": "We used to have occasional guests."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i09:r1",
+              "targetText": "We used to have occasional guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i09:r2",
+              "targetText": "They used to have occasional guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i09:r3",
+              "targetText": "We used to have occasional visitors.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have occasional guests.",
+                "uk": "У записі звучить We used to have occasional guests."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have occasional guests.",
+                "uk": "У записі звучить We used to have occasional guests."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:word:yearly",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — yearly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:yearly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — yearly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:yearly:audio",
+            "transcript": "yearly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:yearly:r1",
+              "targetText": "yearly",
+              "meaningByLocale": {
+                "ru": "ежегодный.",
+                "uk": "щорічний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yearly",
+            "definitionByLocale": {
+              "ru": "ежегодный.",
+              "uk": "щорічний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше он покупал годовой абонемент.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше он покупал годовой абонемент.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He used to buy a yearly pass.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше он покупал годовой абонемент.»",
+            "uk": "Скажіть: «Раніше він купував річний абонемент.»"
+          },
+          "orderedTokens": [
+            "He",
+            "used",
+            "to",
+            "buy",
+            "a",
+            "yearly",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i11:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i11:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i11:r3",
+            "text": "buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "He used to ___ a yearly pass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i11:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i11:r2",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i11:r3",
+              "text": "buying"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма buy.",
+                "uk": "Після used to потрібна форма buy."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма buy.",
+                "uk": "Після used to потрібна форма buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i12:r1",
+            "text": "He used to buy a yearly pass."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i12:r2",
+            "text": "She used to buy a yearly pass."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i12:r3",
+            "text": "He used to renew a yearly pass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i12:audio",
+            "transcript": "He used to buy a yearly pass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i12:r1",
+              "targetText": "He used to buy a yearly pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i12:r2",
+              "targetText": "She used to buy a yearly pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i12:r3",
+              "targetText": "He used to renew a yearly pass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to buy a yearly pass.",
+                "uk": "У записі звучить He used to buy a yearly pass."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to buy a yearly pass.",
+                "uk": "У записі звучить He used to buy a yearly pass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-04:i13:p1",
+              "target": "former",
+              "meaningByLocale": {
+                "ru": "бывший, прежний",
+                "uk": "колишній"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-04:i13:p2",
+              "target": "frequent",
+              "meaningByLocale": {
+                "ru": "частый",
+                "uk": "частий"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-04:i13:p3",
+              "target": "occasional",
+              "meaningByLocale": {
+                "ru": "случающийся время от времени",
+                "uk": "такий, що трапляється час від часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-04:i13:p4",
+              "target": "yearly",
+              "meaningByLocale": {
+                "ru": "ежегодный",
+                "uk": "щорічний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "former",
+            "frequent",
+            "occasional",
+            "yearly"
+          ],
+          "rightColumn": [
+            "бывший, прежний",
+            "частый",
+            "случающийся время от времени",
+            "ежегодный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ещё один билет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Ещё один билет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i14:audio",
+            "transcript": "I have bought another ticket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have bought another ticket.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "bought",
+            "another",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Другие билеты пришли вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Другие билеты пришли вчера",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i15:audio",
+            "transcript": "The other tickets arrived yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The other tickets arrived yesterday.",
+          "orderedTokens": [
+            "The",
+            "other",
+            "tickets",
+            "arrived",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы раньше часто делали перерывы».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы раньше часто делали перерывы».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i16:audio",
+            "transcript": "We used to take frequent breaks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to take frequent breaks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она раньше покупала годовой абонемент».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она раньше покупала годовой абонемент».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i17:audio",
+            "transcript": "She used to buy a yearly pass."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to buy a yearly pass.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-04:word:former",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — former",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:former:audio"
+        ],
+        "accessibilityLabel": "Картка слова — former",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:former:audio",
+            "transcript": "former"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:former:r1",
+              "targetText": "former",
+              "meaningByLocale": {
+                "ru": "бывший, прежний.",
+                "uk": "колишній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "former",
+            "definitionByLocale": {
+              "ru": "бывший, прежний.",
+              "uk": "колишній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше я навідував свого колишнього сусіда.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше я навідував свого колишнього сусіда.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to visit my former neighbour.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я навещал своего бывшего соседа.»",
+            "uk": "Скажіть: «Раніше я навідував свого колишнього сусіда.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "visit",
+            "my",
+            "former",
+            "neighbour"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i02:r1",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i02:r2",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i02:r3",
+            "text": "visiting"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "I used to ___ my former neighbour.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i02:r1",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i02:r2",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i02:r3",
+              "text": "visiting"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма visit.",
+                "uk": "Після used to потрібна форма visit."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма visit.",
+                "uk": "Після used to потрібна форма visit."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i03:r1",
+            "text": "I used to visit my former neighbour."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i03:r2",
+            "text": "We used to visit my former neighbour."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i03:r3",
+            "text": "I used to call my former neighbour."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i03:audio",
+            "transcript": "I used to visit my former neighbour."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i03:r1",
+              "targetText": "I used to visit my former neighbour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i03:r2",
+              "targetText": "We used to visit my former neighbour.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i03:r3",
+              "targetText": "I used to call my former neighbour.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to visit my former neighbour.",
+                "uk": "У записі звучить I used to visit my former neighbour."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to visit my former neighbour.",
+                "uk": "У записі звучить I used to visit my former neighbour."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:word:frequent",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — frequent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:frequent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — frequent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:frequent:audio",
+            "transcript": "frequent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:frequent:r1",
+              "targetText": "frequent",
+              "meaningByLocale": {
+                "ru": "частый.",
+                "uk": "частий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frequent",
+            "definitionByLocale": {
+              "ru": "частый.",
+              "uk": "частий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше вона часто робила перерви.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше вона часто робила перерви.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to take frequent breaks.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она часто делала перерывы.»",
+            "uk": "Скажіть: «Раніше вона часто робила перерви.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "take",
+            "frequent",
+            "breaks"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i05:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i05:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i05:r3",
+            "text": "taking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "She used to ___ frequent breaks.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i05:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i05:r2",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i05:r3",
+              "text": "taking"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма take.",
+                "uk": "Після used to потрібна форма take."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма take.",
+                "uk": "Після used to потрібна форма take."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i06:r1",
+            "text": "She used to take frequent breaks."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i06:r2",
+            "text": "He used to take frequent breaks."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i06:r3",
+            "text": "She used to need frequent breaks."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i06:audio",
+            "transcript": "She used to take frequent breaks."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i06:r1",
+              "targetText": "She used to take frequent breaks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i06:r2",
+              "targetText": "He used to take frequent breaks.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i06:r3",
+              "targetText": "She used to need frequent breaks.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to take frequent breaks.",
+                "uk": "У записі звучить She used to take frequent breaks."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to take frequent breaks.",
+                "uk": "У записі звучить She used to take frequent breaks."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:word:occasional",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — occasional",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:occasional:audio"
+        ],
+        "accessibilityLabel": "Картка слова — occasional",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:occasional:audio",
+            "transcript": "occasional"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:occasional:r1",
+              "targetText": "occasional",
+              "meaningByLocale": {
+                "ru": "случающийся время от времени.",
+                "uk": "такий, що трапляється час від часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "occasional",
+            "definitionByLocale": {
+              "ru": "случающийся время от времени.",
+              "uk": "такий, що трапляється час від часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше до нас час від часу приходили гості.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше до нас час від часу приходили гості.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to have occasional guests.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше к нам время от времени приходили гости.»",
+            "uk": "Скажіть: «Раніше до нас час від часу приходили гості.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "have",
+            "occasional",
+            "guests"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i08:r2",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i08:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "We used to ___ occasional guests.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i08:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i08:r2",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i08:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма have.",
+                "uk": "Після used to потрібна форма have."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма have.",
+                "uk": "Після used to потрібна форма have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i09:r1",
+            "text": "We used to have occasional guests."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i09:r2",
+            "text": "They used to have occasional guests."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i09:r3",
+            "text": "We used to have occasional visitors."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i09:audio",
+            "transcript": "We used to have occasional guests."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i09:r1",
+              "targetText": "We used to have occasional guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i09:r2",
+              "targetText": "They used to have occasional guests.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i09:r3",
+              "targetText": "We used to have occasional visitors.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have occasional guests.",
+                "uk": "У записі звучить We used to have occasional guests."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to have occasional guests.",
+                "uk": "У записі звучить We used to have occasional guests."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:word:yearly",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — yearly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:word:yearly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — yearly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:word:yearly:audio",
+            "transcript": "yearly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:word:yearly:r1",
+              "targetText": "yearly",
+              "meaningByLocale": {
+                "ru": "ежегодный.",
+                "uk": "щорічний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yearly",
+            "definitionByLocale": {
+              "ru": "ежегодный.",
+              "uk": "щорічний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше він купував річний абонемент.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше він купував річний абонемент.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He used to buy a yearly pass.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше он покупал годовой абонемент.»",
+            "uk": "Скажіть: «Раніше він купував річний абонемент.»"
+          },
+          "orderedTokens": [
+            "He",
+            "used",
+            "to",
+            "buy",
+            "a",
+            "yearly",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i11:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i11:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i11:r3",
+            "text": "buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "He used to ___ a yearly pass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-04:i11:r1",
+              "text": "buy"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i11:r2",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i11:r3",
+              "text": "buying"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма buy.",
+                "uk": "Після used to потрібна форма buy."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма buy.",
+                "uk": "Після used to потрібна форма buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-04:i12:r1",
+            "text": "He used to buy a yearly pass."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i12:r2",
+            "text": "She used to buy a yearly pass."
+          },
+          {
+            "responseId": "en:lesson-25:session-04:i12:r3",
+            "text": "He used to renew a yearly pass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i12:audio",
+            "transcript": "He used to buy a yearly pass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-04:i12:r1",
+              "targetText": "He used to buy a yearly pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i12:r2",
+              "targetText": "She used to buy a yearly pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i12:r3",
+              "targetText": "He used to renew a yearly pass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to buy a yearly pass.",
+                "uk": "У записі звучить He used to buy a yearly pass."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to buy a yearly pass.",
+                "uk": "У записі звучить He used to buy a yearly pass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-04:i13:p1",
+              "target": "former",
+              "meaningByLocale": {
+                "ru": "бывший, прежний",
+                "uk": "колишній"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-04:i13:p2",
+              "target": "frequent",
+              "meaningByLocale": {
+                "ru": "частый",
+                "uk": "частий"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-04:i13:p3",
+              "target": "occasional",
+              "meaningByLocale": {
+                "ru": "случающийся время от времени",
+                "uk": "такий, що трапляється час від часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-04:i13:p4",
+              "target": "yearly",
+              "meaningByLocale": {
+                "ru": "ежегодный",
+                "uk": "щорічний"
+              }
+            }
+          ],
+          "leftColumn": [
+            "former",
+            "frequent",
+            "occasional",
+            "yearly"
+          ],
+          "rightColumn": [
+            "колишній",
+            "частий",
+            "такий, що трапляється час від часу",
+            "щорічний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ще один квиток",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Ще один квиток",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i14:audio",
+            "transcript": "I have bought another ticket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have bought another ticket.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "bought",
+            "another",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Інші квитки надійшли вчора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Інші квитки надійшли вчора",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i15:audio",
+            "transcript": "The other tickets arrived yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The other tickets arrived yesterday.",
+          "orderedTokens": [
+            "The",
+            "other",
+            "tickets",
+            "arrived",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми раніше часто робили перерви».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми раніше часто робили перерви».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i16:audio",
+            "transcript": "We used to take frequent breaks."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to take frequent breaks.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона раніше купувала річний абонемент».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона раніше купувала річний абонемент».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-04:i17:audio",
+            "transcript": "She used to buy a yearly pass."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to buy a yearly pass.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-04:word:former",
+      "correctText": "former",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i01",
+      "correctText": "I used to visit my former neighbour.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i02",
+      "correctText": "visit",
+      "correctResponseId": "en:lesson-25:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i03",
+      "correctText": "I used to visit my former neighbour.",
+      "correctResponseId": "en:lesson-25:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:word:frequent",
+      "correctText": "frequent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i04",
+      "correctText": "She used to take frequent breaks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i05",
+      "correctText": "take",
+      "correctResponseId": "en:lesson-25:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i06",
+      "correctText": "She used to take frequent breaks.",
+      "correctResponseId": "en:lesson-25:session-04:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:word:occasional",
+      "correctText": "occasional",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i07",
+      "correctText": "We used to have occasional guests.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i08",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-25:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i09",
+      "correctText": "We used to have occasional guests.",
+      "correctResponseId": "en:lesson-25:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:word:yearly",
+      "correctText": "yearly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i10",
+      "correctText": "He used to buy a yearly pass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i11",
+      "correctText": "buy",
+      "correctResponseId": "en:lesson-25:session-04:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i12",
+      "correctText": "He used to buy a yearly pass.",
+      "correctResponseId": "en:lesson-25:session-04:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i14",
+      "correctText": "I have bought another ticket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i15",
+      "correctText": "The other tickets arrived yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i16",
+      "correctText": "We used to take frequent breaks.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:i17",
+      "correctText": "She used to buy a yearly pass.",
+      "correctResponseId": null
+    }
+  ]
+}

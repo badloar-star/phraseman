@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-03:intro1:r2": {
+          "ru": "После used to нужна форма know.",
+          "uk": "Після used to потрібна форма know."
+        },
+        "en:lesson-25:session-03:intro1:r3": {
+          "ru": "Здесь нужна базовая форма know.",
+          "uk": "Тут потрібна базова форма know."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-03:intro2:r2": {
+          "ru": "После used to нужно talk.",
+          "uk": "Після used to потрібно talk."
+        },
+        "en:lesson-25:session-03:intro2:r3": {
+          "ru": "Здесь нужна базовая форма talk.",
+          "uk": "Тут потрібна базова форма talk."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-03:intro3:r2": {
+          "ru": "После used to нужно have.",
+          "uk": "Після used to потрібно have."
+        },
+        "en:lesson-25:session-03:intro3:r3": {
+          "ru": "Здесь нужна базовая форма have.",
+          "uk": "Тут потрібна базова форма have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "98c3d678fb1304aad691880070c8a713582c5ad18f7b009d7b4ac1b8e6569ae8"
+}

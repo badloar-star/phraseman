@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Все знали имя",
+        "uk": "Усі знали ім’я"
+      },
+      "bodyByLocale": {
+        "ru": "Everybody — все, каждый человек. Everybody used to know my name — раньше все знали моё имя. Говорящий вспоминает прежнюю жизнь, например в маленьком посёлке. После used to нужен know, не knew. Everybody близко по значению к everyone.",
+        "uk": "Everybody — усі, кожна людина. Everybody used to know my name — раніше всі знали моє ім’я. Мовець згадує колишнє життя, наприклад у маленькому селищі. Після used to потрібне know, не knew. Everybody близьке за значенням до everyone."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-03:intro1:r1",
+              "text": "Everybody used to know my name."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro1:r2",
+              "text": "Everybody used to knew my name."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro1:r3",
+              "text": "Everybody used to knowing my name."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-03:intro1:r1",
+              "text": "Everybody used to know my name."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro1:r2",
+              "text": "Everybody used to knew my name."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro1:r3",
+              "text": "Everybody used to knowing my name."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кто угодно и что-то",
+        "uk": "Хто завгодно й щось"
+      },
+      "bodyByLocale": {
+        "ru": "Anybody здесь — кто угодно. I used to talk to anybody — раньше я разговаривал с кем угодно, без разбора. Это утверждение о прежней привычке. Something — что-то. She used to eat something before school — раньше она что-то ела перед школой. Не уточняем, какую именно еду. После used to остаются talk и eat.",
+        "uk": "Anybody тут — хто завгодно. I used to talk to anybody — раніше я розмовляв із ким завгодно, без розбору. Це твердження про колишню звичку. Something — щось. She used to eat something before school — раніше вона щось їла перед школою. Не уточнюємо, яку саме їжу. Після used to залишаються talk і eat."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-03:intro2:r1",
+              "text": "I used to talk to anybody."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro2:r2",
+              "text": "I used to talked to anybody."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro2:r3",
+              "text": "I used to talking to anybody."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-03:intro2:r1",
+              "text": "I used to talk to anybody."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro2:r2",
+              "text": "I used to talked to anybody."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro2:r3",
+              "text": "I used to talking to anybody."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Негде было играть",
+        "uk": "Ніде було гратися"
+      },
+      "bodyByLocale": {
+        "ru": "Nowhere — нигде, некуда. We used to have nowhere to play — раньше нам негде было играть. Have nowhere to play буквально означает не иметь места для игры. Nowhere уже передаёт отрицательный смысл: добавлять not здесь не нужно. Used to показывает, что теперь ситуация изменилась.",
+        "uk": "Nowhere — ніде, нікуди. We used to have nowhere to play — раніше нам ніде було гратися. Have nowhere to play буквально означає не мати місця для гри. Nowhere вже передає заперечне значення: додавати not тут не потрібно. Used to показує, що тепер ситуація змінилася."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-03:intro3:r1",
+              "text": "We used to have nowhere to play."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro3:r2",
+              "text": "We used to had nowhere to play."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro3:r3",
+              "text": "We used to having nowhere to play."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-03:intro3:r1",
+              "text": "We used to have nowhere to play."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro3:r2",
+              "text": "We used to had nowhere to play."
+            },
+            {
+              "responseId": "en:lesson-25:session-03:intro3:r3",
+              "text": "We used to having nowhere to play."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f954a43be23f614d87e59ec7044ffc546838011496f4d959a3e0a967eefe08a2"
+}

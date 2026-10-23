@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прежняя работа",
+        "uk": "Колишня робота"
+      },
+      "bodyByLocale": {
+        "ru": "Deaf — глухой. She used to teach deaf children — раньше она учила глухих детей. Речь о её прежней работе: теперь она занимается другим делом. Used to относится к teach, а не к слуху детей. После used to ставим базовую форму teach.",
+        "uk": "Deaf — глухий. She used to teach deaf children — раніше вона навчала глухих дітей. Ідеться про її колишню роботу: тепер вона займається іншою справою. Used to стосується teach, а не слуху дітей. Після used to ставимо базову форму teach."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-05:intro1:r1",
+              "text": "She used to teach deaf children."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro1:r2",
+              "text": "She used to taught deaf children."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro1:r3",
+              "text": "She used to teaching deaf children."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-05:intro1:r1",
+              "text": "She used to teach deaf children."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro1:r2",
+              "text": "She used to taught deaf children."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro1:r3",
+              "text": "She used to teaching deaf children."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "С кем мы работали",
+        "uk": "З ким ми працювали"
+      },
+      "bodyByLocale": {
+        "ru": "Disabled — с инвалидностью. I used to work with disabled adults — раньше я работал со взрослыми с инвалидностью. Homeless — бездомный, без постоянного жилья. We used to help homeless people — раньше мы помогали бездомным людям. В обоих примерах used to описывает то, что мы регулярно делали раньше.",
+        "uk": "Disabled — з інвалідністю. I used to work with disabled adults — раніше я працював із дорослими з інвалідністю. Homeless — бездомний, без постійного житла. We used to help homeless people — раніше ми допомагали бездомним людям. В обох прикладах used to описує те, що ми регулярно робили раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-05:intro2:r1",
+              "text": "I used to work with disabled adults."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro2:r2",
+              "text": "I used to worked with disabled adults."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro2:r3",
+              "text": "I used to working with disabled adults."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-05:intro2:r1",
+              "text": "I used to work with disabled adults."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro2:r2",
+              "text": "I used to worked with disabled adults."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro2:r3",
+              "text": "I used to working with disabled adults."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другой район",
+        "uk": "Інший район"
+      },
+      "bodyByLocale": {
+        "ru": "Wealthy — состоятельный, богатый. A wealthy area — район, где живёт много обеспеченных людей. He used to live in a wealthy area — раньше он жил в таком районе, но теперь переехал. Used to подходит и для прежнего места проживания. Live после to не меняется на lived.",
+        "uk": "Wealthy — заможний, багатий. A wealthy area — район, де живе багато забезпечених людей. He used to live in a wealthy area — раніше він жив у такому районі, але тепер переїхав. Used to підходить і для колишнього місця проживання. Live після to не змінюється на lived."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-05:intro3:r1",
+              "text": "He used to live in a wealthy area."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro3:r2",
+              "text": "He used to lived in a wealthy area."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro3:r3",
+              "text": "He used to living in a wealthy area."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-05:intro3:r1",
+              "text": "He used to live in a wealthy area."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro3:r2",
+              "text": "He used to lived in a wealthy area."
+            },
+            {
+              "responseId": "en:lesson-25:session-05:intro3:r3",
+              "text": "He used to living in a wealthy area."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2e155a12a4a90e3ec4b334801a898678f9f37841ff252a099c246c5ad6807057"
+}

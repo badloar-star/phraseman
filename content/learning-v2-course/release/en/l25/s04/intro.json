@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Бывший сосед",
+        "uk": "Колишній сусід"
+      },
+      "bodyByLocale": {
+        "ru": "Former — бывший, прежний. I used to visit my former neighbour — раньше я навещал своего бывшего соседа. Former neighbour — человек, который раньше жил рядом, но уже переехал. Used to visit сообщает о прежней привычке навещать его. После used to нужен visit.",
+        "uk": "Former — колишній. I used to visit my former neighbour — раніше я навідував свого колишнього сусіда. Former neighbour — людина, яка раніше жила поруч, але вже переїхала. Used to visit повідомляє про колишню звичку навідувати її. Після used to потрібне visit."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-04:intro1:r1",
+              "text": "I used to visit my former neighbour."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro1:r2",
+              "text": "I used to visited my former neighbour."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro1:r3",
+              "text": "I used to visiting my former neighbour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-04:intro1:r1",
+              "text": "I used to visit my former neighbour."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro1:r2",
+              "text": "I used to visited my former neighbour."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro1:r3",
+              "text": "I used to visiting my former neighbour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Часто или время от времени",
+        "uk": "Часто чи час від часу"
+      },
+      "bodyByLocale": {
+        "ru": "Frequent — частый. She used to take frequent breaks — раньше она часто делала перерывы. Frequent описывает breaks: перерывы были частыми. Occasional — случающийся время от времени. We used to have occasional guests — раньше гости приходили к нам лишь время от времени. Это реже, чем frequent.",
+        "uk": "Frequent — частий. She used to take frequent breaks — раніше вона часто робила перерви. Frequent описує breaks: перерви були частими. Occasional — такий, що трапляється час від часу. We used to have occasional guests — раніше гості приходили до нас лише час від часу. Це рідше, ніж frequent."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-04:intro2:r1",
+              "text": "She used to take frequent breaks."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro2:r2",
+              "text": "She used to took frequent breaks."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro2:r3",
+              "text": "She used to taking frequent breaks."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-04:intro2:r1",
+              "text": "She used to take frequent breaks."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro2:r2",
+              "text": "She used to took frequent breaks."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro2:r3",
+              "text": "She used to taking frequent breaks."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Годовой абонемент",
+        "uk": "Річний абонемент"
+      },
+      "bodyByLocale": {
+        "ru": "Yearly — ежегодный; a yearly pass — годовой абонемент. He used to buy a yearly pass — раньше он покупал такой абонемент. Здесь yearly описывает pass, а не действие покупки. После used to нужна форма buy, не bought. Покупка была привычной, теперь он выбирает другие билеты.",
+        "uk": "Yearly — щорічний; a yearly pass — річний абонемент. He used to buy a yearly pass — раніше він купував такий абонемент. Тут yearly описує pass, а не дію купівлі. Після used to потрібна форма buy, не bought. Купівля була звичною, тепер він вибирає інші квитки."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-04:intro3:r1",
+              "text": "He used to buy a yearly pass."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro3:r2",
+              "text": "He used to bought a yearly pass."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro3:r3",
+              "text": "He used to buying a yearly pass."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-04:intro3:r1",
+              "text": "He used to buy a yearly pass."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro3:r2",
+              "text": "He used to bought a yearly pass."
+            },
+            {
+              "responseId": "en:lesson-25:session-04:intro3:r3",
+              "text": "He used to buying a yearly pass."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "709a0ce9ffd5817b726eddd286f91df5caf12e64cf3754860c3ba50dec2eca05"
+}

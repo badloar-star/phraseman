@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-04:intro1:r2": {
+          "ru": "После used to нужна форма visit.",
+          "uk": "Після used to потрібна форма visit."
+        },
+        "en:lesson-25:session-04:intro1:r3": {
+          "ru": "Здесь нужна базовая форма visit.",
+          "uk": "Тут потрібна базова форма visit."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-04:intro2:r2": {
+          "ru": "После used to нужно take.",
+          "uk": "Після used to потрібно take."
+        },
+        "en:lesson-25:session-04:intro2:r3": {
+          "ru": "Здесь нужна базовая форма take.",
+          "uk": "Тут потрібна базова форма take."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-04:intro3:r2": {
+          "ru": "После used to нужно buy.",
+          "uk": "Після used to потрібно buy."
+        },
+        "en:lesson-25:session-04:intro3:r3": {
+          "ru": "Здесь нужна базовая форма buy.",
+          "uk": "Тут потрібна базова форма buy."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4f47fc8cada4c6a5f48fa6d1b786ae1a05a5b80716edc2f6f2759a2a90d8c6b6"
+}

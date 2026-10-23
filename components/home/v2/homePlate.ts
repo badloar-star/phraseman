@@ -16,14 +16,15 @@ export const HOME_PLATE_ALPHA = 0.5;
  * (разница светлоты 1,2–1.9 из 3 нужных), поэтому в светлой теме усиливаем ТЕНЬ плашек Главной в 1,35 раза (альфа цвета тени, не размер).
  */
 export const HOME_LIGHT_SHADOW_BOOST = 1.35;
+/** Альфа цвета #RRGGBBAA × factor (не выше FF); другой формат — как есть. Одна математика для boxShadow и масок тени сцены. */
+export function boostColorAlpha(color: string, factor: number): string {
+  const m = /^#([0-9A-Fa-f]{6})([0-9A-Fa-f]{2})$/.exec(color);
+  if (!m) return color;
+  const alpha = Math.min(255, Math.round(parseInt(m[2]!, 16) * factor));
+  return `#${m[1]}${alpha.toString(16).padStart(2, '0').toUpperCase()}`;
+}
 export function boostShadowAlpha(layers: readonly BoxShadowValue[], factor: number): BoxShadowValue[] {
-  return layers.map((layer) => {
-    const color = typeof layer.color === 'string' ? layer.color : null;
-    const m = color ? /^#([0-9A-Fa-f]{6})([0-9A-Fa-f]{2})$/.exec(color) : null;
-    if (!m) return layer;
-    const alpha = Math.min(255, Math.round(parseInt(m[2]!, 16) * factor));
-    return { ...layer, color: `#${m[1]}${alpha.toString(16).padStart(2, '0').toUpperCase()}` };
-  });
+  return layers.map((layer) => (typeof layer.color === 'string' && /^#[0-9A-Fa-f]{8}$/.test(layer.color) ? { ...layer, color: boostColorAlpha(layer.color, factor) } : layer));
 }
 
 /** Цвет → rgba с альфой плашек Главной (по умолчанию 0.5). */

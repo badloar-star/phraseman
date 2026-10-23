@@ -61,6 +61,7 @@ import { useV2Palette } from './v2/useV2Palette';
 import { V2IconTile } from './v2/V2Glass';
 import { useHomePlateStyle } from './home/v2/homePlate';
 import { HOME_SCENE_V2_ENABLED } from './home/v2/scene/home_scene_flag';
+import HomeSceneTranslucentPlate from './home/v2/scene/HomeSceneTranslucentPlate';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
@@ -381,7 +382,8 @@ function DailyPhraseCard({
     const gateCopy = dailyPhraseGateCopyForTarget(studyTarget, lang);
     if (homeV2) {
       return (
-        <View accessibilityRole="text" accessibilityLabel={gateCopy.title} style={[styles.v2Card, v2Glass]}>
+        <View accessibilityRole="text" accessibilityLabel={gateCopy.title} style={[styles.v2Card, sceneLook ? null : v2Glass]}>
+          {sceneLook ? <HomeSceneTranslucentPlate kind="phraseCutout" radius={V2.radius.card} /> : null}
           <View style={[styles.v2Quote, { backgroundColor: v2.control }]}>
             <Ionicons name="shield-checkmark-outline" size={20} color={v2.text} />
           </View>
@@ -445,7 +447,7 @@ function DailyPhraseCard({
 
   if (!phrase) {
     // Резерв той же высоты, что у готовой карточки: первый кадр = финальная геометрия.
-    if (homeV2) return <View style={[styles.v2Card, v2Glass]} />; // guard-ok: D43
+    if (homeV2) return <View style={[styles.v2Card, sceneLook ? null : v2Glass]}>{sceneLook ? <HomeSceneTranslucentPlate kind="phraseCutout" radius={V2.radius.card} /> : null}</View>; // guard-ok: D43
     return <View style={[styles.placeholder, { backgroundColor: t.bgCard }]} />;
   }
 
@@ -666,8 +668,10 @@ function DailyPhraseCard({
           onPress={openDetails}
           accessibilityRole="button"
           accessibilityLabel={cardLiteral ? `${title}. ${phrase.english}. ${cardLiteral}` : `${title}. ${phrase.english}.`}
-          style={({ pressed }) => [styles.v2Card, v2Glass, pressed && styles.pressed]}
+          style={({ pressed }) => [styles.v2Card, sceneLook ? null : v2Glass, pressed && styles.pressed]}
         >
+          {/* зачем (ускорение первого кадра Главной; маски с вырезом 4 · ТЕМЫ 4e6896eb1): со «Сценой» тень — запечённой маской позади заливки, без размытой boxShadow */}
+          {sceneLook ? <HomeSceneTranslucentPlate kind="phraseCutout" radius={V2.radius.card} /> : null}
           {/* зачем: владелец 24.09 — арт не должен читаться отдельным блоком от иконки;
               картинка сама служит иконкой-цитатой, без второго графического слоя. */}
           <Image source={phraseArt} style={sceneLook ? styles.v2ArtScene : styles.v2Art} contentFit="contain" accessible={false} />

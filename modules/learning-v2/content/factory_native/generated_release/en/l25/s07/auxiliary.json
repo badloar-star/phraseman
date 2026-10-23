@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-07:intro1:r2": {
+          "ru": "После used to нужна форма live.",
+          "uk": "Після used to потрібна форма live."
+        },
+        "en:lesson-25:session-07:intro1:r3": {
+          "ru": "Используйте базовую форму live.",
+          "uk": "Використайте базову форму live."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-07:intro2:r2": {
+          "ru": "После used to нужна форма work.",
+          "uk": "Після used to потрібна форма work."
+        },
+        "en:lesson-25:session-07:intro2:r3": {
+          "ru": "Используйте базовую форму work.",
+          "uk": "Використайте базову форму work."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-07:intro3:r2": {
+          "ru": "После used to нужна форма teach.",
+          "uk": "Після used to потрібна форма teach."
+        },
+        "en:lesson-25:session-07:intro3:r3": {
+          "ru": "Используйте базовую форму teach.",
+          "uk": "Використайте базову форму teach."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c8b4d3cad4f0b7f0fd8513a076d4e600c763f4870099a99e3e0d504f69db196"
+}

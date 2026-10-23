@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-07:word:Ukraine",
+    "correctText": "Ukraine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i01",
+    "correctText": "I used to live in Ukraine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i02",
+    "correctText": "live",
+    "correctResponseId": "en:lesson-25:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i03",
+    "correctText": "I used to live in Ukraine.",
+    "correctResponseId": "en:lesson-25:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:word:Russia",
+    "correctText": "Russia",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i04",
+    "correctText": "She used to work in Russia.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i05",
+    "correctText": "work",
+    "correctResponseId": "en:lesson-25:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i06",
+    "correctText": "She used to work in Russia.",
+    "correctResponseId": "en:lesson-25:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:word:Thailand",
+    "correctText": "Thailand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i07",
+    "correctText": "We used to travel to Thailand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i08",
+    "correctText": "travel",
+    "correctResponseId": "en:lesson-25:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i09",
+    "correctText": "We used to travel to Thailand.",
+    "correctResponseId": "en:lesson-25:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:word:Vietnam",
+    "correctText": "Vietnam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i10",
+    "correctText": "He used to teach in Vietnam.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i11",
+    "correctText": "teach",
+    "correctResponseId": "en:lesson-25:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i12",
+    "correctText": "He used to teach in Vietnam.",
+    "correctResponseId": "en:lesson-25:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i13",
+    "correctText": "en:lesson-25:session-07:i13:p1=Ukraine\nen:lesson-25:session-07:i13:p2=Russia\nen:lesson-25:session-07:i13:p3=Thailand\nen:lesson-25:session-07:i13:p4=Vietnam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i14",
+    "correctText": "I have found another job.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i15",
+    "correctText": "The other families moved last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i16",
+    "correctText": "We used to live in Ukraine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-07:i17",
+    "correctText": "She used to teach in Vietnam.",
+    "correctResponseId": null
+  }
+]

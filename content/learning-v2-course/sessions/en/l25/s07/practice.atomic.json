@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-07",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-07:word:Ukraine",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — Ukraine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Ukraine:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — Ukraine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Ukraine:audio",
+            "transcript": "Ukraine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Ukraine:r1",
+              "targetText": "Ukraine",
+              "meaningByLocale": {
+                "ru": "Украина.",
+                "uk": "Україна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Ukraine",
+            "definitionByLocale": {
+              "ru": "Украина.",
+              "uk": "Україна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше я жил в Украине.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше я жил в Украине.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to live in Ukraine.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я жил в Украине.»",
+            "uk": "Скажіть: «Раніше я жив в Україні.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "live",
+            "in",
+            "Ukraine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i02:r1",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i02:r2",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i02:r3",
+            "text": "living"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "I used to ___ in Ukraine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i02:r1",
+              "text": "live"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i02:r2",
+              "text": "lived"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i02:r3",
+              "text": "living"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i03:r1",
+            "text": "I used to live in Ukraine."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i03:r2",
+            "text": "We used to live in Ukraine."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i03:r3",
+            "text": "I used to work in Ukraine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i03:audio",
+            "transcript": "I used to live in Ukraine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i03:r1",
+              "targetText": "I used to live in Ukraine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i03:r2",
+              "targetText": "We used to live in Ukraine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i03:r3",
+              "targetText": "I used to work in Ukraine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to live in Ukraine.",
+                "uk": "У записі звучить I used to live in Ukraine."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to live in Ukraine.",
+                "uk": "У записі звучить I used to live in Ukraine."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:word:Russia",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — Russia",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Russia:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — Russia",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Russia:audio",
+            "transcript": "Russia"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Russia:r1",
+              "targetText": "Russia",
+              "meaningByLocale": {
+                "ru": "Россия.",
+                "uk": "Росія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Russia",
+            "definitionByLocale": {
+              "ru": "Россия.",
+              "uk": "Росія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше она работала в России.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше она работала в России.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to work in Russia.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она работала в России.»",
+            "uk": "Скажіть: «Раніше вона працювала в Росії.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "work",
+            "in",
+            "Russia"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i05:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i05:r2",
+            "text": "worked"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i05:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "She used to ___ in Russia.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i05:r1",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i05:r2",
+              "text": "worked"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i05:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i06:r1",
+            "text": "She used to work in Russia."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i06:r2",
+            "text": "He used to work in Russia."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i06:r3",
+            "text": "She used to live in Russia."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i06:audio",
+            "transcript": "She used to work in Russia."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i06:r1",
+              "targetText": "She used to work in Russia.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i06:r2",
+              "targetText": "He used to work in Russia.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i06:r3",
+              "targetText": "She used to live in Russia.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to work in Russia.",
+                "uk": "У записі звучить She used to work in Russia."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to work in Russia.",
+                "uk": "У записі звучить She used to work in Russia."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:word:Thailand",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — Thailand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Thailand:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — Thailand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Thailand:audio",
+            "transcript": "Thailand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Thailand:r1",
+              "targetText": "Thailand",
+              "meaningByLocale": {
+                "ru": "Таиланд.",
+                "uk": "Таїланд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Thailand",
+            "definitionByLocale": {
+              "ru": "Таиланд.",
+              "uk": "Таїланд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше мы ездили в Таиланд.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше мы ездили в Таиланд.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to travel to Thailand.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы ездили в Таиланд.»",
+            "uk": "Скажіть: «Раніше ми їздили до Таїланду.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "travel",
+            "to",
+            "Thailand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i08:r1",
+            "text": "travel"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i08:r2",
+            "text": "travelled"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i08:r3",
+            "text": "travelling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "We used to ___ to Thailand.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i08:r1",
+              "text": "travel"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i08:r2",
+              "text": "travelled"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i08:r3",
+              "text": "travelling"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма travel.",
+                "uk": "Після used to потрібна форма travel."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма travel.",
+                "uk": "Після used to потрібна форма travel."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i09:r1",
+            "text": "We used to travel to Thailand."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i09:r2",
+            "text": "They used to travel to Thailand."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i09:r3",
+            "text": "We used to travel to France."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i09:audio",
+            "transcript": "We used to travel to Thailand."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i09:r1",
+              "targetText": "We used to travel to Thailand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i09:r2",
+              "targetText": "They used to travel to Thailand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i09:r3",
+              "targetText": "We used to travel to France.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to travel to Thailand.",
+                "uk": "У записі звучить We used to travel to Thailand."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to travel to Thailand.",
+                "uk": "У записі звучить We used to travel to Thailand."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:word:Vietnam",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — Vietnam",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Vietnam:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — Vietnam",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Vietnam:audio",
+            "transcript": "Vietnam"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Vietnam:r1",
+              "targetText": "Vietnam",
+              "meaningByLocale": {
+                "ru": "Вьетнам.",
+                "uk": "В’єтнам."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Vietnam",
+            "definitionByLocale": {
+              "ru": "Вьетнам.",
+              "uk": "В’єтнам."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше он преподавал во Вьетнаме.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше он преподавал во Вьетнаме.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He used to teach in Vietnam.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше он преподавал во Вьетнаме.»",
+            "uk": "Скажіть: «Раніше він викладав у В’єтнамі.»"
+          },
+          "orderedTokens": [
+            "He",
+            "used",
+            "to",
+            "teach",
+            "in",
+            "Vietnam"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните воспоминание.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i11:r1",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i11:r2",
+            "text": "taught"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i11:r3",
+            "text": "teaching"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните воспоминание.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "He used to ___ in Vietnam.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i11:r1",
+              "text": "teach"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i11:r2",
+              "text": "taught"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i11:r3",
+              "text": "teaching"
+            }
+          ],
+          "testedDimension": "Дополните воспоминание.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните воспоминание.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i12:r1",
+            "text": "He used to teach in Vietnam."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i12:r2",
+            "text": "She used to teach in Vietnam."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i12:r3",
+            "text": "He used to work in Vietnam."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i12:audio",
+            "transcript": "He used to teach in Vietnam."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i12:r1",
+              "targetText": "He used to teach in Vietnam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i12:r2",
+              "targetText": "She used to teach in Vietnam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i12:r3",
+              "targetText": "He used to work in Vietnam.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to teach in Vietnam.",
+                "uk": "У записі звучить He used to teach in Vietnam."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to teach in Vietnam.",
+                "uk": "У записі звучить He used to teach in Vietnam."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-07:i13:p1",
+              "target": "Ukraine",
+              "meaningByLocale": {
+                "ru": "Украина",
+                "uk": "Україна"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-07:i13:p2",
+              "target": "Russia",
+              "meaningByLocale": {
+                "ru": "Россия",
+                "uk": "Росія"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-07:i13:p3",
+              "target": "Thailand",
+              "meaningByLocale": {
+                "ru": "Таиланд",
+                "uk": "Таїланд"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-07:i13:p4",
+              "target": "Vietnam",
+              "meaningByLocale": {
+                "ru": "Вьетнам",
+                "uk": "В’єтнам"
+              }
+            }
+          ],
+          "leftColumn": [
+            "Ukraine",
+            "Russia",
+            "Thailand",
+            "Vietnam"
+          ],
+          "rightColumn": [
+            "Украина",
+            "Россия",
+            "Таиланд",
+            "Вьетнам"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Нашёл другую работу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Нашёл другую работу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i14:audio",
+            "transcript": "I have found another job."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have found another job.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "found",
+            "another",
+            "job"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Другие семьи переехали",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Другие семьи переехали",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i15:audio",
+            "transcript": "The other families moved last year."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The other families moved last year.",
+          "orderedTokens": [
+            "The",
+            "other",
+            "families",
+            "moved",
+            "last",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы раньше жили в Украине».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы раньше жили в Украине».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i16:audio",
+            "transcript": "We used to live in Ukraine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to live in Ukraine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она раньше преподавала во Вьетнаме».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она раньше преподавала во Вьетнаме».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i17:audio",
+            "transcript": "She used to teach in Vietnam."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to teach in Vietnam.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-07:word:Ukraine",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — Ukraine",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Ukraine:audio"
+        ],
+        "accessibilityLabel": "Картка слова — Ukraine",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Ukraine:audio",
+            "transcript": "Ukraine"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Ukraine:r1",
+              "targetText": "Ukraine",
+              "meaningByLocale": {
+                "ru": "Украина.",
+                "uk": "Україна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Ukraine",
+            "definitionByLocale": {
+              "ru": "Украина.",
+              "uk": "Україна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше я жив в Україні.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше я жив в Україні.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to live in Ukraine.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше я жил в Украине.»",
+            "uk": "Скажіть: «Раніше я жив в Україні.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "live",
+            "in",
+            "Ukraine"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i02:r1",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i02:r2",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i02:r3",
+            "text": "living"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "I used to ___ in Ukraine.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i02:r1",
+              "text": "live"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i02:r2",
+              "text": "lived"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i02:r3",
+              "text": "living"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма live.",
+                "uk": "Після used to потрібна форма live."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i03:r1",
+            "text": "I used to live in Ukraine."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i03:r2",
+            "text": "We used to live in Ukraine."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i03:r3",
+            "text": "I used to work in Ukraine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i03:audio",
+            "transcript": "I used to live in Ukraine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i03:r1",
+              "targetText": "I used to live in Ukraine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i03:r2",
+              "targetText": "We used to live in Ukraine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i03:r3",
+              "targetText": "I used to work in Ukraine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to live in Ukraine.",
+                "uk": "У записі звучить I used to live in Ukraine."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to live in Ukraine.",
+                "uk": "У записі звучить I used to live in Ukraine."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:word:Russia",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — Russia",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Russia:audio"
+        ],
+        "accessibilityLabel": "Картка слова — Russia",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Russia:audio",
+            "transcript": "Russia"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Russia:r1",
+              "targetText": "Russia",
+              "meaningByLocale": {
+                "ru": "Россия.",
+                "uk": "Росія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Russia",
+            "definitionByLocale": {
+              "ru": "Россия.",
+              "uk": "Росія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше вона працювала в Росії.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше вона працювала в Росії.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to work in Russia.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она работала в России.»",
+            "uk": "Скажіть: «Раніше вона працювала в Росії.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "work",
+            "in",
+            "Russia"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i05:r1",
+            "text": "work"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i05:r2",
+            "text": "worked"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i05:r3",
+            "text": "working"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "She used to ___ in Russia.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i05:r1",
+              "text": "work"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i05:r2",
+              "text": "worked"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i05:r3",
+              "text": "working"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма work.",
+                "uk": "Після used to потрібна форма work."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i06:r1",
+            "text": "She used to work in Russia."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i06:r2",
+            "text": "He used to work in Russia."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i06:r3",
+            "text": "She used to live in Russia."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i06:audio",
+            "transcript": "She used to work in Russia."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i06:r1",
+              "targetText": "She used to work in Russia.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i06:r2",
+              "targetText": "He used to work in Russia.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i06:r3",
+              "targetText": "She used to live in Russia.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to work in Russia.",
+                "uk": "У записі звучить She used to work in Russia."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to work in Russia.",
+                "uk": "У записі звучить She used to work in Russia."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:word:Thailand",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — Thailand",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Thailand:audio"
+        ],
+        "accessibilityLabel": "Картка слова — Thailand",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Thailand:audio",
+            "transcript": "Thailand"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Thailand:r1",
+              "targetText": "Thailand",
+              "meaningByLocale": {
+                "ru": "Таиланд.",
+                "uk": "Таїланд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Thailand",
+            "definitionByLocale": {
+              "ru": "Таиланд.",
+              "uk": "Таїланд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше ми їздили до Таїланду.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше ми їздили до Таїланду.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to travel to Thailand.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы ездили в Таиланд.»",
+            "uk": "Скажіть: «Раніше ми їздили до Таїланду.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "travel",
+            "to",
+            "Thailand"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i08:r1",
+            "text": "travel"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i08:r2",
+            "text": "travelled"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i08:r3",
+            "text": "travelling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "We used to ___ to Thailand.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i08:r1",
+              "text": "travel"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i08:r2",
+              "text": "travelled"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i08:r3",
+              "text": "travelling"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма travel.",
+                "uk": "Після used to потрібна форма travel."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма travel.",
+                "uk": "Після used to потрібна форма travel."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i09:r1",
+            "text": "We used to travel to Thailand."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i09:r2",
+            "text": "They used to travel to Thailand."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i09:r3",
+            "text": "We used to travel to France."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i09:audio",
+            "transcript": "We used to travel to Thailand."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i09:r1",
+              "targetText": "We used to travel to Thailand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i09:r2",
+              "targetText": "They used to travel to Thailand.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i09:r3",
+              "targetText": "We used to travel to France.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to travel to Thailand.",
+                "uk": "У записі звучить We used to travel to Thailand."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to travel to Thailand.",
+                "uk": "У записі звучить We used to travel to Thailand."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:word:Vietnam",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — Vietnam",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:word:Vietnam:audio"
+        ],
+        "accessibilityLabel": "Картка слова — Vietnam",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:word:Vietnam:audio",
+            "transcript": "Vietnam"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:word:Vietnam:r1",
+              "targetText": "Vietnam",
+              "meaningByLocale": {
+                "ru": "Вьетнам.",
+                "uk": "В’єтнам."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "Vietnam",
+            "definitionByLocale": {
+              "ru": "Вьетнам.",
+              "uk": "В’єтнам."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше він викладав у В’єтнамі.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше він викладав у В’єтнамі.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He used to teach in Vietnam.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше он преподавал во Вьетнаме.»",
+            "uk": "Скажіть: «Раніше він викладав у В’єтнамі.»"
+          },
+          "orderedTokens": [
+            "He",
+            "used",
+            "to",
+            "teach",
+            "in",
+            "Vietnam"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть спогад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i11:r1",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i11:r2",
+            "text": "taught"
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i11:r3",
+            "text": "teaching"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть спогад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните воспоминание.",
+            "uk": "Доповніть спогад."
+          },
+          "gappedTargetPhrase": "He used to ___ in Vietnam.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-07:i11:r1",
+              "text": "teach"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i11:r2",
+              "text": "taught"
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i11:r3",
+              "text": "teaching"
+            }
+          ],
+          "testedDimension": "Доповніть спогад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть спогад.",
+              "feedbackByLocale": {
+                "ru": "После used to нужна форма teach.",
+                "uk": "Після used to потрібна форма teach."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-07:i12:r1",
+            "text": "He used to teach in Vietnam."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i12:r2",
+            "text": "She used to teach in Vietnam."
+          },
+          {
+            "responseId": "en:lesson-25:session-07:i12:r3",
+            "text": "He used to work in Vietnam."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i12:audio",
+            "transcript": "He used to teach in Vietnam."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-07:i12:r1",
+              "targetText": "He used to teach in Vietnam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i12:r2",
+              "targetText": "She used to teach in Vietnam.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i12:r3",
+              "targetText": "He used to work in Vietnam.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to teach in Vietnam.",
+                "uk": "У записі звучить He used to teach in Vietnam."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He used to teach in Vietnam.",
+                "uk": "У записі звучить He used to teach in Vietnam."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-07:i13:p1",
+              "target": "Ukraine",
+              "meaningByLocale": {
+                "ru": "Украина",
+                "uk": "Україна"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-07:i13:p2",
+              "target": "Russia",
+              "meaningByLocale": {
+                "ru": "Россия",
+                "uk": "Росія"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-07:i13:p3",
+              "target": "Thailand",
+              "meaningByLocale": {
+                "ru": "Таиланд",
+                "uk": "Таїланд"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-07:i13:p4",
+              "target": "Vietnam",
+              "meaningByLocale": {
+                "ru": "Вьетнам",
+                "uk": "В’єтнам"
+              }
+            }
+          ],
+          "leftColumn": [
+            "Ukraine",
+            "Russia",
+            "Thailand",
+            "Vietnam"
+          ],
+          "rightColumn": [
+            "Україна",
+            "Росія",
+            "Таїланд",
+            "В’єтнам"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Знайшов іншу роботу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Знайшов іншу роботу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i14:audio",
+            "transcript": "I have found another job."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have found another job.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "found",
+            "another",
+            "job"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Інші сім’ї переїхали",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Інші сім’ї переїхали",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i15:audio",
+            "transcript": "The other families moved last year."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The other families moved last year.",
+          "orderedTokens": [
+            "The",
+            "other",
+            "families",
+            "moved",
+            "last",
+            "year"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми раніше жили в Україні».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми раніше жили в Україні».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i16:audio",
+            "transcript": "We used to live in Ukraine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to live in Ukraine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона раніше викладала у В’єтнамі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона раніше викладала у В’єтнамі».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-07:i17:audio",
+            "transcript": "She used to teach in Vietnam."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to teach in Vietnam.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-07:word:Ukraine",
+      "correctText": "Ukraine",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i01",
+      "correctText": "I used to live in Ukraine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i02",
+      "correctText": "live",
+      "correctResponseId": "en:lesson-25:session-07:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i03",
+      "correctText": "I used to live in Ukraine.",
+      "correctResponseId": "en:lesson-25:session-07:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:word:Russia",
+      "correctText": "Russia",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i04",
+      "correctText": "She used to work in Russia.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i05",
+      "correctText": "work",
+      "correctResponseId": "en:lesson-25:session-07:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i06",
+      "correctText": "She used to work in Russia.",
+      "correctResponseId": "en:lesson-25:session-07:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:word:Thailand",
+      "correctText": "Thailand",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i07",
+      "correctText": "We used to travel to Thailand.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i08",
+      "correctText": "travel",
+      "correctResponseId": "en:lesson-25:session-07:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i09",
+      "correctText": "We used to travel to Thailand.",
+      "correctResponseId": "en:lesson-25:session-07:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:word:Vietnam",
+      "correctText": "Vietnam",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i10",
+      "correctText": "He used to teach in Vietnam.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i11",
+      "correctText": "teach",
+      "correctResponseId": "en:lesson-25:session-07:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i12",
+      "correctText": "He used to teach in Vietnam.",
+      "correctResponseId": "en:lesson-25:session-07:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i14",
+      "correctText": "I have found another job.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i15",
+      "correctText": "The other families moved last year.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i16",
+      "correctText": "We used to live in Ukraine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-07:i17",
+      "correctText": "She used to teach in Vietnam.",
+      "correctResponseId": null
+    }
+  ]
+}

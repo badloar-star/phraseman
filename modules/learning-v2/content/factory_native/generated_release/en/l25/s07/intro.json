@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где я жил",
+        "uk": "Де я жив"
+      },
+      "bodyByLocale": {
+        "ru": "Ukraine — Украина. I used to live in Ukraine — раньше я жил в Украине. Здесь used to live описывает прежнее место проживания: теперь я живу в другой стране. Перед Ukraine артикль не нужен. Название страны пишем с заглавной буквы.",
+        "uk": "Ukraine — Україна. I used to live in Ukraine — раніше я жив в Україні. Тут used to live описує колишнє місце проживання: тепер я живу в іншій країні. Перед Ukraine артикль не потрібен. Назву країни пишемо з великої літери."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-07:intro1:r1",
+              "text": "I used to live in Ukraine."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro1:r2",
+              "text": "I used to lived in Ukraine."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro1:r3",
+              "text": "I used to living in Ukraine."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-07:intro1:r1",
+              "text": "I used to live in Ukraine."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro1:r2",
+              "text": "I used to lived in Ukraine."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro1:r3",
+              "text": "I used to living in Ukraine."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Работа и поездки",
+        "uk": "Робота й подорожі"
+      },
+      "bodyByLocale": {
+        "ru": "Russia — Россия. She used to work in Russia — раньше она работала в России. Thailand — Таиланд. We used to travel to Thailand — раньше мы ездили в Таиланд. Work in говорит о месте работы, travel to — о направлении поездки. Used to travel описывает повторявшиеся поездки.",
+        "uk": "Russia — Росія. She used to work in Russia — раніше вона працювала в Росії. Thailand — Таїланд. We used to travel to Thailand — раніше ми їздили до Таїланду. Work in говорить про місце роботи, travel to — про напрямок подорожі. Used to travel описує поїздки, які повторювалися."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-07:intro2:r1",
+              "text": "She used to work in Russia."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro2:r2",
+              "text": "She used to worked in Russia."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro2:r3",
+              "text": "She used to working in Russia."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-07:intro2:r1",
+              "text": "She used to work in Russia."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro2:r2",
+              "text": "She used to worked in Russia."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro2:r3",
+              "text": "She used to working in Russia."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где он преподавал",
+        "uk": "Де він викладав"
+      },
+      "bodyByLocale": {
+        "ru": "Vietnam — Вьетнам. He used to teach in Vietnam — раньше он преподавал во Вьетнаме. После used to нужна форма teach, хотя сама работа осталась в прошлом. Не говорим used to taught. Все четыре названия в этом занятии употребляем без артикля.",
+        "uk": "Vietnam — В’єтнам. He used to teach in Vietnam — раніше він викладав у В’єтнамі. Після used to потрібна форма teach, хоча сама робота залишилася в минулому. Не кажемо used to taught. Усі чотири назви в цьому занятті вживаємо без артикля."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-07:intro3:r1",
+              "text": "He used to teach in Vietnam."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro3:r2",
+              "text": "He used to taught in Vietnam."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro3:r3",
+              "text": "He used to teaching in Vietnam."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-07:intro3:r1",
+              "text": "He used to teach in Vietnam."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro3:r2",
+              "text": "He used to taught in Vietnam."
+            },
+            {
+              "responseId": "en:lesson-25:session-07:intro3:r3",
+              "text": "He used to teaching in Vietnam."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fafffd3dfc09b8a995b0786ee85f33cefd1831e66f46920ac563c4fed34cae97"
+}

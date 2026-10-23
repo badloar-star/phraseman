@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Воспоминания о юности",
+        "uk": "Спогади про юність"
+      },
+      "bodyByLocale": {
+        "ru": "Youth — юность. He used to talk about his youth — раньше он рассказывал о своей юности. Воспоминания могли быть о школе, друзьях и первой работе. Used to talk означает, что он рассказывал об этом регулярно, а не один раз.",
+        "uk": "Youth — юність. He used to talk about his youth — раніше він розповідав про свою юність. Спогади могли бути про школу, друзів і першу роботу. Used to talk означає, що він розповідав про це регулярно, а не один раз."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-06:intro1:r1",
+              "text": "He used to talk about his youth."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro1:r2",
+              "text": "He used to talked about his youth."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro1:r3",
+              "text": "He used to talking about his youth."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-06:intro1:r1",
+              "text": "He used to talk about his youth."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro1:r2",
+              "text": "He used to talked about his youth."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro1:r3",
+              "text": "He used to talking about his youth."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Взрослая жизнь и деньги",
+        "uk": "Доросле життя й гроші"
+      },
+      "bodyByLocale": {
+        "ru": "Adulthood — взрослая жизнь. Представьте подростка, который боялся будущих обязанностей: I used to worry about adulthood — раньше я переживал из-за будущей взрослой жизни. Attitude — отношение к чему-либо. We used to have the same attitude to money — раньше у нас было одинаковое отношение к деньгам. Теперь один предпочитает копить, а другой — тратить.",
+        "uk": "Adulthood — доросле життя. Уявіть підлітка, який боявся майбутніх обов’язків: I used to worry about adulthood — раніше я хвилювався через майбутнє доросле життя. Attitude — ставлення до чогось. We used to have the same attitude to money — раніше в нас було однакове ставлення до грошей. Тепер один воліє заощаджувати, а інший — витрачати."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-06:intro2:r1",
+              "text": "I used to worry about adulthood."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro2:r2",
+              "text": "I used to worried about adulthood."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro2:r3",
+              "text": "I used to worrying about adulthood."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-06:intro2:r1",
+              "text": "I used to worry about adulthood."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro2:r2",
+              "text": "I used to worried about adulthood."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro2:r3",
+              "text": "I used to worrying about adulthood."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что нам нравилось",
+        "uk": "Що нам подобалося"
+      },
+      "bodyByLocale": {
+        "ru": "Personality — характер, личность: особенности человека, которые проявляются в общении и поведении. She used to like his personality — раньше ей нравился его характер. Это её прежнее отношение к нему; фраза не утверждает, что он сам изменился. Like после used to остаётся в базовой форме.",
+        "uk": "Personality — характер, особистість: особливості людини, які виявляються у спілкуванні й поведінці. She used to like his personality — раніше їй подобався його характер. Це її колишнє ставлення до нього; фраза не стверджує, що він сам змінився. Like після used to залишається в базовій формі."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-06:intro3:r1",
+              "text": "She used to like his personality."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro3:r2",
+              "text": "She used to liked his personality."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro3:r3",
+              "text": "She used to liking his personality."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-06:intro3:r1",
+              "text": "She used to like his personality."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro3:r2",
+              "text": "She used to liked his personality."
+            },
+            {
+              "responseId": "en:lesson-25:session-06:intro3:r3",
+              "text": "She used to liking his personality."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c81102fd0332640ce9b714c4a5aca289f0c5f6d1e2ceee882a0fe012bd590135"
+}

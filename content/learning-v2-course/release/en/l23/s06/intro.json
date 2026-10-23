@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "subject + have|has + past participle",
+    "uk": "subject + have|has + past participle"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Появилось или исчезло",
+        "uk": "З’явилося чи зникло"
+      },
+      "bodyByLocale": {
+        "ru": "Appear — появиться, disappear — исчезнуть. Clouds have appeared: облака теперь видны. My keys have disappeared: ключей теперь нет на месте. Clouds и keys во множественном числе, поэтому используем have.",
+        "uk": "Appear — з’явитися, disappear — зникнути. Clouds have appeared: хмари тепер видно. My keys have disappeared: ключів тепер немає на місці. Clouds і keys у множині, тому використовуємо have."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-06:intro1:r1",
+              "text": "Clouds have appeared."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro1:r2",
+              "text": "Clouds has appeared."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro1:r3",
+              "text": "Clouds have appear."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-06:intro1:r1",
+              "text": "Clouds have appeared."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro1:r2",
+              "text": "Clouds has appeared."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro1:r3",
+              "text": "Clouds have appear."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стало хуже",
+        "uk": "Стало гірше"
+      },
+      "bodyByLocale": {
+        "ru": "Worsen — ухудшиться. The weather has worsened: погода теперь хуже, чем была. Weather — неисчисляемое существительное, здесь с ним используем has. Не добавляйте к worsen слово more: значение «хуже» уже есть в глаголе.",
+        "uk": "Worsen — погіршитися. The weather has worsened: погода тепер гірша, ніж була. Weather — незлічуваний іменник, тут із ним використовуємо has. Не додавайте до worsen слово more: значення «гірше» вже є в дієслові."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-06:intro2:r1",
+              "text": "The weather has worsened."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro2:r2",
+              "text": "The weather have worsened."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro2:r3",
+              "text": "The weather has worsen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-06:intro2:r1",
+              "text": "The weather has worsened."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro2:r2",
+              "text": "The weather have worsened."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro2:r3",
+              "text": "The weather has worsen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Порез зажил",
+        "uk": "Поріз загоївся"
+      },
+      "bodyByLocale": {
+        "ru": "Heal — заживать. The cut has healed: порез зажил. Cut здесь существительное «порез», healed — третья форма глагола heal.",
+        "uk": "Heal — загоюватися. The cut has healed: поріз загоївся. Cut тут іменник «поріз», healed — третя форма дієслова heal."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-06:intro3:r1",
+              "text": "The cut has healed."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro3:r2",
+              "text": "The cut have healed."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro3:r3",
+              "text": "The cut has heal."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-06:intro3:r1",
+              "text": "The cut has healed."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro3:r2",
+              "text": "The cut have healed."
+            },
+            {
+              "responseId": "en:lesson-23:session-06:intro3:r3",
+              "text": "The cut has heal."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a733e0d71bb35230c0bffcd1489b724f0ff3a36c33f7fe821e9feef201e2f646"
+}

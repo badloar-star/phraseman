@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-06:word:appear",
+    "correctText": "appear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i01",
+    "correctText": "appeared",
+    "correctResponseId": "en:lesson-23:session-06:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i02",
+    "correctText": "Clouds have appeared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i03",
+    "correctText": "Clouds have appeared.",
+    "correctResponseId": "en:lesson-23:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:word:disappear",
+    "correctText": "disappear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i04",
+    "correctText": "disappeared",
+    "correctResponseId": "en:lesson-23:session-06:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i05",
+    "correctText": "My keys have disappeared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i06",
+    "correctText": "My keys have disappeared.",
+    "correctResponseId": "en:lesson-23:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:word:worsen",
+    "correctText": "worsen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i07",
+    "correctText": "worsened",
+    "correctResponseId": "en:lesson-23:session-06:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i08",
+    "correctText": "The weather has worsened.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i09",
+    "correctText": "The weather has worsened.",
+    "correctResponseId": "en:lesson-23:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:word:heal",
+    "correctText": "heal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i10",
+    "correctText": "healed",
+    "correctResponseId": "en:lesson-23:session-06:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i11",
+    "correctText": "The cut has healed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i12",
+    "correctText": "The cut has healed.",
+    "correctResponseId": "en:lesson-23:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i13",
+    "correctText": "en:lesson-23:session-06:i13:p1=appear\nen:lesson-23:session-06:i13:p2=disappear\nen:lesson-23:session-06:i13:p3=worsen\nen:lesson-23:session-06:i13:p4=heal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i14",
+    "correctText": "The other keys are here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i15",
+    "correctText": "You mustn't leave the keys outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i16",
+    "correctText": "Your keys have disappeared.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-06:i17",
+    "correctText": "Birds have appeared.",
+    "correctResponseId": null
+  }
+]

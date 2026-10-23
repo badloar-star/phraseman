@@ -1,0 +1,1111 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-06:word:appear",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — appear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:word:appear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — appear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:word:appear:audio",
+          "transcript": "appear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:word:appear:r1",
+            "targetText": "appear",
+            "meaningByLocale": {
+              "ru": "появиться.",
+              "uk": "з’явитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "appear",
+          "definitionByLocale": {
+            "ru": "появиться.",
+            "uk": "з’явитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i01:r1",
+          "text": "appeared"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i01:r2",
+          "text": "appear"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i01:r3",
+          "text": "appears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "Clouds have ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-06:i01:r1",
+            "text": "appeared"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i01:r2",
+            "text": "appear"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i01:r3",
+            "text": "appears"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i01:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i01:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Небо вже не ясне. Скажіть: «З’явилися хмари».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Небо вже не ясне. Скажіть: «З’явилися хмари».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Clouds have appeared.",
+        "localizedMeaning": {
+          "ru": "Небо уже не ясное. Скажите: «Появились облака».",
+          "uk": "Небо вже не ясне. Скажіть: «З’явилися хмари»."
+        },
+        "orderedTokens": [
+          "Clouds",
+          "have",
+          "appeared"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i03:r1",
+          "text": "Clouds have appeared."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i03:r2",
+          "text": "Stars have appeared."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i03:r3",
+          "text": "Birds have appeared."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i03:audio",
+          "transcript": "Clouds have appeared."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:i03:r1",
+            "targetText": "Clouds have appeared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i03:r2",
+            "targetText": "Stars have appeared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i03:r3",
+            "targetText": "Birds have appeared.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Clouds have appeared.",
+              "uk": "У записі звучить Clouds have appeared."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Clouds have appeared.",
+              "uk": "У записі звучить Clouds have appeared."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:word:disappear",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — disappear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:word:disappear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — disappear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:word:disappear:audio",
+          "transcript": "disappear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:word:disappear:r1",
+            "targetText": "disappear",
+            "meaningByLocale": {
+              "ru": "исчезнуть.",
+              "uk": "зникнути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disappear",
+          "definitionByLocale": {
+            "ru": "исчезнуть.",
+            "uk": "зникнути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i04:r1",
+          "text": "disappeared"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i04:r2",
+          "text": "disappear"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i04:r3",
+          "text": "disappears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "My keys have ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-06:i04:r1",
+            "text": "disappeared"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i04:r2",
+            "text": "disappear"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i04:r3",
+            "text": "disappears"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ключі лежали тут, але тепер їх немає. Скажіть: «Мої ключі зникли».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ключі лежали тут, але тепер їх немає. Скажіть: «Мої ключі зникли».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My keys have disappeared.",
+        "localizedMeaning": {
+          "ru": "Ключи лежали здесь, но теперь их нет. Скажите: «Мои ключи исчезли».",
+          "uk": "Ключі лежали тут, але тепер їх немає. Скажіть: «Мої ключі зникли»."
+        },
+        "orderedTokens": [
+          "My",
+          "keys",
+          "have",
+          "disappeared"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i06:r1",
+          "text": "My keys have disappeared."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i06:r2",
+          "text": "My bags have disappeared."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i06:r3",
+          "text": "My shoes have disappeared."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i06:audio",
+          "transcript": "My keys have disappeared."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:i06:r1",
+            "targetText": "My keys have disappeared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i06:r2",
+            "targetText": "My bags have disappeared.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i06:r3",
+            "targetText": "My shoes have disappeared.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My keys have disappeared.",
+              "uk": "У записі звучить My keys have disappeared."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My keys have disappeared.",
+              "uk": "У записі звучить My keys have disappeared."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:word:worsen",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — worsen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:word:worsen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — worsen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:word:worsen:audio",
+          "transcript": "worsen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:word:worsen:r1",
+            "targetText": "worsen",
+            "meaningByLocale": {
+              "ru": "ухудшиться.",
+              "uk": "погіршитися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worsen",
+          "definitionByLocale": {
+            "ru": "ухудшиться.",
+            "uk": "погіршитися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i07:r1",
+          "text": "worsened"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i07:r2",
+          "text": "worsen"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i07:r3",
+          "text": "worsens"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "The weather has ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-06:i07:r1",
+            "text": "worsened"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i07:r2",
+            "text": "worsen"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i07:r3",
+            "text": "worsens"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i07:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i07:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Надворі стало ще гірше. Скажіть: «Погода погіршилася».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Надворі стало ще гірше. Скажіть: «Погода погіршилася».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The weather has worsened.",
+        "localizedMeaning": {
+          "ru": "На улице стало ещё хуже. Скажите: «Погода ухудшилась».",
+          "uk": "Надворі стало ще гірше. Скажіть: «Погода погіршилася»."
+        },
+        "orderedTokens": [
+          "The",
+          "weather",
+          "has",
+          "worsened"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i09:r1",
+          "text": "The weather has worsened."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i09:r2",
+          "text": "The problem has worsened."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i09:r3",
+          "text": "The pain has worsened."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i09:audio",
+          "transcript": "The weather has worsened."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:i09:r1",
+            "targetText": "The weather has worsened.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i09:r2",
+            "targetText": "The problem has worsened.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i09:r3",
+            "targetText": "The pain has worsened.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The weather has worsened.",
+              "uk": "У записі звучить The weather has worsened."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The weather has worsened.",
+              "uk": "У записі звучить The weather has worsened."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:word:heal",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — heal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:word:heal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — heal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:word:heal:audio",
+          "transcript": "heal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:word:heal:r1",
+            "targetText": "heal",
+            "meaningByLocale": {
+              "ru": "заживать.",
+              "uk": "загоюватися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heal",
+          "definitionByLocale": {
+            "ru": "заживать.",
+            "uk": "загоюватися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть третю форму після have або has.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i10:r1",
+          "text": "healed"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i10:r2",
+          "text": "heal"
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i10:r3",
+          "text": "heals"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму после have или has.",
+          "uk": "Виберіть третю форму після have або has."
+        },
+        "gappedTargetPhrase": "The cut has ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-06:i10:r1",
+            "text": "healed"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i10:r2",
+            "text": "heal"
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i10:r3",
+            "text": "heals"
+          }
+        ],
+        "testedDimension": "Виберіть третю форму після have або has.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i10:r2",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i10:r3",
+            "correct": false,
+            "testedDimension": "Виберіть третю форму після have або has.",
+            "feedbackByLocale": {
+              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "uk": "Для результату зараз використайте have/has і третю форму."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Порізу більше немає. Скажіть: «Поріз загоївся».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Порізу більше немає. Скажіть: «Поріз загоївся».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The cut has healed.",
+        "localizedMeaning": {
+          "ru": "Пореза больше нет. Скажите: «Порез зажил».",
+          "uk": "Порізу більше немає. Скажіть: «Поріз загоївся»."
+        },
+        "orderedTokens": [
+          "The",
+          "cut",
+          "has",
+          "healed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-06:i12:r1",
+          "text": "The cut has healed."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i12:r2",
+          "text": "The wound has healed."
+        },
+        {
+          "responseId": "en:lesson-23:session-06:i12:r3",
+          "text": "The burn has healed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i12:audio",
+          "transcript": "The cut has healed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-06:i12:r1",
+            "targetText": "The cut has healed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i12:r2",
+            "targetText": "The wound has healed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i12:r3",
+            "targetText": "The burn has healed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cut has healed.",
+              "uk": "У записі звучить The cut has healed."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cut has healed.",
+              "uk": "У записі звучить The cut has healed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-06:i13:p1",
+            "target": "appear",
+            "meaningByLocale": {
+              "ru": "появиться",
+              "uk": "з’явитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-06:i13:p2",
+            "target": "disappear",
+            "meaningByLocale": {
+              "ru": "исчезнуть",
+              "uk": "зникнути"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-06:i13:p3",
+            "target": "worsen",
+            "meaningByLocale": {
+              "ru": "ухудшиться",
+              "uk": "погіршитися"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-06:i13:p4",
+            "target": "heal",
+            "meaningByLocale": {
+              "ru": "заживать",
+              "uk": "загоюватися"
+            }
+          }
+        ],
+        "leftColumn": [
+          "appear",
+          "disappear",
+          "worsen",
+          "heal"
+        ],
+        "rightColumn": [
+          "з’явитися",
+          "зникнути",
+          "погіршитися",
+          "загоюватися"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: інші ключі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: інші ключі",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i14:audio",
+          "transcript": "The other keys are here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The other keys are here.",
+        "orderedTokens": [
+          "The",
+          "other",
+          "keys",
+          "are",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: заборона",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: заборона",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i15:audio",
+          "transcript": "You mustn't leave the keys outside."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't leave the keys outside.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "leave",
+          "the",
+          "keys",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Твої ключі зникли».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Твої ключі зникли».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i16:audio",
+          "transcript": "Your keys have disappeared."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Your keys have disappeared.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «З’явилися птахи».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «З’явилися птахи».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-06:i17:audio",
+          "transcript": "Birds have appeared."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Birds have appeared.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cebe9c328820545a45a1a53c36812b0b1ff62d418016301a6be9e1e48bc288e4"
+}

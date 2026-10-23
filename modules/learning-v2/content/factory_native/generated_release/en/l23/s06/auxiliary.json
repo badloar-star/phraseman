@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-06:intro1:r2": {
+          "ru": "Clouds — множественное число, нужно have.",
+          "uk": "Clouds — множина, потрібно have."
+        },
+        "en:lesson-23:session-06:intro1:r3": {
+          "ru": "Для результата сейчас используйте have/has и третью форму.",
+          "uk": "Для результату зараз використайте have/has і третю форму."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-06:intro2:r2": {
+          "ru": "С weather здесь нужно has.",
+          "uk": "Із weather тут потрібно has."
+        },
+        "en:lesson-23:session-06:intro2:r3": {
+          "ru": "Для результата сейчас используйте have/has и третью форму.",
+          "uk": "Для результату зараз використайте have/has і третю форму."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-06:intro3:r2": {
+          "ru": "The cut — один порез, нужно has.",
+          "uk": "The cut — один поріз, потрібно has."
+        },
+        "en:lesson-23:session-06:intro3:r3": {
+          "ru": "Для результата сейчас используйте have/has и третью форму.",
+          "uk": "Для результату зараз використайте have/has і третю форму."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cf377faf120835139f6a1b07c8584019a18f8b70019a6e74f8570cb5e90a29e0"
+}

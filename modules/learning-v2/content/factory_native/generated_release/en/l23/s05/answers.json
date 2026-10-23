@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-05:word:misjudge",
+    "correctText": "misjudge",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i01",
+    "correctText": "misjudged",
+    "correctResponseId": "en:lesson-23:session-05:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i02",
+    "correctText": "I have misjudged the distance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i03",
+    "correctText": "I have misjudged the distance.",
+    "correctResponseId": "en:lesson-23:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:word:overestimate",
+    "correctText": "overestimate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i04",
+    "correctText": "overestimated",
+    "correctResponseId": "en:lesson-23:session-05:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i05",
+    "correctText": "We have overestimated the cost.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i06",
+    "correctText": "We have overestimated the cost.",
+    "correctResponseId": "en:lesson-23:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:word:underpay",
+    "correctText": "underpay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i07",
+    "correctText": "underpaid",
+    "correctResponseId": "en:lesson-23:session-05:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i08",
+    "correctText": "They have underpaid me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i09",
+    "correctText": "They have underpaid me.",
+    "correctResponseId": "en:lesson-23:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:word:regret",
+    "correctText": "regret",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i10",
+    "correctText": "regretted",
+    "correctResponseId": "en:lesson-23:session-05:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i11",
+    "correctText": "She has regretted her decision.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i12",
+    "correctText": "She has regretted her decision.",
+    "correctResponseId": "en:lesson-23:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i13",
+    "correctText": "en:lesson-23:session-05:i13:p1=misjudge\nen:lesson-23:session-05:i13:p2=overestimate\nen:lesson-23:session-05:i13:p3=underpay\nen:lesson-23:session-05:i13:p4=regret",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i14",
+    "correctText": "We need another route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i15",
+    "correctText": "You mustn't park here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i16",
+    "correctText": "We have misjudged the distance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-05:i17",
+    "correctText": "She has underpaid me.",
+    "correctResponseId": null
+  }
+]

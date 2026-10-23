@@ -1,0 +1,2313 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-23:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-23:session-05:word:misjudge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — misjudge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:misjudge:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — misjudge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:misjudge:audio",
+            "transcript": "misjudge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:misjudge:r1",
+              "targetText": "misjudge",
+              "meaningByLocale": {
+                "ru": "неверно оценить.",
+                "uk": "неправильно оцінити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "misjudge",
+            "definitionByLocale": {
+              "ru": "неверно оценить.",
+              "uk": "неправильно оцінити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму после have или has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i01:r1",
+            "text": "misjudged"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i01:r2",
+            "text": "misjudge"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i01:r3",
+            "text": "misjudges"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму после have или has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "I have ___ the distance.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i01:r1",
+              "text": "misjudged"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i01:r2",
+              "text": "misjudge"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i01:r3",
+              "text": "misjudges"
+            }
+          ],
+          "testedDimension": "Выберите третью форму после have или has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i01:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i01:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Идти оказалось дальше, чем вы думали. Скажите: «Я неверно оценил расстояние».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Идти оказалось дальше, чем вы думали. Скажите: «Я неверно оценил расстояние».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have misjudged the distance.",
+          "localizedMeaning": {
+            "ru": "Идти оказалось дальше, чем вы думали. Скажите: «Я неверно оценил расстояние».",
+            "uk": "Іти виявилося далі, ніж ви думали. Скажіть: «Я неправильно оцінив відстань»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "misjudged",
+            "the",
+            "distance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i03:r1",
+            "text": "I have misjudged the distance."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i03:r2",
+            "text": "You have misjudged the distance."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i03:r3",
+            "text": "He has misjudged the distance."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i03:audio",
+            "transcript": "I have misjudged the distance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i03:r1",
+              "targetText": "I have misjudged the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i03:r2",
+              "targetText": "You have misjudged the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i03:r3",
+              "targetText": "He has misjudged the distance.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have misjudged the distance.",
+                "uk": "У записі звучить I have misjudged the distance."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have misjudged the distance.",
+                "uk": "У записі звучить I have misjudged the distance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:word:overestimate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overestimate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:overestimate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overestimate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:overestimate:audio",
+            "transcript": "overestimate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:overestimate:r1",
+              "targetText": "overestimate",
+              "meaningByLocale": {
+                "ru": "переоценить.",
+                "uk": "переоцінити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overestimate",
+            "definitionByLocale": {
+              "ru": "переоценить.",
+              "uk": "переоцінити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму после have или has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i04:r1",
+            "text": "overestimated"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i04:r2",
+            "text": "overestimate"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i04:r3",
+            "text": "overestimates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму после have или has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "We have ___ the cost.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i04:r1",
+              "text": "overestimated"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i04:r2",
+              "text": "overestimate"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i04:r3",
+              "text": "overestimates"
+            }
+          ],
+          "testedDimension": "Выберите третью форму после have или has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i04:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i04:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поездка дешевле, чем вы рассчитывали. Скажите: «Мы переоценили стоимость».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поездка дешевле, чем вы рассчитывали. Скажите: «Мы переоценили стоимость».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have overestimated the cost.",
+          "localizedMeaning": {
+            "ru": "Поездка дешевле, чем вы рассчитывали. Скажите: «Мы переоценили стоимость».",
+            "uk": "Подорож дешевша, ніж ви розраховували. Скажіть: «Ми переоцінили вартість»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "overestimated",
+            "the",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i06:r1",
+            "text": "We have overestimated the cost."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i06:r2",
+            "text": "You have overestimated the cost."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i06:r3",
+            "text": "He has overestimated the cost."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i06:audio",
+            "transcript": "We have overestimated the cost."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i06:r1",
+              "targetText": "We have overestimated the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i06:r2",
+              "targetText": "You have overestimated the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i06:r3",
+              "targetText": "He has overestimated the cost.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have overestimated the cost.",
+                "uk": "У записі звучить We have overestimated the cost."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have overestimated the cost.",
+                "uk": "У записі звучить We have overestimated the cost."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:word:underpay",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — underpay",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:underpay:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — underpay",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:underpay:audio",
+            "transcript": "underpay"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:underpay:r1",
+              "targetText": "underpay",
+              "meaningByLocale": {
+                "ru": "заплатить меньше положенного.",
+                "uk": "заплатити менше, ніж належить."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underpay",
+            "definitionByLocale": {
+              "ru": "заплатить меньше положенного.",
+              "uk": "заплатити менше, ніж належить."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму после have или has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i07:r1",
+            "text": "underpaid"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i07:r2",
+            "text": "underpay"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i07:r3",
+            "text": "underpays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму после have или has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "They have ___ me.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i07:r1",
+              "text": "underpaid"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i07:r2",
+              "text": "underpay"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i07:r3",
+              "text": "underpays"
+            }
+          ],
+          "testedDimension": "Выберите третью форму после have или has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i07:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i07:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам перевели меньше денег, чем обещали за работу. Скажите: «Они мне недоплатили».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам перевели меньше денег, чем обещали за работу. Скажите: «Они мне недоплатили».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have underpaid me.",
+          "localizedMeaning": {
+            "ru": "Вам перевели меньше денег, чем обещали за работу. Скажите: «Они мне недоплатили».",
+            "uk": "Вам переказали менше грошей, ніж обіцяли за роботу. Скажіть: «Вони мені недоплатили»."
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "underpaid",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i09:r1",
+            "text": "They have underpaid me."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i09:r2",
+            "text": "You have underpaid me."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i09:r3",
+            "text": "He has underpaid me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i09:audio",
+            "transcript": "They have underpaid me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i09:r1",
+              "targetText": "They have underpaid me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i09:r2",
+              "targetText": "You have underpaid me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i09:r3",
+              "targetText": "He has underpaid me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have underpaid me.",
+                "uk": "У записі звучить They have underpaid me."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have underpaid me.",
+                "uk": "У записі звучить They have underpaid me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:word:regret",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — regret",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:regret:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — regret",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:regret:audio",
+            "transcript": "regret"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:regret:r1",
+              "targetText": "regret",
+              "meaningByLocale": {
+                "ru": "сожалеть о чём-либо.",
+                "uk": "шкодувати про щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "regret",
+            "definitionByLocale": {
+              "ru": "сожалеть о чём-либо.",
+              "uk": "шкодувати про щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите третью форму после have или has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i10:r1",
+            "text": "regretted"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i10:r2",
+            "text": "regret"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i10:r3",
+            "text": "regrets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите третью форму после have или has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "She has ___ her decision.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i10:r1",
+              "text": "regretted"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i10:r2",
+              "text": "regret"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i10:r3",
+              "text": "regrets"
+            }
+          ],
+          "testedDimension": "Выберите третью форму после have или has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i10:r2",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i10:r3",
+              "correct": false,
+              "testedDimension": "Выберите третью форму после have или has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Она приняла решение, но потом пожалела об этом. Скажите: «Она пожалела о своём решении».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Она приняла решение, но потом пожалела об этом. Скажите: «Она пожалела о своём решении».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has regretted her decision.",
+          "localizedMeaning": {
+            "ru": "Она приняла решение, но потом пожалела об этом. Скажите: «Она пожалела о своём решении».",
+            "uk": "Вона ухвалила рішення, але потім пошкодувала про це. Скажіть: «Вона пошкодувала про своє рішення»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "regretted",
+            "her",
+            "decision"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i12:r1",
+            "text": "She has regretted her decision."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i12:r2",
+            "text": "You have regretted her decision."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i12:r3",
+            "text": "He has regretted her decision."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i12:audio",
+            "transcript": "She has regretted her decision."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i12:r1",
+              "targetText": "She has regretted her decision.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i12:r2",
+              "targetText": "You have regretted her decision.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i12:r3",
+              "targetText": "He has regretted her decision.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has regretted her decision.",
+                "uk": "У записі звучить She has regretted her decision."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has regretted her decision.",
+                "uk": "У записі звучить She has regretted her decision."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-05:i13:p1",
+              "target": "misjudge",
+              "meaningByLocale": {
+                "ru": "неверно оценить",
+                "uk": "неправильно оцінити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-05:i13:p2",
+              "target": "overestimate",
+              "meaningByLocale": {
+                "ru": "переоценить",
+                "uk": "переоцінити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-05:i13:p3",
+              "target": "underpay",
+              "meaningByLocale": {
+                "ru": "заплатить меньше положенного",
+                "uk": "заплатити менше, ніж належить"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-05:i13:p4",
+              "target": "regret",
+              "meaningByLocale": {
+                "ru": "сожалеть о чём-либо",
+                "uk": "шкодувати про щось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "misjudge",
+            "overestimate",
+            "underpay",
+            "regret"
+          ],
+          "rightColumn": [
+            "неверно оценить",
+            "переоценить",
+            "заплатить меньше положенного",
+            "сожалеть о чём-либо"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: другой маршрут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: другой маршрут",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i14:audio",
+            "transcript": "We need another route."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We need another route.",
+          "orderedTokens": [
+            "We",
+            "need",
+            "another",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: запрет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: запрет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i15:audio",
+            "transcript": "You mustn't park here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't park here.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "park",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы неверно оценили расстояние».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы неверно оценили расстояние».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i16:audio",
+            "transcript": "We have misjudged the distance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have misjudged the distance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она мне недоплатила».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она мне недоплатила».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i17:audio",
+            "transcript": "She has underpaid me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has underpaid me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-23:session-05:word:misjudge",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — misjudge",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:misjudge:audio"
+        ],
+        "accessibilityLabel": "Картка слова — misjudge",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:misjudge:audio",
+            "transcript": "misjudge"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:misjudge:r1",
+              "targetText": "misjudge",
+              "meaningByLocale": {
+                "ru": "неверно оценить.",
+                "uk": "неправильно оцінити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "misjudge",
+            "definitionByLocale": {
+              "ru": "неверно оценить.",
+              "uk": "неправильно оцінити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму після have або has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i01:r1",
+            "text": "misjudged"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i01:r2",
+            "text": "misjudge"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i01:r3",
+            "text": "misjudges"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму після have або has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "I have ___ the distance.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i01:r1",
+              "text": "misjudged"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i01:r2",
+              "text": "misjudge"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i01:r3",
+              "text": "misjudges"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму після have або has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i01:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i01:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Іти виявилося далі, ніж ви думали. Скажіть: «Я неправильно оцінив відстань».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Іти виявилося далі, ніж ви думали. Скажіть: «Я неправильно оцінив відстань».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have misjudged the distance.",
+          "localizedMeaning": {
+            "ru": "Идти оказалось дальше, чем вы думали. Скажите: «Я неверно оценил расстояние».",
+            "uk": "Іти виявилося далі, ніж ви думали. Скажіть: «Я неправильно оцінив відстань»."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "misjudged",
+            "the",
+            "distance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i03:r1",
+            "text": "I have misjudged the distance."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i03:r2",
+            "text": "You have misjudged the distance."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i03:r3",
+            "text": "He has misjudged the distance."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i03:audio",
+            "transcript": "I have misjudged the distance."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i03:r1",
+              "targetText": "I have misjudged the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i03:r2",
+              "targetText": "You have misjudged the distance.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i03:r3",
+              "targetText": "He has misjudged the distance.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have misjudged the distance.",
+                "uk": "У записі звучить I have misjudged the distance."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have misjudged the distance.",
+                "uk": "У записі звучить I have misjudged the distance."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:word:overestimate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overestimate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:overestimate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overestimate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:overestimate:audio",
+            "transcript": "overestimate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:overestimate:r1",
+              "targetText": "overestimate",
+              "meaningByLocale": {
+                "ru": "переоценить.",
+                "uk": "переоцінити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overestimate",
+            "definitionByLocale": {
+              "ru": "переоценить.",
+              "uk": "переоцінити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму після have або has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i04:r1",
+            "text": "overestimated"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i04:r2",
+            "text": "overestimate"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i04:r3",
+            "text": "overestimates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму після have або has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "We have ___ the cost.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i04:r1",
+              "text": "overestimated"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i04:r2",
+              "text": "overestimate"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i04:r3",
+              "text": "overestimates"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму після have або has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i04:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i04:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подорож дешевша, ніж ви розраховували. Скажіть: «Ми переоцінили вартість».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подорож дешевша, ніж ви розраховували. Скажіть: «Ми переоцінили вартість».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have overestimated the cost.",
+          "localizedMeaning": {
+            "ru": "Поездка дешевле, чем вы рассчитывали. Скажите: «Мы переоценили стоимость».",
+            "uk": "Подорож дешевша, ніж ви розраховували. Скажіть: «Ми переоцінили вартість»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "overestimated",
+            "the",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i06:r1",
+            "text": "We have overestimated the cost."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i06:r2",
+            "text": "You have overestimated the cost."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i06:r3",
+            "text": "He has overestimated the cost."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i06:audio",
+            "transcript": "We have overestimated the cost."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i06:r1",
+              "targetText": "We have overestimated the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i06:r2",
+              "targetText": "You have overestimated the cost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i06:r3",
+              "targetText": "He has overestimated the cost.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have overestimated the cost.",
+                "uk": "У записі звучить We have overestimated the cost."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have overestimated the cost.",
+                "uk": "У записі звучить We have overestimated the cost."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:word:underpay",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — underpay",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:underpay:audio"
+        ],
+        "accessibilityLabel": "Картка слова — underpay",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:underpay:audio",
+            "transcript": "underpay"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:underpay:r1",
+              "targetText": "underpay",
+              "meaningByLocale": {
+                "ru": "заплатить меньше положенного.",
+                "uk": "заплатити менше, ніж належить."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "underpay",
+            "definitionByLocale": {
+              "ru": "заплатить меньше положенного.",
+              "uk": "заплатити менше, ніж належить."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму після have або has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i07:r1",
+            "text": "underpaid"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i07:r2",
+            "text": "underpay"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i07:r3",
+            "text": "underpays"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму після have або has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "They have ___ me.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i07:r1",
+              "text": "underpaid"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i07:r2",
+              "text": "underpay"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i07:r3",
+              "text": "underpays"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму після have або has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i07:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i07:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вам переказали менше грошей, ніж обіцяли за роботу. Скажіть: «Вони мені недоплатили».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам переказали менше грошей, ніж обіцяли за роботу. Скажіть: «Вони мені недоплатили».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They have underpaid me.",
+          "localizedMeaning": {
+            "ru": "Вам перевели меньше денег, чем обещали за работу. Скажите: «Они мне недоплатили».",
+            "uk": "Вам переказали менше грошей, ніж обіцяли за роботу. Скажіть: «Вони мені недоплатили»."
+          },
+          "orderedTokens": [
+            "They",
+            "have",
+            "underpaid",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i09:r1",
+            "text": "They have underpaid me."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i09:r2",
+            "text": "You have underpaid me."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i09:r3",
+            "text": "He has underpaid me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i09:audio",
+            "transcript": "They have underpaid me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i09:r1",
+              "targetText": "They have underpaid me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i09:r2",
+              "targetText": "You have underpaid me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i09:r3",
+              "targetText": "He has underpaid me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have underpaid me.",
+                "uk": "У записі звучить They have underpaid me."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have underpaid me.",
+                "uk": "У записі звучить They have underpaid me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:word:regret",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — regret",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:word:regret:audio"
+        ],
+        "accessibilityLabel": "Картка слова — regret",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:word:regret:audio",
+            "transcript": "regret"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:word:regret:r1",
+              "targetText": "regret",
+              "meaningByLocale": {
+                "ru": "сожалеть о чём-либо.",
+                "uk": "шкодувати про щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "regret",
+            "definitionByLocale": {
+              "ru": "сожалеть о чём-либо.",
+              "uk": "шкодувати про щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть третю форму після have або has.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i10:r1",
+            "text": "regretted"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i10:r2",
+            "text": "regret"
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i10:r3",
+            "text": "regrets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть третю форму після have або has.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите третью форму после have или has.",
+            "uk": "Виберіть третю форму після have або has."
+          },
+          "gappedTargetPhrase": "She has ___ her decision.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-23:session-05:i10:r1",
+              "text": "regretted"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i10:r2",
+              "text": "regret"
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i10:r3",
+              "text": "regrets"
+            }
+          ],
+          "testedDimension": "Виберіть третю форму після have або has.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i10:r2",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i10:r3",
+              "correct": false,
+              "testedDimension": "Виберіть третю форму після have або has.",
+              "feedbackByLocale": {
+                "ru": "После have или has нужна третья форма глагола.",
+                "uk": "Після have або has потрібна третя форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вона ухвалила рішення, але потім пошкодувала про це. Скажіть: «Вона пошкодувала про своє рішення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вона ухвалила рішення, але потім пошкодувала про це. Скажіть: «Вона пошкодувала про своє рішення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She has regretted her decision.",
+          "localizedMeaning": {
+            "ru": "Она приняла решение, но потом пожалела об этом. Скажите: «Она пожалела о своём решении».",
+            "uk": "Вона ухвалила рішення, але потім пошкодувала про це. Скажіть: «Вона пошкодувала про своє рішення»."
+          },
+          "orderedTokens": [
+            "She",
+            "has",
+            "regretted",
+            "her",
+            "decision"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-23:session-05:i12:r1",
+            "text": "She has regretted her decision."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i12:r2",
+            "text": "You have regretted her decision."
+          },
+          {
+            "responseId": "en:lesson-23:session-05:i12:r3",
+            "text": "He has regretted her decision."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i12:audio",
+            "transcript": "She has regretted her decision."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-23:session-05:i12:r1",
+              "targetText": "She has regretted her decision.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i12:r2",
+              "targetText": "You have regretted her decision.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i12:r3",
+              "targetText": "He has regretted her decision.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-23:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has regretted her decision.",
+                "uk": "У записі звучить She has regretted her decision."
+              }
+            },
+            {
+              "responseId": "en:lesson-23:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has regretted her decision.",
+                "uk": "У записі звучить She has regretted her decision."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-23:session-05:i13:p1",
+              "target": "misjudge",
+              "meaningByLocale": {
+                "ru": "неверно оценить",
+                "uk": "неправильно оцінити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-05:i13:p2",
+              "target": "overestimate",
+              "meaningByLocale": {
+                "ru": "переоценить",
+                "uk": "переоцінити"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-05:i13:p3",
+              "target": "underpay",
+              "meaningByLocale": {
+                "ru": "заплатить меньше положенного",
+                "uk": "заплатити менше, ніж належить"
+              }
+            },
+            {
+              "pairId": "en:lesson-23:session-05:i13:p4",
+              "target": "regret",
+              "meaningByLocale": {
+                "ru": "сожалеть о чём-либо",
+                "uk": "шкодувати про щось"
+              }
+            }
+          ],
+          "leftColumn": [
+            "misjudge",
+            "overestimate",
+            "underpay",
+            "regret"
+          ],
+          "rightColumn": [
+            "неправильно оцінити",
+            "переоцінити",
+            "заплатити менше, ніж належить",
+            "шкодувати про щось"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: інший маршрут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: інший маршрут",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i14:audio",
+            "transcript": "We need another route."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We need another route.",
+          "orderedTokens": [
+            "We",
+            "need",
+            "another",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: заборона",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: заборона",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i15:audio",
+            "transcript": "You mustn't park here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You mustn't park here.",
+          "orderedTokens": [
+            "You",
+            "mustn't",
+            "park",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми неправильно оцінили відстань».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми неправильно оцінили відстань».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i16:audio",
+            "transcript": "We have misjudged the distance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have misjudged the distance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-23:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона мені недоплатила».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-23:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона мені недоплатила».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-23:session-05:i17:audio",
+            "transcript": "She has underpaid me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has underpaid me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-23:session-05:word:misjudge",
+      "correctText": "misjudge",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i01",
+      "correctText": "misjudged",
+      "correctResponseId": "en:lesson-23:session-05:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i02",
+      "correctText": "I have misjudged the distance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i03",
+      "correctText": "I have misjudged the distance.",
+      "correctResponseId": "en:lesson-23:session-05:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:word:overestimate",
+      "correctText": "overestimate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i04",
+      "correctText": "overestimated",
+      "correctResponseId": "en:lesson-23:session-05:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i05",
+      "correctText": "We have overestimated the cost.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i06",
+      "correctText": "We have overestimated the cost.",
+      "correctResponseId": "en:lesson-23:session-05:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:word:underpay",
+      "correctText": "underpay",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i07",
+      "correctText": "underpaid",
+      "correctResponseId": "en:lesson-23:session-05:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i08",
+      "correctText": "They have underpaid me.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i09",
+      "correctText": "They have underpaid me.",
+      "correctResponseId": "en:lesson-23:session-05:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:word:regret",
+      "correctText": "regret",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i10",
+      "correctText": "regretted",
+      "correctResponseId": "en:lesson-23:session-05:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i11",
+      "correctText": "She has regretted her decision.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i12",
+      "correctText": "She has regretted her decision.",
+      "correctResponseId": "en:lesson-23:session-05:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i14",
+      "correctText": "We need another route.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i15",
+      "correctText": "You mustn't park here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i16",
+      "correctText": "We have misjudged the distance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-05:i17",
+      "correctText": "She has underpaid me.",
+      "correctResponseId": null
+    }
+  ]
+}

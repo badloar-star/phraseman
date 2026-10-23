@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-55:intro1:r2": {
+          "ru": "После when здесь get без will.",
+          "uk": "Після when тут get без will."
+        },
+        "en:lesson-26:session-55:intro1:r3": {
+          "ru": "С I нужно get без -s.",
+          "uk": "З I потрібно get без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-55:intro2:r2": {
+          "ru": "Unless меняет условие: если он не устал.",
+          "uk": "Unless змінює умову: якщо він не втомився."
+        },
+        "en:lesson-26:session-55:intro2:r3": {
+          "ru": "С he нужно is.",
+          "uk": "З he потрібно is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-55:intro3:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had talked.",
+          "uk": "Arrived задає минуле; раніша дія — had talked."
+        },
+        "en:lesson-26:session-55:intro3:r3": {
+          "ru": "После had нужна форма talked.",
+          "uk": "Після had потрібна форма talked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "575f3a14fe2d58e6dde290f288002280148e221f406c2119c2e3df51e595ddaa"
+}

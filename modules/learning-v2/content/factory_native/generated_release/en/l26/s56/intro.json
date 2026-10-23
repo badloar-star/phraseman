@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "when, if, unless; just, already, yet; by the time",
+    "uk": "when, if, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти поворот",
+        "uk": "Знайти поворот"
+      },
+      "bodyByLocale": {
+        "ru": "Crossroads — перекрёсток, место пересечения дорог. Turn left at the crossroads — поверни налево на перекрёстке. Окончание -s сохраняется и когда речь об одном перекрёстке: a crossroads. Overpass — мост или путепровод над другой дорогой либо железнодорожными путями. We will pass under the overpass — мы пройдём под путепроводом. Вы уточняете маршрут: Is it far from here? — это далеко отсюда? I will call you when I reach the bridge — я позвоню тебе, когда дойду до моста. После when здесь reach без will.",
+        "uk": "Crossroads — перехрестя, місце перетину доріг. Turn left at the crossroads — поверни ліворуч на перехресті. Закінчення -s зберігається й коли йдеться про одне перехрестя: a crossroads. Overpass — міст або шляхопровід над іншою дорогою чи залізничними коліями. We will pass under the overpass — ми пройдемо під шляхопроводом. Ви уточнюєте маршрут: Is it far from here? — це далеко звідси? I will call you when I reach the bridge — я зателефоную тобі, коли дістануся мосту. Після when тут reach без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-56:intro1:r1",
+              "text": "I will call you when I reach the bridge."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro1:r2",
+              "text": "I will call you when I will reach the bridge."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro1:r3",
+              "text": "I will call you when I reaches the bridge."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-56:intro1:r1",
+              "text": "I will call you when I reach the bridge."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro1:r2",
+              "text": "I will call you when I will reach the bridge."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro1:r3",
+              "text": "I will call you when I reaches the bridge."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пешеходный проход",
+        "uk": "Пішохідний прохід"
+      },
+      "bodyByLocale": {
+        "ru": "Walkway — проход или дорожка для пешеходов. The walkway is closed — пешеходный проход закрыт. Слово не означает обязательно мост: дорожка может быть на земле или над ней. Если закрыто, нужен другой путь: If it is closed, use the other entrance — если закрыто, воспользуйся другим входом. Можно поставить условие в конец: Use the other entrance if it is closed. Have you found it yet? — ты уже его нашёл? I have just found it — я только что его нашёл. Речь здесь о другом входе.",
+        "uk": "Walkway — прохід або доріжка для пішоходів. The walkway is closed — пішохідний прохід закритий. Слово не означає обов’язково міст: доріжка може бути на землі або над нею. Якщо закрито, потрібен інший шлях: If it is closed, use the other entrance — якщо закрито, скористайся іншим входом. Можна поставити умову в кінець: Use the other entrance if it is closed. Have you found it yet? — ти вже його знайшов? I have just found it — я щойно його знайшов. Тут ідеться про інший вхід."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-56:intro2:r1",
+              "text": "Use the other entrance if it is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro2:r2",
+              "text": "Use the other entrance unless it is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro2:r3",
+              "text": "Use the other entrance if it are closed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-56:intro2:r1",
+              "text": "Use the other entrance if it is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro2:r2",
+              "text": "Use the other entrance unless it is closed."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro2:r3",
+              "text": "Use the other entrance if it are closed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Встреча у реки",
+        "uk": "Зустріч біля річки"
+      },
+      "bodyByLocale": {
+        "ru": "Riverbank — берег реки. I am waiting on the riverbank — я жду на берегу реки. Это место рядом с водой, а не отделение банка: наличные здесь разве что у уток, и то вряд ли. Which side are you on? — на какой ты стороне? I have already crossed the bridge — я уже перешёл мост. О вчерашней встрече: She had arrived by the time I called — она пришла к тому времени, как я позвонил. Had arrived показывает более раннее действие. We will walk by the river unless it rains — мы погуляем у реки, если не пойдёт дождь.",
+        "uk": "Riverbank — берег річки. I am waiting on the riverbank — я чекаю на березі річки. Це місце біля води, а не відділення банку: готівка тут хіба що в качок, та й то навряд. Which side are you on? — на якому ти боці? I have already crossed the bridge — я вже перейшов міст. Про вчорашню зустріч: She had arrived by the time I called — вона прийшла до того часу, як я зателефонував. Had arrived показує ранішу дію. We will walk by the river unless it rains — ми погуляємо біля річки, якщо не піде дощ."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-56:intro3:r1",
+              "text": "She had arrived by the time I called."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro3:r2",
+              "text": "She has arrived by the time I called."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro3:r3",
+              "text": "She had arrive by the time I called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-56:intro3:r1",
+              "text": "She had arrived by the time I called."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro3:r2",
+              "text": "She has arrived by the time I called."
+            },
+            {
+              "responseId": "en:lesson-26:session-56:intro3:r3",
+              "text": "She had arrive by the time I called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1ffbb759cd43562190aa31b212e39b72f256b43c6ea7ecbe9918fad2c711d74b"
+}

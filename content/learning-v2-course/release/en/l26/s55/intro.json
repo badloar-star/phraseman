@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "when, if, unless; just, already, yet; by the time",
+    "uk": "when, if, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сказать о привязанности",
+        "uk": "Сказати про прихильність"
+      },
+      "bodyByLocale": {
+        "ru": "Adore — обожать, очень любить. I adore my little nephew — я обожаю своего маленького племянника. Это сильнее обычного like. Console — утешать человека, который расстроен. I want to console her — я хочу её утешить. Не обязательно сразу давать совет: можно предложить выслушать. Do you want to talk? — хочешь поговорить? I will call you when I get home — я позвоню тебе, когда доберусь домой. После when здесь get без will.",
+        "uk": "Adore — обожнювати, дуже любити. I adore my little nephew — я обожнюю свого маленького племінника. Це сильніше за звичайне like. Console — утішати людину, яка засмучена. I want to console her — я хочу її втішити. Не обов’язково відразу давати пораду: можна запропонувати вислухати. Do you want to talk? — хочеш поговорити? I will call you when I get home — я зателефоную тобі, коли дістануся додому. Після when тут get без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-55:intro1:r1",
+              "text": "I will call you when I get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro1:r2",
+              "text": "I will call you when I will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro1:r3",
+              "text": "I will call you when I gets home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-55:intro1:r1",
+              "text": "I will call you when I get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro1:r2",
+              "text": "I will call you when I will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro1:r3",
+              "text": "I will call you when I gets home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Успокоить ребёнка",
+        "uk": "Заспокоїти дитину"
+      },
+      "bodyByLocale": {
+        "ru": "Soothe — успокаивать, смягчать беспокойство. I sing to soothe the baby — я пою, чтобы успокоить малыша. Так можно описать действие человека, не обещая, что ребёнок обязательно заснёт. Он, возможно, просто ждёт второй куплет. Have you fed him yet? — ты уже его покормил? I have just fed him — я только что его покормил. После have форма fed, не feed. Если ребёнок устал: If he is tired, let him rest — если он устал, дай ему отдохнуть. Можно переставить условие: Let him rest if he is tired.",
+        "uk": "Soothe — заспокоювати, пом’якшувати неспокій. I sing to soothe the baby — я співаю, щоб заспокоїти малюка. Так можна описати дію людини, не обіцяючи, що дитина обов’язково засне. Він, можливо, просто чекає на другий куплет. Have you fed him yet? — ти вже його нагодував? I have just fed him — я щойно його нагодував. Після have форма fed, не feed. Якщо дитина втомилася: If he is tired, let him rest — якщо він утомився, дай йому відпочити. Можна переставити умову: Let him rest if he is tired."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-55:intro2:r1",
+              "text": "Let him rest if he is tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro2:r2",
+              "text": "Let him rest unless he is tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro2:r3",
+              "text": "Let him rest if he are tired."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-55:intro2:r1",
+              "text": "Let him rest if he is tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro2:r2",
+              "text": "Let him rest unless he is tired."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro2:r3",
+              "text": "Let him rest if he are tired."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не одобрять, но говорить спокойно",
+        "uk": "Не схвалювати, але говорити спокійно"
+      },
+      "bodyByLocale": {
+        "ru": "Disapprove — не одобрять. I disapprove of that idea — я не одобряю эту идею. Перед предметом неодобрения ставим of. Это не означает запретить: вы выражаете отношение. Можно спросить Why do you think so? — почему ты так думаешь? I have already explained it — я уже это объяснил. О вчерашнем споре: We had talked it through by the time she arrived — мы всё обсудили к тому времени, как она пришла. Had talked показывает более раннее действие.",
+        "uk": "Disapprove — не схвалювати. I disapprove of that idea — я не схвалюю цю ідею. Перед предметом несхвалення ставимо of. Це не означає заборонити: ви висловлюєте ставлення. Можна запитати Why do you think so? — чому ти так думаєш? I have already explained it — я вже це пояснив. Про вчорашню суперечку: We had talked it through by the time she arrived — ми все обговорили до того часу, як вона прийшла. Had talked показує ранішу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-55:intro3:r1",
+              "text": "We had talked it through by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro3:r2",
+              "text": "We have talked it through by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro3:r3",
+              "text": "We had talk it through by the time she arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-55:intro3:r1",
+              "text": "We had talked it through by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro3:r2",
+              "text": "We have talked it through by the time she arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-55:intro3:r3",
+              "text": "We had talk it through by the time she arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ba8b76d35dfc06b265f547016e99ea63bdbf996b6fefa630c744fd2215b2851a"
+}

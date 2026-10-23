@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-54:intro1:r2": {
+          "ru": "После when здесь go без will.",
+          "uk": "Після when тут go без will."
+        },
+        "en:lesson-26:session-54:intro1:r3": {
+          "ru": "С I нужно go без -s.",
+          "uk": "З I потрібно go без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-54:intro2:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had set.",
+          "uk": "Arrived задає минуле; раніша дія — had set."
+        },
+        "en:lesson-26:session-54:intro2:r3": {
+          "ru": "Форма set не меняется; setted здесь неверно.",
+          "uk": "Форма set не змінюється; setted тут неправильно."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-54:intro3:r2": {
+          "ru": "Unless меняет условие: если ты не голоден.",
+          "uk": "Unless змінює умову: якщо ти не голодний."
+        },
+        "en:lesson-26:session-54:intro3:r3": {
+          "ru": "С you нужно are.",
+          "uk": "З you потрібно are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2faf7e182147fa013f0f234677642c6189754c96445cc272a78bbbc97e083e51"
+}

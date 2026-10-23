@@ -1,0 +1,2237 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-55:word:adore",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — adore",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:adore:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — adore",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:adore:audio",
+            "transcript": "adore"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:adore:r1",
+              "targetText": "adore",
+              "meaningByLocale": {
+                "ru": "Обожать, очень любить.",
+                "uk": "Обожнювати, дуже любити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adore",
+            "definitionByLocale": {
+              "ru": "Обожать, очень любить.",
+              "uk": "Обожнювати, дуже любити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i01:r1",
+            "text": "I adore my little nephew."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i01:r2",
+            "text": "I adore my little niece."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i01:r3",
+            "text": "I miss my little nephew."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i01:audio",
+            "transcript": "I adore my little nephew."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i01:r1",
+              "targetText": "I adore my little nephew.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i01:r2",
+              "targetText": "I adore my little niece.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i01:r3",
+              "targetText": "I miss my little nephew.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I adore my little nephew.",
+                "uk": "У записі звучить I adore my little nephew."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I adore my little nephew.",
+                "uk": "У записі звучить I adore my little nephew."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поинтересуйтесь, как дела у сестры друга.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Поинтересуйтесь, как дела у сестры друга.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i02:audio",
+            "transcript": "How is your sister?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How is your sister?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:word:console",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — console",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:console:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — console",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:console:audio",
+            "transcript": "console"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:console:r1",
+              "targetText": "console",
+              "meaningByLocale": {
+                "ru": "Утешать расстроенного человека.",
+                "uk": "Утішати засмучену людину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "console",
+            "definitionByLocale": {
+              "ru": "Утешать расстроенного человека.",
+              "uk": "Утішати засмучену людину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что хотите утешить подругу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что хотите утешить подругу.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to console her.",
+          "localizedMeaning": {
+            "ru": "Скажите, что хотите утешить подругу.",
+            "uk": "Скажіть, що хочете втішити подругу."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "console",
+            "her"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i04",
+        "ordinal": 9,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите подругу, хочет ли она поговорить.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i04:audio"
+        ],
+        "accessibilityLabel": "Спросите подругу, хочет ли она поговорить.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i04:audio",
+            "transcript": "Do you want to talk?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you want to talk?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы позвоните подруге, когда доберётесь домой.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i05:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i05:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i05:r3",
+            "text": "gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы позвоните подруге, когда доберётесь домой.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы позвоните подруге, когда доберётесь домой.",
+            "uk": "Ви зателефонуєте подрузі, коли дістанетеся додому."
+          },
+          "gappedTargetPhrase": "I will call you when I ___ home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i05:r1",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i05:r2",
+              "text": "will get"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i05:r3",
+              "text": "gets"
+            }
+          ],
+          "testedDimension": "Вы позвоните подруге, когда доберётесь домой.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Вы позвоните подруге, когда доберётесь домой.",
+              "feedbackByLocale": {
+                "ru": "После when здесь get без will.",
+                "uk": "Після when тут get без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Вы позвоните подруге, когда доберётесь домой.",
+              "feedbackByLocale": {
+                "ru": "С I нужно get без -s.",
+                "uk": "З I потрібно get без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:word:soothe",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — soothe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:soothe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — soothe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:soothe:audio",
+            "transcript": "soothe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:soothe:r1",
+              "targetText": "soothe",
+              "meaningByLocale": {
+                "ru": "Успокаивать, смягчать беспокойство.",
+                "uk": "Заспокоювати, пом’якшувати неспокій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soothe",
+            "definitionByLocale": {
+              "ru": "Успокаивать, смягчать беспокойство.",
+              "uk": "Заспокоювати, пом’якшувати неспокій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i06:r1",
+            "text": "I sing to soothe the baby."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i06:r2",
+            "text": "I sing to wake the baby."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i06:r3",
+            "text": "I talk to soothe the baby."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i06:audio",
+            "transcript": "I sing to soothe the baby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i06:r1",
+              "targetText": "I sing to soothe the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i06:r2",
+              "targetText": "I sing to wake the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i06:r3",
+              "targetText": "I talk to soothe the baby.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sing to soothe the baby.",
+                "uk": "У записі звучить I sing to soothe the baby."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sing to soothe the baby.",
+                "uk": "У записі звучить I sing to soothe the baby."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Узнайте, покормил ли брат малыша.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Узнайте, покормил ли брат малыша.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you fed him yet?",
+          "localizedMeaning": {
+            "ru": "Узнайте, покормил ли брат малыша.",
+            "uk": "Дізнайтеся, чи брат нагодував малюка."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "fed",
+            "him",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат только что покормил малыша.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i08:r1",
+            "text": "fed"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i08:r2",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i08:r3",
+            "text": "feeding"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат только что покормил малыша.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат только что покормил малыша.",
+            "uk": "Брат щойно нагодував малюка."
+          },
+          "gappedTargetPhrase": "I have just ___ him.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i08:r1",
+              "text": "fed"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i08:r2",
+              "text": "feed"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i08:r3",
+              "text": "feeding"
+            }
+          ],
+          "testedDimension": "Брат только что покормил малыша.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат только что покормил малыша.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма fed.",
+                "uk": "Після have потрібна форма fed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат только что покормил малыша.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно fed, не feeding.",
+                "uk": "Тут потрібно fed, не feeding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с условия: Let him rest if he is tired.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с условия: Let him rest if he is tired.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If he is tired, let him rest.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: Let him rest if he is tired.",
+            "uk": "Почніть з умови: Let him rest if he is tired."
+          },
+          "orderedTokens": [
+            "If",
+            "he",
+            "is",
+            "tired,",
+            "let",
+            "him",
+            "rest"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите принести брату чашку чая.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i10:audio"
+        ],
+        "accessibilityLabel": "Предложите принести брату чашку чая.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i10:audio",
+            "transcript": "Shall I make you some tea?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I make you some tea?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:word:disapprove",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — disapprove",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:disapprove:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — disapprove",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:disapprove:audio",
+            "transcript": "disapprove"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:disapprove:r1",
+              "targetText": "disapprove",
+              "meaningByLocale": {
+                "ru": "Не одобрять; disapprove of чего-либо.",
+                "uk": "Не схвалювати; disapprove of чогось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disapprove",
+            "definitionByLocale": {
+              "ru": "Не одобрять; disapprove of чего-либо.",
+              "uk": "Не схвалювати; disapprove of чогось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что не одобряете эту идею.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что не одобряете эту идею.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I disapprove of that idea.",
+          "localizedMeaning": {
+            "ru": "Скажите, что не одобряете эту идею.",
+            "uk": "Скажіть, що не схвалюєте цю ідею."
+          },
+          "orderedTokens": [
+            "I",
+            "disapprove",
+            "of",
+            "that",
+            "idea"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i12:r1",
+            "text": "Why do you think so?"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i12:r2",
+            "text": "What do you think of it?"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i12:r3",
+            "text": "Who told you that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i12:audio",
+            "transcript": "Why do you think so?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i12:r1",
+              "targetText": "Why do you think so?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i12:r2",
+              "targetText": "What do you think of it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i12:r3",
+              "targetText": "Who told you that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Why do you think so?",
+                "uk": "У записі звучить Why do you think so?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Why do you think so?",
+                "uk": "У записі звучить Why do you think so?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что уже объяснили свою мысль.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что уже объяснили свою мысль.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i13:audio",
+            "transcript": "I have already explained it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already explained it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера вы всё обсудили ещё до прихода подруги.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера вы всё обсудили ещё до прихода подруги.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера вы всё обсудили ещё до прихода подруги.",
+            "uk": "Учора ви все обговорили ще до приходу подруги."
+          },
+          "gappedTargetPhrase": "We ___ talked it through by the time she arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчера вы всё обсудили ещё до прихода подруги.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Вчера вы всё обсудили ещё до прихода подруги.",
+              "feedbackByLocale": {
+                "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Вчера вы всё обсудили ещё до прихода подруги.",
+              "feedbackByLocale": {
+                "ru": "Are talked не означает: мы обсудили.",
+                "uk": "Are talked не означає: ми обговорили."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу дать немного времени подумать.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу дать немного времени подумать.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i15:audio",
+            "transcript": "Give me some time to think."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Give me some time to think.",
+          "orderedTokens": [
+            "Give",
+            "me",
+            "some",
+            "time",
+            "to",
+            "think"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не будете рассказывать об этом другим без согласия подруги.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не будете рассказывать об этом другим без согласия подруги.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не будете рассказывать об этом другим без согласия подруги.",
+            "uk": "Ви не розповідатимете про це іншим без згоди подруги."
+          },
+          "gappedTargetPhrase": "I will not tell anyone ___ you agree.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Вы не будете рассказывать об этом другим без согласия подруги.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы не будете рассказывать об этом другим без согласия подруги.",
+              "feedbackByLocale": {
+                "ru": "If означало бы молчать именно при её согласии.",
+                "uk": "If означало б мовчати саме за її згоди."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы не будете рассказывать об этом другим без согласия подруги.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы согласие причиной молчать.",
+                "uk": "Because зробило б згоду причиною мовчати."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i17:r1",
+            "text": "Thanks for being there for me."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i17:r2",
+            "text": "Thanks for waiting for me."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i17:r3",
+            "text": "Thanks for bringing it to me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i17:audio",
+            "transcript": "Thanks for being there for me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i17:r1",
+              "targetText": "Thanks for being there for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i17:r2",
+              "targetText": "Thanks for waiting for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i17:r3",
+              "targetText": "Thanks for bringing it to me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i17:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thanks for being there for me.",
+                "uk": "У записі звучить Thanks for being there for me."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i17:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thanks for being there for me.",
+                "uk": "У записі звучить Thanks for being there for me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-55:word:adore",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — adore",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:adore:audio"
+        ],
+        "accessibilityLabel": "Картка слова — adore",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:adore:audio",
+            "transcript": "adore"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:adore:r1",
+              "targetText": "adore",
+              "meaningByLocale": {
+                "ru": "Обожать, очень любить.",
+                "uk": "Обожнювати, дуже любити."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "adore",
+            "definitionByLocale": {
+              "ru": "Обожать, очень любить.",
+              "uk": "Обожнювати, дуже любити."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i01:r1",
+            "text": "I adore my little nephew."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i01:r2",
+            "text": "I adore my little niece."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i01:r3",
+            "text": "I miss my little nephew."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i01:audio",
+            "transcript": "I adore my little nephew."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i01:r1",
+              "targetText": "I adore my little nephew.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i01:r2",
+              "targetText": "I adore my little niece.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i01:r3",
+              "targetText": "I miss my little nephew.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I adore my little nephew.",
+                "uk": "У записі звучить I adore my little nephew."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I adore my little nephew.",
+                "uk": "У записі звучить I adore my little nephew."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поцікавтеся, як справи в сестри друга.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Поцікавтеся, як справи в сестри друга.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i02:audio",
+            "transcript": "How is your sister?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How is your sister?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:word:console",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — console",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:console:audio"
+        ],
+        "accessibilityLabel": "Картка слова — console",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:console:audio",
+            "transcript": "console"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:console:r1",
+              "targetText": "console",
+              "meaningByLocale": {
+                "ru": "Утешать расстроенного человека.",
+                "uk": "Утішати засмучену людину."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "console",
+            "definitionByLocale": {
+              "ru": "Утешать расстроенного человека.",
+              "uk": "Утішати засмучену людину."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що хочете втішити подругу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що хочете втішити подругу.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to console her.",
+          "localizedMeaning": {
+            "ru": "Скажите, что хотите утешить подругу.",
+            "uk": "Скажіть, що хочете втішити подругу."
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "console",
+            "her"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i04",
+        "ordinal": 9,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте подругу, чи вона хоче поговорити.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i04:audio"
+        ],
+        "accessibilityLabel": "Запитайте подругу, чи вона хоче поговорити.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i04:audio",
+            "transcript": "Do you want to talk?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you want to talk?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зателефонуєте подрузі, коли дістанетеся додому.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i05:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i05:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i05:r3",
+            "text": "gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зателефонуєте подрузі, коли дістанетеся додому.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы позвоните подруге, когда доберётесь домой.",
+            "uk": "Ви зателефонуєте подрузі, коли дістанетеся додому."
+          },
+          "gappedTargetPhrase": "I will call you when I ___ home.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i05:r1",
+              "text": "get"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i05:r2",
+              "text": "will get"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i05:r3",
+              "text": "gets"
+            }
+          ],
+          "testedDimension": "Ви зателефонуєте подрузі, коли дістанетеся додому.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Ви зателефонуєте подрузі, коли дістанетеся додому.",
+              "feedbackByLocale": {
+                "ru": "После when здесь get без will.",
+                "uk": "Після when тут get без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Ви зателефонуєте подрузі, коли дістанетеся додому.",
+              "feedbackByLocale": {
+                "ru": "С I нужно get без -s.",
+                "uk": "З I потрібно get без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:word:soothe",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — soothe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:soothe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — soothe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:soothe:audio",
+            "transcript": "soothe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:soothe:r1",
+              "targetText": "soothe",
+              "meaningByLocale": {
+                "ru": "Успокаивать, смягчать беспокойство.",
+                "uk": "Заспокоювати, пом’якшувати неспокій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "soothe",
+            "definitionByLocale": {
+              "ru": "Успокаивать, смягчать беспокойство.",
+              "uk": "Заспокоювати, пом’якшувати неспокій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i06:r1",
+            "text": "I sing to soothe the baby."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i06:r2",
+            "text": "I sing to wake the baby."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i06:r3",
+            "text": "I talk to soothe the baby."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i06:audio",
+            "transcript": "I sing to soothe the baby."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i06:r1",
+              "targetText": "I sing to soothe the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i06:r2",
+              "targetText": "I sing to wake the baby.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i06:r3",
+              "targetText": "I talk to soothe the baby.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sing to soothe the baby.",
+                "uk": "У записі звучить I sing to soothe the baby."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sing to soothe the baby.",
+                "uk": "У записі звучить I sing to soothe the baby."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дізнайтеся, чи брат нагодував малюка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дізнайтеся, чи брат нагодував малюка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you fed him yet?",
+          "localizedMeaning": {
+            "ru": "Узнайте, покормил ли брат малыша.",
+            "uk": "Дізнайтеся, чи брат нагодував малюка."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "fed",
+            "him",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Брат щойно нагодував малюка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i08:r1",
+            "text": "fed"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i08:r2",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i08:r3",
+            "text": "feeding"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Брат щойно нагодував малюка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Брат только что покормил малыша.",
+            "uk": "Брат щойно нагодував малюка."
+          },
+          "gappedTargetPhrase": "I have just ___ him.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i08:r1",
+              "text": "fed"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i08:r2",
+              "text": "feed"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i08:r3",
+              "text": "feeding"
+            }
+          ],
+          "testedDimension": "Брат щойно нагодував малюка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Брат щойно нагодував малюка.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма fed.",
+                "uk": "Після have потрібна форма fed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Брат щойно нагодував малюка.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно fed, не feeding.",
+                "uk": "Тут потрібно fed, не feeding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть з умови: Let him rest if he is tired.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть з умови: Let him rest if he is tired.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If he is tired, let him rest.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: Let him rest if he is tired.",
+            "uk": "Почніть з умови: Let him rest if he is tired."
+          },
+          "orderedTokens": [
+            "If",
+            "he",
+            "is",
+            "tired,",
+            "let",
+            "him",
+            "rest"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте принести братові чашку чаю.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i10:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте принести братові чашку чаю.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i10:audio",
+            "transcript": "Shall I make you some tea?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall I make you some tea?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:word:disapprove",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — disapprove",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:word:disapprove:audio"
+        ],
+        "accessibilityLabel": "Картка слова — disapprove",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:word:disapprove:audio",
+            "transcript": "disapprove"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:word:disapprove:r1",
+              "targetText": "disapprove",
+              "meaningByLocale": {
+                "ru": "Не одобрять; disapprove of чего-либо.",
+                "uk": "Не схвалювати; disapprove of чогось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "disapprove",
+            "definitionByLocale": {
+              "ru": "Не одобрять; disapprove of чего-либо.",
+              "uk": "Не схвалювати; disapprove of чогось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що не схвалюєте цю ідею.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що не схвалюєте цю ідею.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I disapprove of that idea.",
+          "localizedMeaning": {
+            "ru": "Скажите, что не одобряете эту идею.",
+            "uk": "Скажіть, що не схвалюєте цю ідею."
+          },
+          "orderedTokens": [
+            "I",
+            "disapprove",
+            "of",
+            "that",
+            "idea"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i12:r1",
+            "text": "Why do you think so?"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i12:r2",
+            "text": "What do you think of it?"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i12:r3",
+            "text": "Who told you that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i12:audio",
+            "transcript": "Why do you think so?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i12:r1",
+              "targetText": "Why do you think so?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i12:r2",
+              "targetText": "What do you think of it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i12:r3",
+              "targetText": "Who told you that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Why do you think so?",
+                "uk": "У записі звучить Why do you think so?"
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Why do you think so?",
+                "uk": "У записі звучить Why do you think so?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що вже пояснили свою думку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i13:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що вже пояснили свою думку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i13:audio",
+            "transcript": "I have already explained it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already explained it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора ви все обговорили ще до приходу подруги.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i14:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора ви все обговорили ще до приходу подруги.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера вы всё обсудили ещё до прихода подруги.",
+            "uk": "Учора ви все обговорили ще до приходу подруги."
+          },
+          "gappedTargetPhrase": "We ___ talked it through by the time she arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i14:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i14:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учора ви все обговорили ще до приходу подруги.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "Учора ви все обговорили ще до приходу подруги.",
+              "feedbackByLocale": {
+                "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "Учора ви все обговорили ще до приходу подруги.",
+              "feedbackByLocale": {
+                "ru": "Are talked не означает: мы обсудили.",
+                "uk": "Are talked не означає: ми обговорили."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання дати трохи часу подумати.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання дати трохи часу подумати.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i15:audio",
+            "transcript": "Give me some time to think."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Give me some time to think.",
+          "orderedTokens": [
+            "Give",
+            "me",
+            "some",
+            "time",
+            "to",
+            "think"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не розповідатимете про це іншим без згоди подруги.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не розповідатимете про це іншим без згоди подруги.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не будете рассказывать об этом другим без согласия подруги.",
+            "uk": "Ви не розповідатимете про це іншим без згоди подруги."
+          },
+          "gappedTargetPhrase": "I will not tell anyone ___ you agree.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-55:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Ви не розповідатимете про це іншим без згоди подруги.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви не розповідатимете про це іншим без згоди подруги.",
+              "feedbackByLocale": {
+                "ru": "If означало бы молчать именно при её согласии.",
+                "uk": "If означало б мовчати саме за її згоди."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви не розповідатимете про це іншим без згоди подруги.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы согласие причиной молчать.",
+                "uk": "Because зробило б згоду причиною мовчати."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-55:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-55:i17:r1",
+            "text": "Thanks for being there for me."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i17:r2",
+            "text": "Thanks for waiting for me."
+          },
+          {
+            "responseId": "en:lesson-26:session-55:i17:r3",
+            "text": "Thanks for bringing it to me."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-55:i17:audio",
+            "transcript": "Thanks for being there for me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-55:i17:r1",
+              "targetText": "Thanks for being there for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i17:r2",
+              "targetText": "Thanks for waiting for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i17:r3",
+              "targetText": "Thanks for bringing it to me.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-55:i17:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thanks for being there for me.",
+                "uk": "У записі звучить Thanks for being there for me."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-55:i17:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thanks for being there for me.",
+                "uk": "У записі звучить Thanks for being there for me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-55:word:adore",
+      "correctText": "adore",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i01",
+      "correctText": "I adore my little nephew.",
+      "correctResponseId": "en:lesson-26:session-55:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i02",
+      "correctText": "How is your sister?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:word:console",
+      "correctText": "console",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i03",
+      "correctText": "I want to console her.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i04",
+      "correctText": "Do you want to talk?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i05",
+      "correctText": "get",
+      "correctResponseId": "en:lesson-26:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:word:soothe",
+      "correctText": "soothe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i06",
+      "correctText": "I sing to soothe the baby.",
+      "correctResponseId": "en:lesson-26:session-55:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i07",
+      "correctText": "Have you fed him yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i08",
+      "correctText": "fed",
+      "correctResponseId": "en:lesson-26:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i09",
+      "correctText": "If he is tired, let him rest.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i10",
+      "correctText": "Shall I make you some tea?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:word:disapprove",
+      "correctText": "disapprove",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i11",
+      "correctText": "I disapprove of that idea.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i12",
+      "correctText": "Why do you think so?",
+      "correctResponseId": "en:lesson-26:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i13",
+      "correctText": "I have already explained it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i14",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-55:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i15",
+      "correctText": "Give me some time to think.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i16",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-55:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-55:i17",
+      "correctText": "Thanks for being there for me.",
+      "correctResponseId": "en:lesson-26:session-55:i17:r1"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-56:word:crossroads",
+    "correctText": "crossroads",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i01",
+    "correctText": "Turn left at the crossroads.",
+    "correctResponseId": "en:lesson-26:session-56:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i02",
+    "correctText": "Is it far from here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:word:overpass",
+    "correctText": "overpass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i03",
+    "correctText": "We will pass under the overpass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i04",
+    "correctText": "reach",
+    "correctResponseId": "en:lesson-26:session-56:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i05",
+    "correctText": "It is about ten minutes away.",
+    "correctResponseId": "en:lesson-26:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:word:walkway",
+    "correctText": "walkway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i06",
+    "correctText": "The walkway is closed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i07",
+    "correctText": "If it is closed, use the other entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i08",
+    "correctText": "Have you found it yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i09",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-26:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:word:riverbank",
+    "correctText": "riverbank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i10",
+    "correctText": "I am waiting on the riverbank.",
+    "correctResponseId": "en:lesson-26:session-56:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i11",
+    "correctText": "Which side are you on?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i12",
+    "correctText": "I have already crossed the bridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i13",
+    "correctText": "I can see you now.",
+    "correctResponseId": "en:lesson-26:session-56:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-56:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i15",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-56:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i16",
+    "correctText": "Shall we sit here for a while?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-56:i17",
+    "correctText": "Thanks for the directions.",
+    "correctResponseId": null
+  }
+]

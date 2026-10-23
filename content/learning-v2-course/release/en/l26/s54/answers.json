@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-54:word:slightly",
+    "correctText": "slightly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i01",
+    "correctText": "The soup is slightly salty.",
+    "correctResponseId": "en:lesson-26:session-54:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i02",
+    "correctText": "Could I have some water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:word:totally",
+    "correctText": "totally",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i03",
+    "correctText": "I totally forgot the bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i04",
+    "correctText": "go",
+    "correctResponseId": "en:lesson-26:session-54:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i05",
+    "correctText": "The shop is still open.",
+    "correctResponseId": "en:lesson-26:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:word:meanwhile",
+    "correctText": "meanwhile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i06",
+    "correctText": "Meanwhile, I will set the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i07",
+    "correctText": "Have you put the plates out yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i08",
+    "correctText": "I have already done it.",
+    "correctResponseId": "en:lesson-26:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i09",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:word:besides",
+    "correctText": "besides",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i10",
+    "correctText": "Besides, we have food at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i11",
+    "correctText": "Have some soup if you are hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i12",
+    "correctText": "If you are hungry, have some soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i13",
+    "correctText": "I have just eaten.",
+    "correctResponseId": "en:lesson-26:session-54:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i14",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-54:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i15",
+    "correctText": "Let us sit by the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i16",
+    "correctText": "Could you pass the bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-54:i17",
+    "correctText": "There is enough for everyone.",
+    "correctResponseId": "en:lesson-26:session-54:i17:r1"
+  }
+]

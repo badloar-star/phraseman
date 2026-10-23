@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "when, if, unless; just, already, yet; by the time",
+    "uk": "when, if, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Немного, а не сильно",
+        "uk": "Трохи, а не сильно"
+      },
+      "bodyByLocale": {
+        "ru": "Slightly — слегка, немного. The soup is slightly salty — суп слегка солёный. Slightly смягчает признак: речь не об очень солёном супе. Totally — совершенно, полностью; часто разговорное усиление. I totally forgot the bread — я совсем забыл про хлеб. Суп готов, стол накрыт, а хлеб всё ещё отдыхает в магазине. I will get some when I go out — я куплю немного, когда выйду. После when здесь go без will.",
+        "uk": "Slightly — злегка, трохи. The soup is slightly salty — суп трохи солоний. Slightly пом’якшує ознаку: ідеться не про дуже солоний суп. Totally — цілком, повністю; часто розмовне підсилення. I totally forgot the bread — я зовсім забув про хліб. Суп готовий, стіл накритий, а хліб досі відпочиває в магазині. I will get some when I go out — я куплю трохи, коли вийду. Після when тут go без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-54:intro1:r1",
+              "text": "I will get some when I go out."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro1:r2",
+              "text": "I will get some when I will go out."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro1:r3",
+              "text": "I will get some when I goes out."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-54:intro1:r1",
+              "text": "I will get some when I go out."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro1:r2",
+              "text": "I will get some when I will go out."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro1:r3",
+              "text": "I will get some when I goes out."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тем временем",
+        "uk": "Тим часом"
+      },
+      "bodyByLocale": {
+        "ru": "Meanwhile — тем временем, пока происходит другое действие. Друг пошёл за хлебом. Meanwhile, I will set the table — тем временем я накрою на стол. Одно действие происходит параллельно другому. Have you put the plates out yet? — ты уже поставил тарелки? I have already done it — я уже это сделал. О вчерашнем ужине: I had set the table by the time they arrived — я накрыл на стол к тому времени, как они пришли. Had set показывает более раннее действие; set не меняется.",
+        "uk": "Meanwhile — тим часом, поки відбувається інша дія. Друг пішов по хліб. Meanwhile, I will set the table — тим часом я накрию на стіл. Одна дія відбувається паралельно з іншою. Have you put the plates out yet? — ти вже поставив тарілки? I have already done it — я вже це зробив. Про вчорашню вечерю: I had set the table by the time they arrived — я накрив на стіл до того часу, як вони прийшли. Had set показує ранішу дію; set не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-54:intro2:r1",
+              "text": "I had set the table by the time they arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro2:r2",
+              "text": "I have set the table by the time they arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro2:r3",
+              "text": "I had setted the table by the time they arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-54:intro2:r1",
+              "text": "I had set the table by the time they arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro2:r2",
+              "text": "I have set the table by the time they arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro2:r3",
+              "text": "I had setted the table by the time they arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Добавить ещё одну причину",
+        "uk": "Додати ще одну причину"
+      },
+      "bodyByLocale": {
+        "ru": "Besides — кроме того, к тому же, когда вы добавляете довод. Вы уже отказались идти в кафе из-за дождя и добавляете: Besides, we have food at home — к тому же у нас есть еда дома. Не путайте с beside без -s: оно означает рядом с. Если друг голоден: If you are hungry, have some soup — если ты голоден, поешь супа. Можно переставить условие: Have some soup if you are hungry. Для планов: We will eat outside unless it rains — мы поедим на улице, если не пойдёт дождь.",
+        "uk": "Besides — крім того, до того ж, коли ви додаєте аргумент. Ви вже відмовилися йти до кафе через дощ і додаєте: Besides, we have food at home — до того ж у нас є їжа вдома. Не плутайте з beside без -s: воно означає поруч із. Якщо друг голодний: If you are hungry, have some soup — якщо ти голодний, поїж супу. Можна переставити умову: Have some soup if you are hungry. Для планів: We will eat outside unless it rains — ми поїмо надворі, якщо не піде дощ."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-54:intro3:r1",
+              "text": "Have some soup if you are hungry."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro3:r2",
+              "text": "Have some soup unless you are hungry."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro3:r3",
+              "text": "Have some soup if you is hungry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-54:intro3:r1",
+              "text": "Have some soup if you are hungry."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro3:r2",
+              "text": "Have some soup unless you are hungry."
+            },
+            {
+              "responseId": "en:lesson-26:session-54:intro3:r3",
+              "text": "Have some soup if you is hungry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "334387d09c9795afaaea1a33b68c548d338caab3485fa852484eda0069ac7259"
+}

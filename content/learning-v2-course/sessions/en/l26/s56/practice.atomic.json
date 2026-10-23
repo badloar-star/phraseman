@@ -1,0 +1,2245 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-56",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-56:word:crossroads",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — crossroads",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:crossroads:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — crossroads",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:crossroads:audio",
+            "transcript": "crossroads"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:crossroads:r1",
+              "targetText": "crossroads",
+              "meaningByLocale": {
+                "ru": "Перекрёсток; -s сохраняется и для одного перекрёстка.",
+                "uk": "Перехрестя; -s зберігається й для одного перехрестя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crossroads",
+            "definitionByLocale": {
+              "ru": "Перекрёсток; -s сохраняется и для одного перекрёстка.",
+              "uk": "Перехрестя; -s зберігається й для одного перехрестя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i01:r1",
+            "text": "Turn left at the crossroads."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i01:r2",
+            "text": "Turn right at the crossroads."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i01:r3",
+            "text": "Turn left at the traffic lights."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i01:audio",
+            "transcript": "Turn left at the crossroads."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i01:r1",
+              "targetText": "Turn left at the crossroads.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i01:r2",
+              "targetText": "Turn right at the crossroads.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i01:r3",
+              "targetText": "Turn left at the traffic lights.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Turn left at the crossroads.",
+                "uk": "У записі звучить Turn left at the crossroads."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Turn left at the crossroads.",
+                "uk": "У записі звучить Turn left at the crossroads."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните, далеко ли место встречи отсюда.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Уточните, далеко ли место встречи отсюда.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i02:audio",
+            "transcript": "Is it far from here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it far from here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:word:overpass",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overpass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:overpass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overpass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:overpass:audio",
+            "transcript": "overpass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:overpass:r1",
+              "targetText": "overpass",
+              "meaningByLocale": {
+                "ru": "Мост или путепровод над другой дорогой либо железнодорожными путями.",
+                "uk": "Міст або шляхопровід над іншою дорогою чи залізничними коліями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overpass",
+            "definitionByLocale": {
+              "ru": "Мост или путепровод над другой дорогой либо железнодорожными путями.",
+              "uk": "Міст або шляхопровід над іншою дорогою чи залізничними коліями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что вы пройдёте под путепроводом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что вы пройдёте под путепроводом.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will pass under the overpass.",
+          "localizedMeaning": {
+            "ru": "Скажите, что вы пройдёте под путепроводом.",
+            "uk": "Скажіть, що ви пройдете під шляхопроводом."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "pass",
+            "under",
+            "the",
+            "overpass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пообещайте позвонить, когда дойдёте до моста.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i04:r1",
+            "text": "reach"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i04:r2",
+            "text": "will reach"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i04:r3",
+            "text": "reaches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообещайте позвонить, когда дойдёте до моста.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пообещайте позвонить, когда дойдёте до моста.",
+            "uk": "Пообіцяйте зателефонувати, коли дістанетеся мосту."
+          },
+          "gappedTargetPhrase": "I will call you when I ___ the bridge.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i04:r1",
+              "text": "reach"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i04:r2",
+              "text": "will reach"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i04:r3",
+              "text": "reaches"
+            }
+          ],
+          "testedDimension": "Пообещайте позвонить, когда дойдёте до моста.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i04:r2",
+              "correct": false,
+              "testedDimension": "Пообещайте позвонить, когда дойдёте до моста.",
+              "feedbackByLocale": {
+                "ru": "После when здесь reach без will.",
+                "uk": "Після when тут reach без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i04:r3",
+              "correct": false,
+              "testedDimension": "Пообещайте позвонить, когда дойдёте до моста.",
+              "feedbackByLocale": {
+                "ru": "С I нужно reach без -s.",
+                "uk": "З I потрібно reach без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i05:r1",
+            "text": "It is about ten minutes away."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i05:r2",
+            "text": "It is about twenty minutes away."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i05:r3",
+            "text": "It is about ten miles away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i05:audio",
+            "transcript": "It is about ten minutes away."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i05:r1",
+              "targetText": "It is about ten minutes away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i05:r2",
+              "targetText": "It is about twenty minutes away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i05:r3",
+              "targetText": "It is about ten miles away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is about ten minutes away.",
+                "uk": "У записі звучить It is about ten minutes away."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is about ten minutes away.",
+                "uk": "У записі звучить It is about ten minutes away."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:word:walkway",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — walkway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:walkway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — walkway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:walkway:audio",
+            "transcript": "walkway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:walkway:r1",
+              "targetText": "walkway",
+              "meaningByLocale": {
+                "ru": "Проход или дорожка для пешеходов.",
+                "uk": "Прохід або доріжка для пішоходів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "walkway",
+            "definitionByLocale": {
+              "ru": "Проход или дорожка для пешеходов.",
+              "uk": "Прохід або доріжка для пішоходів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите подруге, что пешеходный проход закрыт.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i06:audio"
+        ],
+        "accessibilityLabel": "Сообщите подруге, что пешеходный проход закрыт.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i06:audio",
+            "transcript": "The walkway is closed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The walkway is closed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поставьте условие первым: Use the other entrance if it is closed.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставьте условие первым: Use the other entrance if it is closed.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If it is closed, use the other entrance.",
+          "localizedMeaning": {
+            "ru": "Поставьте условие первым: Use the other entrance if it is closed.",
+            "uk": "Поставте умову першою: Use the other entrance if it is closed."
+          },
+          "orderedTokens": [
+            "If",
+            "it",
+            "is",
+            "closed,",
+            "use",
+            "the",
+            "other",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о другом входе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i08:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о другом входе.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i08:audio",
+            "transcript": "Have you found it yet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Have you found it yet?",
+          "orderedTokens": [
+            "Have",
+            "you",
+            "found",
+            "it",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы только что нашли другой вход.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i09:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i09:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i09:r3",
+            "text": "finding"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы только что нашли другой вход.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы только что нашли другой вход.",
+            "uk": "Ви щойно знайшли інший вхід."
+          },
+          "gappedTargetPhrase": "I have just ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i09:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i09:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i09:r3",
+              "text": "finding"
+            }
+          ],
+          "testedDimension": "Вы только что нашли другой вход.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы только что нашли другой вход.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма found.",
+                "uk": "Після have потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы только что нашли другой вход.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно found, не finding.",
+                "uk": "Тут потрібно found, не finding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:word:riverbank",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — riverbank",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:riverbank:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — riverbank",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:riverbank:audio",
+            "transcript": "riverbank"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:riverbank:r1",
+              "targetText": "riverbank",
+              "meaningByLocale": {
+                "ru": "Берег реки.",
+                "uk": "Берег річки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "riverbank",
+            "definitionByLocale": {
+              "ru": "Берег реки.",
+              "uk": "Берег річки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i10:r1",
+            "text": "I am waiting on the riverbank."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i10:r2",
+            "text": "I am walking along the riverbank."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i10:r3",
+            "text": "I am waiting near the station."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i10:audio",
+            "transcript": "I am waiting on the riverbank."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i10:r1",
+              "targetText": "I am waiting on the riverbank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i10:r2",
+              "targetText": "I am walking along the riverbank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i10:r3",
+              "targetText": "I am waiting near the station.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am waiting on the riverbank.",
+                "uk": "У записі звучить I am waiting on the riverbank."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am waiting on the riverbank.",
+                "uk": "У записі звучить I am waiting on the riverbank."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите подругу, на какой она стороне реки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Спросите подругу, на какой она стороне реки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i11:audio",
+            "transcript": "Which side are you on?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Which side are you on?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите, что уже перешли мост.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите, что уже перешли мост.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already crossed the bridge.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что уже перешли мост.",
+            "uk": "Повідомте, що вже перейшли міст."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "crossed",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i13:r1",
+            "text": "I can see you now."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i13:r2",
+            "text": "I can hear you now."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i13:r3",
+            "text": "I cannot see you now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i13:audio",
+            "transcript": "I can see you now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i13:r1",
+              "targetText": "I can see you now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i13:r2",
+              "targetText": "I can hear you now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i13:r3",
+              "targetText": "I cannot see you now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i13:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see you now.",
+                "uk": "У записі звучить I can see you now."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i13:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see you now.",
+                "uk": "У записі звучить I can see you now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера подруга пришла до вашего звонка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера подруга пришла до вашего звонка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера подруга пришла до вашего звонка.",
+            "uk": "Учора подруга прийшла до вашого дзвінка."
+          },
+          "gappedTargetPhrase": "She ___ arrived by the time I called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вчера подруга пришла до вашего звонка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Вчера подруга пришла до вашего звонка.",
+              "feedbackByLocale": {
+                "ru": "Has связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Has пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Вчера подруга пришла до вашего звонка.",
+              "feedbackByLocale": {
+                "ru": "Is arrived не означает: она пришла раньше.",
+                "uk": "Is arrived не означає: вона прийшла раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы погуляете у реки, только если не будет дождя.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i15:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i15:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i15:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы погуляете у реки, только если не будет дождя.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы погуляете у реки, только если не будет дождя.",
+            "uk": "Ви погуляєте біля річки, тільки якщо не буде дощу."
+          },
+          "gappedTargetPhrase": "We will walk by the river ___ it rains.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i15:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i15:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i15:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Вы погуляете у реки, только если не будет дождя.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Вы погуляете у реки, только если не будет дождя.",
+              "feedbackByLocale": {
+                "ru": "If означало бы гулять именно в дождь.",
+                "uk": "If означало б гуляти саме в дощ."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Вы погуляете у реки, только если не будет дождя.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы дождь причиной прогулки.",
+                "uk": "Because зробило б дощ причиною прогулянки."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите немного посидеть здесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i16:audio"
+        ],
+        "accessibilityLabel": "Предложите немного посидеть здесь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i16:audio",
+            "transcript": "Shall we sit here for a while?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we sit here for a while?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте благодарность за объяснение дороги.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Услышьте благодарность за объяснение дороги.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i17:audio",
+            "transcript": "Thanks for the directions."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Thanks for the directions.",
+          "orderedTokens": [
+            "Thanks",
+            "for",
+            "the",
+            "directions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-56:word:crossroads",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — crossroads",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:crossroads:audio"
+        ],
+        "accessibilityLabel": "Картка слова — crossroads",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:crossroads:audio",
+            "transcript": "crossroads"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:crossroads:r1",
+              "targetText": "crossroads",
+              "meaningByLocale": {
+                "ru": "Перекрёсток; -s сохраняется и для одного перекрёстка.",
+                "uk": "Перехрестя; -s зберігається й для одного перехрестя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "crossroads",
+            "definitionByLocale": {
+              "ru": "Перекрёсток; -s сохраняется и для одного перекрёстка.",
+              "uk": "Перехрестя; -s зберігається й для одного перехрестя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i01:r1",
+            "text": "Turn left at the crossroads."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i01:r2",
+            "text": "Turn right at the crossroads."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i01:r3",
+            "text": "Turn left at the traffic lights."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i01:audio",
+            "transcript": "Turn left at the crossroads."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i01:r1",
+              "targetText": "Turn left at the crossroads.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i01:r2",
+              "targetText": "Turn right at the crossroads.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i01:r3",
+              "targetText": "Turn left at the traffic lights.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Turn left at the crossroads.",
+                "uk": "У записі звучить Turn left at the crossroads."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Turn left at the crossroads.",
+                "uk": "У записі звучить Turn left at the crossroads."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть, чи далеко місце зустрічі звідси.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i02:audio"
+        ],
+        "accessibilityLabel": "Уточніть, чи далеко місце зустрічі звідси.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i02:audio",
+            "transcript": "Is it far from here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it far from here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:word:overpass",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overpass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:overpass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overpass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:overpass:audio",
+            "transcript": "overpass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:overpass:r1",
+              "targetText": "overpass",
+              "meaningByLocale": {
+                "ru": "Мост или путепровод над другой дорогой либо железнодорожными путями.",
+                "uk": "Міст або шляхопровід над іншою дорогою чи залізничними коліями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overpass",
+            "definitionByLocale": {
+              "ru": "Мост или путепровод над другой дорогой либо железнодорожными путями.",
+              "uk": "Міст або шляхопровід над іншою дорогою чи залізничними коліями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що ви пройдете під шляхопроводом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що ви пройдете під шляхопроводом.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We will pass under the overpass.",
+          "localizedMeaning": {
+            "ru": "Скажите, что вы пройдёте под путепроводом.",
+            "uk": "Скажіть, що ви пройдете під шляхопроводом."
+          },
+          "orderedTokens": [
+            "We",
+            "will",
+            "pass",
+            "under",
+            "the",
+            "overpass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пообіцяйте зателефонувати, коли дістанетеся мосту.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i04:r1",
+            "text": "reach"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i04:r2",
+            "text": "will reach"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i04:r3",
+            "text": "reaches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообіцяйте зателефонувати, коли дістанетеся мосту.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пообещайте позвонить, когда дойдёте до моста.",
+            "uk": "Пообіцяйте зателефонувати, коли дістанетеся мосту."
+          },
+          "gappedTargetPhrase": "I will call you when I ___ the bridge.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i04:r1",
+              "text": "reach"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i04:r2",
+              "text": "will reach"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i04:r3",
+              "text": "reaches"
+            }
+          ],
+          "testedDimension": "Пообіцяйте зателефонувати, коли дістанетеся мосту.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i04:r2",
+              "correct": false,
+              "testedDimension": "Пообіцяйте зателефонувати, коли дістанетеся мосту.",
+              "feedbackByLocale": {
+                "ru": "После when здесь reach без will.",
+                "uk": "Після when тут reach без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i04:r3",
+              "correct": false,
+              "testedDimension": "Пообіцяйте зателефонувати, коли дістанетеся мосту.",
+              "feedbackByLocale": {
+                "ru": "С I нужно reach без -s.",
+                "uk": "З I потрібно reach без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i05:r1",
+            "text": "It is about ten minutes away."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i05:r2",
+            "text": "It is about twenty minutes away."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i05:r3",
+            "text": "It is about ten miles away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i05:audio",
+            "transcript": "It is about ten minutes away."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i05:r1",
+              "targetText": "It is about ten minutes away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i05:r2",
+              "targetText": "It is about twenty minutes away.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i05:r3",
+              "targetText": "It is about ten miles away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is about ten minutes away.",
+                "uk": "У записі звучить It is about ten minutes away."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит It is about ten minutes away.",
+                "uk": "У записі звучить It is about ten minutes away."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:word:walkway",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — walkway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:walkway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — walkway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:walkway:audio",
+            "transcript": "walkway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:walkway:r1",
+              "targetText": "walkway",
+              "meaningByLocale": {
+                "ru": "Проход или дорожка для пешеходов.",
+                "uk": "Прохід або доріжка для пішоходів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "walkway",
+            "definitionByLocale": {
+              "ru": "Проход или дорожка для пешеходов.",
+              "uk": "Прохід або доріжка для пішоходів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте подрузі, що пішохідний прохід закритий.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i06:audio"
+        ],
+        "accessibilityLabel": "Повідомте подрузі, що пішохідний прохід закритий.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i06:audio",
+            "transcript": "The walkway is closed."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The walkway is closed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поставте умову першою: Use the other entrance if it is closed.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поставте умову першою: Use the other entrance if it is closed.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If it is closed, use the other entrance.",
+          "localizedMeaning": {
+            "ru": "Поставьте условие первым: Use the other entrance if it is closed.",
+            "uk": "Поставте умову першою: Use the other entrance if it is closed."
+          },
+          "orderedTokens": [
+            "If",
+            "it",
+            "is",
+            "closed,",
+            "use",
+            "the",
+            "other",
+            "entrance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запитання про інший вхід.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i08:audio"
+        ],
+        "accessibilityLabel": "Почуйте запитання про інший вхід.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i08:audio",
+            "transcript": "Have you found it yet?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Have you found it yet?",
+          "orderedTokens": [
+            "Have",
+            "you",
+            "found",
+            "it",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви щойно знайшли інший вхід.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i09:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i09:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i09:r3",
+            "text": "finding"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви щойно знайшли інший вхід.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы только что нашли другой вход.",
+            "uk": "Ви щойно знайшли інший вхід."
+          },
+          "gappedTargetPhrase": "I have just ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i09:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i09:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i09:r3",
+              "text": "finding"
+            }
+          ],
+          "testedDimension": "Ви щойно знайшли інший вхід.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви щойно знайшли інший вхід.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма found.",
+                "uk": "Після have потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви щойно знайшли інший вхід.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно found, не finding.",
+                "uk": "Тут потрібно found, не finding."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:word:riverbank",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — riverbank",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:word:riverbank:audio"
+        ],
+        "accessibilityLabel": "Картка слова — riverbank",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:word:riverbank:audio",
+            "transcript": "riverbank"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:word:riverbank:r1",
+              "targetText": "riverbank",
+              "meaningByLocale": {
+                "ru": "Берег реки.",
+                "uk": "Берег річки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "riverbank",
+            "definitionByLocale": {
+              "ru": "Берег реки.",
+              "uk": "Берег річки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i10:r1",
+            "text": "I am waiting on the riverbank."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i10:r2",
+            "text": "I am walking along the riverbank."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i10:r3",
+            "text": "I am waiting near the station."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i10:audio",
+            "transcript": "I am waiting on the riverbank."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i10:r1",
+              "targetText": "I am waiting on the riverbank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i10:r2",
+              "targetText": "I am walking along the riverbank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i10:r3",
+              "targetText": "I am waiting near the station.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am waiting on the riverbank.",
+                "uk": "У записі звучить I am waiting on the riverbank."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am waiting on the riverbank.",
+                "uk": "У записі звучить I am waiting on the riverbank."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте подругу, на якому вона боці річки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i11:audio"
+        ],
+        "accessibilityLabel": "Запитайте подругу, на якому вона боці річки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i11:audio",
+            "transcript": "Which side are you on?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Which side are you on?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте, що вже перейшли міст.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте, що вже перейшли міст.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already crossed the bridge.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что уже перешли мост.",
+            "uk": "Повідомте, що вже перейшли міст."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "crossed",
+            "the",
+            "bridge"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i13:r1",
+            "text": "I can see you now."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i13:r2",
+            "text": "I can hear you now."
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i13:r3",
+            "text": "I cannot see you now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i13:audio",
+            "transcript": "I can see you now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-56:i13:r1",
+              "targetText": "I can see you now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i13:r2",
+              "targetText": "I can hear you now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i13:r3",
+              "targetText": "I cannot see you now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i13:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see you now.",
+                "uk": "У записі звучить I can see you now."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i13:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can see you now.",
+                "uk": "У записі звучить I can see you now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора подруга прийшла до вашого дзвінка.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i14:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i14:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора подруга прийшла до вашого дзвінка.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера подруга пришла до вашего звонка.",
+            "uk": "Учора подруга прийшла до вашого дзвінка."
+          },
+          "gappedTargetPhrase": "She ___ arrived by the time I called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i14:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i14:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i14:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Учора подруга прийшла до вашого дзвінка.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i14:r2",
+              "correct": false,
+              "testedDimension": "Учора подруга прийшла до вашого дзвінка.",
+              "feedbackByLocale": {
+                "ru": "Has связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Has пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i14:r3",
+              "correct": false,
+              "testedDimension": "Учора подруга прийшла до вашого дзвінка.",
+              "feedbackByLocale": {
+                "ru": "Is arrived не означает: она пришла раньше.",
+                "uk": "Is arrived не означає: вона прийшла раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви погуляєте біля річки, тільки якщо не буде дощу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-56:i15:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i15:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-56:i15:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви погуляєте біля річки, тільки якщо не буде дощу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы погуляете у реки, только если не будет дождя.",
+            "uk": "Ви погуляєте біля річки, тільки якщо не буде дощу."
+          },
+          "gappedTargetPhrase": "We will walk by the river ___ it rains.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-56:i15:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i15:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i15:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Ви погуляєте біля річки, тільки якщо не буде дощу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-56:i15:r2",
+              "correct": false,
+              "testedDimension": "Ви погуляєте біля річки, тільки якщо не буде дощу.",
+              "feedbackByLocale": {
+                "ru": "If означало бы гулять именно в дождь.",
+                "uk": "If означало б гуляти саме в дощ."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-56:i15:r3",
+              "correct": false,
+              "testedDimension": "Ви погуляєте біля річки, тільки якщо не буде дощу.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы дождь причиной прогулки.",
+                "uk": "Because зробило б дощ причиною прогулянки."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте трохи посидіти тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i16:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте трохи посидіти тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i16:audio",
+            "transcript": "Shall we sit here for a while?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we sit here for a while?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-56:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте подяку за пояснення дороги.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-56:i17:audio"
+        ],
+        "accessibilityLabel": "Почуйте подяку за пояснення дороги.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-56:i17:audio",
+            "transcript": "Thanks for the directions."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Thanks for the directions.",
+          "orderedTokens": [
+            "Thanks",
+            "for",
+            "the",
+            "directions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-56:word:crossroads",
+      "correctText": "crossroads",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i01",
+      "correctText": "Turn left at the crossroads.",
+      "correctResponseId": "en:lesson-26:session-56:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i02",
+      "correctText": "Is it far from here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:word:overpass",
+      "correctText": "overpass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i03",
+      "correctText": "We will pass under the overpass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i04",
+      "correctText": "reach",
+      "correctResponseId": "en:lesson-26:session-56:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i05",
+      "correctText": "It is about ten minutes away.",
+      "correctResponseId": "en:lesson-26:session-56:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:word:walkway",
+      "correctText": "walkway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i06",
+      "correctText": "The walkway is closed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i07",
+      "correctText": "If it is closed, use the other entrance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i08",
+      "correctText": "Have you found it yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i09",
+      "correctText": "found",
+      "correctResponseId": "en:lesson-26:session-56:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:word:riverbank",
+      "correctText": "riverbank",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i10",
+      "correctText": "I am waiting on the riverbank.",
+      "correctResponseId": "en:lesson-26:session-56:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i11",
+      "correctText": "Which side are you on?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i12",
+      "correctText": "I have already crossed the bridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i13",
+      "correctText": "I can see you now.",
+      "correctResponseId": "en:lesson-26:session-56:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i14",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-56:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i15",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-56:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i16",
+      "correctText": "Shall we sit here for a while?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:i17",
+      "correctText": "Thanks for the directions.",
+      "correctResponseId": null
+    }
+  ]
+}

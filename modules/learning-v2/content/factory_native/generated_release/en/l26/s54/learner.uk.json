@@ -1,0 +1,1087 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-54:word:slightly",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slightly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:word:slightly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slightly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:word:slightly:audio",
+          "transcript": "slightly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:word:slightly:r1",
+            "targetText": "slightly",
+            "meaningByLocale": {
+              "ru": "Слегка, немного.",
+              "uk": "Злегка, трохи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slightly",
+          "definitionByLocale": {
+            "ru": "Слегка, немного.",
+            "uk": "Злегка, трохи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i01:r1",
+          "text": "The soup is slightly salty."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i01:r2",
+          "text": "The soup is very salty."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i01:r3",
+          "text": "The soup is slightly spicy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i01:audio",
+          "transcript": "The soup is slightly salty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:i01:r1",
+            "targetText": "The soup is slightly salty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i01:r2",
+            "targetText": "The soup is very salty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i01:r3",
+            "targetText": "The soup is slightly spicy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup is slightly salty.",
+              "uk": "У записі звучить The soup is slightly salty."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soup is slightly salty.",
+              "uk": "У записі звучить The soup is slightly salty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть трохи води.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Попросіть трохи води.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i02:audio",
+          "transcript": "Could I have some water?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have some water?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:word:totally",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — totally",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:word:totally:audio"
+      ],
+      "accessibilityLabel": "Картка слова — totally",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:word:totally:audio",
+          "transcript": "totally"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:word:totally:r1",
+            "targetText": "totally",
+            "meaningByLocale": {
+              "ru": "Совершенно, полностью; часто разговорное усиление.",
+              "uk": "Цілком, повністю; часто розмовне підсилення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "totally",
+          "definitionByLocale": {
+            "ru": "Совершенно, полностью; часто разговорное усиление.",
+            "uk": "Цілком, повністю; часто розмовне підсилення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зізнайтеся, що зовсім забули про хліб.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зізнайтеся, що зовсім забули про хліб.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I totally forgot the bread.",
+        "localizedMeaning": {
+          "ru": "Признайтесь, что совсем забыли про хлеб.",
+          "uk": "Зізнайтеся, що зовсім забули про хліб."
+        },
+        "orderedTokens": [
+          "I",
+          "totally",
+          "forgot",
+          "the",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купите хліб, коли вийдете.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i04:r1",
+          "text": "go"
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i04:r2",
+          "text": "will go"
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i04:r3",
+          "text": "goes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купите хліб, коли вийдете.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купите хлеб, когда выйдете.",
+          "uk": "Ви купите хліб, коли вийдете."
+        },
+        "gappedTargetPhrase": "I will get some when I ___ out.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-54:i04:r1",
+            "text": "go"
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i04:r2",
+            "text": "will go"
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i04:r3",
+            "text": "goes"
+          }
+        ],
+        "testedDimension": "Ви купите хліб, коли вийдете.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви купите хліб, коли вийдете.",
+            "feedbackByLocale": {
+              "ru": "После when здесь go без will.",
+              "uk": "Після when тут go без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви купите хліб, коли вийдете.",
+            "feedbackByLocale": {
+              "ru": "С I нужно go без -s.",
+              "uk": "З I потрібно go без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i05:r1",
+          "text": "The shop is still open."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i05:r2",
+          "text": "The shop is already closed."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i05:r3",
+          "text": "The shop is very close."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i05:audio",
+          "transcript": "The shop is still open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:i05:r1",
+            "targetText": "The shop is still open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i05:r2",
+            "targetText": "The shop is already closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i05:r3",
+            "targetText": "The shop is very close.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop is still open.",
+              "uk": "У записі звучить The shop is still open."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shop is still open.",
+              "uk": "У записі звучить The shop is still open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:word:meanwhile",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — meanwhile",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:word:meanwhile:audio"
+      ],
+      "accessibilityLabel": "Картка слова — meanwhile",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:word:meanwhile:audio",
+          "transcript": "meanwhile"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:word:meanwhile:r1",
+            "targetText": "meanwhile",
+            "meaningByLocale": {
+              "ru": "Тем временем, пока происходит другое действие.",
+              "uk": "Тим часом, поки відбувається інша дія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "meanwhile",
+          "definitionByLocale": {
+            "ru": "Тем временем, пока происходит другое действие.",
+            "uk": "Тим часом, поки відбувається інша дія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг іде по хліб. Скажіть, що тим часом накриєте на стіл.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Друг іде по хліб. Скажіть, що тим часом накриєте на стіл.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i06:audio",
+          "transcript": "Meanwhile, I will set the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Meanwhile, I will set the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про тарілки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про тарілки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i07:audio",
+          "transcript": "Have you put the plates out yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you put the plates out yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "put",
+          "the",
+          "plates",
+          "out",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i08:r1",
+          "text": "I have already done it."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i08:r2",
+          "text": "I have already eaten it."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i08:r3",
+          "text": "I have just found it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i08:audio",
+          "transcript": "I have already done it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:i08:r1",
+            "targetText": "I have already done it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i08:r2",
+            "targetText": "I have already eaten it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i08:r3",
+            "targetText": "I have just found it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already done it.",
+              "uk": "У записі звучить I have already done it."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already done it.",
+              "uk": "У записі звучить I have already done it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора стіл був накритий до приходу гостей.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i09:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i09:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора стіл був накритий до приходу гостей.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера стол был накрыт до прихода гостей.",
+          "uk": "Учора стіл був накритий до приходу гостей."
+        },
+        "gappedTargetPhrase": "I ___ set the table by the time they arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-54:i09:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Учора стіл був накритий до приходу гостей.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора стіл був накритий до приходу гостей.",
+            "feedbackByLocale": {
+              "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+              "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора стіл був накритий до приходу гостей.",
+            "feedbackByLocale": {
+              "ru": "Am set не означает: я накрыл на стол.",
+              "uk": "Am set не означає: я накрив на стіл."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:word:besides",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — besides",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:word:besides:audio"
+      ],
+      "accessibilityLabel": "Картка слова — besides",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:word:besides:audio",
+          "transcript": "besides"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:word:besides:r1",
+            "targetText": "besides",
+            "meaningByLocale": {
+              "ru": "Кроме того, к тому же; добавляет довод.",
+              "uk": "Крім того, до того ж; додає аргумент."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "besides",
+          "definitionByLocale": {
+            "ru": "Кроме того, к тому же; добавляет довод.",
+            "uk": "Крім того, до того ж; додає аргумент."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Додайте причину залишитися вдома: до того ж удома є їжа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Додайте причину залишитися вдома: до того ж удома є їжа.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Besides, we have food at home.",
+        "localizedMeaning": {
+          "ru": "Добавьте причину остаться дома: к тому же дома есть еда.",
+          "uk": "Додайте причину залишитися вдома: до того ж удома є їжа."
+        },
+        "orderedTokens": [
+          "Besides,",
+          "we",
+          "have",
+          "food",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте голодному другу суп.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте голодному другу суп.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i11:audio",
+          "transcript": "Have some soup if you are hungry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Have some soup if you are hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перенесіть умову на початок: Have some soup if you are hungry.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перенесіть умову на початок: Have some soup if you are hungry.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "If you are hungry, have some soup.",
+        "localizedMeaning": {
+          "ru": "Перенесите условие в начало: Have some soup if you are hungry.",
+          "uk": "Перенесіть умову на початок: Have some soup if you are hungry."
+        },
+        "orderedTokens": [
+          "If",
+          "you",
+          "are",
+          "hungry,",
+          "have",
+          "some",
+          "soup"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i13:r1",
+          "text": "I have just eaten."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i13:r2",
+          "text": "I have just cooked."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i13:r3",
+          "text": "I have already paid."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i13:audio",
+          "transcript": "I have just eaten."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:i13:r1",
+            "targetText": "I have just eaten.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i13:r2",
+            "targetText": "I have just cooked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i13:r3",
+            "targetText": "I have already paid.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just eaten.",
+              "uk": "У записі звучить I have just eaten."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have just eaten.",
+              "uk": "У записі звучить I have just eaten."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви поїсте надворі, тільки якщо не буде дощу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i14:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i14:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i14:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви поїсте надворі, тільки якщо не буде дощу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы поедите на улице, только если не будет дождя.",
+          "uk": "Ви поїсте надворі, тільки якщо не буде дощу."
+        },
+        "gappedTargetPhrase": "We will eat outside ___ it rains.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-54:i14:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i14:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i14:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Ви поїсте надворі, тільки якщо не буде дощу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i14:r2",
+            "correct": false,
+            "testedDimension": "Ви поїсте надворі, тільки якщо не буде дощу.",
+            "feedbackByLocale": {
+              "ru": "If означало бы есть на улице именно в дождь.",
+              "uk": "If означало б їсти надворі саме в дощ."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i14:r3",
+            "correct": false,
+            "testedDimension": "Ви поїсте надворі, тільки якщо не буде дощу.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы дождь причиной есть на улице.",
+              "uk": "Because зробило б дощ причиною їсти надворі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію сісти біля вікна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію сісти біля вікна.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i15:audio",
+          "transcript": "Let us sit by the window."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Let us sit by the window.",
+        "orderedTokens": [
+          "Let",
+          "us",
+          "sit",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть друга передати хліб.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Попросіть друга передати хліб.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i16:audio",
+          "transcript": "Could you pass the bread?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you pass the bread?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-54:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-54:i17:r1",
+          "text": "There is enough for everyone."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i17:r2",
+          "text": "There is enough for tomorrow."
+        },
+        {
+          "responseId": "en:lesson-26:session-54:i17:r3",
+          "text": "There is not enough for everyone."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-54:i17:audio",
+          "transcript": "There is enough for everyone."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-54:i17:r1",
+            "targetText": "There is enough for everyone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i17:r2",
+            "targetText": "There is enough for tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i17:r3",
+            "targetText": "There is not enough for everyone.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-54:i17:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is enough for everyone.",
+              "uk": "У записі звучить There is enough for everyone."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-54:i17:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is enough for everyone.",
+              "uk": "У записі звучить There is enough for everyone."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3409eeca9ae9d7e7e3350319d855911b3a50ba1e5354171ce001fa7f167ed15a"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-55:word:adore",
+    "correctText": "adore",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i01",
+    "correctText": "I adore my little nephew.",
+    "correctResponseId": "en:lesson-26:session-55:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i02",
+    "correctText": "How is your sister?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:word:console",
+    "correctText": "console",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i03",
+    "correctText": "I want to console her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i04",
+    "correctText": "Do you want to talk?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i05",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-26:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:word:soothe",
+    "correctText": "soothe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i06",
+    "correctText": "I sing to soothe the baby.",
+    "correctResponseId": "en:lesson-26:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i07",
+    "correctText": "Have you fed him yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i08",
+    "correctText": "fed",
+    "correctResponseId": "en:lesson-26:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i09",
+    "correctText": "If he is tired, let him rest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i10",
+    "correctText": "Shall I make you some tea?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:word:disapprove",
+    "correctText": "disapprove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i11",
+    "correctText": "I disapprove of that idea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i12",
+    "correctText": "Why do you think so?",
+    "correctResponseId": "en:lesson-26:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i13",
+    "correctText": "I have already explained it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-55:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i15",
+    "correctText": "Give me some time to think.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-55:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-55:i17",
+    "correctText": "Thanks for being there for me.",
+    "correctResponseId": "en:lesson-26:session-55:i17:r1"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-56:intro1:r2": {
+          "ru": "После when здесь reach без will.",
+          "uk": "Після when тут reach без will."
+        },
+        "en:lesson-26:session-56:intro1:r3": {
+          "ru": "С I нужно reach без -s.",
+          "uk": "З I потрібно reach без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-56:intro2:r2": {
+          "ru": "Unless меняет условие: если проход не закрыт.",
+          "uk": "Unless змінює умову: якщо прохід не закритий."
+        },
+        "en:lesson-26:session-56:intro2:r3": {
+          "ru": "С it нужно is.",
+          "uk": "З it потрібно is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-56:intro3:r2": {
+          "ru": "Called задаёт прошлое; более раннее действие — had arrived.",
+          "uk": "Called задає минуле; раніша дія — had arrived."
+        },
+        "en:lesson-26:session-56:intro3:r3": {
+          "ru": "После had нужна форма arrived.",
+          "uk": "Після had потрібна форма arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "16460fb54bc6fb6cb3f6c796faf2129e254c5fd754365298633a051545fa8b2b"
+}

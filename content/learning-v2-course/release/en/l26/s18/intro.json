@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
+    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подойдёт ли место",
+        "uk": "Чи підійде місце"
+      },
+      "bodyByLocale": {
+        "ru": "Decent — вполне хороший, приличный: a decent room — вполне хороший номер. Это положительная оценка без восторга. Posh — шикарный, дорогой на вид; разговорное слово, особенно в британской речи. A posh restaurant — шикарный ресторан. I will book a table when you choose a place — я забронирую столик, когда ты выберешь место. После when о будущем здесь choose, не will choose.",
+        "uk": "Decent — цілком хороший, пристойний: a decent room — цілком хороший номер. Це позитивна оцінка без захвату. Posh — шикарний, дорогий на вигляд; розмовне слово, особливо в британському мовленні. A posh restaurant — шикарний ресторан. I will book a table when you choose a place — я забронюю столик, коли ти вибереш місце. Після when про майбутнє тут choose, не will choose."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-18:intro1:r1",
+              "text": "I will book a table when you choose a place."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro1:r2",
+              "text": "I will book a table when you will choose a place."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro1:r3",
+              "text": "I will book a table when you chooses a place."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-18:intro1:r1",
+              "text": "I will book a table when you choose a place."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro1:r2",
+              "text": "I will book a table when you will choose a place."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro1:r3",
+              "text": "I will book a table when you chooses a place."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Скучный фильм",
+        "uk": "Нудний фільм"
+      },
+      "bodyByLocale": {
+        "ru": "Dull — скучный, неинтересный в разговоре о фильме или вечере. The film is dull — фильм скучный. If a film is dull, I stop watching — если фильм скучный, я перестаю смотреть. Это обычная привычка: обе части в настоящем времени. А I will leave if the film is dull — я уйду, если фильм будет скучный — план на конкретный случай.",
+        "uk": "Dull — нудний, нецікавий у розмові про фільм або вечір. The film is dull — фільм нудний. If a film is dull, I stop watching — якщо фільм нудний, я перестаю дивитися. Це звичайна звичка: обидві частини в теперішньому часі. А I will leave if the film is dull — я піду, якщо фільм буде нудний — план на конкретний випадок."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-18:intro2:r1",
+              "text": "If a film is dull, I stop watching."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro2:r2",
+              "text": "If a film is dull, I stops watching."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro2:r3",
+              "text": "If a film is dull, I stopping watching."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-18:intro2:r1",
+              "text": "If a film is dull, I stop watching."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro2:r2",
+              "text": "If a film is dull, I stops watching."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro2:r3",
+              "text": "If a film is dull, I stopping watching."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разделить расходы",
+        "uk": "Поділити витрати"
+      },
+      "bodyByLocale": {
+        "ru": "Stingy — скупой, не желающий тратить или делиться даже там, где это ожидается. Это неодобрительное слово; экономный человек не обязательно stingy. Don’t be stingy — не скупись. О готовом результате: I have already paid my share — я уже заплатил свою часть. О событии до другого прошлого события: I had paid by the time the others arrived — я уже заплатил к приходу остальных.",
+        "uk": "Stingy — скупий, не охочий витрачати або ділитися навіть там, де цього очікують. Це несхвальне слово; ощадлива людина не обов’язково stingy. Don’t be stingy — не скупися. Про готовий результат: I have already paid my share — я вже заплатив свою частину. Про подію до іншої минулої події: I had paid by the time the others arrived — я вже заплатив до приходу інших."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-18:intro3:r1",
+              "text": "I have already paid my share."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro3:r2",
+              "text": "I have already pay my share."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro3:r3",
+              "text": "I has already paid my share."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-18:intro3:r1",
+              "text": "I have already paid my share."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro3:r2",
+              "text": "I have already pay my share."
+            },
+            {
+              "responseId": "en:lesson-26:session-18:intro3:r3",
+              "text": "I has already paid my share."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c1732931f1f2613b420a8fde7eb6ec4fffedec827c16b5859f8f70056e5ffb3b"
+}

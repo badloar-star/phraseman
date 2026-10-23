@@ -1,0 +1,2253 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-19:word:pardon",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pardon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:pardon:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pardon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:pardon:audio",
+            "transcript": "pardon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:pardon:r1",
+              "targetText": "pardon",
+              "meaningByLocale": {
+                "ru": "Простите? Вопрос Pardon? просит повторить то, что вы не расслышали.",
+                "uk": "Перепрошую? Питання Pardon? просить повторити те, чого ви не розчули."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pardon",
+            "definitionByLocale": {
+              "ru": "Простите? Вопрос Pardon? просит повторить то, что вы не расслышали.",
+              "uk": "Перепрошую? Питання Pardon? просить повторити те, чого ви не розчули."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i01",
+        "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На улице шумно, и вы не расслышали время встречи. Переспросите одним словом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i01:audio"
+        ],
+        "accessibilityLabel": "На улице шумно, и вы не расслышали время встречи. Переспросите одним словом.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i01:audio",
+            "transcript": "Pardon?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Pardon?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i02:r1",
+            "text": "We will meet outside the café."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i02:r2",
+            "text": "We will meet inside the café."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i02:r3",
+            "text": "We will meet outside the station."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i02:audio",
+            "transcript": "We will meet outside the café."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i02:r1",
+              "targetText": "We will meet outside the café.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i02:r2",
+              "targetText": "We will meet inside the café.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i02:r3",
+              "targetText": "We will meet outside the station.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will meet outside the café.",
+                "uk": "У записі звучить We will meet outside the café."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will meet outside the café.",
+                "uk": "У записі звучить We will meet outside the café."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:word:yep",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — yep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:yep:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — yep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:yep:audio",
+            "transcript": "yep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:yep:r1",
+              "targetText": "yep",
+              "meaningByLocale": {
+                "ru": "Да; неформальный разговорный ответ, как yes в беседе с другом.",
+                "uk": "Так; неформальна розмовна відповідь, як yes у бесіді з другом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yep",
+            "definitionByLocale": {
+              "ru": "Да; неформальный разговорный ответ, как yes в беседе с другом.",
+              "uk": "Так; неформальна розмовна відповідь, як yes у бесіді з другом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спрашивает, готовы ли вы выходить. Вы готовы. Выберите неформальное «да».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i03:r1",
+            "text": "Yep"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i03:r2",
+            "text": "Pardon"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i03:r3",
+            "text": "Goodbye"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спрашивает, готовы ли вы выходить. Вы готовы. Выберите неформальное «да».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, готовы ли вы выходить. Вы готовы. Выберите неформальное «да».",
+            "uk": "Друг запитує, чи готові ви виходити. Ви готові. Виберіть неформальне «так»."
+          },
+          "gappedTargetPhrase": "___!",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i03:r1",
+              "text": "Yep"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i03:r2",
+              "text": "Pardon"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i03:r3",
+              "text": "Goodbye"
+            }
+          ],
+          "testedDimension": "Друг спрашивает, готовы ли вы выходить. Вы готовы. Выберите неформальное «да».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, готовы ли вы выходить. Вы готовы. Выберите неформальное «да».",
+              "feedbackByLocale": {
+                "ru": "Pardon просит повторить, а вы расслышали вопрос и соглашаетесь.",
+                "uk": "Pardon просить повторити, а ви розчули питання й погоджуєтеся."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг спрашивает, готовы ли вы выходить. Вы готовы. Выберите неформальное «да».",
+              "feedbackByLocale": {
+                "ru": "Goodbye — прощание, а не положительный ответ.",
+                "uk": "Goodbye — прощання, а не ствердна відповідь."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уточните у сестры: «Ты уже нашла ключи?» Используйте yet.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточните у сестры: «Ты уже нашла ключи?» Используйте yet.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you found the keys yet?",
+          "localizedMeaning": {
+            "ru": "Уточните у сестры: «Ты уже нашла ключи?» Используйте yet.",
+            "uk": "Уточніть у сестри: «Ти вже знайшла ключі?» Використайте yet."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "found",
+            "the",
+            "keys",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:word:nope",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:nope:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:nope:audio",
+            "transcript": "nope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:nope:r1",
+              "targetText": "nope",
+              "meaningByLocale": {
+                "ru": "Нет; неформальный разговорный ответ. Nope, not yet — нет, ещё нет.",
+                "uk": "Ні; неформальна розмовна відповідь. Nope, not yet — ні, ще ні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nope",
+            "definitionByLocale": {
+              "ru": "Нет; неформальный разговорный ответ. Nope, not yet — нет, ещё нет.",
+              "uk": "Ні; неформальна розмовна відповідь. Nope, not yet — ні, ще ні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, закончена ли работа. Ещё нет. Дайте неформальный отрицательный ответ одним словом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, закончена ли работа. Ещё нет. Дайте неформальный отрицательный ответ одним словом.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i05:audio",
+            "transcript": "Nope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Nope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пообещайте выйти, когда сестра будет готова. Дополните время выхода.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i06:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i06:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообещайте выйти, когда сестра будет готова. Дополните время выхода.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пообещайте выйти, когда сестра будет готова. Дополните время выхода.",
+            "uk": "Пообіцяйте вийти, коли сестра буде готова. Доповніть час виходу."
+          },
+          "gappedTargetPhrase": "I will leave when she ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i06:r2",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i06:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Пообещайте выйти, когда сестра будет готова. Дополните время выхода.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Пообещайте выйти, когда сестра будет готова. Дополните время выхода.",
+              "feedbackByLocale": {
+                "ru": "После when в придаточном времени о будущем is без will.",
+                "uk": "Після when у підрядному часу про майбутнє is без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Пообещайте выйти, когда сестра будет готова. Дополните время выхода.",
+              "feedbackByLocale": {
+                "ru": "С she нужна личная форма is.",
+                "uk": "З she потрібна особова форма is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:word:hey",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:hey:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:hey:audio",
+            "transcript": "hey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:hey:r1",
+              "targetText": "hey",
+              "meaningByLocale": {
+                "ru": "Эй! Неформальное обращение или приветствие знакомому; произносится с подходящим ситуации тоном.",
+                "uk": "Гей! Неформальне звертання або привітання знайомому; вимовляється з відповідним ситуації тоном."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hey",
+            "definitionByLocale": {
+              "ru": "Эй! Неформальное обращение или приветствие знакомому; произносится с подходящим ситуации тоном.",
+              "uk": "Гей! Неформальне звертання або привітання знайомому; вимовляється з відповідним ситуації тоном."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы заметили друга через дорогу. Привлеките его внимание коротким «Эй!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Вы заметили друга через дорогу. Привлеките его внимание коротким «Эй!»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i07:audio",
+            "transcript": "Hey!"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Hey!",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте обещание после возвращения домой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Услышьте обещание после возвращения домой.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i08:audio",
+            "transcript": "I will call when I get home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will call when I get home.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "call",
+            "when",
+            "I",
+            "get",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i09:r1",
+            "text": "I have already finished my work."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i09:r2",
+            "text": "I have already started my work."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i09:r3",
+            "text": "I have already finished my lunch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i09:audio",
+            "transcript": "I have already finished my work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i09:r1",
+              "targetText": "I have already finished my work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i09:r2",
+              "targetText": "I have already started my work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i09:r3",
+              "targetText": "I have already finished my lunch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already finished my work.",
+                "uk": "У записі звучить I have already finished my work."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already finished my work.",
+                "uk": "У записі звучить I have already finished my work."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Если вы не расслышали человека, вы обычно просите повторить. Дополните привычку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i10:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i10:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i10:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Если вы не расслышали человека, вы обычно просите повторить. Дополните привычку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Если вы не расслышали человека, вы обычно просите повторить. Дополните привычку.",
+            "uk": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I do not hear someone, I ___ them to repeat it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i10:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i10:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i10:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Если вы не расслышали человека, вы обычно просите повторить. Дополните привычку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i10:r2",
+              "correct": false,
+              "testedDimension": "Если вы не расслышали человека, вы обычно просите повторить. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "С I глагол ask без -s.",
+                "uk": "З I дієслово ask без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i10:r3",
+              "correct": false,
+              "testedDimension": "Если вы не расслышали человека, вы обычно просите повторить. Дополните привычку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужно сказуемое ask.",
+                "uk": "Для звички потрібен присудок ask."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг говорит слишком тихо. Попросите: «Можешь говорить немного громче?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг говорит слишком тихо. Попросите: «Можешь говорить немного громче?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you speak a little louder?",
+          "localizedMeaning": {
+            "ru": "Друг говорит слишком тихо. Попросите: «Можешь говорить немного громче?»",
+            "uk": "Друг говорить надто тихо. Попросіть: «Можеш говорити трохи голосніше?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "speak",
+            "a",
+            "little",
+            "louder"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i12:r1",
+            "text": "We will eat after Anna gets here."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i12:r2",
+            "text": "We will leave after Anna gets here."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i12:r3",
+            "text": "We will eat before Anna gets here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i12:audio",
+            "transcript": "We will eat after Anna gets here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i12:r1",
+              "targetText": "We will eat after Anna gets here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i12:r2",
+              "targetText": "We will leave after Anna gets here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i12:r3",
+              "targetText": "We will eat before Anna gets here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat after Anna gets here.",
+                "uk": "У записі звучить We will eat after Anna gets here."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat after Anna gets here.",
+                "uk": "У записі звучить We will eat after Anna gets here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Когда друг позвонил, вы уже вышли. Дополните более раннее событие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i13:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Когда друг позвонил, вы уже вышли. Дополните более раннее событие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Когда друг позвонил, вы уже вышли. Дополните более раннее событие.",
+            "uk": "Коли друг зателефонував, ви вже вийшли. Доповніть ранішу подію."
+          },
+          "gappedTargetPhrase": "I ___ left by the time he called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i13:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i13:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Когда друг позвонил, вы уже вышли. Дополните более раннее событие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i13:r2",
+              "correct": false,
+              "testedDimension": "Когда друг позвонил, вы уже вышли. Дополните более раннее событие.",
+              "feedbackByLocale": {
+                "ru": "Called задаёт прошлый момент; более раннее событие — had left.",
+                "uk": "Called задає минулий момент; раніша подія — had left."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i13:r3",
+              "correct": false,
+              "testedDimension": "Когда друг позвонил, вы уже вышли. Дополните более раннее событие.",
+              "feedbackByLocale": {
+                "ru": "Нужно had left для действия, которое произошло раньше.",
+                "uk": "Потрібно had left для дії, яка сталася раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, нашли ли вы нужное кафе. Нашли. Ответьте неформальным «да».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, нашли ли вы нужное кафе. Нашли. Ответьте неформальным «да».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i14:audio",
+            "transcript": "Yep."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yep.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте предложение подождать.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Услышьте предложение подождать.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i15:audio",
+            "transcript": "I will wait if you need more time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will wait if you need more time.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "wait",
+            "if",
+            "you",
+            "need",
+            "more",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i16:r1",
+            "text": "I will send the address when you call."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i16:r2",
+            "text": "I will send the address before you call."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i16:r3",
+            "text": "I will send the photo when you call."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i16:audio",
+            "transcript": "I will send the address when you call."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i16:r1",
+              "targetText": "I will send the address when you call.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i16:r2",
+              "targetText": "I will send the address before you call.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i16:r3",
+              "targetText": "I will send the photo when you call.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will send the address when you call.",
+                "uk": "У записі звучить I will send the address when you call."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will send the address when you call.",
+                "uk": "У записі звучить I will send the address when you call."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга спрашивает, хотите ли вы уходить. Скажите: «Нет, я ещё не готов». Используйте no.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга спрашивает, хотите ли вы уходить. Скажите: «Нет, я ещё не готов». Используйте no.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "No, I am not ready yet.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, хотите ли вы уходить. Скажите: «Нет, я ещё не готов». Используйте no.",
+            "uk": "Подруга запитує, чи хочете ви йти. Скажіть: «Ні, я ще не готовий». Використайте no."
+          },
+          "orderedTokens": [
+            "No,",
+            "I",
+            "am",
+            "not",
+            "ready",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-19:word:pardon",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pardon",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:pardon:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pardon",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:pardon:audio",
+            "transcript": "pardon"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:pardon:r1",
+              "targetText": "pardon",
+              "meaningByLocale": {
+                "ru": "Простите? Вопрос Pardon? просит повторить то, что вы не расслышали.",
+                "uk": "Перепрошую? Питання Pardon? просить повторити те, чого ви не розчули."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pardon",
+            "definitionByLocale": {
+              "ru": "Простите? Вопрос Pardon? просит повторить то, что вы не расслышали.",
+              "uk": "Перепрошую? Питання Pardon? просить повторити те, чого ви не розчули."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i01",
+        "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На вулиці шумно, і ви не розчули час зустрічі. Перепитайте одним словом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i01:audio"
+        ],
+        "accessibilityLabel": "На вулиці шумно, і ви не розчули час зустрічі. Перепитайте одним словом.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i01:audio",
+            "transcript": "Pardon?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Pardon?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i02:r1",
+            "text": "We will meet outside the café."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i02:r2",
+            "text": "We will meet inside the café."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i02:r3",
+            "text": "We will meet outside the station."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i02:audio",
+            "transcript": "We will meet outside the café."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i02:r1",
+              "targetText": "We will meet outside the café.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i02:r2",
+              "targetText": "We will meet inside the café.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i02:r3",
+              "targetText": "We will meet outside the station.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will meet outside the café.",
+                "uk": "У записі звучить We will meet outside the café."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will meet outside the café.",
+                "uk": "У записі звучить We will meet outside the café."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:word:yep",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — yep",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:yep:audio"
+        ],
+        "accessibilityLabel": "Картка слова — yep",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:yep:audio",
+            "transcript": "yep"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:yep:r1",
+              "targetText": "yep",
+              "meaningByLocale": {
+                "ru": "Да; неформальный разговорный ответ, как yes в беседе с другом.",
+                "uk": "Так; неформальна розмовна відповідь, як yes у бесіді з другом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "yep",
+            "definitionByLocale": {
+              "ru": "Да; неформальный разговорный ответ, как yes в беседе с другом.",
+              "uk": "Так; неформальна розмовна відповідь, як yes у бесіді з другом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитує, чи готові ви виходити. Ви готові. Виберіть неформальне «так».",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i03:r1",
+            "text": "Yep"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i03:r2",
+            "text": "Pardon"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i03:r3",
+            "text": "Goodbye"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитує, чи готові ви виходити. Ви готові. Виберіть неформальне «так».",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спрашивает, готовы ли вы выходить. Вы готовы. Выберите неформальное «да».",
+            "uk": "Друг запитує, чи готові ви виходити. Ви готові. Виберіть неформальне «так»."
+          },
+          "gappedTargetPhrase": "___!",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i03:r1",
+              "text": "Yep"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i03:r2",
+              "text": "Pardon"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i03:r3",
+              "text": "Goodbye"
+            }
+          ],
+          "testedDimension": "Друг запитує, чи готові ви виходити. Ви готові. Виберіть неформальне «так».",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Друг запитує, чи готові ви виходити. Ви готові. Виберіть неформальне «так».",
+              "feedbackByLocale": {
+                "ru": "Pardon просит повторить, а вы расслышали вопрос и соглашаетесь.",
+                "uk": "Pardon просить повторити, а ви розчули питання й погоджуєтеся."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Друг запитує, чи готові ви виходити. Ви готові. Виберіть неформальне «так».",
+              "feedbackByLocale": {
+                "ru": "Goodbye — прощание, а не положительный ответ.",
+                "uk": "Goodbye — прощання, а не ствердна відповідь."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уточніть у сестри: «Ти вже знайшла ключі?» Використайте yet.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточніть у сестри: «Ти вже знайшла ключі?» Використайте yet.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you found the keys yet?",
+          "localizedMeaning": {
+            "ru": "Уточните у сестры: «Ты уже нашла ключи?» Используйте yet.",
+            "uk": "Уточніть у сестри: «Ти вже знайшла ключі?» Використайте yet."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "found",
+            "the",
+            "keys",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:word:nope",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nope",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:nope:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nope",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:nope:audio",
+            "transcript": "nope"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:nope:r1",
+              "targetText": "nope",
+              "meaningByLocale": {
+                "ru": "Нет; неформальный разговорный ответ. Nope, not yet — нет, ещё нет.",
+                "uk": "Ні; неформальна розмовна відповідь. Nope, not yet — ні, ще ні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nope",
+            "definitionByLocale": {
+              "ru": "Нет; неформальный разговорный ответ. Nope, not yet — нет, ещё нет.",
+              "uk": "Ні; неформальна розмовна відповідь. Nope, not yet — ні, ще ні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, чи закінчено роботу. Ще ні. Дайте неформальну заперечну відповідь одним словом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, чи закінчено роботу. Ще ні. Дайте неформальну заперечну відповідь одним словом.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i05:audio",
+            "transcript": "Nope."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Nope.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пообіцяйте вийти, коли сестра буде готова. Доповніть час виходу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i06:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i06:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пообіцяйте вийти, коли сестра буде готова. Доповніть час виходу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Пообещайте выйти, когда сестра будет готова. Дополните время выхода.",
+            "uk": "Пообіцяйте вийти, коли сестра буде готова. Доповніть час виходу."
+          },
+          "gappedTargetPhrase": "I will leave when she ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i06:r2",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i06:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Пообіцяйте вийти, коли сестра буде готова. Доповніть час виходу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Пообіцяйте вийти, коли сестра буде готова. Доповніть час виходу.",
+              "feedbackByLocale": {
+                "ru": "После when в придаточном времени о будущем is без will.",
+                "uk": "Після when у підрядному часу про майбутнє is без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Пообіцяйте вийти, коли сестра буде готова. Доповніть час виходу.",
+              "feedbackByLocale": {
+                "ru": "С she нужна личная форма is.",
+                "uk": "З she потрібна особова форма is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:word:hey",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hey",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:word:hey:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hey",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:word:hey:audio",
+            "transcript": "hey"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:word:hey:r1",
+              "targetText": "hey",
+              "meaningByLocale": {
+                "ru": "Эй! Неформальное обращение или приветствие знакомому; произносится с подходящим ситуации тоном.",
+                "uk": "Гей! Неформальне звертання або привітання знайомому; вимовляється з відповідним ситуації тоном."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hey",
+            "definitionByLocale": {
+              "ru": "Эй! Неформальное обращение или приветствие знакомому; произносится с подходящим ситуации тоном.",
+              "uk": "Гей! Неформальне звертання або привітання знайомому; вимовляється з відповідним ситуації тоном."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви помітили друга через дорогу. Приверніть його увагу коротким «Гей!»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Ви помітили друга через дорогу. Приверніть його увагу коротким «Гей!»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i07:audio",
+            "transcript": "Hey!"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Hey!",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте обіцянку після повернення додому.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Почуйте обіцянку після повернення додому.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i08:audio",
+            "transcript": "I will call when I get home."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will call when I get home.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "call",
+            "when",
+            "I",
+            "get",
+            "home"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i09:r1",
+            "text": "I have already finished my work."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i09:r2",
+            "text": "I have already started my work."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i09:r3",
+            "text": "I have already finished my lunch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i09:audio",
+            "transcript": "I have already finished my work."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i09:r1",
+              "targetText": "I have already finished my work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i09:r2",
+              "targetText": "I have already started my work.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i09:r3",
+              "targetText": "I have already finished my lunch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already finished my work.",
+                "uk": "У записі звучить I have already finished my work."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already finished my work.",
+                "uk": "У записі звучить I have already finished my work."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i10:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i10:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i10:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Если вы не расслышали человека, вы обычно просите повторить. Дополните привычку.",
+            "uk": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку."
+          },
+          "gappedTargetPhrase": "If I do not hear someone, I ___ them to repeat it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i10:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i10:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i10:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i10:r2",
+              "correct": false,
+              "testedDimension": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "С I глагол ask без -s.",
+                "uk": "З I дієслово ask без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i10:r3",
+              "correct": false,
+              "testedDimension": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужно сказуемое ask.",
+                "uk": "Для звички потрібен присудок ask."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Друг говорить надто тихо. Попросіть: «Можеш говорити трохи голосніше?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг говорить надто тихо. Попросіть: «Можеш говорити трохи голосніше?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you speak a little louder?",
+          "localizedMeaning": {
+            "ru": "Друг говорит слишком тихо. Попросите: «Можешь говорить немного громче?»",
+            "uk": "Друг говорить надто тихо. Попросіть: «Можеш говорити трохи голосніше?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "speak",
+            "a",
+            "little",
+            "louder"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i12:r1",
+            "text": "We will eat after Anna gets here."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i12:r2",
+            "text": "We will leave after Anna gets here."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i12:r3",
+            "text": "We will eat before Anna gets here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i12:audio",
+            "transcript": "We will eat after Anna gets here."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i12:r1",
+              "targetText": "We will eat after Anna gets here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i12:r2",
+              "targetText": "We will leave after Anna gets here.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i12:r3",
+              "targetText": "We will eat before Anna gets here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat after Anna gets here.",
+                "uk": "У записі звучить We will eat after Anna gets here."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We will eat after Anna gets here.",
+                "uk": "У записі звучить We will eat after Anna gets here."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коли друг зателефонував, ви вже вийшли. Доповніть ранішу подію.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i13:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i13:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коли друг зателефонував, ви вже вийшли. Доповніть ранішу подію.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Когда друг позвонил, вы уже вышли. Дополните более раннее событие.",
+            "uk": "Коли друг зателефонував, ви вже вийшли. Доповніть ранішу подію."
+          },
+          "gappedTargetPhrase": "I ___ left by the time he called.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-19:i13:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i13:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i13:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Коли друг зателефонував, ви вже вийшли. Доповніть ранішу подію.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i13:r2",
+              "correct": false,
+              "testedDimension": "Коли друг зателефонував, ви вже вийшли. Доповніть ранішу подію.",
+              "feedbackByLocale": {
+                "ru": "Called задаёт прошлый момент; более раннее событие — had left.",
+                "uk": "Called задає минулий момент; раніша подія — had left."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i13:r3",
+              "correct": false,
+              "testedDimension": "Коли друг зателефонував, ви вже вийшли. Доповніть ранішу подію.",
+              "feedbackByLocale": {
+                "ru": "Нужно had left для действия, которое произошло раньше.",
+                "uk": "Потрібно had left для дії, яка сталася раніше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, чи знайшли ви потрібне кафе. Знайшли. Дайте відповідь неформальним «так».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, чи знайшли ви потрібне кафе. Знайшли. Дайте відповідь неформальним «так».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i14:audio",
+            "transcript": "Yep."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Yep.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пропозицію зачекати.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Почуйте пропозицію зачекати.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i15:audio",
+            "transcript": "I will wait if you need more time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I will wait if you need more time.",
+          "orderedTokens": [
+            "I",
+            "will",
+            "wait",
+            "if",
+            "you",
+            "need",
+            "more",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-19:i16:r1",
+            "text": "I will send the address when you call."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i16:r2",
+            "text": "I will send the address before you call."
+          },
+          {
+            "responseId": "en:lesson-26:session-19:i16:r3",
+            "text": "I will send the photo when you call."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-19:i16:audio",
+            "transcript": "I will send the address when you call."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-19:i16:r1",
+              "targetText": "I will send the address when you call.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i16:r2",
+              "targetText": "I will send the address before you call.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i16:r3",
+              "targetText": "I will send the photo when you call.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-19:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will send the address when you call.",
+                "uk": "У записі звучить I will send the address when you call."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-19:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will send the address when you call.",
+                "uk": "У записі звучить I will send the address when you call."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подруга запитує, чи хочете ви йти. Скажіть: «Ні, я ще не готовий». Використайте no.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подруга запитує, чи хочете ви йти. Скажіть: «Ні, я ще не готовий». Використайте no.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "No, I am not ready yet.",
+          "localizedMeaning": {
+            "ru": "Подруга спрашивает, хотите ли вы уходить. Скажите: «Нет, я ещё не готов». Используйте no.",
+            "uk": "Подруга запитує, чи хочете ви йти. Скажіть: «Ні, я ще не готовий». Використайте no."
+          },
+          "orderedTokens": [
+            "No,",
+            "I",
+            "am",
+            "not",
+            "ready",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-19:word:pardon",
+      "correctText": "pardon",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i01",
+      "correctText": "Pardon?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i02",
+      "correctText": "We will meet outside the café.",
+      "correctResponseId": "en:lesson-26:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:word:yep",
+      "correctText": "yep",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i03",
+      "correctText": "Yep",
+      "correctResponseId": "en:lesson-26:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i04",
+      "correctText": "Have you found the keys yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:word:nope",
+      "correctText": "nope",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i05",
+      "correctText": "Nope.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-26:session-19:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:word:hey",
+      "correctText": "hey",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i07",
+      "correctText": "Hey!",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i08",
+      "correctText": "I will call when I get home.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i09",
+      "correctText": "I have already finished my work.",
+      "correctResponseId": "en:lesson-26:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i10",
+      "correctText": "ask",
+      "correctResponseId": "en:lesson-26:session-19:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i11",
+      "correctText": "Can you speak a little louder?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i12",
+      "correctText": "We will eat after Anna gets here.",
+      "correctResponseId": "en:lesson-26:session-19:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i13",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-19:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i14",
+      "correctText": "Yep.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i15",
+      "correctText": "I will wait if you need more time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i16",
+      "correctText": "I will send the address when you call.",
+      "correctResponseId": "en:lesson-26:session-19:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:i17",
+      "correctText": "No, I am not ready yet.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -9926,4 +9926,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future main clause + time clause in present simple: when, after, before","uk":"future main clause + time clause in present simple: when, after, before"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 18,
+    sourceFingerprint: "ed75167abac71b1d4e3c52d53040863a02a5e1eb140f8bfb5e184ad34ab30fdf",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; zero and first conditional; already, yet; past perfect","uk":"future time clauses; zero and first conditional; already, yet; past perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 26, sessionOrdinal: 19,
+    sourceFingerprint: "740f88c714799995277bd5b667e6c86d19d2a5909618ed2855922b1ced6c38b8",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"future time clauses; first and zero conditional; already, yet; past perfect","uk":"future time clauses; first and zero conditional; already, yet; past perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
+  }),
 ]);

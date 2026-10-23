@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-18:intro1:r2": {
+          "ru": "После when в придаточном времени о будущем choose без will.",
+          "uk": "Після when у підрядному часу про майбутнє choose без will."
+        },
+        "en:lesson-26:session-18:intro1:r3": {
+          "ru": "С you нужно choose без -s.",
+          "uk": "З you потрібно choose без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-18:intro2:r2": {
+          "ru": "С I нужно stop без -s.",
+          "uk": "З I потрібно stop без -s."
+        },
+        "en:lesson-26:session-18:intro2:r3": {
+          "ru": "Нужно сказуемое stop, а не stopping без вспомогательного глагола.",
+          "uk": "Потрібен присудок stop, а не stopping без допоміжного дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-18:intro3:r2": {
+          "ru": "После have нужна третья форма paid.",
+          "uk": "Після have потрібна третя форма paid."
+        },
+        "en:lesson-26:session-18:intro3:r3": {
+          "ru": "С I употребляем have.",
+          "uk": "З I вживаємо have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1643c33cbe952214aa85aea32c1d07852991cbb49ade6a583ee7cc4684f6bd64"
+}

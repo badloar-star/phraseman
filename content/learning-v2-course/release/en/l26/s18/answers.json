@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-18:word:decent",
+    "correctText": "decent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i01",
+    "correctText": "This is a decent place to eat.",
+    "correctResponseId": "en:lesson-26:session-18:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i02",
+    "correctText": "I will book a table when you choose a place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:word:posh",
+    "correctText": "posh",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i03",
+    "correctText": "posh",
+    "correctResponseId": "en:lesson-26:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i04",
+    "correctText": "I have already booked a table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:word:dull",
+    "correctText": "dull",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i05",
+    "correctText": "The film was rather dull.",
+    "correctResponseId": "en:lesson-26:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i06",
+    "correctText": "stop",
+    "correctResponseId": "en:lesson-26:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:word:stingy",
+    "correctText": "stingy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i07",
+    "correctText": "Do not be stingy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i08",
+    "correctText": "Let us split the bill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i09",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-26:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i10",
+    "correctText": "We found a decent room near the station.",
+    "correctResponseId": "en:lesson-26:session-18:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i11",
+    "correctText": "Have you looked at the menu yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i13",
+    "correctText": "We do not need anything posh.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i14",
+    "correctText": "We will go for a walk after we eat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i15",
+    "correctText": "I will stay if the music is good.",
+    "correctResponseId": "en:lesson-26:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i16",
+    "correctText": "It was a bit dull.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-18:i17",
+    "correctText": "I will come out when I am ready.",
+    "correctResponseId": null
+  }
+]

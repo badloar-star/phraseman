@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-19:word:pardon",
+    "correctText": "pardon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i01",
+    "correctText": "Pardon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i02",
+    "correctText": "We will meet outside the café.",
+    "correctResponseId": "en:lesson-26:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:word:yep",
+    "correctText": "yep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i03",
+    "correctText": "Yep",
+    "correctResponseId": "en:lesson-26:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i04",
+    "correctText": "Have you found the keys yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:word:nope",
+    "correctText": "nope",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i05",
+    "correctText": "Nope.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-26:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:word:hey",
+    "correctText": "hey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i07",
+    "correctText": "Hey!",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i08",
+    "correctText": "I will call when I get home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i09",
+    "correctText": "I have already finished my work.",
+    "correctResponseId": "en:lesson-26:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i10",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-26:session-19:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i11",
+    "correctText": "Can you speak a little louder?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i12",
+    "correctText": "We will eat after Anna gets here.",
+    "correctResponseId": "en:lesson-26:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-19:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i14",
+    "correctText": "Yep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i15",
+    "correctText": "I will wait if you need more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i16",
+    "correctText": "I will send the address when you call.",
+    "correctResponseId": "en:lesson-26:session-19:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-19:i17",
+    "correctText": "No, I am not ready yet.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "future time clauses; first and zero conditional; already, yet; past perfect",
+    "uk": "future time clauses; first and zero conditional; already, yet; past perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не расслышали",
+        "uk": "Не розчули"
+      },
+      "bodyByLocale": {
+        "ru": "Pardon? — «Простите?», когда вы не расслышали и просите повторить. Это короткий вопрос, а не ответ «да». Если друг объясняет, когда позвонит, можно услышать I will call when I get home — я позвоню, когда доберусь домой. После when в таком придаточном времени о будущем — get, без will. Если не расслышали место или время, сначала попросите повторить: Pardon?",
+        "uk": "Pardon? — «Перепрошую?», коли ви не розчули й просите повторити. Це коротке питання, а не відповідь «так». Якщо друг пояснює, коли зателефонує, можна почути I will call when I get home — я зателефоную, коли дістануся додому. Після when у такому підрядному часу про майбутнє — get, без will. Якщо не розчули місце або час, спочатку попросіть повторити: Pardon?"
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-19:intro1:r1",
+              "text": "I will call when I get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro1:r2",
+              "text": "I will call when I will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro1:r3",
+              "text": "I will call when I gets home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-19:intro1:r1",
+              "text": "I will call when I get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro1:r2",
+              "text": "I will call when I will get home."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro1:r3",
+              "text": "I will call when I gets home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткое да и нет",
+        "uk": "Коротке так і ні"
+      },
+      "bodyByLocale": {
+        "ru": "Yep — разговорное «да», а nope — разговорное «нет». Их удобно использовать в непринуждённом разговоре с друзьями. На вопрос Are you ready? можно ответить Yep. На вопрос Have you finished yet? — Nope, not yet: нет, ещё не закончил. В более нейтральной речи остаются знакомые yes и no. I have already finished — я уже закончил — сообщает готовый результат.",
+        "uk": "Yep — розмовне «так», а nope — розмовне «ні». Їх зручно використовувати в невимушеній розмові з друзями. На питання Are you ready? можна відповісти Yep. На питання Have you finished yet? — Nope, not yet: ні, ще не закінчив. У більш нейтральному мовленні залишаються знайомі yes та no. I have already finished — я вже закінчив — повідомляє готовий результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-19:intro2:r1",
+              "text": "I have already finished."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro2:r2",
+              "text": "I have already finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro2:r3",
+              "text": "I has already finished."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-19:intro2:r1",
+              "text": "I have already finished."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro2:r2",
+              "text": "I have already finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro2:r3",
+              "text": "I has already finished."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обратиться к другу",
+        "uk": "Звернутися до друга"
+      },
+      "bodyByLocale": {
+        "ru": "Hey! — «Эй!» или неформальное «Привет!», чтобы привлечь внимание знакомого. Тон важен: резкий окрик и дружеское приветствие звучат по-разному. После обращения можно предложить помощь: I will wait if you need more time — я подожду, если тебе нужно больше времени. If — условие, а when в I will leave when you are ready — момент: я уйду, когда ты будешь готов. В обеих придаточных частях здесь нет will.",
+        "uk": "Hey! — «Гей!» або неформальне «Привіт!», щоб привернути увагу знайомого. Тон важливий: різкий окрик і дружнє привітання звучать по-різному. Після звертання можна запропонувати допомогу: I will wait if you need more time — я зачекаю, якщо тобі потрібно більше часу. If — умова, а when у I will leave when you are ready — момент: я піду, коли ти будеш готовий. В обох підрядних частинах тут немає will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-19:intro3:r1",
+              "text": "I will wait if you need more time."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro3:r2",
+              "text": "I will wait if you will need more time."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro3:r3",
+              "text": "I will waits if you need more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-19:intro3:r1",
+              "text": "I will wait if you need more time."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro3:r2",
+              "text": "I will wait if you will need more time."
+            },
+            {
+              "responseId": "en:lesson-26:session-19:intro3:r3",
+              "text": "I will waits if you need more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "948a93ad0c8e6c8a65577d7d83df90f8ef81d622ed17b581c93ab5495e5825c5"
+}

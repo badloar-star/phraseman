@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-19:intro1:r2": {
+          "ru": "После when в придаточном времени здесь get без will.",
+          "uk": "Після when у підрядному часу тут get без will."
+        },
+        "en:lesson-26:session-19:intro1:r3": {
+          "ru": "С I глагол get без -s.",
+          "uk": "З I дієслово get без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-19:intro2:r2": {
+          "ru": "После have нужна форма finished.",
+          "uk": "Після have потрібна форма finished."
+        },
+        "en:lesson-26:session-19:intro2:r3": {
+          "ru": "С I употребляем have.",
+          "uk": "З I вживаємо have."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-19:intro3:r2": {
+          "ru": "После if в этом условии need без will.",
+          "uk": "Після if у цій умові need без will."
+        },
+        "en:lesson-26:session-19:intro3:r3": {
+          "ru": "После will нужна форма wait без -s.",
+          "uk": "Після will потрібна форма wait без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "724d4174b6a7909ec3af4aab36ea8035d04dbbf59217a8c2cf7b6c4798c608dc"
+}

@@ -1,0 +1,1085 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-18:word:decent",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — decent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:word:decent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — decent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:word:decent:audio",
+          "transcript": "decent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:word:decent:r1",
+            "targetText": "decent",
+            "meaningByLocale": {
+              "ru": "Вполне хороший, приличный. A decent place — вполне хорошее место, без обещания роскоши.",
+              "uk": "Цілком хороший, пристойний. A decent place — цілком хороше місце, без обіцянки розкоші."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "decent",
+          "definitionByLocale": {
+            "ru": "Вполне хороший, приличный. A decent place — вполне хорошее место, без обещания роскоши.",
+            "uk": "Цілком хороший, пристойний. A decent place — цілком хороше місце, без обіцянки розкоші."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i01:r1",
+          "text": "This is a decent place to eat."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i01:r2",
+          "text": "This is a quiet place to eat."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i01:r3",
+          "text": "This is a decent place to stay."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i01:audio",
+          "transcript": "This is a decent place to eat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:i01:r1",
+            "targetText": "This is a decent place to eat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i01:r2",
+            "targetText": "This is a quiet place to eat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i01:r3",
+            "targetText": "This is a decent place to stay.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a decent place to eat.",
+              "uk": "У записі звучить This is a decent place to eat."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a decent place to eat.",
+              "uk": "У записі звучить This is a decent place to eat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг вибере кафе пізніше. Пообіцяйте: «Я забронюю столик, коли ти вибереш місце».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг вибере кафе пізніше. Пообіцяйте: «Я забронюю столик, коли ти вибереш місце».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will book a table when you choose a place.",
+        "localizedMeaning": {
+          "ru": "Друг выберет кафе позже. Пообещайте: «Я забронирую столик, когда ты выберешь место».",
+          "uk": "Друг вибере кафе пізніше. Пообіцяйте: «Я забронюю столик, коли ти вибереш місце»."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "book",
+          "a",
+          "table",
+          "when",
+          "you",
+          "choose",
+          "a",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:word:posh",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — posh",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:word:posh:audio"
+      ],
+      "accessibilityLabel": "Картка слова — posh",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:word:posh:audio",
+          "transcript": "posh"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:word:posh:r1",
+            "targetText": "posh",
+            "meaningByLocale": {
+              "ru": "Шикарный, дорогой на вид; разговорное слово. A posh restaurant — шикарный ресторан.",
+              "uk": "Шикарний, дорогий на вигляд; розмовне слово. A posh restaurant — шикарний ресторан."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "posh",
+          "definitionByLocale": {
+            "ru": "Шикарный, дорогой на вид; разговорное слово. A posh restaurant — шикарный ресторан.",
+            "uk": "Шикарний, дорогий на вигляд; розмовне слово. A posh restaurant — шикарний ресторан."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви описуєте ресторан із розкішною залою та дорогою обстановкою. Доповніть оцінку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i03:r1",
+          "text": "posh"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i03:r2",
+          "text": "empty"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i03:r3",
+          "text": "broken"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви описуєте ресторан із розкішною залою та дорогою обстановкою. Доповніть оцінку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы описываете ресторан с роскошным залом и дорогой обстановкой. Дополните оценку.",
+          "uk": "Ви описуєте ресторан із розкішною залою та дорогою обстановкою. Доповніть оцінку."
+        },
+        "gappedTargetPhrase": "It looks very ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-18:i03:r1",
+            "text": "posh"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i03:r2",
+            "text": "empty"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i03:r3",
+            "text": "broken"
+          }
+        ],
+        "testedDimension": "Ви описуєте ресторан із розкішною залою та дорогою обстановкою. Доповніть оцінку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви описуєте ресторан із розкішною залою та дорогою обстановкою. Доповніть оцінку.",
+            "feedbackByLocale": {
+              "ru": "Empty означает пустой, а вы описываете роскошную обстановку.",
+              "uk": "Empty означає порожній, а ви описуєте розкішну обстановку."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви описуєте ресторан із розкішною залою та дорогою обстановкою. Доповніть оцінку.",
+            "feedbackByLocale": {
+              "ru": "Broken означает сломанный, а не шикарный.",
+              "uk": "Broken означає зламаний, а не шикарний."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сестра запитує про бронювання. Дайте відповідь: «Я вже забронював столик».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Сестра запитує про бронювання. Дайте відповідь: «Я вже забронював столик».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i04:audio",
+          "transcript": "I have already booked a table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have already booked a table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:word:dull",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dull",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:word:dull:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dull",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:word:dull:audio",
+          "transcript": "dull"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:word:dull:r1",
+            "targetText": "dull",
+            "meaningByLocale": {
+              "ru": "Скучный, неинтересный. A dull film — скучный фильм.",
+              "uk": "Нудний, нецікавий. A dull film — нудний фільм."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dull",
+          "definitionByLocale": {
+            "ru": "Скучный, неинтересный. A dull film — скучный фильм.",
+            "uk": "Нудний, нецікавий. A dull film — нудний фільм."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i05:r1",
+          "text": "The film was rather dull."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i05:r2",
+          "text": "The film was rather short."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i05:r3",
+          "text": "The evening was rather dull."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i05:audio",
+          "transcript": "The film was rather dull."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:i05:r1",
+            "targetText": "The film was rather dull.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i05:r2",
+            "targetText": "The film was rather short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i05:r3",
+            "targetText": "The evening was rather dull.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The film was rather dull.",
+              "uk": "У записі звучить The film was rather dull."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The film was rather dull.",
+              "uk": "У записі звучить The film was rather dull."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви зазвичай вимикаєте нудний фільм. Доповніть свою звичку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i06:r1",
+          "text": "stop"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i06:r2",
+          "text": "stops"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i06:r3",
+          "text": "stopping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зазвичай вимикаєте нудний фільм. Доповніть свою звичку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обычно выключаете скучный фильм. Дополните свою привычку.",
+          "uk": "Ви зазвичай вимикаєте нудний фільм. Доповніть свою звичку."
+        },
+        "gappedTargetPhrase": "If a film is dull, I ___ watching.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-18:i06:r1",
+            "text": "stop"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i06:r2",
+            "text": "stops"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i06:r3",
+            "text": "stopping"
+          }
+        ],
+        "testedDimension": "Ви зазвичай вимикаєте нудний фільм. Доповніть свою звичку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви зазвичай вимикаєте нудний фільм. Доповніть свою звичку.",
+            "feedbackByLocale": {
+              "ru": "С I глагол stop без -s.",
+              "uk": "З I дієслово stop без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви зазвичай вимикаєте нудний фільм. Доповніть свою звичку.",
+            "feedbackByLocale": {
+              "ru": "Нужно сказуемое stop, не отдельное stopping.",
+              "uk": "Потрібен присудок stop, а не окреме stopping."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:word:stingy",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stingy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:word:stingy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stingy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:word:stingy:audio",
+          "transcript": "stingy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:word:stingy:r1",
+            "targetText": "stingy",
+            "meaningByLocale": {
+              "ru": "Скупой, не желающий тратить или делиться. Неодобрительная оценка, а не нейтральная экономность.",
+              "uk": "Скупий, не охочий витрачати або ділитися. Несхвальна оцінка, а не нейтральна ощадливість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stingy",
+          "definitionByLocale": {
+            "ru": "Скупой, не желающий тратить или делиться. Неодобрительная оценка, а не нейтральная экономность.",
+            "uk": "Скупий, не охочий витрачати або ділитися. Несхвальна оцінка, а не нейтральна ощадливість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг не хоче платити свою частину спільного рахунку. Із несхваленням скажіть: «Не скупися».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Друг не хоче платити свою частину спільного рахунку. Із несхваленням скажіть: «Не скупися».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i07:audio",
+          "transcript": "Do not be stingy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do not be stingy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію поділити витрати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію поділити витрати.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i08:audio",
+          "transcript": "Let us split the bill."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Let us split the bill.",
+        "orderedTokens": [
+          "Let",
+          "us",
+          "split",
+          "the",
+          "bill"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг оплатить квитки. Пообіцяйте повернути йому гроші після отримання зарплати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i09:r1",
+          "text": "get"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i09:r2",
+          "text": "will get"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i09:r3",
+          "text": "gets"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг оплатить квитки. Пообіцяйте повернути йому гроші після отримання зарплати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг оплатит билеты. Пообещайте вернуть ему деньги после получения зарплаты.",
+          "uk": "Друг оплатить квитки. Пообіцяйте повернути йому гроші після отримання зарплати."
+        },
+        "gappedTargetPhrase": "I will pay you back when I ___ paid.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-18:i09:r1",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i09:r2",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i09:r3",
+            "text": "gets"
+          }
+        ],
+        "testedDimension": "Друг оплатить квитки. Пообіцяйте повернути йому гроші після отримання зарплати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Друг оплатить квитки. Пообіцяйте повернути йому гроші після отримання зарплати.",
+            "feedbackByLocale": {
+              "ru": "После when в придаточном времени о будущем get без will.",
+              "uk": "Після when у підрядному часу про майбутнє get без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Друг оплатить квитки. Пообіцяйте повернути йому гроші після отримання зарплати.",
+            "feedbackByLocale": {
+              "ru": "С I нужна форма get без -s.",
+              "uk": "З I потрібна форма get без -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i10:r1",
+          "text": "We found a decent room near the station."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i10:r2",
+          "text": "We found a decent room near the beach."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i10:r3",
+          "text": "We found a small room near the station."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i10:audio",
+          "transcript": "We found a decent room near the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:i10:r1",
+            "targetText": "We found a decent room near the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i10:r2",
+            "targetText": "We found a decent room near the beach.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i10:r3",
+            "targetText": "We found a small room near the station.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We found a decent room near the station.",
+              "uk": "У записі звучить We found a decent room near the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We found a decent room near the station.",
+              "uk": "У записі звучить We found a decent room near the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть у друга: «Ти вже подивився меню?» Використайте yet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть у друга: «Ти вже подивився меню?» Використайте yet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you looked at the menu yet?",
+        "localizedMeaning": {
+          "ru": "Уточните у друга: «Ты уже посмотрел меню?» Используйте yet.",
+          "uk": "Уточніть у друга: «Ти вже подивився меню?» Використайте yet."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "looked",
+          "at",
+          "the",
+          "menu",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви оплатили рахунок раніше, ніж прийшли інші. Доповніть ранішу дію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i12:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i12:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i12:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви оплатили рахунок раніше, ніж прийшли інші. Доповніть ранішу дію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы оплатили счёт раньше, чем пришли остальные. Дополните более раннее действие.",
+          "uk": "Ви оплатили рахунок раніше, ніж прийшли інші. Доповніть ранішу дію."
+        },
+        "gappedTargetPhrase": "I ___ paid by the time the others arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-18:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i12:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Ви оплатили рахунок раніше, ніж прийшли інші. Доповніть ранішу дію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви оплатили рахунок раніше, ніж прийшли інші. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Arrived задаёт прошлое; более раннее событие — had paid.",
+              "uk": "Arrived задає минуле; раніша подія — had paid."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви оплатили рахунок раніше, ніж прийшли інші. Доповніть ранішу дію.",
+            "feedbackByLocale": {
+              "ru": "Для действия, которое вы выполнили раньше, нужно had paid.",
+              "uk": "Для дії, яку ви виконали раніше, потрібно had paid."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подруга пропонує шикарний ресторан. Скажіть: «Нам не потрібно нічого шикарного».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Подруга пропонує шикарний ресторан. Скажіть: «Нам не потрібно нічого шикарного».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i13:audio",
+          "transcript": "We do not need anything posh."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We do not need anything posh.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте план після вечері.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Почуйте план після вечері.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i14:audio",
+          "transcript": "We will go for a walk after we eat."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We will go for a walk after we eat.",
+        "orderedTokens": [
+          "We",
+          "will",
+          "go",
+          "for",
+          "a",
+          "walk",
+          "after",
+          "we",
+          "eat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-18:i15:r1",
+          "text": "I will stay if the music is good."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i15:r2",
+          "text": "I will leave if the music is good."
+        },
+        {
+          "responseId": "en:lesson-26:session-18:i15:r3",
+          "text": "I will stay if the food is good."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i15:audio",
+          "transcript": "I will stay if the music is good."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-18:i15:r1",
+            "targetText": "I will stay if the music is good.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i15:r2",
+            "targetText": "I will leave if the music is good.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i15:r3",
+            "targetText": "I will stay if the food is good.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-18:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will stay if the music is good.",
+              "uk": "У записі звучить I will stay if the music is good."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-18:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will stay if the music is good.",
+              "uk": "У записі звучить I will stay if the music is good."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брат запитує про вечір. Дайте відповідь: «Було трохи нудно». Використайте dull.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брат запитує про вечір. Дайте відповідь: «Було трохи нудно». Використайте dull.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was a bit dull.",
+        "localizedMeaning": {
+          "ru": "Брат спрашивает о вечере. Ответьте: «Было немного скучно». Используйте dull.",
+          "uk": "Брат запитує про вечір. Дайте відповідь: «Було трохи нудно». Використайте dull."
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "a",
+          "bit",
+          "dull"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг чекає біля входу. Пообіцяйте: «Я вийду, коли буду готовий».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Друг чекає біля входу. Пообіцяйте: «Я вийду, коли буду готовий».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-18:i17:audio",
+          "transcript": "I will come out when I am ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will come out when I am ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "292b44325ef929109f14181a3c1d58e1be1d09cc58073352276f01ca7a912445"
+}

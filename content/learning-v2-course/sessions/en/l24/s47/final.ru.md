@@ -1,137 +1,137 @@
-# Английский · Урок 24 · Занятие 47 — Поездки по Европе
+# Английский · Урок 24 · Занятие 47 — Чувства и выводы
 
-**Ситуация.** Вы рассказываете, в каких странах побывали и когда приехали.
+**Ситуация.** Вы говорите о чувствах и о том, что заметили или узнали.
 
-**Что вы освоите:** Present Perfect / Past Simple
-**Новые слова:** Poland, Portugal, Norway, Denmark
+**Что вы освоите:** present perfect / past simple
+**Новые слова:** guilt, shame, desire, weakness
 
 ## Интро 1
 
-### Опыт поездки
+### Чувство остаётся
 
-Poland — Польша. I have been to Poland — я бывал в Польше. Have been to сообщает об опыте поездки: человек побывал там и вернулся. Poland пишется с большой буквы, без the. Дата здесь не названа.
+Guilt — чувство вины: вам кажется, что вы сделали что-то не так. I have felt guilt since yesterday — я испытываю чувство вины со вчерашнего дня. Чувство возникло вчера и остаётся сейчас, поэтому здесь have felt с since. Это рассказ о переживании, а не о решении суда.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I have been to Poland.**
-- ❌ I has been to Poland. — *С I нужно have.*
-- ❌ I have be to Poland. — *После have нужна форма been.*
+- ✅ **I have felt guilt since yesterday.**
+- ❌ I has felt guilt since yesterday. — *С I нужно have.*
+- ❌ I am felt guilt since yesterday. — *Проверьте форму сказуемого в этом предложении.*
 
 ---
 
 ## Интро 2
 
-### Посетить страну
+### Вчера и сейчас
 
-Portugal — Португалия. She visited Portugal last year — она посетила Португалию в прошлом году. После visited не ставим to. Norway — Норвегия. We have travelled to Norway — мы съездили в Норвегию. После travelled направление выражаем через to. С last year нужен visited без has.
+Shame — стыд, неловкое чувство из-за себя или своего поступка. She hid her shame yesterday — вчера она скрыла свой стыд. Yesterday указывает на законченный день, используем hid — Past Simple от hide. Desire — желание. He has expressed a desire to learn — он выразил желание учиться. Здесь важен нынешний результат: мы знаем, чего он хочет; точный прошедший момент не назван.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She visited Portugal last year.**
-- ❌ She has visited Portugal last year. — *С last year нужно visited без has.*
-- ❌ She visit Portugal last year. — *Для прошлого нужна форма visited.*
+- ✅ **She hid her shame yesterday.**
+- ❌ She hides her shame yesterday. — *С yesterday нужна прошедшая форма hid.*
+- ❌ She hiding her shame yesterday. — *Проверьте форму сказуемого в этом предложении.*
 
 ---
 
 ## Интро 3
 
-### Приехали вчера
+### Слабое место в плане
 
-Denmark — Дания. They arrived in Denmark yesterday — вчера они приехали в Данию. Перед названием страны после arrive нужен in. Yesterday указывает законченный день: arrived без have. Эти четыре названия стран пишутся с большой буквы и без the.
+Weakness — слабость или слабое место. We noticed a weakness in the plan yesterday — вчера мы заметили слабое место в плане. Например, на прогулку собираются десять человек, а мест в машине пять. Здесь weakness относится к плану, не к здоровью человека. С yesterday выбираем noticed: речь о событии в законченном прошлом.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **They arrived in Denmark yesterday.**
-- ❌ They have arrived in Denmark yesterday. — *С yesterday нужно arrived без have.*
-- ❌ They arrive in Denmark yesterday. — *Для прошлого нужна форма arrived.*
+- ✅ **We noticed a weakness in the plan yesterday.**
+- ❌ We notice a weakness in the plan yesterday. — *С yesterday нужна прошедшая форма noticed.*
+- ❌ We noticing a weakness in the plan yesterday. — *Проверьте форму сказуемого в этом предложении.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — Poland**
-<!-- interaction_id: en:lesson-24:session-47:word:Poland; family: word_card -->
-> **Poland** — Польша.
+**1 · Карточка слова — guilt**
+<!-- interaction_id: en:lesson-24:session-47:word:guilt; family: word_card -->
+> **guilt** — чувство вины.
 
-**2 · Скажите: «Я бывал в Польше.»**
+**2 · Скажите: «Я испытываю чувство вины со вчерашнего дня.»**
 <!-- interaction_id: en:lesson-24:session-47:i01; family: phrase_builder -->
-Плитки: `Poland` `to` `been` `have` `I` → **I have been to Poland.**
+Плитки: `yesterday` `since` `guilt` `felt` `have` `I` → **I have felt guilt since yesterday.**
 
-**3 · Дополните рассказ о поездках.**
+**3 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-47:i02; family: context_gap_grammar -->
-I ___ been to Poland. → **have** · has · am
-- has — *С I нужно have перед been.*
-- am — *С I нужно have перед been.*
+I ___ felt guilt since yesterday. → **have** · has · am
+- has — *С I нужно have.*
+- am — *С I нужно have.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-47:i03; family: listen_choose -->
-🔊 *I have been to Poland.* → **I have been to Poland.** · We have been to Poland. · I have lived in Poland.
-- We have been to Poland. — *В записи звучит I have been to Poland.*
-- I have lived in Poland. — *В записи звучит I have been to Poland.*
+🔊 *I have felt guilt since yesterday.* → **I have felt guilt since yesterday.** · We have felt guilt since yesterday. · I have felt guilt since Monday.
+- We have felt guilt since yesterday. — *В записи звучит I have felt guilt since yesterday.*
+- I have felt guilt since Monday. — *В записи звучит I have felt guilt since yesterday.*
 
-**5 · Карточка слова — Portugal**
-<!-- interaction_id: en:lesson-24:session-47:word:Portugal; family: word_card -->
-> **Portugal** — Португалия.
+**5 · Карточка слова — shame**
+<!-- interaction_id: en:lesson-24:session-47:word:shame; family: word_card -->
+> **shame** — стыд.
 
-**6 · Скажите: «Она посетила Португалию в прошлом году.»**
+**6 · Скажите: «Вчера она скрыла свой стыд.»**
 <!-- interaction_id: en:lesson-24:session-47:i04; family: phrase_builder -->
-Плитки: `year` `last` `Portugal` `visited` `She` → **She visited Portugal last year.**
+Плитки: `yesterday` `shame` `her` `hid` `She` → **She hid her shame yesterday.**
 
-**7 · Дополните рассказ о поездках.**
+**7 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-47:i05; family: context_gap_grammar -->
-She ___ Portugal last year. → **visited** · has visited · visit
-- has visited — *С last year нужна форма visited без has.*
-- visit — *С last year нужна форма visited без has.*
+She ___ her shame yesterday. → **hid** · hides · hiding
+- hides — *Yesterday требует Past Simple: hid.*
+- hiding — *Yesterday требует Past Simple: hid.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-47:i06; family: listen_choose -->
-🔊 *She visited Portugal last year.* → **She visited Portugal last year.** · He visited Portugal last year. · She visited Portugal last month.
-- He visited Portugal last year. — *В записи звучит She visited Portugal last year.*
-- She visited Portugal last month. — *В записи звучит She visited Portugal last year.*
+🔊 *She hid her shame yesterday.* → **She hid her shame yesterday.** · He hid his shame yesterday. · She hid her shame last week.
+- He hid his shame yesterday. — *В записи звучит She hid her shame yesterday.*
+- She hid her shame last week. — *В записи звучит She hid her shame yesterday.*
 
-**9 · Карточка слова — Norway**
-<!-- interaction_id: en:lesson-24:session-47:word:Norway; family: word_card -->
-> **Norway** — Норвегия.
+**9 · Карточка слова — desire**
+<!-- interaction_id: en:lesson-24:session-47:word:desire; family: word_card -->
+> **desire** — желание.
 
-**10 · Скажите: «Мы съездили в Норвегию.»**
+**10 · Скажите: «Он выразил желание учиться.»**
 <!-- interaction_id: en:lesson-24:session-47:i07; family: phrase_builder -->
-Плитки: `Norway` `to` `travelled` `have` `We` → **We have travelled to Norway.**
+Плитки: `learn` `to` `desire` `a` `expressed` `has` `He` → **He has expressed a desire to learn.**
 
-**11 · Дополните рассказ о поездках.**
+**11 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-47:i08; family: context_gap_grammar -->
-We ___ travelled to Norway. → **have** · has · are
-- has — *С we нужно have перед travelled.*
-- are — *С we нужно have перед travelled.*
+He ___ expressed a desire to learn. → **has** · have · is
+- have — *С he нужно has.*
+- is — *С he нужно has.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-47:i09; family: listen_choose -->
-🔊 *We have travelled to Norway.* → **We have travelled to Norway.** · They have travelled to Norway. · We have moved to Norway.
-- They have travelled to Norway. — *В записи звучит We have travelled to Norway.*
-- We have moved to Norway. — *В записи звучит We have travelled to Norway.*
+🔊 *He has expressed a desire to learn.* → **He has expressed a desire to learn.** · She has expressed a desire to learn. · He has expressed a desire to travel.
+- She has expressed a desire to learn. — *В записи звучит He has expressed a desire to learn.*
+- He has expressed a desire to travel. — *В записи звучит He has expressed a desire to learn.*
 
-**13 · Карточка слова — Denmark**
-<!-- interaction_id: en:lesson-24:session-47:word:Denmark; family: word_card -->
-> **Denmark** — Дания.
+**13 · Карточка слова — weakness**
+<!-- interaction_id: en:lesson-24:session-47:word:weakness; family: word_card -->
+> **weakness** — слабость, слабое место.
 
-**14 · Скажите: «Вчера они приехали в Данию.»**
+**14 · Скажите: «Вчера мы заметили слабое место в плане.»**
 <!-- interaction_id: en:lesson-24:session-47:i10; family: phrase_builder -->
-Плитки: `yesterday` `Denmark` `in` `arrived` `They` → **They arrived in Denmark yesterday.**
+Плитки: `yesterday` `plan` `the` `in` `weakness` `a` `noticed` `We` → **We noticed a weakness in the plan yesterday.**
 
-**15 · Дополните рассказ о поездках.**
+**15 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-47:i11; family: context_gap_grammar -->
-They ___ in Denmark yesterday. → **arrived** · have arrived · arrive
-- have arrived — *С yesterday нужна форма arrived без have.*
-- arrive — *С yesterday нужна форма arrived без have.*
+We ___ a weakness in the plan yesterday. → **noticed** · notice · noticing
+- notice — *Yesterday требует Past Simple: noticed.*
+- noticing — *Yesterday требует Past Simple: noticed.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-47:i12; family: listen_choose -->
-🔊 *They arrived in Denmark yesterday.* → **They arrived in Denmark yesterday.** · We arrived in Denmark yesterday. · They arrived in Denmark last week.
-- We arrived in Denmark yesterday. — *В записи звучит They arrived in Denmark yesterday.*
-- They arrived in Denmark last week. — *В записи звучит They arrived in Denmark yesterday.*
+🔊 *We noticed a weakness in the plan yesterday.* → **We noticed a weakness in the plan yesterday.** · They noticed a weakness in the plan yesterday. · We noticed a weakness in the plan last week.
+- They noticed a weakness in the plan yesterday. — *В записи звучит We noticed a weakness in the plan yesterday.*
+- We noticed a weakness in the plan last week. — *В записи звучит We noticed a weakness in the plan yesterday.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-24:session-47:i13; family: speed_match -->
-Poland — Польша · Portugal — Португалия · Norway — Норвегия · Denmark — Дания
+guilt — чувство вины · shame — стыд · desire — желание · weakness — слабость, слабое место
 
 **18 · Жду уже час**
 <!-- interaction_id: en:lesson-24:session-47:i14; family: listen_build_dictation -->
@@ -141,11 +141,11 @@ Poland — Польша · Portugal — Португалия · Norway — Но�
 <!-- interaction_id: en:lesson-24:session-47:i15; family: listen_build_dictation -->
 🔊 *She has been working since this morning.* Плитки: `morning` `this` `since` `working` `been` `has` `She` → **She has been working since this morning.**
 
-**20 · Скажите: «Мы посетили Португалию в прошлом году».**
+**20 · Скажите: «Она выразила желание путешествовать».**
 <!-- interaction_id: en:lesson-24:session-47:i16; family: scripted_repeat_compare -->
-🎙 **We visited Portugal last year.**
+🎙 **She has expressed a desire to travel.**
 
-**21 · Скажите: «Она приехала в Данию вчера».**
+**21 · Скажите: «Вчера они заметили слабое место в плане».**
 <!-- interaction_id: en:lesson-24:session-47:i17; family: scripted_repeat_compare -->
-🎙 **She arrived in Denmark yesterday.**
+🎙 **They noticed a weakness in the plan yesterday.**
 

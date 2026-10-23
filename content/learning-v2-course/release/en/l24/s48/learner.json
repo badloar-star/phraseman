@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-24:session-48:word:Finland",
+      "interactionId": "en:lesson-24:session-48:word:cuddled",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — Finland",
+      "prompt": "Карточка слова — cuddled",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-48:word:Finland:audio"
+        "en:lesson-24:session-48:word:cuddled:audio"
       ],
-      "accessibilityLabel": "Карточка слова — Finland",
+      "accessibilityLabel": "Карточка слова — cuddled",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-48:word:Finland:audio",
-          "transcript": "Finland"
+          "audioTargetId": "en:lesson-24:session-48:word:cuddled:audio",
+          "transcript": "cuddled"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-48:word:Finland:r1",
-            "targetText": "Finland",
+            "responseId": "en:lesson-24:session-48:word:cuddled:r1",
+            "targetText": "cuddled",
             "meaningByLocale": {
-              "ru": "Финляндия.",
-              "uk": "Фінляндія."
+              "ru": "cuddle — ласково обнимать. Cuddled — ласково обнял.",
+              "uk": "cuddle — ніжно обіймати. Cuddled — ніжно обійняв."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Finland",
+          "word": "cuddled",
           "definitionByLocale": {
-            "ru": "Финляндия.",
-            "uk": "Фінляндія."
+            "ru": "cuddle — ласково обнимать. Cuddled — ласково обнял.",
+            "uk": "cuddle — ніжно обіймати. Cuddled — ніжно обійняв."
           }
         }
       },
@@ -52,24 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Я бывал в Финляндии.»",
+      "prompt": "Скажите: «Она ласково обняла малыша.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Я бывал в Финляндии.»",
+      "accessibilityLabel": "Скажите: «Она ласково обняла малыша.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have been to Finland.",
+        "targetPhrase": "She has cuddled the baby.",
         "localizedMeaning": {
-          "ru": "Скажите: «Я бывал в Финляндии.»",
-          "uk": "Скажіть: «Я бував у Фінляндії.»"
+          "ru": "Скажите: «Она ласково обняла малыша.»",
+          "uk": "Скажіть: «Вона ніжно обійняла малюка.»"
         },
         "orderedTokens": [
-          "I",
-          "have",
-          "been",
-          "to",
-          "Finland"
+          "She",
+          "has",
+          "cuddled",
+          "the",
+          "baby"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -86,63 +86,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о поездках.",
+      "prompt": "Дополните рассказ.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i02:r1",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-24:session-48:i02:r2",
           "text": "has"
         },
         {
+          "responseId": "en:lesson-24:session-48:i02:r2",
+          "text": "have"
+        },
+        {
           "responseId": "en:lesson-24:session-48:i02:r3",
-          "text": "am"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "accessibilityLabel": "Дополните рассказ.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "I ___ been to Finland.",
+        "gappedTargetPhrase": "She ___ cuddled the baby.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-48:i02:r1",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-24:session-48:i02:r2",
             "text": "has"
           },
           {
+            "responseId": "en:lesson-24:session-48:i02:r2",
+            "text": "have"
+          },
+          {
             "responseId": "en:lesson-24:session-48:i02:r3",
-            "text": "am"
+            "text": "is"
           }
         ],
-        "testedDimension": "Дополните рассказ о поездках.",
+        "testedDimension": "Дополните рассказ.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-48:i02:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С I нужно have перед been.",
-              "uk": "Із I потрібно have перед been."
+              "ru": "С she нужно has.",
+              "uk": "Із she потрібно has."
             }
           },
           {
             "responseId": "en:lesson-24:session-48:i02:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С I нужно have перед been.",
-              "uk": "Із I потрібно have перед been."
+              "ru": "С she нужно has.",
+              "uk": "Із she потрібно has."
             }
           }
         ]
@@ -159,15 +159,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i03:r1",
-          "text": "I have been to Finland."
+          "text": "She has cuddled the baby."
         },
         {
           "responseId": "en:lesson-24:session-48:i03:r2",
-          "text": "We have been to Finland."
+          "text": "He has cuddled the baby."
         },
         {
           "responseId": "en:lesson-24:session-48:i03:r3",
-          "text": "I have lived in Finland."
+          "text": "She has cuddled the puppy."
         }
       ],
       "mediaIds": [],
@@ -179,23 +179,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-48:i03:audio",
-          "transcript": "I have been to Finland."
+          "transcript": "She has cuddled the baby."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-48:i03:r1",
-            "targetText": "I have been to Finland.",
+            "targetText": "She has cuddled the baby.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i03:r2",
-            "targetText": "We have been to Finland.",
+            "targetText": "He has cuddled the baby.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i03:r3",
-            "targetText": "I have lived in Finland.",
+            "targetText": "She has cuddled the puppy.",
             "meaningByLocale": null
           }
         ],
@@ -206,8 +206,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have been to Finland.",
-              "uk": "У записі звучить I have been to Finland."
+              "ru": "В записи звучит She has cuddled the baby.",
+              "uk": "У записі звучить She has cuddled the baby."
             }
           },
           {
@@ -215,8 +215,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have been to Finland.",
-              "uk": "У записі звучить I have been to Finland."
+              "ru": "В записи звучит She has cuddled the baby.",
+              "uk": "У записі звучить She has cuddled the baby."
             }
           }
         ],
@@ -226,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-48:word:Switzerland",
+      "interactionId": "en:lesson-24:session-48:word:sobbed",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — Switzerland",
+      "prompt": "Карточка слова — sobbed",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-48:word:Switzerland:audio"
+        "en:lesson-24:session-48:word:sobbed:audio"
       ],
-      "accessibilityLabel": "Карточка слова — Switzerland",
+      "accessibilityLabel": "Карточка слова — sobbed",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-48:word:Switzerland:audio",
-          "transcript": "Switzerland"
+          "audioTargetId": "en:lesson-24:session-48:word:sobbed:audio",
+          "transcript": "sobbed"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-48:word:Switzerland:r1",
-            "targetText": "Switzerland",
+            "responseId": "en:lesson-24:session-48:word:sobbed:r1",
+            "targetText": "sobbed",
             "meaningByLocale": {
-              "ru": "Швейцария.",
-              "uk": "Швейцарія."
+              "ru": "sob — рыдать. Sobbed — рыдал.",
+              "uk": "sob — ридати. Sobbed — ридав."
             }
           }
         ],
@@ -259,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Switzerland",
+          "word": "sobbed",
           "definitionByLocale": {
-            "ru": "Швейцария.",
-            "uk": "Швейцарія."
+            "ru": "sob — рыдать. Sobbed — рыдал.",
+            "uk": "sob — ридати. Sobbed — ридав."
           }
         }
       },
@@ -274,24 +274,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Она посетила Швейцарию в прошлом году.»",
+      "prompt": "Скажите: «Вчера он рыдал после фильма.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Она посетила Швейцарию в прошлом году.»",
+      "accessibilityLabel": "Скажите: «Вчера он рыдал после фильма.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She visited Switzerland last year.",
+        "targetPhrase": "He sobbed after the film yesterday.",
         "localizedMeaning": {
-          "ru": "Скажите: «Она посетила Швейцарию в прошлом году.»",
-          "uk": "Скажіть: «Вона відвідала Швейцарію торік.»"
+          "ru": "Скажите: «Вчера он рыдал после фильма.»",
+          "uk": "Скажіть: «Учора він ридав після фільму.»"
         },
         "orderedTokens": [
-          "She",
-          "visited",
-          "Switzerland",
-          "last",
-          "year"
+          "He",
+          "sobbed",
+          "after",
+          "the",
+          "film",
+          "yesterday"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -308,63 +309,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о поездках.",
+      "prompt": "Дополните рассказ.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i05:r1",
-          "text": "visited"
+          "text": "sobbed"
         },
         {
           "responseId": "en:lesson-24:session-48:i05:r2",
-          "text": "has visited"
+          "text": "sob"
         },
         {
           "responseId": "en:lesson-24:session-48:i05:r3",
-          "text": "visit"
+          "text": "sobbing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "accessibilityLabel": "Дополните рассказ.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "She ___ Switzerland last year.",
+        "gappedTargetPhrase": "He ___ after the film yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-48:i05:r1",
-            "text": "visited"
+            "text": "sobbed"
           },
           {
             "responseId": "en:lesson-24:session-48:i05:r2",
-            "text": "has visited"
+            "text": "sob"
           },
           {
             "responseId": "en:lesson-24:session-48:i05:r3",
-            "text": "visit"
+            "text": "sobbing"
           }
         ],
-        "testedDimension": "Дополните рассказ о поездках.",
+        "testedDimension": "Дополните рассказ.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-48:i05:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С last year нужна форма visited без has.",
-              "uk": "Із last year потрібна форма visited без has."
+              "ru": "Yesterday требует Past Simple: sobbed.",
+              "uk": "Yesterday потребує Past Simple: sobbed."
             }
           },
           {
             "responseId": "en:lesson-24:session-48:i05:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С last year нужна форма visited без has.",
-              "uk": "Із last year потрібна форма visited без has."
+              "ru": "Yesterday требует Past Simple: sobbed.",
+              "uk": "Yesterday потребує Past Simple: sobbed."
             }
           }
         ]
@@ -381,15 +382,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i06:r1",
-          "text": "She visited Switzerland last year."
+          "text": "He sobbed after the film yesterday."
         },
         {
           "responseId": "en:lesson-24:session-48:i06:r2",
-          "text": "He visited Switzerland last year."
+          "text": "She sobbed after the film yesterday."
         },
         {
           "responseId": "en:lesson-24:session-48:i06:r3",
-          "text": "She visited Switzerland last month."
+          "text": "He sobbed after the show yesterday."
         }
       ],
       "mediaIds": [],
@@ -401,23 +402,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-48:i06:audio",
-          "transcript": "She visited Switzerland last year."
+          "transcript": "He sobbed after the film yesterday."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-48:i06:r1",
-            "targetText": "She visited Switzerland last year.",
+            "targetText": "He sobbed after the film yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i06:r2",
-            "targetText": "He visited Switzerland last year.",
+            "targetText": "She sobbed after the film yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i06:r3",
-            "targetText": "She visited Switzerland last month.",
+            "targetText": "He sobbed after the show yesterday.",
             "meaningByLocale": null
           }
         ],
@@ -428,8 +429,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She visited Switzerland last year.",
-              "uk": "У записі звучить She visited Switzerland last year."
+              "ru": "В записи звучит He sobbed after the film yesterday.",
+              "uk": "У записі звучить He sobbed after the film yesterday."
             }
           },
           {
@@ -437,8 +438,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She visited Switzerland last year.",
-              "uk": "У записі звучить She visited Switzerland last year."
+              "ru": "В записи звучит He sobbed after the film yesterday.",
+              "uk": "У записі звучить He sobbed after the film yesterday."
             }
           }
         ],
@@ -448,32 +449,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-48:word:Austria",
+      "interactionId": "en:lesson-24:session-48:word:groaned",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — Austria",
+      "prompt": "Карточка слова — groaned",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-48:word:Austria:audio"
+        "en:lesson-24:session-48:word:groaned:audio"
       ],
-      "accessibilityLabel": "Карточка слова — Austria",
+      "accessibilityLabel": "Карточка слова — groaned",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-48:word:Austria:audio",
-          "transcript": "Austria"
+          "audioTargetId": "en:lesson-24:session-48:word:groaned:audio",
+          "transcript": "groaned"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-48:word:Austria:r1",
-            "targetText": "Austria",
+            "responseId": "en:lesson-24:session-48:word:groaned:r1",
+            "targetText": "groaned",
             "meaningByLocale": {
-              "ru": "Австрия.",
-              "uk": "Австрія."
+              "ru": "groan — стонать. Groaned — стонал.",
+              "uk": "groan — стогнати. Groaned — стогнав."
             }
           }
         ],
@@ -481,10 +482,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Austria",
+          "word": "groaned",
           "definitionByLocale": {
-            "ru": "Австрия.",
-            "uk": "Австрія."
+            "ru": "groan — стонать. Groaned — стонал.",
+            "uk": "groan — стогнати. Groaned — стогнав."
           }
         }
       },
@@ -496,24 +497,26 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Мы съездили в Австрию.»",
+      "prompt": "Скажите: «Я всё утро стону от боли.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Мы съездили в Австрию.»",
+      "accessibilityLabel": "Скажите: «Я всё утро стону от боли.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have travelled to Austria.",
+        "targetPhrase": "I have groaned with pain all morning.",
         "localizedMeaning": {
-          "ru": "Скажите: «Мы съездили в Австрию.»",
-          "uk": "Скажіть: «Ми з’їздили до Австрії.»"
+          "ru": "Скажите: «Я всё утро стону от боли.»",
+          "uk": "Скажіть: «Я весь ранок стогну від болю.»"
         },
         "orderedTokens": [
-          "We",
+          "I",
           "have",
-          "travelled",
-          "to",
-          "Austria"
+          "groaned",
+          "with",
+          "pain",
+          "all",
+          "morning"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -530,7 +533,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о поездках.",
+      "prompt": "Дополните рассказ.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i08:r1",
@@ -542,19 +545,19 @@
         },
         {
           "responseId": "en:lesson-24:session-48:i08:r3",
-          "text": "are"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "accessibilityLabel": "Дополните рассказ.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "We ___ travelled to Austria.",
+        "gappedTargetPhrase": "I ___ groaned with pain all morning.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-48:i08:r1",
@@ -566,27 +569,27 @@
           },
           {
             "responseId": "en:lesson-24:session-48:i08:r3",
-            "text": "are"
+            "text": "am"
           }
         ],
-        "testedDimension": "Дополните рассказ о поездках.",
+        "testedDimension": "Дополните рассказ.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-48:i08:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С we нужно have перед travelled.",
-              "uk": "Із we потрібно have перед travelled."
+              "ru": "С I нужно have.",
+              "uk": "Із I потрібно have."
             }
           },
           {
             "responseId": "en:lesson-24:session-48:i08:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С we нужно have перед travelled.",
-              "uk": "Із we потрібно have перед travelled."
+              "ru": "С I нужно have.",
+              "uk": "Із I потрібно have."
             }
           }
         ]
@@ -603,15 +606,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i09:r1",
-          "text": "We have travelled to Austria."
+          "text": "I have groaned with pain all morning."
         },
         {
           "responseId": "en:lesson-24:session-48:i09:r2",
-          "text": "They have travelled to Austria."
+          "text": "We have groaned with pain all morning."
         },
         {
           "responseId": "en:lesson-24:session-48:i09:r3",
-          "text": "We have moved to Austria."
+          "text": "I have groaned with pain all afternoon."
         }
       ],
       "mediaIds": [],
@@ -623,23 +626,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-48:i09:audio",
-          "transcript": "We have travelled to Austria."
+          "transcript": "I have groaned with pain all morning."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-48:i09:r1",
-            "targetText": "We have travelled to Austria.",
+            "targetText": "I have groaned with pain all morning.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i09:r2",
-            "targetText": "They have travelled to Austria.",
+            "targetText": "We have groaned with pain all morning.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i09:r3",
-            "targetText": "We have moved to Austria.",
+            "targetText": "I have groaned with pain all afternoon.",
             "meaningByLocale": null
           }
         ],
@@ -650,8 +653,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have travelled to Austria.",
-              "uk": "У записі звучить We have travelled to Austria."
+              "ru": "В записи звучит I have groaned with pain all morning.",
+              "uk": "У записі звучить I have groaned with pain all morning."
             }
           },
           {
@@ -659,8 +662,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have travelled to Austria.",
-              "uk": "У записі звучить We have travelled to Austria."
+              "ru": "В записи звучит I have groaned with pain all morning.",
+              "uk": "У записі звучить I have groaned with pain all morning."
             }
           }
         ],
@@ -670,32 +673,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-48:word:Belgium",
+      "interactionId": "en:lesson-24:session-48:word:yelled",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — Belgium",
+      "prompt": "Карточка слова — yelled",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-48:word:Belgium:audio"
+        "en:lesson-24:session-48:word:yelled:audio"
       ],
-      "accessibilityLabel": "Карточка слова — Belgium",
+      "accessibilityLabel": "Карточка слова — yelled",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-48:word:Belgium:audio",
-          "transcript": "Belgium"
+          "audioTargetId": "en:lesson-24:session-48:word:yelled:audio",
+          "transcript": "yelled"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-48:word:Belgium:r1",
-            "targetText": "Belgium",
+            "responseId": "en:lesson-24:session-48:word:yelled:r1",
+            "targetText": "yelled",
             "meaningByLocale": {
-              "ru": "Бельгия.",
-              "uk": "Бельгія."
+              "ru": "yell — кричать. Yelled — кричал.",
+              "uk": "yell — кричати. Yelled — кричав."
             }
           }
         ],
@@ -703,10 +706,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Belgium",
+          "word": "yelled",
           "definitionByLocale": {
-            "ru": "Бельгия.",
-            "uk": "Бельгія."
+            "ru": "yell — кричать. Yelled — кричал.",
+            "uk": "yell — кричати. Yelled — кричав."
           }
         }
       },
@@ -718,23 +721,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Вчера они приехали в Бельгию.»",
+      "prompt": "Скажите: «Вчера они кричали, зовя на помощь.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Вчера они приехали в Бельгию.»",
+      "accessibilityLabel": "Скажите: «Вчера они кричали, зовя на помощь.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They arrived in Belgium yesterday.",
+        "targetPhrase": "They yelled for help yesterday.",
         "localizedMeaning": {
-          "ru": "Скажите: «Вчера они приехали в Бельгию.»",
-          "uk": "Скажіть: «Учора вони приїхали до Бельгії.»"
+          "ru": "Скажите: «Вчера они кричали, зовя на помощь.»",
+          "uk": "Скажіть: «Учора вони кричали, кличучи на допомогу.»"
         },
         "orderedTokens": [
           "They",
-          "arrived",
-          "in",
-          "Belgium",
+          "yelled",
+          "for",
+          "help",
           "yesterday"
         ],
         "authoredDistractorTokens": [],
@@ -752,63 +755,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дополните рассказ о поездках.",
+      "prompt": "Дополните рассказ.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i11:r1",
-          "text": "arrived"
+          "text": "yelled"
         },
         {
           "responseId": "en:lesson-24:session-48:i11:r2",
-          "text": "have arrived"
+          "text": "yell"
         },
         {
           "responseId": "en:lesson-24:session-48:i11:r3",
-          "text": "arrive"
+          "text": "yelling"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дополните рассказ о поездках.",
+      "accessibilityLabel": "Дополните рассказ.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "They ___ in Belgium yesterday.",
+        "gappedTargetPhrase": "They ___ for help yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-48:i11:r1",
-            "text": "arrived"
+            "text": "yelled"
           },
           {
             "responseId": "en:lesson-24:session-48:i11:r2",
-            "text": "have arrived"
+            "text": "yell"
           },
           {
             "responseId": "en:lesson-24:session-48:i11:r3",
-            "text": "arrive"
+            "text": "yelling"
           }
         ],
-        "testedDimension": "Дополните рассказ о поездках.",
+        "testedDimension": "Дополните рассказ.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-48:i11:r2",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С yesterday нужна форма arrived без have.",
-              "uk": "Із yesterday потрібна форма arrived без have."
+              "ru": "Yesterday требует Past Simple: yelled.",
+              "uk": "Yesterday потребує Past Simple: yelled."
             }
           },
           {
             "responseId": "en:lesson-24:session-48:i11:r3",
             "correct": false,
-            "testedDimension": "Дополните рассказ о поездках.",
+            "testedDimension": "Дополните рассказ.",
             "feedbackByLocale": {
-              "ru": "С yesterday нужна форма arrived без have.",
-              "uk": "Із yesterday потрібна форма arrived без have."
+              "ru": "Yesterday требует Past Simple: yelled.",
+              "uk": "Yesterday потребує Past Simple: yelled."
             }
           }
         ]
@@ -825,15 +828,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-48:i12:r1",
-          "text": "They arrived in Belgium yesterday."
+          "text": "They yelled for help yesterday."
         },
         {
           "responseId": "en:lesson-24:session-48:i12:r2",
-          "text": "We arrived in Belgium yesterday."
+          "text": "We yelled for help yesterday."
         },
         {
           "responseId": "en:lesson-24:session-48:i12:r3",
-          "text": "They arrived in Belgium last week."
+          "text": "They yelled for help last night."
         }
       ],
       "mediaIds": [],
@@ -845,23 +848,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-48:i12:audio",
-          "transcript": "They arrived in Belgium yesterday."
+          "transcript": "They yelled for help yesterday."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-48:i12:r1",
-            "targetText": "They arrived in Belgium yesterday.",
+            "targetText": "They yelled for help yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i12:r2",
-            "targetText": "We arrived in Belgium yesterday.",
+            "targetText": "We yelled for help yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-48:i12:r3",
-            "targetText": "They arrived in Belgium last week.",
+            "targetText": "They yelled for help last night.",
             "meaningByLocale": null
           }
         ],
@@ -872,8 +875,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит They arrived in Belgium yesterday.",
-              "uk": "У записі звучить They arrived in Belgium yesterday."
+              "ru": "В записи звучит They yelled for help yesterday.",
+              "uk": "У записі звучить They yelled for help yesterday."
             }
           },
           {
@@ -881,8 +884,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит They arrived in Belgium yesterday.",
-              "uk": "У записі звучить They arrived in Belgium yesterday."
+              "ru": "В записи звучит They yelled for help yesterday.",
+              "uk": "У записі звучить They yelled for help yesterday."
             }
           }
         ],
@@ -907,48 +910,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-24:session-48:i13:p1",
-            "target": "Finland",
+            "target": "cuddle",
             "meaningByLocale": {
-              "ru": "Финляндия",
-              "uk": "Фінляндія"
+              "ru": "ласково обнимать",
+              "uk": "ніжно обіймати"
             }
           },
           {
             "pairId": "en:lesson-24:session-48:i13:p2",
-            "target": "Switzerland",
+            "target": "sob",
             "meaningByLocale": {
-              "ru": "Швейцария",
-              "uk": "Швейцарія"
+              "ru": "рыдать",
+              "uk": "ридати"
             }
           },
           {
             "pairId": "en:lesson-24:session-48:i13:p3",
-            "target": "Austria",
+            "target": "groan",
             "meaningByLocale": {
-              "ru": "Австрия",
-              "uk": "Австрія"
+              "ru": "стонать",
+              "uk": "стогнати"
             }
           },
           {
             "pairId": "en:lesson-24:session-48:i13:p4",
-            "target": "Belgium",
+            "target": "yell",
             "meaningByLocale": {
-              "ru": "Бельгия",
-              "uk": "Бельгія"
+              "ru": "кричать",
+              "uk": "кричати"
             }
           }
         ],
         "leftColumn": [
-          "Finland",
-          "Switzerland",
-          "Austria",
-          "Belgium"
+          "cuddle",
+          "sob",
+          "groan",
+          "yell"
         ],
         "rightColumn": [
-          "Финляндия",
-          "Швейцария",
-          "Австрия",
-          "Бельгия"
+          "ласково обнимать",
+          "рыдать",
+          "стонать",
+          "кричать"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -1048,21 +1051,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Мы посетили Швейцарию в прошлом году».",
+      "prompt": "Скажите: «Он ласково обнял щенка».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-48:i16:audio"
       ],
-      "accessibilityLabel": "Скажите: «Мы посетили Швейцарию в прошлом году».",
+      "accessibilityLabel": "Скажите: «Он ласково обнял щенка».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-48:i16:audio",
-          "transcript": "We visited Switzerland last year."
+          "transcript": "He has cuddled the puppy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We visited Switzerland last year.",
+        "targetPhrase": "He has cuddled the puppy.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1081,21 +1084,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Она приехала в Бельгию вчера».",
+      "prompt": "Скажите: «Вчера она кричала, зовя на помощь».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-48:i17:audio"
       ],
-      "accessibilityLabel": "Скажите: «Она приехала в Бельгию вчера».",
+      "accessibilityLabel": "Скажите: «Вчера она кричала, зовя на помощь».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-48:i17:audio",
-          "transcript": "She arrived in Belgium yesterday."
+          "transcript": "She yelled for help yesterday."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She arrived in Belgium yesterday.",
+        "targetPhrase": "She yelled for help yesterday.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1115,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4ccde207448620acabb3bb2a9e62e41cdb0de2d6ee7f246f8977caf665727b34"
+  "learnerFingerprint": "680ead50b3c5dc0033ffa95b2836cdcfca1b6308512b94c10734d2ffdd8b1292"
 }

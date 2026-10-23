@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Месяц в Японии",
-        "uk": "Місяць у Японії"
+        "ru": "Сдержать смех",
+        "uk": "Стримати сміх"
       },
       "bodyByLocale": {
-        "ru": "Japan — Япония. Японский язык — знакомое Japanese; название страны другое. I have been working in Japan for a month — я работаю в Японии уже месяц. Мы рассказываем о работе, которая началась раньше и продолжается. Даже если чемодан ещё не разобран, месяц уже прошёл.",
-        "uk": "Japan — Японія. Японська мова — знайоме Japanese; назва країни інша. I have been working in Japan for a month — я працюю в Японії вже місяць. Ми розповідаємо про роботу, яка почалася раніше й триває. Навіть якщо валізу ще не розібрано, місяць уже минув."
+        "ru": "Laughter — смех. I have been trying to hide my laughter for a minute — я уже минуту пытаюсь сдержать смех. Кто-то рассказал смешную историю, но сейчас нельзя смеяться вслух. Have been trying показывает продолжающееся усилие. В trying сохраняем y, затем добавляем -ing.",
+        "uk": "Laughter — сміх. I have been trying to hide my laughter for a minute — я вже хвилину намагаюся стримати сміх. Хтось розповів смішну історію, але зараз не можна сміятися вголос. Have been trying показує зусилля, яке триває. У trying зберігаємо y, потім додаємо -ing."
       },
       "question": {
         "interactionId": "en:lesson-24:session-21:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-21:intro1:r1",
-              "text": "I have been working in Japan for a month."
+              "text": "I have been trying to hide my laughter for a minute."
             },
             {
               "responseId": "en:lesson-24:session-21:intro1:r2",
-              "text": "I have working in Japan for a month."
+              "text": "I have trying to hide my laughter for a minute."
             },
             {
               "responseId": "en:lesson-24:session-21:intro1:r3",
-              "text": "I has been working in Japan for a month."
+              "text": "I has been trying to hide my laughter for a minute."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-21:intro1:r1",
-              "text": "I have been working in Japan for a month."
+              "text": "I have been trying to hide my laughter for a minute."
             },
             {
               "responseId": "en:lesson-24:session-21:intro1:r2",
-              "text": "I have working in Japan for a month."
+              "text": "I have trying to hide my laughter for a minute."
             },
             {
               "responseId": "en:lesson-24:session-21:intro1:r3",
-              "text": "I has been working in Japan for a month."
+              "text": "I has been trying to hide my laughter for a minute."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Учёба в Китае",
-        "uk": "Навчання в Китаї"
+        "ru": "Выступление и интервью",
+        "uk": "Виступ та інтерв’ю"
       },
       "bodyByLocale": {
-        "ru": "China — Китай. She has been studying in China since September — она учится в Китае с сентября. Studying in China означает место учёбы; studying Chinese — изучение китайского языка. Since September указывает начало. После has been используем studying.",
-        "uk": "China — Китай. She has been studying in China since September — вона навчається в Китаї з вересня. Studying in China означає місце навчання; studying Chinese — вивчення китайської мови. Since September указує початок. Після has been використовуємо studying."
+        "ru": "Comedian — комик, человек, который выступает с шутками. We have been watching a comedian for an hour — мы смотрим выступление комика уже час. Celebrity — знаменитость. She has been interviewing a celebrity since noon — она берёт интервью у знаменитости с полудня. В обоих случаях действие началось раньше и ещё продолжается. For an hour — длительность, since noon — начало.",
+        "uk": "Comedian — комік, людина, яка виступає з жартами. We have been watching a comedian for an hour — ми дивимося виступ коміка вже годину. Celebrity — знаменитість. She has been interviewing a celebrity since noon — вона бере інтерв’ю у знаменитості з полудня. В обох випадках дія почалася раніше й ще триває. For an hour — тривалість, since noon — початок."
       },
       "question": {
         "interactionId": "en:lesson-24:session-21:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-21:intro2:r1",
-              "text": "She has been studying in China since September."
+              "text": "We have been watching a comedian for an hour."
             },
             {
               "responseId": "en:lesson-24:session-21:intro2:r2",
-              "text": "She has studying in China since September."
+              "text": "We have watching a comedian for an hour."
             },
             {
               "responseId": "en:lesson-24:session-21:intro2:r3",
-              "text": "She have been studying in China since September."
+              "text": "We has been watching a comedian for an hour."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-21:intro2:r1",
-              "text": "She has been studying in China since September."
+              "text": "We have been watching a comedian for an hour."
             },
             {
               "responseId": "en:lesson-24:session-21:intro2:r2",
-              "text": "She has studying in China since September."
+              "text": "We have watching a comedian for an hour."
             },
             {
               "responseId": "en:lesson-24:session-21:intro2:r3",
-              "text": "She have been studying in China since September."
+              "text": "We has been watching a comedian for an hour."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Поездка продолжается",
-        "uk": "Подорож триває"
+        "ru": "Ждём автограф",
+        "uk": "Чекаємо на автограф"
       },
       "bodyByLocale": {
-        "ru": "Mexico — Мексика, Greece — Греция. We have been travelling around Mexico for two weeks — мы путешествуем по Мексике уже две недели. They have been staying in Greece since Monday — они находятся в Греции с понедельника. Stay здесь описывает временное пребывание во время поездки. Перед этими названиями стран нет the.",
-        "uk": "Mexico — Мексика, Greece — Греція. We have been travelling around Mexico for two weeks — ми подорожуємо Мексикою вже два тижні. They have been staying in Greece since Monday — вони перебувають у Греції з понеділка. Stay тут описує тимчасове перебування під час подорожі. Перед цими назвами країн немає the."
+        "ru": "Autograph — автограф, подпись известного человека на память. He has been waiting for an autograph for two hours — он ждёт автограф уже два часа. Первый for относится к wait for: ждать чего-то. Второй for вводит срок ожидания: for two hours. После he используем has been waiting.",
+        "uk": "Autograph — автограф, підпис відомої людини на згадку. He has been waiting for an autograph for two hours — він чекає на автограф уже дві години. Перше for належить до wait for: чекати на щось. Друге for вводить тривалість очікування: for two hours. Після he використовуємо has been waiting."
       },
       "question": {
         "interactionId": "en:lesson-24:session-21:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-21:intro3:r1",
-              "text": "They have been staying in Greece since Monday."
+              "text": "He has been waiting for an autograph for two hours."
             },
             {
               "responseId": "en:lesson-24:session-21:intro3:r2",
-              "text": "They have staying in Greece since Monday."
+              "text": "He has waiting for an autograph for two hours."
             },
             {
               "responseId": "en:lesson-24:session-21:intro3:r3",
-              "text": "They has been staying in Greece since Monday."
+              "text": "He have been waiting for an autograph for two hours."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-21:intro3:r1",
-              "text": "They have been staying in Greece since Monday."
+              "text": "He has been waiting for an autograph for two hours."
             },
             {
               "responseId": "en:lesson-24:session-21:intro3:r2",
-              "text": "They have staying in Greece since Monday."
+              "text": "He has waiting for an autograph for two hours."
             },
             {
               "responseId": "en:lesson-24:session-21:intro3:r3",
-              "text": "They has been staying in Greece since Monday."
+              "text": "He have been waiting for an autograph for two hours."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7e505ba5943676c8d03af3a0266b7111e775ed08bc352fcb980218d490a36572"
+  "introFingerprint": "a45a43dcd7b738a20a2adb25549b9e7e73cba7b6e0da2db5e4efb07bd1a5fc96"
 }

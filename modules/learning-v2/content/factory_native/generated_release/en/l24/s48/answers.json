@@ -1,52 +1,52 @@
 [
   {
-    "interactionId": "en:lesson-24:session-48:word:Finland",
-    "correctText": "Finland",
+    "interactionId": "en:lesson-24:session-48:word:cuddled",
+    "correctText": "cuddled",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i01",
-    "correctText": "I have been to Finland.",
+    "correctText": "She has cuddled the baby.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i02",
-    "correctText": "have",
+    "correctText": "has",
     "correctResponseId": "en:lesson-24:session-48:i02:r1"
   },
   {
     "interactionId": "en:lesson-24:session-48:i03",
-    "correctText": "I have been to Finland.",
+    "correctText": "She has cuddled the baby.",
     "correctResponseId": "en:lesson-24:session-48:i03:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-48:word:Switzerland",
-    "correctText": "Switzerland",
+    "interactionId": "en:lesson-24:session-48:word:sobbed",
+    "correctText": "sobbed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i04",
-    "correctText": "She visited Switzerland last year.",
+    "correctText": "He sobbed after the film yesterday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i05",
-    "correctText": "visited",
+    "correctText": "sobbed",
     "correctResponseId": "en:lesson-24:session-48:i05:r1"
   },
   {
     "interactionId": "en:lesson-24:session-48:i06",
-    "correctText": "She visited Switzerland last year.",
+    "correctText": "He sobbed after the film yesterday.",
     "correctResponseId": "en:lesson-24:session-48:i06:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-48:word:Austria",
-    "correctText": "Austria",
+    "interactionId": "en:lesson-24:session-48:word:groaned",
+    "correctText": "groaned",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i07",
-    "correctText": "We have travelled to Austria.",
+    "correctText": "I have groaned with pain all morning.",
     "correctResponseId": null
   },
   {
@@ -56,32 +56,32 @@
   },
   {
     "interactionId": "en:lesson-24:session-48:i09",
-    "correctText": "We have travelled to Austria.",
+    "correctText": "I have groaned with pain all morning.",
     "correctResponseId": "en:lesson-24:session-48:i09:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-48:word:Belgium",
-    "correctText": "Belgium",
+    "interactionId": "en:lesson-24:session-48:word:yelled",
+    "correctText": "yelled",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i10",
-    "correctText": "They arrived in Belgium yesterday.",
+    "correctText": "They yelled for help yesterday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i11",
-    "correctText": "arrived",
+    "correctText": "yelled",
     "correctResponseId": "en:lesson-24:session-48:i11:r1"
   },
   {
     "interactionId": "en:lesson-24:session-48:i12",
-    "correctText": "They arrived in Belgium yesterday.",
+    "correctText": "They yelled for help yesterday.",
     "correctResponseId": "en:lesson-24:session-48:i12:r1"
   },
   {
     "interactionId": "en:lesson-24:session-48:i13",
-    "correctText": "en:lesson-24:session-48:i13:p1=Finland\nen:lesson-24:session-48:i13:p2=Switzerland\nen:lesson-24:session-48:i13:p3=Austria\nen:lesson-24:session-48:i13:p4=Belgium",
+    "correctText": "en:lesson-24:session-48:i13:p1=cuddle\nen:lesson-24:session-48:i13:p2=sob\nen:lesson-24:session-48:i13:p3=groan\nen:lesson-24:session-48:i13:p4=yell",
     "correctResponseId": null
   },
   {
@@ -96,12 +96,12 @@
   },
   {
     "interactionId": "en:lesson-24:session-48:i16",
-    "correctText": "We visited Switzerland last year.",
+    "correctText": "He has cuddled the puppy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-48:i17",
-    "correctText": "She arrived in Belgium yesterday.",
+    "correctText": "She yelled for help yesterday.",
     "correctResponseId": null
   }
 ]

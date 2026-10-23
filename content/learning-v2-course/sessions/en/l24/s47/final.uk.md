@@ -1,137 +1,137 @@
-# Англійська · Урок 24 · Заняття 47 — Поїздки Європою
+# Англійська · Урок 24 · Заняття 47 — Почуття й висновки
 
-**Ситуація.** Ви розповідаєте, у яких країнах побували й коли приїхали.
+**Ситуація.** Ви говорите про почуття та про те, що помітили чи дізналися.
 
-**Що ви опануєте:** Present Perfect / Past Simple
-**Нові слова:** Poland, Portugal, Norway, Denmark
+**Що ви опануєте:** present perfect / past simple
+**Нові слова:** guilt, shame, desire, weakness
 
 ## Інтро 1
 
-### Досвід поїздки
+### Відчуття залишається
 
-Poland — Польща. I have been to Poland — я бував у Польщі. Have been to повідомляє про досвід поїздки: людина побувала там і повернулася. Poland пишеться з великої літери, без the. Дату тут не названо.
+Guilt — почуття провини: вам здається, що ви зробили щось не так. I have felt guilt since yesterday — я відчуваю провину від учора. Відчуття виникло вчора й залишається зараз, тому тут have felt із since. Це розповідь про переживання, а не про рішення суду.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I have been to Poland.**
-- ❌ I has been to Poland. — *Із I потрібно have.*
-- ❌ I have be to Poland. — *Після have потрібна форма been.*
+- ✅ **I have felt guilt since yesterday.**
+- ❌ I has felt guilt since yesterday. — *З I потрібно have.*
+- ❌ I am felt guilt since yesterday. — *Перевірте форму присудка в цьому реченні.*
 
 ---
 
 ## Інтро 2
 
-### Відвідати країну
+### Учора й зараз
 
-Portugal — Португалія. She visited Portugal last year — вона відвідала Португалію торік. Після visited не ставимо to. Norway — Норвегія. We have travelled to Norway — ми з’їздили до Норвегії. Після travelled напрямок виражаємо через to. Із last year потрібне visited без has.
+Shame — сором, ніякове відчуття через себе або свій учинок. She hid her shame yesterday — учора вона приховала свій сором. Yesterday вказує на завершений день, використовуємо hid — Past Simple від hide. Desire — бажання. He has expressed a desire to learn — він висловив бажання вчитися. Тут важливий теперішній результат: ми знаємо, чого він хоче; точний минулий момент не названо.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She visited Portugal last year.**
-- ❌ She has visited Portugal last year. — *Із last year потрібне visited без has.*
-- ❌ She visit Portugal last year. — *Для минулого потрібна форма visited.*
+- ✅ **She hid her shame yesterday.**
+- ❌ She hides her shame yesterday. — *Із yesterday потрібна минула форма hid.*
+- ❌ She hiding her shame yesterday. — *Перевірте форму присудка в цьому реченні.*
 
 ---
 
 ## Інтро 3
 
-### Приїхали вчора
+### Слабке місце в плані
 
-Denmark — Данія. They arrived in Denmark yesterday — учора вони приїхали до Данії. Перед назвою країни після arrive потрібне in. Yesterday указує на завершений день: arrived без have. Ці чотири назви країн пишуться з великої літери й без the.
+Weakness — слабкість або слабке місце. We noticed a weakness in the plan yesterday — учора ми помітили слабке місце в плані. Наприклад, на прогулянку збираються десятеро людей, а місць у машині п’ять. Тут weakness стосується плану, а не здоров’я людини. Із yesterday вибираємо noticed: ідеться про подію в завершеному минулому.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **They arrived in Denmark yesterday.**
-- ❌ They have arrived in Denmark yesterday. — *Із yesterday потрібне arrived без have.*
-- ❌ They arrive in Denmark yesterday. — *Для минулого потрібна форма arrived.*
+- ✅ **We noticed a weakness in the plan yesterday.**
+- ❌ We notice a weakness in the plan yesterday. — *Із yesterday потрібна минула форма noticed.*
+- ❌ We noticing a weakness in the plan yesterday. — *Перевірте форму присудка в цьому реченні.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — Poland**
-<!-- interaction_id: en:lesson-24:session-47:word:Poland; family: word_card -->
-> **Poland** — Польща.
+**1 · Картка слова — guilt**
+<!-- interaction_id: en:lesson-24:session-47:word:guilt; family: word_card -->
+> **guilt** — почуття провини.
 
-**2 · Скажіть: «Я бував у Польщі.»**
+**2 · Скажіть: «Я відчуваю провину від учора.»**
 <!-- interaction_id: en:lesson-24:session-47:i01; family: phrase_builder -->
-Плитки: `Poland` `to` `been` `have` `I` → **I have been to Poland.**
+Плитки: `yesterday` `since` `guilt` `felt` `have` `I` → **I have felt guilt since yesterday.**
 
-**3 · Доповніть розповідь про поїздки.**
+**3 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-47:i02; family: context_gap_grammar -->
-I ___ been to Poland. → **have** · has · am
-- has — *Із I потрібно have перед been.*
-- am — *Із I потрібно have перед been.*
+I ___ felt guilt since yesterday. → **have** · has · am
+- has — *З I потрібно have.*
+- am — *З I потрібно have.*
 
 **4 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-47:i03; family: listen_choose -->
-🔊 *I have been to Poland.* → **I have been to Poland.** · We have been to Poland. · I have lived in Poland.
-- We have been to Poland. — *У записі звучить I have been to Poland.*
-- I have lived in Poland. — *У записі звучить I have been to Poland.*
+🔊 *I have felt guilt since yesterday.* → **I have felt guilt since yesterday.** · We have felt guilt since yesterday. · I have felt guilt since Monday.
+- We have felt guilt since yesterday. — *У записі звучить I have felt guilt since yesterday.*
+- I have felt guilt since Monday. — *У записі звучить I have felt guilt since yesterday.*
 
-**5 · Картка слова — Portugal**
-<!-- interaction_id: en:lesson-24:session-47:word:Portugal; family: word_card -->
-> **Portugal** — Португалія.
+**5 · Картка слова — shame**
+<!-- interaction_id: en:lesson-24:session-47:word:shame; family: word_card -->
+> **shame** — сором.
 
-**6 · Скажіть: «Вона відвідала Португалію торік.»**
+**6 · Скажіть: «Учора вона приховала свій сором.»**
 <!-- interaction_id: en:lesson-24:session-47:i04; family: phrase_builder -->
-Плитки: `year` `last` `Portugal` `visited` `She` → **She visited Portugal last year.**
+Плитки: `yesterday` `shame` `her` `hid` `She` → **She hid her shame yesterday.**
 
-**7 · Доповніть розповідь про поїздки.**
+**7 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-47:i05; family: context_gap_grammar -->
-She ___ Portugal last year. → **visited** · has visited · visit
-- has visited — *Із last year потрібна форма visited без has.*
-- visit — *Із last year потрібна форма visited без has.*
+She ___ her shame yesterday. → **hid** · hides · hiding
+- hides — *Yesterday потребує Past Simple: hid.*
+- hiding — *Yesterday потребує Past Simple: hid.*
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-47:i06; family: listen_choose -->
-🔊 *She visited Portugal last year.* → **She visited Portugal last year.** · He visited Portugal last year. · She visited Portugal last month.
-- He visited Portugal last year. — *У записі звучить She visited Portugal last year.*
-- She visited Portugal last month. — *У записі звучить She visited Portugal last year.*
+🔊 *She hid her shame yesterday.* → **She hid her shame yesterday.** · He hid his shame yesterday. · She hid her shame last week.
+- He hid his shame yesterday. — *У записі звучить She hid her shame yesterday.*
+- She hid her shame last week. — *У записі звучить She hid her shame yesterday.*
 
-**9 · Картка слова — Norway**
-<!-- interaction_id: en:lesson-24:session-47:word:Norway; family: word_card -->
-> **Norway** — Норвегія.
+**9 · Картка слова — desire**
+<!-- interaction_id: en:lesson-24:session-47:word:desire; family: word_card -->
+> **desire** — бажання.
 
-**10 · Скажіть: «Ми з’їздили до Норвегії.»**
+**10 · Скажіть: «Він висловив бажання вчитися.»**
 <!-- interaction_id: en:lesson-24:session-47:i07; family: phrase_builder -->
-Плитки: `Norway` `to` `travelled` `have` `We` → **We have travelled to Norway.**
+Плитки: `learn` `to` `desire` `a` `expressed` `has` `He` → **He has expressed a desire to learn.**
 
-**11 · Доповніть розповідь про поїздки.**
+**11 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-47:i08; family: context_gap_grammar -->
-We ___ travelled to Norway. → **have** · has · are
-- has — *Із we потрібно have перед travelled.*
-- are — *Із we потрібно have перед travelled.*
+He ___ expressed a desire to learn. → **has** · have · is
+- have — *З he потрібно has.*
+- is — *З he потрібно has.*
 
 **12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-47:i09; family: listen_choose -->
-🔊 *We have travelled to Norway.* → **We have travelled to Norway.** · They have travelled to Norway. · We have moved to Norway.
-- They have travelled to Norway. — *У записі звучить We have travelled to Norway.*
-- We have moved to Norway. — *У записі звучить We have travelled to Norway.*
+🔊 *He has expressed a desire to learn.* → **He has expressed a desire to learn.** · She has expressed a desire to learn. · He has expressed a desire to travel.
+- She has expressed a desire to learn. — *У записі звучить He has expressed a desire to learn.*
+- He has expressed a desire to travel. — *У записі звучить He has expressed a desire to learn.*
 
-**13 · Картка слова — Denmark**
-<!-- interaction_id: en:lesson-24:session-47:word:Denmark; family: word_card -->
-> **Denmark** — Данія.
+**13 · Картка слова — weakness**
+<!-- interaction_id: en:lesson-24:session-47:word:weakness; family: word_card -->
+> **weakness** — слабкість, слабке місце.
 
-**14 · Скажіть: «Учора вони приїхали до Данії.»**
+**14 · Скажіть: «Учора ми помітили слабке місце в плані.»**
 <!-- interaction_id: en:lesson-24:session-47:i10; family: phrase_builder -->
-Плитки: `yesterday` `Denmark` `in` `arrived` `They` → **They arrived in Denmark yesterday.**
+Плитки: `yesterday` `plan` `the` `in` `weakness` `a` `noticed` `We` → **We noticed a weakness in the plan yesterday.**
 
-**15 · Доповніть розповідь про поїздки.**
+**15 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-47:i11; family: context_gap_grammar -->
-They ___ in Denmark yesterday. → **arrived** · have arrived · arrive
-- have arrived — *Із yesterday потрібна форма arrived без have.*
-- arrive — *Із yesterday потрібна форма arrived без have.*
+We ___ a weakness in the plan yesterday. → **noticed** · notice · noticing
+- notice — *Yesterday потребує Past Simple: noticed.*
+- noticing — *Yesterday потребує Past Simple: noticed.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-47:i12; family: listen_choose -->
-🔊 *They arrived in Denmark yesterday.* → **They arrived in Denmark yesterday.** · We arrived in Denmark yesterday. · They arrived in Denmark last week.
-- We arrived in Denmark yesterday. — *У записі звучить They arrived in Denmark yesterday.*
-- They arrived in Denmark last week. — *У записі звучить They arrived in Denmark yesterday.*
+🔊 *We noticed a weakness in the plan yesterday.* → **We noticed a weakness in the plan yesterday.** · They noticed a weakness in the plan yesterday. · We noticed a weakness in the plan last week.
+- They noticed a weakness in the plan yesterday. — *У записі звучить We noticed a weakness in the plan yesterday.*
+- We noticed a weakness in the plan last week. — *У записі звучить We noticed a weakness in the plan yesterday.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-24:session-47:i13; family: speed_match -->
-Poland — Польща · Portugal — Португалія · Norway — Норвегія · Denmark — Данія
+guilt — почуття провини · shame — сором · desire — бажання · weakness — слабкість, слабке місце
 
 **18 · Чекаю вже годину**
 <!-- interaction_id: en:lesson-24:session-47:i14; family: listen_build_dictation -->
@@ -141,11 +141,11 @@ Poland — Польща · Portugal — Португалія · Norway — Но�
 <!-- interaction_id: en:lesson-24:session-47:i15; family: listen_build_dictation -->
 🔊 *She has been working since this morning.* Плитки: `morning` `this` `since` `working` `been` `has` `She` → **She has been working since this morning.**
 
-**20 · Скажіть: «Ми відвідали Португалію торік».**
+**20 · Скажіть: «Вона висловила бажання подорожувати».**
 <!-- interaction_id: en:lesson-24:session-47:i16; family: scripted_repeat_compare -->
-🎙 **We visited Portugal last year.**
+🎙 **She has expressed a desire to travel.**
 
-**21 · Скажіть: «Вона приїхала до Данії вчора».**
+**21 · Скажіть: «Учора вони помітили слабке місце в плані».**
 <!-- interaction_id: en:lesson-24:session-47:i17; family: scripted_repeat_compare -->
-🎙 **She arrived in Denmark yesterday.**
+🎙 **They noticed a weakness in the plan yesterday.**
 

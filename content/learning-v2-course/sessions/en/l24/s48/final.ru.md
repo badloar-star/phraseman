@@ -1,137 +1,137 @@
-# Английский · Урок 24 · Занятие 48 — В каких странах вы были
+# Английский · Урок 24 · Занятие 48 — Реакции и поддержка
 
-**Ситуация.** Вы рассказываете, в каких странах побывали и когда приехали.
+**Ситуация.** Вы рассказываете, как люди проявили чувства и позвали на помощь.
 
-**Что вы освоите:** Present Perfect / Past Simple
-**Новые слова:** Finland, Switzerland, Austria, Belgium
+**Что вы освоите:** present perfect / past simple
+**Новые слова:** cuddle, sob, groan, yell
 
 ## Интро 1
 
-### Опыт поездки
+### Обнять малыша
 
-Finland — Финляндия. I have been to Finland — я бывал в Финляндии. Have been to сообщает об опыте поездки: человек побывал там и вернулся. Finland пишется с большой буквы, без the. Дата здесь не названа.
+Cuddle — ласково обнимать, прижимать к себе: малыша, близкого человека или питомца. She has cuddled the baby — она ласково обняла малыша. Здесь мы сообщаем, что это уже произошло, без указания законченного момента. С she используем has cuddled. Если добавим yesterday, понадобится Past Simple: She cuddled the baby yesterday.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I have been to Finland.**
-- ❌ I has been to Finland. — *С I нужно have.*
-- ❌ I have be to Finland. — *После have нужна форма been.*
+- ✅ **She has cuddled the baby.**
+- ❌ She have cuddled the baby. — *Проверьте форму глагола: has.*
+- ❌ She is cuddled the baby. — *Здесь нужна форма has.*
 
 ---
 
 ## Интро 2
 
-### Посетить страну
+### Слёзы и боль
 
-Switzerland — Швейцария. She visited Switzerland last year — она посетила Швейцарию в прошлом году. После visited не ставим to. Austria — Австрия; не путайте с Australia — Австралией. We have travelled to Austria — мы съездили в Австрию. После travelled направление выражаем через to. С last year нужен visited без has.
+Sob — рыдать, плакать с прерывистым дыханием. He sobbed after the film yesterday — вчера он рыдал после фильма. Yesterday называет законченное прошлое, поэтому sobbed. В этой форме удваиваем b. Groan — стонать: например, от боли. I have groaned with pain all morning — я всё утро стону от боли. Утро ещё продолжается; говорящий описывает повторявшиеся до настоящего момента стоны. С I используем have groaned.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She visited Switzerland last year.**
-- ❌ She has visited Switzerland last year. — *С last year нужно visited без has.*
-- ❌ She visit Switzerland last year. — *Для прошлого нужна форма visited.*
+- ✅ **He sobbed after the film yesterday.**
+- ❌ He sob after the film yesterday. — *Проверьте форму глагола: sobbed.*
+- ❌ He sobbing after the film yesterday. — *Здесь нужна форма sobbed.*
 
 ---
 
 ## Интро 3
 
-### Приехали вчера
+### Позвать на помощь
 
-Belgium — Бельгия. They arrived in Belgium yesterday — вчера они приехали в Бельгию. Перед названием страны после arrive нужен in. Yesterday указывает законченный день: arrived без have. Эти четыре названия стран пишутся с большой буквы и без the.
+Yell — кричать громким голосом. They yelled for help yesterday — вчера они кричали, зовя на помощь. For help здесь означает «о помощи», а не длительность. С yesterday выбираем yelled: событие произошло в законченном прошлом. Yell можно использовать и когда человек зовёт кого-то издалека.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **They arrived in Belgium yesterday.**
-- ❌ They have arrived in Belgium yesterday. — *С yesterday нужно arrived без have.*
-- ❌ They arrive in Belgium yesterday. — *Для прошлого нужна форма arrived.*
+- ✅ **They yelled for help yesterday.**
+- ❌ They yell for help yesterday. — *Проверьте форму глагола: yelled.*
+- ❌ They yelling for help yesterday. — *Здесь нужна форма yelled.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — Finland**
-<!-- interaction_id: en:lesson-24:session-48:word:Finland; family: word_card -->
-> **Finland** — Финляндия.
+**1 · Карточка слова — cuddled**
+<!-- interaction_id: en:lesson-24:session-48:word:cuddled; family: word_card -->
+> **cuddled** — cuddle — ласково обнимать. Cuddled — ласково обнял.
 
-**2 · Скажите: «Я бывал в Финляндии.»**
+**2 · Скажите: «Она ласково обняла малыша.»**
 <!-- interaction_id: en:lesson-24:session-48:i01; family: phrase_builder -->
-Плитки: `Finland` `to` `been` `have` `I` → **I have been to Finland.**
+Плитки: `baby` `the` `cuddled` `has` `She` → **She has cuddled the baby.**
 
-**3 · Дополните рассказ о поездках.**
+**3 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-48:i02; family: context_gap_grammar -->
-I ___ been to Finland. → **have** · has · am
-- has — *С I нужно have перед been.*
-- am — *С I нужно have перед been.*
+She ___ cuddled the baby. → **has** · have · is
+- have — *С she нужно has.*
+- is — *С she нужно has.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-48:i03; family: listen_choose -->
-🔊 *I have been to Finland.* → **I have been to Finland.** · We have been to Finland. · I have lived in Finland.
-- We have been to Finland. — *В записи звучит I have been to Finland.*
-- I have lived in Finland. — *В записи звучит I have been to Finland.*
+🔊 *She has cuddled the baby.* → **She has cuddled the baby.** · He has cuddled the baby. · She has cuddled the puppy.
+- He has cuddled the baby. — *В записи звучит She has cuddled the baby.*
+- She has cuddled the puppy. — *В записи звучит She has cuddled the baby.*
 
-**5 · Карточка слова — Switzerland**
-<!-- interaction_id: en:lesson-24:session-48:word:Switzerland; family: word_card -->
-> **Switzerland** — Швейцария.
+**5 · Карточка слова — sobbed**
+<!-- interaction_id: en:lesson-24:session-48:word:sobbed; family: word_card -->
+> **sobbed** — sob — рыдать. Sobbed — рыдал.
 
-**6 · Скажите: «Она посетила Швейцарию в прошлом году.»**
+**6 · Скажите: «Вчера он рыдал после фильма.»**
 <!-- interaction_id: en:lesson-24:session-48:i04; family: phrase_builder -->
-Плитки: `year` `last` `Switzerland` `visited` `She` → **She visited Switzerland last year.**
+Плитки: `yesterday` `film` `the` `after` `sobbed` `He` → **He sobbed after the film yesterday.**
 
-**7 · Дополните рассказ о поездках.**
+**7 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-48:i05; family: context_gap_grammar -->
-She ___ Switzerland last year. → **visited** · has visited · visit
-- has visited — *С last year нужна форма visited без has.*
-- visit — *С last year нужна форма visited без has.*
+He ___ after the film yesterday. → **sobbed** · sob · sobbing
+- sob — *Yesterday требует Past Simple: sobbed.*
+- sobbing — *Yesterday требует Past Simple: sobbed.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-48:i06; family: listen_choose -->
-🔊 *She visited Switzerland last year.* → **She visited Switzerland last year.** · He visited Switzerland last year. · She visited Switzerland last month.
-- He visited Switzerland last year. — *В записи звучит She visited Switzerland last year.*
-- She visited Switzerland last month. — *В записи звучит She visited Switzerland last year.*
+🔊 *He sobbed after the film yesterday.* → **He sobbed after the film yesterday.** · She sobbed after the film yesterday. · He sobbed after the show yesterday.
+- She sobbed after the film yesterday. — *В записи звучит He sobbed after the film yesterday.*
+- He sobbed after the show yesterday. — *В записи звучит He sobbed after the film yesterday.*
 
-**9 · Карточка слова — Austria**
-<!-- interaction_id: en:lesson-24:session-48:word:Austria; family: word_card -->
-> **Austria** — Австрия.
+**9 · Карточка слова — groaned**
+<!-- interaction_id: en:lesson-24:session-48:word:groaned; family: word_card -->
+> **groaned** — groan — стонать. Groaned — стонал.
 
-**10 · Скажите: «Мы съездили в Австрию.»**
+**10 · Скажите: «Я всё утро стону от боли.»**
 <!-- interaction_id: en:lesson-24:session-48:i07; family: phrase_builder -->
-Плитки: `Austria` `to` `travelled` `have` `We` → **We have travelled to Austria.**
+Плитки: `morning` `all` `pain` `with` `groaned` `have` `I` → **I have groaned with pain all morning.**
 
-**11 · Дополните рассказ о поездках.**
+**11 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-48:i08; family: context_gap_grammar -->
-We ___ travelled to Austria. → **have** · has · are
-- has — *С we нужно have перед travelled.*
-- are — *С we нужно have перед travelled.*
+I ___ groaned with pain all morning. → **have** · has · am
+- has — *С I нужно have.*
+- am — *С I нужно have.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-48:i09; family: listen_choose -->
-🔊 *We have travelled to Austria.* → **We have travelled to Austria.** · They have travelled to Austria. · We have moved to Austria.
-- They have travelled to Austria. — *В записи звучит We have travelled to Austria.*
-- We have moved to Austria. — *В записи звучит We have travelled to Austria.*
+🔊 *I have groaned with pain all morning.* → **I have groaned with pain all morning.** · We have groaned with pain all morning. · I have groaned with pain all afternoon.
+- We have groaned with pain all morning. — *В записи звучит I have groaned with pain all morning.*
+- I have groaned with pain all afternoon. — *В записи звучит I have groaned with pain all morning.*
 
-**13 · Карточка слова — Belgium**
-<!-- interaction_id: en:lesson-24:session-48:word:Belgium; family: word_card -->
-> **Belgium** — Бельгия.
+**13 · Карточка слова — yelled**
+<!-- interaction_id: en:lesson-24:session-48:word:yelled; family: word_card -->
+> **yelled** — yell — кричать. Yelled — кричал.
 
-**14 · Скажите: «Вчера они приехали в Бельгию.»**
+**14 · Скажите: «Вчера они кричали, зовя на помощь.»**
 <!-- interaction_id: en:lesson-24:session-48:i10; family: phrase_builder -->
-Плитки: `yesterday` `Belgium` `in` `arrived` `They` → **They arrived in Belgium yesterday.**
+Плитки: `yesterday` `help` `for` `yelled` `They` → **They yelled for help yesterday.**
 
-**15 · Дополните рассказ о поездках.**
+**15 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-48:i11; family: context_gap_grammar -->
-They ___ in Belgium yesterday. → **arrived** · have arrived · arrive
-- have arrived — *С yesterday нужна форма arrived без have.*
-- arrive — *С yesterday нужна форма arrived без have.*
+They ___ for help yesterday. → **yelled** · yell · yelling
+- yell — *Yesterday требует Past Simple: yelled.*
+- yelling — *Yesterday требует Past Simple: yelled.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-48:i12; family: listen_choose -->
-🔊 *They arrived in Belgium yesterday.* → **They arrived in Belgium yesterday.** · We arrived in Belgium yesterday. · They arrived in Belgium last week.
-- We arrived in Belgium yesterday. — *В записи звучит They arrived in Belgium yesterday.*
-- They arrived in Belgium last week. — *В записи звучит They arrived in Belgium yesterday.*
+🔊 *They yelled for help yesterday.* → **They yelled for help yesterday.** · We yelled for help yesterday. · They yelled for help last night.
+- We yelled for help yesterday. — *В записи звучит They yelled for help yesterday.*
+- They yelled for help last night. — *В записи звучит They yelled for help yesterday.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-24:session-48:i13; family: speed_match -->
-Finland — Финляндия · Switzerland — Швейцария · Austria — Австрия · Belgium — Бельгия
+cuddle — ласково обнимать · sob — рыдать · groan — стонать · yell — кричать
 
 **18 · Жду уже час**
 <!-- interaction_id: en:lesson-24:session-48:i14; family: listen_build_dictation -->
@@ -141,11 +141,11 @@ Finland — Финляндия · Switzerland — Швейцария · Austria 
 <!-- interaction_id: en:lesson-24:session-48:i15; family: listen_build_dictation -->
 🔊 *She has been working since this morning.* Плитки: `morning` `this` `since` `working` `been` `has` `She` → **She has been working since this morning.**
 
-**20 · Скажите: «Мы посетили Швейцарию в прошлом году».**
+**20 · Скажите: «Он ласково обнял щенка».**
 <!-- interaction_id: en:lesson-24:session-48:i16; family: scripted_repeat_compare -->
-🎙 **We visited Switzerland last year.**
+🎙 **He has cuddled the puppy.**
 
-**21 · Скажите: «Она приехала в Бельгию вчера».**
+**21 · Скажите: «Вчера она кричала, зовя на помощь».**
 <!-- interaction_id: en:lesson-24:session-48:i17; family: scripted_repeat_compare -->
-🎙 **She arrived in Belgium yesterday.**
+🎙 **She yelled for help yesterday.**
 

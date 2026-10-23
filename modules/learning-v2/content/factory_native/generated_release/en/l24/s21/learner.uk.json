@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-24:session-21:word:Japan",
+      "interactionId": "en:lesson-24:session-21:word:laughter",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Japan",
+      "prompt": "Картка слова — laughter",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-21:word:Japan:audio"
+        "en:lesson-24:session-21:word:laughter:audio"
       ],
-      "accessibilityLabel": "Картка слова — Japan",
+      "accessibilityLabel": "Картка слова — laughter",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-21:word:Japan:audio",
-          "transcript": "Japan"
+          "audioTargetId": "en:lesson-24:session-21:word:laughter:audio",
+          "transcript": "laughter"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-21:word:Japan:r1",
-            "targetText": "Japan",
+            "responseId": "en:lesson-24:session-21:word:laughter:r1",
+            "targetText": "laughter",
             "meaningByLocale": {
-              "ru": "Япония.",
-              "uk": "Японія."
+              "ru": "смех.",
+              "uk": "сміх."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Japan",
+          "word": "laughter",
           "definitionByLocale": {
-            "ru": "Япония.",
-            "uk": "Японія."
+            "ru": "смех.",
+            "uk": "сміх."
           }
         }
       },
@@ -52,28 +52,30 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Я працюю в Японії вже місяць.»",
+      "prompt": "Скажіть: «Я вже хвилину намагаюся стримати сміх.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Я працюю в Японії вже місяць.»",
+      "accessibilityLabel": "Скажіть: «Я вже хвилину намагаюся стримати сміх.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have been working in Japan for a month.",
+        "targetPhrase": "I have been trying to hide my laughter for a minute.",
         "localizedMeaning": {
-          "ru": "Скажите: «Я работаю в Японии уже месяц.»",
-          "uk": "Скажіть: «Я працюю в Японії вже місяць.»"
+          "ru": "Скажите: «Я уже минуту пытаюсь сдержать смех.»",
+          "uk": "Скажіть: «Я вже хвилину намагаюся стримати сміх.»"
         },
         "orderedTokens": [
           "I",
           "have",
           "been",
-          "working",
-          "in",
-          "Japan",
+          "trying",
+          "to",
+          "hide",
+          "my",
+          "laughter",
           "for",
           "a",
-          "month"
+          "minute"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,7 +92,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про подорож.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i02:r1",
@@ -107,14 +109,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про подорож.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездке.",
-          "uk": "Доповніть розповідь про подорож."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "I ___ been working in Japan for a month.",
+        "gappedTargetPhrase": "I ___ been trying to hide my laughter for a minute.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-21:i02:r1",
@@ -129,24 +131,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Доповніть розповідь про подорож.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-21:i02:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
               "ru": "С I нужно have.",
-              "uk": "Із I потрібно have."
+              "uk": "З I потрібно have."
             }
           },
           {
             "responseId": "en:lesson-24:session-21:i02:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
               "ru": "С I нужно have.",
-              "uk": "Із I потрібно have."
+              "uk": "З I потрібно have."
             }
           }
         ]
@@ -163,15 +165,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i03:r1",
-          "text": "I have been working in Japan for a month."
+          "text": "I have been trying to hide my laughter for a minute."
         },
         {
           "responseId": "en:lesson-24:session-21:i03:r2",
-          "text": "We have been working in Japan for a month."
+          "text": "We have been trying to hide our laughter for a minute."
         },
         {
           "responseId": "en:lesson-24:session-21:i03:r3",
-          "text": "I have been working in Japan for a year."
+          "text": "I have been trying to hide my laughter for two minutes."
         }
       ],
       "mediaIds": [],
@@ -183,23 +185,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-21:i03:audio",
-          "transcript": "I have been working in Japan for a month."
+          "transcript": "I have been trying to hide my laughter for a minute."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-21:i03:r1",
-            "targetText": "I have been working in Japan for a month.",
+            "targetText": "I have been trying to hide my laughter for a minute.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i03:r2",
-            "targetText": "We have been working in Japan for a month.",
+            "targetText": "We have been trying to hide our laughter for a minute.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i03:r3",
-            "targetText": "I have been working in Japan for a year.",
+            "targetText": "I have been trying to hide my laughter for two minutes.",
             "meaningByLocale": null
           }
         ],
@@ -210,8 +212,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have been working in Japan for a month.",
-              "uk": "У записі звучить I have been working in Japan for a month."
+              "ru": "В записи звучит I have been trying to hide my laughter for a minute.",
+              "uk": "У записі звучить I have been trying to hide my laughter for a minute."
             }
           },
           {
@@ -219,8 +221,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have been working in Japan for a month.",
-              "uk": "У записі звучить I have been working in Japan for a month."
+              "ru": "В записи звучит I have been trying to hide my laughter for a minute.",
+              "uk": "У записі звучить I have been trying to hide my laughter for a minute."
             }
           }
         ],
@@ -230,32 +232,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-21:word:China",
+      "interactionId": "en:lesson-24:session-21:word:comedian",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — China",
+      "prompt": "Картка слова — comedian",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-21:word:China:audio"
+        "en:lesson-24:session-21:word:comedian:audio"
       ],
-      "accessibilityLabel": "Картка слова — China",
+      "accessibilityLabel": "Картка слова — comedian",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-21:word:China:audio",
-          "transcript": "China"
+          "audioTargetId": "en:lesson-24:session-21:word:comedian:audio",
+          "transcript": "comedian"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-21:word:China:r1",
-            "targetText": "China",
+            "responseId": "en:lesson-24:session-21:word:comedian:r1",
+            "targetText": "comedian",
             "meaningByLocale": {
-              "ru": "Китай.",
-              "uk": "Китай."
+              "ru": "комик.",
+              "uk": "комік."
             }
           }
         ],
@@ -263,10 +265,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "China",
+          "word": "comedian",
           "definitionByLocale": {
-            "ru": "Китай.",
-            "uk": "Китай."
+            "ru": "комик.",
+            "uk": "комік."
           }
         }
       },
@@ -278,27 +280,28 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Вона навчається в Китаї з вересня.»",
+      "prompt": "Скажіть: «Ми дивимося виступ коміка вже годину.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Вона навчається в Китаї з вересня.»",
+      "accessibilityLabel": "Скажіть: «Ми дивимося виступ коміка вже годину.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She has been studying in China since September.",
+        "targetPhrase": "We have been watching a comedian for an hour.",
         "localizedMeaning": {
-          "ru": "Скажите: «Она учится в Китае с сентября.»",
-          "uk": "Скажіть: «Вона навчається в Китаї з вересня.»"
+          "ru": "Скажите: «Мы смотрим выступление комика уже час.»",
+          "uk": "Скажіть: «Ми дивимося виступ коміка вже годину.»"
         },
         "orderedTokens": [
-          "She",
-          "has",
+          "We",
+          "have",
           "been",
-          "studying",
-          "in",
-          "China",
-          "since",
-          "September"
+          "watching",
+          "a",
+          "comedian",
+          "for",
+          "an",
+          "hour"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -315,63 +318,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про подорож.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i05:r1",
-          "text": "has"
+          "text": "watching"
         },
         {
           "responseId": "en:lesson-24:session-21:i05:r2",
-          "text": "have"
+          "text": "watch"
         },
         {
           "responseId": "en:lesson-24:session-21:i05:r3",
-          "text": "is"
+          "text": "watched"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про подорож.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездке.",
-          "uk": "Доповніть розповідь про подорож."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "She ___ been studying in China since September.",
+        "gappedTargetPhrase": "We have been ___ a comedian for an hour.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-21:i05:r1",
-            "text": "has"
+            "text": "watching"
           },
           {
             "responseId": "en:lesson-24:session-21:i05:r2",
-            "text": "have"
+            "text": "watch"
           },
           {
             "responseId": "en:lesson-24:session-21:i05:r3",
-            "text": "is"
+            "text": "watched"
           }
         ],
-        "testedDimension": "Доповніть розповідь про подорож.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-21:i05:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С she нужно has.",
-              "uk": "Із she потрібно has."
+              "ru": "После have been нужна форма watching.",
+              "uk": "Після have been потрібна форма watching."
             }
           },
           {
             "responseId": "en:lesson-24:session-21:i05:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С she нужно has.",
-              "uk": "Із she потрібно has."
+              "ru": "После have been нужна форма watching.",
+              "uk": "Після have been потрібна форма watching."
             }
           }
         ]
@@ -388,15 +391,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i06:r1",
-          "text": "She has been studying in China since September."
+          "text": "We have been watching a comedian for an hour."
         },
         {
           "responseId": "en:lesson-24:session-21:i06:r2",
-          "text": "He has been studying in China since September."
+          "text": "They have been watching a comedian for an hour."
         },
         {
           "responseId": "en:lesson-24:session-21:i06:r3",
-          "text": "They have been studying in China since September."
+          "text": "We have been watching a comedian for two hours."
         }
       ],
       "mediaIds": [],
@@ -408,23 +411,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-21:i06:audio",
-          "transcript": "She has been studying in China since September."
+          "transcript": "We have been watching a comedian for an hour."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-21:i06:r1",
-            "targetText": "She has been studying in China since September.",
+            "targetText": "We have been watching a comedian for an hour.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i06:r2",
-            "targetText": "He has been studying in China since September.",
+            "targetText": "They have been watching a comedian for an hour.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i06:r3",
-            "targetText": "They have been studying in China since September.",
+            "targetText": "We have been watching a comedian for two hours.",
             "meaningByLocale": null
           }
         ],
@@ -435,8 +438,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She has been studying in China since September.",
-              "uk": "У записі звучить She has been studying in China since September."
+              "ru": "В записи звучит We have been watching a comedian for an hour.",
+              "uk": "У записі звучить We have been watching a comedian for an hour."
             }
           },
           {
@@ -444,8 +447,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She has been studying in China since September.",
-              "uk": "У записі звучить She has been studying in China since September."
+              "ru": "В записи звучит We have been watching a comedian for an hour.",
+              "uk": "У записі звучить We have been watching a comedian for an hour."
             }
           }
         ],
@@ -455,32 +458,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-21:word:Mexico",
+      "interactionId": "en:lesson-24:session-21:word:celebrity",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Mexico",
+      "prompt": "Картка слова — celebrity",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-21:word:Mexico:audio"
+        "en:lesson-24:session-21:word:celebrity:audio"
       ],
-      "accessibilityLabel": "Картка слова — Mexico",
+      "accessibilityLabel": "Картка слова — celebrity",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-21:word:Mexico:audio",
-          "transcript": "Mexico"
+          "audioTargetId": "en:lesson-24:session-21:word:celebrity:audio",
+          "transcript": "celebrity"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-21:word:Mexico:r1",
-            "targetText": "Mexico",
+            "responseId": "en:lesson-24:session-21:word:celebrity:r1",
+            "targetText": "celebrity",
             "meaningByLocale": {
-              "ru": "Мексика.",
-              "uk": "Мексика."
+              "ru": "знаменитость.",
+              "uk": "знаменитість."
             }
           }
         ],
@@ -488,10 +491,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Mexico",
+          "word": "celebrity",
           "definitionByLocale": {
-            "ru": "Мексика.",
-            "uk": "Мексика."
+            "ru": "знаменитость.",
+            "uk": "знаменитість."
           }
         }
       },
@@ -503,28 +506,27 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Ми подорожуємо Мексикою вже два тижні.»",
+      "prompt": "Скажіть: «Вона бере інтерв’ю у знаменитості з полудня.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Ми подорожуємо Мексикою вже два тижні.»",
+      "accessibilityLabel": "Скажіть: «Вона бере інтерв’ю у знаменитості з полудня.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have been travelling around Mexico for two weeks.",
+        "targetPhrase": "She has been interviewing a celebrity since noon.",
         "localizedMeaning": {
-          "ru": "Скажите: «Мы путешествуем по Мексике уже две недели.»",
-          "uk": "Скажіть: «Ми подорожуємо Мексикою вже два тижні.»"
+          "ru": "Скажите: «Она берёт интервью у знаменитости с полудня.»",
+          "uk": "Скажіть: «Вона бере інтерв’ю у знаменитості з полудня.»"
         },
         "orderedTokens": [
-          "We",
-          "have",
+          "She",
+          "has",
           "been",
-          "travelling",
-          "around",
-          "Mexico",
-          "for",
-          "two",
-          "weeks"
+          "interviewing",
+          "a",
+          "celebrity",
+          "since",
+          "noon"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -541,63 +543,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про подорож.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i08:r1",
-          "text": "travelling"
+          "text": "been"
         },
         {
           "responseId": "en:lesson-24:session-21:i08:r2",
-          "text": "travel"
+          "text": "be"
         },
         {
           "responseId": "en:lesson-24:session-21:i08:r3",
-          "text": "travelled"
+          "text": "being"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про подорож.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездке.",
-          "uk": "Доповніть розповідь про подорож."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "We have been ___ around Mexico for two weeks.",
+        "gappedTargetPhrase": "She has ___ interviewing a celebrity since noon.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-21:i08:r1",
-            "text": "travelling"
+            "text": "been"
           },
           {
             "responseId": "en:lesson-24:session-21:i08:r2",
-            "text": "travel"
+            "text": "be"
           },
           {
             "responseId": "en:lesson-24:session-21:i08:r3",
-            "text": "travelled"
+            "text": "being"
           }
         ],
-        "testedDimension": "Доповніть розповідь про подорож.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-21:i08:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "После have been нужна форма travelling.",
-              "uk": "Після have been потрібна форма travelling."
+              "ru": "Между has и interviewing нужно been.",
+              "uk": "Між has та interviewing потрібне been."
             }
           },
           {
             "responseId": "en:lesson-24:session-21:i08:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "После have been нужна форма travelling.",
-              "uk": "Після have been потрібна форма travelling."
+              "ru": "Между has и interviewing нужно been.",
+              "uk": "Між has та interviewing потрібне been."
             }
           }
         ]
@@ -614,15 +616,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i09:r1",
-          "text": "We have been travelling around Mexico for two weeks."
+          "text": "She has been interviewing a celebrity since noon."
         },
         {
           "responseId": "en:lesson-24:session-21:i09:r2",
-          "text": "They have been travelling around Mexico for two weeks."
+          "text": "He has been interviewing a celebrity since noon."
         },
         {
           "responseId": "en:lesson-24:session-21:i09:r3",
-          "text": "We have been travelling around Mexico for three weeks."
+          "text": "She has been interviewing a celebrity since ten."
         }
       ],
       "mediaIds": [],
@@ -634,23 +636,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-21:i09:audio",
-          "transcript": "We have been travelling around Mexico for two weeks."
+          "transcript": "She has been interviewing a celebrity since noon."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-21:i09:r1",
-            "targetText": "We have been travelling around Mexico for two weeks.",
+            "targetText": "She has been interviewing a celebrity since noon.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i09:r2",
-            "targetText": "They have been travelling around Mexico for two weeks.",
+            "targetText": "He has been interviewing a celebrity since noon.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i09:r3",
-            "targetText": "We have been travelling around Mexico for three weeks.",
+            "targetText": "She has been interviewing a celebrity since ten.",
             "meaningByLocale": null
           }
         ],
@@ -661,8 +663,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have been travelling around Mexico for two weeks.",
-              "uk": "У записі звучить We have been travelling around Mexico for two weeks."
+              "ru": "В записи звучит She has been interviewing a celebrity since noon.",
+              "uk": "У записі звучить She has been interviewing a celebrity since noon."
             }
           },
           {
@@ -670,8 +672,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have been travelling around Mexico for two weeks.",
-              "uk": "У записі звучить We have been travelling around Mexico for two weeks."
+              "ru": "В записи звучит She has been interviewing a celebrity since noon.",
+              "uk": "У записі звучить She has been interviewing a celebrity since noon."
             }
           }
         ],
@@ -681,32 +683,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-21:word:Greece",
+      "interactionId": "en:lesson-24:session-21:word:autograph",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Greece",
+      "prompt": "Картка слова — autograph",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-21:word:Greece:audio"
+        "en:lesson-24:session-21:word:autograph:audio"
       ],
-      "accessibilityLabel": "Картка слова — Greece",
+      "accessibilityLabel": "Картка слова — autograph",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-21:word:Greece:audio",
-          "transcript": "Greece"
+          "audioTargetId": "en:lesson-24:session-21:word:autograph:audio",
+          "transcript": "autograph"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-21:word:Greece:r1",
-            "targetText": "Greece",
+            "responseId": "en:lesson-24:session-21:word:autograph:r1",
+            "targetText": "autograph",
             "meaningByLocale": {
-              "ru": "Греция.",
-              "uk": "Греція."
+              "ru": "автограф.",
+              "uk": "автограф."
             }
           }
         ],
@@ -714,10 +716,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Greece",
+          "word": "autograph",
           "definitionByLocale": {
-            "ru": "Греция.",
-            "uk": "Греція."
+            "ru": "автограф.",
+            "uk": "автограф."
           }
         }
       },
@@ -729,27 +731,29 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Вони перебувають у Греції з понеділка.»",
+      "prompt": "Скажіть: «Він чекає на автограф уже дві години.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Вони перебувають у Греції з понеділка.»",
+      "accessibilityLabel": "Скажіть: «Він чекає на автограф уже дві години.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They have been staying in Greece since Monday.",
+        "targetPhrase": "He has been waiting for an autograph for two hours.",
         "localizedMeaning": {
-          "ru": "Скажите: «Они находятся в Греции с понедельника.»",
-          "uk": "Скажіть: «Вони перебувають у Греції з понеділка.»"
+          "ru": "Скажите: «Он ждёт автограф уже два часа.»",
+          "uk": "Скажіть: «Він чекає на автограф уже дві години.»"
         },
         "orderedTokens": [
-          "They",
-          "have",
+          "He",
+          "has",
           "been",
-          "staying",
-          "in",
-          "Greece",
-          "since",
-          "Monday"
+          "waiting",
+          "for",
+          "an",
+          "autograph",
+          "for",
+          "two",
+          "hours"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -766,63 +770,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про подорож.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i11:r1",
-          "text": "been"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-24:session-21:i11:r2",
-          "text": "be"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-24:session-21:i11:r3",
-          "text": "being"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про подорож.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездке.",
-          "uk": "Доповніть розповідь про подорож."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "They have ___ staying in Greece since Monday.",
+        "gappedTargetPhrase": "He ___ been waiting for an autograph for two hours.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-21:i11:r1",
-            "text": "been"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-24:session-21:i11:r2",
-            "text": "be"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-24:session-21:i11:r3",
-            "text": "being"
+            "text": "is"
           }
         ],
-        "testedDimension": "Доповніть розповідь про подорож.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-21:i11:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "Между have и staying нужно been.",
-              "uk": "Між have та staying потрібне been."
+              "ru": "С he нужно has.",
+              "uk": "З he потрібне has."
             }
           },
           {
             "responseId": "en:lesson-24:session-21:i11:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про подорож.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "Между have и staying нужно been.",
-              "uk": "Між have та staying потрібне been."
+              "ru": "С he нужно has.",
+              "uk": "З he потрібне has."
             }
           }
         ]
@@ -839,15 +843,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-21:i12:r1",
-          "text": "They have been staying in Greece since Monday."
+          "text": "He has been waiting for an autograph for two hours."
         },
         {
           "responseId": "en:lesson-24:session-21:i12:r2",
-          "text": "We have been staying in Greece since Monday."
+          "text": "She has been waiting for an autograph for two hours."
         },
         {
           "responseId": "en:lesson-24:session-21:i12:r3",
-          "text": "They have been staying in Greece since Tuesday."
+          "text": "He has been waiting for an autograph for three hours."
         }
       ],
       "mediaIds": [],
@@ -859,23 +863,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-21:i12:audio",
-          "transcript": "They have been staying in Greece since Monday."
+          "transcript": "He has been waiting for an autograph for two hours."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-21:i12:r1",
-            "targetText": "They have been staying in Greece since Monday.",
+            "targetText": "He has been waiting for an autograph for two hours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i12:r2",
-            "targetText": "We have been staying in Greece since Monday.",
+            "targetText": "She has been waiting for an autograph for two hours.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-21:i12:r3",
-            "targetText": "They have been staying in Greece since Tuesday.",
+            "targetText": "He has been waiting for an autograph for three hours.",
             "meaningByLocale": null
           }
         ],
@@ -886,8 +890,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит They have been staying in Greece since Monday.",
-              "uk": "У записі звучить They have been staying in Greece since Monday."
+              "ru": "В записи звучит He has been waiting for an autograph for two hours.",
+              "uk": "У записі звучить He has been waiting for an autograph for two hours."
             }
           },
           {
@@ -895,8 +899,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит They have been staying in Greece since Monday.",
-              "uk": "У записі звучить They have been staying in Greece since Monday."
+              "ru": "В записи звучит He has been waiting for an autograph for two hours.",
+              "uk": "У записі звучить He has been waiting for an autograph for two hours."
             }
           }
         ],
@@ -921,48 +925,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-24:session-21:i13:p1",
-            "target": "Japan",
+            "target": "laughter",
             "meaningByLocale": {
-              "ru": "Япония",
-              "uk": "Японія"
+              "ru": "смех",
+              "uk": "сміх"
             }
           },
           {
             "pairId": "en:lesson-24:session-21:i13:p2",
-            "target": "China",
+            "target": "comedian",
             "meaningByLocale": {
-              "ru": "Китай",
-              "uk": "Китай"
+              "ru": "комик",
+              "uk": "комік"
             }
           },
           {
             "pairId": "en:lesson-24:session-21:i13:p3",
-            "target": "Mexico",
+            "target": "celebrity",
             "meaningByLocale": {
-              "ru": "Мексика",
-              "uk": "Мексика"
+              "ru": "знаменитость",
+              "uk": "знаменитість"
             }
           },
           {
             "pairId": "en:lesson-24:session-21:i13:p4",
-            "target": "Greece",
+            "target": "autograph",
             "meaningByLocale": {
-              "ru": "Греция",
-              "uk": "Греція"
+              "ru": "автограф",
+              "uk": "автограф"
             }
           }
         ],
         "leftColumn": [
-          "Japan",
-          "China",
-          "Mexico",
-          "Greece"
+          "laughter",
+          "comedian",
+          "celebrity",
+          "autograph"
         ],
         "rightColumn": [
-          "Японія",
-          "Китай",
-          "Мексика",
-          "Греція"
+          "сміх",
+          "комік",
+          "знаменитість",
+          "автограф"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -1062,21 +1066,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Ми працюємо в Японії вже рік».",
+      "prompt": "Скажіть: «Ми дивимося виступ коміка з полудня».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-21:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Ми працюємо в Японії вже рік».",
+      "accessibilityLabel": "Скажіть: «Ми дивимося виступ коміка з полудня».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-21:i16:audio",
-          "transcript": "We have been working in Japan for a year."
+          "transcript": "We have been watching a comedian since noon."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We have been working in Japan for a year.",
+        "targetPhrase": "We have been watching a comedian since noon.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1095,21 +1099,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Вони подорожують Мексикою вже три тижні».",
+      "prompt": "Скажіть: «Вона чекає на автограф уже годину».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-21:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Вони подорожують Мексикою вже три тижні».",
+      "accessibilityLabel": "Скажіть: «Вона чекає на автограф уже годину».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-21:i17:audio",
-          "transcript": "They have been travelling around Mexico for three weeks."
+          "transcript": "She has been waiting for an autograph for an hour."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "They have been travelling around Mexico for three weeks.",
+        "targetPhrase": "She has been waiting for an autograph for an hour.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1129,5 +1133,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e0f3d53e47f49c55faf4810ca439928b142f96b02cddacc763c80ee42ec4e3ce"
+  "learnerFingerprint": "a08c9d66edfc1af6b2cb2d124f0d062f14dd92315b71fe2915af7d6bd3621af9"
 }

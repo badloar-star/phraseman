@@ -1,151 +1,151 @@
-# Английский · Урок 24 · Занятие 7 — Рассказ о переезде
+# Английский · Урок 24 · Занятие 07 — Что мы ценим в людях
 
-**Ситуация.** Вы называете место, где давно живёте, работаете или учитесь.
+**Ситуация.** Вы рассказываете о способностях и стремлениях знакомых.
 
 **Что вы освоите:** present perfect + for duration; since starting point
-**Новые слова:** England, Scotland, Wales, Ireland
+**Новые слова:** creativity, intelligence, enthusiasm, ambition
 
 ## Интро 1
 
-### Где вы живёте
+### Придумывает новое
 
-England — Англия, Scotland — Шотландия. I have lived in England for five years — я живу в Англии уже пять лет. Английский язык — English, Англия — England. Назвать язык вместо места жительства не получится, даже если вы говорите на нём весь день.
+Creativity — творческие способности: умение придумывать новое. I have admired her creativity for years — я восхищаюсь её творческими способностями уже много лет. Например, подруга рисует необычные открытки. For years показывает, как долго длится ваше восхищение.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I have lived in England for five years.**
-- ❌ I have lived in England since five years. — *Срок — for, начало — since.*
-- ❌ I has lived in England for five years. — *С I и we нужно have, с he — has.*
+- ✅ **I have admired her creativity for years.**
+- ❌ I have admired her creativity since years. — *Срок — for, начало — since.*
+- ❌ I has admired her creativity for years. — *С I нужно have, с she и he — has.*
 
 ---
 
 ## Интро 2
 
-### Сколько времени прошло
+### Способности и воодушевление
 
-She has worked in Scotland since June — она работает в Шотландии с июня. Wales — Уэльс. We have lived in Wales for a year — мы живём в Уэльсе уже год. В этих фразах работа и жизнь в новом месте продолжаются. For a year — срок в год; since June — начало в июне.
+Intelligence — ум, интеллект. She has shown great intelligence since childhood — она проявляет большие умственные способности с детства. Shown — форма show. Enthusiasm — энтузиазм, воодушевление. We have shared his enthusiasm for weeks — мы разделяем его воодушевление уже несколько недель. Например, все готовятся к общему походу. Since childhood называет начало, for weeks — длительность.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We have lived in Wales for a year.**
-- ❌ We have lived in Wales since a year. — *Срок — for, начало — since.*
-- ❌ We has lived in Wales for a year. — *С I и we нужно have, с he — has.*
+- ✅ **She has shown great intelligence since childhood.**
+- ❌ She has shown great intelligence for childhood. — *Срок — for, начало — since.*
+- ❌ She have shown great intelligence since childhood. — *С I нужно have, с she и he — has.*
 
 ---
 
 ## Интро 3
 
-### Учёба в Ирландии
+### Заветная цель
 
-Ireland — Ирландия. He has studied in Ireland since 2020 — он учится в Ирландии с 2020 года. Перед этими названиями используем in без the: in England, in Scotland, in Wales, in Ireland. В Wales конечная s — часть названия, а не признак множественного числа.
+Ambition — сильное стремление, заветная цель. Например, человек хочет стать музыкантом. He has talked about his ambition since May — он рассказывает о своей цели с мая. Это не один непрерывный разговор: он возвращается к этой теме снова и снова. Since May показывает, когда такие разговоры начались.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He has studied in Ireland since 2020.**
-- ❌ He has studied in Ireland for 2020. — *Срок — for, начало — since.*
-- ❌ He have studied in Ireland since 2020. — *С I и we нужно have, с he — has.*
+- ✅ **He has talked about his ambition since May.**
+- ❌ He has talked about his ambition for May. — *Срок — for, начало — since.*
+- ❌ He have talked about his ambition since May. — *С I нужно have, с she и he — has.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — England**
-<!-- interaction_id: en:lesson-24:session-07:word:England; family: word_card -->
-> **England** — Англия.
+**1 · Карточка слова — creativity**
+<!-- interaction_id: en:lesson-24:session-07:word:creativity; family: word_card -->
+> **creativity** — творческие способности.
 
-**2 · Скажите: «Я живу в Англии уже пять лет.»**
+**2 · Скажите: «Я восхищаюсь её творческими способностями уже много лет.»**
 <!-- interaction_id: en:lesson-24:session-07:i01; family: phrase_builder -->
-Плитки: `years` `five` `for` `England` `in` `lived` `have` `I` → **I have lived in England for five years.**
+Плитки: `years` `for` `creativity` `her` `admired` `have` `I` → **I have admired her creativity for years.**
 
-**3 · Выберите слово перед сроком или началом.**
+**3 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-07:i02; family: context_gap_grammar -->
-I have lived in England ___ five years. → **for** · since · at
-- since — *Указан срок, нужен for.*
-- at — *Указан срок, нужен for.*
+I have admired her creativity ___ years. → **for** · since · at
+- since — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-07:i03; family: listen_choose -->
-🔊 *I have lived in England for five years.* → **I have lived in England for five years.** · We have lived in England for five years. · I have lived in England for four years.
-- We have lived in England for five years. — *В записи звучит I have lived in England for five years.*
-- I have lived in England for four years. — *В записи звучит I have lived in England for five years.*
+🔊 *I have admired her creativity for years.* → **I have admired her creativity for years.** · We have admired her creativity for years. · I have admired his creativity for years.
+- We have admired her creativity for years. — *В записи звучит I have admired her creativity for years.*
+- I have admired his creativity for years. — *В записи звучит I have admired her creativity for years.*
 
-**5 · Карточка слова — Scotland**
-<!-- interaction_id: en:lesson-24:session-07:word:Scotland; family: word_card -->
-> **Scotland** — Шотландия.
+**5 · Карточка слова — intelligence**
+<!-- interaction_id: en:lesson-24:session-07:word:intelligence; family: word_card -->
+> **intelligence** — ум, интеллект.
 
-**6 · Скажите: «Она работает в Шотландии с июня.»**
+**6 · Скажите: «Она проявляет большие умственные способности с детства.»**
 <!-- interaction_id: en:lesson-24:session-07:i04; family: phrase_builder -->
-Плитки: `June` `since` `Scotland` `in` `worked` `has` `She` → **She has worked in Scotland since June.**
+Плитки: `childhood` `since` `intelligence` `great` `shown` `has` `She` → **She has shown great intelligence since childhood.**
 
-**7 · Выберите слово перед сроком или началом.**
+**7 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-07:i05; family: context_gap_grammar -->
-She has worked in Scotland ___ June. → **since** · for · in
-- for — *Указано начало, нужен since.*
-- in — *Указано начало, нужен since.*
+She has shown great intelligence ___ childhood. → **since** · for · at
+- for — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-07:i06; family: listen_choose -->
-🔊 *She has worked in Scotland since June.* → **She has worked in Scotland since June.** · He has worked in Scotland since June. · She has worked in Scotland since May.
-- He has worked in Scotland since June. — *В записи звучит She has worked in Scotland since June.*
-- She has worked in Scotland since May. — *В записи звучит She has worked in Scotland since June.*
+🔊 *She has shown great intelligence since childhood.* → **She has shown great intelligence since childhood.** · He has shown great intelligence since childhood. · She has shown great intelligence since last year.
+- He has shown great intelligence since childhood. — *В записи звучит She has shown great intelligence since childhood.*
+- She has shown great intelligence since last year. — *В записи звучит She has shown great intelligence since childhood.*
 
-**9 · Карточка слова — Wales**
-<!-- interaction_id: en:lesson-24:session-07:word:Wales; family: word_card -->
-> **Wales** — Уэльс.
+**9 · Карточка слова — enthusiasm**
+<!-- interaction_id: en:lesson-24:session-07:word:enthusiasm; family: word_card -->
+> **enthusiasm** — энтузиазм, воодушевление.
 
-**10 · Скажите: «Мы живём в Уэльсе уже год.»**
+**10 · Скажите: «Мы разделяем его воодушевление уже несколько недель.»**
 <!-- interaction_id: en:lesson-24:session-07:i07; family: phrase_builder -->
-Плитки: `year` `a` `for` `Wales` `in` `lived` `have` `We` → **We have lived in Wales for a year.**
+Плитки: `weeks` `for` `enthusiasm` `his` `shared` `have` `We` → **We have shared his enthusiasm for weeks.**
 
-**11 · Выберите слово перед сроком или началом.**
+**11 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-07:i08; family: context_gap_grammar -->
-We have lived in Wales ___ a year. → **for** · since · at
-- since — *Указан срок, нужен for.*
-- at — *Указан срок, нужен for.*
+We have shared his enthusiasm ___ weeks. → **for** · since · at
+- since — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-07:i09; family: listen_choose -->
-🔊 *We have lived in Wales for a year.* → **We have lived in Wales for a year.** · They have lived in Wales for a year. · We have lived in Wales for two years.
-- They have lived in Wales for a year. — *В записи звучит We have lived in Wales for a year.*
-- We have lived in Wales for two years. — *В записи звучит We have lived in Wales for a year.*
+🔊 *We have shared his enthusiasm for weeks.* → **We have shared his enthusiasm for weeks.** · They have shared his enthusiasm for weeks. · We have shared her enthusiasm for weeks.
+- They have shared his enthusiasm for weeks. — *В записи звучит We have shared his enthusiasm for weeks.*
+- We have shared her enthusiasm for weeks. — *В записи звучит We have shared his enthusiasm for weeks.*
 
-**13 · Карточка слова — Ireland**
-<!-- interaction_id: en:lesson-24:session-07:word:Ireland; family: word_card -->
-> **Ireland** — Ирландия.
+**13 · Карточка слова — ambition**
+<!-- interaction_id: en:lesson-24:session-07:word:ambition; family: word_card -->
+> **ambition** — стремление, заветная цель.
 
-**14 · Скажите: «Он учится в Ирландии с 2020 года.»**
+**14 · Скажите: «Он рассказывает о своей заветной цели с мая.»**
 <!-- interaction_id: en:lesson-24:session-07:i10; family: phrase_builder -->
-Плитки: `2020` `since` `Ireland` `in` `studied` `has` `He` → **He has studied in Ireland since 2020.**
+Плитки: `May` `since` `ambition` `his` `about` `talked` `has` `He` → **He has talked about his ambition since May.**
 
-**15 · Выберите слово перед сроком или началом.**
+**15 · Выберите for или since.**
 <!-- interaction_id: en:lesson-24:session-07:i11; family: context_gap_grammar -->
-He has studied in Ireland ___ 2020. → **since** · for · in
-- for — *Указано начало, нужен since.*
-- in — *Указано начало, нужен since.*
+He has talked about his ambition ___ May. → **since** · for · at
+- for — *For показывает длительность, since — начало.*
+- at — *For показывает длительность, since — начало.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-07:i12; family: listen_choose -->
-🔊 *He has studied in Ireland since 2020.* → **He has studied in Ireland since 2020.** · She has studied in Ireland since 2020. · He has studied in Ireland since 2021.
-- She has studied in Ireland since 2020. — *В записи звучит He has studied in Ireland since 2020.*
-- He has studied in Ireland since 2021. — *В записи звучит He has studied in Ireland since 2020.*
+🔊 *He has talked about his ambition since May.* → **He has talked about his ambition since May.** · She has talked about her ambition since May. · He has talked about his ambition since June.
+- She has talked about her ambition since May. — *В записи звучит He has talked about his ambition since May.*
+- He has talked about his ambition since June. — *В записи звучит He has talked about his ambition since May.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-24:session-07:i13; family: speed_match -->
-England — Англия · Scotland — Шотландия · Wales — Уэльс · Ireland — Ирландия
+creativity — творческие способности · intelligence — ум, интеллект · enthusiasm — энтузиазм, воодушевление · ambition — стремление, заветная цель
 
-**18 · Срок: два года**
+**18 · Другая комната**
 <!-- interaction_id: en:lesson-24:session-07:i14; family: listen_build_dictation -->
-🔊 *I have lived here for two years.* Плитки: `years` `two` `for` `here` `lived` `have` `I` → **I have lived here for two years.**
+🔊 *I have booked another room.* Плитки: `room` `another` `booked` `have` `I` → **I have booked another room.**
 
-**19 · Начало: июнь**
+**19 · Другие гости уехали**
 <!-- interaction_id: en:lesson-24:session-07:i15; family: listen_build_dictation -->
-🔊 *She has worked here since June.* Плитки: `June` `since` `here` `worked` `has` `She` → **She has worked here since June.**
+🔊 *The other guests left yesterday.* Плитки: `yesterday` `left` `guests` `other` `The` → **The other guests left yesterday.**
 
-**20 · Скажите: «Я живу в Ирландии уже год».**
+**20 · Скажите: «Мы восхищаемся её творческими способностями с мая».**
 <!-- interaction_id: en:lesson-24:session-07:i16; family: scripted_repeat_compare -->
-🎙 **I have lived in Ireland for a year.**
+🎙 **We have admired her creativity since May.**
 
-**21 · Скажите: «Мы работаем в Англии с мая».**
+**21 · Скажите: «Он рассказывает о своей заветной цели уже год».**
 <!-- interaction_id: en:lesson-24:session-07:i17; family: scripted_repeat_compare -->
-🎙 **We have worked in England since May.**
+🎙 **He has talked about his ambition for a year.**
 

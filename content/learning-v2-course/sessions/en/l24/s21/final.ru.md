@@ -1,137 +1,137 @@
-# Английский · Урок 24 · Занятие 21 — Работа, учёба и поездка
+# Английский · Урок 24 · Занятие 21 — После выступления
 
-**Ситуация.** Вы рассказываете, чем занимаетесь в другой стране.
+**Ситуация.** Вы рассказываете о выступлении, интервью и ожидании встречи.
 
 **Что вы освоите:** have|has been + verb-ing
-**Новые слова:** Japan, China, Mexico, Greece
+**Новые слова:** laughter, comedian, celebrity, autograph
 
 ## Интро 1
 
-### Месяц в Японии
+### Сдержать смех
 
-Japan — Япония. Японский язык — знакомое Japanese; название страны другое. I have been working in Japan for a month — я работаю в Японии уже месяц. Мы рассказываем о работе, которая началась раньше и продолжается. Даже если чемодан ещё не разобран, месяц уже прошёл.
+Laughter — смех. I have been trying to hide my laughter for a minute — я уже минуту пытаюсь сдержать смех. Кто-то рассказал смешную историю, но сейчас нельзя смеяться вслух. Have been trying показывает продолжающееся усилие. В trying сохраняем y, затем добавляем -ing.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I have been working in Japan for a month.**
-- ❌ I have working in Japan for a month. — *Перед действием с -ing нужно been.*
-- ❌ I has been working in Japan for a month. — *С I и they нужно have, с she — has.*
+- ✅ **I have been trying to hide my laughter for a minute.**
+- ❌ I have trying to hide my laughter for a minute. — *Нужно been перед действием с -ing.*
+- ❌ I has been trying to hide my laughter for a minute. — *С I и we нужно have, с she и he — has.*
 
 ---
 
 ## Интро 2
 
-### Учёба в Китае
+### Выступление и интервью
 
-China — Китай. She has been studying in China since September — она учится в Китае с сентября. Studying in China означает место учёбы; studying Chinese — изучение китайского языка. Since September указывает начало. После has been используем studying.
+Comedian — комик, человек, который выступает с шутками. We have been watching a comedian for an hour — мы смотрим выступление комика уже час. Celebrity — знаменитость. She has been interviewing a celebrity since noon — она берёт интервью у знаменитости с полудня. В обоих случаях действие началось раньше и ещё продолжается. For an hour — длительность, since noon — начало.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She has been studying in China since September.**
-- ❌ She has studying in China since September. — *Перед действием с -ing нужно been.*
-- ❌ She have been studying in China since September. — *С I и they нужно have, с she — has.*
+- ✅ **We have been watching a comedian for an hour.**
+- ❌ We have watching a comedian for an hour. — *Нужно been перед действием с -ing.*
+- ❌ We has been watching a comedian for an hour. — *С I и we нужно have, с she и he — has.*
 
 ---
 
 ## Интро 3
 
-### Поездка продолжается
+### Ждём автограф
 
-Mexico — Мексика, Greece — Греция. We have been travelling around Mexico for two weeks — мы путешествуем по Мексике уже две недели. They have been staying in Greece since Monday — они находятся в Греции с понедельника. Stay здесь описывает временное пребывание во время поездки. Перед этими названиями стран нет the.
+Autograph — автограф, подпись известного человека на память. He has been waiting for an autograph for two hours — он ждёт автограф уже два часа. Первый for относится к wait for: ждать чего-то. Второй for вводит срок ожидания: for two hours. После he используем has been waiting.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **They have been staying in Greece since Monday.**
-- ❌ They have staying in Greece since Monday. — *Перед действием с -ing нужно been.*
-- ❌ They has been staying in Greece since Monday. — *С I и they нужно have, с she — has.*
+- ✅ **He has been waiting for an autograph for two hours.**
+- ❌ He has waiting for an autograph for two hours. — *Нужно been перед действием с -ing.*
+- ❌ He have been waiting for an autograph for two hours. — *С I и we нужно have, с she и he — has.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — Japan**
-<!-- interaction_id: en:lesson-24:session-21:word:Japan; family: word_card -->
-> **Japan** — Япония.
+**1 · Карточка слова — laughter**
+<!-- interaction_id: en:lesson-24:session-21:word:laughter; family: word_card -->
+> **laughter** — смех.
 
-**2 · Скажите: «Я работаю в Японии уже месяц.»**
+**2 · Скажите: «Я уже минуту пытаюсь сдержать смех.»**
 <!-- interaction_id: en:lesson-24:session-21:i01; family: phrase_builder -->
-Плитки: `month` `a` `for` `Japan` `in` `working` `been` `have` `I` → **I have been working in Japan for a month.**
+Плитки: `minute` `a` `for` `laughter` `my` `hide` `to` `trying` `been` `have` `I` → **I have been trying to hide my laughter for a minute.**
 
-**3 · Дополните рассказ о поездке.**
+**3 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-21:i02; family: context_gap_grammar -->
-I ___ been working in Japan for a month. → **have** · has · am
+I ___ been trying to hide my laughter for a minute. → **have** · has · am
 - has — *С I нужно have.*
 - am — *С I нужно have.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-21:i03; family: listen_choose -->
-🔊 *I have been working in Japan for a month.* → **I have been working in Japan for a month.** · We have been working in Japan for a month. · I have been working in Japan for a year.
-- We have been working in Japan for a month. — *В записи звучит I have been working in Japan for a month.*
-- I have been working in Japan for a year. — *В записи звучит I have been working in Japan for a month.*
+🔊 *I have been trying to hide my laughter for a minute.* → **I have been trying to hide my laughter for a minute.** · We have been trying to hide our laughter for a minute. · I have been trying to hide my laughter for two minutes.
+- We have been trying to hide our laughter for a minute. — *В записи звучит I have been trying to hide my laughter for a minute.*
+- I have been trying to hide my laughter for two minutes. — *В записи звучит I have been trying to hide my laughter for a minute.*
 
-**5 · Карточка слова — China**
-<!-- interaction_id: en:lesson-24:session-21:word:China; family: word_card -->
-> **China** — Китай.
+**5 · Карточка слова — comedian**
+<!-- interaction_id: en:lesson-24:session-21:word:comedian; family: word_card -->
+> **comedian** — комик.
 
-**6 · Скажите: «Она учится в Китае с сентября.»**
+**6 · Скажите: «Мы смотрим выступление комика уже час.»**
 <!-- interaction_id: en:lesson-24:session-21:i04; family: phrase_builder -->
-Плитки: `September` `since` `China` `in` `studying` `been` `has` `She` → **She has been studying in China since September.**
+Плитки: `hour` `an` `for` `comedian` `a` `watching` `been` `have` `We` → **We have been watching a comedian for an hour.**
 
-**7 · Дополните рассказ о поездке.**
+**7 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-21:i05; family: context_gap_grammar -->
-She ___ been studying in China since September. → **has** · have · is
-- have — *С she нужно has.*
-- is — *С she нужно has.*
+We have been ___ a comedian for an hour. → **watching** · watch · watched
+- watch — *После have been нужна форма watching.*
+- watched — *После have been нужна форма watching.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-21:i06; family: listen_choose -->
-🔊 *She has been studying in China since September.* → **She has been studying in China since September.** · He has been studying in China since September. · They have been studying in China since September.
-- He has been studying in China since September. — *В записи звучит She has been studying in China since September.*
-- They have been studying in China since September. — *В записи звучит She has been studying in China since September.*
+🔊 *We have been watching a comedian for an hour.* → **We have been watching a comedian for an hour.** · They have been watching a comedian for an hour. · We have been watching a comedian for two hours.
+- They have been watching a comedian for an hour. — *В записи звучит We have been watching a comedian for an hour.*
+- We have been watching a comedian for two hours. — *В записи звучит We have been watching a comedian for an hour.*
 
-**9 · Карточка слова — Mexico**
-<!-- interaction_id: en:lesson-24:session-21:word:Mexico; family: word_card -->
-> **Mexico** — Мексика.
+**9 · Карточка слова — celebrity**
+<!-- interaction_id: en:lesson-24:session-21:word:celebrity; family: word_card -->
+> **celebrity** — знаменитость.
 
-**10 · Скажите: «Мы путешествуем по Мексике уже две недели.»**
+**10 · Скажите: «Она берёт интервью у знаменитости с полудня.»**
 <!-- interaction_id: en:lesson-24:session-21:i07; family: phrase_builder -->
-Плитки: `weeks` `two` `for` `Mexico` `around` `travelling` `been` `have` `We` → **We have been travelling around Mexico for two weeks.**
+Плитки: `noon` `since` `celebrity` `a` `interviewing` `been` `has` `She` → **She has been interviewing a celebrity since noon.**
 
-**11 · Дополните рассказ о поездке.**
+**11 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-21:i08; family: context_gap_grammar -->
-We have been ___ around Mexico for two weeks. → **travelling** · travel · travelled
-- travel — *После have been нужна форма travelling.*
-- travelled — *После have been нужна форма travelling.*
+She has ___ interviewing a celebrity since noon. → **been** · be · being
+- be — *Между has и interviewing нужно been.*
+- being — *Между has и interviewing нужно been.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-21:i09; family: listen_choose -->
-🔊 *We have been travelling around Mexico for two weeks.* → **We have been travelling around Mexico for two weeks.** · They have been travelling around Mexico for two weeks. · We have been travelling around Mexico for three weeks.
-- They have been travelling around Mexico for two weeks. — *В записи звучит We have been travelling around Mexico for two weeks.*
-- We have been travelling around Mexico for three weeks. — *В записи звучит We have been travelling around Mexico for two weeks.*
+🔊 *She has been interviewing a celebrity since noon.* → **She has been interviewing a celebrity since noon.** · He has been interviewing a celebrity since noon. · She has been interviewing a celebrity since ten.
+- He has been interviewing a celebrity since noon. — *В записи звучит She has been interviewing a celebrity since noon.*
+- She has been interviewing a celebrity since ten. — *В записи звучит She has been interviewing a celebrity since noon.*
 
-**13 · Карточка слова — Greece**
-<!-- interaction_id: en:lesson-24:session-21:word:Greece; family: word_card -->
-> **Greece** — Греция.
+**13 · Карточка слова — autograph**
+<!-- interaction_id: en:lesson-24:session-21:word:autograph; family: word_card -->
+> **autograph** — автограф.
 
-**14 · Скажите: «Они находятся в Греции с понедельника.»**
+**14 · Скажите: «Он ждёт автограф уже два часа.»**
 <!-- interaction_id: en:lesson-24:session-21:i10; family: phrase_builder -->
-Плитки: `Monday` `since` `Greece` `in` `staying` `been` `have` `They` → **They have been staying in Greece since Monday.**
+Плитки: `hours` `two` `for` `autograph` `an` `for` `waiting` `been` `has` `He` → **He has been waiting for an autograph for two hours.**
 
-**15 · Дополните рассказ о поездке.**
+**15 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-21:i11; family: context_gap_grammar -->
-They have ___ staying in Greece since Monday. → **been** · be · being
-- be — *Между have и staying нужно been.*
-- being — *Между have и staying нужно been.*
+He ___ been waiting for an autograph for two hours. → **has** · have · is
+- have — *С he нужно has.*
+- is — *С he нужно has.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-21:i12; family: listen_choose -->
-🔊 *They have been staying in Greece since Monday.* → **They have been staying in Greece since Monday.** · We have been staying in Greece since Monday. · They have been staying in Greece since Tuesday.
-- We have been staying in Greece since Monday. — *В записи звучит They have been staying in Greece since Monday.*
-- They have been staying in Greece since Tuesday. — *В записи звучит They have been staying in Greece since Monday.*
+🔊 *He has been waiting for an autograph for two hours.* → **He has been waiting for an autograph for two hours.** · She has been waiting for an autograph for two hours. · He has been waiting for an autograph for three hours.
+- She has been waiting for an autograph for two hours. — *В записи звучит He has been waiting for an autograph for two hours.*
+- He has been waiting for an autograph for three hours. — *В записи звучит He has been waiting for an autograph for two hours.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-24:session-21:i13; family: speed_match -->
-Japan — Япония · China — Китай · Mexico — Мексика · Greece — Греция
+laughter — смех · comedian — комик · celebrity — знаменитость · autograph — автограф
 
 **18 · Жду уже час**
 <!-- interaction_id: en:lesson-24:session-21:i14; family: listen_build_dictation -->
@@ -141,11 +141,11 @@ Japan — Япония · China — Китай · Mexico — Мексика · G
 <!-- interaction_id: en:lesson-24:session-21:i15; family: listen_build_dictation -->
 🔊 *She has been working since this morning.* Плитки: `morning` `this` `since` `working` `been` `has` `She` → **She has been working since this morning.**
 
-**20 · Скажите: «Мы работаем в Японии уже год».**
+**20 · Скажите: «Мы смотрим выступление комика с полудня».**
 <!-- interaction_id: en:lesson-24:session-21:i16; family: scripted_repeat_compare -->
-🎙 **We have been working in Japan for a year.**
+🎙 **We have been watching a comedian since noon.**
 
-**21 · Скажите: «Они путешествуют по Мексике уже три недели».**
+**21 · Скажите: «Она ждёт автограф уже час».**
 <!-- interaction_id: en:lesson-24:session-21:i17; family: scripted_repeat_compare -->
-🎙 **They have been travelling around Mexico for three weeks.**
+🎙 **She has been waiting for an autograph for an hour.**
 

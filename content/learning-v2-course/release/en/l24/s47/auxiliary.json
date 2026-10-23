@@ -7,11 +7,11 @@
       "responseFeedbackById": {
         "en:lesson-24:session-47:intro1:r2": {
           "ru": "С I нужно have.",
-          "uk": "Із I потрібно have."
+          "uk": "З I потрібно have."
         },
         "en:lesson-24:session-47:intro1:r3": {
-          "ru": "После have нужна форма been.",
-          "uk": "Після have потрібна форма been."
+          "ru": "Проверьте форму сказуемого в этом предложении.",
+          "uk": "Перевірте форму присудка в цьому реченні."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-24:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-24:session-47:intro2:r2": {
-          "ru": "С last year нужно visited без has.",
-          "uk": "Із last year потрібне visited без has."
+          "ru": "С yesterday нужна прошедшая форма hid.",
+          "uk": "Із yesterday потрібна минула форма hid."
         },
         "en:lesson-24:session-47:intro2:r3": {
-          "ru": "Для прошлого нужна форма visited.",
-          "uk": "Для минулого потрібна форма visited."
+          "ru": "Проверьте форму сказуемого в этом предложении.",
+          "uk": "Перевірте форму присудка в цьому реченні."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-24:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-24:session-47:intro3:r2": {
-          "ru": "С yesterday нужно arrived без have.",
-          "uk": "Із yesterday потрібне arrived без have."
+          "ru": "С yesterday нужна прошедшая форма noticed.",
+          "uk": "Із yesterday потрібна минула форма noticed."
         },
         "en:lesson-24:session-47:intro3:r3": {
-          "ru": "Для прошлого нужна форма arrived.",
-          "uk": "Для минулого потрібна форма arrived."
+          "ru": "Проверьте форму сказуемого в этом предложении.",
+          "uk": "Перевірте форму присудка в цьому реченні."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "01058bee8e4432df7c2a19c9624c30c1cb4dabb1fbd931d5abf5db5efca01176"
+  "auxiliaryFingerprint": "e2dbaf39ff387dc82f100c14aba8da0d3f52ec8aa5b2b868ad16057676d4cd4e"
 }

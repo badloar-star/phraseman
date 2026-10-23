@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-24:session-07:word:England",
+      "interactionId": "en:lesson-24:session-07:word:creativity",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — England",
+      "prompt": "Карточка слова — creativity",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-07:word:England:audio"
+        "en:lesson-24:session-07:word:creativity:audio"
       ],
-      "accessibilityLabel": "Карточка слова — England",
+      "accessibilityLabel": "Карточка слова — creativity",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-07:word:England:audio",
-          "transcript": "England"
+          "audioTargetId": "en:lesson-24:session-07:word:creativity:audio",
+          "transcript": "creativity"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-07:word:England:r1",
-            "targetText": "England",
+            "responseId": "en:lesson-24:session-07:word:creativity:r1",
+            "targetText": "creativity",
             "meaningByLocale": {
-              "ru": "Англия.",
-              "uk": "Англія."
+              "ru": "творческие способности.",
+              "uk": "творчі здібності."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "England",
+          "word": "creativity",
           "definitionByLocale": {
-            "ru": "Англия.",
-            "uk": "Англія."
+            "ru": "творческие способности.",
+            "uk": "творчі здібності."
           }
         }
       },
@@ -52,26 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Я живу в Англии уже пять лет.»",
+      "prompt": "Скажите: «Я восхищаюсь её творческими способностями уже много лет.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Я живу в Англии уже пять лет.»",
+      "accessibilityLabel": "Скажите: «Я восхищаюсь её творческими способностями уже много лет.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have lived in England for five years.",
+        "targetPhrase": "I have admired her creativity for years.",
         "localizedMeaning": {
-          "ru": "Скажите: «Я живу в Англии уже пять лет.»",
-          "uk": "Скажіть: «Я живу в Англії вже п’ять років.»"
+          "ru": "Скажите: «Я восхищаюсь её творческими способностями уже много лет.»",
+          "uk": "Скажіть: «Я захоплююся її творчими здібностями вже багато років.»"
         },
         "orderedTokens": [
           "I",
           "have",
-          "lived",
-          "in",
-          "England",
+          "admired",
+          "her",
+          "creativity",
           "for",
-          "five",
           "years"
         ],
         "authoredDistractorTokens": [],
@@ -89,7 +88,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово перед сроком или началом.",
+      "prompt": "Выберите for или since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i02:r1",
@@ -106,14 +105,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово перед сроком или началом.",
+      "accessibilityLabel": "Выберите for или since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "I have lived in England ___ five years.",
+        "gappedTargetPhrase": "I have admired her creativity ___ years.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-07:i02:r1",
@@ -128,24 +127,24 @@
             "text": "at"
           }
         ],
-        "testedDimension": "Выберите слово перед сроком или началом.",
+        "testedDimension": "Выберите for или since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-07:i02:r2",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-07:i02:r3",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -162,15 +161,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i03:r1",
-          "text": "I have lived in England for five years."
+          "text": "I have admired her creativity for years."
         },
         {
           "responseId": "en:lesson-24:session-07:i03:r2",
-          "text": "We have lived in England for five years."
+          "text": "We have admired her creativity for years."
         },
         {
           "responseId": "en:lesson-24:session-07:i03:r3",
-          "text": "I have lived in England for four years."
+          "text": "I have admired his creativity for years."
         }
       ],
       "mediaIds": [],
@@ -182,23 +181,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i03:audio",
-          "transcript": "I have lived in England for five years."
+          "transcript": "I have admired her creativity for years."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-07:i03:r1",
-            "targetText": "I have lived in England for five years.",
+            "targetText": "I have admired her creativity for years.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i03:r2",
-            "targetText": "We have lived in England for five years.",
+            "targetText": "We have admired her creativity for years.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i03:r3",
-            "targetText": "I have lived in England for four years.",
+            "targetText": "I have admired his creativity for years.",
             "meaningByLocale": null
           }
         ],
@@ -209,8 +208,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have lived in England for five years.",
-              "uk": "У записі звучить I have lived in England for five years."
+              "ru": "В записи звучит I have admired her creativity for years.",
+              "uk": "У записі звучить I have admired her creativity for years."
             }
           },
           {
@@ -218,8 +217,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have lived in England for five years.",
-              "uk": "У записі звучить I have lived in England for five years."
+              "ru": "В записи звучит I have admired her creativity for years.",
+              "uk": "У записі звучить I have admired her creativity for years."
             }
           }
         ],
@@ -229,32 +228,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-07:word:Scotland",
+      "interactionId": "en:lesson-24:session-07:word:intelligence",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — Scotland",
+      "prompt": "Карточка слова — intelligence",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-07:word:Scotland:audio"
+        "en:lesson-24:session-07:word:intelligence:audio"
       ],
-      "accessibilityLabel": "Карточка слова — Scotland",
+      "accessibilityLabel": "Карточка слова — intelligence",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-07:word:Scotland:audio",
-          "transcript": "Scotland"
+          "audioTargetId": "en:lesson-24:session-07:word:intelligence:audio",
+          "transcript": "intelligence"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-07:word:Scotland:r1",
-            "targetText": "Scotland",
+            "responseId": "en:lesson-24:session-07:word:intelligence:r1",
+            "targetText": "intelligence",
             "meaningByLocale": {
-              "ru": "Шотландия.",
-              "uk": "Шотландія."
+              "ru": "ум, интеллект.",
+              "uk": "розум, інтелект."
             }
           }
         ],
@@ -262,10 +261,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Scotland",
+          "word": "intelligence",
           "definitionByLocale": {
-            "ru": "Шотландия.",
-            "uk": "Шотландія."
+            "ru": "ум, интеллект.",
+            "uk": "розум, інтелект."
           }
         }
       },
@@ -277,26 +276,26 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Она работает в Шотландии с июня.»",
+      "prompt": "Скажите: «Она проявляет большие умственные способности с детства.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Она работает в Шотландии с июня.»",
+      "accessibilityLabel": "Скажите: «Она проявляет большие умственные способности с детства.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She has worked in Scotland since June.",
+        "targetPhrase": "She has shown great intelligence since childhood.",
         "localizedMeaning": {
-          "ru": "Скажите: «Она работает в Шотландии с июня.»",
-          "uk": "Скажіть: «Вона працює в Шотландії з червня.»"
+          "ru": "Скажите: «Она проявляет большие умственные способности с детства.»",
+          "uk": "Скажіть: «Вона виявляє великі розумові здібності з дитинства.»"
         },
         "orderedTokens": [
           "She",
           "has",
-          "worked",
-          "in",
-          "Scotland",
+          "shown",
+          "great",
+          "intelligence",
           "since",
-          "June"
+          "childhood"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,7 +312,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово перед сроком или началом.",
+      "prompt": "Выберите for или since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i05:r1",
@@ -325,19 +324,19 @@
         },
         {
           "responseId": "en:lesson-24:session-07:i05:r3",
-          "text": "in"
+          "text": "at"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово перед сроком или началом.",
+      "accessibilityLabel": "Выберите for или since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "She has worked in Scotland ___ June.",
+        "gappedTargetPhrase": "She has shown great intelligence ___ childhood.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-07:i05:r1",
@@ -349,27 +348,27 @@
           },
           {
             "responseId": "en:lesson-24:session-07:i05:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
-        "testedDimension": "Выберите слово перед сроком или началом.",
+        "testedDimension": "Выберите for или since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-07:i05:r2",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-07:i05:r3",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -386,15 +385,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i06:r1",
-          "text": "She has worked in Scotland since June."
+          "text": "She has shown great intelligence since childhood."
         },
         {
           "responseId": "en:lesson-24:session-07:i06:r2",
-          "text": "He has worked in Scotland since June."
+          "text": "He has shown great intelligence since childhood."
         },
         {
           "responseId": "en:lesson-24:session-07:i06:r3",
-          "text": "She has worked in Scotland since May."
+          "text": "She has shown great intelligence since last year."
         }
       ],
       "mediaIds": [],
@@ -406,23 +405,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i06:audio",
-          "transcript": "She has worked in Scotland since June."
+          "transcript": "She has shown great intelligence since childhood."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-07:i06:r1",
-            "targetText": "She has worked in Scotland since June.",
+            "targetText": "She has shown great intelligence since childhood.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i06:r2",
-            "targetText": "He has worked in Scotland since June.",
+            "targetText": "He has shown great intelligence since childhood.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i06:r3",
-            "targetText": "She has worked in Scotland since May.",
+            "targetText": "She has shown great intelligence since last year.",
             "meaningByLocale": null
           }
         ],
@@ -433,8 +432,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She has worked in Scotland since June.",
-              "uk": "У записі звучить She has worked in Scotland since June."
+              "ru": "В записи звучит She has shown great intelligence since childhood.",
+              "uk": "У записі звучить She has shown great intelligence since childhood."
             }
           },
           {
@@ -442,8 +441,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She has worked in Scotland since June.",
-              "uk": "У записі звучить She has worked in Scotland since June."
+              "ru": "В записи звучит She has shown great intelligence since childhood.",
+              "uk": "У записі звучить She has shown great intelligence since childhood."
             }
           }
         ],
@@ -453,32 +452,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-07:word:Wales",
+      "interactionId": "en:lesson-24:session-07:word:enthusiasm",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — Wales",
+      "prompt": "Карточка слова — enthusiasm",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-07:word:Wales:audio"
+        "en:lesson-24:session-07:word:enthusiasm:audio"
       ],
-      "accessibilityLabel": "Карточка слова — Wales",
+      "accessibilityLabel": "Карточка слова — enthusiasm",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-07:word:Wales:audio",
-          "transcript": "Wales"
+          "audioTargetId": "en:lesson-24:session-07:word:enthusiasm:audio",
+          "transcript": "enthusiasm"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-07:word:Wales:r1",
-            "targetText": "Wales",
+            "responseId": "en:lesson-24:session-07:word:enthusiasm:r1",
+            "targetText": "enthusiasm",
             "meaningByLocale": {
-              "ru": "Уэльс.",
-              "uk": "Уельс."
+              "ru": "энтузиазм, воодушевление.",
+              "uk": "ентузіазм, натхнення."
             }
           }
         ],
@@ -486,10 +485,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Wales",
+          "word": "enthusiasm",
           "definitionByLocale": {
-            "ru": "Уэльс.",
-            "uk": "Уельс."
+            "ru": "энтузиазм, воодушевление.",
+            "uk": "ентузіазм, натхнення."
           }
         }
       },
@@ -501,27 +500,26 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Мы живём в Уэльсе уже год.»",
+      "prompt": "Скажите: «Мы разделяем его воодушевление уже несколько недель.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Мы живём в Уэльсе уже год.»",
+      "accessibilityLabel": "Скажите: «Мы разделяем его воодушевление уже несколько недель.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have lived in Wales for a year.",
+        "targetPhrase": "We have shared his enthusiasm for weeks.",
         "localizedMeaning": {
-          "ru": "Скажите: «Мы живём в Уэльсе уже год.»",
-          "uk": "Скажіть: «Ми живемо в Уельсі вже рік.»"
+          "ru": "Скажите: «Мы разделяем его воодушевление уже несколько недель.»",
+          "uk": "Скажіть: «Ми поділяємо його натхнення вже кілька тижнів.»"
         },
         "orderedTokens": [
           "We",
           "have",
-          "lived",
-          "in",
-          "Wales",
+          "shared",
+          "his",
+          "enthusiasm",
           "for",
-          "a",
-          "year"
+          "weeks"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -538,7 +536,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово перед сроком или началом.",
+      "prompt": "Выберите for или since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i08:r1",
@@ -555,14 +553,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово перед сроком или началом.",
+      "accessibilityLabel": "Выберите for или since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "We have lived in Wales ___ a year.",
+        "gappedTargetPhrase": "We have shared his enthusiasm ___ weeks.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-07:i08:r1",
@@ -577,24 +575,24 @@
             "text": "at"
           }
         ],
-        "testedDimension": "Выберите слово перед сроком или началом.",
+        "testedDimension": "Выберите for или since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указан срок, нужен for.",
-              "uk": "Указано тривалість, потрібне for."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -611,15 +609,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i09:r1",
-          "text": "We have lived in Wales for a year."
+          "text": "We have shared his enthusiasm for weeks."
         },
         {
           "responseId": "en:lesson-24:session-07:i09:r2",
-          "text": "They have lived in Wales for a year."
+          "text": "They have shared his enthusiasm for weeks."
         },
         {
           "responseId": "en:lesson-24:session-07:i09:r3",
-          "text": "We have lived in Wales for two years."
+          "text": "We have shared her enthusiasm for weeks."
         }
       ],
       "mediaIds": [],
@@ -631,23 +629,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i09:audio",
-          "transcript": "We have lived in Wales for a year."
+          "transcript": "We have shared his enthusiasm for weeks."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-07:i09:r1",
-            "targetText": "We have lived in Wales for a year.",
+            "targetText": "We have shared his enthusiasm for weeks.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i09:r2",
-            "targetText": "They have lived in Wales for a year.",
+            "targetText": "They have shared his enthusiasm for weeks.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i09:r3",
-            "targetText": "We have lived in Wales for two years.",
+            "targetText": "We have shared her enthusiasm for weeks.",
             "meaningByLocale": null
           }
         ],
@@ -658,8 +656,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have lived in Wales for a year.",
-              "uk": "У записі звучить We have lived in Wales for a year."
+              "ru": "В записи звучит We have shared his enthusiasm for weeks.",
+              "uk": "У записі звучить We have shared his enthusiasm for weeks."
             }
           },
           {
@@ -667,8 +665,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have lived in Wales for a year.",
-              "uk": "У записі звучить We have lived in Wales for a year."
+              "ru": "В записи звучит We have shared his enthusiasm for weeks.",
+              "uk": "У записі звучить We have shared his enthusiasm for weeks."
             }
           }
         ],
@@ -678,32 +676,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-07:word:Ireland",
+      "interactionId": "en:lesson-24:session-07:word:ambition",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — Ireland",
+      "prompt": "Карточка слова — ambition",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-07:word:Ireland:audio"
+        "en:lesson-24:session-07:word:ambition:audio"
       ],
-      "accessibilityLabel": "Карточка слова — Ireland",
+      "accessibilityLabel": "Карточка слова — ambition",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-07:word:Ireland:audio",
-          "transcript": "Ireland"
+          "audioTargetId": "en:lesson-24:session-07:word:ambition:audio",
+          "transcript": "ambition"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-07:word:Ireland:r1",
-            "targetText": "Ireland",
+            "responseId": "en:lesson-24:session-07:word:ambition:r1",
+            "targetText": "ambition",
             "meaningByLocale": {
-              "ru": "Ирландия.",
-              "uk": "Ірландія."
+              "ru": "стремление, заветная цель.",
+              "uk": "прагнення, заповітна мета."
             }
           }
         ],
@@ -711,10 +709,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Ireland",
+          "word": "ambition",
           "definitionByLocale": {
-            "ru": "Ирландия.",
-            "uk": "Ірландія."
+            "ru": "стремление, заветная цель.",
+            "uk": "прагнення, заповітна мета."
           }
         }
       },
@@ -726,26 +724,27 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «Он учится в Ирландии с 2020 года.»",
+      "prompt": "Скажите: «Он рассказывает о своей заветной цели с мая.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «Он учится в Ирландии с 2020 года.»",
+      "accessibilityLabel": "Скажите: «Он рассказывает о своей заветной цели с мая.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He has studied in Ireland since 2020.",
+        "targetPhrase": "He has talked about his ambition since May.",
         "localizedMeaning": {
-          "ru": "Скажите: «Он учится в Ирландии с 2020 года.»",
-          "uk": "Скажіть: «Він навчається в Ірландії з 2020 року.»"
+          "ru": "Скажите: «Он рассказывает о своей заветной цели с мая.»",
+          "uk": "Скажіть: «Він розповідає про свою заповітну мету з травня.»"
         },
         "orderedTokens": [
           "He",
           "has",
-          "studied",
-          "in",
-          "Ireland",
+          "talked",
+          "about",
+          "his",
+          "ambition",
           "since",
-          "2020"
+          "May"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -762,7 +761,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово перед сроком или началом.",
+      "prompt": "Выберите for или since.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i11:r1",
@@ -774,19 +773,19 @@
         },
         {
           "responseId": "en:lesson-24:session-07:i11:r3",
-          "text": "in"
+          "text": "at"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово перед сроком или началом.",
+      "accessibilityLabel": "Выберите for или since.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед сроком или началом.",
-          "uk": "Виберіть слово перед тривалістю або початком."
+          "ru": "Выберите for или since.",
+          "uk": "Виберіть for або since."
         },
-        "gappedTargetPhrase": "He has studied in Ireland ___ 2020.",
+        "gappedTargetPhrase": "He has talked about his ambition ___ May.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-07:i11:r1",
@@ -798,27 +797,27 @@
           },
           {
             "responseId": "en:lesson-24:session-07:i11:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
-        "testedDimension": "Выберите слово перед сроком или началом.",
+        "testedDimension": "Выберите for или since.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-07:i11:r2",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           },
           {
             "responseId": "en:lesson-24:session-07:i11:r3",
             "correct": false,
-            "testedDimension": "Выберите слово перед сроком или началом.",
+            "testedDimension": "Выберите for или since.",
             "feedbackByLocale": {
-              "ru": "Указано начало, нужен since.",
-              "uk": "Указано початок, потрібне since."
+              "ru": "For показывает длительность, since — начало.",
+              "uk": "For показує тривалість, since — початок."
             }
           }
         ]
@@ -835,15 +834,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-07:i12:r1",
-          "text": "He has studied in Ireland since 2020."
+          "text": "He has talked about his ambition since May."
         },
         {
           "responseId": "en:lesson-24:session-07:i12:r2",
-          "text": "She has studied in Ireland since 2020."
+          "text": "She has talked about her ambition since May."
         },
         {
           "responseId": "en:lesson-24:session-07:i12:r3",
-          "text": "He has studied in Ireland since 2021."
+          "text": "He has talked about his ambition since June."
         }
       ],
       "mediaIds": [],
@@ -855,23 +854,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i12:audio",
-          "transcript": "He has studied in Ireland since 2020."
+          "transcript": "He has talked about his ambition since May."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-07:i12:r1",
-            "targetText": "He has studied in Ireland since 2020.",
+            "targetText": "He has talked about his ambition since May.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i12:r2",
-            "targetText": "She has studied in Ireland since 2020.",
+            "targetText": "She has talked about her ambition since May.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-07:i12:r3",
-            "targetText": "He has studied in Ireland since 2021.",
+            "targetText": "He has talked about his ambition since June.",
             "meaningByLocale": null
           }
         ],
@@ -882,8 +881,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He has studied in Ireland since 2020.",
-              "uk": "У записі звучить He has studied in Ireland since 2020."
+              "ru": "В записи звучит He has talked about his ambition since May.",
+              "uk": "У записі звучить He has talked about his ambition since May."
             }
           },
           {
@@ -891,8 +890,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He has studied in Ireland since 2020.",
-              "uk": "У записі звучить He has studied in Ireland since 2020."
+              "ru": "В записи звучит He has talked about his ambition since May.",
+              "uk": "У записі звучить He has talked about his ambition since May."
             }
           }
         ],
@@ -917,48 +916,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-24:session-07:i13:p1",
-            "target": "England",
+            "target": "creativity",
             "meaningByLocale": {
-              "ru": "Англия",
-              "uk": "Англія"
+              "ru": "творческие способности",
+              "uk": "творчі здібності"
             }
           },
           {
             "pairId": "en:lesson-24:session-07:i13:p2",
-            "target": "Scotland",
+            "target": "intelligence",
             "meaningByLocale": {
-              "ru": "Шотландия",
-              "uk": "Шотландія"
+              "ru": "ум, интеллект",
+              "uk": "розум, інтелект"
             }
           },
           {
             "pairId": "en:lesson-24:session-07:i13:p3",
-            "target": "Wales",
+            "target": "enthusiasm",
             "meaningByLocale": {
-              "ru": "Уэльс",
-              "uk": "Уельс"
+              "ru": "энтузиазм, воодушевление",
+              "uk": "ентузіазм, натхнення"
             }
           },
           {
             "pairId": "en:lesson-24:session-07:i13:p4",
-            "target": "Ireland",
+            "target": "ambition",
             "meaningByLocale": {
-              "ru": "Ирландия",
-              "uk": "Ірландія"
+              "ru": "стремление, заветная цель",
+              "uk": "прагнення, заповітна мета"
             }
           }
         ],
         "leftColumn": [
-          "England",
-          "Scotland",
-          "Wales",
-          "Ireland"
+          "creativity",
+          "intelligence",
+          "enthusiasm",
+          "ambition"
         ],
         "rightColumn": [
-          "Англия",
-          "Шотландия",
-          "Уэльс",
-          "Ирландия"
+          "творческие способности",
+          "ум, интеллект",
+          "энтузиазм, воодушевление",
+          "стремление, заветная цель"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -980,29 +979,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Срок: два года",
+      "prompt": "Другая комната",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-07:i14:audio"
       ],
-      "accessibilityLabel": "Срок: два года",
+      "accessibilityLabel": "Другая комната",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i14:audio",
-          "transcript": "I have lived here for two years."
+          "transcript": "I have booked another room."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I have lived here for two years.",
+        "hiddenTargetPhrase": "I have booked another room.",
         "orderedTokens": [
           "I",
           "have",
-          "lived",
-          "here",
-          "for",
-          "two",
-          "years"
+          "booked",
+          "another",
+          "room"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1019,28 +1016,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Начало: июнь",
+      "prompt": "Другие гости уехали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-07:i15:audio"
       ],
-      "accessibilityLabel": "Начало: июнь",
+      "accessibilityLabel": "Другие гости уехали",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i15:audio",
-          "transcript": "She has worked here since June."
+          "transcript": "The other guests left yesterday."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She has worked here since June.",
+        "hiddenTargetPhrase": "The other guests left yesterday.",
         "orderedTokens": [
-          "She",
-          "has",
-          "worked",
-          "here",
-          "since",
-          "June"
+          "The",
+          "other",
+          "guests",
+          "left",
+          "yesterday"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1057,21 +1053,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Я живу в Ирландии уже год».",
+      "prompt": "Скажите: «Мы восхищаемся её творческими способностями с мая».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-07:i16:audio"
       ],
-      "accessibilityLabel": "Скажите: «Я живу в Ирландии уже год».",
+      "accessibilityLabel": "Скажите: «Мы восхищаемся её творческими способностями с мая».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i16:audio",
-          "transcript": "I have lived in Ireland for a year."
+          "transcript": "We have admired her creativity since May."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I have lived in Ireland for a year.",
+        "targetPhrase": "We have admired her creativity since May.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1090,21 +1086,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: «Мы работаем в Англии с мая».",
+      "prompt": "Скажите: «Он рассказывает о своей заветной цели уже год».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-07:i17:audio"
       ],
-      "accessibilityLabel": "Скажите: «Мы работаем в Англии с мая».",
+      "accessibilityLabel": "Скажите: «Он рассказывает о своей заветной цели уже год».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-07:i17:audio",
-          "transcript": "We have worked in England since May."
+          "transcript": "He has talked about his ambition for a year."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We have worked in England since May.",
+        "targetPhrase": "He has talked about his ambition for a year.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1124,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "23293d37b98cb812d124edabfbcb4b008bb0489c9a7404b74792f7ebf0116f82"
+  "learnerFingerprint": "10ff6ca13e2dafa56abf2c1a399ffa4ca49437daabab24edd3abcdfe22c80398"
 }

@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-24:session-47:word:Poland",
+      "interactionId": "en:lesson-24:session-47:word:guilt",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Poland",
+      "prompt": "Картка слова — guilt",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-47:word:Poland:audio"
+        "en:lesson-24:session-47:word:guilt:audio"
       ],
-      "accessibilityLabel": "Картка слова — Poland",
+      "accessibilityLabel": "Картка слова — guilt",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-47:word:Poland:audio",
-          "transcript": "Poland"
+          "audioTargetId": "en:lesson-24:session-47:word:guilt:audio",
+          "transcript": "guilt"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-47:word:Poland:r1",
-            "targetText": "Poland",
+            "responseId": "en:lesson-24:session-47:word:guilt:r1",
+            "targetText": "guilt",
             "meaningByLocale": {
-              "ru": "Польша.",
-              "uk": "Польща."
+              "ru": "чувство вины.",
+              "uk": "почуття провини."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Poland",
+          "word": "guilt",
           "definitionByLocale": {
-            "ru": "Польша.",
-            "uk": "Польща."
+            "ru": "чувство вины.",
+            "uk": "почуття провини."
           }
         }
       },
@@ -52,24 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Я бував у Польщі.»",
+      "prompt": "Скажіть: «Я відчуваю провину від учора.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Я бував у Польщі.»",
+      "accessibilityLabel": "Скажіть: «Я відчуваю провину від учора.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I have been to Poland.",
+        "targetPhrase": "I have felt guilt since yesterday.",
         "localizedMeaning": {
-          "ru": "Скажите: «Я бывал в Польше.»",
-          "uk": "Скажіть: «Я бував у Польщі.»"
+          "ru": "Скажите: «Я испытываю чувство вины со вчерашнего дня.»",
+          "uk": "Скажіть: «Я відчуваю провину від учора.»"
         },
         "orderedTokens": [
           "I",
           "have",
-          "been",
-          "to",
-          "Poland"
+          "felt",
+          "guilt",
+          "since",
+          "yesterday"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -86,7 +87,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про поїздки.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i02:r1",
@@ -103,14 +104,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "I ___ been to Poland.",
+        "gappedTargetPhrase": "I ___ felt guilt since yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-47:i02:r1",
@@ -125,24 +126,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Доповніть розповідь про поїздки.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-47:i02:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С I нужно have перед been.",
-              "uk": "Із I потрібно have перед been."
+              "ru": "С I нужно have.",
+              "uk": "З I потрібно have."
             }
           },
           {
             "responseId": "en:lesson-24:session-47:i02:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С I нужно have перед been.",
-              "uk": "Із I потрібно have перед been."
+              "ru": "С I нужно have.",
+              "uk": "З I потрібно have."
             }
           }
         ]
@@ -159,15 +160,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i03:r1",
-          "text": "I have been to Poland."
+          "text": "I have felt guilt since yesterday."
         },
         {
           "responseId": "en:lesson-24:session-47:i03:r2",
-          "text": "We have been to Poland."
+          "text": "We have felt guilt since yesterday."
         },
         {
           "responseId": "en:lesson-24:session-47:i03:r3",
-          "text": "I have lived in Poland."
+          "text": "I have felt guilt since Monday."
         }
       ],
       "mediaIds": [],
@@ -179,23 +180,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-47:i03:audio",
-          "transcript": "I have been to Poland."
+          "transcript": "I have felt guilt since yesterday."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-47:i03:r1",
-            "targetText": "I have been to Poland.",
+            "targetText": "I have felt guilt since yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i03:r2",
-            "targetText": "We have been to Poland.",
+            "targetText": "We have felt guilt since yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i03:r3",
-            "targetText": "I have lived in Poland.",
+            "targetText": "I have felt guilt since Monday.",
             "meaningByLocale": null
           }
         ],
@@ -206,8 +207,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have been to Poland.",
-              "uk": "У записі звучить I have been to Poland."
+              "ru": "В записи звучит I have felt guilt since yesterday.",
+              "uk": "У записі звучить I have felt guilt since yesterday."
             }
           },
           {
@@ -215,8 +216,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I have been to Poland.",
-              "uk": "У записі звучить I have been to Poland."
+              "ru": "В записи звучит I have felt guilt since yesterday.",
+              "uk": "У записі звучить I have felt guilt since yesterday."
             }
           }
         ],
@@ -226,32 +227,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-47:word:Portugal",
+      "interactionId": "en:lesson-24:session-47:word:shame",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Portugal",
+      "prompt": "Картка слова — shame",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-47:word:Portugal:audio"
+        "en:lesson-24:session-47:word:shame:audio"
       ],
-      "accessibilityLabel": "Картка слова — Portugal",
+      "accessibilityLabel": "Картка слова — shame",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-47:word:Portugal:audio",
-          "transcript": "Portugal"
+          "audioTargetId": "en:lesson-24:session-47:word:shame:audio",
+          "transcript": "shame"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-47:word:Portugal:r1",
-            "targetText": "Portugal",
+            "responseId": "en:lesson-24:session-47:word:shame:r1",
+            "targetText": "shame",
             "meaningByLocale": {
-              "ru": "Португалия.",
-              "uk": "Португалія."
+              "ru": "стыд.",
+              "uk": "сором."
             }
           }
         ],
@@ -259,10 +260,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Portugal",
+          "word": "shame",
           "definitionByLocale": {
-            "ru": "Португалия.",
-            "uk": "Португалія."
+            "ru": "стыд.",
+            "uk": "сором."
           }
         }
       },
@@ -274,24 +275,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Вона відвідала Португалію торік.»",
+      "prompt": "Скажіть: «Учора вона приховала свій сором.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Вона відвідала Португалію торік.»",
+      "accessibilityLabel": "Скажіть: «Учора вона приховала свій сором.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She visited Portugal last year.",
+        "targetPhrase": "She hid her shame yesterday.",
         "localizedMeaning": {
-          "ru": "Скажите: «Она посетила Португалию в прошлом году.»",
-          "uk": "Скажіть: «Вона відвідала Португалію торік.»"
+          "ru": "Скажите: «Вчера она скрыла свой стыд.»",
+          "uk": "Скажіть: «Учора вона приховала свій сором.»"
         },
         "orderedTokens": [
           "She",
-          "visited",
-          "Portugal",
-          "last",
-          "year"
+          "hid",
+          "her",
+          "shame",
+          "yesterday"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -308,63 +309,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про поїздки.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i05:r1",
-          "text": "visited"
+          "text": "hid"
         },
         {
           "responseId": "en:lesson-24:session-47:i05:r2",
-          "text": "has visited"
+          "text": "hides"
         },
         {
           "responseId": "en:lesson-24:session-47:i05:r3",
-          "text": "visit"
+          "text": "hiding"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "She ___ Portugal last year.",
+        "gappedTargetPhrase": "She ___ her shame yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-47:i05:r1",
-            "text": "visited"
+            "text": "hid"
           },
           {
             "responseId": "en:lesson-24:session-47:i05:r2",
-            "text": "has visited"
+            "text": "hides"
           },
           {
             "responseId": "en:lesson-24:session-47:i05:r3",
-            "text": "visit"
+            "text": "hiding"
           }
         ],
-        "testedDimension": "Доповніть розповідь про поїздки.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-47:i05:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С last year нужна форма visited без has.",
-              "uk": "Із last year потрібна форма visited без has."
+              "ru": "Yesterday требует Past Simple: hid.",
+              "uk": "Yesterday потребує Past Simple: hid."
             }
           },
           {
             "responseId": "en:lesson-24:session-47:i05:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С last year нужна форма visited без has.",
-              "uk": "Із last year потрібна форма visited без has."
+              "ru": "Yesterday требует Past Simple: hid.",
+              "uk": "Yesterday потребує Past Simple: hid."
             }
           }
         ]
@@ -381,15 +382,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i06:r1",
-          "text": "She visited Portugal last year."
+          "text": "She hid her shame yesterday."
         },
         {
           "responseId": "en:lesson-24:session-47:i06:r2",
-          "text": "He visited Portugal last year."
+          "text": "He hid his shame yesterday."
         },
         {
           "responseId": "en:lesson-24:session-47:i06:r3",
-          "text": "She visited Portugal last month."
+          "text": "She hid her shame last week."
         }
       ],
       "mediaIds": [],
@@ -401,23 +402,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-47:i06:audio",
-          "transcript": "She visited Portugal last year."
+          "transcript": "She hid her shame yesterday."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-47:i06:r1",
-            "targetText": "She visited Portugal last year.",
+            "targetText": "She hid her shame yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i06:r2",
-            "targetText": "He visited Portugal last year.",
+            "targetText": "He hid his shame yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i06:r3",
-            "targetText": "She visited Portugal last month.",
+            "targetText": "She hid her shame last week.",
             "meaningByLocale": null
           }
         ],
@@ -428,8 +429,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She visited Portugal last year.",
-              "uk": "У записі звучить She visited Portugal last year."
+              "ru": "В записи звучит She hid her shame yesterday.",
+              "uk": "У записі звучить She hid her shame yesterday."
             }
           },
           {
@@ -437,8 +438,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит She visited Portugal last year.",
-              "uk": "У записі звучить She visited Portugal last year."
+              "ru": "В записи звучит She hid her shame yesterday.",
+              "uk": "У записі звучить She hid her shame yesterday."
             }
           }
         ],
@@ -448,32 +449,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-47:word:Norway",
+      "interactionId": "en:lesson-24:session-47:word:desire",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Norway",
+      "prompt": "Картка слова — desire",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-47:word:Norway:audio"
+        "en:lesson-24:session-47:word:desire:audio"
       ],
-      "accessibilityLabel": "Картка слова — Norway",
+      "accessibilityLabel": "Картка слова — desire",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-47:word:Norway:audio",
-          "transcript": "Norway"
+          "audioTargetId": "en:lesson-24:session-47:word:desire:audio",
+          "transcript": "desire"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-47:word:Norway:r1",
-            "targetText": "Norway",
+            "responseId": "en:lesson-24:session-47:word:desire:r1",
+            "targetText": "desire",
             "meaningByLocale": {
-              "ru": "Норвегия.",
-              "uk": "Норвегія."
+              "ru": "желание.",
+              "uk": "бажання."
             }
           }
         ],
@@ -481,10 +482,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Norway",
+          "word": "desire",
           "definitionByLocale": {
-            "ru": "Норвегия.",
-            "uk": "Норвегія."
+            "ru": "желание.",
+            "uk": "бажання."
           }
         }
       },
@@ -496,24 +497,26 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Ми з’їздили до Норвегії.»",
+      "prompt": "Скажіть: «Він висловив бажання вчитися.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Ми з’їздили до Норвегії.»",
+      "accessibilityLabel": "Скажіть: «Він висловив бажання вчитися.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We have travelled to Norway.",
+        "targetPhrase": "He has expressed a desire to learn.",
         "localizedMeaning": {
-          "ru": "Скажите: «Мы съездили в Норвегию.»",
-          "uk": "Скажіть: «Ми з’їздили до Норвегії.»"
+          "ru": "Скажите: «Он выразил желание учиться.»",
+          "uk": "Скажіть: «Він висловив бажання вчитися.»"
         },
         "orderedTokens": [
-          "We",
-          "have",
-          "travelled",
+          "He",
+          "has",
+          "expressed",
+          "a",
+          "desire",
           "to",
-          "Norway"
+          "learn"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -530,63 +533,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про поїздки.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i08:r1",
-          "text": "have"
-        },
-        {
-          "responseId": "en:lesson-24:session-47:i08:r2",
           "text": "has"
         },
         {
+          "responseId": "en:lesson-24:session-47:i08:r2",
+          "text": "have"
+        },
+        {
           "responseId": "en:lesson-24:session-47:i08:r3",
-          "text": "are"
+          "text": "is"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "We ___ travelled to Norway.",
+        "gappedTargetPhrase": "He ___ expressed a desire to learn.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-47:i08:r1",
-            "text": "have"
-          },
-          {
-            "responseId": "en:lesson-24:session-47:i08:r2",
             "text": "has"
           },
           {
+            "responseId": "en:lesson-24:session-47:i08:r2",
+            "text": "have"
+          },
+          {
             "responseId": "en:lesson-24:session-47:i08:r3",
-            "text": "are"
+            "text": "is"
           }
         ],
-        "testedDimension": "Доповніть розповідь про поїздки.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С we нужно have перед travelled.",
-              "uk": "Із we потрібно have перед travelled."
+              "ru": "С he нужно has.",
+              "uk": "З he потрібно has."
             }
           },
           {
             "responseId": "en:lesson-24:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С we нужно have перед travelled.",
-              "uk": "Із we потрібно have перед travelled."
+              "ru": "С he нужно has.",
+              "uk": "З he потрібно has."
             }
           }
         ]
@@ -603,15 +606,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i09:r1",
-          "text": "We have travelled to Norway."
+          "text": "He has expressed a desire to learn."
         },
         {
           "responseId": "en:lesson-24:session-47:i09:r2",
-          "text": "They have travelled to Norway."
+          "text": "She has expressed a desire to learn."
         },
         {
           "responseId": "en:lesson-24:session-47:i09:r3",
-          "text": "We have moved to Norway."
+          "text": "He has expressed a desire to travel."
         }
       ],
       "mediaIds": [],
@@ -623,23 +626,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-47:i09:audio",
-          "transcript": "We have travelled to Norway."
+          "transcript": "He has expressed a desire to learn."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-47:i09:r1",
-            "targetText": "We have travelled to Norway.",
+            "targetText": "He has expressed a desire to learn.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i09:r2",
-            "targetText": "They have travelled to Norway.",
+            "targetText": "She has expressed a desire to learn.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i09:r3",
-            "targetText": "We have moved to Norway.",
+            "targetText": "He has expressed a desire to travel.",
             "meaningByLocale": null
           }
         ],
@@ -650,8 +653,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have travelled to Norway.",
-              "uk": "У записі звучить We have travelled to Norway."
+              "ru": "В записи звучит He has expressed a desire to learn.",
+              "uk": "У записі звучить He has expressed a desire to learn."
             }
           },
           {
@@ -659,8 +662,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We have travelled to Norway.",
-              "uk": "У записі звучить We have travelled to Norway."
+              "ru": "В записи звучит He has expressed a desire to learn.",
+              "uk": "У записі звучить He has expressed a desire to learn."
             }
           }
         ],
@@ -670,32 +673,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-24:session-47:word:Denmark",
+      "interactionId": "en:lesson-24:session-47:word:weakness",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — Denmark",
+      "prompt": "Картка слова — weakness",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-24:session-47:word:Denmark:audio"
+        "en:lesson-24:session-47:word:weakness:audio"
       ],
-      "accessibilityLabel": "Картка слова — Denmark",
+      "accessibilityLabel": "Картка слова — weakness",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-24:session-47:word:Denmark:audio",
-          "transcript": "Denmark"
+          "audioTargetId": "en:lesson-24:session-47:word:weakness:audio",
+          "transcript": "weakness"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-24:session-47:word:Denmark:r1",
-            "targetText": "Denmark",
+            "responseId": "en:lesson-24:session-47:word:weakness:r1",
+            "targetText": "weakness",
             "meaningByLocale": {
-              "ru": "Дания.",
-              "uk": "Данія."
+              "ru": "слабость, слабое место.",
+              "uk": "слабкість, слабке місце."
             }
           }
         ],
@@ -703,10 +706,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "Denmark",
+          "word": "weakness",
           "definitionByLocale": {
-            "ru": "Дания.",
-            "uk": "Данія."
+            "ru": "слабость, слабое место.",
+            "uk": "слабкість, слабке місце."
           }
         }
       },
@@ -718,23 +721,26 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «Учора вони приїхали до Данії.»",
+      "prompt": "Скажіть: «Учора ми помітили слабке місце в плані.»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «Учора вони приїхали до Данії.»",
+      "accessibilityLabel": "Скажіть: «Учора ми помітили слабке місце в плані.»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They arrived in Denmark yesterday.",
+        "targetPhrase": "We noticed a weakness in the plan yesterday.",
         "localizedMeaning": {
-          "ru": "Скажите: «Вчера они приехали в Данию.»",
-          "uk": "Скажіть: «Учора вони приїхали до Данії.»"
+          "ru": "Скажите: «Вчера мы заметили слабое место в плане.»",
+          "uk": "Скажіть: «Учора ми помітили слабке місце в плані.»"
         },
         "orderedTokens": [
-          "They",
-          "arrived",
+          "We",
+          "noticed",
+          "a",
+          "weakness",
           "in",
-          "Denmark",
+          "the",
+          "plan",
           "yesterday"
         ],
         "authoredDistractorTokens": [],
@@ -752,63 +758,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Доповніть розповідь про поїздки.",
+      "prompt": "Доповніть розповідь.",
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i11:r1",
-          "text": "arrived"
+          "text": "noticed"
         },
         {
           "responseId": "en:lesson-24:session-47:i11:r2",
-          "text": "have arrived"
+          "text": "notice"
         },
         {
           "responseId": "en:lesson-24:session-47:i11:r3",
-          "text": "arrive"
+          "text": "noticing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Доповніть розповідь про поїздки.",
+      "accessibilityLabel": "Доповніть розповідь.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дополните рассказ о поездках.",
-          "uk": "Доповніть розповідь про поїздки."
+          "ru": "Дополните рассказ.",
+          "uk": "Доповніть розповідь."
         },
-        "gappedTargetPhrase": "They ___ in Denmark yesterday.",
+        "gappedTargetPhrase": "We ___ a weakness in the plan yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-24:session-47:i11:r1",
-            "text": "arrived"
+            "text": "noticed"
           },
           {
             "responseId": "en:lesson-24:session-47:i11:r2",
-            "text": "have arrived"
+            "text": "notice"
           },
           {
             "responseId": "en:lesson-24:session-47:i11:r3",
-            "text": "arrive"
+            "text": "noticing"
           }
         ],
-        "testedDimension": "Доповніть розповідь про поїздки.",
+        "testedDimension": "Доповніть розповідь.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-24:session-47:i11:r2",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С yesterday нужна форма arrived без have.",
-              "uk": "Із yesterday потрібна форма arrived без have."
+              "ru": "Yesterday требует Past Simple: noticed.",
+              "uk": "Yesterday потребує Past Simple: noticed."
             }
           },
           {
             "responseId": "en:lesson-24:session-47:i11:r3",
             "correct": false,
-            "testedDimension": "Доповніть розповідь про поїздки.",
+            "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "С yesterday нужна форма arrived без have.",
-              "uk": "Із yesterday потрібна форма arrived без have."
+              "ru": "Yesterday требует Past Simple: noticed.",
+              "uk": "Yesterday потребує Past Simple: noticed."
             }
           }
         ]
@@ -825,15 +831,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-24:session-47:i12:r1",
-          "text": "They arrived in Denmark yesterday."
+          "text": "We noticed a weakness in the plan yesterday."
         },
         {
           "responseId": "en:lesson-24:session-47:i12:r2",
-          "text": "We arrived in Denmark yesterday."
+          "text": "They noticed a weakness in the plan yesterday."
         },
         {
           "responseId": "en:lesson-24:session-47:i12:r3",
-          "text": "They arrived in Denmark last week."
+          "text": "We noticed a weakness in the plan last week."
         }
       ],
       "mediaIds": [],
@@ -845,23 +851,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-47:i12:audio",
-          "transcript": "They arrived in Denmark yesterday."
+          "transcript": "We noticed a weakness in the plan yesterday."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-24:session-47:i12:r1",
-            "targetText": "They arrived in Denmark yesterday.",
+            "targetText": "We noticed a weakness in the plan yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i12:r2",
-            "targetText": "We arrived in Denmark yesterday.",
+            "targetText": "They noticed a weakness in the plan yesterday.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-24:session-47:i12:r3",
-            "targetText": "They arrived in Denmark last week.",
+            "targetText": "We noticed a weakness in the plan last week.",
             "meaningByLocale": null
           }
         ],
@@ -872,8 +878,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит They arrived in Denmark yesterday.",
-              "uk": "У записі звучить They arrived in Denmark yesterday."
+              "ru": "В записи звучит We noticed a weakness in the plan yesterday.",
+              "uk": "У записі звучить We noticed a weakness in the plan yesterday."
             }
           },
           {
@@ -881,8 +887,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит They arrived in Denmark yesterday.",
-              "uk": "У записі звучить They arrived in Denmark yesterday."
+              "ru": "В записи звучит We noticed a weakness in the plan yesterday.",
+              "uk": "У записі звучить We noticed a weakness in the plan yesterday."
             }
           }
         ],
@@ -907,48 +913,48 @@
         "pairGrid": [
           {
             "pairId": "en:lesson-24:session-47:i13:p1",
-            "target": "Poland",
+            "target": "guilt",
             "meaningByLocale": {
-              "ru": "Польша",
-              "uk": "Польща"
+              "ru": "чувство вины",
+              "uk": "почуття провини"
             }
           },
           {
             "pairId": "en:lesson-24:session-47:i13:p2",
-            "target": "Portugal",
+            "target": "shame",
             "meaningByLocale": {
-              "ru": "Португалия",
-              "uk": "Португалія"
+              "ru": "стыд",
+              "uk": "сором"
             }
           },
           {
             "pairId": "en:lesson-24:session-47:i13:p3",
-            "target": "Norway",
+            "target": "desire",
             "meaningByLocale": {
-              "ru": "Норвегия",
-              "uk": "Норвегія"
+              "ru": "желание",
+              "uk": "бажання"
             }
           },
           {
             "pairId": "en:lesson-24:session-47:i13:p4",
-            "target": "Denmark",
+            "target": "weakness",
             "meaningByLocale": {
-              "ru": "Дания",
-              "uk": "Данія"
+              "ru": "слабость, слабое место",
+              "uk": "слабкість, слабке місце"
             }
           }
         ],
         "leftColumn": [
-          "Poland",
-          "Portugal",
-          "Norway",
-          "Denmark"
+          "guilt",
+          "shame",
+          "desire",
+          "weakness"
         ],
         "rightColumn": [
-          "Польща",
-          "Португалія",
-          "Норвегія",
-          "Данія"
+          "почуття провини",
+          "сором",
+          "бажання",
+          "слабкість, слабке місце"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -1048,21 +1054,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Ми відвідали Португалію торік».",
+      "prompt": "Скажіть: «Вона висловила бажання подорожувати».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-47:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Ми відвідали Португалію торік».",
+      "accessibilityLabel": "Скажіть: «Вона висловила бажання подорожувати».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-47:i16:audio",
-          "transcript": "We visited Portugal last year."
+          "transcript": "She has expressed a desire to travel."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We visited Portugal last year.",
+        "targetPhrase": "She has expressed a desire to travel.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1081,21 +1087,21 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: «Вона приїхала до Данії вчора».",
+      "prompt": "Скажіть: «Учора вони помітили слабке місце в плані».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-24:session-47:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: «Вона приїхала до Данії вчора».",
+      "accessibilityLabel": "Скажіть: «Учора вони помітили слабке місце в плані».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-24:session-47:i17:audio",
-          "transcript": "She arrived in Denmark yesterday."
+          "transcript": "They noticed a weakness in the plan yesterday."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She arrived in Denmark yesterday.",
+        "targetPhrase": "They noticed a weakness in the plan yesterday.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1115,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "644900e34050bc06fdc0c81787b9b1b3f32f561f199ad0f15a088b99a4dc8731"
+  "learnerFingerprint": "6d39fa6955636522f05055a18eead7b8956989fceba60c1d6ab0db52d0d2daff"
 }

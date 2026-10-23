@@ -1,12 +1,12 @@
 [
   {
-    "interactionId": "en:lesson-24:session-07:word:England",
-    "correctText": "England",
+    "interactionId": "en:lesson-24:session-07:word:creativity",
+    "correctText": "creativity",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i01",
-    "correctText": "I have lived in England for five years.",
+    "correctText": "I have admired her creativity for years.",
     "correctResponseId": null
   },
   {
@@ -16,17 +16,17 @@
   },
   {
     "interactionId": "en:lesson-24:session-07:i03",
-    "correctText": "I have lived in England for five years.",
+    "correctText": "I have admired her creativity for years.",
     "correctResponseId": "en:lesson-24:session-07:i03:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-07:word:Scotland",
-    "correctText": "Scotland",
+    "interactionId": "en:lesson-24:session-07:word:intelligence",
+    "correctText": "intelligence",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i04",
-    "correctText": "She has worked in Scotland since June.",
+    "correctText": "She has shown great intelligence since childhood.",
     "correctResponseId": null
   },
   {
@@ -36,17 +36,17 @@
   },
   {
     "interactionId": "en:lesson-24:session-07:i06",
-    "correctText": "She has worked in Scotland since June.",
+    "correctText": "She has shown great intelligence since childhood.",
     "correctResponseId": "en:lesson-24:session-07:i06:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-07:word:Wales",
-    "correctText": "Wales",
+    "interactionId": "en:lesson-24:session-07:word:enthusiasm",
+    "correctText": "enthusiasm",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i07",
-    "correctText": "We have lived in Wales for a year.",
+    "correctText": "We have shared his enthusiasm for weeks.",
     "correctResponseId": null
   },
   {
@@ -56,17 +56,17 @@
   },
   {
     "interactionId": "en:lesson-24:session-07:i09",
-    "correctText": "We have lived in Wales for a year.",
+    "correctText": "We have shared his enthusiasm for weeks.",
     "correctResponseId": "en:lesson-24:session-07:i09:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-07:word:Ireland",
-    "correctText": "Ireland",
+    "interactionId": "en:lesson-24:session-07:word:ambition",
+    "correctText": "ambition",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i10",
-    "correctText": "He has studied in Ireland since 2020.",
+    "correctText": "He has talked about his ambition since May.",
     "correctResponseId": null
   },
   {
@@ -76,32 +76,32 @@
   },
   {
     "interactionId": "en:lesson-24:session-07:i12",
-    "correctText": "He has studied in Ireland since 2020.",
+    "correctText": "He has talked about his ambition since May.",
     "correctResponseId": "en:lesson-24:session-07:i12:r1"
   },
   {
     "interactionId": "en:lesson-24:session-07:i13",
-    "correctText": "en:lesson-24:session-07:i13:p1=England\nen:lesson-24:session-07:i13:p2=Scotland\nen:lesson-24:session-07:i13:p3=Wales\nen:lesson-24:session-07:i13:p4=Ireland",
+    "correctText": "en:lesson-24:session-07:i13:p1=creativity\nen:lesson-24:session-07:i13:p2=intelligence\nen:lesson-24:session-07:i13:p3=enthusiasm\nen:lesson-24:session-07:i13:p4=ambition",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i14",
-    "correctText": "I have lived here for two years.",
+    "correctText": "I have booked another room.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i15",
-    "correctText": "She has worked here since June.",
+    "correctText": "The other guests left yesterday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i16",
-    "correctText": "I have lived in Ireland for a year.",
+    "correctText": "We have admired her creativity since May.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-07:i17",
-    "correctText": "We have worked in England since May.",
+    "correctText": "He has talked about his ambition for a year.",
     "correctResponseId": null
   }
 ]

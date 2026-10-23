@@ -9067,7 +9067,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 7,
-    sourceFingerprint: "c898386b20bce8bb0c81a378c192254f07b119cd14e45e52c5d8630e97781705",
+    sourceFingerprint: "16a7cad3d0753f8e5ea807473338b96da2e323c8e1167670764f5d829eb87b78",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + for duration; since starting point","uk":"present perfect + for duration; since starting point"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
@@ -9165,7 +9165,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 21,
-    sourceFingerprint: "db0dd223affabcef1b6c01b2b92f935e3244dae1d8bffa6f1ee00ee555e8c445",
+    sourceFingerprint: "a7f023f6a821a414a4384178d9b5ceb2f5df203f687ddb248f909933e8f50323",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have|has been + verb-ing","uk":"have|has been + verb-ing"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
@@ -9347,16 +9347,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 47,
-    sourceFingerprint: "4cf4bbb94d7e24c6532056beb61bd26027d2a60c4697bc666f3e8a2819c97ce0",
+    sourceFingerprint: "70086b45236252f4cec5aa36375f1eaece1307469d5895d99ae577aa2d30d262",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect / past simple","uk":"present perfect / past simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 48,
-    sourceFingerprint: "3aa403f8c53ab47147918151cb2f657211f6f6304286bb0da3e45eb11a2ca6b7",
+    sourceFingerprint: "4385743275984898cce0390deb4e11fba31a386480f439c014d668b2e44bf899",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Present Perfect / Past Simple","uk":"Present Perfect / Past Simple"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect / past simple","uk":"present perfect / past simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({

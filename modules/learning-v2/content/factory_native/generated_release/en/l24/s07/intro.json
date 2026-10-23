@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Где вы живёте",
-        "uk": "Де ви живете"
+        "ru": "Придумывает новое",
+        "uk": "Придумує нове"
       },
       "bodyByLocale": {
-        "ru": "England — Англия, Scotland — Шотландия. I have lived in England for five years — я живу в Англии уже пять лет. Английский язык — English, Англия — England. Назвать язык вместо места жительства не получится, даже если вы говорите на нём весь день.",
-        "uk": "England — Англія, Scotland — Шотландія. I have lived in England for five years — я живу в Англії вже п’ять років. Англійська мова — English, Англія — England. Назвати мову замість місця проживання не вийде, навіть якщо ви говорите нею весь день."
+        "ru": "Creativity — творческие способности: умение придумывать новое. I have admired her creativity for years — я восхищаюсь её творческими способностями уже много лет. Например, подруга рисует необычные открытки. For years показывает, как долго длится ваше восхищение.",
+        "uk": "Creativity — творчі здібності: уміння придумувати нове. I have admired her creativity for years — я захоплююся її творчими здібностями вже багато років. Наприклад, подруга малює незвичайні листівки. For years показує, як довго триває ваше захоплення."
       },
       "question": {
         "interactionId": "en:lesson-24:session-07:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-07:intro1:r1",
-              "text": "I have lived in England for five years."
+              "text": "I have admired her creativity for years."
             },
             {
               "responseId": "en:lesson-24:session-07:intro1:r2",
-              "text": "I have lived in England since five years."
+              "text": "I have admired her creativity since years."
             },
             {
               "responseId": "en:lesson-24:session-07:intro1:r3",
-              "text": "I has lived in England for five years."
+              "text": "I has admired her creativity for years."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-07:intro1:r1",
-              "text": "I have lived in England for five years."
+              "text": "I have admired her creativity for years."
             },
             {
               "responseId": "en:lesson-24:session-07:intro1:r2",
-              "text": "I have lived in England since five years."
+              "text": "I have admired her creativity since years."
             },
             {
               "responseId": "en:lesson-24:session-07:intro1:r3",
-              "text": "I has lived in England for five years."
+              "text": "I has admired her creativity for years."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сколько времени прошло",
-        "uk": "Скільки часу минуло"
+        "ru": "Способности и воодушевление",
+        "uk": "Здібності й натхнення"
       },
       "bodyByLocale": {
-        "ru": "She has worked in Scotland since June — она работает в Шотландии с июня. Wales — Уэльс. We have lived in Wales for a year — мы живём в Уэльсе уже год. В этих фразах работа и жизнь в новом месте продолжаются. For a year — срок в год; since June — начало в июне.",
-        "uk": "She has worked in Scotland since June — вона працює в Шотландії з червня. Wales — Уельс. We have lived in Wales for a year — ми живемо в Уельсі вже рік. У цих фразах робота й життя в новому місці тривають. For a year — строк у рік; since June — початок у червні."
+        "ru": "Intelligence — ум, интеллект. She has shown great intelligence since childhood — она проявляет большие умственные способности с детства. Shown — форма show. Enthusiasm — энтузиазм, воодушевление. We have shared his enthusiasm for weeks — мы разделяем его воодушевление уже несколько недель. Например, все готовятся к общему походу. Since childhood называет начало, for weeks — длительность.",
+        "uk": "Intelligence — розум, інтелект. She has shown great intelligence since childhood — вона виявляє великі розумові здібності з дитинства. Shown — форма show. Enthusiasm — ентузіазм, натхнення. We have shared his enthusiasm for weeks — ми поділяємо його натхнення вже кілька тижнів. Наприклад, усі готуються до спільного походу. Since childhood називає початок, for weeks — тривалість."
       },
       "question": {
         "interactionId": "en:lesson-24:session-07:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-07:intro2:r1",
-              "text": "We have lived in Wales for a year."
+              "text": "She has shown great intelligence since childhood."
             },
             {
               "responseId": "en:lesson-24:session-07:intro2:r2",
-              "text": "We have lived in Wales since a year."
+              "text": "She has shown great intelligence for childhood."
             },
             {
               "responseId": "en:lesson-24:session-07:intro2:r3",
-              "text": "We has lived in Wales for a year."
+              "text": "She have shown great intelligence since childhood."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-07:intro2:r1",
-              "text": "We have lived in Wales for a year."
+              "text": "She has shown great intelligence since childhood."
             },
             {
               "responseId": "en:lesson-24:session-07:intro2:r2",
-              "text": "We have lived in Wales since a year."
+              "text": "She has shown great intelligence for childhood."
             },
             {
               "responseId": "en:lesson-24:session-07:intro2:r3",
-              "text": "We has lived in Wales for a year."
+              "text": "She have shown great intelligence since childhood."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Учёба в Ирландии",
-        "uk": "Навчання в Ірландії"
+        "ru": "Заветная цель",
+        "uk": "Заповітна мета"
       },
       "bodyByLocale": {
-        "ru": "Ireland — Ирландия. He has studied in Ireland since 2020 — он учится в Ирландии с 2020 года. Перед этими названиями используем in без the: in England, in Scotland, in Wales, in Ireland. В Wales конечная s — часть названия, а не признак множественного числа.",
-        "uk": "Ireland — Ірландія. He has studied in Ireland since 2020 — він навчається в Ірландії з 2020 року. Перед цими назвами використовуємо in без the: in England, in Scotland, in Wales, in Ireland. У Wales кінцева s — частина назви, а не ознака множини."
+        "ru": "Ambition — сильное стремление, заветная цель. Например, человек хочет стать музыкантом. He has talked about his ambition since May — он рассказывает о своей цели с мая. Это не один непрерывный разговор: он возвращается к этой теме снова и снова. Since May показывает, когда такие разговоры начались.",
+        "uk": "Ambition — сильне прагнення, заповітна мета. Наприклад, людина хоче стати музикантом. He has talked about his ambition since May — він розповідає про свою мету з травня. Це не одна безперервна розмова: він повертається до цієї теми знову й знову. Since May показує, коли такі розмови почалися."
       },
       "question": {
         "interactionId": "en:lesson-24:session-07:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-07:intro3:r1",
-              "text": "He has studied in Ireland since 2020."
+              "text": "He has talked about his ambition since May."
             },
             {
               "responseId": "en:lesson-24:session-07:intro3:r2",
-              "text": "He has studied in Ireland for 2020."
+              "text": "He has talked about his ambition for May."
             },
             {
               "responseId": "en:lesson-24:session-07:intro3:r3",
-              "text": "He have studied in Ireland since 2020."
+              "text": "He have talked about his ambition since May."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-07:intro3:r1",
-              "text": "He has studied in Ireland since 2020."
+              "text": "He has talked about his ambition since May."
             },
             {
               "responseId": "en:lesson-24:session-07:intro3:r2",
-              "text": "He has studied in Ireland for 2020."
+              "text": "He has talked about his ambition for May."
             },
             {
               "responseId": "en:lesson-24:session-07:intro3:r3",
-              "text": "He have studied in Ireland since 2020."
+              "text": "He have talked about his ambition since May."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f5a65015aa43f0eb6e899b10ac91cdfdd953892099e20898d337c9275d34e545"
+  "introFingerprint": "78e1424a5b61d4abab50443b36e723e3d93d2d812f2665b802ed585e1fb905bb"
 }

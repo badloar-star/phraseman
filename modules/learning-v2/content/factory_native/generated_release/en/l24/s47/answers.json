@@ -1,12 +1,12 @@
 [
   {
-    "interactionId": "en:lesson-24:session-47:word:Poland",
-    "correctText": "Poland",
+    "interactionId": "en:lesson-24:session-47:word:guilt",
+    "correctText": "guilt",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i01",
-    "correctText": "I have been to Poland.",
+    "correctText": "I have felt guilt since yesterday.",
     "correctResponseId": null
   },
   {
@@ -16,72 +16,72 @@
   },
   {
     "interactionId": "en:lesson-24:session-47:i03",
-    "correctText": "I have been to Poland.",
+    "correctText": "I have felt guilt since yesterday.",
     "correctResponseId": "en:lesson-24:session-47:i03:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-47:word:Portugal",
-    "correctText": "Portugal",
+    "interactionId": "en:lesson-24:session-47:word:shame",
+    "correctText": "shame",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i04",
-    "correctText": "She visited Portugal last year.",
+    "correctText": "She hid her shame yesterday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i05",
-    "correctText": "visited",
+    "correctText": "hid",
     "correctResponseId": "en:lesson-24:session-47:i05:r1"
   },
   {
     "interactionId": "en:lesson-24:session-47:i06",
-    "correctText": "She visited Portugal last year.",
+    "correctText": "She hid her shame yesterday.",
     "correctResponseId": "en:lesson-24:session-47:i06:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-47:word:Norway",
-    "correctText": "Norway",
+    "interactionId": "en:lesson-24:session-47:word:desire",
+    "correctText": "desire",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i07",
-    "correctText": "We have travelled to Norway.",
+    "correctText": "He has expressed a desire to learn.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i08",
-    "correctText": "have",
+    "correctText": "has",
     "correctResponseId": "en:lesson-24:session-47:i08:r1"
   },
   {
     "interactionId": "en:lesson-24:session-47:i09",
-    "correctText": "We have travelled to Norway.",
+    "correctText": "He has expressed a desire to learn.",
     "correctResponseId": "en:lesson-24:session-47:i09:r1"
   },
   {
-    "interactionId": "en:lesson-24:session-47:word:Denmark",
-    "correctText": "Denmark",
+    "interactionId": "en:lesson-24:session-47:word:weakness",
+    "correctText": "weakness",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i10",
-    "correctText": "They arrived in Denmark yesterday.",
+    "correctText": "We noticed a weakness in the plan yesterday.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i11",
-    "correctText": "arrived",
+    "correctText": "noticed",
     "correctResponseId": "en:lesson-24:session-47:i11:r1"
   },
   {
     "interactionId": "en:lesson-24:session-47:i12",
-    "correctText": "They arrived in Denmark yesterday.",
+    "correctText": "We noticed a weakness in the plan yesterday.",
     "correctResponseId": "en:lesson-24:session-47:i12:r1"
   },
   {
     "interactionId": "en:lesson-24:session-47:i13",
-    "correctText": "en:lesson-24:session-47:i13:p1=Poland\nen:lesson-24:session-47:i13:p2=Portugal\nen:lesson-24:session-47:i13:p3=Norway\nen:lesson-24:session-47:i13:p4=Denmark",
+    "correctText": "en:lesson-24:session-47:i13:p1=guilt\nen:lesson-24:session-47:i13:p2=shame\nen:lesson-24:session-47:i13:p3=desire\nen:lesson-24:session-47:i13:p4=weakness",
     "correctResponseId": null
   },
   {
@@ -96,12 +96,12 @@
   },
   {
     "interactionId": "en:lesson-24:session-47:i16",
-    "correctText": "We visited Portugal last year.",
+    "correctText": "She has expressed a desire to travel.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-24:session-47:i17",
-    "correctText": "She arrived in Denmark yesterday.",
+    "correctText": "They noticed a weakness in the plan yesterday.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-47",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "present perfect / past simple",
+    "uk": "present perfect / past simple"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Опыт поездки",
-        "uk": "Досвід поїздки"
+        "ru": "Чувство остаётся",
+        "uk": "Відчуття залишається"
       },
       "bodyByLocale": {
-        "ru": "Poland — Польша. I have been to Poland — я бывал в Польше. Have been to сообщает об опыте поездки: человек побывал там и вернулся. Poland пишется с большой буквы, без the. Дата здесь не названа.",
-        "uk": "Poland — Польща. I have been to Poland — я бував у Польщі. Have been to повідомляє про досвід поїздки: людина побувала там і повернулася. Poland пишеться з великої літери, без the. Дату тут не названо."
+        "ru": "Guilt — чувство вины: вам кажется, что вы сделали что-то не так. I have felt guilt since yesterday — я испытываю чувство вины со вчерашнего дня. Чувство возникло вчера и остаётся сейчас, поэтому здесь have felt с since. Это рассказ о переживании, а не о решении суда.",
+        "uk": "Guilt — почуття провини: вам здається, що ви зробили щось не так. I have felt guilt since yesterday — я відчуваю провину від учора. Відчуття виникло вчора й залишається зараз, тому тут have felt із since. Це розповідь про переживання, а не про рішення суду."
       },
       "question": {
         "interactionId": "en:lesson-24:session-47:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-47:intro1:r1",
-              "text": "I have been to Poland."
+              "text": "I have felt guilt since yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro1:r2",
-              "text": "I has been to Poland."
+              "text": "I has felt guilt since yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro1:r3",
-              "text": "I have be to Poland."
+              "text": "I am felt guilt since yesterday."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-47:intro1:r1",
-              "text": "I have been to Poland."
+              "text": "I have felt guilt since yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro1:r2",
-              "text": "I has been to Poland."
+              "text": "I has felt guilt since yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro1:r3",
-              "text": "I have be to Poland."
+              "text": "I am felt guilt since yesterday."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Посетить страну",
-        "uk": "Відвідати країну"
+        "ru": "Вчера и сейчас",
+        "uk": "Учора й зараз"
       },
       "bodyByLocale": {
-        "ru": "Portugal — Португалия. She visited Portugal last year — она посетила Португалию в прошлом году. После visited не ставим to. Norway — Норвегия. We have travelled to Norway — мы съездили в Норвегию. После travelled направление выражаем через to. С last year нужен visited без has.",
-        "uk": "Portugal — Португалія. She visited Portugal last year — вона відвідала Португалію торік. Після visited не ставимо to. Norway — Норвегія. We have travelled to Norway — ми з’їздили до Норвегії. Після travelled напрямок виражаємо через to. Із last year потрібне visited без has."
+        "ru": "Shame — стыд, неловкое чувство из-за себя или своего поступка. She hid her shame yesterday — вчера она скрыла свой стыд. Yesterday указывает на законченный день, используем hid — Past Simple от hide. Desire — желание. He has expressed a desire to learn — он выразил желание учиться. Здесь важен нынешний результат: мы знаем, чего он хочет; точный прошедший момент не назван.",
+        "uk": "Shame — сором, ніякове відчуття через себе або свій учинок. She hid her shame yesterday — учора вона приховала свій сором. Yesterday вказує на завершений день, використовуємо hid — Past Simple від hide. Desire — бажання. He has expressed a desire to learn — він висловив бажання вчитися. Тут важливий теперішній результат: ми знаємо, чого він хоче; точний минулий момент не названо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-47:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-47:intro2:r1",
-              "text": "She visited Portugal last year."
+              "text": "She hid her shame yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro2:r2",
-              "text": "She has visited Portugal last year."
+              "text": "She hides her shame yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro2:r3",
-              "text": "She visit Portugal last year."
+              "text": "She hiding her shame yesterday."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-47:intro2:r1",
-              "text": "She visited Portugal last year."
+              "text": "She hid her shame yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro2:r2",
-              "text": "She has visited Portugal last year."
+              "text": "She hides her shame yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro2:r3",
-              "text": "She visit Portugal last year."
+              "text": "She hiding her shame yesterday."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Приехали вчера",
-        "uk": "Приїхали вчора"
+        "ru": "Слабое место в плане",
+        "uk": "Слабке місце в плані"
       },
       "bodyByLocale": {
-        "ru": "Denmark — Дания. They arrived in Denmark yesterday — вчера они приехали в Данию. Перед названием страны после arrive нужен in. Yesterday указывает законченный день: arrived без have. Эти четыре названия стран пишутся с большой буквы и без the.",
-        "uk": "Denmark — Данія. They arrived in Denmark yesterday — учора вони приїхали до Данії. Перед назвою країни після arrive потрібне in. Yesterday указує на завершений день: arrived без have. Ці чотири назви країн пишуться з великої літери й без the."
+        "ru": "Weakness — слабость или слабое место. We noticed a weakness in the plan yesterday — вчера мы заметили слабое место в плане. Например, на прогулку собираются десять человек, а мест в машине пять. Здесь weakness относится к плану, не к здоровью человека. С yesterday выбираем noticed: речь о событии в законченном прошлом.",
+        "uk": "Weakness — слабкість або слабке місце. We noticed a weakness in the plan yesterday — учора ми помітили слабке місце в плані. Наприклад, на прогулянку збираються десятеро людей, а місць у машині п’ять. Тут weakness стосується плану, а не здоров’я людини. Із yesterday вибираємо noticed: ідеться про подію в завершеному минулому."
       },
       "question": {
         "interactionId": "en:lesson-24:session-47:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-24:session-47:intro3:r1",
-              "text": "They arrived in Denmark yesterday."
+              "text": "We noticed a weakness in the plan yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro3:r2",
-              "text": "They have arrived in Denmark yesterday."
+              "text": "We notice a weakness in the plan yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro3:r3",
-              "text": "They arrive in Denmark yesterday."
+              "text": "We noticing a weakness in the plan yesterday."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-24:session-47:intro3:r1",
-              "text": "They arrived in Denmark yesterday."
+              "text": "We noticed a weakness in the plan yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro3:r2",
-              "text": "They have arrived in Denmark yesterday."
+              "text": "We notice a weakness in the plan yesterday."
             },
             {
               "responseId": "en:lesson-24:session-47:intro3:r3",
-              "text": "They arrive in Denmark yesterday."
+              "text": "We noticing a weakness in the plan yesterday."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "617278770e097014449f487a2573a9ee8795d5b2bea3cacd22e81ff033d66b78"
+  "introFingerprint": "676aaff1bdf612f3b175000ae16d22284c6bbe593fe826fc6df701ce69a0429d"
 }

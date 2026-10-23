@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-24:session-21:intro1:q",
       "responseFeedbackById": {
         "en:lesson-24:session-21:intro1:r2": {
-          "ru": "Перед действием с -ing нужно been.",
-          "uk": "Перед дією з -ing потрібне been."
+          "ru": "Нужно been перед действием с -ing.",
+          "uk": "Потрібне been перед дією з -ing."
         },
         "en:lesson-24:session-21:intro1:r3": {
-          "ru": "С I и they нужно have, с she — has.",
-          "uk": "З I та they потрібно have, з she — has."
+          "ru": "С I и we нужно have, с she и he — has.",
+          "uk": "З I та we потрібно have, з she та he — has."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-24:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-24:session-21:intro2:r2": {
-          "ru": "Перед действием с -ing нужно been.",
-          "uk": "Перед дією з -ing потрібне been."
+          "ru": "Нужно been перед действием с -ing.",
+          "uk": "Потрібне been перед дією з -ing."
         },
         "en:lesson-24:session-21:intro2:r3": {
-          "ru": "С I и they нужно have, с she — has.",
-          "uk": "З I та they потрібно have, з she — has."
+          "ru": "С I и we нужно have, с she и he — has.",
+          "uk": "З I та we потрібно have, з she та he — has."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-24:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-24:session-21:intro3:r2": {
-          "ru": "Перед действием с -ing нужно been.",
-          "uk": "Перед дією з -ing потрібне been."
+          "ru": "Нужно been перед действием с -ing.",
+          "uk": "Потрібне been перед дією з -ing."
         },
         "en:lesson-24:session-21:intro3:r3": {
-          "ru": "С I и they нужно have, с she — has.",
-          "uk": "З I та they потрібно have, з she — has."
+          "ru": "С I и we нужно have, с she и he — has.",
+          "uk": "З I та we потрібно have, з she та he — has."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "dc23faf859c181d9b327549a65e42a976e80f1e2219daa86d109769f5ce1d713"
+  "auxiliaryFingerprint": "35a568294289b5c90f8347c6f69dccbfe4f6a7fb866830abafb294622ae0fb3d"
 }

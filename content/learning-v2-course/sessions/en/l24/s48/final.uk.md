@@ -1,137 +1,137 @@
-# Англійська · Урок 24 · Заняття 48 — У яких країнах ви були
+# Англійська · Урок 24 · Заняття 48 — Реакції та підтримка
 
-**Ситуація.** Ви розповідаєте, у яких країнах побували й коли приїхали.
+**Ситуація.** Ви розповідаєте, як люди виявили почуття та покликали на допомогу.
 
-**Що ви опануєте:** Present Perfect / Past Simple
-**Нові слова:** Finland, Switzerland, Austria, Belgium
+**Що ви опануєте:** present perfect / past simple
+**Нові слова:** cuddle, sob, groan, yell
 
 ## Інтро 1
 
-### Досвід поїздки
+### Обійняти малюка
 
-Finland — Фінляндія. I have been to Finland — я бував у Фінляндії. Have been to повідомляє про досвід поїздки: людина побувала там і повернулася. Finland пишеться з великої літери, без the. Дату тут не названо.
+Cuddle — ніжно обіймати, притискати до себе: малюка, близьку людину чи домашню тварину. She has cuddled the baby — вона ніжно обійняла малюка. Тут повідомляємо, що це вже відбулося, без зазначення завершеного моменту. Із she використовуємо has cuddled. Якщо додамо yesterday, знадобиться Past Simple: She cuddled the baby yesterday.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I have been to Finland.**
-- ❌ I has been to Finland. — *Із I потрібно have.*
-- ❌ I have be to Finland. — *Після have потрібна форма been.*
+- ✅ **She has cuddled the baby.**
+- ❌ She have cuddled the baby. — *Перевірте форму дієслова: has.*
+- ❌ She is cuddled the baby. — *Тут потрібна форма has.*
 
 ---
 
 ## Інтро 2
 
-### Відвідати країну
+### Сльози й біль
 
-Switzerland — Швейцарія. She visited Switzerland last year — вона відвідала Швейцарію торік. Після visited не ставимо to. Austria — Австрія; не плутайте з Australia — Австралією. We have travelled to Austria — ми з’їздили до Австрії. Після travelled напрямок виражаємо через to. Із last year потрібне visited без has.
+Sob — ридати, плакати з уривчастим диханням. He sobbed after the film yesterday — учора він ридав після фільму. Yesterday називає завершене минуле, тому sobbed. У цій формі подвоюємо b. Groan — стогнати: наприклад, від болю. I have groaned with pain all morning — я весь ранок стогну від болю. Ранок ще триває; мовець описує стогони, що повторювалися до теперішнього моменту. Із I використовуємо have groaned.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She visited Switzerland last year.**
-- ❌ She has visited Switzerland last year. — *Із last year потрібне visited без has.*
-- ❌ She visit Switzerland last year. — *Для минулого потрібна форма visited.*
+- ✅ **He sobbed after the film yesterday.**
+- ❌ He sob after the film yesterday. — *Перевірте форму дієслова: sobbed.*
+- ❌ He sobbing after the film yesterday. — *Тут потрібна форма sobbed.*
 
 ---
 
 ## Інтро 3
 
-### Приїхали вчора
+### Покликати на допомогу
 
-Belgium — Бельгія. They arrived in Belgium yesterday — учора вони приїхали до Бельгії. Перед назвою країни після arrive потрібне in. Yesterday указує на завершений день: arrived без have. Ці чотири назви країн пишуться з великої літери й без the.
+Yell — кричати гучним голосом. They yelled for help yesterday — учора вони кричали, кличучи на допомогу. For help тут означає «про допомогу», а не тривалість. Із yesterday вибираємо yelled: подія відбулася в завершеному минулому. Yell можна використовувати й коли людина кличе когось здалеку.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **They arrived in Belgium yesterday.**
-- ❌ They have arrived in Belgium yesterday. — *Із yesterday потрібне arrived без have.*
-- ❌ They arrive in Belgium yesterday. — *Для минулого потрібна форма arrived.*
+- ✅ **They yelled for help yesterday.**
+- ❌ They yell for help yesterday. — *Перевірте форму дієслова: yelled.*
+- ❌ They yelling for help yesterday. — *Тут потрібна форма yelled.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — Finland**
-<!-- interaction_id: en:lesson-24:session-48:word:Finland; family: word_card -->
-> **Finland** — Фінляндія.
+**1 · Картка слова — cuddled**
+<!-- interaction_id: en:lesson-24:session-48:word:cuddled; family: word_card -->
+> **cuddled** — cuddle — ніжно обіймати. Cuddled — ніжно обійняв.
 
-**2 · Скажіть: «Я бував у Фінляндії.»**
+**2 · Скажіть: «Вона ніжно обійняла малюка.»**
 <!-- interaction_id: en:lesson-24:session-48:i01; family: phrase_builder -->
-Плитки: `Finland` `to` `been` `have` `I` → **I have been to Finland.**
+Плитки: `baby` `the` `cuddled` `has` `She` → **She has cuddled the baby.**
 
-**3 · Доповніть розповідь про поїздки.**
+**3 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-48:i02; family: context_gap_grammar -->
-I ___ been to Finland. → **have** · has · am
-- has — *Із I потрібно have перед been.*
-- am — *Із I потрібно have перед been.*
+She ___ cuddled the baby. → **has** · have · is
+- have — *Із she потрібно has.*
+- is — *Із she потрібно has.*
 
 **4 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-48:i03; family: listen_choose -->
-🔊 *I have been to Finland.* → **I have been to Finland.** · We have been to Finland. · I have lived in Finland.
-- We have been to Finland. — *У записі звучить I have been to Finland.*
-- I have lived in Finland. — *У записі звучить I have been to Finland.*
+🔊 *She has cuddled the baby.* → **She has cuddled the baby.** · He has cuddled the baby. · She has cuddled the puppy.
+- He has cuddled the baby. — *У записі звучить She has cuddled the baby.*
+- She has cuddled the puppy. — *У записі звучить She has cuddled the baby.*
 
-**5 · Картка слова — Switzerland**
-<!-- interaction_id: en:lesson-24:session-48:word:Switzerland; family: word_card -->
-> **Switzerland** — Швейцарія.
+**5 · Картка слова — sobbed**
+<!-- interaction_id: en:lesson-24:session-48:word:sobbed; family: word_card -->
+> **sobbed** — sob — ридати. Sobbed — ридав.
 
-**6 · Скажіть: «Вона відвідала Швейцарію торік.»**
+**6 · Скажіть: «Учора він ридав після фільму.»**
 <!-- interaction_id: en:lesson-24:session-48:i04; family: phrase_builder -->
-Плитки: `year` `last` `Switzerland` `visited` `She` → **She visited Switzerland last year.**
+Плитки: `yesterday` `film` `the` `after` `sobbed` `He` → **He sobbed after the film yesterday.**
 
-**7 · Доповніть розповідь про поїздки.**
+**7 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-48:i05; family: context_gap_grammar -->
-She ___ Switzerland last year. → **visited** · has visited · visit
-- has visited — *Із last year потрібна форма visited без has.*
-- visit — *Із last year потрібна форма visited без has.*
+He ___ after the film yesterday. → **sobbed** · sob · sobbing
+- sob — *Yesterday потребує Past Simple: sobbed.*
+- sobbing — *Yesterday потребує Past Simple: sobbed.*
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-48:i06; family: listen_choose -->
-🔊 *She visited Switzerland last year.* → **She visited Switzerland last year.** · He visited Switzerland last year. · She visited Switzerland last month.
-- He visited Switzerland last year. — *У записі звучить She visited Switzerland last year.*
-- She visited Switzerland last month. — *У записі звучить She visited Switzerland last year.*
+🔊 *He sobbed after the film yesterday.* → **He sobbed after the film yesterday.** · She sobbed after the film yesterday. · He sobbed after the show yesterday.
+- She sobbed after the film yesterday. — *У записі звучить He sobbed after the film yesterday.*
+- He sobbed after the show yesterday. — *У записі звучить He sobbed after the film yesterday.*
 
-**9 · Картка слова — Austria**
-<!-- interaction_id: en:lesson-24:session-48:word:Austria; family: word_card -->
-> **Austria** — Австрія.
+**9 · Картка слова — groaned**
+<!-- interaction_id: en:lesson-24:session-48:word:groaned; family: word_card -->
+> **groaned** — groan — стогнати. Groaned — стогнав.
 
-**10 · Скажіть: «Ми з’їздили до Австрії.»**
+**10 · Скажіть: «Я весь ранок стогну від болю.»**
 <!-- interaction_id: en:lesson-24:session-48:i07; family: phrase_builder -->
-Плитки: `Austria` `to` `travelled` `have` `We` → **We have travelled to Austria.**
+Плитки: `morning` `all` `pain` `with` `groaned` `have` `I` → **I have groaned with pain all morning.**
 
-**11 · Доповніть розповідь про поїздки.**
+**11 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-48:i08; family: context_gap_grammar -->
-We ___ travelled to Austria. → **have** · has · are
-- has — *Із we потрібно have перед travelled.*
-- are — *Із we потрібно have перед travelled.*
+I ___ groaned with pain all morning. → **have** · has · am
+- has — *Із I потрібно have.*
+- am — *Із I потрібно have.*
 
 **12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-48:i09; family: listen_choose -->
-🔊 *We have travelled to Austria.* → **We have travelled to Austria.** · They have travelled to Austria. · We have moved to Austria.
-- They have travelled to Austria. — *У записі звучить We have travelled to Austria.*
-- We have moved to Austria. — *У записі звучить We have travelled to Austria.*
+🔊 *I have groaned with pain all morning.* → **I have groaned with pain all morning.** · We have groaned with pain all morning. · I have groaned with pain all afternoon.
+- We have groaned with pain all morning. — *У записі звучить I have groaned with pain all morning.*
+- I have groaned with pain all afternoon. — *У записі звучить I have groaned with pain all morning.*
 
-**13 · Картка слова — Belgium**
-<!-- interaction_id: en:lesson-24:session-48:word:Belgium; family: word_card -->
-> **Belgium** — Бельгія.
+**13 · Картка слова — yelled**
+<!-- interaction_id: en:lesson-24:session-48:word:yelled; family: word_card -->
+> **yelled** — yell — кричати. Yelled — кричав.
 
-**14 · Скажіть: «Учора вони приїхали до Бельгії.»**
+**14 · Скажіть: «Учора вони кричали, кличучи на допомогу.»**
 <!-- interaction_id: en:lesson-24:session-48:i10; family: phrase_builder -->
-Плитки: `yesterday` `Belgium` `in` `arrived` `They` → **They arrived in Belgium yesterday.**
+Плитки: `yesterday` `help` `for` `yelled` `They` → **They yelled for help yesterday.**
 
-**15 · Доповніть розповідь про поїздки.**
+**15 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-48:i11; family: context_gap_grammar -->
-They ___ in Belgium yesterday. → **arrived** · have arrived · arrive
-- have arrived — *Із yesterday потрібна форма arrived без have.*
-- arrive — *Із yesterday потрібна форма arrived без have.*
+They ___ for help yesterday. → **yelled** · yell · yelling
+- yell — *Yesterday потребує Past Simple: yelled.*
+- yelling — *Yesterday потребує Past Simple: yelled.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-48:i12; family: listen_choose -->
-🔊 *They arrived in Belgium yesterday.* → **They arrived in Belgium yesterday.** · We arrived in Belgium yesterday. · They arrived in Belgium last week.
-- We arrived in Belgium yesterday. — *У записі звучить They arrived in Belgium yesterday.*
-- They arrived in Belgium last week. — *У записі звучить They arrived in Belgium yesterday.*
+🔊 *They yelled for help yesterday.* → **They yelled for help yesterday.** · We yelled for help yesterday. · They yelled for help last night.
+- We yelled for help yesterday. — *У записі звучить They yelled for help yesterday.*
+- They yelled for help last night. — *У записі звучить They yelled for help yesterday.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-24:session-48:i13; family: speed_match -->
-Finland — Фінляндія · Switzerland — Швейцарія · Austria — Австрія · Belgium — Бельгія
+cuddle — ніжно обіймати · sob — ридати · groan — стогнати · yell — кричати
 
 **18 · Чекаю вже годину**
 <!-- interaction_id: en:lesson-24:session-48:i14; family: listen_build_dictation -->
@@ -141,11 +141,11 @@ Finland — Фінляндія · Switzerland — Швейцарія · Austria 
 <!-- interaction_id: en:lesson-24:session-48:i15; family: listen_build_dictation -->
 🔊 *She has been working since this morning.* Плитки: `morning` `this` `since` `working` `been` `has` `She` → **She has been working since this morning.**
 
-**20 · Скажіть: «Ми відвідали Швейцарію торік».**
+**20 · Скажіть: «Він ніжно обійняв цуценя».**
 <!-- interaction_id: en:lesson-24:session-48:i16; family: scripted_repeat_compare -->
-🎙 **We visited Switzerland last year.**
+🎙 **He has cuddled the puppy.**
 
-**21 · Скажіть: «Вона приїхала до Бельгії вчора».**
+**21 · Скажіть: «Учора вона кричала, кличучи на допомогу».**
 <!-- interaction_id: en:lesson-24:session-48:i17; family: scripted_repeat_compare -->
-🎙 **She arrived in Belgium yesterday.**
+🎙 **She yelled for help yesterday.**
 

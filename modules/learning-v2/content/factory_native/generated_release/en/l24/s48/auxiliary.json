@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-24:session-48:intro1:q",
       "responseFeedbackById": {
         "en:lesson-24:session-48:intro1:r2": {
-          "ru": "С I нужно have.",
-          "uk": "Із I потрібно have."
+          "ru": "Проверьте форму глагола: has.",
+          "uk": "Перевірте форму дієслова: has."
         },
         "en:lesson-24:session-48:intro1:r3": {
-          "ru": "После have нужна форма been.",
-          "uk": "Після have потрібна форма been."
+          "ru": "Здесь нужна форма has.",
+          "uk": "Тут потрібна форма has."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-24:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-24:session-48:intro2:r2": {
-          "ru": "С last year нужно visited без has.",
-          "uk": "Із last year потрібне visited без has."
+          "ru": "Проверьте форму глагола: sobbed.",
+          "uk": "Перевірте форму дієслова: sobbed."
         },
         "en:lesson-24:session-48:intro2:r3": {
-          "ru": "Для прошлого нужна форма visited.",
-          "uk": "Для минулого потрібна форма visited."
+          "ru": "Здесь нужна форма sobbed.",
+          "uk": "Тут потрібна форма sobbed."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-24:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-24:session-48:intro3:r2": {
-          "ru": "С yesterday нужно arrived без have.",
-          "uk": "Із yesterday потрібне arrived без have."
+          "ru": "Проверьте форму глагола: yelled.",
+          "uk": "Перевірте форму дієслова: yelled."
         },
         "en:lesson-24:session-48:intro3:r3": {
-          "ru": "Для прошлого нужна форма arrived.",
-          "uk": "Для минулого потрібна форма arrived."
+          "ru": "Здесь нужна форма yelled.",
+          "uk": "Тут потрібна форма yelled."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7276ff32a717a77fe33636a8d55720a25459499b35039faf4492ea9f38591b0d"
+  "auxiliaryFingerprint": "6c67edbf584976f162db235b982694e191f6a918ff00ec7064f062e223cff055"
 }

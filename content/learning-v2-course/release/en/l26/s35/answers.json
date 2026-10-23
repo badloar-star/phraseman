@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-35:word:daydream",
+    "correctText": "daydream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i01",
+    "correctText": "I sometimes daydream on the bus.",
+    "correctResponseId": "en:lesson-26:session-35:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i02",
+    "correctText": "Could you say that again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i03",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-26:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:word:overhear",
+    "correctText": "overhear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i04",
+    "correctText": "I did not mean to overhear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i05",
+    "correctText": "overheard",
+    "correctResponseId": "en:lesson-26:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i06",
+    "correctText": "Please speak quietly.",
+    "correctResponseId": "en:lesson-26:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:word:nightgown",
+    "correctText": "nightgown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i07",
+    "correctText": "My nightgown is in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i08",
+    "correctText": "I will close the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i09",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:word:robe",
+    "correctText": "robe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i10",
+    "correctText": "Your robe is on the chair.",
+    "correctResponseId": "en:lesson-26:session-35:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i11",
+    "correctText": "Have you locked the door yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i13",
+    "correctText": "If you are busy, I can answer the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i14",
+    "correctText": "I have already checked it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i15",
+    "correctText": "comes",
+    "correctResponseId": "en:lesson-26:session-35:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i16",
+    "correctText": "I will help if you need me.",
+    "correctResponseId": "en:lesson-26:session-35:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-35:i17",
+    "correctText": "Sweet dreams!",
+    "correctResponseId": null
+  }
+]

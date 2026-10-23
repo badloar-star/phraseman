@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; just, already, yet; by the time",
+    "uk": "if, when, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вы отвлеклись",
+        "uk": "Ви відволіклися"
+      },
+      "bodyByLocale": {
+        "ru": "Daydream — мечтать, отвлекаясь от того, что происходит вокруг. I sometimes daydream on the bus — я иногда мечтаю о своём в автобусе. Друг задал вопрос, а вы задумались: Could you say that again? — можешь сказать это ещё раз? Если это обычная ситуация: I ask again when I miss a question — я переспрашиваю, когда пропускаю вопрос. Для будущего решения: I will ask when she comes back — я спрошу, когда она вернётся. После when остаётся comes, без will.",
+        "uk": "Daydream — мріяти, відволікаючись від того, що відбувається навколо. I sometimes daydream on the bus — я іноді мрію про своє в автобусі. Друг поставив запитання, а ви замислилися: Could you say that again? — можеш сказати це ще раз? Якщо це звичайна ситуація: I ask again when I miss a question — я перепитую, коли пропускаю запитання. Для майбутнього рішення: I will ask when she comes back — я запитаю, коли вона повернеться. Після when залишається comes, без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-35:intro1:r1",
+              "text": "I will ask when she comes back."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro1:r2",
+              "text": "I will ask when she will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro1:r3",
+              "text": "I will ask when she come back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-35:intro1:r1",
+              "text": "I will ask when she comes back."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro1:r2",
+              "text": "I will ask when she will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro1:r3",
+              "text": "I will ask when she come back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Случайно услышать",
+        "uk": "Випадково почути"
+      },
+      "bodyByLocale": {
+        "ru": "Overhear — случайно услышать чужой разговор или слова, сказанные не вам. I did not mean to overhear — я не хотел случайно это услышать. Формы прошедшего времени и причастия — overheard: I have just overheard your question — я только что случайно услышал твой вопрос. Это не означает, что вы намеренно подслушивали. Можно предложить помощь: If you are busy, I can answer the door — если ты занят, я могу открыть дверь. То же условие в конце: I can answer the door if you are busy.",
+        "uk": "Overhear — випадково почути чужу розмову або слова, сказані не вам. I did not mean to overhear — я не хотів випадково це почути. Форми минулого часу й дієприкметника — overheard: I have just overheard your question — я щойно випадково почув твоє запитання. Це не означає, що ви навмисно підслуховували. Можна запропонувати допомогу: If you are busy, I can answer the door — якщо ти зайнятий, я можу відчинити двері. Та сама умова в кінці: I can answer the door if you are busy."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-35:intro2:r1",
+              "text": "I can answer the door if you are busy."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro2:r2",
+              "text": "I can answer the door unless you are busy."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro2:r3",
+              "text": "I can answer the door if you will be busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-35:intro2:r1",
+              "text": "I can answer the door if you are busy."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro2:r2",
+              "text": "I can answer the door unless you are busy."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro2:r3",
+              "text": "I can answer the door if you will be busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Собраться на ночь",
+        "uk": "Зібратися на ніч"
+      },
+      "bodyByLocale": {
+        "ru": "Nightgown — ночная рубашка, одежда для сна. Robe — халат; знакомое bathrobe — более конкретное название банного халата. My nightgown is in the bag — моя ночная рубашка в сумке. Your robe is on the chair — твой халат на стуле. Перед сном: Have you locked the door yet? — ты уже запер дверь? I have already checked it — я уже проверил её. О вчерашнем вечере: I had locked the door by the time everyone went to bed — я запер дверь к тому времени, как все легли спать. Had locked обозначает более раннее действие в прошлом.",
+        "uk": "Nightgown — нічна сорочка, одяг для сну. Robe — халат; знайоме bathrobe — конкретніша назва банного халата. My nightgown is in the bag — моя нічна сорочка в сумці. Your robe is on the chair — твій халат на стільці. Перед сном: Have you locked the door yet? — ти вже замкнув двері? I have already checked it — я вже перевірив їх. Про вчорашній вечір: I had locked the door by the time everyone went to bed — я замкнув двері до того часу, як усі лягли спати. Had locked позначає ранішу дію в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-35:intro3:r1",
+              "text": "I had locked the door by the time everyone went to bed."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro3:r2",
+              "text": "I have locked the door by the time everyone went to bed."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro3:r3",
+              "text": "I had lock the door by the time everyone went to bed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-35:intro3:r1",
+              "text": "I had locked the door by the time everyone went to bed."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro3:r2",
+              "text": "I have locked the door by the time everyone went to bed."
+            },
+            {
+              "responseId": "en:lesson-26:session-35:intro3:r3",
+              "text": "I had lock the door by the time everyone went to bed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "65d2a90a783586b28b1fce347e7d4dc3bd691d5d53b77d32eab0ce64c399d1c4"
+}

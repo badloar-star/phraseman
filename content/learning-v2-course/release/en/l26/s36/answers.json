@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-36:word:swimwear",
+    "correctText": "swimwear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i01",
+    "correctText": "Where is the swimwear?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i02",
+    "correctText": "It is on the second floor.",
+    "correctResponseId": "en:lesson-26:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i03",
+    "correctText": "Do you have my size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:word:pullover",
+    "correctText": "pullover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i04",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-26:session-36:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i05",
+    "correctText": "This pullover is too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i06",
+    "correctText": "Can I have a larger size?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:word:earmuffs",
+    "correctText": "earmuffs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i07",
+    "correctText": "My earmuffs are in my bag.",
+    "correctResponseId": "en:lesson-26:session-36:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i08",
+    "correctText": "wear",
+    "correctResponseId": "en:lesson-26:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i09",
+    "correctText": "I will buy it if the pullover is warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:word:briefs",
+    "correctText": "briefs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i10",
+    "correctText": "I need some briefs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i11",
+    "correctText": "Have you bought everything yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i12",
+    "correctText": "paid",
+    "correctResponseId": "en:lesson-26:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i13",
+    "correctText": "I have already chosen a size.",
+    "correctResponseId": "en:lesson-26:session-36:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i14",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-36:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i15",
+    "correctText": "I will wait outside when you finish.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-36:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-36:i17",
+    "correctText": "Would you like some tea?",
+    "correctResponseId": null
+  }
+]

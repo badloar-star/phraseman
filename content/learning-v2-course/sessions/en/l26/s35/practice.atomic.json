@@ -1,0 +1,2309 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-35:word:daydream",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — daydream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:daydream:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — daydream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:daydream:audio",
+            "transcript": "daydream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:daydream:r1",
+              "targetText": "daydream",
+              "meaningByLocale": {
+                "ru": "Мечтать, отвлекаясь от происходящего вокруг.",
+                "uk": "Мріяти, відволікаючись від того, що відбувається навколо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "daydream",
+            "definitionByLocale": {
+              "ru": "Мечтать, отвлекаясь от происходящего вокруг.",
+              "uk": "Мріяти, відволікаючись від того, що відбувається навколо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i01:r1",
+            "text": "I sometimes daydream on the bus."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i01:r2",
+            "text": "I sometimes sleep on the bus."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i01:r3",
+            "text": "I sometimes daydream at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i01:audio",
+            "transcript": "I sometimes daydream on the bus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i01:r1",
+              "targetText": "I sometimes daydream on the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i01:r2",
+              "targetText": "I sometimes sleep on the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i01:r3",
+              "targetText": "I sometimes daydream at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes daydream on the bus.",
+                "uk": "У записі звучить I sometimes daydream on the bus."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes daydream on the bus.",
+                "uk": "У записі звучить I sometimes daydream on the bus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы отвлеклись и не услышали вопрос. Попросите повторить.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Вы отвлеклись и не услышали вопрос. Попросите повторить.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i02:audio",
+            "transcript": "Could you say that again?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you say that again?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажите, что обычно переспрашиваете, когда пропускаете вопрос.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i03:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i03:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i03:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что обычно переспрашиваете, когда пропускаете вопрос.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что обычно переспрашиваете, когда пропускаете вопрос.",
+            "uk": "Скажіть, що зазвичай перепитуєте, коли пропускаєте запитання."
+          },
+          "gappedTargetPhrase": "I ___ again when I miss a question.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i03:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i03:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i03:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Скажите, что обычно переспрашиваете, когда пропускаете вопрос.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажите, что обычно переспрашиваете, когда пропускаете вопрос.",
+              "feedbackByLocale": {
+                "ru": "С I используется ask без -s.",
+                "uk": "З I вживається ask без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажите, что обычно переспрашиваете, когда пропускаете вопрос.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужна форма ask.",
+                "uk": "Для звички потрібна форма ask."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:word:overhear",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overhear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:overhear:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overhear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:overhear:audio",
+            "transcript": "overhear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:overhear:r1",
+              "targetText": "overhear",
+              "meaningByLocale": {
+                "ru": "Случайно услышать слова, сказанные не вам; формы overheard, overheard.",
+                "uk": "Випадково почути слова, сказані не вам; форми overheard, overheard."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overhear",
+            "definitionByLocale": {
+              "ru": "Случайно услышать слова, сказанные не вам; формы overheard, overheard.",
+              "uk": "Випадково почути слова, сказані не вам; форми overheard, overheard."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы проходили мимо и невольно услышали разговор. Скажите, что не хотели этого.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы проходили мимо и невольно услышали разговор. Скажите, что не хотели этого.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I did not mean to overhear.",
+          "localizedMeaning": {
+            "ru": "Вы проходили мимо и невольно услышали разговор. Скажите, что не хотели этого.",
+            "uk": "Ви проходили повз і мимоволі почули розмову. Скажіть, що не хотіли цього."
+          },
+          "orderedTokens": [
+            "I",
+            "did",
+            "not",
+            "mean",
+            "to",
+            "overhear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос прозвучал только что. Дополните сообщение о результате сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i05:r1",
+            "text": "overheard"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i05:r2",
+            "text": "overhear"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i05:r3",
+            "text": "overhearing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос прозвучал только что. Дополните сообщение о результате сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос прозвучал только что. Дополните сообщение о результате сейчас.",
+            "uk": "Запитання прозвучало щойно. Доповніть повідомлення про результат зараз."
+          },
+          "gappedTargetPhrase": "I have just ___ your question.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i05:r1",
+              "text": "overheard"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i05:r2",
+              "text": "overhear"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i05:r3",
+              "text": "overhearing"
+            }
+          ],
+          "testedDimension": "Вопрос прозвучал только что. Дополните сообщение о результате сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Вопрос прозвучал только что. Дополните сообщение о результате сейчас.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма overheard.",
+                "uk": "Після have потрібна форма overheard."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Вопрос прозвучал только что. Дополните сообщение о результате сейчас.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма overheard, не overhearing.",
+                "uk": "Тут потрібна форма overheard, не overhearing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i06:r1",
+            "text": "Please speak quietly."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i06:r2",
+            "text": "Please speak slowly."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i06:r3",
+            "text": "Please listen quietly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i06:audio",
+            "transcript": "Please speak quietly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i06:r1",
+              "targetText": "Please speak quietly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i06:r2",
+              "targetText": "Please speak slowly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i06:r3",
+              "targetText": "Please listen quietly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please speak quietly.",
+                "uk": "У записі звучить Please speak quietly."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please speak quietly.",
+                "uk": "У записі звучить Please speak quietly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:word:nightgown",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nightgown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:nightgown:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nightgown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:nightgown:audio",
+            "transcript": "nightgown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:nightgown:r1",
+              "targetText": "nightgown",
+              "meaningByLocale": {
+                "ru": "Ночная рубашка, одежда для сна.",
+                "uk": "Нічна сорочка, одяг для сну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nightgown",
+            "definitionByLocale": {
+              "ru": "Ночная рубашка, одежда для сна.",
+              "uk": "Нічна сорочка, одяг для сну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, где лежит одежда для сна.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Услышьте, где лежит одежда для сна.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i07:audio",
+            "transcript": "My nightgown is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My nightgown is in the bag.",
+          "orderedTokens": [
+            "My",
+            "nightgown",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В комнате холодно. Предложите закрыть окно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "В комнате холодно. Предложите закрыть окно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i08:audio",
+            "transcript": "I will close the window."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will close the window.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не станете включать свет, если он не понадобится.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i09:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i09:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i09:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не станете включать свет, если он не понадобится.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не станете включать свет, если он не понадобится.",
+            "uk": "Ви не вмикатимете світло, якщо воно не знадобиться."
+          },
+          "gappedTargetPhrase": "I will leave the light off ___ you need it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i09:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i09:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i09:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Вы не станете включать свет, если он не понадобится.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы не станете включать свет, если он не понадобится.",
+              "feedbackByLocale": {
+                "ru": "If означало бы оставить свет выключенным именно когда он нужен.",
+                "uk": "If означало б залишити світло вимкненим саме коли воно потрібне."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы не станете включать свет, если он не понадобится.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы потребность в свете причиной его выключить.",
+                "uk": "Because зробило б потребу у світлі причиною його вимкнути."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:word:robe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — robe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:robe:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — robe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:robe:audio",
+            "transcript": "robe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:robe:r1",
+              "targetText": "robe",
+              "meaningByLocale": {
+                "ru": "Халат; общее слово, bathrobe — банный халат.",
+                "uk": "Халат; загальне слово, bathrobe — банний халат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "robe",
+            "definitionByLocale": {
+              "ru": "Халат; общее слово, bathrobe — банный халат.",
+              "uk": "Халат; загальне слово, bathrobe — банний халат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i10:r1",
+            "text": "Your robe is on the chair."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i10:r2",
+            "text": "Your robe is on the bed."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i10:r3",
+            "text": "Your coat is on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i10:audio",
+            "transcript": "Your robe is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i10:r1",
+              "targetText": "Your robe is on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i10:r2",
+              "targetText": "Your robe is on the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i10:r3",
+              "targetText": "Your coat is on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your robe is on the chair.",
+                "uk": "У записі звучить Your robe is on the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your robe is on the chair.",
+                "uk": "У записі звучить Your robe is on the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Проверьте, заперта ли уже дверь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Проверьте, заперта ли уже дверь.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you locked the door yet?",
+          "localizedMeaning": {
+            "ru": "Проверьте, заперта ли уже дверь.",
+            "uk": "Перевірте, чи вже замкнено двері."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "locked",
+            "the",
+            "door",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "О вчерашнем вечере: дверь была заперта до того, как все легли.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "О вчерашнем вечере: дверь была заперта до того, как все легли.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "О вчерашнем вечере: дверь была заперта до того, как все легли.",
+            "uk": "Про вчорашній вечір: двері були замкнені до того, як усі лягли."
+          },
+          "gappedTargetPhrase": "I ___ locked the door by the time everyone went to bed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "О вчерашнем вечере: дверь была заперта до того, как все легли.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "О вчерашнем вечере: дверь была заперта до того, как все легли.",
+              "feedbackByLocale": {
+                "ru": "Have относится к результату сейчас; здесь два прошлых события.",
+                "uk": "Have стосується результату зараз; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "О вчерашнем вечере: дверь была заперта до того, как все легли.",
+              "feedbackByLocale": {
+                "ru": "Am locked не означает, что я запер дверь.",
+                "uk": "Am locked не означає, що я замкнув двері."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Начните с условия, сохранив смысл I can answer the door if you are busy.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Начните с условия, сохранив смысл I can answer the door if you are busy.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i13:audio",
+            "transcript": "If you are busy, I can answer the door."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "If you are busy, I can answer the door.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте ответ: дело уже проверено.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Услышьте ответ: дело уже проверено.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i14:audio",
+            "transcript": "I have already checked it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have already checked it.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "checked",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы спросите сестру после её возвращения.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i15:r1",
+            "text": "comes"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i15:r2",
+            "text": "will come"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i15:r3",
+            "text": "come"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы спросите сестру после её возвращения.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спросите сестру после её возвращения.",
+            "uk": "Ви запитаєте сестру після її повернення."
+          },
+          "gappedTargetPhrase": "I will ask when she ___ back.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i15:r1",
+              "text": "comes"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i15:r2",
+              "text": "will come"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i15:r3",
+              "text": "come"
+            }
+          ],
+          "testedDimension": "Вы спросите сестру после её возвращения.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Вы спросите сестру после её возвращения.",
+              "feedbackByLocale": {
+                "ru": "После when здесь comes без will.",
+                "uk": "Після when тут comes без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Вы спросите сестру после её возвращения.",
+              "feedbackByLocale": {
+                "ru": "С she нужна форма comes.",
+                "uk": "З she потрібна форма comes."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i16:r1",
+            "text": "I will help if you need me."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i16:r2",
+            "text": "I will call if you need me."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i16:r3",
+            "text": "I will help when you leave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i16:audio",
+            "transcript": "I will help if you need me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i16:r1",
+              "targetText": "I will help if you need me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i16:r2",
+              "targetText": "I will call if you need me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i16:r3",
+              "targetText": "I will help when you leave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you need me.",
+                "uk": "У записі звучить I will help if you need me."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you need me.",
+                "uk": "У записі звучить I will help if you need me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перед сном пожелайте близкому приятных снов.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед сном пожелайте близкому приятных снов.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Sweet dreams!",
+          "localizedMeaning": {
+            "ru": "Перед сном пожелайте близкому приятных снов.",
+            "uk": "Перед сном побажайте близькій людині приємних снів."
+          },
+          "orderedTokens": [
+            "Sweet",
+            "dreams"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-35:word:daydream",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — daydream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:daydream:audio"
+        ],
+        "accessibilityLabel": "Картка слова — daydream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:daydream:audio",
+            "transcript": "daydream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:daydream:r1",
+              "targetText": "daydream",
+              "meaningByLocale": {
+                "ru": "Мечтать, отвлекаясь от происходящего вокруг.",
+                "uk": "Мріяти, відволікаючись від того, що відбувається навколо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "daydream",
+            "definitionByLocale": {
+              "ru": "Мечтать, отвлекаясь от происходящего вокруг.",
+              "uk": "Мріяти, відволікаючись від того, що відбувається навколо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i01:r1",
+            "text": "I sometimes daydream on the bus."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i01:r2",
+            "text": "I sometimes sleep on the bus."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i01:r3",
+            "text": "I sometimes daydream at home."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i01:audio",
+            "transcript": "I sometimes daydream on the bus."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i01:r1",
+              "targetText": "I sometimes daydream on the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i01:r2",
+              "targetText": "I sometimes sleep on the bus.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i01:r3",
+              "targetText": "I sometimes daydream at home.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes daydream on the bus.",
+                "uk": "У записі звучить I sometimes daydream on the bus."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I sometimes daydream on the bus.",
+                "uk": "У записі звучить I sometimes daydream on the bus."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви відволіклися й не почули запитання. Попросіть повторити.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Ви відволіклися й не почули запитання. Попросіть повторити.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i02:audio",
+            "transcript": "Could you say that again?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you say that again?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Скажіть, що зазвичай перепитуєте, коли пропускаєте запитання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i03:r1",
+            "text": "ask"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i03:r2",
+            "text": "asks"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i03:r3",
+            "text": "asking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що зазвичай перепитуєте, коли пропускаєте запитання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Скажите, что обычно переспрашиваете, когда пропускаете вопрос.",
+            "uk": "Скажіть, що зазвичай перепитуєте, коли пропускаєте запитання."
+          },
+          "gappedTargetPhrase": "I ___ again when I miss a question.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i03:r1",
+              "text": "ask"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i03:r2",
+              "text": "asks"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i03:r3",
+              "text": "asking"
+            }
+          ],
+          "testedDimension": "Скажіть, що зазвичай перепитуєте, коли пропускаєте запитання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Скажіть, що зазвичай перепитуєте, коли пропускаєте запитання.",
+              "feedbackByLocale": {
+                "ru": "С I используется ask без -s.",
+                "uk": "З I вживається ask без -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Скажіть, що зазвичай перепитуєте, коли пропускаєте запитання.",
+              "feedbackByLocale": {
+                "ru": "Для привычки нужна форма ask.",
+                "uk": "Для звички потрібна форма ask."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:word:overhear",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overhear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:overhear:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overhear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:overhear:audio",
+            "transcript": "overhear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:overhear:r1",
+              "targetText": "overhear",
+              "meaningByLocale": {
+                "ru": "Случайно услышать слова, сказанные не вам; формы overheard, overheard.",
+                "uk": "Випадково почути слова, сказані не вам; форми overheard, overheard."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overhear",
+            "definitionByLocale": {
+              "ru": "Случайно услышать слова, сказанные не вам; формы overheard, overheard.",
+              "uk": "Випадково почути слова, сказані не вам; форми overheard, overheard."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви проходили повз і мимоволі почули розмову. Скажіть, що не хотіли цього.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви проходили повз і мимоволі почули розмову. Скажіть, що не хотіли цього.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I did not mean to overhear.",
+          "localizedMeaning": {
+            "ru": "Вы проходили мимо и невольно услышали разговор. Скажите, что не хотели этого.",
+            "uk": "Ви проходили повз і мимоволі почули розмову. Скажіть, що не хотіли цього."
+          },
+          "orderedTokens": [
+            "I",
+            "did",
+            "not",
+            "mean",
+            "to",
+            "overhear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання прозвучало щойно. Доповніть повідомлення про результат зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i05:r1",
+            "text": "overheard"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i05:r2",
+            "text": "overhear"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i05:r3",
+            "text": "overhearing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання прозвучало щойно. Доповніть повідомлення про результат зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос прозвучал только что. Дополните сообщение о результате сейчас.",
+            "uk": "Запитання прозвучало щойно. Доповніть повідомлення про результат зараз."
+          },
+          "gappedTargetPhrase": "I have just ___ your question.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i05:r1",
+              "text": "overheard"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i05:r2",
+              "text": "overhear"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i05:r3",
+              "text": "overhearing"
+            }
+          ],
+          "testedDimension": "Запитання прозвучало щойно. Доповніть повідомлення про результат зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Запитання прозвучало щойно. Доповніть повідомлення про результат зараз.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма overheard.",
+                "uk": "Після have потрібна форма overheard."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Запитання прозвучало щойно. Доповніть повідомлення про результат зараз.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна форма overheard, не overhearing.",
+                "uk": "Тут потрібна форма overheard, не overhearing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i06:r1",
+            "text": "Please speak quietly."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i06:r2",
+            "text": "Please speak slowly."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i06:r3",
+            "text": "Please listen quietly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i06:audio",
+            "transcript": "Please speak quietly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i06:r1",
+              "targetText": "Please speak quietly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i06:r2",
+              "targetText": "Please speak slowly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i06:r3",
+              "targetText": "Please listen quietly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please speak quietly.",
+                "uk": "У записі звучить Please speak quietly."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Please speak quietly.",
+                "uk": "У записі звучить Please speak quietly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:word:nightgown",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nightgown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:nightgown:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nightgown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:nightgown:audio",
+            "transcript": "nightgown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:nightgown:r1",
+              "targetText": "nightgown",
+              "meaningByLocale": {
+                "ru": "Ночная рубашка, одежда для сна.",
+                "uk": "Нічна сорочка, одяг для сну."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nightgown",
+            "definitionByLocale": {
+              "ru": "Ночная рубашка, одежда для сна.",
+              "uk": "Нічна сорочка, одяг для сну."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, де лежить одяг для сну.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i07:audio"
+        ],
+        "accessibilityLabel": "Почуйте, де лежить одяг для сну.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i07:audio",
+            "transcript": "My nightgown is in the bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "My nightgown is in the bag.",
+          "orderedTokens": [
+            "My",
+            "nightgown",
+            "is",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У кімнаті холодно. Запропонуйте зачинити вікно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "У кімнаті холодно. Запропонуйте зачинити вікно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i08:audio",
+            "transcript": "I will close the window."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I will close the window.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не вмикатимете світло, якщо воно не знадобиться.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i09:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i09:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i09:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не вмикатимете світло, якщо воно не знадобиться.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не станете включать свет, если он не понадобится.",
+            "uk": "Ви не вмикатимете світло, якщо воно не знадобиться."
+          },
+          "gappedTargetPhrase": "I will leave the light off ___ you need it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i09:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i09:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i09:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Ви не вмикатимете світло, якщо воно не знадобиться.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви не вмикатимете світло, якщо воно не знадобиться.",
+              "feedbackByLocale": {
+                "ru": "If означало бы оставить свет выключенным именно когда он нужен.",
+                "uk": "If означало б залишити світло вимкненим саме коли воно потрібне."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви не вмикатимете світло, якщо воно не знадобиться.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы потребность в свете причиной его выключить.",
+                "uk": "Because зробило б потребу у світлі причиною його вимкнути."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:word:robe",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — robe",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:word:robe:audio"
+        ],
+        "accessibilityLabel": "Картка слова — robe",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:word:robe:audio",
+            "transcript": "robe"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:word:robe:r1",
+              "targetText": "robe",
+              "meaningByLocale": {
+                "ru": "Халат; общее слово, bathrobe — банный халат.",
+                "uk": "Халат; загальне слово, bathrobe — банний халат."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "robe",
+            "definitionByLocale": {
+              "ru": "Халат; общее слово, bathrobe — банный халат.",
+              "uk": "Халат; загальне слово, bathrobe — банний халат."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i10:r1",
+            "text": "Your robe is on the chair."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i10:r2",
+            "text": "Your robe is on the bed."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i10:r3",
+            "text": "Your coat is on the chair."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i10:audio",
+            "transcript": "Your robe is on the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i10:r1",
+              "targetText": "Your robe is on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i10:r2",
+              "targetText": "Your robe is on the bed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i10:r3",
+              "targetText": "Your coat is on the chair.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your robe is on the chair.",
+                "uk": "У записі звучить Your robe is on the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your robe is on the chair.",
+                "uk": "У записі звучить Your robe is on the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перевірте, чи вже замкнено двері.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перевірте, чи вже замкнено двері.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you locked the door yet?",
+          "localizedMeaning": {
+            "ru": "Проверьте, заперта ли уже дверь.",
+            "uk": "Перевірте, чи вже замкнено двері."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "locked",
+            "the",
+            "door",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Про вчорашній вечір: двері були замкнені до того, як усі лягли.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i12:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Про вчорашній вечір: двері були замкнені до того, як усі лягли.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "О вчерашнем вечере: дверь была заперта до того, как все легли.",
+            "uk": "Про вчорашній вечір: двері були замкнені до того, як усі лягли."
+          },
+          "gappedTargetPhrase": "I ___ locked the door by the time everyone went to bed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i12:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i12:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Про вчорашній вечір: двері були замкнені до того, як усі лягли.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Про вчорашній вечір: двері були замкнені до того, як усі лягли.",
+              "feedbackByLocale": {
+                "ru": "Have относится к результату сейчас; здесь два прошлых события.",
+                "uk": "Have стосується результату зараз; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Про вчорашній вечір: двері були замкнені до того, як усі лягли.",
+              "feedbackByLocale": {
+                "ru": "Am locked не означает, что я запер дверь.",
+                "uk": "Am locked не означає, що я замкнув двері."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Почніть з умови, зберігши зміст I can answer the door if you are busy.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i13:audio"
+        ],
+        "accessibilityLabel": "Почніть з умови, зберігши зміст I can answer the door if you are busy.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i13:audio",
+            "transcript": "If you are busy, I can answer the door."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "If you are busy, I can answer the door.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте відповідь: справу вже перевірено.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Почуйте відповідь: справу вже перевірено.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i14:audio",
+            "transcript": "I have already checked it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have already checked it.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "checked",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви запитаєте сестру після її повернення.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i15:r1",
+            "text": "comes"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i15:r2",
+            "text": "will come"
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i15:r3",
+            "text": "come"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви запитаєте сестру після її повернення.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы спросите сестру после её возвращения.",
+            "uk": "Ви запитаєте сестру після її повернення."
+          },
+          "gappedTargetPhrase": "I will ask when she ___ back.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-35:i15:r1",
+              "text": "comes"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i15:r2",
+              "text": "will come"
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i15:r3",
+              "text": "come"
+            }
+          ],
+          "testedDimension": "Ви запитаєте сестру після її повернення.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i15:r2",
+              "correct": false,
+              "testedDimension": "Ви запитаєте сестру після її повернення.",
+              "feedbackByLocale": {
+                "ru": "После when здесь comes без will.",
+                "uk": "Після when тут comes без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i15:r3",
+              "correct": false,
+              "testedDimension": "Ви запитаєте сестру після її повернення.",
+              "feedbackByLocale": {
+                "ru": "С she нужна форма comes.",
+                "uk": "З she потрібна форма comes."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-35:i16:r1",
+            "text": "I will help if you need me."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i16:r2",
+            "text": "I will call if you need me."
+          },
+          {
+            "responseId": "en:lesson-26:session-35:i16:r3",
+            "text": "I will help when you leave."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-35:i16:audio",
+            "transcript": "I will help if you need me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-35:i16:r1",
+              "targetText": "I will help if you need me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i16:r2",
+              "targetText": "I will call if you need me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i16:r3",
+              "targetText": "I will help when you leave.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-35:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you need me.",
+                "uk": "У записі звучить I will help if you need me."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-35:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I will help if you need me.",
+                "uk": "У записі звучить I will help if you need me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-35:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перед сном побажайте близькій людині приємних снів.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед сном побажайте близькій людині приємних снів.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Sweet dreams!",
+          "localizedMeaning": {
+            "ru": "Перед сном пожелайте близкому приятных снов.",
+            "uk": "Перед сном побажайте близькій людині приємних снів."
+          },
+          "orderedTokens": [
+            "Sweet",
+            "dreams"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-35:word:daydream",
+      "correctText": "daydream",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i01",
+      "correctText": "I sometimes daydream on the bus.",
+      "correctResponseId": "en:lesson-26:session-35:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i02",
+      "correctText": "Could you say that again?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i03",
+      "correctText": "ask",
+      "correctResponseId": "en:lesson-26:session-35:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:word:overhear",
+      "correctText": "overhear",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i04",
+      "correctText": "I did not mean to overhear.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i05",
+      "correctText": "overheard",
+      "correctResponseId": "en:lesson-26:session-35:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i06",
+      "correctText": "Please speak quietly.",
+      "correctResponseId": "en:lesson-26:session-35:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:word:nightgown",
+      "correctText": "nightgown",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i07",
+      "correctText": "My nightgown is in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i08",
+      "correctText": "I will close the window.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i09",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-35:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:word:robe",
+      "correctText": "robe",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i10",
+      "correctText": "Your robe is on the chair.",
+      "correctResponseId": "en:lesson-26:session-35:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i11",
+      "correctText": "Have you locked the door yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i12",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-35:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i13",
+      "correctText": "If you are busy, I can answer the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i14",
+      "correctText": "I have already checked it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i15",
+      "correctText": "comes",
+      "correctResponseId": "en:lesson-26:session-35:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i16",
+      "correctText": "I will help if you need me.",
+      "correctResponseId": "en:lesson-26:session-35:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:i17",
+      "correctText": "Sweet dreams!",
+      "correctResponseId": null
+    }
+  ]
+}

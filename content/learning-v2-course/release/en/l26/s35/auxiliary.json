@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-35:intro1:r2": {
+          "ru": "В придаточном времени после when здесь comes без will.",
+          "uk": "У підрядному часу після when тут comes без will."
+        },
+        "en:lesson-26:session-35:intro1:r3": {
+          "ru": "С she нужна форма comes.",
+          "uk": "З she потрібна форма comes."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-35:intro2:r2": {
+          "ru": "Unless меняет смысл: если ты не занят.",
+          "uk": "Unless змінює зміст: якщо ти не зайнятий."
+        },
+        "en:lesson-26:session-35:intro2:r3": {
+          "ru": "После if здесь are без will.",
+          "uk": "Після if тут are без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-35:intro3:r2": {
+          "ru": "Went to bed задаёт прошлое, поэтому более раннее действие — had locked.",
+          "uk": "Went to bed задає минуле, тому раніша дія — had locked."
+        },
+        "en:lesson-26:session-35:intro3:r3": {
+          "ru": "После had нужна форма locked.",
+          "uk": "Після had потрібна форма locked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8e575d838f95079b020e83731c16633f25814f5aa9af91cd8ea040b8d4d52ca"
+}

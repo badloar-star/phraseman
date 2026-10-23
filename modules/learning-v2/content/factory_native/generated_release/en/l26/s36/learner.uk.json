@@ -1,0 +1,1071 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-26:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-26:session-36:word:swimwear",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — swimwear",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:word:swimwear:audio"
+      ],
+      "accessibilityLabel": "Картка слова — swimwear",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:word:swimwear:audio",
+          "transcript": "swimwear"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-36:word:swimwear:r1",
+            "targetText": "swimwear",
+            "meaningByLocale": {
+              "ru": "Одежда для плавания; общее неисчисляемое слово.",
+              "uk": "Одяг для плавання; загальне незлічуване слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "swimwear",
+          "definitionByLocale": {
+            "ru": "Одежда для плавания; общее неисчисляемое слово.",
+            "uk": "Одяг для плавання; загальне незлічуване слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте продавця, де одяг для плавання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Запитайте продавця, де одяг для плавання.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i01:audio",
+          "transcript": "Where is the swimwear?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the swimwear?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i02:r1",
+          "text": "It is on the second floor."
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i02:r2",
+          "text": "It is on the first floor."
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i02:r3",
+          "text": "It is near the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i02:audio",
+          "transcript": "It is on the second floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-36:i02:r1",
+            "targetText": "It is on the second floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i02:r2",
+            "targetText": "It is on the first floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i02:r3",
+            "targetText": "It is near the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is on the second floor.",
+              "uk": "У записі звучить It is on the second floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is on the second floor.",
+              "uk": "У записі звучить It is on the second floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи є річ вашого розміру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи є річ вашого розміру.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you have my size?",
+        "localizedMeaning": {
+          "ru": "Спросите, есть ли вещь вашего размера.",
+          "uk": "Запитайте, чи є річ вашого розміру."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "have",
+          "my",
+          "size"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:word:pullover",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pullover",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:word:pullover:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pullover",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:word:pullover:audio",
+          "transcript": "pullover"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-36:word:pullover:r1",
+            "targetText": "pullover",
+            "meaningByLocale": {
+              "ru": "Свитер или джемпер, который надевают через голову.",
+              "uk": "Светр або джемпер, який надягають через голову."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pullover",
+          "definitionByLocale": {
+            "ru": "Свитер или джемпер, который надевают через голову.",
+            "uk": "Светр або джемпер, який надягають через голову."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви приміряєте светр, тільки якщо він потрібного розміру.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i04:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i04:r2",
+          "text": "will have"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i04:r3",
+          "text": "has"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви приміряєте светр, тільки якщо він потрібного розміру.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы примерите свитер, только если он нужного размера.",
+          "uk": "Ви приміряєте светр, тільки якщо він потрібного розміру."
+        },
+        "gappedTargetPhrase": "I will try the pullover on if you ___ my size.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-36:i04:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i04:r2",
+            "text": "will have"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i04:r3",
+            "text": "has"
+          }
+        ],
+        "testedDimension": "Ви приміряєте светр, тільки якщо він потрібного розміру.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви приміряєте светр, тільки якщо він потрібного розміру.",
+            "feedbackByLocale": {
+              "ru": "После if здесь have без will.",
+              "uk": "Після if тут have без will."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви приміряєте светр, тільки якщо він потрібного розміру.",
+            "feedbackByLocale": {
+              "ru": "С you нужно have.",
+              "uk": "З you потрібно have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, чому річ не підходить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте, чому річ не підходить.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i05:audio",
+          "transcript": "This pullover is too small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This pullover is too small.",
+        "orderedTokens": [
+          "This",
+          "pullover",
+          "is",
+          "too",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть більший розмір.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i06:audio"
+      ],
+      "accessibilityLabel": "Попросіть більший розмір.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i06:audio",
+          "transcript": "Can I have a larger size?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I have a larger size?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:word:earmuffs",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — earmuffs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:word:earmuffs:audio"
+      ],
+      "accessibilityLabel": "Картка слова — earmuffs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:word:earmuffs:audio",
+          "transcript": "earmuffs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-36:word:earmuffs:r1",
+            "targetText": "earmuffs",
+            "meaningByLocale": {
+              "ru": "Тёплые наушники для защиты ушей от холода; множественное число.",
+              "uk": "Теплі навушники для захисту вух від холоду; множина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "earmuffs",
+          "definitionByLocale": {
+            "ru": "Тёплые наушники для защиты ушей от холода; множественное число.",
+            "uk": "Теплі навушники для захисту вух від холоду; множина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i07:r1",
+          "text": "My earmuffs are in my bag."
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i07:r2",
+          "text": "My earmuffs are in my pocket."
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i07:r3",
+          "text": "My gloves are in my bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i07:audio",
+          "transcript": "My earmuffs are in my bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-36:i07:r1",
+            "targetText": "My earmuffs are in my bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i07:r2",
+            "targetText": "My earmuffs are in my pocket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i07:r3",
+            "targetText": "My gloves are in my bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My earmuffs are in my bag.",
+              "uk": "У записі звучить My earmuffs are in my bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My earmuffs are in my bag.",
+              "uk": "У записі звучить My earmuffs are in my bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Опишіть звичку надягати їх у холодну погоду.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i08:r1",
+          "text": "wear"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i08:r2",
+          "text": "wears"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i08:r3",
+          "text": "wearing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Опишіть звичку надягати їх у холодну погоду.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Опишите привычку надевать их в холодную погоду.",
+          "uk": "Опишіть звичку надягати їх у холодну погоду."
+        },
+        "gappedTargetPhrase": "I ___ them when it is cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-36:i08:r1",
+            "text": "wear"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i08:r2",
+            "text": "wears"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i08:r3",
+            "text": "wearing"
+          }
+        ],
+        "testedDimension": "Опишіть звичку надягати їх у холодну погоду.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Опишіть звичку надягати їх у холодну погоду.",
+            "feedbackByLocale": {
+              "ru": "С I нужно wear без -s.",
+              "uk": "З I потрібно wear без -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Опишіть звичку надягати їх у холодну погоду.",
+            "feedbackByLocale": {
+              "ru": "Для привычки нужна форма wear.",
+              "uk": "Для звички потрібна форма wear."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почніть із рішення: If the pullover is warm, I will buy it.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із рішення: If the pullover is warm, I will buy it.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I will buy it if the pullover is warm.",
+        "localizedMeaning": {
+          "ru": "Начните с решения: If the pullover is warm, I will buy it.",
+          "uk": "Почніть із рішення: If the pullover is warm, I will buy it."
+        },
+        "orderedTokens": [
+          "I",
+          "will",
+          "buy",
+          "it",
+          "if",
+          "the",
+          "pullover",
+          "is",
+          "warm"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:word:briefs",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — briefs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:word:briefs:audio"
+      ],
+      "accessibilityLabel": "Картка слова — briefs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:word:briefs:audio",
+          "transcript": "briefs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-36:word:briefs:r1",
+            "targetText": "briefs",
+            "meaningByLocale": {
+              "ru": "Трусы, обычно короткие и облегающие; множественное число.",
+              "uk": "Труси, зазвичай короткі й облягаючі; множина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "briefs",
+          "definitionByLocale": {
+            "ru": "Трусы, обычно короткие и облегающие; множественное число.",
+            "uk": "Труси, зазвичай короткі й облягаючі; множина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що вам потрібні труси.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що вам потрібні труси.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i10:audio",
+          "transcript": "I need some briefs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need some briefs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про завершення покупок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про завершення покупок.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i11:audio",
+          "transcript": "Have you bought everything yet?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Have you bought everything yet?",
+        "orderedTokens": [
+          "Have",
+          "you",
+          "bought",
+          "everything",
+          "yet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви щойно заплатили й можете йти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i12:r1",
+          "text": "paid"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i12:r2",
+          "text": "pay"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i12:r3",
+          "text": "paying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви щойно заплатили й можете йти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы только что заплатили и можете уходить.",
+          "uk": "Ви щойно заплатили й можете йти."
+        },
+        "gappedTargetPhrase": "I have just ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-36:i12:r1",
+            "text": "paid"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i12:r2",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i12:r3",
+            "text": "paying"
+          }
+        ],
+        "testedDimension": "Ви щойно заплатили й можете йти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви щойно заплатили й можете йти.",
+            "feedbackByLocale": {
+              "ru": "После have нужна форма paid.",
+              "uk": "Після have потрібна форма paid."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви щойно заплатили й можете йти.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно paid, не paying.",
+              "uk": "Тут потрібно paid, не paying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i13:r1",
+          "text": "I have already chosen a size."
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i13:r2",
+          "text": "I have already chosen a colour."
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i13:r3",
+          "text": "I have just changed the size."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i13:audio",
+          "transcript": "I have already chosen a size."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-26:session-36:i13:r1",
+            "targetText": "I have already chosen a size.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i13:r2",
+            "targetText": "I have already chosen a colour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i13:r3",
+            "targetText": "I have just changed the size.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already chosen a size.",
+              "uk": "У записі звучить I have already chosen a size."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already chosen a size.",
+              "uk": "У записі звучить I have already chosen a size."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора ви заплатили раніше, ніж магазин зачинився.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i14:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i14:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i14:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора ви заплатили раніше, ніж магазин зачинився.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера вы заплатили раньше, чем магазин закрылся.",
+          "uk": "Учора ви заплатили раніше, ніж магазин зачинився."
+        },
+        "gappedTargetPhrase": "I ___ paid by the time the shop closed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-36:i14:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i14:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i14:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Учора ви заплатили раніше, ніж магазин зачинився.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i14:r2",
+            "correct": false,
+            "testedDimension": "Учора ви заплатили раніше, ніж магазин зачинився.",
+            "feedbackByLocale": {
+              "ru": "Closed задаёт прошлое; более раннее действие — had paid.",
+              "uk": "Closed задає минуле; раніша дія — had paid."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i14:r3",
+            "correct": false,
+            "testedDimension": "Учора ви заплатили раніше, ніж магазин зачинився.",
+            "feedbackByLocale": {
+              "ru": "Am paid означало бы, что платят мне.",
+              "uk": "Am paid означало б, що платять мені."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пообіцяйте почекати надворі, коли друг закінчить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-26:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Пообіцяйте почекати надворі, коли друг закінчить.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-26:session-36:i15:audio",
+          "transcript": "I will wait outside when you finish."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will wait outside when you finish.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви повернете річ, якщо вона не підійде.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-26:session-36:i16:r1",
+          "text": "unless"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i16:r2",
+          "text": "if"
+        },
+        {
+          "responseId": "en:lesson-26:session-36:i16:r3",
+          "text": "because"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повернете річ, якщо вона не підійде.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы вернёте вещь, если она не подойдёт.",
+          "uk": "Ви повернете річ, якщо вона не підійде."
+        },
+        "gappedTargetPhrase": "I will keep it ___ it is too small.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-26:session-36:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i16:r3",
+            "text": "because"
+          }
+        ],
+        "testedDimension": "Ви повернете річ, якщо вона не підійде.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-26:session-36:i16:r2",
+            "correct": false,
+            "testedDimension": "Ви повернете річ, якщо вона не підійде.",
+            "feedbackByLocale": {
+              "ru": "If означало бы оставить именно слишком маленькую вещь.",
+              "uk": "If означало б залишити саме замалу річ."
+            }
+          },
+          {
+            "responseId": "en:lesson-26:session-36:i16:r3",
+            "correct": false,
+            "testedDimension": "Ви повернете річ, якщо вона не підійде.",
+            "feedbackByLocale": {
+              "ru": "Because сделало бы маленький размер причиной оставить вещь.",
+              "uk": "Because зробило б малий розмір причиною залишити річ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Після покупок запропонуйте другу випити чаю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Після покупок запропонуйте другу випити чаю.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Would you like some tea?",
+        "localizedMeaning": {
+          "ru": "После покупок предложите другу выпить чаю.",
+          "uk": "Після покупок запропонуйте другу випити чаю."
+        },
+        "orderedTokens": [
+          "Would",
+          "you",
+          "like",
+          "some",
+          "tea"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d5a289cb17bb6ac4168273573c912d0dc55699f0a6e299c6e66093d658fbca91"
+}

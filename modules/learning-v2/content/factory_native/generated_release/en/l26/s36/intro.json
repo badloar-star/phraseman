@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, just, yet; by the time",
+    "uk": "if, when, unless; already, just, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти нужный отдел",
+        "uk": "Знайти потрібний відділ"
+      },
+      "bodyByLocale": {
+        "ru": "Swimwear — одежда для плавания: купальники, плавки и другие вещи для бассейна или пляжа. Это общее неисчисляемое слово. Where is the swimwear? — где одежда для плавания? Вы спрашиваете продавца о размере: I will try it on if you have my size — я примерю это, если у вас есть мой размер. После if здесь have, без will. Если размер уже выбран: I have already chosen a size — я уже выбрал размер.",
+        "uk": "Swimwear — одяг для плавання: купальники, плавки та інші речі для басейну або пляжу. Це загальне незлічуване слово. Where is the swimwear? — де одяг для плавання? Ви запитуєте продавця про розмір: I will try it on if you have my size — я приміряю це, якщо у вас є мій розмір. Після if тут have, без will. Якщо розмір уже обрано: I have already chosen a size — я вже обрав розмір."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-36:intro1:r1",
+              "text": "I will try it on if you have my size."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro1:r2",
+              "text": "I will try it on if you will have my size."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro1:r3",
+              "text": "I will try it on if you has my size."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-36:intro1:r1",
+              "text": "I will try it on if you have my size."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro1:r2",
+              "text": "I will try it on if you will have my size."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro1:r3",
+              "text": "I will try it on if you has my size."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тёплые вещи",
+        "uk": "Теплі речі"
+      },
+      "bodyByLocale": {
+        "ru": "Pullover — свитер или джемпер, который надевают через голову. This pullover is too small — этот свитер слишком мал. Earmuffs — тёплые наушники для ушей, без музыки. Слово во множественном числе: My earmuffs are in my bag — мои тёплые наушники в сумке. Если описываете привычку, используйте Present Simple: I wear them when it is cold — я ношу их, когда холодно. В предложении If the pullover is warm, I will buy it условие стоит первым. Можно сказать I will buy it if the pullover is warm: смысл тот же.",
+        "uk": "Pullover — светр або джемпер, який надягають через голову. This pullover is too small — цей светр замалий. Earmuffs — теплі навушники для вух, без музики. Слово у множині: My earmuffs are in my bag — мої теплі навушники в сумці. Якщо описуєте звичку, використовуйте Present Simple: I wear them when it is cold — я ношу їх, коли холодно. У реченні If the pullover is warm, I will buy it умова стоїть першою. Можна сказати I will buy it if the pullover is warm: зміст той самий."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-36:intro2:r1",
+              "text": "I will buy it if the pullover is warm."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro2:r2",
+              "text": "I will buy it unless the pullover is warm."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro2:r3",
+              "text": "I will buy it if the pullover will be warm."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-36:intro2:r1",
+              "text": "I will buy it if the pullover is warm."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro2:r2",
+              "text": "I will buy it unless the pullover is warm."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro2:r3",
+              "text": "I will buy it if the pullover will be warm."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить покупки перед выходом",
+        "uk": "Перевірити покупки перед виходом"
+      },
+      "bodyByLocale": {
+        "ru": "Briefs — трусы, обычно короткие и облегающие; слово во множественном числе. I need some briefs — мне нужны трусы. Вы проверяете список: Have you bought everything yet? — ты уже всё купил? I have just paid — я только что заплатил. Эти фразы относятся к результату сейчас. О вчерашнем походе: I had paid by the time the shop closed — я заплатил к тому времени, как магазин закрылся. Had paid обозначает более раннее из двух прошлых событий. Договоритесь о встрече: I will wait outside when you finish — я буду ждать снаружи, когда ты закончишь.",
+        "uk": "Briefs — труси, зазвичай короткі й облягаючі; слово у множині. I need some briefs — мені потрібні труси. Ви перевіряєте список: Have you bought everything yet? — ти вже все купив? I have just paid — я щойно заплатив. Ці фрази стосуються результату зараз. Про вчорашній похід: I had paid by the time the shop closed — я заплатив до того часу, як магазин зачинився. Had paid позначає ранішу з двох минулих подій. Домовтеся про зустріч: I will wait outside when you finish — я чекатиму надворі, коли ти закінчиш."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-36:intro3:r1",
+              "text": "I will wait outside when you finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro3:r2",
+              "text": "I will wait outside when you will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro3:r3",
+              "text": "I will wait outside when you finishes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-36:intro3:r1",
+              "text": "I will wait outside when you finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro3:r2",
+              "text": "I will wait outside when you will finish."
+            },
+            {
+              "responseId": "en:lesson-26:session-36:intro3:r3",
+              "text": "I will wait outside when you finishes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f7b7ee79449a558dafa85b71f2210751ce9dabac8739f230735f642a42ff3773"
+}

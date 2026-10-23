@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-36:intro1:r2": {
+          "ru": "В условии после if нужно have без will.",
+          "uk": "В умові після if потрібно have без will."
+        },
+        "en:lesson-26:session-36:intro1:r3": {
+          "ru": "С you используется have, не has.",
+          "uk": "З you вживається have, не has."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-36:intro2:r2": {
+          "ru": "Unless изменяет условие: если свитер не тёплый.",
+          "uk": "Unless змінює умову: якщо светр не теплий."
+        },
+        "en:lesson-26:session-36:intro2:r3": {
+          "ru": "После if в этом условии is без will.",
+          "uk": "Після if у цій умові is без will."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-36:intro3:r2": {
+          "ru": "После when здесь finish без will.",
+          "uk": "Після when тут finish без will."
+        },
+        "en:lesson-26:session-36:intro3:r3": {
+          "ru": "С you нужно finish без -s.",
+          "uk": "З you потрібно finish без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5a16812f1814aa844552f65def2ab28f867ad810ec2785b3e2e28e3b59ad2735"
+}

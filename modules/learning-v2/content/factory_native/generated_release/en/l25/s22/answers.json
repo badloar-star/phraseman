@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-22:word:accused",
+    "correctText": "accused",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i01",
+    "correctText": "They had accused him of lying before he showed the letter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i03",
+    "correctText": "They had accused him of lying before he showed the letter.",
+    "correctResponseId": "en:lesson-25:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:word:forbidden",
+    "correctText": "forbidden",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i04",
+    "correctText": "My mother had forbidden snacks before I opened the cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i06",
+    "correctText": "My mother had forbidden snacks before I opened the cupboard.",
+    "correctResponseId": "en:lesson-25:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:word:begged",
+    "correctText": "begged",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i07",
+    "correctText": "He had begged for another chance before she answered.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i09",
+    "correctText": "He had begged for another chance before she answered.",
+    "correctResponseId": "en:lesson-25:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:word:applauded",
+    "correctText": "applauded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i10",
+    "correctText": "We had applauded the singer before the lights went out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i12",
+    "correctText": "We had applauded the singer before the lights went out.",
+    "correctResponseId": "en:lesson-25:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i13",
+    "correctText": "en:lesson-25:session-22:i13:p1=accused\nen:lesson-25:session-22:i13:p2=forbidden\nen:lesson-25:session-22:i13:p3=begged\nen:lesson-25:session-22:i13:p4=applauded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i16",
+    "correctText": "I had begged for another chance before she answered.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-22:i17",
+    "correctText": "They had applauded the dancer before the lights went out.",
+    "correctResponseId": null
+  }
+]

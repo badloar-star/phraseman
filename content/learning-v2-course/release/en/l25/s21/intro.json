@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "had + past participle before later past event",
+    "uk": "had + past participle before later past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Перед приходом гостей",
+        "uk": "Перед приходом гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Curl — завивать, делать волосы волнистыми или кудрявыми. She had curled her hair before the guests arrived — она завила волосы до прихода гостей. Завивка закончилась раньше, гости пришли позже. Поэтому had curled относится к более раннему действию, arrived — к следующему событию.",
+        "uk": "Curl — завивати, робити волосся хвилястим або кучерявим. She had curled her hair before the guests arrived — вона завила волосся до приходу гостей. Завивка завершилася раніше, гості прийшли пізніше. Тому had curled стосується ранішої дії, arrived — наступної події."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-21:intro1:r1",
+              "text": "She had curled her hair before the guests arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro1:r2",
+              "text": "She has curled her hair before the guests arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro1:r3",
+              "text": "She was curled her hair before the guests arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-21:intro1:r1",
+              "text": "She had curled her hair before the guests arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro1:r2",
+              "text": "She has curled her hair before the guests arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro1:r3",
+              "text": "She was curled her hair before the guests arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одежда изменилась",
+        "uk": "Одяг змінився"
+      },
+      "bodyByLocale": {
+        "ru": "Wrinkle — мяться, покрываться складками. My shirt had wrinkled before I reached the station — моя рубашка помялась до того, как я добрался до станции. Shorten — укорачивать. He had shortened the trousers before I tried them on — он укоротил брюки до того, как я их примерил. Them заменяет trousers. В первом примере рубашка сама помялась, во втором человек изменил длину брюк. Had + третья форма ставит оба события раньше следующего действия.",
+        "uk": "Wrinkle — м’ятися, вкриватися складками. My shirt had wrinkled before I reached the station — моя сорочка пом’ялася до того, як я дістався станції. Shorten — укорочувати. He had shortened the trousers before I tried them on — він укоротив штани до того, як я їх приміряв. Them замінює trousers. У першому прикладі сорочка сама пом’ялася, у другому людина змінила довжину штанів. Had + третя форма ставить обидві події раніше за наступну дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-21:intro2:r1",
+              "text": "My shirt had wrinkled before I reached the station."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro2:r2",
+              "text": "My shirt has wrinkled before I reached the station."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro2:r3",
+              "text": "My shirt was wrinkled before I reached the station."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-21:intro2:r1",
+              "text": "My shirt had wrinkled before I reached the station."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro2:r2",
+              "text": "My shirt has wrinkled before I reached the station."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro2:r3",
+              "text": "My shirt was wrinkled before I reached the station."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Юбка стала длиннее",
+        "uk": "Спідниця стала довшою"
+      },
+      "bodyByLocale": {
+        "ru": "Lengthen — удлинять, делать длиннее. She had lengthened the skirt before her daughter wore it — она удлинила юбку до того, как дочь её надела. Например, добавила снизу полосу ткани. Сначала изменила юбку, затем дочь её надела. Had lengthened показывает более раннее действие; wore — Past Simple от wear. It заменяет the skirt.",
+        "uk": "Lengthen — подовжувати, робити довшим. She had lengthened the skirt before her daughter wore it — вона подовжила спідницю до того, як донька її вдягнула. Наприклад, додала знизу смугу тканини. Спочатку змінила спідницю, потім донька її вдягнула. Had lengthened показує ранішу дію; wore — Past Simple від wear. It замінює the skirt."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-21:intro3:r1",
+              "text": "She had lengthened the skirt before her daughter wore it."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro3:r2",
+              "text": "She has lengthened the skirt before her daughter wore it."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro3:r3",
+              "text": "She was lengthened the skirt before her daughter wore it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-21:intro3:r1",
+              "text": "She had lengthened the skirt before her daughter wore it."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro3:r2",
+              "text": "She has lengthened the skirt before her daughter wore it."
+            },
+            {
+              "responseId": "en:lesson-25:session-21:intro3:r3",
+              "text": "She was lengthened the skirt before her daughter wore it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9ef9cd53c4448f77ea9344ca49e13bff42b8dd088a641d6a7d2a7c909e7b7c73"
+}

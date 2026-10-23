@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-21:word:curled",
+    "correctText": "curled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i01",
+    "correctText": "She had curled her hair before the guests arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i03",
+    "correctText": "She had curled her hair before the guests arrived.",
+    "correctResponseId": "en:lesson-25:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:word:wrinkled",
+    "correctText": "wrinkled",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i04",
+    "correctText": "My shirt had wrinkled before I reached the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i06",
+    "correctText": "My shirt had wrinkled before I reached the station.",
+    "correctResponseId": "en:lesson-25:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:word:shortened",
+    "correctText": "shortened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i07",
+    "correctText": "He had shortened the trousers before I tried them on.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i09",
+    "correctText": "He had shortened the trousers before I tried them on.",
+    "correctResponseId": "en:lesson-25:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:word:lengthened",
+    "correctText": "lengthened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i10",
+    "correctText": "She had lengthened the skirt before her daughter wore it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i12",
+    "correctText": "She had lengthened the skirt before her daughter wore it.",
+    "correctResponseId": "en:lesson-25:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i13",
+    "correctText": "en:lesson-25:session-21:i13:p1=curled\nen:lesson-25:session-21:i13:p2=wrinkled\nen:lesson-25:session-21:i13:p3=shortened\nen:lesson-25:session-21:i13:p4=lengthened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i16",
+    "correctText": "I had curled my hair before the guests arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-21:i17",
+    "correctText": "They had shortened the trousers before he tried them on.",
+    "correctResponseId": null
+  }
+]

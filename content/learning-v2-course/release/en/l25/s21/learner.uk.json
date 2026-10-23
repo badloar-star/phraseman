@@ -1,0 +1,1136 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-21:word:curled",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — curled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:word:curled:audio"
+      ],
+      "accessibilityLabel": "Картка слова — curled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:word:curled:audio",
+          "transcript": "curled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:word:curled:r1",
+            "targetText": "curled",
+            "meaningByLocale": {
+              "ru": "Завила. Curl — завивать; curled — третья форма.",
+              "uk": "Завила. Curl — завивати; curled — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "curled",
+          "definitionByLocale": {
+            "ru": "Завила. Curl — завивать; curled — третья форма.",
+            "uk": "Завила. Curl — завивати; curled — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вона завила волосся до приходу гостей.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Вона завила волосся до приходу гостей.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She had curled her hair before the guests arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она завила волосы до прихода гостей.»",
+          "uk": "Скажіть: «Вона завила волосся до приходу гостей.»"
+        },
+        "orderedTokens": [
+          "She",
+          "had",
+          "curled",
+          "her",
+          "hair",
+          "before",
+          "the",
+          "guests",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i02:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i02:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "She ___ curled her hair before the guests arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-21:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i02:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i03:r1",
+          "text": "She had curled her hair before the guests arrived."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i03:r2",
+          "text": "He had curled his hair before the guests arrived."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i03:r3",
+          "text": "She had curled her hair before her friends arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i03:audio",
+          "transcript": "She had curled her hair before the guests arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:i03:r1",
+            "targetText": "She had curled her hair before the guests arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i03:r2",
+            "targetText": "He had curled his hair before the guests arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i03:r3",
+            "targetText": "She had curled her hair before her friends arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had curled her hair before the guests arrived.",
+              "uk": "У записі звучить She had curled her hair before the guests arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had curled her hair before the guests arrived.",
+              "uk": "У записі звучить She had curled her hair before the guests arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:word:wrinkled",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wrinkled",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:word:wrinkled:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wrinkled",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:word:wrinkled:audio",
+          "transcript": "wrinkled"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:word:wrinkled:r1",
+            "targetText": "wrinkled",
+            "meaningByLocale": {
+              "ru": "Помялась. Wrinkle — мяться; wrinkled — третья форма.",
+              "uk": "Пом’ялася. Wrinkle — м’ятися; wrinkled — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wrinkled",
+          "definitionByLocale": {
+            "ru": "Помялась. Wrinkle — мяться; wrinkled — третья форма.",
+            "uk": "Пом’ялася. Wrinkle — м’ятися; wrinkled — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Моя сорочка пом’ялася до того, як я дістався станції.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Моя сорочка пом’ялася до того, як я дістався станції.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My shirt had wrinkled before I reached the station.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Моя рубашка помялась до того, как я добрался до станции.»",
+          "uk": "Скажіть: «Моя сорочка пом’ялася до того, як я дістався станції.»"
+        },
+        "orderedTokens": [
+          "My",
+          "shirt",
+          "had",
+          "wrinkled",
+          "before",
+          "I",
+          "reached",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i05:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i05:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i05:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "My shirt ___ wrinkled before I reached the station.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-21:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i05:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i06:r1",
+          "text": "My shirt had wrinkled before I reached the station."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i06:r2",
+          "text": "Her shirt had wrinkled before she reached the station."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i06:r3",
+          "text": "My shirt had wrinkled before I reached the office."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i06:audio",
+          "transcript": "My shirt had wrinkled before I reached the station."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:i06:r1",
+            "targetText": "My shirt had wrinkled before I reached the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i06:r2",
+            "targetText": "Her shirt had wrinkled before she reached the station.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i06:r3",
+            "targetText": "My shirt had wrinkled before I reached the office.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My shirt had wrinkled before I reached the station.",
+              "uk": "У записі звучить My shirt had wrinkled before I reached the station."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My shirt had wrinkled before I reached the station.",
+              "uk": "У записі звучить My shirt had wrinkled before I reached the station."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:word:shortened",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shortened",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:word:shortened:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shortened",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:word:shortened:audio",
+          "transcript": "shortened"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:word:shortened:r1",
+            "targetText": "shortened",
+            "meaningByLocale": {
+              "ru": "Укоротил. Shorten — укорачивать; shortened — третья форма.",
+              "uk": "Укоротив. Shorten — укорочувати; shortened — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shortened",
+          "definitionByLocale": {
+            "ru": "Укоротил. Shorten — укорачивать; shortened — третья форма.",
+            "uk": "Укоротив. Shorten — укорочувати; shortened — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Він укоротив штани до того, як я їх приміряв.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Він укоротив штани до того, як я їх приміряв.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He had shortened the trousers before I tried them on.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Он укоротил брюки до того, как я их примерил.»",
+          "uk": "Скажіть: «Він укоротив штани до того, як я їх приміряв.»"
+        },
+        "orderedTokens": [
+          "He",
+          "had",
+          "shortened",
+          "the",
+          "trousers",
+          "before",
+          "I",
+          "tried",
+          "them",
+          "on"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i08:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "He ___ shortened the trousers before I tried them on.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-21:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i09:r1",
+          "text": "He had shortened the trousers before I tried them on."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i09:r2",
+          "text": "She had shortened the trousers before I tried them on."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i09:r3",
+          "text": "He had shortened the sleeves before I tried them on."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i09:audio",
+          "transcript": "He had shortened the trousers before I tried them on."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:i09:r1",
+            "targetText": "He had shortened the trousers before I tried them on.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i09:r2",
+            "targetText": "She had shortened the trousers before I tried them on.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i09:r3",
+            "targetText": "He had shortened the sleeves before I tried them on.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He had shortened the trousers before I tried them on.",
+              "uk": "У записі звучить He had shortened the trousers before I tried them on."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He had shortened the trousers before I tried them on.",
+              "uk": "У записі звучить He had shortened the trousers before I tried them on."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:word:lengthened",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lengthened",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:word:lengthened:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lengthened",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:word:lengthened:audio",
+          "transcript": "lengthened"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:word:lengthened:r1",
+            "targetText": "lengthened",
+            "meaningByLocale": {
+              "ru": "Удлинила. Lengthen — удлинять; lengthened — третья форма.",
+              "uk": "Подовжила. Lengthen — подовжувати; lengthened — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lengthened",
+          "definitionByLocale": {
+            "ru": "Удлинила. Lengthen — удлинять; lengthened — третья форма.",
+            "uk": "Подовжила. Lengthen — подовжувати; lengthened — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Вона подовжила спідницю до того, як донька її вдягнула.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Вона подовжила спідницю до того, як донька її вдягнула.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She had lengthened the skirt before her daughter wore it.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Она удлинила юбку до того, как дочь её надела.»",
+          "uk": "Скажіть: «Вона подовжила спідницю до того, як донька її вдягнула.»"
+        },
+        "orderedTokens": [
+          "She",
+          "had",
+          "lengthened",
+          "the",
+          "skirt",
+          "before",
+          "her",
+          "daughter",
+          "wore",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i11:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i11:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i11:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "She ___ lengthened the skirt before her daughter wore it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-21:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i11:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-21:i12:r1",
+          "text": "She had lengthened the skirt before her daughter wore it."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i12:r2",
+          "text": "He had lengthened the skirt before his daughter wore it."
+        },
+        {
+          "responseId": "en:lesson-25:session-21:i12:r3",
+          "text": "She had lengthened the dress before her daughter wore it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i12:audio",
+          "transcript": "She had lengthened the skirt before her daughter wore it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-21:i12:r1",
+            "targetText": "She had lengthened the skirt before her daughter wore it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i12:r2",
+            "targetText": "He had lengthened the skirt before his daughter wore it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i12:r3",
+            "targetText": "She had lengthened the dress before her daughter wore it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had lengthened the skirt before her daughter wore it.",
+              "uk": "У записі звучить She had lengthened the skirt before her daughter wore it."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She had lengthened the skirt before her daughter wore it.",
+              "uk": "У записі звучить She had lengthened the skirt before her daughter wore it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте форми з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте форми з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-21:i13:p1",
+            "target": "curled",
+            "meaningByLocale": {
+              "ru": "завила",
+              "uk": "завила"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-21:i13:p2",
+            "target": "wrinkled",
+            "meaningByLocale": {
+              "ru": "помялась",
+              "uk": "пом’ялася"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-21:i13:p3",
+            "target": "shortened",
+            "meaningByLocale": {
+              "ru": "укоротил",
+              "uk": "укоротив"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-21:i13:p4",
+            "target": "lengthened",
+            "meaningByLocale": {
+              "ru": "удлинила",
+              "uk": "подовжила"
+            }
+          }
+        ],
+        "leftColumn": [
+          "curled",
+          "wrinkled",
+          "shortened",
+          "lengthened"
+        ],
+        "rightColumn": [
+          "завила",
+          "пом’ялася",
+          "укоротив",
+          "подовжила"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закінчив",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закінчив",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Потяг уже поїхав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Потяг уже поїхав",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i15:audio",
+          "transcript": "The train had left when we arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The train had left when we arrived.",
+        "orderedTokens": [
+          "The",
+          "train",
+          "had",
+          "left",
+          "when",
+          "we",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я завила волосся до приходу гостей».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я завила волосся до приходу гостей».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i16:audio",
+          "transcript": "I had curled my hair before the guests arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I had curled my hair before the guests arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вони укоротили штани до того, як він їх приміряв».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вони укоротили штани до того, як він їх приміряв».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-21:i17:audio",
+          "transcript": "They had shortened the trousers before he tried them on."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They had shortened the trousers before he tried them on.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "831d29a1accc154cd03abd00355e8067fa8109abe327c86bb304c3f5a02bfadf"
+}

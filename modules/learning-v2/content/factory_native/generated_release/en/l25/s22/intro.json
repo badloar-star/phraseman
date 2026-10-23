@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "had + past participle before later past event",
+    "uk": "had + past participle before later past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обвинение и письмо",
+        "uk": "Звинувачення й лист"
+      },
+      "bodyByLocale": {
+        "ru": "Accuse — обвинять. They had accused him of lying before he showed the letter — они обвинили его во лжи до того, как он показал письмо. Accuse someone of lying — обвинить кого-то во лжи. Сначала прозвучало обвинение, затем он показал письмо. Had accused показывает более раннее событие. Фраза сообщает об обвинении, а не доказывает, что он действительно солгал.",
+        "uk": "Accuse — звинувачувати. They had accused him of lying before he showed the letter — вони звинуватили його в брехні до того, як він показав лист. Accuse someone of lying — звинуватити когось у брехні. Спочатку пролунало звинувачення, потім він показав лист. Had accused показує ранішу подію. Фраза повідомляє про звинувачення, а не доводить, що він справді збрехав."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-22:intro1:r1",
+              "text": "They had accused him of lying before he showed the letter."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro1:r2",
+              "text": "They have accused him of lying before he showed the letter."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro1:r3",
+              "text": "They were accused him of lying before he showed the letter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-22:intro1:r1",
+              "text": "They had accused him of lying before he showed the letter."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro1:r2",
+              "text": "They have accused him of lying before he showed the letter."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro1:r3",
+              "text": "They were accused him of lying before he showed the letter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Запрет и просьба",
+        "uk": "Заборона й прохання"
+      },
+      "bodyByLocale": {
+        "ru": "Forbid — запрещать; третья форма — forbidden. My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Запрет уже действовал к моменту, когда я открыл шкаф. Beg — умолять, очень настойчиво просить. He had begged for another chance before she answered — он умолял дать ему ещё один шанс до того, как она ответила. Beg for another chance — просить ещё один шанс. В begged удваиваем g.",
+        "uk": "Forbid — забороняти; третя форма — forbidden. My mother had forbidden snacks before I opened the cupboard — мама заборонила перекуси до того, як я відчинив шафу. Заборона вже діяла на момент, коли я відчинив шафу. Beg — благати, дуже наполегливо просити. He had begged for another chance before she answered — він благав дати йому ще один шанс до того, як вона відповіла. Beg for another chance — просити ще один шанс. У begged подвоюємо g."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-22:intro2:r1",
+              "text": "My mother had forbidden snacks before I opened the cupboard."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro2:r2",
+              "text": "My mother has forbidden snacks before I opened the cupboard."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro2:r3",
+              "text": "My mother was forbidden snacks before I opened the cupboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-22:intro2:r1",
+              "text": "My mother had forbidden snacks before I opened the cupboard."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro2:r2",
+              "text": "My mother has forbidden snacks before I opened the cupboard."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro2:r3",
+              "text": "My mother was forbidden snacks before I opened the cupboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "После выступления",
+        "uk": "Після виступу"
+      },
+      "bodyByLocale": {
+        "ru": "Applaud — аплодировать, хлопать в знак одобрения. We had applauded the singer before the lights went out — мы поаплодировали певцу до того, как погас свет. Сначала прозвучали аплодисменты, затем погас свет. Had applauded относится к более раннему действию; went out — к следующему событию. После applaud сразу называем человека: applaud the singer, без предлога.",
+        "uk": "Applaud — аплодувати, плескати на знак схвалення. We had applauded the singer before the lights went out — ми поаплодували співакові до того, як згасло світло. Спочатку пролунали оплески, потім згасло світло. Had applauded стосується ранішої дії; went out — наступної події. Після applaud відразу називаємо людину: applaud the singer, без прийменника."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-22:intro3:r1",
+              "text": "We had applauded the singer before the lights went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro3:r2",
+              "text": "We have applauded the singer before the lights went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro3:r3",
+              "text": "We were applauded the singer before the lights went out."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-22:intro3:r1",
+              "text": "We had applauded the singer before the lights went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro3:r2",
+              "text": "We have applauded the singer before the lights went out."
+            },
+            {
+              "responseId": "en:lesson-25:session-22:intro3:r3",
+              "text": "We were applauded the singer before the lights went out."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fcdac7ba89904886fd90e4eee04e73992ca17b73a06a348893df8e9193828e9a"
+}

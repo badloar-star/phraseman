@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-49:word:boast",
+    "correctText": "boast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i01",
+    "correctText": "He likes to boast about his new bike.",
+    "correctResponseId": "en:lesson-26:session-49:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i02",
+    "correctText": "How was your day?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-26:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:word:snoop",
+    "correctText": "snoop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i04",
+    "correctText": "Please do not snoop in my room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i05",
+    "correctText": "I was looking for my coat.",
+    "correctResponseId": "en:lesson-26:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i06",
+    "correctText": "Please ask me first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:word:bully",
+    "correctText": "bully",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i07",
+    "correctText": "Do not bully him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i08",
+    "correctText": "Tell me if you need help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i09",
+    "correctText": "If you need help, tell me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i10",
+    "correctText": "I have just talked to my teacher.",
+    "correctResponseId": "en:lesson-26:session-49:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:word:pout",
+    "correctText": "pout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i11",
+    "correctText": "She tends to pout when she loses.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i12",
+    "correctText": "Shall we play again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i13",
+    "correctText": "I have already put the game away.",
+    "correctResponseId": "en:lesson-26:session-49:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i14",
+    "correctText": "Have you talked to her yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i15",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-49:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-49:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-49:i17",
+    "correctText": "Thanks for listening.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-49:intro1:r2": {
+          "ru": "После when здесь are без will.",
+          "uk": "Після when тут are без will."
+        },
+        "en:lesson-26:session-49:intro1:r3": {
+          "ru": "С you нужно are.",
+          "uk": "З you потрібно are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-49:intro2:r2": {
+          "ru": "Unless меняет условие: если помощь не нужна.",
+          "uk": "Unless змінює умову: якщо допомога не потрібна."
+        },
+        "en:lesson-26:session-49:intro2:r3": {
+          "ru": "С you нужно need без -s.",
+          "uk": "З you потрібно need без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-49:intro3:r2": {
+          "ru": "Was задаёт прошлое; более раннее действие — had made up.",
+          "uk": "Was задає минуле; раніша дія — had made up."
+        },
+        "en:lesson-26:session-49:intro3:r3": {
+          "ru": "После had нужна форма made, не make.",
+          "uk": "Після had потрібна форма made, не make."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c5f2b31a9e17a176b5f5c3768d99495e77de2d91c52be602140ab2dec8ff4ff4"
+}

@@ -1,0 +1,2245 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-50:word:bumper",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bumper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:bumper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bumper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:bumper:audio",
+            "transcript": "bumper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:bumper:r1",
+              "targetText": "bumper",
+              "meaningByLocale": {
+                "ru": "Бампер автомобиля.",
+                "uk": "Бампер автомобіля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bumper",
+            "definitionByLocale": {
+              "ru": "Бампер автомобиля.",
+              "uk": "Бампер автомобіля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i01:r1",
+            "text": "There is a scratch on the bumper."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i01:r2",
+            "text": "There is a dent on the bumper."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i01:r3",
+            "text": "There is a scratch on the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i01:audio",
+            "transcript": "There is a scratch on the bumper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i01:r1",
+              "targetText": "There is a scratch on the bumper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i01:r2",
+              "targetText": "There is a dent on the bumper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i01:r3",
+              "targetText": "There is a scratch on the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a scratch on the bumper.",
+                "uk": "У записі звучить There is a scratch on the bumper."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a scratch on the bumper.",
+                "uk": "У записі звучить There is a scratch on the bumper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите мастера посмотреть.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Попросите мастера посмотреть.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i02:audio",
+            "transcript": "Can you have a look?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you have a look?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:word:taillight",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — taillight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:taillight:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — taillight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:taillight:audio",
+            "transcript": "taillight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:taillight:r1",
+              "targetText": "taillight",
+              "meaningByLocale": {
+                "ru": "Задний фонарь автомобиля.",
+                "uk": "Задній ліхтар автомобіля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taillight",
+            "definitionByLocale": {
+              "ru": "Задний фонарь автомобиля.",
+              "uk": "Задній ліхтар автомобіля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите о сломанном левом заднем фонаре.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите о сломанном левом заднем фонаре.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The left taillight is broken.",
+          "localizedMeaning": {
+            "ru": "Сообщите о сломанном левом заднем фонаре.",
+            "uk": "Повідомте про зламаний лівий задній ліхтар."
+          },
+          "orderedTokens": [
+            "The",
+            "left",
+            "taillight",
+            "is",
+            "broken"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Мастер обещает позвонить, когда машина будет готова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i04:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i04:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i04:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Мастер обещает позвонить, когда машина будет готова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мастер обещает позвонить, когда машина будет готова.",
+            "uk": "Майстер обіцяє зателефонувати, коли машина буде готова."
+          },
+          "gappedTargetPhrase": "I will call you when it ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i04:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i04:r2",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i04:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Мастер обещает позвонить, когда машина будет готова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i04:r2",
+              "correct": false,
+              "testedDimension": "Мастер обещает позвонить, когда машина будет готова.",
+              "feedbackByLocale": {
+                "ru": "После when здесь is без will.",
+                "uk": "Після when тут is без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i04:r3",
+              "correct": false,
+              "testedDimension": "Мастер обещает позвонить, когда машина будет готова.",
+              "feedbackByLocale": {
+                "ru": "С it нужно is.",
+                "uk": "З it потрібно is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу оставить номер телефона.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу оставить номер телефона.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i05:audio",
+            "transcript": "Please leave your phone number."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please leave your phone number.",
+          "orderedTokens": [
+            "Please",
+            "leave",
+            "your",
+            "phone",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:word:handbrake",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — handbrake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:handbrake:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — handbrake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:handbrake:audio",
+            "transcript": "handbrake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:handbrake:r1",
+              "targetText": "handbrake",
+              "meaningByLocale": {
+                "ru": "Ручной, стояночный тормоз.",
+                "uk": "Ручне, стоянкове гальмо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handbrake",
+            "definitionByLocale": {
+              "ru": "Ручной, стояночный тормоз.",
+              "uk": "Ручне, стоянкове гальмо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i06:r1",
+            "text": "The handbrake is on."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i06:r2",
+            "text": "The handbrake is off."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i06:r3",
+            "text": "The engine is on."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i06:audio",
+            "transcript": "The handbrake is on."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i06:r1",
+              "targetText": "The handbrake is on.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i06:r2",
+              "targetText": "The handbrake is off.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i06:r3",
+              "targetText": "The engine is on.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The handbrake is on.",
+                "uk": "У записі звучить The handbrake is on."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The handbrake is on.",
+                "uk": "У записі звучить The handbrake is on."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите мастеру, что вы уже оставили ключи у стойки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Скажите мастеру, что вы уже оставили ключи у стойки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i07:audio",
+            "transcript": "I have already left the keys at the desk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already left the keys at the desk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Узнайте, позвонил ли друг в мастерскую.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Узнайте, позвонил ли друг в мастерскую.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you called the garage yet?",
+          "localizedMeaning": {
+            "ru": "Узнайте, позвонил ли друг в мастерскую.",
+            "uk": "Дізнайтеся, чи друг зателефонував у майстерню."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "called",
+            "the",
+            "garage",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера машину проверили до вашего приезда.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i09:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера машину проверили до вашего приезда.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера машину проверили до вашего приезда.",
+            "uk": "Учора машину перевірили до вашого приїзду."
+          },
+          "gappedTargetPhrase": "They ___ checked the car by the time I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i09:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i09:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчера машину проверили до вашего приезда.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Вчера машину проверили до вашего приезда.",
+              "feedbackByLocale": {
+                "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Вчера машину проверили до вашего приезда.",
+              "feedbackByLocale": {
+                "ru": "Are checked не означает: они проверили машину.",
+                "uk": "Are checked не означає: вони перевірили машину."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:word:toll",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — toll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:toll:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — toll",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:toll:audio",
+            "transcript": "toll"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:toll:r1",
+              "targetText": "toll",
+              "meaningByLocale": {
+                "ru": "Плата за проезд по дороге или мосту.",
+                "uk": "Плата за проїзд дорогою або мостом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toll",
+            "definitionByLocale": {
+              "ru": "Плата за проезд по дороге или мосту.",
+              "uk": "Плата за проїзд дорогою або мостом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i10",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, где оплачивают проезд.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i10:audio"
+        ],
+        "accessibilityLabel": "Спросите, где оплачивают проезд.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i10:audio",
+            "transcript": "Where do we pay the toll?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where do we pay the toll?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i11:r1",
+            "text": "You can pay at the next booth."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i11:r2",
+            "text": "You can pay at the next shop."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i11:r3",
+            "text": "You can pay at the next garage."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i11:audio",
+            "transcript": "You can pay at the next booth."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i11:r1",
+              "targetText": "You can pay at the next booth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i11:r2",
+              "targetText": "You can pay at the next shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i11:r3",
+              "targetText": "You can pay at the next garage.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the next booth.",
+                "uk": "У записі звучить You can pay at the next booth."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the next booth.",
+                "uk": "У записі звучить You can pay at the next booth."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уточните, можно ли заплатить картой.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточните, можно ли заплатить картой.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can I pay by card?",
+          "localizedMeaning": {
+            "ru": "Уточните, можно ли заплатить картой.",
+            "uk": "Уточніть, чи можна заплатити карткою."
+          },
+          "orderedTokens": [
+            "Can",
+            "I",
+            "pay",
+            "by",
+            "card"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сообщите, что вы только что заплатили.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i13:r1",
+            "text": "paid"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i13:r2",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i13:r3",
+            "text": "paying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите, что вы только что заплатили.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сообщите, что вы только что заплатили.",
+            "uk": "Повідомте, що ви щойно заплатили."
+          },
+          "gappedTargetPhrase": "I have just ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i13:r1",
+              "text": "paid"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i13:r2",
+              "text": "pay"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i13:r3",
+              "text": "paying"
+            }
+          ],
+          "testedDimension": "Сообщите, что вы только что заплатили.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i13:r2",
+              "correct": false,
+              "testedDimension": "Сообщите, что вы только что заплатили.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма paid.",
+                "uk": "Після have потрібна форма paid."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i13:r3",
+              "correct": false,
+              "testedDimension": "Сообщите, что вы только что заплатили.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно paid, не paying.",
+                "uk": "Тут потрібно paid, не paying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте совет попросить чек, если он нужен.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Услышьте совет попросить чек, если он нужен.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i14:audio",
+            "transcript": "Ask for one if you need a receipt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Ask for one if you need a receipt.",
+          "orderedTokens": [
+            "Ask",
+            "for",
+            "one",
+            "if",
+            "you",
+            "need",
+            "a",
+            "receipt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите чек у сотрудника.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Попросите чек у сотрудника.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i15:audio",
+            "transcript": "Could I have a receipt?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I have a receipt?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сохраните чек, если он не нужен другу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сохраните чек, если он не нужен другу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сохраните чек, если он не нужен другу.",
+            "uk": "Ви збережете чек, якщо він не потрібен другу."
+          },
+          "gappedTargetPhrase": "I will keep it ___ you need it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Вы сохраните чек, если он не нужен другу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы сохраните чек, если он не нужен другу.",
+              "feedbackByLocale": {
+                "ru": "If означало бы оставить чек себе именно тогда, когда он нужен другу.",
+                "uk": "If означало б залишити чек собі саме тоді, коли він потрібен другу."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы сохраните чек, если он не нужен другу.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы потребность друга причиной оставить чек себе.",
+                "uk": "Because зробило б потребу друга причиною залишити чек собі."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i17:r1",
+            "text": "The car is ready now."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i17:r2",
+            "text": "The car is outside now."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i17:r3",
+            "text": "The car is clean now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i17:audio",
+            "transcript": "The car is ready now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i17:r1",
+              "targetText": "The car is ready now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i17:r2",
+              "targetText": "The car is outside now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i17:r3",
+              "targetText": "The car is clean now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i17:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The car is ready now.",
+                "uk": "У записі звучить The car is ready now."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i17:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The car is ready now.",
+                "uk": "У записі звучить The car is ready now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-50:word:bumper",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bumper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:bumper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bumper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:bumper:audio",
+            "transcript": "bumper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:bumper:r1",
+              "targetText": "bumper",
+              "meaningByLocale": {
+                "ru": "Бампер автомобиля.",
+                "uk": "Бампер автомобіля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bumper",
+            "definitionByLocale": {
+              "ru": "Бампер автомобиля.",
+              "uk": "Бампер автомобіля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i01:r1",
+            "text": "There is a scratch on the bumper."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i01:r2",
+            "text": "There is a dent on the bumper."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i01:r3",
+            "text": "There is a scratch on the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i01:audio",
+            "transcript": "There is a scratch on the bumper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i01:r1",
+              "targetText": "There is a scratch on the bumper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i01:r2",
+              "targetText": "There is a dent on the bumper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i01:r3",
+              "targetText": "There is a scratch on the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a scratch on the bumper.",
+                "uk": "У записі звучить There is a scratch on the bumper."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a scratch on the bumper.",
+                "uk": "У записі звучить There is a scratch on the bumper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть майстра подивитися.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Попросіть майстра подивитися.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i02:audio",
+            "transcript": "Can you have a look?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you have a look?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:word:taillight",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — taillight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:taillight:audio"
+        ],
+        "accessibilityLabel": "Картка слова — taillight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:taillight:audio",
+            "transcript": "taillight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:taillight:r1",
+              "targetText": "taillight",
+              "meaningByLocale": {
+                "ru": "Задний фонарь автомобиля.",
+                "uk": "Задній ліхтар автомобіля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taillight",
+            "definitionByLocale": {
+              "ru": "Задний фонарь автомобиля.",
+              "uk": "Задній ліхтар автомобіля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте про зламаний лівий задній ліхтар.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте про зламаний лівий задній ліхтар.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The left taillight is broken.",
+          "localizedMeaning": {
+            "ru": "Сообщите о сломанном левом заднем фонаре.",
+            "uk": "Повідомте про зламаний лівий задній ліхтар."
+          },
+          "orderedTokens": [
+            "The",
+            "left",
+            "taillight",
+            "is",
+            "broken"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майстер обіцяє зателефонувати, коли машина буде готова.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i04:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i04:r2",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i04:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майстер обіцяє зателефонувати, коли машина буде готова.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Мастер обещает позвонить, когда машина будет готова.",
+            "uk": "Майстер обіцяє зателефонувати, коли машина буде готова."
+          },
+          "gappedTargetPhrase": "I will call you when it ___ ready.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i04:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i04:r2",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i04:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майстер обіцяє зателефонувати, коли машина буде готова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i04:r2",
+              "correct": false,
+              "testedDimension": "Майстер обіцяє зателефонувати, коли машина буде готова.",
+              "feedbackByLocale": {
+                "ru": "После when здесь is без will.",
+                "uk": "Після when тут is без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i04:r3",
+              "correct": false,
+              "testedDimension": "Майстер обіцяє зателефонувати, коли машина буде готова.",
+              "feedbackByLocale": {
+                "ru": "С it нужно is.",
+                "uk": "З it потрібно is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання залишити номер телефону.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання залишити номер телефону.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i05:audio",
+            "transcript": "Please leave your phone number."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please leave your phone number.",
+          "orderedTokens": [
+            "Please",
+            "leave",
+            "your",
+            "phone",
+            "number"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:word:handbrake",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — handbrake",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:handbrake:audio"
+        ],
+        "accessibilityLabel": "Картка слова — handbrake",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:handbrake:audio",
+            "transcript": "handbrake"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:handbrake:r1",
+              "targetText": "handbrake",
+              "meaningByLocale": {
+                "ru": "Ручной, стояночный тормоз.",
+                "uk": "Ручне, стоянкове гальмо."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handbrake",
+            "definitionByLocale": {
+              "ru": "Ручной, стояночный тормоз.",
+              "uk": "Ручне, стоянкове гальмо."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i06:r1",
+            "text": "The handbrake is on."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i06:r2",
+            "text": "The handbrake is off."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i06:r3",
+            "text": "The engine is on."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i06:audio",
+            "transcript": "The handbrake is on."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i06:r1",
+              "targetText": "The handbrake is on.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i06:r2",
+              "targetText": "The handbrake is off.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i06:r3",
+              "targetText": "The engine is on.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The handbrake is on.",
+                "uk": "У записі звучить The handbrake is on."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The handbrake is on.",
+                "uk": "У записі звучить The handbrake is on."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть майстру, що ви вже залишили ключі біля стійки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i07:audio"
+        ],
+        "accessibilityLabel": "Скажіть майстру, що ви вже залишили ключі біля стійки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i07:audio",
+            "transcript": "I have already left the keys at the desk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already left the keys at the desk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дізнайтеся, чи друг зателефонував у майстерню.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дізнайтеся, чи друг зателефонував у майстерню.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you called the garage yet?",
+          "localizedMeaning": {
+            "ru": "Узнайте, позвонил ли друг в мастерскую.",
+            "uk": "Дізнайтеся, чи друг зателефонував у майстерню."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "called",
+            "the",
+            "garage",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора машину перевірили до вашого приїзду.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i09:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i09:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора машину перевірили до вашого приїзду.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера машину проверили до вашего приезда.",
+            "uk": "Учора машину перевірили до вашого приїзду."
+          },
+          "gappedTargetPhrase": "They ___ checked the car by the time I arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i09:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i09:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учора машину перевірили до вашого приїзду.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Учора машину перевірили до вашого приїзду.",
+              "feedbackByLocale": {
+                "ru": "Have связывает результат с настоящим; здесь два прошлых события.",
+                "uk": "Have пов’язує результат із теперішнім; тут дві минулі події."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Учора машину перевірили до вашого приїзду.",
+              "feedbackByLocale": {
+                "ru": "Are checked не означает: они проверили машину.",
+                "uk": "Are checked не означає: вони перевірили машину."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:word:toll",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — toll",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:word:toll:audio"
+        ],
+        "accessibilityLabel": "Картка слова — toll",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:word:toll:audio",
+            "transcript": "toll"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:word:toll:r1",
+              "targetText": "toll",
+              "meaningByLocale": {
+                "ru": "Плата за проезд по дороге или мосту.",
+                "uk": "Плата за проїзд дорогою або мостом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "toll",
+            "definitionByLocale": {
+              "ru": "Плата за проезд по дороге или мосту.",
+              "uk": "Плата за проїзд дорогою або мостом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i10",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, де оплачують проїзд.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i10:audio"
+        ],
+        "accessibilityLabel": "Запитайте, де оплачують проїзд.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i10:audio",
+            "transcript": "Where do we pay the toll?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where do we pay the toll?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i11:r1",
+            "text": "You can pay at the next booth."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i11:r2",
+            "text": "You can pay at the next shop."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i11:r3",
+            "text": "You can pay at the next garage."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i11:audio",
+            "transcript": "You can pay at the next booth."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i11:r1",
+              "targetText": "You can pay at the next booth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i11:r2",
+              "targetText": "You can pay at the next shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i11:r3",
+              "targetText": "You can pay at the next garage.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the next booth.",
+                "uk": "У записі звучить You can pay at the next booth."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can pay at the next booth.",
+                "uk": "У записі звучить You can pay at the next booth."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уточніть, чи можна заплатити карткою.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточніть, чи можна заплатити карткою.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can I pay by card?",
+          "localizedMeaning": {
+            "ru": "Уточните, можно ли заплатить картой.",
+            "uk": "Уточніть, чи можна заплатити карткою."
+          },
+          "orderedTokens": [
+            "Can",
+            "I",
+            "pay",
+            "by",
+            "card"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Повідомте, що ви щойно заплатили.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i13:r1",
+            "text": "paid"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i13:r2",
+            "text": "pay"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i13:r3",
+            "text": "paying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте, що ви щойно заплатили.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сообщите, что вы только что заплатили.",
+            "uk": "Повідомте, що ви щойно заплатили."
+          },
+          "gappedTargetPhrase": "I have just ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i13:r1",
+              "text": "paid"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i13:r2",
+              "text": "pay"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i13:r3",
+              "text": "paying"
+            }
+          ],
+          "testedDimension": "Повідомте, що ви щойно заплатили.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i13:r2",
+              "correct": false,
+              "testedDimension": "Повідомте, що ви щойно заплатили.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма paid.",
+                "uk": "Після have потрібна форма paid."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i13:r3",
+              "correct": false,
+              "testedDimension": "Повідомте, що ви щойно заплатили.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно paid, не paying.",
+                "uk": "Тут потрібно paid, не paying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пораду попросити чек, якщо він потрібен.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Почуйте пораду попросити чек, якщо він потрібен.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i14:audio",
+            "transcript": "Ask for one if you need a receipt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Ask for one if you need a receipt.",
+          "orderedTokens": [
+            "Ask",
+            "for",
+            "one",
+            "if",
+            "you",
+            "need",
+            "a",
+            "receipt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть чек у працівника.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Попросіть чек у працівника.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i15:audio",
+            "transcript": "Could I have a receipt?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I have a receipt?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви збережете чек, якщо він не потрібен другу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви збережете чек, якщо він не потрібен другу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сохраните чек, если он не нужен другу.",
+            "uk": "Ви збережете чек, якщо він не потрібен другу."
+          },
+          "gappedTargetPhrase": "I will keep it ___ you need it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-50:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Ви збережете чек, якщо він не потрібен другу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви збережете чек, якщо він не потрібен другу.",
+              "feedbackByLocale": {
+                "ru": "If означало бы оставить чек себе именно тогда, когда он нужен другу.",
+                "uk": "If означало б залишити чек собі саме тоді, коли він потрібен другу."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви збережете чек, якщо він не потрібен другу.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы потребность друга причиной оставить чек себе.",
+                "uk": "Because зробило б потребу друга причиною залишити чек собі."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-50:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-50:i17:r1",
+            "text": "The car is ready now."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i17:r2",
+            "text": "The car is outside now."
+          },
+          {
+            "responseId": "en:lesson-26:session-50:i17:r3",
+            "text": "The car is clean now."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-50:i17:audio",
+            "transcript": "The car is ready now."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-50:i17:r1",
+              "targetText": "The car is ready now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i17:r2",
+              "targetText": "The car is outside now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i17:r3",
+              "targetText": "The car is clean now.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-50:i17:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The car is ready now.",
+                "uk": "У записі звучить The car is ready now."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-50:i17:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The car is ready now.",
+                "uk": "У записі звучить The car is ready now."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-50:word:bumper",
+      "correctText": "bumper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i01",
+      "correctText": "There is a scratch on the bumper.",
+      "correctResponseId": "en:lesson-26:session-50:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i02",
+      "correctText": "Can you have a look?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:word:taillight",
+      "correctText": "taillight",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i03",
+      "correctText": "The left taillight is broken.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i04",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-26:session-50:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i05",
+      "correctText": "Please leave your phone number.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:word:handbrake",
+      "correctText": "handbrake",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i06",
+      "correctText": "The handbrake is on.",
+      "correctResponseId": "en:lesson-26:session-50:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i07",
+      "correctText": "I have already left the keys at the desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i08",
+      "correctText": "Have you called the garage yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i09",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-26:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:word:toll",
+      "correctText": "toll",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i10",
+      "correctText": "Where do we pay the toll?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i11",
+      "correctText": "You can pay at the next booth.",
+      "correctResponseId": "en:lesson-26:session-50:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i12",
+      "correctText": "Can I pay by card?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i13",
+      "correctText": "paid",
+      "correctResponseId": "en:lesson-26:session-50:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i14",
+      "correctText": "Ask for one if you need a receipt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i15",
+      "correctText": "Could I have a receipt?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i16",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-50:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:i17",
+      "correctText": "The car is ready now.",
+      "correctResponseId": "en:lesson-26:session-50:i17:r1"
+    }
+  ]
+}

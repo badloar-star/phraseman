@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-48:word:shaggy",
+    "correctText": "shaggy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i01",
+    "correctText": "Your dog is shaggy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i02",
+    "correctText": "He is asleep on the sofa.",
+    "correctResponseId": "en:lesson-26:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:word:snuggle",
+    "correctText": "snuggle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i03",
+    "correctText": "I snuggle up with my dog on the sofa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i04",
+    "correctText": "come",
+    "correctResponseId": "en:lesson-26:session-48:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i05",
+    "correctText": "Are you ready to go?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:word:beak",
+    "correctText": "beak",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i06",
+    "correctText": "That bird has a yellow beak.",
+    "correctResponseId": "en:lesson-26:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i07",
+    "correctText": "Have you seen it yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i08",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-26:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i09",
+    "correctText": "We can see it better if it comes closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:word:mane",
+    "correctText": "mane",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i10",
+    "correctText": "The horse has a long mane.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i11",
+    "correctText": "What is its name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i12",
+    "correctText": "Her name is Daisy.",
+    "correctResponseId": "en:lesson-26:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-26:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i14",
+    "correctText": "Can you send me the photo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i15",
+    "correctText": "I have already sent it.",
+    "correctResponseId": "en:lesson-26:session-48:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-48:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-48:i17",
+    "correctText": "Let us go home.",
+    "correctResponseId": null
+  }
+]

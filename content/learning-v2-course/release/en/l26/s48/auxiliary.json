@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-48:intro1:r2": {
+          "ru": "После when здесь come без will.",
+          "uk": "Після when тут come без will."
+        },
+        "en:lesson-26:session-48:intro1:r3": {
+          "ru": "С you нужно come без -s.",
+          "uk": "З you потрібно come без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-48:intro2:r2": {
+          "ru": "После have нужна форма seen.",
+          "uk": "Після have потрібна форма seen."
+        },
+        "en:lesson-26:session-48:intro2:r3": {
+          "ru": "Здесь нужно seen, не see.",
+          "uk": "Тут потрібно seen, не see."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-48:intro3:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had left.",
+          "uk": "Arrived задає минуле; раніша дія — had left."
+        },
+        "en:lesson-26:session-48:intro3:r3": {
+          "ru": "После had нужна форма left.",
+          "uk": "Після had потрібна форма left."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6c42d85dfa08e2b5da0d1a8684983591ad0f5a1c4c83d3dd17a47f90a386e7f2"
+}

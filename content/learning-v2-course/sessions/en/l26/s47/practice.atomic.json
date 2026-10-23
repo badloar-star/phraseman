@@ -1,0 +1,2239 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-26:session-47",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-26:session-47:i01",
+        "ordinal": 4,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажите хозяину мокрые сапоги и спросите, куда их поставить.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i01:audio"
+        ],
+        "accessibilityLabel": "Покажите хозяину мокрые сапоги и спросите, куда их поставить.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i01:audio",
+            "transcript": "Where can I put these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where can I put these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:entryway",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — entryway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:entryway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — entryway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:entryway:audio",
+            "transcript": "entryway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:entryway:r1",
+              "targetText": "entryway",
+              "meaningByLocale": {
+                "ru": "Входная часть дома; особенно обычно в американском английском.",
+                "uk": "Вхідна частина будинку; особливо звичне в американській англійській."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entryway",
+            "definitionByLocale": {
+              "ru": "Входная часть дома; особенно обычно в американском английском.",
+              "uk": "Вхідна частина будинку; особливо звичне в американській англійській."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i02:r1",
+            "text": "Leave your boots in the entryway."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i02:r2",
+            "text": "Leave your bag in the entryway."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i02:r3",
+            "text": "Leave your boots in the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i02:audio",
+            "transcript": "Leave your boots in the entryway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i02:r1",
+              "targetText": "Leave your boots in the entryway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i02:r2",
+              "targetText": "Leave your bag in the entryway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i02:r3",
+              "targetText": "Leave your boots in the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leave your boots in the entryway.",
+                "uk": "У записі звучить Leave your boots in the entryway."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leave your boots in the entryway.",
+                "uk": "У записі звучить Leave your boots in the entryway."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с условия: Leave them here if they are wet.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с условия: Leave them here if they are wet.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If they are wet, leave them here.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: Leave them here if they are wet.",
+            "uk": "Почніть з умови: Leave them here if they are wet."
+          },
+          "orderedTokens": [
+            "If",
+            "they",
+            "are",
+            "wet,",
+            "leave",
+            "them",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i04",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг несёт тяжёлую сумку. Предложите помощь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i04:audio"
+        ],
+        "accessibilityLabel": "Друг несёт тяжёлую сумку. Предложите помощь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i04:audio",
+            "transcript": "Let me help you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let me help you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:stairway",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stairway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:stairway:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stairway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:stairway:audio",
+            "transcript": "stairway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:stairway:r1",
+              "targetText": "stairway",
+              "meaningByLocale": {
+                "ru": "Лестница, проход со ступенями между этажами.",
+                "uk": "Сходи, прохід зі сходинками між поверхами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stairway",
+            "definitionByLocale": {
+              "ru": "Лестница, проход со ступенями между этажами.",
+              "uk": "Сходи, прохід зі сходинками між поверхами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Объясните гостю, что лестница слева от него.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Объясните гостю, что лестница слева от него.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The stairway is on your left.",
+          "localizedMeaning": {
+            "ru": "Объясните гостю, что лестница слева от него.",
+            "uk": "Поясніть гостю, що сходи ліворуч від нього."
+          },
+          "orderedTokens": [
+            "The",
+            "stairway",
+            "is",
+            "on",
+            "your",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i06:r1",
+            "text": "The room is upstairs."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i06:r2",
+            "text": "The room is downstairs."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i06:r3",
+            "text": "The room is outside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i06:audio",
+            "transcript": "The room is upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i06:r1",
+              "targetText": "The room is upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i06:r2",
+              "targetText": "The room is downstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i06:r3",
+              "targetText": "The room is outside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The room is upstairs.",
+                "uk": "У записі звучить The room is upstairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The room is upstairs.",
+                "uk": "У записі звучить The room is upstairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:banister",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — banister",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:banister:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — banister",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:banister:audio",
+            "transcript": "banister"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:banister:r1",
+              "targetText": "banister",
+              "meaningByLocale": {
+                "ru": "Перила лестницы.",
+                "uk": "Перила сходів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "banister",
+            "definitionByLocale": {
+              "ru": "Перила лестницы.",
+              "uk": "Перила сходів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите друга держаться за перила.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i07:audio"
+        ],
+        "accessibilityLabel": "Попросите друга держаться за перила.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i07:audio",
+            "transcript": "Hold the banister."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Hold the banister.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы возьмёте сумку, когда друг откроет дверь.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i08:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i08:r2",
+            "text": "will open"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i08:r3",
+            "text": "opens"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы возьмёте сумку, когда друг откроет дверь.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы возьмёте сумку, когда друг откроет дверь.",
+            "uk": "Ви візьмете сумку, коли друг відчинить двері."
+          },
+          "gappedTargetPhrase": "I will take the bag when you ___ the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i08:r1",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i08:r2",
+              "text": "will open"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i08:r3",
+              "text": "opens"
+            }
+          ],
+          "testedDimension": "Вы возьмёте сумку, когда друг откроет дверь.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы возьмёте сумку, когда друг откроет дверь.",
+              "feedbackByLocale": {
+                "ru": "После when здесь open без will.",
+                "uk": "Після when тут open без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы возьмёте сумку, когда друг откроет дверь.",
+              "feedbackByLocale": {
+                "ru": "С you нужно open без -s.",
+                "uk": "З you потрібно open без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, что друг уже открыл дверь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i09:audio"
+        ],
+        "accessibilityLabel": "Услышьте, что друг уже открыл дверь.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i09:audio",
+            "transcript": "I have already opened it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have already opened it.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "opened",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера сумки уже были наверху до приезда друга.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i10:r1",
+            "text": "taken"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i10:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i10:r3",
+            "text": "take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера сумки уже были наверху до приезда друга.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера сумки уже были наверху до приезда друга.",
+            "uk": "Учора сумки вже були нагорі до приїзду друга."
+          },
+          "gappedTargetPhrase": "I had ___ the bags upstairs by the time he arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i10:r1",
+              "text": "taken"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i10:r2",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i10:r3",
+              "text": "take"
+            }
+          ],
+          "testedDimension": "Вчера сумки уже были наверху до приезда друга.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i10:r2",
+              "correct": false,
+              "testedDimension": "Вчера сумки уже были наверху до приезда друга.",
+              "feedbackByLocale": {
+                "ru": "После had нужна форма taken, не took.",
+                "uk": "Після had потрібна форма taken, не took."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i10:r3",
+              "correct": false,
+              "testedDimension": "Вчера сумки уже были наверху до приезда друга.",
+              "feedbackByLocale": {
+                "ru": "После had нужна форма taken, не take.",
+                "uk": "Після had потрібна форма taken, не take."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:homegrown",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — homegrown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:homegrown:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — homegrown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:homegrown:audio",
+            "transcript": "homegrown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:homegrown:r1",
+              "targetText": "homegrown",
+              "meaningByLocale": {
+                "ru": "Выращенный дома или на своём участке.",
+                "uk": "Вирощений удома або на своїй ділянці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "homegrown",
+            "definitionByLocale": {
+              "ru": "Выращенный дома или на своём участке.",
+              "uk": "Вирощений удома або на своїй ділянці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i11:r1",
+            "text": "These tomatoes are homegrown."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i11:r2",
+            "text": "These apples are homegrown."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i11:r3",
+            "text": "These tomatoes are ripe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i11:audio",
+            "transcript": "These tomatoes are homegrown."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i11:r1",
+              "targetText": "These tomatoes are homegrown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i11:r2",
+              "targetText": "These apples are homegrown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i11:r3",
+              "targetText": "These tomatoes are ripe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These tomatoes are homegrown.",
+                "uk": "У записі звучить These tomatoes are homegrown."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These tomatoes are homegrown.",
+                "uk": "У записі звучить These tomatoes are homegrown."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите хозяина, помыл ли он помидоры.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите хозяина, помыл ли он помидоры.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you washed them yet?",
+          "localizedMeaning": {
+            "ru": "Спросите хозяина, помыл ли он помидоры.",
+            "uk": "Запитайте господаря, чи він помив помідори."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "washed",
+            "them",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Хозяин только что помыл помидоры.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i13:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i13:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i13:r3",
+            "text": "washing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хозяин только что помыл помидоры.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин только что помыл помидоры.",
+            "uk": "Господар щойно помив помідори."
+          },
+          "gappedTargetPhrase": "I have just ___ them.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i13:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i13:r2",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i13:r3",
+              "text": "washing"
+            }
+          ],
+          "testedDimension": "Хозяин только что помыл помидоры.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i13:r2",
+              "correct": false,
+              "testedDimension": "Хозяин только что помыл помидоры.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма washed.",
+                "uk": "Після have потрібна форма washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i13:r3",
+              "correct": false,
+              "testedDimension": "Хозяин только что помыл помидоры.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно washed, не washing.",
+                "uk": "Тут потрібно washed, не washing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i14:r1",
+            "text": "You can take some home."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i14:r2",
+            "text": "You can eat some now."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i14:r3",
+            "text": "You can leave them here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i14:audio",
+            "transcript": "You can take some home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i14:r1",
+              "targetText": "You can take some home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i14:r2",
+              "targetText": "You can eat some now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i14:r3",
+              "targetText": "You can leave them here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i14:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can take some home.",
+                "uk": "У записі звучить You can take some home."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i14:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can take some home.",
+                "uk": "У записі звучить You can take some home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите пакет для помидоров.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Попросите пакет для помидоров.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i15:audio",
+            "transcript": "Do you have a bag?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you have a bag?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы возьмёте эти помидоры, если они не нужны хозяину.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы возьмёте эти помидоры, если они не нужны хозяину.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы возьмёте эти помидоры, если они не нужны хозяину.",
+            "uk": "Ви візьмете ці помідори, якщо вони не потрібні господарю."
+          },
+          "gappedTargetPhrase": "I will take these ___ you need them.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Вы возьмёте эти помидоры, если они не нужны хозяину.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i16:r2",
+              "correct": false,
+              "testedDimension": "Вы возьмёте эти помидоры, если они не нужны хозяину.",
+              "feedbackByLocale": {
+                "ru": "If означало бы взять именно нужные хозяину помидоры.",
+                "uk": "If означало б узяти саме потрібні господарю помідори."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i16:r3",
+              "correct": false,
+              "testedDimension": "Вы возьмёте эти помидоры, если они не нужны хозяину.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы потребность хозяина причиной забрать помидоры.",
+                "uk": "Because зробило б потребу господаря причиною забрати помідори."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте благодарность за угощение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Услышьте благодарность за угощение.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i17:audio",
+            "transcript": "Thanks for sharing."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Thanks for sharing.",
+          "orderedTokens": [
+            "Thanks",
+            "for",
+            "sharing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-26:session-47:i01",
+        "ordinal": 4,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Покажіть господарю мокрі чоботи й запитайте, куди їх поставити.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i01:audio"
+        ],
+        "accessibilityLabel": "Покажіть господарю мокрі чоботи й запитайте, куди їх поставити.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i01:audio",
+            "transcript": "Where can I put these?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where can I put these?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:entryway",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — entryway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:entryway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — entryway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:entryway:audio",
+            "transcript": "entryway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:entryway:r1",
+              "targetText": "entryway",
+              "meaningByLocale": {
+                "ru": "Входная часть дома; особенно обычно в американском английском.",
+                "uk": "Вхідна частина будинку; особливо звичне в американській англійській."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "entryway",
+            "definitionByLocale": {
+              "ru": "Входная часть дома; особенно обычно в американском английском.",
+              "uk": "Вхідна частина будинку; особливо звичне в американській англійській."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i02:r1",
+            "text": "Leave your boots in the entryway."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i02:r2",
+            "text": "Leave your bag in the entryway."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i02:r3",
+            "text": "Leave your boots in the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i02:audio",
+            "transcript": "Leave your boots in the entryway."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i02:r1",
+              "targetText": "Leave your boots in the entryway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i02:r2",
+              "targetText": "Leave your bag in the entryway.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i02:r3",
+              "targetText": "Leave your boots in the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leave your boots in the entryway.",
+                "uk": "У записі звучить Leave your boots in the entryway."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Leave your boots in the entryway.",
+                "uk": "У записі звучить Leave your boots in the entryway."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть з умови: Leave them here if they are wet.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть з умови: Leave them here if they are wet.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If they are wet, leave them here.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: Leave them here if they are wet.",
+            "uk": "Почніть з умови: Leave them here if they are wet."
+          },
+          "orderedTokens": [
+            "If",
+            "they",
+            "are",
+            "wet,",
+            "leave",
+            "them",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i04",
+        "ordinal": 8,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг несе важку сумку. Запропонуйте допомогу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i04:audio"
+        ],
+        "accessibilityLabel": "Друг несе важку сумку. Запропонуйте допомогу.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i04:audio",
+            "transcript": "Let me help you."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let me help you.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:stairway",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stairway",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:stairway:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stairway",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:stairway:audio",
+            "transcript": "stairway"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:stairway:r1",
+              "targetText": "stairway",
+              "meaningByLocale": {
+                "ru": "Лестница, проход со ступенями между этажами.",
+                "uk": "Сходи, прохід зі сходинками між поверхами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stairway",
+            "definitionByLocale": {
+              "ru": "Лестница, проход со ступенями между этажами.",
+              "uk": "Сходи, прохід зі сходинками між поверхами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поясніть гостю, що сходи ліворуч від нього.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поясніть гостю, що сходи ліворуч від нього.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The stairway is on your left.",
+          "localizedMeaning": {
+            "ru": "Объясните гостю, что лестница слева от него.",
+            "uk": "Поясніть гостю, що сходи ліворуч від нього."
+          },
+          "orderedTokens": [
+            "The",
+            "stairway",
+            "is",
+            "on",
+            "your",
+            "left"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i06:r1",
+            "text": "The room is upstairs."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i06:r2",
+            "text": "The room is downstairs."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i06:r3",
+            "text": "The room is outside."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i06:audio",
+            "transcript": "The room is upstairs."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i06:r1",
+              "targetText": "The room is upstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i06:r2",
+              "targetText": "The room is downstairs.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i06:r3",
+              "targetText": "The room is outside.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The room is upstairs.",
+                "uk": "У записі звучить The room is upstairs."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The room is upstairs.",
+                "uk": "У записі звучить The room is upstairs."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:banister",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — banister",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:banister:audio"
+        ],
+        "accessibilityLabel": "Картка слова — banister",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:banister:audio",
+            "transcript": "banister"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:banister:r1",
+              "targetText": "banister",
+              "meaningByLocale": {
+                "ru": "Перила лестницы.",
+                "uk": "Перила сходів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "banister",
+            "definitionByLocale": {
+              "ru": "Перила лестницы.",
+              "uk": "Перила сходів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть друга триматися за перила.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i07:audio"
+        ],
+        "accessibilityLabel": "Попросіть друга триматися за перила.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i07:audio",
+            "transcript": "Hold the banister."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Hold the banister.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви візьмете сумку, коли друг відчинить двері.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i08:r1",
+            "text": "open"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i08:r2",
+            "text": "will open"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i08:r3",
+            "text": "opens"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви візьмете сумку, коли друг відчинить двері.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы возьмёте сумку, когда друг откроет дверь.",
+            "uk": "Ви візьмете сумку, коли друг відчинить двері."
+          },
+          "gappedTargetPhrase": "I will take the bag when you ___ the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i08:r1",
+              "text": "open"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i08:r2",
+              "text": "will open"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i08:r3",
+              "text": "opens"
+            }
+          ],
+          "testedDimension": "Ви візьмете сумку, коли друг відчинить двері.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви візьмете сумку, коли друг відчинить двері.",
+              "feedbackByLocale": {
+                "ru": "После when здесь open без will.",
+                "uk": "Після when тут open без will."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви візьмете сумку, коли друг відчинить двері.",
+              "feedbackByLocale": {
+                "ru": "С you нужно open без -s.",
+                "uk": "З you потрібно open без -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, що друг уже відчинив двері.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i09:audio"
+        ],
+        "accessibilityLabel": "Почуйте, що друг уже відчинив двері.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i09:audio",
+            "transcript": "I have already opened it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have already opened it.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "opened",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора сумки вже були нагорі до приїзду друга.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i10:r1",
+            "text": "taken"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i10:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i10:r3",
+            "text": "take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора сумки вже були нагорі до приїзду друга.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера сумки уже были наверху до приезда друга.",
+            "uk": "Учора сумки вже були нагорі до приїзду друга."
+          },
+          "gappedTargetPhrase": "I had ___ the bags upstairs by the time he arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i10:r1",
+              "text": "taken"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i10:r2",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i10:r3",
+              "text": "take"
+            }
+          ],
+          "testedDimension": "Учора сумки вже були нагорі до приїзду друга.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i10:r2",
+              "correct": false,
+              "testedDimension": "Учора сумки вже були нагорі до приїзду друга.",
+              "feedbackByLocale": {
+                "ru": "После had нужна форма taken, не took.",
+                "uk": "Після had потрібна форма taken, не took."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i10:r3",
+              "correct": false,
+              "testedDimension": "Учора сумки вже були нагорі до приїзду друга.",
+              "feedbackByLocale": {
+                "ru": "После had нужна форма taken, не take.",
+                "uk": "Після had потрібна форма taken, не take."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:word:homegrown",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — homegrown",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:word:homegrown:audio"
+        ],
+        "accessibilityLabel": "Картка слова — homegrown",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:word:homegrown:audio",
+            "transcript": "homegrown"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:word:homegrown:r1",
+              "targetText": "homegrown",
+              "meaningByLocale": {
+                "ru": "Выращенный дома или на своём участке.",
+                "uk": "Вирощений удома або на своїй ділянці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "homegrown",
+            "definitionByLocale": {
+              "ru": "Выращенный дома или на своём участке.",
+              "uk": "Вирощений удома або на своїй ділянці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i11:r1",
+            "text": "These tomatoes are homegrown."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i11:r2",
+            "text": "These apples are homegrown."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i11:r3",
+            "text": "These tomatoes are ripe."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i11:audio",
+            "transcript": "These tomatoes are homegrown."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i11:r1",
+              "targetText": "These tomatoes are homegrown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i11:r2",
+              "targetText": "These apples are homegrown.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i11:r3",
+              "targetText": "These tomatoes are ripe.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These tomatoes are homegrown.",
+                "uk": "У записі звучить These tomatoes are homegrown."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит These tomatoes are homegrown.",
+                "uk": "У записі звучить These tomatoes are homegrown."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте господаря, чи він помив помідори.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте господаря, чи він помив помідори.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Have you washed them yet?",
+          "localizedMeaning": {
+            "ru": "Спросите хозяина, помыл ли он помидоры.",
+            "uk": "Запитайте господаря, чи він помив помідори."
+          },
+          "orderedTokens": [
+            "Have",
+            "you",
+            "washed",
+            "them",
+            "yet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Господар щойно помив помідори.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i13:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i13:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i13:r3",
+            "text": "washing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Господар щойно помив помідори.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хозяин только что помыл помидоры.",
+            "uk": "Господар щойно помив помідори."
+          },
+          "gappedTargetPhrase": "I have just ___ them.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i13:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i13:r2",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i13:r3",
+              "text": "washing"
+            }
+          ],
+          "testedDimension": "Господар щойно помив помідори.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i13:r2",
+              "correct": false,
+              "testedDimension": "Господар щойно помив помідори.",
+              "feedbackByLocale": {
+                "ru": "После have нужна форма washed.",
+                "uk": "Після have потрібна форма washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i13:r3",
+              "correct": false,
+              "testedDimension": "Господар щойно помив помідори.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужно washed, не washing.",
+                "uk": "Тут потрібно washed, не washing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i14:r1",
+            "text": "You can take some home."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i14:r2",
+            "text": "You can eat some now."
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i14:r3",
+            "text": "You can leave them here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i14:audio",
+            "transcript": "You can take some home."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-26:session-47:i14:r1",
+              "targetText": "You can take some home.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i14:r2",
+              "targetText": "You can eat some now.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i14:r3",
+              "targetText": "You can leave them here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i14:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can take some home.",
+                "uk": "У записі звучить You can take some home."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i14:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can take some home.",
+                "uk": "У записі звучить You can take some home."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть пакет для помідорів.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i15:audio"
+        ],
+        "accessibilityLabel": "Попросіть пакет для помідорів.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i15:audio",
+            "transcript": "Do you have a bag?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Do you have a bag?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви візьмете ці помідори, якщо вони не потрібні господарю.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-26:session-47:i16:r1",
+            "text": "unless"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i16:r2",
+            "text": "if"
+          },
+          {
+            "responseId": "en:lesson-26:session-47:i16:r3",
+            "text": "because"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви візьмете ці помідори, якщо вони не потрібні господарю.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы возьмёте эти помидоры, если они не нужны хозяину.",
+            "uk": "Ви візьмете ці помідори, якщо вони не потрібні господарю."
+          },
+          "gappedTargetPhrase": "I will take these ___ you need them.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-26:session-47:i16:r1",
+              "text": "unless"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i16:r2",
+              "text": "if"
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i16:r3",
+              "text": "because"
+            }
+          ],
+          "testedDimension": "Ви візьмете ці помідори, якщо вони не потрібні господарю.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-26:session-47:i16:r2",
+              "correct": false,
+              "testedDimension": "Ви візьмете ці помідори, якщо вони не потрібні господарю.",
+              "feedbackByLocale": {
+                "ru": "If означало бы взять именно нужные хозяину помидоры.",
+                "uk": "If означало б узяти саме потрібні господарю помідори."
+              }
+            },
+            {
+              "responseId": "en:lesson-26:session-47:i16:r3",
+              "correct": false,
+              "testedDimension": "Ви візьмете ці помідори, якщо вони не потрібні господарю.",
+              "feedbackByLocale": {
+                "ru": "Because сделало бы потребность хозяина причиной забрать помидоры.",
+                "uk": "Because зробило б потребу господаря причиною забрати помідори."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-26:session-47:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте подяку за частування.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-26:session-47:i17:audio"
+        ],
+        "accessibilityLabel": "Почуйте подяку за частування.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-26:session-47:i17:audio",
+            "transcript": "Thanks for sharing."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Thanks for sharing.",
+          "orderedTokens": [
+            "Thanks",
+            "for",
+            "sharing"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-26:session-47:i01",
+      "correctText": "Where can I put these?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:word:entryway",
+      "correctText": "entryway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i02",
+      "correctText": "Leave your boots in the entryway.",
+      "correctResponseId": "en:lesson-26:session-47:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i03",
+      "correctText": "If they are wet, leave them here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i04",
+      "correctText": "Let me help you.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:word:stairway",
+      "correctText": "stairway",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i05",
+      "correctText": "The stairway is on your left.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i06",
+      "correctText": "The room is upstairs.",
+      "correctResponseId": "en:lesson-26:session-47:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:word:banister",
+      "correctText": "banister",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i07",
+      "correctText": "Hold the banister.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i08",
+      "correctText": "open",
+      "correctResponseId": "en:lesson-26:session-47:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i09",
+      "correctText": "I have already opened it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i10",
+      "correctText": "taken",
+      "correctResponseId": "en:lesson-26:session-47:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:word:homegrown",
+      "correctText": "homegrown",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i11",
+      "correctText": "These tomatoes are homegrown.",
+      "correctResponseId": "en:lesson-26:session-47:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i12",
+      "correctText": "Have you washed them yet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i13",
+      "correctText": "washed",
+      "correctResponseId": "en:lesson-26:session-47:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i14",
+      "correctText": "You can take some home.",
+      "correctResponseId": "en:lesson-26:session-47:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i15",
+      "correctText": "Do you have a bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i16",
+      "correctText": "unless",
+      "correctResponseId": "en:lesson-26:session-47:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:i17",
+      "correctText": "Thanks for sharing.",
+      "correctResponseId": null
+    }
+  ]
+}

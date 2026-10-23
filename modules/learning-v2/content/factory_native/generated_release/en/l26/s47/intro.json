@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; just, already, yet; by the time",
+    "uk": "if, when, unless; just, already, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У входа",
+        "uk": "Біля входу"
+      },
+      "bodyByLocale": {
+        "ru": "Entryway — входная часть дома, место сразу у входа. Leave your boots in the entryway — оставь сапоги у входа. Это слово особенно обычно в американском английском. Вы принесли мокрые сапоги: Where can I put these? — куда мне это поставить? Хозяин отвечает: Leave them here if they are wet — оставь их здесь, если они мокрые. Условие можно поставить первым: If they are wet, leave them here. Смысл не меняется.",
+        "uk": "Entryway — вхідна частина будинку, місце відразу біля входу. Leave your boots in the entryway — залиш чоботи біля входу. Це слово особливо звичне в американській англійській. Ви принесли мокрі чоботи: Where can I put these? — куди мені це поставити? Господар відповідає: Leave them here if they are wet — залиш їх тут, якщо вони мокрі. Умову можна поставити першою: If they are wet, leave them here. Зміст не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-47:intro1:r1",
+              "text": "If they are wet, leave them here."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro1:r2",
+              "text": "Unless they are wet, leave them here."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro1:r3",
+              "text": "If they is wet, leave them here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-47:intro1:r1",
+              "text": "If they are wet, leave them here."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro1:r2",
+              "text": "Unless they are wet, leave them here."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro1:r3",
+              "text": "If they is wet, leave them here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подняться наверх",
+        "uk": "Піднятися нагору"
+      },
+      "bodyByLocale": {
+        "ru": "Stairway — лестница, проход со ступенями между этажами. The stairway is on your left — лестница слева от тебя. Banister — перила лестницы. Hold the banister — держись за перила. Вы несёте сумку, а друг открывает дверь: I will take the bag when you open the door — я возьму сумку, когда ты откроешь дверь. После when здесь open без will. О вчерашнем возвращении: I had taken the bags upstairs by the time he arrived — я отнёс сумки наверх к тому времени, как он приехал. Had taken показывает более раннее действие.",
+        "uk": "Stairway — сходи, прохід зі сходинками між поверхами. The stairway is on your left — сходи ліворуч від тебе. Banister — перила сходів. Hold the banister — тримайся за перила. Ви несете сумку, а друг відчиняє двері: I will take the bag when you open the door — я візьму сумку, коли ти відчиниш двері. Після when тут open без will. Про вчорашнє повернення: I had taken the bags upstairs by the time he arrived — я відніс сумки нагору до того часу, як він приїхав. Had taken показує ранішу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-47:intro2:r1",
+              "text": "I will take the bag when you open the door."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro2:r2",
+              "text": "I will take the bag when you will open the door."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro2:r3",
+              "text": "I will take the bag when you opens the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-47:intro2:r1",
+              "text": "I will take the bag when you open the door."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro2:r2",
+              "text": "I will take the bag when you will open the door."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro2:r3",
+              "text": "I will take the bag when you opens the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Овощи из своего сада",
+        "uk": "Овочі зі свого саду"
+      },
+      "bodyByLocale": {
+        "ru": "Homegrown — выращенный дома или на своём участке. These tomatoes are homegrown — эти помидоры выращены у нас. Слово сообщает, где их вырастили, а не обещает особое качество. Помидор из своего сада тоже может оказаться кислым: сам вырастил, сам и морщусь. Have you washed them yet? — ты уже их помыл? I have just washed them — я только что их помыл. Just стоит перед washed; yet — в конце вопроса. You can take some home — можешь взять немного домой.",
+        "uk": "Homegrown — вирощений удома або на своїй ділянці. These tomatoes are homegrown — ці помідори вирощені в нас. Слово повідомляє, де їх виростили, а не обіцяє особливу якість. Помідор зі свого саду теж може виявитися кислим: сам виростив, сам і кривлюся. Have you washed them yet? — ти вже їх помив? I have just washed them — я щойно їх помив. Just стоїть перед washed; yet — наприкінці запитання. You can take some home — можеш узяти трохи додому."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-47:intro3:r1",
+              "text": "I have just washed them."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro3:r2",
+              "text": "I have just wash them."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro3:r3",
+              "text": "I have just washing them."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-47:intro3:r1",
+              "text": "I have just washed them."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro3:r2",
+              "text": "I have just wash them."
+            },
+            {
+              "responseId": "en:lesson-26:session-47:intro3:r3",
+              "text": "I have just washing them."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c586df495d7d0745805d147664e41581d073e5d4f51fe1b5ffa5b49dc79755f4"
+}

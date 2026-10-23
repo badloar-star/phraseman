@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "when, if, unless; already, just, yet; by the time",
+    "uk": "when, if, unless; already, just, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Показать повреждение",
+        "uk": "Показати пошкодження"
+      },
+      "bodyByLocale": {
+        "ru": "Bumper — бампер автомобиля. There is a scratch on the bumper — на бампере царапина. Taillight — задний фонарь автомобиля; особенно обычно в американском английском. The left taillight is broken — левый задний фонарь сломан. Вы объясняете мастеру, что заметили, а не ставите технический диагноз. Can you have a look? — можете посмотреть? I will call you when it is ready — я позвоню вам, когда всё будет готово. После when здесь is без will.",
+        "uk": "Bumper — бампер автомобіля. There is a scratch on the bumper — на бампері подряпина. Taillight — задній ліхтар автомобіля; особливо звичне в американській англійській. The left taillight is broken — лівий задній ліхтар зламаний. Ви пояснюєте майстру, що помітили, а не ставите технічний діагноз. Can you have a look? — можете подивитися? I will call you when it is ready — я зателефоную вам, коли все буде готово. Після when тут is без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-50:intro1:r1",
+              "text": "I will call you when it is ready."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro1:r2",
+              "text": "I will call you when it will be ready."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro1:r3",
+              "text": "I will call you when it are ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-50:intro1:r1",
+              "text": "I will call you when it is ready."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro1:r2",
+              "text": "I will call you when it will be ready."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro1:r3",
+              "text": "I will call you when it are ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Машина на стоянке",
+        "uk": "Машина на стоянці"
+      },
+      "bodyByLocale": {
+        "ru": "Handbrake — ручной, стояночный тормоз. The handbrake is on — ручной тормоз включён. Это описание состояния; порядок действий зависит от автомобиля. Где вы оставили ключи? I have already left the keys at the desk — я уже оставил ключи у стойки. Have you called the garage yet? — ты уже позвонил в мастерскую? Already стоит перед left, yet — в конце вопроса. О вчерашнем ремонте: They had checked the car by the time I arrived — они проверили машину к тому времени, как я приехал. Had checked показывает более раннее действие.",
+        "uk": "Handbrake — ручне, стоянкове гальмо. The handbrake is on — ручне гальмо ввімкнене. Це опис стану; порядок дій залежить від автомобіля. Де ви залишили ключі? I have already left the keys at the desk — я вже залишив ключі біля стійки. Have you called the garage yet? — ти вже зателефонував у майстерню? Already стоїть перед left, yet — наприкінці запитання. Про вчорашній ремонт: They had checked the car by the time I arrived — вони перевірили машину до того часу, як я приїхав. Had checked показує ранішу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-50:intro2:r1",
+              "text": "They had checked the car by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro2:r2",
+              "text": "They have checked the car by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro2:r3",
+              "text": "They had check the car by the time I arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-50:intro2:r1",
+              "text": "They had checked the car by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro2:r2",
+              "text": "They have checked the car by the time I arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro2:r3",
+              "text": "They had check the car by the time I arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Платный участок дороги",
+        "uk": "Платна ділянка дороги"
+      },
+      "bodyByLocale": {
+        "ru": "Toll — плата за проезд по дороге или мосту. Where do we pay the toll? — где мы платим за проезд? Это вопрос о месте оплаты, не о покупке дороги: дорога в багажник всё равно не поместится. Can I pay by card? — можно заплатить картой? If you need a receipt, ask for one — если нужен чек, попроси его. Можно поставить условие в конец: Ask for one if you need a receipt. Смысл тот же. I have just paid — я только что заплатил. После have нужна форма paid.",
+        "uk": "Toll — плата за проїзд дорогою або мостом. Where do we pay the toll? — де ми платимо за проїзд? Це запитання про місце оплати, не про купівлю дороги: дорога в багажник усе одно не поміститься. Can I pay by card? — можна заплатити карткою? If you need a receipt, ask for one — якщо потрібен чек, попроси його. Можна поставити умову в кінець: Ask for one if you need a receipt. Зміст той самий. I have just paid — я щойно заплатив. Після have потрібна форма paid."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-50:intro3:r1",
+              "text": "Ask for one if you need a receipt."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro3:r2",
+              "text": "Ask for one unless you need a receipt."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro3:r3",
+              "text": "Ask for one if you needs a receipt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-50:intro3:r1",
+              "text": "Ask for one if you need a receipt."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro3:r2",
+              "text": "Ask for one unless you need a receipt."
+            },
+            {
+              "responseId": "en:lesson-26:session-50:intro3:r3",
+              "text": "Ask for one if you needs a receipt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "87dc6bed57eea6c741700a3cd037e1da7c872ab70c0684301b159b8f56aa4f83"
+}

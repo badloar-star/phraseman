@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-47:intro1:r2": {
+          "ru": "Unless меняет условие на противоположное.",
+          "uk": "Unless змінює умову на протилежну."
+        },
+        "en:lesson-26:session-47:intro1:r3": {
+          "ru": "С they нужно are.",
+          "uk": "З they потрібно are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-47:intro2:r2": {
+          "ru": "После when здесь open без will.",
+          "uk": "Після when тут open без will."
+        },
+        "en:lesson-26:session-47:intro2:r3": {
+          "ru": "С you нужно open без -s.",
+          "uk": "З you потрібно open без -s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-47:intro3:r2": {
+          "ru": "После have нужна форма washed.",
+          "uk": "Після have потрібна форма washed."
+        },
+        "en:lesson-26:session-47:intro3:r3": {
+          "ru": "Здесь нужна форма washed, не washing.",
+          "uk": "Тут потрібна форма washed, не washing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "16797a49945f48e0c9837e735a2c2f376e8cd4255ac41a90e80d417c3aa1ccec"
+}

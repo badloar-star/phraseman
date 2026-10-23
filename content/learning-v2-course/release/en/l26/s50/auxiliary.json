@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-26:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-26:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-50:intro1:r2": {
+          "ru": "После when здесь is без will.",
+          "uk": "Після when тут is без will."
+        },
+        "en:lesson-26:session-50:intro1:r3": {
+          "ru": "С it нужно is.",
+          "uk": "З it потрібно is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-50:intro2:r2": {
+          "ru": "Arrived задаёт прошлое; более раннее действие — had checked.",
+          "uk": "Arrived задає минуле; раніша дія — had checked."
+        },
+        "en:lesson-26:session-50:intro2:r3": {
+          "ru": "После had нужна форма checked.",
+          "uk": "Після had потрібна форма checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-26:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-26:session-50:intro3:r2": {
+          "ru": "Unless меняет условие: если чек не нужен.",
+          "uk": "Unless змінює умову: якщо чек не потрібен."
+        },
+        "en:lesson-26:session-50:intro3:r3": {
+          "ru": "С you нужно need без -s.",
+          "uk": "З you потрібно need без -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "672e65a390ed825b0415f63b82a66f5cf271a48131d82268ee557758ee65122c"
+}

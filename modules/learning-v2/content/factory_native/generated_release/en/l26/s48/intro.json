@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-26:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "if, when, unless; already, just, yet; by the time",
+    "uk": "if, when, unless; already, just, yet; by the time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-26:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать собаку друга",
+        "uk": "Упізнати собаку друга"
+      },
+      "bodyByLocale": {
+        "ru": "Shaggy — лохматый, с длинной неопрятной на вид шерстью или волосами. Your dog is shaggy — твоя собака лохматая. Это описание внешности, а не характера или чистоты. Snuggle — уютно прижиматься, устраиваться вплотную к кому-то или чему-то. I snuggle up with my dog on the sofa — я уютно устраиваюсь с собакой на диване. У собаки свой взгляд на слово «мой» в выражении «мой диван». Когда друг вернётся, вы пойдёте гулять: We will go out when you come back. После when здесь come без will.",
+        "uk": "Shaggy — кудлатий, із довгою неохайною на вигляд шерстю або волоссям. Your dog is shaggy — твій собака кудлатий. Це опис зовнішності, а не характеру чи чистоти. Snuggle — затишно притискатися, вмощуватися впритул до когось або чогось. I snuggle up with my dog on the sofa — я затишно вмощуюся із собакою на дивані. У собаки свій погляд на слово «мій» у вислові «мій диван». Коли друг повернеться, ви підете гуляти: We will go out when you come back. Після when тут come без will."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-48:intro1:r1",
+              "text": "We will go out when you come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro1:r2",
+              "text": "We will go out when you will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro1:r3",
+              "text": "We will go out when you comes back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-48:intro1:r1",
+              "text": "We will go out when you come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro1:r2",
+              "text": "We will go out when you will come back."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro1:r3",
+              "text": "We will go out when you comes back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-26:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заметить птицу",
+        "uk": "Помітити птаха"
+      },
+      "bodyByLocale": {
+        "ru": "Beak — клюв. That bird has a yellow beak — у той птицы жёлтый клюв. Друг спрашивает, видели ли вы её: Have you seen it yet? — ты уже её видел? I have just seen it — я только что её увидел. После have здесь seen, не saw. Условие можно поставить в любом из двух мест: If it comes closer, we can see it better — если она подойдёт ближе, мы сможем лучше её рассмотреть. We can see it better if it comes closer.",
+        "uk": "Beak — дзьоб. That bird has a yellow beak — у того птаха жовтий дзьоб. Друг запитує, чи ви його бачили: Have you seen it yet? — ти вже його бачив? I have just seen it — я щойно його побачив. Після have тут seen, не saw. Умову можна поставити в будь-якому з двох місць: If it comes closer, we can see it better — якщо він підійде ближче, ми зможемо краще його роздивитися. We can see it better if it comes closer."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-48:intro2:r1",
+              "text": "I have just seen it."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro2:r2",
+              "text": "I have just saw it."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro2:r3",
+              "text": "I have just see it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-48:intro2:r1",
+              "text": "I have just seen it."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro2:r2",
+              "text": "I have just saw it."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro2:r3",
+              "text": "I have just see it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-26:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Лошадь за оградой",
+        "uk": "Кінь за огорожею"
+      },
+      "bodyByLocale": {
+        "ru": "Mane — грива, длинные волосы на шее лошади или вокруг головы льва. The horse has a long mane — у лошади длинная грива. Мы описываем лошадь, которую видим с дорожки. Можно спросить хозяина: What is its name? — как её зовут? О вчерашней прогулке: The horse had left the field by the time we arrived — лошадь ушла с поля к тому времени, как мы пришли. Had left — более раннее действие. Сейчас друг ищет фотографию: I have already sent it — я уже её отправил.",
+        "uk": "Mane — грива, довге волосся на шиї коня або навколо голови лева. The horse has a long mane — у коня довга грива. Ми описуємо коня, якого бачимо зі стежки. Можна запитати господаря: What is its name? — як його звати? Про вчорашню прогулянку: The horse had left the field by the time we arrived — кінь пішов із поля до того часу, як ми прийшли. Had left — раніша дія. Зараз друг шукає фотографію: I have already sent it — я вже її надіслав."
+      },
+      "question": {
+        "interactionId": "en:lesson-26:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-26:session-48:intro3:r1",
+              "text": "The horse had left the field by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro3:r2",
+              "text": "The horse has left the field by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro3:r3",
+              "text": "The horse had leave the field by the time we arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-26:session-48:intro3:r1",
+              "text": "The horse had left the field by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro3:r2",
+              "text": "The horse has left the field by the time we arrived."
+            },
+            {
+              "responseId": "en:lesson-26:session-48:intro3:r3",
+              "text": "The horse had leave the field by the time we arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "350240d9f26e06b49ccfbce59b91b9c243aca56285526c3565d4e80a8339e4da"
+}

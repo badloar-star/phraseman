@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-26:session-47:i01",
+    "correctText": "Where can I put these?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:word:entryway",
+    "correctText": "entryway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i02",
+    "correctText": "Leave your boots in the entryway.",
+    "correctResponseId": "en:lesson-26:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i03",
+    "correctText": "If they are wet, leave them here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i04",
+    "correctText": "Let me help you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:word:stairway",
+    "correctText": "stairway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i05",
+    "correctText": "The stairway is on your left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i06",
+    "correctText": "The room is upstairs.",
+    "correctResponseId": "en:lesson-26:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:word:banister",
+    "correctText": "banister",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i07",
+    "correctText": "Hold the banister.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i08",
+    "correctText": "open",
+    "correctResponseId": "en:lesson-26:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i09",
+    "correctText": "I have already opened it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i10",
+    "correctText": "taken",
+    "correctResponseId": "en:lesson-26:session-47:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:word:homegrown",
+    "correctText": "homegrown",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i11",
+    "correctText": "These tomatoes are homegrown.",
+    "correctResponseId": "en:lesson-26:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i12",
+    "correctText": "Have you washed them yet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i13",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-26:session-47:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i14",
+    "correctText": "You can take some home.",
+    "correctResponseId": "en:lesson-26:session-47:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i15",
+    "correctText": "Do you have a bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i16",
+    "correctText": "unless",
+    "correctResponseId": "en:lesson-26:session-47:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-26:session-47:i17",
+    "correctText": "Thanks for sharing.",
+    "correctResponseId": null
+  }
+]

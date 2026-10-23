@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-13:word:elephant",
+    "correctText": "elephant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i01",
+    "correctText": "I have seen an elephant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i02",
+    "correctText": "I have seen an elephant.",
+    "correctResponseId": "en:lesson-23:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i03",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:word:lion",
+    "correctText": "lion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i04",
+    "correctText": "She has taken a photo of a lion.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i05",
+    "correctText": "She has taken a photo of a lion.",
+    "correctResponseId": "en:lesson-23:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i06",
+    "correctText": "taken",
+    "correctResponseId": "en:lesson-23:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:word:tiger",
+    "correctText": "tiger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i07",
+    "correctText": "We have watched a tiger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i08",
+    "correctText": "We have watched a tiger.",
+    "correctResponseId": "en:lesson-23:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i09",
+    "correctText": "watched",
+    "correctResponseId": "en:lesson-23:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:word:giraffe",
+    "correctText": "giraffe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i10",
+    "correctText": "He has drawn a giraffe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i11",
+    "correctText": "He has drawn a giraffe.",
+    "correctResponseId": "en:lesson-23:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i12",
+    "correctText": "drawn",
+    "correctResponseId": "en:lesson-23:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i13",
+    "correctText": "en:lesson-23:session-13:i13:p1=elephant\nen:lesson-23:session-13:i13:p2=lion\nen:lesson-23:session-13:i13:p3=tiger\nen:lesson-23:session-13:i13:p4=giraffe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i14",
+    "correctText": "We can visit another zoo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i15",
+    "correctText": "You mustn't climb over the fence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i16",
+    "correctText": "I have drawn a giraffe.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-13:i17",
+    "correctText": "We have seen an elephant.",
+    "correctResponseId": null
+  }
+]

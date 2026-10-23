@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-14:word:monkey",
+    "correctText": "monkey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i01",
+    "correctText": "I have seen a monkey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i02",
+    "correctText": "I have seen a monkey.",
+    "correctResponseId": "en:lesson-23:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i03",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:word:gorilla",
+    "correctText": "gorilla",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i04",
+    "correctText": "She has watched a gorilla.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i05",
+    "correctText": "She has watched a gorilla.",
+    "correctResponseId": "en:lesson-23:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i06",
+    "correctText": "watched",
+    "correctResponseId": "en:lesson-23:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:word:kangaroo",
+    "correctText": "kangaroo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i07",
+    "correctText": "We have taken a photo of a kangaroo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i08",
+    "correctText": "We have taken a photo of a kangaroo.",
+    "correctResponseId": "en:lesson-23:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i09",
+    "correctText": "taken",
+    "correctResponseId": "en:lesson-23:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:word:crocodile",
+    "correctText": "crocodile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i10",
+    "correctText": "He has drawn a crocodile.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i11",
+    "correctText": "He has drawn a crocodile.",
+    "correctResponseId": "en:lesson-23:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i12",
+    "correctText": "drawn",
+    "correctResponseId": "en:lesson-23:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i13",
+    "correctText": "en:lesson-23:session-14:i13:p1=monkey\nen:lesson-23:session-14:i13:p2=gorilla\nen:lesson-23:session-14:i13:p3=kangaroo\nen:lesson-23:session-14:i13:p4=crocodile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i14",
+    "correctText": "The other animals are outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i15",
+    "correctText": "You mustn't climb over the fence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i16",
+    "correctText": "We have seen a monkey.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-14:i17",
+    "correctText": "I have drawn a crocodile.",
+    "correctResponseId": null
+  }
+]

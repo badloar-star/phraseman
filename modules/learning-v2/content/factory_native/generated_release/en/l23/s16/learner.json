@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-16:word:horse",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — horse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:word:horse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — horse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:word:horse:audio",
+          "transcript": "horse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:word:horse:r1",
+            "targetText": "horse",
+            "meaningByLocale": {
+              "ru": "лошадь.",
+              "uk": "кінь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "horse",
+          "definitionByLocale": {
+            "ru": "лошадь.",
+            "uk": "кінь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я ездил верхом на лошади.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я ездил верхом на лошади.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have ridden a horse.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я ездил верхом на лошади.»",
+          "uk": "Розкажіть про досвід: «Я їздив верхи на коні.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "ridden",
+          "a",
+          "horse"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i02:r1",
+          "text": "I have ridden a horse."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i02:r2",
+          "text": "You have ridden a horse."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i02:r3",
+          "text": "They have ridden a horse."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i02:audio",
+          "transcript": "I have ridden a horse."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:i02:r1",
+            "targetText": "I have ridden a horse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i02:r2",
+            "targetText": "You have ridden a horse.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i02:r3",
+            "targetText": "They have ridden a horse.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have ridden a horse.",
+              "uk": "У записі звучить I have ridden a horse."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have ridden a horse.",
+              "uk": "У записі звучить I have ridden a horse."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i03:r1",
+          "text": "ridden"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i03:r2",
+          "text": "ride"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i03:r3",
+          "text": "rode"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ a horse.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-16:i03:r1",
+            "text": "ridden"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i03:r2",
+            "text": "ride"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i03:r3",
+            "text": "rode"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:word:cow",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:word:cow:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:word:cow:audio",
+          "transcript": "cow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:word:cow:r1",
+            "targetText": "cow",
+            "meaningByLocale": {
+              "ru": "корова.",
+              "uk": "корова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cow",
+          "definitionByLocale": {
+            "ru": "корова.",
+            "uk": "корова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Она кормила корову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Она кормила корову.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has fed a cow.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она кормила корову.»",
+          "uk": "Розкажіть про досвід: «Вона годувала корову.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "fed",
+          "a",
+          "cow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i05:r1",
+          "text": "She has fed a cow."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i05:r2",
+          "text": "You have fed a cow."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i05:r3",
+          "text": "They have fed a cow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i05:audio",
+          "transcript": "She has fed a cow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:i05:r1",
+            "targetText": "She has fed a cow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i05:r2",
+            "targetText": "You have fed a cow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i05:r3",
+            "targetText": "They have fed a cow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has fed a cow.",
+              "uk": "У записі звучить She has fed a cow."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has fed a cow.",
+              "uk": "У записі звучить She has fed a cow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i06:r1",
+          "text": "fed"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i06:r2",
+          "text": "feed"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i06:r3",
+          "text": "feeds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a cow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-16:i06:r1",
+            "text": "fed"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i06:r2",
+            "text": "feed"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i06:r3",
+            "text": "feeds"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:word:pig",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pig",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:word:pig:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pig",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:word:pig:audio",
+          "transcript": "pig"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:word:pig:r1",
+            "targetText": "pig",
+            "meaningByLocale": {
+              "ru": "свинья.",
+              "uk": "свиня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pig",
+          "definitionByLocale": {
+            "ru": "свинья.",
+            "uk": "свиня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы видели свинью.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы видели свинью.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have seen a pig.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы видели свинью.»",
+          "uk": "Розкажіть про досвід: «Ми бачили свиню.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "seen",
+          "a",
+          "pig"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i08:r1",
+          "text": "We have seen a pig."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i08:r2",
+          "text": "You have seen a pig."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i08:r3",
+          "text": "They have seen a pig."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i08:audio",
+          "transcript": "We have seen a pig."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:i08:r1",
+            "targetText": "We have seen a pig.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i08:r2",
+            "targetText": "You have seen a pig.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i08:r3",
+            "targetText": "They have seen a pig.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a pig.",
+              "uk": "У записі звучить We have seen a pig."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have seen a pig.",
+              "uk": "У записі звучить We have seen a pig."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i09:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i09:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i09:r3",
+          "text": "saw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a pig.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-16:i09:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i09:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i09:r3",
+            "text": "saw"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:word:pony",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pony",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:word:pony:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pony",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:word:pony:audio",
+          "transcript": "pony"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:word:pony:r1",
+            "targetText": "pony",
+            "meaningByLocale": {
+              "ru": "пони.",
+              "uk": "поні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pony",
+          "definitionByLocale": {
+            "ru": "пони.",
+            "uk": "поні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он рисовал пони.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он рисовал пони.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has drawn a pony.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он рисовал пони.»",
+          "uk": "Розкажіть про досвід: «Він малював поні.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "drawn",
+          "a",
+          "pony"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i11:r1",
+          "text": "He has drawn a pony."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i11:r2",
+          "text": "You have drawn a pony."
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i11:r3",
+          "text": "They have drawn a pony."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i11:audio",
+          "transcript": "He has drawn a pony."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-16:i11:r1",
+            "targetText": "He has drawn a pony.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i11:r2",
+            "targetText": "You have drawn a pony.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i11:r3",
+            "targetText": "They have drawn a pony.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has drawn a pony.",
+              "uk": "У записі звучить He has drawn a pony."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has drawn a pony.",
+              "uk": "У записі звучить He has drawn a pony."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-16:i12:r1",
+          "text": "drawn"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i12:r2",
+          "text": "draw"
+        },
+        {
+          "responseId": "en:lesson-23:session-16:i12:r3",
+          "text": "drew"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a pony.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-16:i12:r1",
+            "text": "drawn"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i12:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i12:r3",
+            "text": "drew"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-16:i13:p1",
+            "target": "horse",
+            "meaningByLocale": {
+              "ru": "лошадь",
+              "uk": "кінь"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-16:i13:p2",
+            "target": "cow",
+            "meaningByLocale": {
+              "ru": "корова",
+              "uk": "корова"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-16:i13:p3",
+            "target": "pig",
+            "meaningByLocale": {
+              "ru": "свинья",
+              "uk": "свиня"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-16:i13:p4",
+            "target": "pony",
+            "meaningByLocale": {
+              "ru": "пони",
+              "uk": "поні"
+            }
+          }
+        ],
+        "leftColumn": [
+          "horse",
+          "cow",
+          "pig",
+          "pony"
+        ],
+        "rightColumn": [
+          "лошадь",
+          "корова",
+          "свинья",
+          "пони"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: another и other",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: another и other",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i14:audio",
+          "transcript": "The other animals are in the field."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The other animals are in the field.",
+        "orderedTokens": [
+          "The",
+          "other",
+          "animals",
+          "are",
+          "in",
+          "the",
+          "field"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i15:audio",
+          "transcript": "You mustn't climb over the fence."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't climb over the fence.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "climb",
+          "over",
+          "the",
+          "fence"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы ездили верхом на лошади.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы ездили верхом на лошади.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i16:audio",
+          "transcript": "We have ridden a horse."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have ridden a horse.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я кормил корову.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я кормил корову.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-16:i17:audio",
+          "transcript": "I have fed a cow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have fed a cow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0804a9c2fc2104af50793864e551af77918aa8548b5a8d138782fc279297b528"
+}

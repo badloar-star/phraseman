@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-23:session-15:word:eagle",
+    "correctText": "eagle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i01",
+    "correctText": "I have seen an eagle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i02",
+    "correctText": "I have seen an eagle.",
+    "correctResponseId": "en:lesson-23:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i03",
+    "correctText": "seen",
+    "correctResponseId": "en:lesson-23:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:word:wolf",
+    "correctText": "wolf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i04",
+    "correctText": "She has watched a wolf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i05",
+    "correctText": "She has watched a wolf.",
+    "correctResponseId": "en:lesson-23:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i06",
+    "correctText": "watched",
+    "correctResponseId": "en:lesson-23:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:word:snake",
+    "correctText": "snake",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i07",
+    "correctText": "We have taken a photo of a snake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i08",
+    "correctText": "We have taken a photo of a snake.",
+    "correctResponseId": "en:lesson-23:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i09",
+    "correctText": "taken",
+    "correctResponseId": "en:lesson-23:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:word:lizard",
+    "correctText": "lizard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i10",
+    "correctText": "He has drawn a lizard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i11",
+    "correctText": "He has drawn a lizard.",
+    "correctResponseId": "en:lesson-23:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i12",
+    "correctText": "drawn",
+    "correctResponseId": "en:lesson-23:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i13",
+    "correctText": "en:lesson-23:session-15:i13:p1=eagle\nen:lesson-23:session-15:i13:p2=wolf\nen:lesson-23:session-15:i13:p3=snake\nen:lesson-23:session-15:i13:p4=lizard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i14",
+    "correctText": "We can take another photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i15",
+    "correctText": "You mustn't climb over the fence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i16",
+    "correctText": "We have seen an eagle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-23:session-15:i17",
+    "correctText": "I have drawn a lizard.",
+    "correctResponseId": null
+  }
+]

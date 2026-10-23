@@ -8715,4 +8715,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + life experience","uk":"present perfect + life experience"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 13,
+    sourceFingerprint: "83ddfbe911800322e06bf8bd8226e42e8a8611f69dfcc1b67d4b01ade699e0d0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + life experience","uk":"present perfect + life experience"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 14,
+    sourceFingerprint: "95d17bc477a4b20816479ea818b9dd0a8c1cccda68d8e713b43483adc9895583",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + life experience","uk":"present perfect + life experience"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 15,
+    sourceFingerprint: "91d57c1b3ac62edb4fcf3675495c5e50b80a448ca0ff513ae4f8a050e3ade00e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + life experience","uk":"present perfect + life experience"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 23, sessionOrdinal: 16,
+    sourceFingerprint: "91e5a2cea2cbaed5fc13c3771ee1cf4fd99383329640025f307abf7ad6b03241",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect + life experience","uk":"present perfect + life experience"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 23","uk":"Англійська · Урок 23"}),
+  }),
 ]);

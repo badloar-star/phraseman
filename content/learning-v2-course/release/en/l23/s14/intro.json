@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Monkey — обезьяна. Gorilla — горилла. В обычном русском слове «обезьяна» объединяют разных животных, но гориллу по-английски называют gorilla, не monkey. Сегодня учим конкретные названия monkey и gorilla.",
+        "uk": "Monkey — мавпа. Gorilla — горила. Звичне українське слово «мавпа» охоплює різних тварин, але горилу англійською називають gorilla, не monkey. Сьогодні вчимо конкретні назви monkey та gorilla."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-14:intro1:r1",
+              "text": "I have seen a monkey."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro1:r2",
+              "text": "I has seen a monkey."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro1:r3",
+              "text": "I have see a monkey."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-14:intro1:r1",
+              "text": "I have seen a monkey."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro1:r2",
+              "text": "I has seen a monkey."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro1:r3",
+              "text": "I have see a monkey."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать животное",
+        "uk": "Назвати тварину"
+      },
+      "bodyByLocale": {
+        "ru": "Kangaroo — кенгуру. Crocodile — крокодил. We have taken a photo of a kangaroo — у нас есть опыт такой съёмки. В английском перед каждым из этих названий одного животного нужен a.",
+        "uk": "Kangaroo — кенгуру. Crocodile — крокодил. We have taken a photo of a kangaroo — ми маємо досвід такої зйомки. В англійській перед кожною з цих назв однієї тварини потрібен a."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-14:intro2:r1",
+              "text": "We have taken a photo of a kangaroo."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro2:r2",
+              "text": "We has taken a photo of a kangaroo."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro2:r3",
+              "text": "We have take a photo of a kangaroo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-14:intro2:r1",
+              "text": "We have taken a photo of a kangaroo."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro2:r2",
+              "text": "We has taken a photo of a kangaroo."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro2:r3",
+              "text": "We have take a photo of a kangaroo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рассказать об опыте",
+        "uk": "Розповісти про досвід"
+      },
+      "bodyByLocale": {
+        "ru": "He has drawn a crocodile — он рисовал крокодила. С he используем has, с we — have. После них нужны seen, watched, taken или drawn, а не saw, took или drew. Это рассказ об опыте без конкретной даты.",
+        "uk": "He has drawn a crocodile — він малював крокодила. Із he використовуємо has, із we — have. Після них потрібні seen, watched, taken або drawn, а не saw, took або drew. Це розповідь про досвід без конкретної дати."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-14:intro3:r1",
+              "text": "He has drawn a crocodile."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro3:r2",
+              "text": "He have drawn a crocodile."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro3:r3",
+              "text": "He has draw a crocodile."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-14:intro3:r1",
+              "text": "He has drawn a crocodile."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro3:r2",
+              "text": "He have drawn a crocodile."
+            },
+            {
+              "responseId": "en:lesson-23:session-14:intro3:r3",
+              "text": "He has draw a crocodile."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "55739d725d60c4d4e9b90696155f9b30c7d3386364abc2547379246d2478c759"
+}

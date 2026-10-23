@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-23:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-23:session-15:word:eagle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eagle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:word:eagle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eagle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:word:eagle:audio",
+          "transcript": "eagle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:word:eagle:r1",
+            "targetText": "eagle",
+            "meaningByLocale": {
+              "ru": "орёл.",
+              "uk": "орел."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eagle",
+          "definitionByLocale": {
+            "ru": "орёл.",
+            "uk": "орел."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Я видел орла.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Я видел орла.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have seen an eagle.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Я видел орла.»",
+          "uk": "Розкажіть про досвід: «Я бачив орла.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "seen",
+          "an",
+          "eagle"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i02:r1",
+          "text": "I have seen an eagle."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i02:r2",
+          "text": "You have seen an eagle."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i02:r3",
+          "text": "They have seen an eagle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i02:audio",
+          "transcript": "I have seen an eagle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:i02:r1",
+            "targetText": "I have seen an eagle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i02:r2",
+            "targetText": "You have seen an eagle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i02:r3",
+            "targetText": "They have seen an eagle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen an eagle.",
+              "uk": "У записі звучить I have seen an eagle."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have seen an eagle.",
+              "uk": "У записі звучить I have seen an eagle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i03:r1",
+          "text": "seen"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i03:r2",
+          "text": "see"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i03:r3",
+          "text": "saw"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "I have ___ an eagle.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-15:i03:r1",
+            "text": "seen"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i03:r2",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i03:r3",
+            "text": "saw"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:word:wolf",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wolf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:word:wolf:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wolf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:word:wolf:audio",
+          "transcript": "wolf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:word:wolf:r1",
+            "targetText": "wolf",
+            "meaningByLocale": {
+              "ru": "волк.",
+              "uk": "вовк."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wolf",
+          "definitionByLocale": {
+            "ru": "волк.",
+            "uk": "вовк."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Она наблюдала за волком.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Она наблюдала за волком.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She has watched a wolf.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Она наблюдала за волком.»",
+          "uk": "Розкажіть про досвід: «Вона спостерігала за вовком.»"
+        },
+        "orderedTokens": [
+          "She",
+          "has",
+          "watched",
+          "a",
+          "wolf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i05:r1",
+          "text": "She has watched a wolf."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i05:r2",
+          "text": "You have watched a wolf."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i05:r3",
+          "text": "They have watched a wolf."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i05:audio",
+          "transcript": "She has watched a wolf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:i05:r1",
+            "targetText": "She has watched a wolf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i05:r2",
+            "targetText": "You have watched a wolf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i05:r3",
+            "targetText": "They have watched a wolf.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has watched a wolf.",
+              "uk": "У записі звучить She has watched a wolf."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has watched a wolf.",
+              "uk": "У записі звучить She has watched a wolf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i06:r1",
+          "text": "watched"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i06:r2",
+          "text": "watch"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i06:r3",
+          "text": "watches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "She has ___ a wolf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-15:i06:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i06:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i06:r3",
+            "text": "watches"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:word:snake",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — snake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:word:snake:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — snake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:word:snake:audio",
+          "transcript": "snake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:word:snake:r1",
+            "targetText": "snake",
+            "meaningByLocale": {
+              "ru": "змея.",
+              "uk": "змія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "snake",
+          "definitionByLocale": {
+            "ru": "змея.",
+            "uk": "змія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Мы сфотографировали змею.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Мы сфотографировали змею.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have taken a photo of a snake.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Мы сфотографировали змею.»",
+          "uk": "Розкажіть про досвід: «Ми сфотографували змію.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "taken",
+          "a",
+          "photo",
+          "of",
+          "a",
+          "snake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i08:r1",
+          "text": "We have taken a photo of a snake."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i08:r2",
+          "text": "You have taken a photo of a snake."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i08:r3",
+          "text": "They have taken a photo of a snake."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i08:audio",
+          "transcript": "We have taken a photo of a snake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:i08:r1",
+            "targetText": "We have taken a photo of a snake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i08:r2",
+            "targetText": "You have taken a photo of a snake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i08:r3",
+            "targetText": "They have taken a photo of a snake.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have taken a photo of a snake.",
+              "uk": "У записі звучить We have taken a photo of a snake."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have taken a photo of a snake.",
+              "uk": "У записі звучить We have taken a photo of a snake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i09:r1",
+          "text": "taken"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i09:r2",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i09:r3",
+          "text": "took"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "We have ___ a photo of a snake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-15:i09:r1",
+            "text": "taken"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i09:r2",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i09:r3",
+            "text": "took"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:word:lizard",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lizard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:word:lizard:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lizard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:word:lizard:audio",
+          "transcript": "lizard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:word:lizard:r1",
+            "targetText": "lizard",
+            "meaningByLocale": {
+              "ru": "ящерица.",
+              "uk": "ящірка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lizard",
+          "definitionByLocale": {
+            "ru": "ящерица.",
+            "uk": "ящірка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите об опыте: «Он рисовал ящерицу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите об опыте: «Он рисовал ящерицу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He has drawn a lizard.",
+        "localizedMeaning": {
+          "ru": "Расскажите об опыте: «Он рисовал ящерицу.»",
+          "uk": "Розкажіть про досвід: «Він малював ящірку.»"
+        },
+        "orderedTokens": [
+          "He",
+          "has",
+          "drawn",
+          "a",
+          "lizard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i11:r1",
+          "text": "He has drawn a lizard."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i11:r2",
+          "text": "You have drawn a lizard."
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i11:r3",
+          "text": "They have drawn a lizard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i11:audio",
+          "transcript": "He has drawn a lizard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-23:session-15:i11:r1",
+            "targetText": "He has drawn a lizard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i11:r2",
+            "targetText": "You have drawn a lizard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i11:r3",
+            "targetText": "They have drawn a lizard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has drawn a lizard.",
+              "uk": "У записі звучить He has drawn a lizard."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He has drawn a lizard.",
+              "uk": "У записі звучить He has drawn a lizard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите третью форму.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-23:session-15:i12:r1",
+          "text": "drawn"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i12:r2",
+          "text": "draw"
+        },
+        {
+          "responseId": "en:lesson-23:session-15:i12:r3",
+          "text": "drew"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите третью форму.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите третью форму.",
+          "uk": "Виберіть третю форму."
+        },
+        "gappedTargetPhrase": "He has ___ a lizard.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-23:session-15:i12:r1",
+            "text": "drawn"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i12:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i12:r3",
+            "text": "drew"
+          }
+        ],
+        "testedDimension": "Выберите третью форму.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-23:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-23:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите третью форму.",
+            "feedbackByLocale": {
+              "ru": "После have или has нужна третья форма глагола.",
+              "uk": "Після have або has потрібна третя форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-23:session-15:i13:p1",
+            "target": "eagle",
+            "meaningByLocale": {
+              "ru": "орёл",
+              "uk": "орел"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-15:i13:p2",
+            "target": "wolf",
+            "meaningByLocale": {
+              "ru": "волк",
+              "uk": "вовк"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-15:i13:p3",
+            "target": "snake",
+            "meaningByLocale": {
+              "ru": "змея",
+              "uk": "змія"
+            }
+          },
+          {
+            "pairId": "en:lesson-23:session-15:i13:p4",
+            "target": "lizard",
+            "meaningByLocale": {
+              "ru": "ящерица",
+              "uk": "ящірка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "eagle",
+          "wolf",
+          "snake",
+          "lizard"
+        ],
+        "rightColumn": [
+          "орёл",
+          "волк",
+          "змея",
+          "ящерица"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: another и other",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: another и other",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i14:audio",
+          "transcript": "We can take another photo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can take another photo.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "take",
+          "another",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: запрет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: запрет",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i15:audio",
+          "transcript": "You mustn't climb over the fence."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You mustn't climb over the fence.",
+        "orderedTokens": [
+          "You",
+          "mustn't",
+          "climb",
+          "over",
+          "the",
+          "fence"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы видели орла.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы видели орла.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i16:audio",
+          "transcript": "We have seen an eagle."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have seen an eagle.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-23:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Я рисовал ящерицу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-23:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Я рисовал ящерицу.»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-23:session-15:i17:audio",
+          "transcript": "I have drawn a lizard."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have drawn a lizard.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "785dbf335191ad1bbdb8bf2b0428e890521d2a9569c5b3bf42ccc99a8d7210cb"
+}

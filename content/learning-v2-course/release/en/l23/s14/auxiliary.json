@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-23:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-23:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-14:intro1:r2": {
+          "ru": "С I и we нужно have; с he — has.",
+          "uk": "З I та we потрібно have; із he — has."
+        },
+        "en:lesson-23:session-14:intro1:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-14:intro2:r2": {
+          "ru": "С I и we нужно have; с he — has.",
+          "uk": "З I та we потрібно have; із he — has."
+        },
+        "en:lesson-23:session-14:intro2:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-23:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-23:session-14:intro3:r2": {
+          "ru": "С I и we нужно have; с he — has.",
+          "uk": "З I та we потрібно have; із he — has."
+        },
+        "en:lesson-23:session-14:intro3:r3": {
+          "ru": "После have или has нужна третья форма глагола.",
+          "uk": "Після have або has потрібна третя форма дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8501b91039402e7cad6dad30433ad74bea6fb6051f424a0523e502ff442909d3"
+}

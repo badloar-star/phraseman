@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-23:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect + life experience",
+    "uk": "present perfect + life experience"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-23:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш опыт",
+        "uk": "Ваш досвід"
+      },
+      "bodyByLocale": {
+        "ru": "Horse — лошадь. Pony — пони, небольшая лошадь; это не просто жеребёнок. Ride a horse — ездить верхом. Три формы ride — rode — ridden. I have ridden a horse рассказывает о таком опыте.",
+        "uk": "Horse — кінь. Pony — поні, невеликий кінь; це не просто лоша. Ride a horse — їздити верхи. Три форми ride — rode — ridden. I have ridden a horse розповідає про такий досвід."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-16:intro1:r1",
+              "text": "I have ridden a horse."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro1:r2",
+              "text": "I has ridden a horse."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro1:r3",
+              "text": "I have ride a horse."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-16:intro1:r1",
+              "text": "I have ridden a horse."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro1:r2",
+              "text": "I has ridden a horse."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro1:r3",
+              "text": "I have ride a horse."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-23:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать животное",
+        "uk": "Назвати тварину"
+      },
+      "bodyByLocale": {
+        "ru": "Cow — корова, pig — свинья. Знакомое guinea pig значит «морская свинка», но pig само по себе — свинья. She has fed a cow: она кормила корову. Feed — fed — fed: вторая и третья формы совпадают.",
+        "uk": "Cow — корова, pig — свиня. Знайоме guinea pig означає «морська свинка», але pig саме по собі — свиня. She has fed a cow: вона годувала корову. Feed — fed — fed: друга й третя форми збігаються."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-16:intro2:r1",
+              "text": "We have seen a pig."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro2:r2",
+              "text": "We has seen a pig."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro2:r3",
+              "text": "We have see a pig."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-16:intro2:r1",
+              "text": "We have seen a pig."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro2:r2",
+              "text": "We has seen a pig."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro2:r3",
+              "text": "We have see a pig."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-23:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Рассказать об опыте",
+        "uk": "Розповісти про досвід"
+      },
+      "bodyByLocale": {
+        "ru": "He has drawn a pony — он рисовал пони. Английское pony здесь исчисляемое, поэтому a pony, хотя русский перевод «пони» не меняется. С he используем has, с we — have.",
+        "uk": "He has drawn a pony — він малював поні. Англійське pony тут злічуване, тому a pony, хоча український переклад «поні» не змінюється. Із he використовуємо has, із we — have."
+      },
+      "question": {
+        "interactionId": "en:lesson-23:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-23:session-16:intro3:r1",
+              "text": "He has drawn a pony."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro3:r2",
+              "text": "He have drawn a pony."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro3:r3",
+              "text": "He has draw a pony."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-23:session-16:intro3:r1",
+              "text": "He has drawn a pony."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro3:r2",
+              "text": "He have drawn a pony."
+            },
+            {
+              "responseId": "en:lesson-23:session-16:intro3:r3",
+              "text": "He has draw a pony."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4eaca86298790ff9368d46e973575c8556e19d98ac019988e2dc3cfaada33d71"
+}

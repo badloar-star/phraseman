@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-48:intro1:r2": {
+          "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+          "uk": "Колишня звичка або стан: used to + початкова форма."
+        },
+        "en:lesson-25:session-48:intro1:r3": {
+          "ru": "В утверждении о прошлом нужно used to.",
+          "uk": "У ствердженні про минуле потрібно used to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-48:intro2:r2": {
+          "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+          "uk": "Колишня звичка або стан: used to + початкова форма."
+        },
+        "en:lesson-25:session-48:intro2:r3": {
+          "ru": "В утверждении о прошлом нужно used to.",
+          "uk": "У ствердженні про минуле потрібно used to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-48:intro3:r2": {
+          "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+          "uk": "Колишня звичка або стан: used to + початкова форма."
+        },
+        "en:lesson-25:session-48:intro3:r3": {
+          "ru": "В утверждении о прошлом нужно used to.",
+          "uk": "У ствердженні про минуле потрібно used to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6ccc42ecd050276ff288bd35230a115112c262e070a370c59cb4c9e4308f0b6b"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Быть начеку",
+        "uk": "Бути напоготові"
+      },
+      "bodyByLocale": {
+        "ru": "Раньше вы работали ночью и следили, чтобы всё было спокойно. I used to stay alert at night — раньше я оставался бдительным ночью. Alert здесь прилагательное: внимательный к происходящему, готовый быстро заметить проблему. Stay alert — сохранять бдительность. После used to ставим stay, не stayed.",
+        "uk": "Раніше ви працювали вночі й стежили, щоб усе було спокійно. I used to stay alert at night — раніше я залишався пильним уночі. Alert тут прикметник: уважний до того, що відбувається, готовий швидко помітити проблему. Stay alert — зберігати пильність. Після used to ставимо stay, не stayed."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-47:intro1:r1",
+              "text": "I used to stay alert at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro1:r2",
+              "text": "I use to stay alert at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro1:r3",
+              "text": "I using to stay alert at night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-47:intro1:r1",
+              "text": "I used to stay alert at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro1:r2",
+              "text": "I use to stay alert at night."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro1:r3",
+              "text": "I using to stay alert at night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поведение, а не возраст",
+        "uk": "Поведінка, а не вік"
+      },
+      "bodyByLocale": {
+        "ru": "Mature здесь описывает зрелое, ответственное поведение, а не просто возраст. She used to seem mature for her age — раньше она казалась зрелой для своего возраста. Immature — незрелый, ведущий себя по-детски. He used to be immature at school — в школе он был незрелым. Он мог дурачиться и не думать о последствиях, а позже измениться. Used to seem и used to be описывают прежнее впечатление и состояние.",
+        "uk": "Mature тут описує зрілу, відповідальну поведінку, а не просто вік. She used to seem mature for her age — раніше вона здавалася зрілою як на свій вік. Immature — незрілий, той, хто поводиться по-дитячому. He used to be immature at school — у школі він був незрілим. Він міг дуріти й не думати про наслідки, а згодом змінитися. Used to seem і used to be описують колишнє враження й стан."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-47:intro2:r1",
+              "text": "She used to seem mature for her age."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro2:r2",
+              "text": "She use to seem mature for her age."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro2:r3",
+              "text": "She using to seem mature for her age."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-47:intro2:r1",
+              "text": "She used to seem mature for her age."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro2:r2",
+              "text": "She use to seem mature for her age."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro2:r3",
+              "text": "She using to seem mature for her age."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отношение к шуму",
+        "uk": "Ставлення до шуму"
+      },
+      "bodyByLocale": {
+        "ru": "Tolerant — терпимый. I used to be less tolerant of noise — раньше я был менее терпимым к шуму. Например, любой звук раздражал, а теперь вы относитесь к нему спокойнее. Tolerant of noise означает терпимость к шуму; не обязательно, что шум нравится. Less — менее, more — более: эти слова меняют смысл. Здесь used to be, потому что речь о прежнем отношении.",
+        "uk": "Tolerant — терпимий. I used to be less tolerant of noise — раніше я був менш терпимим до шуму. Наприклад, будь-який звук дратував, а тепер ви ставитеся до нього спокійніше. Tolerant of noise означає терпимість до шуму; не обов’язково, що шум подобається. Less — менш, more — більш: ці слова змінюють зміст. Тут used to be, бо йдеться про колишнє ставлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-47:intro3:r1",
+              "text": "I used to be less tolerant of noise."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro3:r2",
+              "text": "I use to be less tolerant of noise."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro3:r3",
+              "text": "I using to be less tolerant of noise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-47:intro3:r1",
+              "text": "I used to be less tolerant of noise."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro3:r2",
+              "text": "I use to be less tolerant of noise."
+            },
+            {
+              "responseId": "en:lesson-25:session-47:intro3:r3",
+              "text": "I using to be less tolerant of noise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6f77a0616550c54219e0f4017c434246c26699e2371744d34aac3a48eae14108"
+}

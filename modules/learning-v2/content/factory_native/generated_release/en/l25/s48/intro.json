@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кошка возле дома",
+        "uk": "Кішка біля будинку"
+      },
+      "bodyByLocale": {
+        "ru": "Stray cat — бездомная или потерявшаяся кошка. We used to feed a stray cat — раньше мы кормили бездомную кошку. Это повторялось: например, каждый вечер возле дома. Stray не означает «дикий»: у кошки мог быть хозяин. Used to feed показывает прежнюю привычку; после used to нужна начальная форма feed.",
+        "uk": "Stray cat — безпритульна кішка або кішка, що загубилася. We used to feed a stray cat — раніше ми годували безпритульну кішку. Це повторювалося: наприклад, щовечора біля будинку. Stray не означає «дикий»: у кішки міг бути господар. Used to feed показує колишню звичку; після used to потрібна початкова форма feed."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-48:intro1:r1",
+              "text": "We used to feed a stray cat."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro1:r2",
+              "text": "We use to feed a stray cat."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro1:r3",
+              "text": "We using to feed a stray cat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-48:intro1:r1",
+              "text": "We used to feed a stray cat."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro1:r2",
+              "text": "We use to feed a stray cat."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro1:r3",
+              "text": "We using to feed a stray cat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ручной кролик и грязные лапы",
+        "uk": "Ручний кролик і брудні лапи"
+      },
+      "bodyByLocale": {
+        "ru": "Tame — ручной, привыкший к человеку. I used to have a tame rabbit — раньше у меня был ручной кролик. Здесь used to have описывает прежнее состояние: кролик жил у меня, а теперь уже нет. Paw — лапа кошки, собаки или похожего животного; paws — лапы. We used to wash the dog’s paws — раньше мы мыли собаке лапы. Например, после прогулки по грязной дороге.",
+        "uk": "Tame — ручний, звиклий до людини. I used to have a tame rabbit — раніше в мене був ручний кролик. Тут used to have описує колишній стан: кролик жив у мене, а тепер уже ні. Paw — лапа кішки, собаки чи схожої тварини; paws — лапи. We used to wash the dog’s paws — раніше ми мили собаці лапи. Наприклад, після прогулянки брудною дорогою."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-48:intro2:r1",
+              "text": "I used to have a tame rabbit."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro2:r2",
+              "text": "I use to have a tame rabbit."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro2:r3",
+              "text": "I using to have a tame rabbit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-48:intro2:r1",
+              "text": "I used to have a tame rabbit."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro2:r2",
+              "text": "I use to have a tame rabbit."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro2:r3",
+              "text": "I using to have a tame rabbit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Лапы и когти",
+        "uk": "Лапи й кігті"
+      },
+      "bodyByLocale": {
+        "ru": "Claw — коготь, claws — когти. The cat used to sharpen its claws outside — раньше кошка точила когти на улице. Не путайте paws и claws: лапы и когти на них. Its здесь значит «свои», речь о когтях кошки. Used to sharpen описывает повторяющееся действие в прошлом. Outside — на улице, inside — внутри: смена этого слова меняет место действия.",
+        "uk": "Claw — кіготь, claws — кігті. The cat used to sharpen its claws outside — раніше кішка гострила кігті надворі. Не плутайте paws і claws: лапи й кігті на них. Its тут означає «свої», ідеться про кігті кішки. Used to sharpen описує повторювану дію в минулому. Outside — надворі, inside — усередині: заміна цього слова змінює місце дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-48:intro3:r1",
+              "text": "The cat used to sharpen its claws outside."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro3:r2",
+              "text": "The cat use to sharpen its claws outside."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro3:r3",
+              "text": "The cat using to sharpen its claws outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-48:intro3:r1",
+              "text": "The cat used to sharpen its claws outside."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro3:r2",
+              "text": "The cat use to sharpen its claws outside."
+            },
+            {
+              "responseId": "en:lesson-25:session-48:intro3:r3",
+              "text": "The cat using to sharpen its claws outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c7be7607b4e57b5db488ac9a5adab07b63f82cc45d7b4ae127e863f385f87f07"
+}

@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-48",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-48:word:stray",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stray",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:stray:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stray",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:stray:audio",
+            "transcript": "stray"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:stray:r1",
+              "targetText": "stray",
+              "meaningByLocale": {
+                "ru": "Бездомный. Stray здесь описывает домашнее животное, живущее без хозяина или потерявшееся.",
+                "uk": "Безпритульний. Stray тут описує свійську тварину, яка живе без господаря або загубилася."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stray",
+            "definitionByLocale": {
+              "ru": "Бездомный. Stray здесь описывает домашнее животное, живущее без хозяина или потерявшееся.",
+              "uk": "Безпритульний. Stray тут описує свійську тварину, яка живе без господаря або загубилася."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше мы кормили бездомную кошку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше мы кормили бездомную кошку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to feed a stray cat.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы кормили бездомную кошку.»",
+            "uk": "Скажіть: «Раніше ми годували безпритульну кішку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "feed",
+            "a",
+            "stray",
+            "cat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i02:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to feed a stray cat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i02:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i02:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i02:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i03:r1",
+            "text": "We used to feed a stray cat."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i03:r2",
+            "text": "They used to feed a stray cat."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i03:r3",
+            "text": "We used to feed a stray dog."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i03:audio",
+            "transcript": "We used to feed a stray cat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i03:r1",
+              "targetText": "We used to feed a stray cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i03:r2",
+              "targetText": "They used to feed a stray cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i03:r3",
+              "targetText": "We used to feed a stray dog.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to feed a stray cat.",
+                "uk": "У записі звучить We used to feed a stray cat."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to feed a stray cat.",
+                "uk": "У записі звучить We used to feed a stray cat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:word:tame",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:tame:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:tame:audio",
+            "transcript": "tame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:tame:r1",
+              "targetText": "tame",
+              "meaningByLocale": {
+                "ru": "Ручной. Tame — привыкший к человеку и не боящийся его.",
+                "uk": "Ручний. Tame — той, що звик до людини й не боїться її."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tame",
+            "definitionByLocale": {
+              "ru": "Ручной. Tame — привыкший к человеку и не боящийся его.",
+              "uk": "Ручний. Tame — той, що звик до людини й не боїться її."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше у меня был ручной кролик.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше у меня был ручной кролик.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to have a tame rabbit.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше у меня был ручной кролик.»",
+            "uk": "Скажіть: «Раніше в мене був ручний кролик.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "have",
+            "a",
+            "tame",
+            "rabbit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i05:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "I ___ to have a tame rabbit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i05:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i05:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i05:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i06:r1",
+            "text": "I used to have a tame rabbit."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i06:r2",
+            "text": "She used to have a tame rabbit."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i06:r3",
+            "text": "I used to have a tame bird."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i06:audio",
+            "transcript": "I used to have a tame rabbit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i06:r1",
+              "targetText": "I used to have a tame rabbit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i06:r2",
+              "targetText": "She used to have a tame rabbit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i06:r3",
+              "targetText": "I used to have a tame bird.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to have a tame rabbit.",
+                "uk": "У записі звучить I used to have a tame rabbit."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to have a tame rabbit.",
+                "uk": "У записі звучить I used to have a tame rabbit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:word:paws",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — paws",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:paws:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — paws",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:paws:audio",
+            "transcript": "paws"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:paws:r1",
+              "targetText": "paws",
+              "meaningByLocale": {
+                "ru": "Лапы. Paw — лапа животного, например кошки или собаки; paws — множественное число.",
+                "uk": "Лапи. Paw — лапа тварини, наприклад кішки чи собаки; paws — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paws",
+            "definitionByLocale": {
+              "ru": "Лапы. Paw — лапа животного, например кошки или собаки; paws — множественное число.",
+              "uk": "Лапи. Paw — лапа тварини, наприклад кішки чи собаки; paws — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше мы мыли собаке лапы.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше мы мыли собаке лапы.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to wash the dog's paws.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы мыли собаке лапы.»",
+            "uk": "Скажіть: «Раніше ми мили собаці лапи.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "wash",
+            "the",
+            "dog's",
+            "paws"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i08:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to wash the dog's paws.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i08:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i08:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i08:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i09:r1",
+            "text": "We used to wash the dog's paws."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i09:r2",
+            "text": "They used to wash the dog's paws."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i09:r3",
+            "text": "We used to dry the dog's paws."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i09:audio",
+            "transcript": "We used to wash the dog's paws."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i09:r1",
+              "targetText": "We used to wash the dog's paws.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i09:r2",
+              "targetText": "They used to wash the dog's paws.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i09:r3",
+              "targetText": "We used to dry the dog's paws.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to wash the dog's paws.",
+                "uk": "У записі звучить We used to wash the dog's paws."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to wash the dog's paws.",
+                "uk": "У записі звучить We used to wash the dog's paws."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:word:claws",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — claws",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:claws:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — claws",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:claws:audio",
+            "transcript": "claws"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:claws:r1",
+              "targetText": "claws",
+              "meaningByLocale": {
+                "ru": "Когти. Claw — коготь; claws — множественное число.",
+                "uk": "Кігті. Claw — кіготь; claws — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "claws",
+            "definitionByLocale": {
+              "ru": "Когти. Claw — коготь; claws — множественное число.",
+              "uk": "Кігті. Claw — кіготь; claws — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше кошка точила когти на улице.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше кошка точила когти на улице.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cat used to sharpen its claws outside.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше кошка точила когти на улице.»",
+            "uk": "Скажіть: «Раніше кішка гострила кігті надворі.»"
+          },
+          "orderedTokens": [
+            "The",
+            "cat",
+            "used",
+            "to",
+            "sharpen",
+            "its",
+            "claws",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i11:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "The cat ___ to sharpen its claws outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i11:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i11:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i11:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i12:r1",
+            "text": "The cat used to sharpen its claws outside."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i12:r2",
+            "text": "The cat used to sharpen its claws inside."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i12:r3",
+            "text": "The cat used to sharpen its claws here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i12:audio",
+            "transcript": "The cat used to sharpen its claws outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i12:r1",
+              "targetText": "The cat used to sharpen its claws outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i12:r2",
+              "targetText": "The cat used to sharpen its claws inside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i12:r3",
+              "targetText": "The cat used to sharpen its claws here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cat used to sharpen its claws outside.",
+                "uk": "У записі звучить The cat used to sharpen its claws outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cat used to sharpen its claws outside.",
+                "uk": "У записі звучить The cat used to sharpen its claws outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-48:i13:p1",
+              "target": "stray",
+              "meaningByLocale": {
+                "ru": "бездомный",
+                "uk": "безпритульний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-48:i13:p2",
+              "target": "tame",
+              "meaningByLocale": {
+                "ru": "ручной",
+                "uk": "ручний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-48:i13:p3",
+              "target": "paws",
+              "meaningByLocale": {
+                "ru": "лапы",
+                "uk": "лапи"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-48:i13:p4",
+              "target": "claws",
+              "meaningByLocale": {
+                "ru": "когти",
+                "uk": "кігті"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stray",
+            "tame",
+            "paws",
+            "claws"
+          ],
+          "rightColumn": [
+            "бездомный",
+            "ручной",
+            "лапы",
+            "когти"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончила к моему звонку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончила к моему звонку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Раньше ездил на машине",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Раньше ездил на машине",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i15:audio",
+            "transcript": "I used to drive to work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to drive to work.",
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "drive",
+            "to",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Раньше она кормила бездомную кошку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Раньше она кормила бездомную кошку».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i16:audio",
+            "transcript": "She used to feed a stray cat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to feed a stray cat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Раньше у нас был ручной кролик».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Раньше у нас был ручной кролик».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i17:audio",
+            "transcript": "We used to have a tame rabbit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to have a tame rabbit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-48:word:stray",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stray",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:stray:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stray",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:stray:audio",
+            "transcript": "stray"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:stray:r1",
+              "targetText": "stray",
+              "meaningByLocale": {
+                "ru": "Бездомный. Stray здесь описывает домашнее животное, живущее без хозяина или потерявшееся.",
+                "uk": "Безпритульний. Stray тут описує свійську тварину, яка живе без господаря або загубилася."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stray",
+            "definitionByLocale": {
+              "ru": "Бездомный. Stray здесь описывает домашнее животное, живущее без хозяина или потерявшееся.",
+              "uk": "Безпритульний. Stray тут описує свійську тварину, яка живе без господаря або загубилася."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше ми годували безпритульну кішку.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше ми годували безпритульну кішку.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to feed a stray cat.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы кормили бездомную кошку.»",
+            "uk": "Скажіть: «Раніше ми годували безпритульну кішку.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "feed",
+            "a",
+            "stray",
+            "cat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i02:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to feed a stray cat.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i02:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i02:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i02:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i02:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i02:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i03:r1",
+            "text": "We used to feed a stray cat."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i03:r2",
+            "text": "They used to feed a stray cat."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i03:r3",
+            "text": "We used to feed a stray dog."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i03:audio",
+            "transcript": "We used to feed a stray cat."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i03:r1",
+              "targetText": "We used to feed a stray cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i03:r2",
+              "targetText": "They used to feed a stray cat.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i03:r3",
+              "targetText": "We used to feed a stray dog.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to feed a stray cat.",
+                "uk": "У записі звучить We used to feed a stray cat."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to feed a stray cat.",
+                "uk": "У записі звучить We used to feed a stray cat."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:word:tame",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tame",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:tame:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tame",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:tame:audio",
+            "transcript": "tame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:tame:r1",
+              "targetText": "tame",
+              "meaningByLocale": {
+                "ru": "Ручной. Tame — привыкший к человеку и не боящийся его.",
+                "uk": "Ручний. Tame — той, що звик до людини й не боїться її."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tame",
+            "definitionByLocale": {
+              "ru": "Ручной. Tame — привыкший к человеку и не боящийся его.",
+              "uk": "Ручний. Tame — той, що звик до людини й не боїться її."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше в мене був ручний кролик.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше в мене був ручний кролик.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used to have a tame rabbit.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше у меня был ручной кролик.»",
+            "uk": "Скажіть: «Раніше в мене був ручний кролик.»"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "have",
+            "a",
+            "tame",
+            "rabbit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i05:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "I ___ to have a tame rabbit.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i05:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i05:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i05:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i05:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i05:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i06:r1",
+            "text": "I used to have a tame rabbit."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i06:r2",
+            "text": "She used to have a tame rabbit."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i06:r3",
+            "text": "I used to have a tame bird."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i06:audio",
+            "transcript": "I used to have a tame rabbit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i06:r1",
+              "targetText": "I used to have a tame rabbit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i06:r2",
+              "targetText": "She used to have a tame rabbit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i06:r3",
+              "targetText": "I used to have a tame bird.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to have a tame rabbit.",
+                "uk": "У записі звучить I used to have a tame rabbit."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used to have a tame rabbit.",
+                "uk": "У записі звучить I used to have a tame rabbit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:word:paws",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — paws",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:paws:audio"
+        ],
+        "accessibilityLabel": "Картка слова — paws",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:paws:audio",
+            "transcript": "paws"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:paws:r1",
+              "targetText": "paws",
+              "meaningByLocale": {
+                "ru": "Лапы. Paw — лапа животного, например кошки или собаки; paws — множественное число.",
+                "uk": "Лапи. Paw — лапа тварини, наприклад кішки чи собаки; paws — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paws",
+            "definitionByLocale": {
+              "ru": "Лапы. Paw — лапа животного, например кошки или собаки; paws — множественное число.",
+              "uk": "Лапи. Paw — лапа тварини, наприклад кішки чи собаки; paws — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше ми мили собаці лапи.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше ми мили собаці лапи.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to wash the dog's paws.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы мыли собаке лапы.»",
+            "uk": "Скажіть: «Раніше ми мили собаці лапи.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "wash",
+            "the",
+            "dog's",
+            "paws"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i08:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to wash the dog's paws.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i08:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i08:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i08:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i08:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i08:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i09:r1",
+            "text": "We used to wash the dog's paws."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i09:r2",
+            "text": "They used to wash the dog's paws."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i09:r3",
+            "text": "We used to dry the dog's paws."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i09:audio",
+            "transcript": "We used to wash the dog's paws."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i09:r1",
+              "targetText": "We used to wash the dog's paws.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i09:r2",
+              "targetText": "They used to wash the dog's paws.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i09:r3",
+              "targetText": "We used to dry the dog's paws.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to wash the dog's paws.",
+                "uk": "У записі звучить We used to wash the dog's paws."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to wash the dog's paws.",
+                "uk": "У записі звучить We used to wash the dog's paws."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:word:claws",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — claws",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:word:claws:audio"
+        ],
+        "accessibilityLabel": "Картка слова — claws",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:word:claws:audio",
+            "transcript": "claws"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:word:claws:r1",
+              "targetText": "claws",
+              "meaningByLocale": {
+                "ru": "Когти. Claw — коготь; claws — множественное число.",
+                "uk": "Кігті. Claw — кіготь; claws — множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "claws",
+            "definitionByLocale": {
+              "ru": "Когти. Claw — коготь; claws — множественное число.",
+              "uk": "Кігті. Claw — кіготь; claws — множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше кішка гострила кігті надворі.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше кішка гострила кігті надворі.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cat used to sharpen its claws outside.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше кошка точила когти на улице.»",
+            "uk": "Скажіть: «Раніше кішка гострила кігті надворі.»"
+          },
+          "orderedTokens": [
+            "The",
+            "cat",
+            "used",
+            "to",
+            "sharpen",
+            "its",
+            "claws",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i11:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "The cat ___ to sharpen its claws outside.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-48:i11:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i11:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i11:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i11:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i11:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка или состояние: used to + начальная форма.",
+                "uk": "Колишня звичка або стан: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-48:i12:r1",
+            "text": "The cat used to sharpen its claws outside."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i12:r2",
+            "text": "The cat used to sharpen its claws inside."
+          },
+          {
+            "responseId": "en:lesson-25:session-48:i12:r3",
+            "text": "The cat used to sharpen its claws here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i12:audio",
+            "transcript": "The cat used to sharpen its claws outside."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-48:i12:r1",
+              "targetText": "The cat used to sharpen its claws outside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i12:r2",
+              "targetText": "The cat used to sharpen its claws inside.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i12:r3",
+              "targetText": "The cat used to sharpen its claws here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-48:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cat used to sharpen its claws outside.",
+                "uk": "У записі звучить The cat used to sharpen its claws outside."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-48:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cat used to sharpen its claws outside.",
+                "uk": "У записі звучить The cat used to sharpen its claws outside."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-48:i13:p1",
+              "target": "stray",
+              "meaningByLocale": {
+                "ru": "бездомный",
+                "uk": "безпритульний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-48:i13:p2",
+              "target": "tame",
+              "meaningByLocale": {
+                "ru": "ручной",
+                "uk": "ручний"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-48:i13:p3",
+              "target": "paws",
+              "meaningByLocale": {
+                "ru": "лапы",
+                "uk": "лапи"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-48:i13:p4",
+              "target": "claws",
+              "meaningByLocale": {
+                "ru": "когти",
+                "uk": "кігті"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stray",
+            "tame",
+            "paws",
+            "claws"
+          ],
+          "rightColumn": [
+            "безпритульний",
+            "ручний",
+            "лапи",
+            "кігті"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчила до мого дзвінка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчила до мого дзвінка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Раніше їздив машиною",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i15:audio"
+        ],
+        "accessibilityLabel": "Раніше їздив машиною",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i15:audio",
+            "transcript": "I used to drive to work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to drive to work.",
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "drive",
+            "to",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Раніше вона годувала безпритульну кішку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Раніше вона годувала безпритульну кішку».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i16:audio",
+            "transcript": "She used to feed a stray cat."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She used to feed a stray cat.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-48:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Раніше в нас був ручний кролик».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-48:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Раніше в нас був ручний кролик».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-48:i17:audio",
+            "transcript": "We used to have a tame rabbit."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We used to have a tame rabbit.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-48:word:stray",
+      "correctText": "stray",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i01",
+      "correctText": "We used to feed a stray cat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i02",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-48:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i03",
+      "correctText": "We used to feed a stray cat.",
+      "correctResponseId": "en:lesson-25:session-48:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:word:tame",
+      "correctText": "tame",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i04",
+      "correctText": "I used to have a tame rabbit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i05",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-48:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i06",
+      "correctText": "I used to have a tame rabbit.",
+      "correctResponseId": "en:lesson-25:session-48:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:word:paws",
+      "correctText": "paws",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i07",
+      "correctText": "We used to wash the dog's paws.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i08",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-48:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i09",
+      "correctText": "We used to wash the dog's paws.",
+      "correctResponseId": "en:lesson-25:session-48:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:word:claws",
+      "correctText": "claws",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i10",
+      "correctText": "The cat used to sharpen its claws outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i11",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-48:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i12",
+      "correctText": "The cat used to sharpen its claws outside.",
+      "correctResponseId": "en:lesson-25:session-48:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i15",
+      "correctText": "I used to drive to work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i16",
+      "correctText": "She used to feed a stray cat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-48:i17",
+      "correctText": "We used to have a tame rabbit.",
+      "correctResponseId": null
+    }
+  ]
+}

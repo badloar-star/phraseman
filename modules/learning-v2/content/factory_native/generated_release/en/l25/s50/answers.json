@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-50:word:midday",
+    "correctText": "midday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i01",
+    "correctText": "We used to eat at midday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i02",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i03",
+    "correctText": "We used to eat at midday.",
+    "correctResponseId": "en:lesson-25:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:word:mealtimes",
+    "correctText": "mealtimes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i04",
+    "correctText": "We used to talk at mealtimes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i05",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i06",
+    "correctText": "We used to talk at mealtimes.",
+    "correctResponseId": "en:lesson-25:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:word:nightfall",
+    "correctText": "nightfall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i07",
+    "correctText": "We used to get home before nightfall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i08",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i09",
+    "correctText": "We used to get home before nightfall.",
+    "correctResponseId": "en:lesson-25:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:word:instantly",
+    "correctText": "instantly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i10",
+    "correctText": "She used to answer instantly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i11",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-25:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i12",
+    "correctText": "She used to answer instantly.",
+    "correctResponseId": "en:lesson-25:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i13",
+    "correctText": "en:lesson-25:session-50:i13:p1=midday\nen:lesson-25:session-50:i13:p2=mealtimes\nen:lesson-25:session-50:i13:p3=nightfall\nen:lesson-25:session-50:i13:p4=instantly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i15",
+    "correctText": "I used to drive to work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i16",
+    "correctText": "He used to get home before nightfall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-50:i17",
+    "correctText": "I used to answer instantly.",
+    "correctResponseId": null
+  }
+]

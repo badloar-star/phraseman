@@ -9737,4 +9737,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"used to + base verb","uk":"used to + base verb"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 47,
+    sourceFingerprint: "2e3709ea07f84de861473da384675139a8e0762d26417c1626ec930e9629a44b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"used to + base verb","uk":"used to + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 48,
+    sourceFingerprint: "467a18e9f776e7506d4b248c2739d1ad3f798aaf0b0898fd8d1c5e2fe539e150",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"used to + base verb","uk":"used to + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 49,
+    sourceFingerprint: "2a2384376952670f0cad904b1742b3bcb7d33fa7479838a0d7e65b959f55a719",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past perfect; before; by the time + past simple","uk":"past perfect; before; by the time + past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 50,
+    sourceFingerprint: "8725fbf2b0843f2ac62e3d710f022103cb4417a3a7baea40fe3e7476fa0ba9bd",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"used to + base verb","uk":"used to + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
 ]);

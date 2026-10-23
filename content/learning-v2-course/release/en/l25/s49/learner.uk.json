@@ -1,0 +1,1134 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-49:word:humid",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — humid",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:word:humid:audio"
+      ],
+      "accessibilityLabel": "Картка слова — humid",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:word:humid:audio",
+          "transcript": "humid"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:word:humid:r1",
+            "targetText": "humid",
+            "meaningByLocale": {
+              "ru": "Влажный. Humid описывает воздух с большим количеством влаги.",
+              "uk": "Вологий. Humid описує повітря з великою кількістю вологи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "humid",
+          "definitionByLocale": {
+            "ru": "Влажный. Humid описывает воздух с большим количеством влаги.",
+            "uk": "Вологий. Humid описує повітря з великою кількістю вологи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми поїхали з міста до того, як стало волого.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми поїхали з міста до того, як стало волого.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We had left the city before it became humid.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы уехали из города до того, как стало влажно.»",
+          "uk": "Скажіть: «Ми поїхали з міста до того, як стало волого.»"
+        },
+        "orderedTokens": [
+          "We",
+          "had",
+          "left",
+          "the",
+          "city",
+          "before",
+          "it",
+          "became",
+          "humid"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i02:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i02:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i02:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "We ___ left the city before it became humid.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-49:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i02:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i02:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i03:r1",
+          "text": "We had left the city before it became humid."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i03:r2",
+          "text": "They had left the city before it became humid."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i03:r3",
+          "text": "We had left the village before it became humid."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i03:audio",
+          "transcript": "We had left the city before it became humid."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:i03:r1",
+            "targetText": "We had left the city before it became humid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i03:r2",
+            "targetText": "They had left the city before it became humid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i03:r3",
+            "targetText": "We had left the village before it became humid.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had left the city before it became humid.",
+              "uk": "У записі звучить We had left the city before it became humid."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had left the city before it became humid.",
+              "uk": "У записі звучить We had left the city before it became humid."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:word:frosty",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — frosty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:word:frosty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — frosty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:word:frosty:audio",
+          "transcript": "frosty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:word:frosty:r1",
+            "targetText": "frosty",
+            "meaningByLocale": {
+              "ru": "Морозный. Frosty описывает погоду с морозом или поверхность, покрытую инеем.",
+              "uk": "Морозний. Frosty описує погоду з морозом або поверхню, вкриту інеєм."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frosty",
+          "definitionByLocale": {
+            "ru": "Морозный. Frosty описывает погоду с морозом или поверхность, покрытую инеем.",
+            "uk": "Морозний. Frosty описує погоду з морозом або поверхню, вкриту інеєм."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми дісталися додому до того, як стало морозно.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми дісталися додому до того, як стало морозно.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We had reached home before it became frosty.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы добрались домой до того, как стало морозно.»",
+          "uk": "Скажіть: «Ми дісталися додому до того, як стало морозно.»"
+        },
+        "orderedTokens": [
+          "We",
+          "had",
+          "reached",
+          "home",
+          "before",
+          "it",
+          "became",
+          "frosty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i05:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i05:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i05:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "We ___ reached home before it became frosty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-49:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i05:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i06:r1",
+          "text": "We had reached home before it became frosty."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i06:r2",
+          "text": "They had reached home before it became frosty."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i06:r3",
+          "text": "We had reached the hotel before it became frosty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i06:audio",
+          "transcript": "We had reached home before it became frosty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:i06:r1",
+            "targetText": "We had reached home before it became frosty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i06:r2",
+            "targetText": "They had reached home before it became frosty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i06:r3",
+            "targetText": "We had reached the hotel before it became frosty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had reached home before it became frosty.",
+              "uk": "У записі звучить We had reached home before it became frosty."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We had reached home before it became frosty.",
+              "uk": "У записі звучить We had reached home before it became frosty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:word:sleet",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sleet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:word:sleet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sleet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:word:sleet:audio",
+          "transcript": "sleet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:word:sleet:r1",
+            "targetText": "sleet",
+            "meaningByLocale": {
+              "ru": "Дождь со снегом. Sleet здесь — смесь дождя и снега.",
+              "uk": "Дощ зі снігом. Sleet тут — суміш дощу й снігу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleet",
+          "definitionByLocale": {
+            "ru": "Дождь со снегом. Sleet здесь — смесь дождя и снега.",
+            "uk": "Дощ зі снігом. Sleet тут — суміш дощу й снігу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Дощ зі снігом припинився до того, як ми пішли.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Дощ зі снігом припинився до того, як ми пішли.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sleet had stopped before we left.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Дождь со снегом прекратился до того, как мы ушли.»",
+          "uk": "Скажіть: «Дощ зі снігом припинився до того, як ми пішли.»"
+        },
+        "orderedTokens": [
+          "The",
+          "sleet",
+          "had",
+          "stopped",
+          "before",
+          "we",
+          "left"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i08:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "The sleet ___ stopped before we left.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-49:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i09:r1",
+          "text": "The sleet had stopped before we left."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i09:r2",
+          "text": "The sleet had stopped before they left."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i09:r3",
+          "text": "The sleet had stopped before we arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i09:audio",
+          "transcript": "The sleet had stopped before we left."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:i09:r1",
+            "targetText": "The sleet had stopped before we left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i09:r2",
+            "targetText": "The sleet had stopped before they left.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i09:r3",
+            "targetText": "The sleet had stopped before we arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sleet had stopped before we left.",
+              "uk": "У записі звучить The sleet had stopped before we left."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sleet had stopped before we left.",
+              "uk": "У записі звучить The sleet had stopped before we left."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:word:hazy",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hazy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:word:hazy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hazy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:word:hazy:audio",
+          "transcript": "hazy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:word:hazy:r1",
+            "targetText": "hazy",
+            "meaningByLocale": {
+              "ru": "Подёрнутый дымкой. Hazy — неясный из-за дымки; здесь речь о небе.",
+              "uk": "Оповитий серпанком. Hazy — нечіткий через серпанок; тут ідеться про небо."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hazy",
+          "definitionByLocale": {
+            "ru": "Подёрнутый дымкой. Hazy — неясный из-за дымки; здесь речь о небе.",
+            "uk": "Оповитий серпанком. Hazy — нечіткий через серпанок; тут ідеться про небо."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Небо вже затягло серпанком до того моменту, коли ми дісталися пляжу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Небо вже затягло серпанком до того моменту, коли ми дісталися пляжу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The sky had become hazy by the time we reached the beach.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Небо уже затянуло дымкой к тому моменту, когда мы добрались до пляжа.»",
+          "uk": "Скажіть: «Небо вже затягло серпанком до того моменту, коли ми дісталися пляжу.»"
+        },
+        "orderedTokens": [
+          "The",
+          "sky",
+          "had",
+          "become",
+          "hazy",
+          "by",
+          "the",
+          "time",
+          "we",
+          "reached",
+          "the",
+          "beach"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i11:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i11:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i11:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "The sky ___ become hazy by the time we reached the beach.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-49:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i11:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про минуле.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-49:i12:r1",
+          "text": "The sky had become hazy by the time we reached the beach."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i12:r2",
+          "text": "The sky had become hazy by the time they reached the beach."
+        },
+        {
+          "responseId": "en:lesson-25:session-49:i12:r3",
+          "text": "The sky had become hazy by the time we reached the park."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i12:audio",
+          "transcript": "The sky had become hazy by the time we reached the beach."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-49:i12:r1",
+            "targetText": "The sky had become hazy by the time we reached the beach.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i12:r2",
+            "targetText": "The sky had become hazy by the time they reached the beach.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i12:r3",
+            "targetText": "The sky had become hazy by the time we reached the park.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sky had become hazy by the time we reached the beach.",
+              "uk": "У записі звучить The sky had become hazy by the time we reached the beach."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sky had become hazy by the time we reached the beach.",
+              "uk": "У записі звучить The sky had become hazy by the time we reached the beach."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте форми з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте форми з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-49:i13:p1",
+            "target": "humid",
+            "meaningByLocale": {
+              "ru": "влажный",
+              "uk": "вологий"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-49:i13:p2",
+            "target": "frosty",
+            "meaningByLocale": {
+              "ru": "морозный",
+              "uk": "морозний"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-49:i13:p3",
+            "target": "sleet",
+            "meaningByLocale": {
+              "ru": "дождь со снегом",
+              "uk": "дощ зі снігом"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-49:i13:p4",
+            "target": "hazy",
+            "meaningByLocale": {
+              "ru": "подёрнутый дымкой",
+              "uk": "оповитий серпанком"
+            }
+          }
+        ],
+        "leftColumn": [
+          "humid",
+          "frosty",
+          "sleet",
+          "hazy"
+        ],
+        "rightColumn": [
+          "вологий",
+          "морозний",
+          "дощ зі снігом",
+          "оповитий серпанком"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закінчив",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закінчив",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Потяг уже поїхав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Потяг уже поїхав",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i15:audio",
+          "transcript": "The train had left when we arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The train had left when we arrived.",
+        "orderedTokens": [
+          "The",
+          "train",
+          "had",
+          "left",
+          "when",
+          "we",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Дощ зі снігом припинився до того, як вона пішла».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Дощ зі снігом припинився до того, як вона пішла».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i16:audio",
+          "transcript": "The sleet had stopped before she left."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sleet had stopped before she left.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-49:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вони дісталися готелю до того, як стало морозно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вони дісталися готелю до того, як стало морозно».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-49:i17:audio",
+          "transcript": "They had reached the hotel before it became frosty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They had reached the hotel before it became frosty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4ef6b9179352202d3de6a90bc2bb9bd0864820711f235aa9e9e46e585c8248bd"
+}

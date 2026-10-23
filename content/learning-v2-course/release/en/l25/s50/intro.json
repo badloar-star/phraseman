@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ели в полдень",
+        "uk": "Їли опівдні"
+      },
+      "bodyByLocale": {
+        "ru": "Midday — полдень, середина дня. We used to eat at midday — раньше мы ели в полдень. Перед midday в этом сочетании нужен at: at midday. Used to eat описывает прежний распорядок, а не один конкретный обед. После used to ставим eat, не ate. Теперь вы можете есть позже, но здесь вспоминаете прежнюю привычку.",
+        "uk": "Midday — полудень, середина дня. We used to eat at midday — раніше ми їли опівдні. Перед midday у цьому поєднанні потрібен at: at midday. Used to eat описує колишній розпорядок, а не один конкретний обід. Після used to ставимо eat, не ate. Тепер ви можете їсти пізніше, але тут згадуєте колишню звичку."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-50:intro1:r1",
+              "text": "We used to eat at midday."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro1:r2",
+              "text": "We use to eat at midday."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro1:r3",
+              "text": "We using to eat at midday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-50:intro1:r1",
+              "text": "We used to eat at midday."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro1:r2",
+              "text": "We use to eat at midday."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro1:r3",
+              "text": "We using to eat at midday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "За едой и до темноты",
+        "uk": "За їжею й до темряви"
+      },
+      "bodyByLocale": {
+        "ru": "Mealtime — время приёма пищи; mealtimes — такие периоды в течение дня. We used to talk at mealtimes — раньше мы разговаривали во время еды. Nightfall — наступление темноты вечером. We used to get home before nightfall — раньше мы возвращались домой до темноты. Это не фиксированный час: летом и зимой темнеет в разное время. Before nightfall — до темноты, after nightfall — после её наступления.",
+        "uk": "Mealtime — час приймання їжі; mealtimes — такі періоди протягом дня. We used to talk at mealtimes — раніше ми розмовляли під час їжі. Nightfall — настання темряви ввечері. We used to get home before nightfall — раніше ми поверталися додому до темряви. Це не фіксована година: улітку й узимку темнішає в різний час. Before nightfall — до темряви, after nightfall — після її настання."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-50:intro2:r1",
+              "text": "We used to talk at mealtimes."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro2:r2",
+              "text": "We use to talk at mealtimes."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro2:r3",
+              "text": "We using to talk at mealtimes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-50:intro2:r1",
+              "text": "We used to talk at mealtimes."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro2:r2",
+              "text": "We use to talk at mealtimes."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro2:r3",
+              "text": "We using to talk at mealtimes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Отвечала сразу",
+        "uk": "Відповідала одразу"
+      },
+      "bodyByLocale": {
+        "ru": "Instantly — мгновенно, без заметной задержки. She used to answer instantly — раньше она отвечала мгновенно. Например, вы задавали вопрос, а она сразу отвечала. Instantly описывает скорость ответа; used to показывает, что это повторялось раньше. Слово instantly стоит после answer. В этом предложении после used to нужна начальная форма answer, а не answered.",
+        "uk": "Instantly — миттєво, без помітної затримки. She used to answer instantly — раніше вона відповідала миттєво. Наприклад, ви ставили запитання, а вона одразу відповідала. Instantly описує швидкість відповіді; used to показує, що це повторювалося раніше. Слово instantly стоїть після answer. У цьому реченні після used to потрібна початкова форма answer, а не answered."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-50:intro3:r1",
+              "text": "She used to answer instantly."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro3:r2",
+              "text": "She use to answer instantly."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro3:r3",
+              "text": "She using to answer instantly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-50:intro3:r1",
+              "text": "She used to answer instantly."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro3:r2",
+              "text": "She use to answer instantly."
+            },
+            {
+              "responseId": "en:lesson-25:session-50:intro3:r3",
+              "text": "She using to answer instantly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "97168c0f962e9c6af4aa940127713b382ef929273bff3a1586600bc688ae255d"
+}

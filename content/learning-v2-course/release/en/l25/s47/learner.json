@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-47:word:alert",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alert",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:word:alert:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alert",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:word:alert:audio",
+          "transcript": "alert"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:word:alert:r1",
+            "targetText": "alert",
+            "meaningByLocale": {
+              "ru": "Бдительный. Alert — внимательный к происходящему и готовый заметить опасность.",
+              "uk": "Пильний. Alert — уважний до того, що відбувається, і готовий помітити небезпеку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alert",
+          "definitionByLocale": {
+            "ru": "Бдительный. Alert — внимательный к происходящему и готовый заметить опасность.",
+            "uk": "Пильний. Alert — уважний до того, що відбувається, і готовий помітити небезпеку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше я оставался бдительным ночью.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше я оставался бдительным ночью.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to stay alert at night.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше я оставался бдительным ночью.»",
+          "uk": "Скажіть: «Раніше я залишався пильним уночі.»"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "stay",
+          "alert",
+          "at",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i02:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i02:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i02:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "I ___ to stay alert at night.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-47:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i02:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i03:r1",
+          "text": "I used to stay alert at night."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i03:r2",
+          "text": "She used to stay alert at night."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i03:r3",
+          "text": "I used to stay alert at work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i03:audio",
+          "transcript": "I used to stay alert at night."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:i03:r1",
+            "targetText": "I used to stay alert at night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i03:r2",
+            "targetText": "She used to stay alert at night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i03:r3",
+            "targetText": "I used to stay alert at work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to stay alert at night.",
+              "uk": "У записі звучить I used to stay alert at night."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to stay alert at night.",
+              "uk": "У записі звучить I used to stay alert at night."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:word:mature",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mature",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:word:mature:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mature",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:word:mature:audio",
+          "transcript": "mature"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:word:mature:r1",
+            "targetText": "mature",
+            "meaningByLocale": {
+              "ru": "Зрелый. Mature здесь — разумный и ответственный в поведении.",
+              "uk": "Зрілий. Mature тут — розсудливий і відповідальний у поведінці."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mature",
+          "definitionByLocale": {
+            "ru": "Зрелый. Mature здесь — разумный и ответственный в поведении.",
+            "uk": "Зрілий. Mature тут — розсудливий і відповідальний у поведінці."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше она казалась зрелой для своего возраста.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше она казалась зрелой для своего возраста.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She used to seem mature for her age.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше она казалась зрелой для своего возраста.»",
+          "uk": "Скажіть: «Раніше вона здавалася зрілою як на свій вік.»"
+        },
+        "orderedTokens": [
+          "She",
+          "used",
+          "to",
+          "seem",
+          "mature",
+          "for",
+          "her",
+          "age"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i05:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i05:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i05:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "She ___ to seem mature for her age.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-47:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i05:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i06:r1",
+          "text": "She used to seem mature for her age."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i06:r2",
+          "text": "He used to seem mature for his age."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i06:r3",
+          "text": "She used to seem mature at school."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i06:audio",
+          "transcript": "She used to seem mature for her age."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:i06:r1",
+            "targetText": "She used to seem mature for her age.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i06:r2",
+            "targetText": "He used to seem mature for his age.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i06:r3",
+            "targetText": "She used to seem mature at school.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to seem mature for her age.",
+              "uk": "У записі звучить She used to seem mature for her age."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to seem mature for her age.",
+              "uk": "У записі звучить She used to seem mature for her age."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:word:immature",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — immature",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:word:immature:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — immature",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:word:immature:audio",
+          "transcript": "immature"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:word:immature:r1",
+            "targetText": "immature",
+            "meaningByLocale": {
+              "ru": "Незрелый. Immature здесь — ведущий себя по-детски, недостаточно ответственно.",
+              "uk": "Незрілий. Immature тут — той, хто поводиться по-дитячому, недостатньо відповідально."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "immature",
+          "definitionByLocale": {
+            "ru": "Незрелый. Immature здесь — ведущий себя по-детски, недостаточно ответственно.",
+            "uk": "Незрілий. Immature тут — той, хто поводиться по-дитячому, недостатньо відповідально."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «В школе он был незрелым.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «В школе он был незрелым.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He used to be immature at school.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В школе он был незрелым.»",
+          "uk": "Скажіть: «У школі він був незрілим.»"
+        },
+        "orderedTokens": [
+          "He",
+          "used",
+          "to",
+          "be",
+          "immature",
+          "at",
+          "school"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i08:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i08:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i08:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "He ___ to be immature at school.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-47:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i08:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i09:r1",
+          "text": "He used to be immature at school."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i09:r2",
+          "text": "She used to be immature at school."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i09:r3",
+          "text": "He used to be immature at work."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i09:audio",
+          "transcript": "He used to be immature at school."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:i09:r1",
+            "targetText": "He used to be immature at school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i09:r2",
+            "targetText": "She used to be immature at school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i09:r3",
+            "targetText": "He used to be immature at work.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used to be immature at school.",
+              "uk": "У записі звучить He used to be immature at school."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used to be immature at school.",
+              "uk": "У записі звучить He used to be immature at school."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:word:tolerant",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tolerant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:word:tolerant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tolerant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:word:tolerant:audio",
+          "transcript": "tolerant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:word:tolerant:r1",
+            "targetText": "tolerant",
+            "meaningByLocale": {
+              "ru": "Терпимый. Tolerant — спокойно принимающий то, что отличается от его привычек или предпочтений.",
+              "uk": "Терпимий. Tolerant — той, хто спокійно сприймає те, що відрізняється від його звичок чи вподобань."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tolerant",
+          "definitionByLocale": {
+            "ru": "Терпимый. Tolerant — спокойно принимающий то, что отличается от его привычек или предпочтений.",
+            "uk": "Терпимий. Tolerant — той, хто спокійно сприймає те, що відрізняється від його звичок чи вподобань."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше я был менее терпимым к шуму.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше я был менее терпимым к шуму.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to be less tolerant of noise.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше я был менее терпимым к шуму.»",
+          "uk": "Скажіть: «Раніше я був менш терпимим до шуму.»"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "be",
+          "less",
+          "tolerant",
+          "of",
+          "noise"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, как было раньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i11:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i11:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i11:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, как было раньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, как было раньше.",
+          "uk": "Пригадайте, як було раніше."
+        },
+        "gappedTargetPhrase": "I ___ to be less tolerant of noise.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-47:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i11:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Вспомните, как было раньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, как было раньше.",
+            "feedbackByLocale": {
+              "ru": "Прежнее состояние или привычка: used to + начальная форма.",
+              "uk": "Колишній стан або звичка: used to + початкова форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-47:i12:r1",
+          "text": "I used to be less tolerant of noise."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i12:r2",
+          "text": "She used to be less tolerant of noise."
+        },
+        {
+          "responseId": "en:lesson-25:session-47:i12:r3",
+          "text": "I used to be more tolerant of noise."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i12:audio",
+          "transcript": "I used to be less tolerant of noise."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-47:i12:r1",
+            "targetText": "I used to be less tolerant of noise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i12:r2",
+            "targetText": "She used to be less tolerant of noise.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i12:r3",
+            "targetText": "I used to be more tolerant of noise.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be less tolerant of noise.",
+              "uk": "У записі звучить I used to be less tolerant of noise."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to be less tolerant of noise.",
+              "uk": "У записі звучить I used to be less tolerant of noise."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-47:i13:p1",
+            "target": "alert",
+            "meaningByLocale": {
+              "ru": "бдительный",
+              "uk": "пильний"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-47:i13:p2",
+            "target": "mature",
+            "meaningByLocale": {
+              "ru": "зрелый",
+              "uk": "зрілий"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-47:i13:p3",
+            "target": "immature",
+            "meaningByLocale": {
+              "ru": "незрелый",
+              "uk": "незрілий"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-47:i13:p4",
+            "target": "tolerant",
+            "meaningByLocale": {
+              "ru": "терпимый",
+              "uk": "терпимий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "alert",
+          "mature",
+          "immature",
+          "tolerant"
+        ],
+        "rightColumn": [
+          "бдительный",
+          "зрелый",
+          "незрелый",
+          "терпимый"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закончила к моему звонку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закончила к моему звонку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раньше ездил на машине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Раньше ездил на машине",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i15:audio",
+          "transcript": "I used to drive to work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I used to drive to work.",
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "drive",
+          "to",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Раньше мы были более терпимыми к шуму».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Раньше мы были более терпимыми к шуму».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i16:audio",
+          "transcript": "We used to be more tolerant of noise."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We used to be more tolerant of noise.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Раньше он сохранял бдительность ночью».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Раньше он сохранял бдительность ночью».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-47:i17:audio",
+          "transcript": "He used to stay alert at night."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He used to stay alert at night.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4503747432ed7e4fce3b50ab466bbf8815f273ca5cc49e951321d03d67626c76"
+}

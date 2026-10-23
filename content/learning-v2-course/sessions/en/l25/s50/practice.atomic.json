@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-50:word:midday",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — midday",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:midday:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — midday",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:midday:audio",
+            "transcript": "midday"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:midday:r1",
+              "targetText": "midday",
+              "meaningByLocale": {
+                "ru": "Полдень. Midday — середина дня, обычно около двенадцати часов.",
+                "uk": "Полудень. Midday — середина дня, зазвичай близько дванадцятої години."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "midday",
+            "definitionByLocale": {
+              "ru": "Полдень. Midday — середина дня, обычно около двенадцати часов.",
+              "uk": "Полудень. Midday — середина дня, зазвичай близько дванадцятої години."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше мы ели в полдень.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше мы ели в полдень.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to eat at midday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы ели в полдень.»",
+            "uk": "Скажіть: «Раніше ми їли опівдні.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "eat",
+            "at",
+            "midday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i02:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to eat at midday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i02:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i02:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i02:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i03:r1",
+            "text": "We used to eat at midday."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i03:r2",
+            "text": "They used to eat at midday."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i03:r3",
+            "text": "We used to meet at midday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i03:audio",
+            "transcript": "We used to eat at midday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i03:r1",
+              "targetText": "We used to eat at midday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i03:r2",
+              "targetText": "They used to eat at midday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i03:r3",
+              "targetText": "We used to meet at midday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to eat at midday.",
+                "uk": "У записі звучить We used to eat at midday."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to eat at midday.",
+                "uk": "У записі звучить We used to eat at midday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:word:mealtimes",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mealtimes",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:mealtimes:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mealtimes",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:mealtimes:audio",
+            "transcript": "mealtimes"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:mealtimes:r1",
+              "targetText": "mealtimes",
+              "meaningByLocale": {
+                "ru": "Время приёма пищи. Mealtime — время еды; mealtimes — несколько таких периодов.",
+                "uk": "Час приймання їжі. Mealtime — час їжі; mealtimes — кілька таких періодів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mealtimes",
+            "definitionByLocale": {
+              "ru": "Время приёма пищи. Mealtime — время еды; mealtimes — несколько таких периодов.",
+              "uk": "Час приймання їжі. Mealtime — час їжі; mealtimes — кілька таких періодів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше мы разговаривали во время еды.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше мы разговаривали во время еды.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to talk at mealtimes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы разговаривали во время еды.»",
+            "uk": "Скажіть: «Раніше ми розмовляли під час їжі.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "talk",
+            "at",
+            "mealtimes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i05:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to talk at mealtimes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i05:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i05:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i05:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i06:r1",
+            "text": "We used to talk at mealtimes."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i06:r2",
+            "text": "They used to talk at mealtimes."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i06:r3",
+            "text": "We used to laugh at mealtimes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i06:audio",
+            "transcript": "We used to talk at mealtimes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i06:r1",
+              "targetText": "We used to talk at mealtimes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i06:r2",
+              "targetText": "They used to talk at mealtimes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i06:r3",
+              "targetText": "We used to laugh at mealtimes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to talk at mealtimes.",
+                "uk": "У записі звучить We used to talk at mealtimes."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to talk at mealtimes.",
+                "uk": "У записі звучить We used to talk at mealtimes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:word:nightfall",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — nightfall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:nightfall:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — nightfall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:nightfall:audio",
+            "transcript": "nightfall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:nightfall:r1",
+              "targetText": "nightfall",
+              "meaningByLocale": {
+                "ru": "Наступление темноты. Nightfall — время, когда вечером становится темно.",
+                "uk": "Настання темряви. Nightfall — час, коли ввечері стає темно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nightfall",
+            "definitionByLocale": {
+              "ru": "Наступление темноты. Nightfall — время, когда вечером становится темно.",
+              "uk": "Настання темряви. Nightfall — час, коли ввечері стає темно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше мы возвращались домой до наступления темноты.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше мы возвращались домой до наступления темноты.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to get home before nightfall.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы возвращались домой до наступления темноты.»",
+            "uk": "Скажіть: «Раніше ми поверталися додому до настання темряви.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "get",
+            "home",
+            "before",
+            "nightfall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i08:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to get home before nightfall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i08:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i08:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i08:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i09:r1",
+            "text": "We used to get home before nightfall."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i09:r2",
+            "text": "They used to get home before nightfall."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i09:r3",
+            "text": "We used to get home after nightfall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i09:audio",
+            "transcript": "We used to get home before nightfall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i09:r1",
+              "targetText": "We used to get home before nightfall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i09:r2",
+              "targetText": "They used to get home before nightfall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i09:r3",
+              "targetText": "We used to get home after nightfall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to get home before nightfall.",
+                "uk": "У записі звучить We used to get home before nightfall."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to get home before nightfall.",
+                "uk": "У записі звучить We used to get home before nightfall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:word:instantly",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — instantly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:instantly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — instantly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:instantly:audio",
+            "transcript": "instantly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:instantly:r1",
+              "targetText": "instantly",
+              "meaningByLocale": {
+                "ru": "Мгновенно. Instantly — сразу, без заметной задержки.",
+                "uk": "Миттєво. Instantly — одразу, без помітної затримки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "instantly",
+            "definitionByLocale": {
+              "ru": "Мгновенно. Instantly — сразу, без заметной задержки.",
+              "uk": "Миттєво. Instantly — одразу, без помітної затримки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Раньше она отвечала мгновенно.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Раньше она отвечала мгновенно.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to answer instantly.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она отвечала мгновенно.»",
+            "uk": "Скажіть: «Раніше вона відповідала миттєво.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "answer",
+            "instantly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вспомните, как было раньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i11:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вспомните, как было раньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "She ___ to answer instantly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i11:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i11:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i11:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Вспомните, как было раньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Вспомните, как было раньше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i12:r1",
+            "text": "She used to answer instantly."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i12:r2",
+            "text": "He used to answer instantly."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i12:r3",
+            "text": "She used to reply instantly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i12:audio",
+            "transcript": "She used to answer instantly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i12:r1",
+              "targetText": "She used to answer instantly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i12:r2",
+              "targetText": "He used to answer instantly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i12:r3",
+              "targetText": "She used to reply instantly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to answer instantly.",
+                "uk": "У записі звучить She used to answer instantly."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to answer instantly.",
+                "uk": "У записі звучить She used to answer instantly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-50:i13:p1",
+              "target": "midday",
+              "meaningByLocale": {
+                "ru": "полдень",
+                "uk": "полудень"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-50:i13:p2",
+              "target": "mealtimes",
+              "meaningByLocale": {
+                "ru": "время приёма пищи",
+                "uk": "час приймання їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-50:i13:p3",
+              "target": "nightfall",
+              "meaningByLocale": {
+                "ru": "наступление темноты",
+                "uk": "настання темряви"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-50:i13:p4",
+              "target": "instantly",
+              "meaningByLocale": {
+                "ru": "мгновенно",
+                "uk": "миттєво"
+              }
+            }
+          ],
+          "leftColumn": [
+            "midday",
+            "mealtimes",
+            "nightfall",
+            "instantly"
+          ],
+          "rightColumn": [
+            "полдень",
+            "время приёма пищи",
+            "наступление темноты",
+            "мгновенно"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончила к моему звонку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончила к моему звонку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Раньше ездил на машине",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Раньше ездил на машине",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i15:audio",
+            "transcript": "I used to drive to work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to drive to work.",
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "drive",
+            "to",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Раньше он возвращался домой до наступления темноты».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Раньше он возвращался домой до наступления темноты».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i16:audio",
+            "transcript": "He used to get home before nightfall."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He used to get home before nightfall.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Раньше я отвечал мгновенно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Раньше я отвечал мгновенно».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i17:audio",
+            "transcript": "I used to answer instantly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used to answer instantly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-50:word:midday",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — midday",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:midday:audio"
+        ],
+        "accessibilityLabel": "Картка слова — midday",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:midday:audio",
+            "transcript": "midday"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:midday:r1",
+              "targetText": "midday",
+              "meaningByLocale": {
+                "ru": "Полдень. Midday — середина дня, обычно около двенадцати часов.",
+                "uk": "Полудень. Midday — середина дня, зазвичай близько дванадцятої години."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "midday",
+            "definitionByLocale": {
+              "ru": "Полдень. Midday — середина дня, обычно около двенадцати часов.",
+              "uk": "Полудень. Midday — середина дня, зазвичай близько дванадцятої години."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше ми їли опівдні.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше ми їли опівдні.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to eat at midday.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы ели в полдень.»",
+            "uk": "Скажіть: «Раніше ми їли опівдні.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "eat",
+            "at",
+            "midday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i02:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i02:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i02:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to eat at midday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i02:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i02:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i02:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i03:r1",
+            "text": "We used to eat at midday."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i03:r2",
+            "text": "They used to eat at midday."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i03:r3",
+            "text": "We used to meet at midday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i03:audio",
+            "transcript": "We used to eat at midday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i03:r1",
+              "targetText": "We used to eat at midday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i03:r2",
+              "targetText": "They used to eat at midday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i03:r3",
+              "targetText": "We used to meet at midday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to eat at midday.",
+                "uk": "У записі звучить We used to eat at midday."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to eat at midday.",
+                "uk": "У записі звучить We used to eat at midday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:word:mealtimes",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mealtimes",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:mealtimes:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mealtimes",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:mealtimes:audio",
+            "transcript": "mealtimes"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:mealtimes:r1",
+              "targetText": "mealtimes",
+              "meaningByLocale": {
+                "ru": "Время приёма пищи. Mealtime — время еды; mealtimes — несколько таких периодов.",
+                "uk": "Час приймання їжі. Mealtime — час їжі; mealtimes — кілька таких періодів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mealtimes",
+            "definitionByLocale": {
+              "ru": "Время приёма пищи. Mealtime — время еды; mealtimes — несколько таких периодов.",
+              "uk": "Час приймання їжі. Mealtime — час їжі; mealtimes — кілька таких періодів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше ми розмовляли під час їжі.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше ми розмовляли під час їжі.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to talk at mealtimes.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы разговаривали во время еды.»",
+            "uk": "Скажіть: «Раніше ми розмовляли під час їжі.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "talk",
+            "at",
+            "mealtimes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i05:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i05:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i05:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to talk at mealtimes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i05:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i05:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i05:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i06:r1",
+            "text": "We used to talk at mealtimes."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i06:r2",
+            "text": "They used to talk at mealtimes."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i06:r3",
+            "text": "We used to laugh at mealtimes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i06:audio",
+            "transcript": "We used to talk at mealtimes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i06:r1",
+              "targetText": "We used to talk at mealtimes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i06:r2",
+              "targetText": "They used to talk at mealtimes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i06:r3",
+              "targetText": "We used to laugh at mealtimes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to talk at mealtimes.",
+                "uk": "У записі звучить We used to talk at mealtimes."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to talk at mealtimes.",
+                "uk": "У записі звучить We used to talk at mealtimes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:word:nightfall",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — nightfall",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:nightfall:audio"
+        ],
+        "accessibilityLabel": "Картка слова — nightfall",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:nightfall:audio",
+            "transcript": "nightfall"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:nightfall:r1",
+              "targetText": "nightfall",
+              "meaningByLocale": {
+                "ru": "Наступление темноты. Nightfall — время, когда вечером становится темно.",
+                "uk": "Настання темряви. Nightfall — час, коли ввечері стає темно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "nightfall",
+            "definitionByLocale": {
+              "ru": "Наступление темноты. Nightfall — время, когда вечером становится темно.",
+              "uk": "Настання темряви. Nightfall — час, коли ввечері стає темно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше ми поверталися додому до настання темряви.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше ми поверталися додому до настання темряви.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used to get home before nightfall.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше мы возвращались домой до наступления темноты.»",
+            "uk": "Скажіть: «Раніше ми поверталися додому до настання темряви.»"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "to",
+            "get",
+            "home",
+            "before",
+            "nightfall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i08:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i08:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i08:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "We ___ to get home before nightfall.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i08:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i08:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i08:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i09:r1",
+            "text": "We used to get home before nightfall."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i09:r2",
+            "text": "They used to get home before nightfall."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i09:r3",
+            "text": "We used to get home after nightfall."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i09:audio",
+            "transcript": "We used to get home before nightfall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i09:r1",
+              "targetText": "We used to get home before nightfall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i09:r2",
+              "targetText": "They used to get home before nightfall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i09:r3",
+              "targetText": "We used to get home after nightfall.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to get home before nightfall.",
+                "uk": "У записі звучить We used to get home before nightfall."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We used to get home before nightfall.",
+                "uk": "У записі звучить We used to get home before nightfall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:word:instantly",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — instantly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:word:instantly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — instantly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:word:instantly:audio",
+            "transcript": "instantly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:word:instantly:r1",
+              "targetText": "instantly",
+              "meaningByLocale": {
+                "ru": "Мгновенно. Instantly — сразу, без заметной задержки.",
+                "uk": "Миттєво. Instantly — одразу, без помітної затримки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "instantly",
+            "definitionByLocale": {
+              "ru": "Мгновенно. Instantly — сразу, без заметной задержки.",
+              "uk": "Миттєво. Instantly — одразу, без помітної затримки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Раніше вона відповідала миттєво.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Раніше вона відповідала миттєво.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She used to answer instantly.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Раньше она отвечала мгновенно.»",
+            "uk": "Скажіть: «Раніше вона відповідала миттєво.»"
+          },
+          "orderedTokens": [
+            "She",
+            "used",
+            "to",
+            "answer",
+            "instantly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Пригадайте, як було раніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i11:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i11:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i11:r3",
+            "text": "using"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пригадайте, як було раніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вспомните, как было раньше.",
+            "uk": "Пригадайте, як було раніше."
+          },
+          "gappedTargetPhrase": "She ___ to answer instantly.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-50:i11:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i11:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i11:r3",
+              "text": "using"
+            }
+          ],
+          "testedDimension": "Пригадайте, як було раніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Пригадайте, як було раніше.",
+              "feedbackByLocale": {
+                "ru": "Прежняя привычка: used to + начальная форма.",
+                "uk": "Колишня звичка: used to + початкова форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-50:i12:r1",
+            "text": "She used to answer instantly."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i12:r2",
+            "text": "He used to answer instantly."
+          },
+          {
+            "responseId": "en:lesson-25:session-50:i12:r3",
+            "text": "She used to reply instantly."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i12:audio",
+            "transcript": "She used to answer instantly."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-50:i12:r1",
+              "targetText": "She used to answer instantly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i12:r2",
+              "targetText": "He used to answer instantly.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i12:r3",
+              "targetText": "She used to reply instantly.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to answer instantly.",
+                "uk": "У записі звучить She used to answer instantly."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She used to answer instantly.",
+                "uk": "У записі звучить She used to answer instantly."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-50:i13:p1",
+              "target": "midday",
+              "meaningByLocale": {
+                "ru": "полдень",
+                "uk": "полудень"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-50:i13:p2",
+              "target": "mealtimes",
+              "meaningByLocale": {
+                "ru": "время приёма пищи",
+                "uk": "час приймання їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-50:i13:p3",
+              "target": "nightfall",
+              "meaningByLocale": {
+                "ru": "наступление темноты",
+                "uk": "настання темряви"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-50:i13:p4",
+              "target": "instantly",
+              "meaningByLocale": {
+                "ru": "мгновенно",
+                "uk": "миттєво"
+              }
+            }
+          ],
+          "leftColumn": [
+            "midday",
+            "mealtimes",
+            "nightfall",
+            "instantly"
+          ],
+          "rightColumn": [
+            "полудень",
+            "час приймання їжі",
+            "настання темряви",
+            "миттєво"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчила до мого дзвінка",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчила до мого дзвінка",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Раніше їздив машиною",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Раніше їздив машиною",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i15:audio",
+            "transcript": "I used to drive to work."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I used to drive to work.",
+          "orderedTokens": [
+            "I",
+            "used",
+            "to",
+            "drive",
+            "to",
+            "work"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Раніше він повертався додому до настання темряви».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Раніше він повертався додому до настання темряви».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i16:audio",
+            "transcript": "He used to get home before nightfall."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He used to get home before nightfall.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Раніше я відповідав миттєво».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Раніше я відповідав миттєво».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-50:i17:audio",
+            "transcript": "I used to answer instantly."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used to answer instantly.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-50:word:midday",
+      "correctText": "midday",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i01",
+      "correctText": "We used to eat at midday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i02",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i03",
+      "correctText": "We used to eat at midday.",
+      "correctResponseId": "en:lesson-25:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:word:mealtimes",
+      "correctText": "mealtimes",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i04",
+      "correctText": "We used to talk at mealtimes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i05",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-50:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i06",
+      "correctText": "We used to talk at mealtimes.",
+      "correctResponseId": "en:lesson-25:session-50:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:word:nightfall",
+      "correctText": "nightfall",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i07",
+      "correctText": "We used to get home before nightfall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i08",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i09",
+      "correctText": "We used to get home before nightfall.",
+      "correctResponseId": "en:lesson-25:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:word:instantly",
+      "correctText": "instantly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i10",
+      "correctText": "She used to answer instantly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i11",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-25:session-50:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i12",
+      "correctText": "She used to answer instantly.",
+      "correctResponseId": "en:lesson-25:session-50:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i15",
+      "correctText": "I used to drive to work.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i16",
+      "correctText": "He used to get home before nightfall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-50:i17",
+      "correctText": "I used to answer instantly.",
+      "correctResponseId": null
+    }
+  ]
+}

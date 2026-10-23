@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect; before; by the time + past simple",
+    "uk": "past perfect; before; by the time + past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уехали до перемены погоды",
+        "uk": "Поїхали до зміни погоди"
+      },
+      "bodyByLocale": {
+        "ru": "Humid — влажный, когда речь о воздухе. We had left the city before it became humid — мы уехали из города до того, как стало влажно. Сначала уехали, затем погода изменилась. Had left отмечает более раннее действие. Humid не значит, что обязательно шёл дождь: в воздухе может быть много влаги и без дождя.",
+        "uk": "Humid — вологий, коли йдеться про повітря. We had left the city before it became humid — ми поїхали з міста до того, як стало волого. Спочатку поїхали, потім погода змінилася. Had left позначає ранішу дію. Humid не означає, що обов’язково йшов дощ: у повітрі може бути багато вологи й без дощу."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-49:intro1:r1",
+              "text": "We had left the city before it became humid."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro1:r2",
+              "text": "We have left the city before it became humid."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro1:r3",
+              "text": "We were left the city before it became humid."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-49:intro1:r1",
+              "text": "We had left the city before it became humid."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro1:r2",
+              "text": "We have left the city before it became humid."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro1:r3",
+              "text": "We were left the city before it became humid."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Домой до мороза",
+        "uk": "Додому до морозу"
+      },
+      "bodyByLocale": {
+        "ru": "Frosty — морозный. We had reached home before it became frosty — мы добрались домой до наступления мороза. Sleet здесь — дождь со снегом. The sleet had stopped before we left — дождь со снегом прекратился до нашего выхода. В первом примере раньше закончилась дорога домой, во втором — осадки. Для более раннего события используем had + третья форма: had reached, had stopped.",
+        "uk": "Frosty — морозний. We had reached home before it became frosty — ми дісталися додому до настання морозу. Sleet тут — дощ зі снігом. The sleet had stopped before we left — дощ зі снігом припинився до нашого виходу. У першому прикладі раніше закінчилася дорога додому, у другому — опади. Для ранішої події використовуємо had + третя форма: had reached, had stopped."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-49:intro2:r1",
+              "text": "We had reached home before it became frosty."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro2:r2",
+              "text": "We have reached home before it became frosty."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro2:r3",
+              "text": "We were reached home before it became frosty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-49:intro2:r1",
+              "text": "We had reached home before it became frosty."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro2:r2",
+              "text": "We have reached home before it became frosty."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro2:r3",
+              "text": "We were reached home before it became frosty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Небо в дымке",
+        "uk": "Небо в серпанку"
+      },
+      "bodyByLocale": {
+        "ru": "Hazy — подёрнутый дымкой, не вполне ясный. The sky had become hazy by the time we reached the beach — небо уже затянуло дымкой к тому моменту, когда мы добрались до пляжа. Had become описывает изменение, которое уже произошло к нашему приходу. Become — третья форма глагола become; после had не ставим became. By the time we reached the beach задаёт более поздний момент.",
+        "uk": "Hazy — оповитий серпанком, не зовсім ясний. The sky had become hazy by the time we reached the beach — небо вже затягло серпанком до того моменту, коли ми дісталися пляжу. Had become описує зміну, яка вже сталася до нашого приходу. Become — третя форма дієслова become; після had не ставимо became. By the time we reached the beach задає пізніший момент."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-49:intro3:r1",
+              "text": "The sky had become hazy by the time we reached the beach."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro3:r2",
+              "text": "The sky has become hazy by the time we reached the beach."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro3:r3",
+              "text": "The sky was become hazy by the time we reached the beach."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-49:intro3:r1",
+              "text": "The sky had become hazy by the time we reached the beach."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro3:r2",
+              "text": "The sky has become hazy by the time we reached the beach."
+            },
+            {
+              "responseId": "en:lesson-25:session-49:intro3:r3",
+              "text": "The sky was become hazy by the time we reached the beach."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a29e8dfa88fdf1fc8bb92807fce6a6dd603e04d6aa62ad5a1eabc6873124fa58"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-02:intro1:r2": {
+          "ru": "После used to нужна форма do.",
+          "uk": "Після used to потрібна форма do."
+        },
+        "en:lesson-25:session-02:intro1:r3": {
+          "ru": "После used to используем do без ing.",
+          "uk": "Після used to використовуємо do без ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-02:intro2:r2": {
+          "ru": "После used to нужно practise.",
+          "uk": "Після used to потрібно practise."
+        },
+        "en:lesson-25:session-02:intro2:r3": {
+          "ru": "Здесь нужна базовая форма practise.",
+          "uk": "Тут потрібна базова форма practise."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-02:intro3:r2": {
+          "ru": "После used to нужно study.",
+          "uk": "Після used to потрібно study."
+        },
+        "en:lesson-25:session-02:intro3:r3": {
+          "ru": "Здесь нужна базовая форма study.",
+          "uk": "Тут потрібна базова форма study."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e09d9dd3c8ab9c1964f49840fbf9e39d27b09ad174ebd53bab40c71685a62d7b"
+}

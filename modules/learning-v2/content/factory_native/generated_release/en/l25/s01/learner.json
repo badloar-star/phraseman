@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-01:word:bungalow",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bungalow",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:word:bungalow:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bungalow",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:word:bungalow:audio",
+          "transcript": "bungalow"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:word:bungalow:r1",
+            "targetText": "bungalow",
+            "meaningByLocale": {
+              "ru": "одноэтажный дом.",
+              "uk": "одноповерховий будинок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bungalow",
+          "definitionByLocale": {
+            "ru": "одноэтажный дом.",
+            "uk": "одноповерховий будинок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше я жил в одноэтажном доме.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше я жил в одноэтажном доме.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used to live in a bungalow.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше я жил в одноэтажном доме.»",
+          "uk": "Скажіть: «Раніше я жив в одноповерховому будинку.»"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "to",
+          "live",
+          "in",
+          "a",
+          "bungalow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните воспоминание.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i02:r1",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i02:r2",
+          "text": "lived"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i02:r3",
+          "text": "living"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните воспоминание.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "I used to ___ in a bungalow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-01:i02:r1",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i02:r2",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i02:r3",
+            "text": "living"
+          }
+        ],
+        "testedDimension": "Дополните воспоминание.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма live.",
+              "uk": "Після used to потрібна форма live."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма live.",
+              "uk": "Після used to потрібна форма live."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i03:r1",
+          "text": "I used to live in a bungalow."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i03:r2",
+          "text": "We used to live in a bungalow."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i03:r3",
+          "text": "I used to stay in a bungalow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i03:audio",
+          "transcript": "I used to live in a bungalow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:i03:r1",
+            "targetText": "I used to live in a bungalow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i03:r2",
+            "targetText": "We used to live in a bungalow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i03:r3",
+            "targetText": "I used to stay in a bungalow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to live in a bungalow.",
+              "uk": "У записі звучить I used to live in a bungalow."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used to live in a bungalow.",
+              "uk": "У записі звучить I used to live in a bungalow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:word:estate",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — estate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:word:estate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — estate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:word:estate:audio",
+          "transcript": "estate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:word:estate:r1",
+            "targetText": "estate",
+            "meaningByLocale": {
+              "ru": "жилой массив.",
+              "uk": "житловий масив."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "estate",
+          "definitionByLocale": {
+            "ru": "жилой массив.",
+            "uk": "житловий масив."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше она играла в этом жилом массиве.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше она играла в этом жилом массиве.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She used to play on this estate.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше она играла в этом жилом массиве.»",
+          "uk": "Скажіть: «Раніше вона гралася в цьому житловому масиві.»"
+        },
+        "orderedTokens": [
+          "She",
+          "used",
+          "to",
+          "play",
+          "on",
+          "this",
+          "estate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните воспоминание.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i05:r1",
+          "text": "play"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i05:r2",
+          "text": "played"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i05:r3",
+          "text": "playing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните воспоминание.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "She used to ___ on this estate.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-01:i05:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i05:r2",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i05:r3",
+            "text": "playing"
+          }
+        ],
+        "testedDimension": "Дополните воспоминание.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма play.",
+              "uk": "Після used to потрібна форма play."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма play.",
+              "uk": "Після used to потрібна форма play."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i06:r1",
+          "text": "She used to play on this estate."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i06:r2",
+          "text": "He used to play on this estate."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i06:r3",
+          "text": "She used to live on this estate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i06:audio",
+          "transcript": "She used to play on this estate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:i06:r1",
+            "targetText": "She used to play on this estate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i06:r2",
+            "targetText": "He used to play on this estate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i06:r3",
+            "targetText": "She used to live on this estate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to play on this estate.",
+              "uk": "У записі звучить She used to play on this estate."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She used to play on this estate.",
+              "uk": "У записі звучить She used to play on this estate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:word:orchard",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — orchard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:word:orchard:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — orchard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:word:orchard:audio",
+          "transcript": "orchard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:word:orchard:r1",
+            "targetText": "orchard",
+            "meaningByLocale": {
+              "ru": "фруктовый сад.",
+              "uk": "фруктовий сад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "orchard",
+          "definitionByLocale": {
+            "ru": "фруктовый сад.",
+            "uk": "фруктовий сад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше мы гуляли по фруктовому саду.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше мы гуляли по фруктовому саду.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We used to walk through the orchard.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше мы гуляли по фруктовому саду.»",
+          "uk": "Скажіть: «Раніше ми гуляли фруктовим садом.»"
+        },
+        "orderedTokens": [
+          "We",
+          "used",
+          "to",
+          "walk",
+          "through",
+          "the",
+          "orchard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните воспоминание.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i08:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i08:r2",
+          "text": "walked"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i08:r3",
+          "text": "walking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните воспоминание.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "We used to ___ through the orchard.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-01:i08:r1",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i08:r2",
+            "text": "walked"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i08:r3",
+            "text": "walking"
+          }
+        ],
+        "testedDimension": "Дополните воспоминание.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма walk.",
+              "uk": "Після used to потрібна форма walk."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма walk.",
+              "uk": "Після used to потрібна форма walk."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i09:r1",
+          "text": "We used to walk through the orchard."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i09:r2",
+          "text": "They used to walk through the orchard."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i09:r3",
+          "text": "We used to run through the orchard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i09:audio",
+          "transcript": "We used to walk through the orchard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:i09:r1",
+            "targetText": "We used to walk through the orchard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i09:r2",
+            "targetText": "They used to walk through the orchard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i09:r3",
+            "targetText": "We used to run through the orchard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to walk through the orchard.",
+              "uk": "У записі звучить We used to walk through the orchard."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We used to walk through the orchard.",
+              "uk": "У записі звучить We used to walk through the orchard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:word:fairground",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fairground",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:word:fairground:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fairground",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:word:fairground:audio",
+          "transcript": "fairground"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:word:fairground:r1",
+            "targetText": "fairground",
+            "meaningByLocale": {
+              "ru": "площадка с аттракционами.",
+              "uk": "майданчик з атракціонами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fairground",
+          "definitionByLocale": {
+            "ru": "площадка с аттракционами.",
+            "uk": "майданчик з атракціонами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Раньше они ходили на площадку с аттракционами.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Раньше они ходили на площадку с аттракционами.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They used to visit the fairground.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Раньше они ходили на площадку с аттракционами.»",
+          "uk": "Скажіть: «Раніше вони ходили на майданчик з атракціонами.»"
+        },
+        "orderedTokens": [
+          "They",
+          "used",
+          "to",
+          "visit",
+          "the",
+          "fairground"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните воспоминание.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i11:r1",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i11:r2",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i11:r3",
+          "text": "visiting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните воспоминание.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните воспоминание.",
+          "uk": "Доповніть спогад."
+        },
+        "gappedTargetPhrase": "They used to ___ the fairground.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-01:i11:r1",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i11:r2",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i11:r3",
+            "text": "visiting"
+          }
+        ],
+        "testedDimension": "Дополните воспоминание.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма visit.",
+              "uk": "Після used to потрібна форма visit."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните воспоминание.",
+            "feedbackByLocale": {
+              "ru": "После used to нужна форма visit.",
+              "uk": "Після used to потрібна форма visit."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-01:i12:r1",
+          "text": "They used to visit the fairground."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i12:r2",
+          "text": "We used to visit the fairground."
+        },
+        {
+          "responseId": "en:lesson-25:session-01:i12:r3",
+          "text": "They used to work at the fairground."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i12:audio",
+          "transcript": "They used to visit the fairground."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-01:i12:r1",
+            "targetText": "They used to visit the fairground.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i12:r2",
+            "targetText": "We used to visit the fairground.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i12:r3",
+            "targetText": "They used to work at the fairground.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They used to visit the fairground.",
+              "uk": "У записі звучить They used to visit the fairground."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They used to visit the fairground.",
+              "uk": "У записі звучить They used to visit the fairground."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-01:i13:p1",
+            "target": "bungalow",
+            "meaningByLocale": {
+              "ru": "одноэтажный дом",
+              "uk": "одноповерховий будинок"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-01:i13:p2",
+            "target": "estate",
+            "meaningByLocale": {
+              "ru": "жилой массив",
+              "uk": "житловий масив"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-01:i13:p3",
+            "target": "orchard",
+            "meaningByLocale": {
+              "ru": "фруктовый сад",
+              "uk": "фруктовий сад"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-01:i13:p4",
+            "target": "fairground",
+            "meaningByLocale": {
+              "ru": "площадка с аттракционами",
+              "uk": "майданчик з атракціонами"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bungalow",
+          "estate",
+          "orchard",
+          "fairground"
+        ],
+        "rightColumn": [
+          "одноэтажный дом",
+          "жилой массив",
+          "фруктовый сад",
+          "площадка с аттракционами"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жду уже час",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Жду уже час",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Работает с утра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Работает с утра",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы раньше жили в одноэтажном доме».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы раньше жили в одноэтажном доме».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i16:audio",
+          "transcript": "We used to live in a bungalow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We used to live in a bungalow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Она раньше гуляла по фруктовому саду».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Она раньше гуляла по фруктовому саду».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-01:i17:audio",
+          "transcript": "She used to walk through the orchard."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She used to walk through the orchard.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e70b090d1a90a2423978b8e7da54e97d27c0f7f9e2c88bfcb397f66b13535276"
+}

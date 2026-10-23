@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прежний спорт",
+        "uk": "Колишній спорт"
+      },
+      "bodyByLocale": {
+        "ru": "Athletics — лёгкая атлетика: бег, прыжки и другие её дисциплины. I used to do athletics — раньше я занимался лёгкой атлетикой. В британском английском do athletics означает заниматься этим видом спорта. После used to используем do, не did. Рассказываем о прежнем увлечении.",
+        "uk": "Athletics — легка атлетика: біг, стрибки та інші її дисципліни. I used to do athletics — раніше я займався легкою атлетикою. У британській англійській do athletics означає займатися цим видом спорту. Після used to використовуємо do, не did. Розповідаємо про колишнє захоплення."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-02:intro1:r1",
+              "text": "I used to do athletics."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro1:r2",
+              "text": "I used to did athletics."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro1:r3",
+              "text": "I used to doing athletics."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-02:intro1:r1",
+              "text": "I used to do athletics."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro1:r2",
+              "text": "I used to did athletics."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro1:r3",
+              "text": "I used to doing athletics."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два вида спорта",
+        "uk": "Два види спорту"
+      },
+      "bodyByLocale": {
+        "ru": "Archery — стрельба из лука. She used to practise archery — раньше она занималась стрельбой из лука. Fencing — фехтование. We used to go fencing — раньше мы ходили на фехтование. После used to стоит базовый глагол: practise или go. Fencing здесь называет спорт; форма go при этом не меняется на going.",
+        "uk": "Archery — стрільба з лука. She used to practise archery — раніше вона займалася стрільбою з лука. Fencing — фехтування. We used to go fencing — раніше ми ходили на фехтування. Після used to стоїть базове дієслово: practise або go. Fencing тут називає спорт; форма go при цьому не змінюється на going."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-02:intro2:r1",
+              "text": "She used to practise archery."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro2:r2",
+              "text": "She used to practised archery."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro2:r3",
+              "text": "She used to practising archery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-02:intro2:r1",
+              "text": "She used to practise archery."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro2:r2",
+              "text": "She used to practised archery."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro2:r3",
+              "text": "She used to practising archery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Учился фотографировать",
+        "uk": "Вчився фотографувати"
+      },
+      "bodyByLocale": {
+        "ru": "Photography — фотография как занятие или искусство. He used to study photography — раньше он изучал фотографию. Это не отдельный снимок: для него подходит знакомое photo. После used to нужен study без ed и без ing. Для одного занятия вчера сказали бы He studied photography yesterday.",
+        "uk": "Photography — фотографія як заняття або мистецтво. He used to study photography — раніше він вивчав фотографію. Це не окремий знімок: для нього підходить знайоме photo. Після used to потрібне study без ed і без ing. Для одного заняття вчора сказали б He studied photography yesterday."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-02:intro3:r1",
+              "text": "He used to study photography."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro3:r2",
+              "text": "He used to studied photography."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro3:r3",
+              "text": "He used to studying photography."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-02:intro3:r1",
+              "text": "He used to study photography."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro3:r2",
+              "text": "He used to studied photography."
+            },
+            {
+              "responseId": "en:lesson-25:session-02:intro3:r3",
+              "text": "He used to studying photography."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6c5f506641aa1b3142f248410d5e92e8c45b21c05fbc3a000631dbff1e54110e"
+}

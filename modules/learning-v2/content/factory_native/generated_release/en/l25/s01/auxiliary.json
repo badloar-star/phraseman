@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-01:intro1:r2": {
+          "ru": "После used to нужна базовая форма live.",
+          "uk": "Після used to потрібна базова форма live."
+        },
+        "en:lesson-25:session-01:intro1:r3": {
+          "ru": "Здесь используем live без ing.",
+          "uk": "Тут використовуємо live без ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-01:intro2:r2": {
+          "ru": "После used to нужно play.",
+          "uk": "Після used to потрібно play."
+        },
+        "en:lesson-25:session-01:intro2:r3": {
+          "ru": "Здесь нужна базовая форма play.",
+          "uk": "Тут потрібна базова форма play."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-01:intro3:r2": {
+          "ru": "После used to нужно visit.",
+          "uk": "Після used to потрібно visit."
+        },
+        "en:lesson-25:session-01:intro3:r3": {
+          "ru": "Здесь нужна базовая форма visit.",
+          "uk": "Тут потрібна базова форма visit."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b2ea214542031aa9a32cbf4723d6be021b32ff098b912aa873a042d991b526ea"
+}

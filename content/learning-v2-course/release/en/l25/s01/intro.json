@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "used to + base verb",
+    "uk": "used to + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Раньше жил иначе",
+        "uk": "Раніше жив інакше"
+      },
+      "bodyByLocale": {
+        "ru": "Bungalow — одноэтажный дом. I used to live in a bungalow — раньше я жил в одноэтажном доме, а теперь уже нет. Used to + базовый глагол помогает рассказать о прежнем состоянии или привычке, которые изменились. После used to ставим live, не lived.",
+        "uk": "Bungalow — одноповерховий будинок. I used to live in a bungalow — раніше я жив в одноповерховому будинку, а тепер уже ні. Used to + базове дієслово допомагає розповісти про колишній стан або звичку, які змінилися. Після used to ставимо live, не lived."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-01:intro1:r1",
+              "text": "I used to live in a bungalow."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro1:r2",
+              "text": "I used to lived in a bungalow."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro1:r3",
+              "text": "I used to living in a bungalow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-01:intro1:r1",
+              "text": "I used to live in a bungalow."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro1:r2",
+              "text": "I used to lived in a bungalow."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro1:r3",
+              "text": "I used to living in a bungalow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Места прежних прогулок",
+        "uk": "Місця колишніх прогулянок"
+      },
+      "bodyByLocale": {
+        "ru": "Estate здесь — жилой массив, группа жилых домов. She used to play on this estate — раньше она играла в этом жилом массиве. Это повторялось, а не случилось один раз. Orchard — фруктовый сад. We used to walk through the orchard — раньше мы гуляли по фруктовому саду. Для she и we форма одинаковая: used to + play или walk.",
+        "uk": "Estate тут — житловий масив, група житлових будинків. She used to play on this estate — раніше вона гралася в цьому житловому масиві. Це повторювалося, а не сталося один раз. Orchard — фруктовий сад. We used to walk through the orchard — раніше ми гуляли фруктовим садом. Для she і we форма однакова: used to + play або walk."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-01:intro2:r1",
+              "text": "She used to play on this estate."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro2:r2",
+              "text": "She used to played on this estate."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro2:r3",
+              "text": "She used to playing on this estate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-01:intro2:r1",
+              "text": "She used to play on this estate."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro2:r2",
+              "text": "She used to played on this estate."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro2:r3",
+              "text": "She used to playing on this estate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Прежняя привычка",
+        "uk": "Колишня звичка"
+      },
+      "bodyByLocale": {
+        "ru": "Fairground — площадка с аттракционами. They used to visit the fairground — раньше они ходили туда, но теперь эта привычка изменилась. После used to нужен visit без ed и без ing. Для одного отдельного визита вчера подошло бы visited yesterday; used to выбираем для прежней привычки.",
+        "uk": "Fairground — майданчик з атракціонами. They used to visit the fairground — раніше вони ходили туди, але тепер ця звичка змінилася. Після used to потрібне visit без ed і без ing. Для одного окремого візиту вчора підійшло б visited yesterday; used to вибираємо для колишньої звички."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-01:intro3:r1",
+              "text": "They used to visit the fairground."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro3:r2",
+              "text": "They used to visited the fairground."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro3:r3",
+              "text": "They used to visiting the fairground."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-01:intro3:r1",
+              "text": "They used to visit the fairground."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro3:r2",
+              "text": "They used to visited the fairground."
+            },
+            {
+              "responseId": "en:lesson-25:session-01:intro3:r3",
+              "text": "They used to visiting the fairground."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5e48129ee014f0f2098ce0f90f53e35b37f4b53e3a380ed3a5c07484f9572aa3"
+}

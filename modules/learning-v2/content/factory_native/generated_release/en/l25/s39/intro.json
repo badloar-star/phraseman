@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect + by the time + past simple",
+    "uk": "past perfect + by the time + past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Её рассказ о событии",
+        "uk": "Її розповідь про подію"
+      },
+      "bodyByLocale": {
+        "ru": "Version здесь — версия рассказа о событии. I had heard her version by the time we met — я уже услышал её версию к тому моменту, когда мы встретились. Например, она рассказала всё по телефону, а встретились мы позже. Her version не обязательно ложь: это то, как она описывает случившееся. Had heard показывает, что разговор уже состоялся до встречи.",
+        "uk": "Version тут — версія розповіді про подію. I had heard her version by the time we met — я вже почув її версію до того моменту, коли ми зустрілися. Наприклад, вона розповіла все телефоном, а зустрілися ми пізніше. Her version не обов’язково брехня: це те, як вона описує подію. Had heard показує, що розмова вже відбулася до зустрічі."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-39:intro1:r1",
+              "text": "I had heard her version by the time we met."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro1:r2",
+              "text": "I have heard her version by the time we met."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro1:r3",
+              "text": "I was heard her version by the time we met."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-39:intro1:r1",
+              "text": "I had heard her version by the time we met."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro1:r2",
+              "text": "I have heard her version by the time we met."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro1:r3",
+              "text": "I was heard her version by the time we met."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что выбрали и что заметили",
+        "uk": "Що вибрали й що помітили"
+      },
+      "bodyByLocale": {
+        "ru": "Preference — предпочтение: что человеку нравится больше. She had explained her preference by the time we ordered — она уже объяснила своё предпочтение к тому моменту, когда мы сделали заказ. Например, выбрала чай вместо кофе и объяснила почему. Similarity — сходство. I had noticed the similarity by the time he showed me the photo — я уже заметил сходство к тому моменту, когда он показал мне фотографию. Можно сначала заметить, что сын похож на отца, а позже увидеть ещё и фотографию.",
+        "uk": "Preference — уподобання: що людині подобається більше. She had explained her preference by the time we ordered — вона вже пояснила своє уподобання до того моменту, коли ми зробили замовлення. Наприклад, вибрала чай замість кави й пояснила чому. Similarity — схожість. I had noticed the similarity by the time he showed me the photo — я вже помітив схожість до того моменту, коли він показав мені фотографію. Можна спочатку помітити, що син схожий на батька, а пізніше побачити ще й фотографію."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-39:intro2:r1",
+              "text": "She had explained her preference by the time we ordered."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro2:r2",
+              "text": "She has explained her preference by the time we ordered."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro2:r3",
+              "text": "She was explained her preference by the time we ordered."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-39:intro2:r1",
+              "text": "She had explained her preference by the time we ordered."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro2:r2",
+              "text": "She has explained her preference by the time we ordered."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro2:r3",
+              "text": "She was explained her preference by the time we ordered."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дорога уже свободна",
+        "uk": "Дорога вже вільна"
+      },
+      "bodyByLocale": {
+        "ru": "Obstacle — препятствие. We had removed the obstacle by the time the bus arrived — мы уже убрали препятствие к тому моменту, когда приехал автобус. Например, убрали с дороги упавшую ветку. Had removed означает, что к приезду дорога уже была свободна от этого препятствия. By the time связывает готовый результат с моментом в прошлом.",
+        "uk": "Obstacle — перешкода. We had removed the obstacle by the time the bus arrived — ми вже прибрали перешкоду до того моменту, коли приїхав автобус. Наприклад, прибрали з дороги гілку, що впала. Had removed означає, що до приїзду дорога вже була вільна від цієї перешкоди. By the time пов’язує готовий результат із моментом у минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-39:intro3:r1",
+              "text": "We had removed the obstacle by the time the bus arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro3:r2",
+              "text": "We have removed the obstacle by the time the bus arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro3:r3",
+              "text": "We were removed the obstacle by the time the bus arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-39:intro3:r1",
+              "text": "We had removed the obstacle by the time the bus arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro3:r2",
+              "text": "We have removed the obstacle by the time the bus arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-39:intro3:r3",
+              "text": "We were removed the obstacle by the time the bus arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ce0d0388e366b8e8005c8e95c5998bf82d44e25f28bb1d0d493af8b44de1564a"
+}

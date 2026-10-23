@@ -9667,4 +9667,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past perfect + by the time + past simple","uk":"past perfect + by the time + past simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 37,
+    sourceFingerprint: "478e724df66dbcabc51aa225dfaa6bd836878a0508d52bb4bb9e17f39fdc812c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past perfect + by the time + past simple","uk":"past perfect + by the time + past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 38,
+    sourceFingerprint: "f7dcbb25832524fcb559195b96a71e1e3b8b730cf0d507560afc36acb013c851",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past perfect + by the time + past simple","uk":"past perfect + by the time + past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 39,
+    sourceFingerprint: "a8bfd07b109907ef201aca81cec224a8075a410f9755c360c979ed0708a4e31a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past perfect + by the time + past simple","uk":"past perfect + by the time + past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 40,
+    sourceFingerprint: "e3e064b7ee7461a759863c887151c8ff1bfa7b10f0e5197f181b494dfa5bf524",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"past perfect + by the time + past simple","uk":"past perfect + by the time + past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
 ]);

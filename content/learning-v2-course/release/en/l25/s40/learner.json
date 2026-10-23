@@ -1,0 +1,1143 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-25:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-25:session-40:word:banged",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — banged",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:word:banged:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — banged",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:word:banged:audio",
+          "transcript": "banged"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:word:banged:r1",
+            "targetText": "banged",
+            "meaningByLocale": {
+              "ru": "Хлопнула. Bang — издать громкий резкий стук или хлопок; banged — третья форма.",
+              "uk": "Грюкнула. Bang — видати гучний різкий стукіт чи грюкіт; banged — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "banged",
+          "definitionByLocale": {
+            "ru": "Хлопнула. Bang — издать громкий резкий стук или хлопок; banged — третья форма.",
+            "uk": "Грюкнула. Bang — видати гучний різкий стукіт чи грюкіт; banged — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Дверь уже захлопнулась к тому моменту, когда я до неё дошёл.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Дверь уже захлопнулась к тому моменту, когда я до неё дошёл.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The door had banged shut by the time I reached it.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Дверь уже захлопнулась к тому моменту, когда я до неё дошёл.»",
+          "uk": "Скажіть: «Двері вже зачинилися з гуркотом до того моменту, коли я до них дійшов.»"
+        },
+        "orderedTokens": [
+          "The",
+          "door",
+          "had",
+          "banged",
+          "shut",
+          "by",
+          "the",
+          "time",
+          "I",
+          "reached",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i02:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i02:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "The door ___ banged shut by the time I reached it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-40:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i02:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i03:r1",
+          "text": "The door had banged shut by the time I reached it."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i03:r2",
+          "text": "The door had banged shut by the time she reached it."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i03:r3",
+          "text": "The window had banged shut by the time I reached it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i03:audio",
+          "transcript": "The door had banged shut by the time I reached it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:i03:r1",
+            "targetText": "The door had banged shut by the time I reached it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i03:r2",
+            "targetText": "The door had banged shut by the time she reached it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i03:r3",
+            "targetText": "The window had banged shut by the time I reached it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The door had banged shut by the time I reached it.",
+              "uk": "У записі звучить The door had banged shut by the time I reached it."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The door had banged shut by the time I reached it.",
+              "uk": "У записі звучить The door had banged shut by the time I reached it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:word:crashed",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crashed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:word:crashed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crashed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:word:crashed:audio",
+          "transcript": "crashed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:word:crashed:r1",
+            "targetText": "crashed",
+            "meaningByLocale": {
+              "ru": "С грохотом упали. Crash здесь — с грохотом упасть; crashed — третья форма.",
+              "uk": "З гуркотом упали. Crash тут — з гуркотом упасти; crashed — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crashed",
+          "definitionByLocale": {
+            "ru": "С грохотом упали. Crash здесь — с грохотом упасть; crashed — третья форма.",
+            "uk": "З гуркотом упали. Crash тут — з гуркотом упасти; crashed — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Тарелки уже с грохотом упали на пол к тому моменту, когда я поймал поднос.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Тарелки уже с грохотом упали на пол к тому моменту, когда я поймал поднос.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The plates had crashed to the floor by the time I caught the tray.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Тарелки уже с грохотом упали на пол к тому моменту, когда я поймал поднос.»",
+          "uk": "Скажіть: «Тарілки вже з гуркотом упали на підлогу до того моменту, коли я впіймав тацю.»"
+        },
+        "orderedTokens": [
+          "The",
+          "plates",
+          "had",
+          "crashed",
+          "to",
+          "the",
+          "floor",
+          "by",
+          "the",
+          "time",
+          "I",
+          "caught",
+          "the",
+          "tray"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i05:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i05:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i05:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "The plates ___ crashed to the floor by the time I caught the tray.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-40:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i05:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i06:r1",
+          "text": "The plates had crashed to the floor by the time I caught the tray."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i06:r2",
+          "text": "The cups had crashed to the floor by the time I caught the tray."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i06:r3",
+          "text": "The plates had crashed to the floor by the time she caught the tray."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i06:audio",
+          "transcript": "The plates had crashed to the floor by the time I caught the tray."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:i06:r1",
+            "targetText": "The plates had crashed to the floor by the time I caught the tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i06:r2",
+            "targetText": "The cups had crashed to the floor by the time I caught the tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i06:r3",
+            "targetText": "The plates had crashed to the floor by the time she caught the tray.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plates had crashed to the floor by the time I caught the tray.",
+              "uk": "У записі звучить The plates had crashed to the floor by the time I caught the tray."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plates had crashed to the floor by the time I caught the tray.",
+              "uk": "У записі звучить The plates had crashed to the floor by the time I caught the tray."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:word:beeped",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — beeped",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:word:beeped:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — beeped",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:word:beeped:audio",
+          "transcript": "beeped"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:word:beeped:r1",
+            "targetText": "beeped",
+            "meaningByLocale": {
+              "ru": "Подал звуковой сигнал. Beep — издать короткий электронный писк; beeped — третья форма.",
+              "uk": "Подав звуковий сигнал. Beep — видати короткий електронний писк; beeped — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beeped",
+          "definitionByLocale": {
+            "ru": "Подал звуковой сигнал. Beep — издать короткий электронный писк; beeped — третья форма.",
+            "uk": "Подав звуковий сигнал. Beep — видати короткий електронний писк; beeped — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Таймер уже подал звуковой сигнал к тому моменту, когда я вернулся.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Таймер уже подал звуковой сигнал к тому моменту, когда я вернулся.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The timer had beeped by the time I returned.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Таймер уже подал звуковой сигнал к тому моменту, когда я вернулся.»",
+          "uk": "Скажіть: «Таймер уже подав звуковий сигнал до того моменту, коли я повернувся.»"
+        },
+        "orderedTokens": [
+          "The",
+          "timer",
+          "had",
+          "beeped",
+          "by",
+          "the",
+          "time",
+          "I",
+          "returned"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i08:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i08:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "The timer ___ beeped by the time I returned.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-40:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i08:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i09:r1",
+          "text": "The timer had beeped by the time I returned."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i09:r2",
+          "text": "The timer had beeped by the time she returned."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i09:r3",
+          "text": "The timer had beeped by the time we returned."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i09:audio",
+          "transcript": "The timer had beeped by the time I returned."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:i09:r1",
+            "targetText": "The timer had beeped by the time I returned.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i09:r2",
+            "targetText": "The timer had beeped by the time she returned.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i09:r3",
+            "targetText": "The timer had beeped by the time we returned.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The timer had beeped by the time I returned.",
+              "uk": "У записі звучить The timer had beeped by the time I returned."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The timer had beeped by the time I returned.",
+              "uk": "У записі звучить The timer had beeped by the time I returned."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:word:honked",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — honked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:word:honked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — honked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:word:honked:audio",
+          "transcript": "honked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:word:honked:r1",
+            "targetText": "honked",
+            "meaningByLocale": {
+              "ru": "Посигналил. Honk — подать сигнал автомобильным гудком; honked — третья форма.",
+              "uk": "Посигналив. Honk — подати сигнал автомобільним гудком; honked — третя форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "honked",
+          "definitionByLocale": {
+            "ru": "Посигналил. Honk — подать сигнал автомобильным гудком; honked — третья форма.",
+            "uk": "Посигналив. Honk — подати сигнал автомобільним гудком; honked — третя форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Водитель уже посигналил к тому моменту, когда я увидел машину.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Водитель уже посигналил к тому моменту, когда я увидел машину.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The driver had honked by the time I saw the car.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Водитель уже посигналил к тому моменту, когда я увидел машину.»",
+          "uk": "Скажіть: «Водій уже посигналив до того моменту, коли я побачив машину.»"
+        },
+        "orderedTokens": [
+          "The",
+          "driver",
+          "had",
+          "honked",
+          "by",
+          "the",
+          "time",
+          "I",
+          "saw",
+          "the",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните рассказ о прошлом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i11:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i11:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i11:r3",
+          "text": "was"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните рассказ о прошлом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прошлом.",
+          "uk": "Доповніть розповідь про минуле."
+        },
+        "gappedTargetPhrase": "The driver ___ honked by the time I saw the car.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-25:session-40:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i11:r3",
+            "text": "was"
+          }
+        ],
+        "testedDimension": "Дополните рассказ о прошлом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните рассказ о прошлом.",
+            "feedbackByLocale": {
+              "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+              "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-25:session-40:i12:r1",
+          "text": "The driver had honked by the time I saw the car."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i12:r2",
+          "text": "The driver had honked by the time she saw the car."
+        },
+        {
+          "responseId": "en:lesson-25:session-40:i12:r3",
+          "text": "The driver had honked by the time I saw the bus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i12:audio",
+          "transcript": "The driver had honked by the time I saw the car."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-25:session-40:i12:r1",
+            "targetText": "The driver had honked by the time I saw the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i12:r2",
+            "targetText": "The driver had honked by the time she saw the car.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i12:r3",
+            "targetText": "The driver had honked by the time I saw the bus.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-25:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The driver had honked by the time I saw the car.",
+              "uk": "У записі звучить The driver had honked by the time I saw the car."
+            }
+          },
+          {
+            "responseId": "en:lesson-25:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The driver had honked by the time I saw the car.",
+              "uk": "У записі звучить The driver had honked by the time I saw the car."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините формы с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините формы с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-25:session-40:i13:p1",
+            "target": "banged",
+            "meaningByLocale": {
+              "ru": "хлопнула",
+              "uk": "грюкнула"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-40:i13:p2",
+            "target": "crashed",
+            "meaningByLocale": {
+              "ru": "с грохотом упали",
+              "uk": "з гуркотом упали"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-40:i13:p3",
+            "target": "beeped",
+            "meaningByLocale": {
+              "ru": "подал звуковой сигнал",
+              "uk": "подав звуковий сигнал"
+            }
+          },
+          {
+            "pairId": "en:lesson-25:session-40:i13:p4",
+            "target": "honked",
+            "meaningByLocale": {
+              "ru": "посигналил",
+              "uk": "посигналив"
+            }
+          }
+        ],
+        "leftColumn": [
+          "banged",
+          "crashed",
+          "beeped",
+          "honked"
+        ],
+        "rightColumn": [
+          "хлопнула",
+          "с грохотом упали",
+          "подал звуковой сигнал",
+          "посигналил"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже закончил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Уже закончил",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i14:audio",
+          "transcript": "She had finished before I called."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She had finished before I called.",
+        "orderedTokens": [
+          "She",
+          "had",
+          "finished",
+          "before",
+          "I",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поезд уже ушёл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Поезд уже ушёл",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i15:audio",
+          "transcript": "The train had left when we arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The train had left when we arrived.",
+        "orderedTokens": [
+          "The",
+          "train",
+          "had",
+          "left",
+          "when",
+          "we",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Таймер уже подал сигнал к тому моменту, когда он вернулся».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Таймер уже подал сигнал к тому моменту, когда он вернулся».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i16:audio",
+          "transcript": "The timer had beeped by the time he returned."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The timer had beeped by the time he returned.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-40:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Водитель уже посигналил к тому моменту, когда мы увидели машину».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-25:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Водитель уже посигналил к тому моменту, когда мы увидели машину».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-25:session-40:i17:audio",
+          "transcript": "The driver had honked by the time we saw the car."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The driver had honked by the time we saw the car.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "510d94368489331a9f4412fbeba3e0e4776cadaa1155a5c48799d35d154ebf3d"
+}

@@ -1,0 +1,2373 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-25:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-25:session-39:word:version",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — version",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:version:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — version",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:version:audio",
+            "transcript": "version"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:version:r1",
+              "targetText": "version",
+              "meaningByLocale": {
+                "ru": "Версия. Version здесь — рассказ о событии с чьей-то точки зрения.",
+                "uk": "Версія. Version тут — розповідь про подію з чийогось погляду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "version",
+            "definitionByLocale": {
+              "ru": "Версия. Version здесь — рассказ о событии с чьей-то точки зрения.",
+              "uk": "Версія. Version тут — розповідь про подію з чийогось погляду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я уже услышал её версию к тому моменту, когда мы встретились.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я уже услышал её версию к тому моменту, когда мы встретились.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had heard her version by the time we met.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я уже услышал её версию к тому моменту, когда мы встретились.»",
+            "uk": "Скажіть: «Я вже почув її версію до того моменту, коли ми зустрілися.»"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "heard",
+            "her",
+            "version",
+            "by",
+            "the",
+            "time",
+            "we",
+            "met"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i02:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ heard her version by the time we met.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i02:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i03:r1",
+            "text": "I had heard her version by the time we met."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i03:r2",
+            "text": "I had heard his version by the time we met."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i03:r3",
+            "text": "She had heard her version by the time we met."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i03:audio",
+            "transcript": "I had heard her version by the time we met."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i03:r1",
+              "targetText": "I had heard her version by the time we met.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i03:r2",
+              "targetText": "I had heard his version by the time we met.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i03:r3",
+              "targetText": "She had heard her version by the time we met.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had heard her version by the time we met.",
+                "uk": "У записі звучить I had heard her version by the time we met."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had heard her version by the time we met.",
+                "uk": "У записі звучить I had heard her version by the time we met."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:word:preference",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — preference",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:preference:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — preference",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:preference:audio",
+            "transcript": "preference"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:preference:r1",
+              "targetText": "preference",
+              "meaningByLocale": {
+                "ru": "Предпочтение. Preference — то, что человек выбирает охотнее другого.",
+                "uk": "Уподобання. Preference — те, що людина вибирає охочіше за інше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "preference",
+            "definitionByLocale": {
+              "ru": "Предпочтение. Preference — то, что человек выбирает охотнее другого.",
+              "uk": "Уподобання. Preference — те, що людина вибирає охочіше за інше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она уже объяснила своё предпочтение к тому моменту, когда мы сделали заказ.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она уже объяснила своё предпочтение к тому моменту, когда мы сделали заказ.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had explained her preference by the time we ordered.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она уже объяснила своё предпочтение к тому моменту, когда мы сделали заказ.»",
+            "uk": "Скажіть: «Вона вже пояснила своє уподобання до того моменту, коли ми зробили замовлення.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "explained",
+            "her",
+            "preference",
+            "by",
+            "the",
+            "time",
+            "we",
+            "ordered"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ explained her preference by the time we ordered.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i06:r1",
+            "text": "She had explained her preference by the time we ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i06:r2",
+            "text": "He had explained his preference by the time we ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i06:r3",
+            "text": "She had explained her preference by the time they ordered."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i06:audio",
+            "transcript": "She had explained her preference by the time we ordered."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i06:r1",
+              "targetText": "She had explained her preference by the time we ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i06:r2",
+              "targetText": "He had explained his preference by the time we ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i06:r3",
+              "targetText": "She had explained her preference by the time they ordered.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had explained her preference by the time we ordered.",
+                "uk": "У записі звучить She had explained her preference by the time we ordered."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had explained her preference by the time we ordered.",
+                "uk": "У записі звучить She had explained her preference by the time we ordered."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:word:similarity",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — similarity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:similarity:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — similarity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:similarity:audio",
+            "transcript": "similarity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:similarity:r1",
+              "targetText": "similarity",
+              "meaningByLocale": {
+                "ru": "Сходство. Similarity — общая черта, из-за которой вещи или люди похожи.",
+                "uk": "Схожість. Similarity — спільна риса, через яку речі чи люди схожі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "similarity",
+            "definitionByLocale": {
+              "ru": "Сходство. Similarity — общая черта, из-за которой вещи или люди похожи.",
+              "uk": "Схожість. Similarity — спільна риса, через яку речі чи люди схожі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я уже заметил сходство к тому моменту, когда он показал мне фотографию.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я уже заметил сходство к тому моменту, когда он показал мне фотографию.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had noticed the similarity by the time he showed me the photo.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я уже заметил сходство к тому моменту, когда он показал мне фотографию.»",
+            "uk": "Скажіть: «Я вже помітив схожість до того моменту, коли він показав мені фотографію.»"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "noticed",
+            "the",
+            "similarity",
+            "by",
+            "the",
+            "time",
+            "he",
+            "showed",
+            "me",
+            "the",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ noticed the similarity by the time he showed me the photo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i09:r1",
+            "text": "I had noticed the similarity by the time he showed me the photo."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i09:r2",
+            "text": "She had noticed the similarity by the time he showed her the photo."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i09:r3",
+            "text": "I had noticed the similarity by the time she showed me the photo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i09:audio",
+            "transcript": "I had noticed the similarity by the time he showed me the photo."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i09:r1",
+              "targetText": "I had noticed the similarity by the time he showed me the photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i09:r2",
+              "targetText": "She had noticed the similarity by the time he showed her the photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i09:r3",
+              "targetText": "I had noticed the similarity by the time she showed me the photo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had noticed the similarity by the time he showed me the photo.",
+                "uk": "У записі звучить I had noticed the similarity by the time he showed me the photo."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had noticed the similarity by the time he showed me the photo.",
+                "uk": "У записі звучить I had noticed the similarity by the time he showed me the photo."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:word:obstacle",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — obstacle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:obstacle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — obstacle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:obstacle:audio",
+            "transcript": "obstacle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:obstacle:r1",
+              "targetText": "obstacle",
+              "meaningByLocale": {
+                "ru": "Препятствие. Obstacle — то, что мешает пройти, проехать или сделать что-то.",
+                "uk": "Перешкода. Obstacle — те, що заважає пройти, проїхати чи зробити щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "obstacle",
+            "definitionByLocale": {
+              "ru": "Препятствие. Obstacle — то, что мешает пройти, проехать или сделать что-то.",
+              "uk": "Перешкода. Obstacle — те, що заважає пройти, проїхати чи зробити щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы уже убрали препятствие к тому моменту, когда приехал автобус.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы уже убрали препятствие к тому моменту, когда приехал автобус.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had removed the obstacle by the time the bus arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы уже убрали препятствие к тому моменту, когда приехал автобус.»",
+            "uk": "Скажіть: «Ми вже прибрали перешкоду до того моменту, коли приїхав автобус.»"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "removed",
+            "the",
+            "obstacle",
+            "by",
+            "the",
+            "time",
+            "the",
+            "bus",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните рассказ о прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i11:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните рассказ о прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "We ___ removed the obstacle by the time the bus arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i11:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i11:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Дополните рассказ о прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните рассказ о прошлом.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i12:r1",
+            "text": "We had removed the obstacle by the time the bus arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i12:r2",
+            "text": "They had removed the obstacle by the time the bus arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i12:r3",
+            "text": "We had removed the obstacle by the time the car arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i12:audio",
+            "transcript": "We had removed the obstacle by the time the bus arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i12:r1",
+              "targetText": "We had removed the obstacle by the time the bus arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i12:r2",
+              "targetText": "They had removed the obstacle by the time the bus arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i12:r3",
+              "targetText": "We had removed the obstacle by the time the car arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had removed the obstacle by the time the bus arrived.",
+                "uk": "У записі звучить We had removed the obstacle by the time the bus arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had removed the obstacle by the time the bus arrived.",
+                "uk": "У записі звучить We had removed the obstacle by the time the bus arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините формы с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините формы с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-39:i13:p1",
+              "target": "version",
+              "meaningByLocale": {
+                "ru": "версия",
+                "uk": "версія"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-39:i13:p2",
+              "target": "preference",
+              "meaningByLocale": {
+                "ru": "предпочтение",
+                "uk": "уподобання"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-39:i13:p3",
+              "target": "similarity",
+              "meaningByLocale": {
+                "ru": "сходство",
+                "uk": "схожість"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-39:i13:p4",
+              "target": "obstacle",
+              "meaningByLocale": {
+                "ru": "препятствие",
+                "uk": "перешкода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "version",
+            "preference",
+            "similarity",
+            "obstacle"
+          ],
+          "rightColumn": [
+            "версия",
+            "предпочтение",
+            "сходство",
+            "препятствие"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закончил",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закончил",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поезд уже ушёл",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Поезд уже ушёл",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы уже услышали его версию к тому моменту, когда встретились».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы уже услышали его версию к тому моменту, когда встретились».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i16:audio",
+            "transcript": "We had heard his version by the time we met."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had heard his version by the time we met.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Они уже убрали препятствие к тому моменту, когда приехала машина».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Они уже убрали препятствие к тому моменту, когда приехала машина».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i17:audio",
+            "transcript": "They had removed the obstacle by the time the car arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They had removed the obstacle by the time the car arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-25:session-39:word:version",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — version",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:version:audio"
+        ],
+        "accessibilityLabel": "Картка слова — version",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:version:audio",
+            "transcript": "version"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:version:r1",
+              "targetText": "version",
+              "meaningByLocale": {
+                "ru": "Версия. Version здесь — рассказ о событии с чьей-то точки зрения.",
+                "uk": "Версія. Version тут — розповідь про подію з чийогось погляду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "version",
+            "definitionByLocale": {
+              "ru": "Версия. Version здесь — рассказ о событии с чьей-то точки зрения.",
+              "uk": "Версія. Version тут — розповідь про подію з чийогось погляду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я вже почув її версію до того моменту, коли ми зустрілися.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я вже почув її версію до того моменту, коли ми зустрілися.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had heard her version by the time we met.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я уже услышал её версию к тому моменту, когда мы встретились.»",
+            "uk": "Скажіть: «Я вже почув її версію до того моменту, коли ми зустрілися.»"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "heard",
+            "her",
+            "version",
+            "by",
+            "the",
+            "time",
+            "we",
+            "met"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i02:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i02:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i02:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ heard her version by the time we met.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i02:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i02:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i02:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i03:r1",
+            "text": "I had heard her version by the time we met."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i03:r2",
+            "text": "I had heard his version by the time we met."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i03:r3",
+            "text": "She had heard her version by the time we met."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i03:audio",
+            "transcript": "I had heard her version by the time we met."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i03:r1",
+              "targetText": "I had heard her version by the time we met.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i03:r2",
+              "targetText": "I had heard his version by the time we met.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i03:r3",
+              "targetText": "She had heard her version by the time we met.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had heard her version by the time we met.",
+                "uk": "У записі звучить I had heard her version by the time we met."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had heard her version by the time we met.",
+                "uk": "У записі звучить I had heard her version by the time we met."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:word:preference",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — preference",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:preference:audio"
+        ],
+        "accessibilityLabel": "Картка слова — preference",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:preference:audio",
+            "transcript": "preference"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:preference:r1",
+              "targetText": "preference",
+              "meaningByLocale": {
+                "ru": "Предпочтение. Preference — то, что человек выбирает охотнее другого.",
+                "uk": "Уподобання. Preference — те, що людина вибирає охочіше за інше."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "preference",
+            "definitionByLocale": {
+              "ru": "Предпочтение. Preference — то, что человек выбирает охотнее другого.",
+              "uk": "Уподобання. Preference — те, що людина вибирає охочіше за інше."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона вже пояснила своє уподобання до того моменту, коли ми зробили замовлення.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона вже пояснила своє уподобання до того моменту, коли ми зробили замовлення.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She had explained her preference by the time we ordered.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она уже объяснила своё предпочтение к тому моменту, когда мы сделали заказ.»",
+            "uk": "Скажіть: «Вона вже пояснила своє уподобання до того моменту, коли ми зробили замовлення.»"
+          },
+          "orderedTokens": [
+            "She",
+            "had",
+            "explained",
+            "her",
+            "preference",
+            "by",
+            "the",
+            "time",
+            "we",
+            "ordered"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i05:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i05:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "She ___ explained her preference by the time we ordered.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i05:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i05:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i06:r1",
+            "text": "She had explained her preference by the time we ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i06:r2",
+            "text": "He had explained his preference by the time we ordered."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i06:r3",
+            "text": "She had explained her preference by the time they ordered."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i06:audio",
+            "transcript": "She had explained her preference by the time we ordered."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i06:r1",
+              "targetText": "She had explained her preference by the time we ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i06:r2",
+              "targetText": "He had explained his preference by the time we ordered.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i06:r3",
+              "targetText": "She had explained her preference by the time they ordered.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had explained her preference by the time we ordered.",
+                "uk": "У записі звучить She had explained her preference by the time we ordered."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had explained her preference by the time we ordered.",
+                "uk": "У записі звучить She had explained her preference by the time we ordered."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:word:similarity",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — similarity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:similarity:audio"
+        ],
+        "accessibilityLabel": "Картка слова — similarity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:similarity:audio",
+            "transcript": "similarity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:similarity:r1",
+              "targetText": "similarity",
+              "meaningByLocale": {
+                "ru": "Сходство. Similarity — общая черта, из-за которой вещи или люди похожи.",
+                "uk": "Схожість. Similarity — спільна риса, через яку речі чи люди схожі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "similarity",
+            "definitionByLocale": {
+              "ru": "Сходство. Similarity — общая черта, из-за которой вещи или люди похожи.",
+              "uk": "Схожість. Similarity — спільна риса, через яку речі чи люди схожі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я вже помітив схожість до того моменту, коли він показав мені фотографію.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я вже помітив схожість до того моменту, коли він показав мені фотографію.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I had noticed the similarity by the time he showed me the photo.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я уже заметил сходство к тому моменту, когда он показал мне фотографию.»",
+            "uk": "Скажіть: «Я вже помітив схожість до того моменту, коли він показав мені фотографію.»"
+          },
+          "orderedTokens": [
+            "I",
+            "had",
+            "noticed",
+            "the",
+            "similarity",
+            "by",
+            "the",
+            "time",
+            "he",
+            "showed",
+            "me",
+            "the",
+            "photo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i08:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i08:r3",
+            "text": "was"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "I ___ noticed the similarity by the time he showed me the photo.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i08:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i08:r3",
+              "text": "was"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i09:r1",
+            "text": "I had noticed the similarity by the time he showed me the photo."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i09:r2",
+            "text": "She had noticed the similarity by the time he showed her the photo."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i09:r3",
+            "text": "I had noticed the similarity by the time she showed me the photo."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i09:audio",
+            "transcript": "I had noticed the similarity by the time he showed me the photo."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i09:r1",
+              "targetText": "I had noticed the similarity by the time he showed me the photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i09:r2",
+              "targetText": "She had noticed the similarity by the time he showed her the photo.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i09:r3",
+              "targetText": "I had noticed the similarity by the time she showed me the photo.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had noticed the similarity by the time he showed me the photo.",
+                "uk": "У записі звучить I had noticed the similarity by the time he showed me the photo."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I had noticed the similarity by the time he showed me the photo.",
+                "uk": "У записі звучить I had noticed the similarity by the time he showed me the photo."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:word:obstacle",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — obstacle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:word:obstacle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — obstacle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:word:obstacle:audio",
+            "transcript": "obstacle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:word:obstacle:r1",
+              "targetText": "obstacle",
+              "meaningByLocale": {
+                "ru": "Препятствие. Obstacle — то, что мешает пройти, проехать или сделать что-то.",
+                "uk": "Перешкода. Obstacle — те, що заважає пройти, проїхати чи зробити щось."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "obstacle",
+            "definitionByLocale": {
+              "ru": "Препятствие. Obstacle — то, что мешает пройти, проехать или сделать что-то.",
+              "uk": "Перешкода. Obstacle — те, що заважає пройти, проїхати чи зробити щось."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми вже прибрали перешкоду до того моменту, коли приїхав автобус.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми вже прибрали перешкоду до того моменту, коли приїхав автобус.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had removed the obstacle by the time the bus arrived.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы уже убрали препятствие к тому моменту, когда приехал автобус.»",
+            "uk": "Скажіть: «Ми вже прибрали перешкоду до того моменту, коли приїхав автобус.»"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "removed",
+            "the",
+            "obstacle",
+            "by",
+            "the",
+            "time",
+            "the",
+            "bus",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть розповідь про минуле.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i11:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i11:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть розповідь про минуле.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните рассказ о прошлом.",
+            "uk": "Доповніть розповідь про минуле."
+          },
+          "gappedTargetPhrase": "We ___ removed the obstacle by the time the bus arrived.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-25:session-39:i11:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i11:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i11:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Доповніть розповідь про минуле.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть розповідь про минуле.",
+              "feedbackByLocale": {
+                "ru": "Для действия до другого события в прошлом нужно had + третья форма.",
+                "uk": "Для дії до іншої події в минулому потрібно had + третя форма."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-25:session-39:i12:r1",
+            "text": "We had removed the obstacle by the time the bus arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i12:r2",
+            "text": "They had removed the obstacle by the time the bus arrived."
+          },
+          {
+            "responseId": "en:lesson-25:session-39:i12:r3",
+            "text": "We had removed the obstacle by the time the car arrived."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i12:audio",
+            "transcript": "We had removed the obstacle by the time the bus arrived."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-25:session-39:i12:r1",
+              "targetText": "We had removed the obstacle by the time the bus arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i12:r2",
+              "targetText": "They had removed the obstacle by the time the bus arrived.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i12:r3",
+              "targetText": "We had removed the obstacle by the time the car arrived.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-25:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had removed the obstacle by the time the bus arrived.",
+                "uk": "У записі звучить We had removed the obstacle by the time the bus arrived."
+              }
+            },
+            {
+              "responseId": "en:lesson-25:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We had removed the obstacle by the time the bus arrived.",
+                "uk": "У записі звучить We had removed the obstacle by the time the bus arrived."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте форми з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте форми з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-25:session-39:i13:p1",
+              "target": "version",
+              "meaningByLocale": {
+                "ru": "версия",
+                "uk": "версія"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-39:i13:p2",
+              "target": "preference",
+              "meaningByLocale": {
+                "ru": "предпочтение",
+                "uk": "уподобання"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-39:i13:p3",
+              "target": "similarity",
+              "meaningByLocale": {
+                "ru": "сходство",
+                "uk": "схожість"
+              }
+            },
+            {
+              "pairId": "en:lesson-25:session-39:i13:p4",
+              "target": "obstacle",
+              "meaningByLocale": {
+                "ru": "препятствие",
+                "uk": "перешкода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "version",
+            "preference",
+            "similarity",
+            "obstacle"
+          ],
+          "rightColumn": [
+            "версія",
+            "уподобання",
+            "схожість",
+            "перешкода"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже закінчив",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Уже закінчив",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i14:audio",
+            "transcript": "She had finished before I called."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She had finished before I called.",
+          "orderedTokens": [
+            "She",
+            "had",
+            "finished",
+            "before",
+            "I",
+            "called"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Потяг уже поїхав",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Потяг уже поїхав",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i15:audio",
+            "transcript": "The train had left when we arrived."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The train had left when we arrived.",
+          "orderedTokens": [
+            "The",
+            "train",
+            "had",
+            "left",
+            "when",
+            "we",
+            "arrived"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми вже почули його версію до того моменту, коли зустрілися».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми вже почули його версію до того моменту, коли зустрілися».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i16:audio",
+            "transcript": "We had heard his version by the time we met."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We had heard his version by the time we met.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-25:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вони вже прибрали перешкоду до того моменту, коли приїхала машина».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-25:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вони вже прибрали перешкоду до того моменту, коли приїхала машина».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-25:session-39:i17:audio",
+            "transcript": "They had removed the obstacle by the time the car arrived."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They had removed the obstacle by the time the car arrived.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-25:session-39:word:version",
+      "correctText": "version",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i01",
+      "correctText": "I had heard her version by the time we met.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i02",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i03",
+      "correctText": "I had heard her version by the time we met.",
+      "correctResponseId": "en:lesson-25:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:word:preference",
+      "correctText": "preference",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i04",
+      "correctText": "She had explained her preference by the time we ordered.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i05",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i06",
+      "correctText": "She had explained her preference by the time we ordered.",
+      "correctResponseId": "en:lesson-25:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:word:similarity",
+      "correctText": "similarity",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i07",
+      "correctText": "I had noticed the similarity by the time he showed me the photo.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i08",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i09",
+      "correctText": "I had noticed the similarity by the time he showed me the photo.",
+      "correctResponseId": "en:lesson-25:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:word:obstacle",
+      "correctText": "obstacle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i10",
+      "correctText": "We had removed the obstacle by the time the bus arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i11",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-25:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i12",
+      "correctText": "We had removed the obstacle by the time the bus arrived.",
+      "correctResponseId": "en:lesson-25:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i14",
+      "correctText": "She had finished before I called.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i15",
+      "correctText": "The train had left when we arrived.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i16",
+      "correctText": "We had heard his version by the time we met.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-25:session-39:i17",
+      "correctText": "They had removed the obstacle by the time the car arrived.",
+      "correctResponseId": null
+    }
+  ]
+}

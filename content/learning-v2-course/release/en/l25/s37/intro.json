@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect + by the time + past simple",
+    "uk": "past perfect + by the time + past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Собрался к приезду такси",
+        "uk": "Зібрався до приїзду таксі"
+      },
+      "bodyByLocale": {
+        "ru": "Traveller — путешественник, человек в поездке. The traveller had packed by the time the taxi arrived — путешественник уже собрал вещи к приезду такси. Had packed показывает, что сборы были закончены до приезда. Traveller не обязательно турист на отдыхе: человек может ехать и по другим делам. В британском написании traveller две буквы l.",
+        "uk": "Traveller — мандрівник, людина в поїздці. The traveller had packed by the time the taxi arrived — мандрівник уже зібрав речі до приїзду таксі. Had packed показує, що збори були завершені до приїзду. Traveller не обов’язково турист на відпочинку: людина може їхати й в інших справах. У британському написанні traveller дві літери l."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-37:intro1:r1",
+              "text": "The traveller had packed by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro1:r2",
+              "text": "The traveller has packed by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro1:r3",
+              "text": "The traveller was packed by the time the taxi arrived."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-37:intro1:r1",
+              "text": "The traveller had packed by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro1:r2",
+              "text": "The traveller has packed by the time the taxi arrived."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro1:r3",
+              "text": "The traveller was packed by the time the taxi arrived."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кого мы встретили",
+        "uk": "Кого ми зустріли"
+      },
+      "bodyByLocale": {
+        "ru": "Shopper — покупатель, человек за покупками. The shopper had paid by the time I reached the till — покупатель уже заплатил к тому моменту, когда я подошёл к кассе. Reader — читатель. The reader had finished the book by the time we met — читатель уже закончил книгу к нашей встрече. Оба слова называют человека. Had paid и had finished показывают действия, законченные до указанного момента.",
+        "uk": "Shopper — покупець, людина за покупками. The shopper had paid by the time I reached the till — покупець уже заплатив до того моменту, коли я підійшов до каси. Reader — читач. The reader had finished the book by the time we met — читач уже закінчив книжку до нашої зустрічі. Обидва слова називають людину. Had paid і had finished показують дії, завершені до вказаного моменту."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-37:intro2:r1",
+              "text": "The shopper had paid by the time I reached the till."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro2:r2",
+              "text": "The shopper has paid by the time I reached the till."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro2:r3",
+              "text": "The shopper was paid by the time I reached the till."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-37:intro2:r1",
+              "text": "The shopper had paid by the time I reached the till."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro2:r2",
+              "text": "The shopper has paid by the time I reached the till."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro2:r3",
+              "text": "The shopper was paid by the time I reached the till."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто оставил сообщение",
+        "uk": "Хто залишив повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Caller здесь — звонящий, человек, который звонит по телефону. The caller had left a message by the time I found my phone — звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон. Сначала он оставил сообщение, потом я нашёл телефон. Left a message значит «оставил сообщение»; left здесь третья форма leave. Не нужно знать имя человека, чтобы назвать его the caller.",
+        "uk": "Caller тут — людина, яка телефонує. The caller had left a message by the time I found my phone — той, хто телефонував, уже залишив повідомлення до того моменту, коли я знайшов телефон. Спочатку він залишив повідомлення, потім я знайшов телефон. Left a message означає «залишив повідомлення»; left тут третя форма leave. Не потрібно знати ім’я людини, щоб назвати її the caller."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-37:intro3:r1",
+              "text": "The caller had left a message by the time I found my phone."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro3:r2",
+              "text": "The caller has left a message by the time I found my phone."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro3:r3",
+              "text": "The caller was left a message by the time I found my phone."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-37:intro3:r1",
+              "text": "The caller had left a message by the time I found my phone."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro3:r2",
+              "text": "The caller has left a message by the time I found my phone."
+            },
+            {
+              "responseId": "en:lesson-25:session-37:intro3:r3",
+              "text": "The caller was left a message by the time I found my phone."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "13a8ebcf9544fb7457243987d4b05fcb9c60b03351c62e17be2e58963477f194"
+}

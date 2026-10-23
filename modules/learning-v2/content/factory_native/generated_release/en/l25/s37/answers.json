@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-37:word:traveller",
+    "correctText": "traveller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i01",
+    "correctText": "The traveller had packed by the time the taxi arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i03",
+    "correctText": "The traveller had packed by the time the taxi arrived.",
+    "correctResponseId": "en:lesson-25:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:word:shopper",
+    "correctText": "shopper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i04",
+    "correctText": "The shopper had paid by the time I reached the till.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i06",
+    "correctText": "The shopper had paid by the time I reached the till.",
+    "correctResponseId": "en:lesson-25:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:word:reader",
+    "correctText": "reader",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i07",
+    "correctText": "The reader had finished the book by the time we met.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i09",
+    "correctText": "The reader had finished the book by the time we met.",
+    "correctResponseId": "en:lesson-25:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:word:caller",
+    "correctText": "caller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i10",
+    "correctText": "The caller had left a message by the time I found my phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i12",
+    "correctText": "The caller had left a message by the time I found my phone.",
+    "correctResponseId": "en:lesson-25:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i13",
+    "correctText": "en:lesson-25:session-37:i13:p1=traveller\nen:lesson-25:session-37:i13:p2=shopper\nen:lesson-25:session-37:i13:p3=reader\nen:lesson-25:session-37:i13:p4=caller",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i16",
+    "correctText": "The traveller had packed by the time I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-37:i17",
+    "correctText": "The reader had finished the story by the time she called.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "past perfect + by the time + past simple",
+    "uk": "past perfect + by the time + past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уже слышал новости",
+        "uk": "Уже чув новини"
+      },
+      "bodyByLocale": {
+        "ru": "Listener — слушатель. The listener had heard the news by the time I called — слушатель уже услышал новости к тому моменту, когда я позвонил. Например, он слушал радио. Listener называет человека, а heard — третья форма hear. Had heard показывает, что к звонку новость уже была ему известна.",
+        "uk": "Listener — слухач. The listener had heard the news by the time I called — слухач уже почув новини до того моменту, коли я зателефонував. Наприклад, він слухав радіо. Listener називає людину, а heard — третя форма hear. Had heard показує, що до дзвінка новина вже була йому відома."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-38:intro1:r1",
+              "text": "The listener had heard the news by the time I called."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro1:r2",
+              "text": "The listener has heard the news by the time I called."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro1:r3",
+              "text": "The listener was heard the news by the time I called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-38:intro1:r1",
+              "text": "The listener had heard the news by the time I called."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro1:r2",
+              "text": "The listener has heard the news by the time I called."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro1:r3",
+              "text": "The listener was heard the news by the time I called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Смотрит или учится",
+        "uk": "Дивиться чи навчається"
+      },
+      "bodyByLocale": {
+        "ru": "Viewer — зритель, например человек перед телевизором. The viewer had changed the channel by the time the film started — зритель уже переключил канал к началу фильма. Learner — учащийся, человек, который чему-то учится, независимо от возраста. The learner had finished the exercise by the time I arrived — учащийся уже закончил упражнение к моему приходу. Не путайте listener со viewer: первый слушает, второй смотрит.",
+        "uk": "Viewer — глядач, наприклад людина перед телевізором. The viewer had changed the channel by the time the film started — глядач уже перемкнув канал до початку фільму. Learner — учень, людина, яка чогось навчається, незалежно від віку. The learner had finished the exercise by the time I arrived — учень уже закінчив вправу до мого приходу. Не плутайте listener із viewer: перший слухає, другий дивиться."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-38:intro2:r1",
+              "text": "The viewer had changed the channel by the time the film started."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro2:r2",
+              "text": "The viewer has changed the channel by the time the film started."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro2:r3",
+              "text": "The viewer was changed the channel by the time the film started."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-38:intro2:r1",
+              "text": "The viewer had changed the channel by the time the film started."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro2:r2",
+              "text": "The viewer has changed the channel by the time the film started."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro2:r3",
+              "text": "The viewer was changed the channel by the time the film started."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Успел до дождя",
+        "uk": "Встиг до дощу"
+      },
+      "bodyByLocale": {
+        "ru": "Pensioner — пенсионер, человек, который получает пенсию. The pensioner had caught the bus by the time it started raining — пенсионер уже успел на автобус к тому моменту, когда начался дождь. Caught the bus здесь значит «успел на автобус», не «поймал его руками». Had caught — более раннее действие; started raining — начало дождя, к которому он уже был в автобусе.",
+        "uk": "Pensioner — пенсіонер, людина, яка отримує пенсію. The pensioner had caught the bus by the time it started raining — пенсіонер уже встиг на автобус до того моменту, коли почався дощ. Caught the bus тут означає «встиг на автобус», не «спіймав його руками». Had caught — раніша дія; started raining — початок дощу, до якого він уже був в автобусі."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-38:intro3:r1",
+              "text": "The pensioner had caught the bus by the time it started raining."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro3:r2",
+              "text": "The pensioner has caught the bus by the time it started raining."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro3:r3",
+              "text": "The pensioner was caught the bus by the time it started raining."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-38:intro3:r1",
+              "text": "The pensioner had caught the bus by the time it started raining."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro3:r2",
+              "text": "The pensioner has caught the bus by the time it started raining."
+            },
+            {
+              "responseId": "en:lesson-25:session-38:intro3:r3",
+              "text": "The pensioner was caught the bus by the time it started raining."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e4b9f16dcb156354593c7758385fc1c3c36cf1b8d6f0de471c2950bce7eea788"
+}

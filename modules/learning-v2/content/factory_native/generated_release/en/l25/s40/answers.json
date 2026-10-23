@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-40:word:banged",
+    "correctText": "banged",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i01",
+    "correctText": "The door had banged shut by the time I reached it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i02",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i03",
+    "correctText": "The door had banged shut by the time I reached it.",
+    "correctResponseId": "en:lesson-25:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:word:crashed",
+    "correctText": "crashed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i04",
+    "correctText": "The plates had crashed to the floor by the time I caught the tray.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i05",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i06",
+    "correctText": "The plates had crashed to the floor by the time I caught the tray.",
+    "correctResponseId": "en:lesson-25:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:word:beeped",
+    "correctText": "beeped",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i07",
+    "correctText": "The timer had beeped by the time I returned.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i09",
+    "correctText": "The timer had beeped by the time I returned.",
+    "correctResponseId": "en:lesson-25:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:word:honked",
+    "correctText": "honked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i10",
+    "correctText": "The driver had honked by the time I saw the car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i11",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-25:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i12",
+    "correctText": "The driver had honked by the time I saw the car.",
+    "correctResponseId": "en:lesson-25:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i13",
+    "correctText": "en:lesson-25:session-40:i13:p1=banged\nen:lesson-25:session-40:i13:p2=crashed\nen:lesson-25:session-40:i13:p3=beeped\nen:lesson-25:session-40:i13:p4=honked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i14",
+    "correctText": "She had finished before I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i15",
+    "correctText": "The train had left when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i16",
+    "correctText": "The timer had beeped by the time he returned.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-40:i17",
+    "correctText": "The driver had honked by the time we saw the car.",
+    "correctResponseId": null
+  }
+]

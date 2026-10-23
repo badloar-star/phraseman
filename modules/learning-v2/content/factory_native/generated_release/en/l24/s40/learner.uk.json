@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-40:word:beauty",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — beauty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:word:beauty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — beauty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:word:beauty:audio",
+          "transcript": "beauty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:word:beauty:r1",
+            "targetText": "beauty",
+            "meaningByLocale": {
+              "ru": "красота.",
+              "uk": "краса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "beauty",
+          "definitionByLocale": {
+            "ru": "красота.",
+            "uk": "краса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я помітив красу цього місця.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я помітив красу цього місця.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have noticed the beauty of this place.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я заметил красоту этого места.»",
+          "uk": "Скажіть: «Я помітив красу цього місця.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "noticed",
+          "the",
+          "beauty",
+          "of",
+          "this",
+          "place"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про прочитане.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про прочитане.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прочитанном.",
+          "uk": "Доповніть розповідь про прочитане."
+        },
+        "gappedTargetPhrase": "I ___ noticed the beauty of this place.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-40:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про прочитане.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед noticed.",
+              "uk": "Із I потрібно have перед noticed."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед noticed.",
+              "uk": "Із I потрібно have перед noticed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i03:r1",
+          "text": "I have noticed the beauty of this place."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i03:r2",
+          "text": "We have noticed the beauty of this place."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i03:r3",
+          "text": "I have noticed the beauty of this garden."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i03:audio",
+          "transcript": "I have noticed the beauty of this place."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:i03:r1",
+            "targetText": "I have noticed the beauty of this place.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i03:r2",
+            "targetText": "We have noticed the beauty of this place.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i03:r3",
+            "targetText": "I have noticed the beauty of this garden.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have noticed the beauty of this place.",
+              "uk": "У записі звучить I have noticed the beauty of this place."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have noticed the beauty of this place.",
+              "uk": "У записі звучить I have noticed the beauty of this place."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:word:wealth",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wealth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:word:wealth:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wealth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:word:wealth:audio",
+          "transcript": "wealth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:word:wealth:r1",
+            "targetText": "wealth",
+            "meaningByLocale": {
+              "ru": "богатство.",
+              "uk": "багатство."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wealth",
+          "definitionByLocale": {
+            "ru": "богатство.",
+            "uk": "багатство."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона говорила про його багатство.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона говорила про його багатство.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She talked about his wealth yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она говорила о его богатстве.»",
+          "uk": "Скажіть: «Учора вона говорила про його багатство.»"
+        },
+        "orderedTokens": [
+          "She",
+          "talked",
+          "about",
+          "his",
+          "wealth",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про прочитане.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i05:r1",
+          "text": "talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i05:r2",
+          "text": "has talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i05:r3",
+          "text": "talk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про прочитане.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прочитанном.",
+          "uk": "Доповніть розповідь про прочитане."
+        },
+        "gappedTargetPhrase": "She ___ about his wealth yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-40:i05:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i05:r2",
+            "text": "has talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i05:r3",
+            "text": "talk"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про прочитане.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i06:r1",
+          "text": "She talked about his wealth yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i06:r2",
+          "text": "He talked about his wealth yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i06:r3",
+          "text": "She talked about his wealth last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i06:audio",
+          "transcript": "She talked about his wealth yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:i06:r1",
+            "targetText": "She talked about his wealth yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i06:r2",
+            "targetText": "He talked about his wealth yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i06:r3",
+            "targetText": "She talked about his wealth last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She talked about his wealth yesterday.",
+              "uk": "У записі звучить She talked about his wealth yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She talked about his wealth yesterday.",
+              "uk": "У записі звучить She talked about his wealth yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:word:poverty",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — poverty",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:word:poverty:audio"
+      ],
+      "accessibilityLabel": "Картка слова — poverty",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:word:poverty:audio",
+          "transcript": "poverty"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:word:poverty:r1",
+            "targetText": "poverty",
+            "meaningByLocale": {
+              "ru": "бедность.",
+              "uk": "бідність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "poverty",
+          "definitionByLocale": {
+            "ru": "бедность.",
+            "uk": "бідність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми прочитали про бідність.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми прочитали про бідність.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have read about poverty.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы прочитали о бедности.»",
+          "uk": "Скажіть: «Ми прочитали про бідність.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "read",
+          "about",
+          "poverty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про прочитане.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про прочитане.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прочитанном.",
+          "uk": "Доповніть розповідь про прочитане."
+        },
+        "gappedTargetPhrase": "We ___ read about poverty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-40:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про прочитане.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед read.",
+              "uk": "Із we потрібно have перед read."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед read.",
+              "uk": "Із we потрібно have перед read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i09:r1",
+          "text": "We have read about poverty."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i09:r2",
+          "text": "They have read about poverty."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i09:r3",
+          "text": "We have talked about poverty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i09:audio",
+          "transcript": "We have read about poverty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:i09:r1",
+            "targetText": "We have read about poverty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i09:r2",
+            "targetText": "They have read about poverty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i09:r3",
+            "targetText": "We have talked about poverty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have read about poverty.",
+              "uk": "У записі звучить We have read about poverty."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have read about poverty.",
+              "uk": "У записі звучить We have read about poverty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:word:fame",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fame",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:word:fame:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fame",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:word:fame:audio",
+          "transcript": "fame"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:word:fame:r1",
+            "targetText": "fame",
+            "meaningByLocale": {
+              "ru": "слава, известность.",
+              "uk": "слава, популярність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fame",
+          "definitionByLocale": {
+            "ru": "слава, известность.",
+            "uk": "слава, популярність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора він говорив про популярність.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора він говорив про популярність.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He spoke about fame yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера он говорил об известности.»",
+          "uk": "Скажіть: «Учора він говорив про популярність.»"
+        },
+        "orderedTokens": [
+          "He",
+          "spoke",
+          "about",
+          "fame",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про прочитане.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i11:r1",
+          "text": "spoke"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i11:r2",
+          "text": "has spoken"
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i11:r3",
+          "text": "speak"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про прочитане.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о прочитанном.",
+          "uk": "Доповніть розповідь про прочитане."
+        },
+        "gappedTargetPhrase": "He ___ about fame yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-40:i11:r1",
+            "text": "spoke"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i11:r2",
+            "text": "has spoken"
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i11:r3",
+            "text": "speak"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про прочитане.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма spoke без has.",
+              "uk": "Із yesterday потрібна форма spoke без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про прочитане.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма spoke без has.",
+              "uk": "Із yesterday потрібна форма spoke без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-40:i12:r1",
+          "text": "He spoke about fame yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i12:r2",
+          "text": "She spoke about fame yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-40:i12:r3",
+          "text": "He spoke about fame last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i12:audio",
+          "transcript": "He spoke about fame yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-40:i12:r1",
+            "targetText": "He spoke about fame yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i12:r2",
+            "targetText": "She spoke about fame yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i12:r3",
+            "targetText": "He spoke about fame last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He spoke about fame yesterday.",
+              "uk": "У записі звучить He spoke about fame yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He spoke about fame yesterday.",
+              "uk": "У записі звучить He spoke about fame yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-40:i13:p1",
+            "target": "beauty",
+            "meaningByLocale": {
+              "ru": "красота",
+              "uk": "краса"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-40:i13:p2",
+            "target": "wealth",
+            "meaningByLocale": {
+              "ru": "богатство",
+              "uk": "багатство"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-40:i13:p3",
+            "target": "poverty",
+            "meaningByLocale": {
+              "ru": "бедность",
+              "uk": "бідність"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-40:i13:p4",
+            "target": "fame",
+            "meaningByLocale": {
+              "ru": "слава, известность",
+              "uk": "слава, популярність"
+            }
+          }
+        ],
+        "leftColumn": [
+          "beauty",
+          "wealth",
+          "poverty",
+          "fame"
+        ],
+        "rightColumn": [
+          "краса",
+          "багатство",
+          "бідність",
+          "слава, популярність"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми говорили про його багатство вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми говорили про його багатство вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i16:audio",
+          "transcript": "We talked about his wealth yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We talked about his wealth yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вона говорила про популярність учора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вона говорила про популярність учора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-40:i17:audio",
+          "transcript": "She spoke about fame yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She spoke about fame yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "05f5a93623af70760afdbad784fa9489ceb9599e7f63429035f2da211819dbd1"
+}

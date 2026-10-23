@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-41:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-41:intro1:r3": {
+          "ru": "После have здесь нужна форма read.",
+          "uk": "Після have тут потрібна форма read."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-41:intro2:r2": {
+          "ru": "С last year нужно joined без has.",
+          "uk": "Із last year потрібне joined без has."
+        },
+        "en:lesson-24:session-41:intro2:r3": {
+          "ru": "Для прошлого нужна форма joined.",
+          "uk": "Для минулого потрібна форма joined."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-41:intro3:r2": {
+          "ru": "С yesterday нужно talked без has.",
+          "uk": "Із yesterday потрібне talked без has."
+        },
+        "en:lesson-24:session-41:intro3:r3": {
+          "ru": "Для прошлого нужна форма talked.",
+          "uk": "Для минулого потрібна форма talked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d71b2b6d4b837e990c9109a809f2df226fe482f7266e2c82822835d7d9eb4e61"
+}

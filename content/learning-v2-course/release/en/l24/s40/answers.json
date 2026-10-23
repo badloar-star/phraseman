@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-40:word:beauty",
+    "correctText": "beauty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i01",
+    "correctText": "I have noticed the beauty of this place.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i03",
+    "correctText": "I have noticed the beauty of this place.",
+    "correctResponseId": "en:lesson-24:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:word:wealth",
+    "correctText": "wealth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i04",
+    "correctText": "She talked about his wealth yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i05",
+    "correctText": "talked",
+    "correctResponseId": "en:lesson-24:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i06",
+    "correctText": "She talked about his wealth yesterday.",
+    "correctResponseId": "en:lesson-24:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:word:poverty",
+    "correctText": "poverty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i07",
+    "correctText": "We have read about poverty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i09",
+    "correctText": "We have read about poverty.",
+    "correctResponseId": "en:lesson-24:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:word:fame",
+    "correctText": "fame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i10",
+    "correctText": "He spoke about fame yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i11",
+    "correctText": "spoke",
+    "correctResponseId": "en:lesson-24:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i12",
+    "correctText": "He spoke about fame yesterday.",
+    "correctResponseId": "en:lesson-24:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i13",
+    "correctText": "en:lesson-24:session-40:i13:p1=beauty\nen:lesson-24:session-40:i13:p2=wealth\nen:lesson-24:session-40:i13:p3=poverty\nen:lesson-24:session-40:i13:p4=fame",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i16",
+    "correctText": "We talked about his wealth yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-40:i17",
+    "correctText": "She spoke about fame yesterday.",
+    "correctResponseId": null
+  }
+]

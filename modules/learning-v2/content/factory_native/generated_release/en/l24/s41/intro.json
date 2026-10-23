@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "Present Perfect / Past Simple",
+    "uk": "Present Perfect / Past Simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "О прочитанном",
+        "uk": "Про прочитане"
+      },
+      "bodyByLocale": {
+        "ru": "War — война. I have read about the war — я прочитал о войне. The war означает конкретную войну, о которой идёт речь в тексте. В этой фразе сообщаем, что прочитали материал, без законченной даты. После have форма read произносится «ред».",
+        "uk": "War — війна. I have read about the war — я прочитав про війну. The war означає конкретну війну, про яку йдеться в тексті. У цій фразі повідомляємо, що прочитали матеріал, без завершеної дати. Після have форма read вимовляється «ред»."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-41:intro1:r1",
+              "text": "I have read about the war."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro1:r2",
+              "text": "I has read about the war."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro1:r3",
+              "text": "I have reading about the war."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-41:intro1:r1",
+              "text": "I have read about the war."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro1:r2",
+              "text": "I has read about the war."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro1:r3",
+              "text": "I have reading about the war."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "В прошлом году",
+        "uk": "Минулого року"
+      },
+      "bodyByLocale": {
+        "ru": "Army — армия. He joined the army last year — он поступил на службу в армию в прошлом году. Join the army употребляется без to. Last year обозначает законченный период, поэтому joined без has. Знакомое soldier — солдат, отдельный человек; army — армия.",
+        "uk": "Army — армія. He joined the army last year — він вступив до армії торік. Join the army вживається без to. Last year позначає завершений період, тому joined без has. Знайоме soldier — солдат, окрема людина; army — армія."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-41:intro2:r1",
+              "text": "He joined the army last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro2:r2",
+              "text": "He has joined the army last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro2:r3",
+              "text": "He join the army last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-41:intro2:r1",
+              "text": "He joined the army last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro2:r2",
+              "text": "He has joined the army last year."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro2:r3",
+              "text": "He join the army last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "После соревнования",
+        "uk": "Після змагання"
+      },
+      "bodyByLocale": {
+        "ru": "Victory — победа, defeat — поражение. Эти слова подходят и для спорта: We have celebrated our victory — мы отпраздновали нашу победу. She talked about the defeat yesterday — вчера она говорила о поражении. Результат празднования передаём через have celebrated; рассказ с yesterday — через talked.",
+        "uk": "Victory — перемога, defeat — поразка. Ці слова підходять і для спорту: We have celebrated our victory — ми відсвяткували нашу перемогу. She talked about the defeat yesterday — учора вона говорила про поразку. Результат святкування передаємо через have celebrated; розповідь із yesterday — через talked."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-41:intro3:r1",
+              "text": "She talked about the defeat yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro3:r2",
+              "text": "She has talked about the defeat yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro3:r3",
+              "text": "She talk about the defeat yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-41:intro3:r1",
+              "text": "She talked about the defeat yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro3:r2",
+              "text": "She has talked about the defeat yesterday."
+            },
+            {
+              "responseId": "en:lesson-24:session-41:intro3:r3",
+              "text": "She talk about the defeat yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8982072615768e39d094fd8fcee9839a27861520faa5a55760e16ccb4b7b1c37"
+}

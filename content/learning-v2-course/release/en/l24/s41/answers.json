@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-41:word:war",
+    "correctText": "war",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i01",
+    "correctText": "I have read about the war.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i02",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i03",
+    "correctText": "I have read about the war.",
+    "correctResponseId": "en:lesson-24:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:word:army",
+    "correctText": "army",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i04",
+    "correctText": "He joined the army last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i05",
+    "correctText": "joined",
+    "correctResponseId": "en:lesson-24:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i06",
+    "correctText": "He joined the army last year.",
+    "correctResponseId": "en:lesson-24:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:word:victory",
+    "correctText": "victory",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i07",
+    "correctText": "We have celebrated our victory.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i08",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i09",
+    "correctText": "We have celebrated our victory.",
+    "correctResponseId": "en:lesson-24:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:word:defeat",
+    "correctText": "defeat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i10",
+    "correctText": "She talked about the defeat yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i11",
+    "correctText": "talked",
+    "correctResponseId": "en:lesson-24:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i12",
+    "correctText": "She talked about the defeat yesterday.",
+    "correctResponseId": "en:lesson-24:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i13",
+    "correctText": "en:lesson-24:session-41:i13:p1=war\nen:lesson-24:session-41:i13:p2=army\nen:lesson-24:session-41:i13:p3=victory\nen:lesson-24:session-41:i13:p4=defeat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i14",
+    "correctText": "I have been waiting for an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i15",
+    "correctText": "She has been working since this morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i16",
+    "correctText": "We celebrated our victory yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-41:i17",
+    "correctText": "They talked about the defeat yesterday.",
+    "correctResponseId": null
+  }
+]

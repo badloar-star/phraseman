@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-40",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-40:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-40:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-40:intro1:r3": {
+          "ru": "После have нужна форма noticed.",
+          "uk": "Після have потрібна форма noticed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-40:intro2:r2": {
+          "ru": "С yesterday нужно talked без has.",
+          "uk": "Із yesterday потрібне talked без has."
+        },
+        "en:lesson-24:session-40:intro2:r3": {
+          "ru": "Для прошлого нужна форма talked.",
+          "uk": "Для минулого потрібна форма talked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-40:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-40:intro3:r2": {
+          "ru": "С yesterday нужна форма spoke без has.",
+          "uk": "Із yesterday потрібна форма spoke без has."
+        },
+        "en:lesson-24:session-40:intro3:r3": {
+          "ru": "Прошедшая форма speak — spoke.",
+          "uk": "Минула форма speak — spoke."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a2b8cecd6f543086ab6535108fb114adb7cd0fdf95448429c154104f7f83c226"
+}

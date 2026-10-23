@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-41:word:war",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — war",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:word:war:audio"
+      ],
+      "accessibilityLabel": "Картка слова — war",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:word:war:audio",
+          "transcript": "war"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:word:war:r1",
+            "targetText": "war",
+            "meaningByLocale": {
+              "ru": "война.",
+              "uk": "війна."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "war",
+          "definitionByLocale": {
+            "ru": "война.",
+            "uk": "війна."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Я прочитав про війну.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Я прочитав про війну.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have read about the war.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я прочитал о войне.»",
+          "uk": "Скажіть: «Я прочитав про війну.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "read",
+          "about",
+          "the",
+          "war"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i02:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о событиях.",
+          "uk": "Доповніть розповідь про події."
+        },
+        "gappedTargetPhrase": "I ___ read about the war.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-41:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i02:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед read.",
+              "uk": "Із I потрібно have перед read."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have перед read.",
+              "uk": "Із I потрібно have перед read."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i03:r1",
+          "text": "I have read about the war."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i03:r2",
+          "text": "We have read about the war."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i03:r3",
+          "text": "I have written about the war."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i03:audio",
+          "transcript": "I have read about the war."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:i03:r1",
+            "targetText": "I have read about the war.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i03:r2",
+            "targetText": "We have read about the war.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i03:r3",
+            "targetText": "I have written about the war.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about the war.",
+              "uk": "У записі звучить I have read about the war."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have read about the war.",
+              "uk": "У записі звучить I have read about the war."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:word:army",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — army",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:word:army:audio"
+      ],
+      "accessibilityLabel": "Картка слова — army",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:word:army:audio",
+          "transcript": "army"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:word:army:r1",
+            "targetText": "army",
+            "meaningByLocale": {
+              "ru": "армия.",
+              "uk": "армія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "army",
+          "definitionByLocale": {
+            "ru": "армия.",
+            "uk": "армія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Він вступив до армії торік.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Він вступив до армії торік.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He joined the army last year.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Он поступил на службу в армию в прошлом году.»",
+          "uk": "Скажіть: «Він вступив до армії торік.»"
+        },
+        "orderedTokens": [
+          "He",
+          "joined",
+          "the",
+          "army",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i05:r1",
+          "text": "joined"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i05:r2",
+          "text": "has joined"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i05:r3",
+          "text": "join"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о событиях.",
+          "uk": "Доповніть розповідь про події."
+        },
+        "gappedTargetPhrase": "He ___ the army last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-41:i05:r1",
+            "text": "joined"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i05:r2",
+            "text": "has joined"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i05:r3",
+            "text": "join"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма joined без has.",
+              "uk": "Із last year потрібна форма joined без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С last year нужна форма joined без has.",
+              "uk": "Із last year потрібна форма joined без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i06:r1",
+          "text": "He joined the army last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i06:r2",
+          "text": "She joined the army last year."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i06:r3",
+          "text": "He joined the army last month."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i06:audio",
+          "transcript": "He joined the army last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:i06:r1",
+            "targetText": "He joined the army last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i06:r2",
+            "targetText": "She joined the army last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i06:r3",
+            "targetText": "He joined the army last month.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He joined the army last year.",
+              "uk": "У записі звучить He joined the army last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He joined the army last year.",
+              "uk": "У записі звучить He joined the army last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:word:victory",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — victory",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:word:victory:audio"
+      ],
+      "accessibilityLabel": "Картка слова — victory",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:word:victory:audio",
+          "transcript": "victory"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:word:victory:r1",
+            "targetText": "victory",
+            "meaningByLocale": {
+              "ru": "победа.",
+              "uk": "перемога."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "victory",
+          "definitionByLocale": {
+            "ru": "победа.",
+            "uk": "перемога."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми відсвяткували нашу перемогу.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми відсвяткували нашу перемогу.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We have celebrated our victory.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы отпраздновали нашу победу.»",
+          "uk": "Скажіть: «Ми відсвяткували нашу перемогу.»"
+        },
+        "orderedTokens": [
+          "We",
+          "have",
+          "celebrated",
+          "our",
+          "victory"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i08:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i08:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i08:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о событиях.",
+          "uk": "Доповніть розповідь про події."
+        },
+        "gappedTargetPhrase": "We ___ celebrated our victory.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-41:i08:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i08:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i08:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед celebrated.",
+              "uk": "Із we потрібно have перед celebrated."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С we нужно have перед celebrated.",
+              "uk": "Із we потрібно have перед celebrated."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i09:r1",
+          "text": "We have celebrated our victory."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i09:r2",
+          "text": "They have celebrated our victory."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i09:r3",
+          "text": "We have celebrated their victory."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i09:audio",
+          "transcript": "We have celebrated our victory."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:i09:r1",
+            "targetText": "We have celebrated our victory.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i09:r2",
+            "targetText": "They have celebrated our victory.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i09:r3",
+            "targetText": "We have celebrated their victory.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have celebrated our victory.",
+              "uk": "У записі звучить We have celebrated our victory."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have celebrated our victory.",
+              "uk": "У записі звучить We have celebrated our victory."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:word:defeat",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — defeat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:word:defeat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — defeat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:word:defeat:audio",
+          "transcript": "defeat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:word:defeat:r1",
+            "targetText": "defeat",
+            "meaningByLocale": {
+              "ru": "поражение.",
+              "uk": "поразка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "defeat",
+          "definitionByLocale": {
+            "ru": "поражение.",
+            "uk": "поразка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Учора вона говорила про поразку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Учора вона говорила про поразку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She talked about the defeat yesterday.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вчера она говорила о поражении.»",
+          "uk": "Скажіть: «Учора вона говорила про поразку.»"
+        },
+        "orderedTokens": [
+          "She",
+          "talked",
+          "about",
+          "the",
+          "defeat",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть розповідь про події.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i11:r1",
+          "text": "talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i11:r2",
+          "text": "has talked"
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i11:r3",
+          "text": "talk"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть розповідь про події.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните рассказ о событиях.",
+          "uk": "Доповніть розповідь про події."
+        },
+        "gappedTargetPhrase": "She ___ about the defeat yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-41:i11:r1",
+            "text": "talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i11:r2",
+            "text": "has talked"
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i11:r3",
+            "text": "talk"
+          }
+        ],
+        "testedDimension": "Доповніть розповідь про події.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть розповідь про події.",
+            "feedbackByLocale": {
+              "ru": "С yesterday нужна форма talked без has.",
+              "uk": "Із yesterday потрібна форма talked без has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-41:i12:r1",
+          "text": "She talked about the defeat yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i12:r2",
+          "text": "He talked about the defeat yesterday."
+        },
+        {
+          "responseId": "en:lesson-24:session-41:i12:r3",
+          "text": "She talked about the defeat last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i12:audio",
+          "transcript": "She talked about the defeat yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-41:i12:r1",
+            "targetText": "She talked about the defeat yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i12:r2",
+            "targetText": "He talked about the defeat yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i12:r3",
+            "targetText": "She talked about the defeat last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She talked about the defeat yesterday.",
+              "uk": "У записі звучить She talked about the defeat yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She talked about the defeat yesterday.",
+              "uk": "У записі звучить She talked about the defeat yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-41:i13:p1",
+            "target": "war",
+            "meaningByLocale": {
+              "ru": "война",
+              "uk": "війна"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-41:i13:p2",
+            "target": "army",
+            "meaningByLocale": {
+              "ru": "армия",
+              "uk": "армія"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-41:i13:p3",
+            "target": "victory",
+            "meaningByLocale": {
+              "ru": "победа",
+              "uk": "перемога"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-41:i13:p4",
+            "target": "defeat",
+            "meaningByLocale": {
+              "ru": "поражение",
+              "uk": "поразка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "war",
+          "army",
+          "victory",
+          "defeat"
+        ],
+        "rightColumn": [
+          "війна",
+          "армія",
+          "перемога",
+          "поразка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Чекаю вже годину",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Чекаю вже годину",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i14:audio",
+          "transcript": "I have been waiting for an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have been waiting for an hour.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "been",
+          "waiting",
+          "for",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Працює з ранку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Працює з ранку",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i15:audio",
+          "transcript": "She has been working since this morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been working since this morning.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "working",
+          "since",
+          "this",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Ми відсвяткували нашу перемогу вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Ми відсвяткували нашу перемогу вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i16:audio",
+          "transcript": "We celebrated our victory yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We celebrated our victory yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Вони говорили про поразку вчора».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Вони говорили про поразку вчора».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-41:i17:audio",
+          "transcript": "They talked about the defeat yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They talked about the defeat yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "778e45a285015bda47037201fc062492a8a6b991620cd3d0f28adb0b6358f60c"
+}

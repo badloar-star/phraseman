@@ -16,6 +16,7 @@ import { markDialogueV2OptimisticTap } from '../../../app/dialogue_v2_optimistic
 import { prestartDialogueV2TextSession } from '../../../app/dialogue_v2_turn_client';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import ScreenGradient from '../../ScreenGradient';
+import { LinearGradient } from '../../SafeLinearGradient';
 import { useLang } from '../../LangContext';
 import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
 import { lv2Mix } from '../../learning-v2/learning_v2_task_theme_tokens';
@@ -152,6 +153,8 @@ function DialogueV2ThemeScreen() {
           windowSize={7}
           showsVerticalScrollIndicator={false}
         />
+        {/* зачем (макет dialogs-hub-v4 `.dv-fade`, координатор 22.10): нижнее затухание списка — строки уходят под низ плавно, а не обрезаются; слой не ловит нажатия */}
+        <LinearGradient testID="dialogs-theme-fade" pointerEvents="none" colors={[`${g.bg}00`, g.bg]} locations={[0, 0.85]} style={[styles.fade, { height: 70 + insets.bottom }]} />
       </View>
     </ScreenGradient>
   );
@@ -170,6 +173,7 @@ const styles = StyleSheet.create({
   track: { marginTop: 12, marginHorizontal: 22, height: 7, borderRadius: 4 },
   dot: { position: 'absolute', top: -0.5, width: 8, height: 8, borderRadius: 4, marginLeft: -8 },
   list: { flex: 1, marginTop: 12 },
+  fade: { position: 'absolute', left: 0, right: 0, bottom: 0 },
   listContent: { paddingHorizontal: 16, gap: 6 },
   // макет `.dv-row`: высота от 58, радиус 18, поля 6·14·6·8
   row: { minHeight: 58, borderRadius: 18, paddingLeft: 8, paddingRight: 14, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', gap: 12 },

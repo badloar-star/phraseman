@@ -1,6 +1,8 @@
 # Task packet: инвентарь экранов Диалогов по коду и переделка варианта 2 хаба Диалогов
 
 Governance-ID: TG-628CA00EED66
+Governance-ID: TG-F77FA098ED6F
+Governance-ID: TG-C0DCF678A0B2
 Governance-ID: TG-DC98BC081FE9
 Governance-ID: TG-E6E68478A548
 Governance-ID: TG-22E4B705B524

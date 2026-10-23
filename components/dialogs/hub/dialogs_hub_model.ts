@@ -35,3 +35,14 @@ export function dialogsHubItemsOf(items: readonly DialogueV2CatalogueLearnerItem
 export function dialogsHubProgress(done: number, total: number): number {
   return total > 0 ? Math.max(0, Math.min(1, done / total)) : 0;
 }
+
+/**
+ * Вес плитки темы в строке 2 × 2: ширина делится пропорционально длине названия + запас.
+ *
+ * зачем (Переводчик 22.10, fit-report-360dp: «Повседневное» 118 dp, «Повсякденне» 108, «Gündelik hayat» 117 не влезали в 106 dp при равных колонках): названия — решение владельца («как в приложении»), шрифт не ужимаем (запрет владельца),
+ * одно слово посреди не рвём — поэтому запас подобран замером (4: при 10 «Gündelik hayat» не влезало на 360 dp, при 2 не влезали «Поездки» и «Yolculuklar»);  длинное название получает плитку пошире, короткое — поуже; сумма строки та же. Сторож: tests/dialogs_hub_tile_fit_contract.test.ts (9 языков при 360 dp).
+ */
+export const DIALOGS_HUB_TILE_WEIGHT_PAD = 4;
+export function dialogsHubTileWeight(title: string): number {
+  return title.length + DIALOGS_HUB_TILE_WEIGHT_PAD;
+}

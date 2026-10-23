@@ -19,28 +19,30 @@ describe('«Слова» Сезона → слова этого урока', () 
     expect(layout).toContain('<Stack.Screen name="learning_v2_lesson_words" />');
   });
 
-  it('вид — общий WordList основного курса (плоский), заголовок «Слова урока N» и «‹», данные — слова урока с телефона', () => {
-    expect(screen).toContain("import { WordList, type Word } from './lesson_words';");
-    expect(screen).toContain('<WordList words={listWords as Word[]} learnedCounts={NO_COUNTS} lang={lang} lessonId={lessonOrdinal} flat />');
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «переносить как в макете» (words-lesson-course.html) — прежний общий WordList основного курса заменён списком LearningV2WordsList (кружок-динамик, поиск и разделы во «Весь курс»); заголовок «N. Словарь» и «‹» остались
+  it('вид — список LearningV2WordsList по макету, заголовок «N. Словарь» и «‹», данные — слова урока с телефона', () => {
+    expect(screen).toContain("import LearningV2WordsList from '../components/learning-v2/words/LearningV2WordsList';");
+    expect(screen).toContain('<LearningV2WordsList');
     expect(screen).toContain('s.words.title(lessonOrdinal)');
     // 22.10 (закон владельца «назад везде в одном месте»): «‹» — общая ScreenBackButton
     expect(screen).toContain('<ScreenBackButton');
     expect(screen).toContain('useLearningV2UnlockedLessonWordsV1(scope, { includeAuthoringPreview: __DEV__ })');
     expect(list).toContain('export function WordList(');
-    expect(list).toContain("const sections = flat ? [{ title: '', data: words }] : groupByPOS(words, lang);");
   });
 
   it('сети и спиннера нет; журнал [SEASON-WORDS]: вход, слова, назад; пусто — слова, а не пустой экран', () => {
     expect(screen).not.toMatch(/firebase|firestore|fetch\(|ActivityIndicator/i);
     expect(screen).not.toContain('adjustsFontSizeToFit');
-    for (const key of ["'вход'", "'слова'", "'назад'"]) expect(screen).toContain(key);
+    // «назад» — общая ScreenBackButton со своим журналом [BACK-BTN]; своего обработчика «назад» в экране больше нет
+    for (const key of ["'вход'", "'слова'"]) expect(screen).toContain(key);
     expect(screen).toContain("const LOG = '[SEASON-WORDS]';");
-    expect(screen).toContain('testID="learning-v2-lesson-words-empty"');
+    expect(code(read('components/learning-v2/words/LearningV2WordsList.tsx'))).toContain('testID="learning-v2-lesson-words-empty"');
   });
 
-  it('слово Learning V2 → строка списка: слово, перевод на 9 языках, часть речи phrases; порядок — по занятию и месту', () => {
+  it('слово Learning V2 → строка списка: слово, перевод на 9 языках, часть речи phrases; порядок — по занятию и месту (модель words_list_model)', () => {
+    const model = code(read('components/learning-v2/words/words_list_model.ts'));
     for (const key of ['en: item.encounter.save.targetText', 'ru: meaning.ru', "'pt-BR': meaning['pt-BR']", "pos: 'phrases'", 'a.sourceSessionOrdinal - b.sourceSessionOrdinal || a.encounter.orderWithinSession - b.encounter.orderWithinSession']) {
-      expect(screen).toContain(key);
+      expect(model).toContain(key);
     }
   });
 });

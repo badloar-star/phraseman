@@ -16,7 +16,7 @@ import V2Pressable from '../../v2/V2Pressable';
 import { dialogueWorldIcon } from '../dialogue_scenario_icons';
 import { dialogsHubTokens } from '../scene/dialogs_hub_tokens';
 import { dialogsSceneText } from '../scene/dialogs_scene_copy';
-import { dialogsHubProgress, type DialogsHubTotals, type DialogsHubWorldCount } from './dialogs_hub_model';
+import { dialogsHubProgress, dialogsHubTileWeight, type DialogsHubTotals, type DialogsHubWorldCount } from './dialogs_hub_model';
 
 export const DIALOGS_HUB_TILE_HEIGHT = 58;
 export const DIALOGS_HUB_TILE_RADIUS = 20;
@@ -55,7 +55,8 @@ function DialogsHubThemes({ worlds, totals, onWorld, onAll }: Props) {
                   accessibilityRole="button"
                   accessibilityLabel={`${world.title}, ${counter}`}
                   onPress={() => onWorld(world.id)}
-                  outerStyle={styles.flex}
+                  // ЗАМОК ВЛАДЕЛЬЦА 22.10: слова названий тем не меняем и шрифт не ужимаем — длинное название («Повседневное») получает плитку пошире (вес из dialogs_hub_model)
+                  outerStyle={{ flex: dialogsHubTileWeight(world.title), minWidth: 0 }}
                   style={[styles.tile, { backgroundColor: t.tile.bg }]}
                 >
                   <Ionicons name={dialogueWorldIcon(world.id)} size={20} color={t.tile.icon} />

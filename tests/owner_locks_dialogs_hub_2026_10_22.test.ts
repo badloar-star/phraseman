@@ -52,6 +52,13 @@ describe('Замки владельца 22.10: хаб Диалогов', () => {
     expect(read('components/dialogs/DialogueV2CatalogueContainer.tsx')).toContain('Откроется на ранге\\u00A0${rank}');
   });
 
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «Нижнее затухание списка на экране темы Диалогов — добавь, оно было в макете» (координатор, макет dialogs-hub-v4 `.dv-fade`)
+  it('на экране темы под списком нижнее затухание (слой без нажатий)', () => {
+    const screen = read('components/dialogs/hub/DialogueV2ThemeScreen.tsx');
+    expect(screen).toContain('testID="dialogs-theme-fade"');
+    expect(screen).toContain('pointerEvents="none" colors={[`${g.bg}00`, g.bg]}');
+  });
+
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «КНОПКА НАЗАД ВООБЩЕ ВЕЗДЕ ДОЛЖНА БЫТЬ В ОДНОМ И ТОМ ЖЕ МЕСТЕ» — хаб Диалогов: общая ScreenBackButton со сценой под ней (sceneTop)
   it('на хабе «назад» — общая ScreenBackButton, круг по яркости сцены (sceneTop), в сцене только место под неё', () => {
     const home = read('app/ai_dialog_home.tsx');

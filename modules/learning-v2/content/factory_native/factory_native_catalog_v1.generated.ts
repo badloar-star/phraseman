@@ -9459,7 +9459,14 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 7,
-    sourceFingerprint: "41d5bab6232b735b5c6cd6a726343b517c0e29b3b2add1ff91a0e5eb12efb9ce",
+    sourceFingerprint: "c1025a354b8ac460762715cf97b828bb1b8acf9495bc20737ac57dd35daf03ad",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"used to + base verb","uk":"used to + base verb"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 25, sessionOrdinal: 8,
+    sourceFingerprint: "f1b09166354581e6975c71e17abbd3737779fa9c1b7dc3c6f06e2c6786ef670c",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"used to + base verb","uk":"used to + base verb"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 25","uk":"Англійська · Урок 25"}),

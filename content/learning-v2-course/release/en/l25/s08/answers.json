@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-25:session-08:word:envy",
+    "correctText": "envy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i01",
+    "correctText": "I used to envy my brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i02",
+    "correctText": "envy",
+    "correctResponseId": "en:lesson-25:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i03",
+    "correctText": "I used to envy my brother.",
+    "correctResponseId": "en:lesson-25:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:word:reward",
+    "correctText": "reward",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i04",
+    "correctText": "She used to reward good work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i05",
+    "correctText": "reward",
+    "correctResponseId": "en:lesson-25:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i06",
+    "correctText": "She used to reward good work.",
+    "correctResponseId": "en:lesson-25:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:word:punish",
+    "correctText": "punish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i07",
+    "correctText": "Our teacher used to punish bad behaviour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i08",
+    "correctText": "punish",
+    "correctResponseId": "en:lesson-25:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i09",
+    "correctText": "Our teacher used to punish bad behaviour.",
+    "correctResponseId": "en:lesson-25:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:word:demand",
+    "correctText": "demand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i10",
+    "correctText": "He used to demand an answer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i11",
+    "correctText": "demand",
+    "correctResponseId": "en:lesson-25:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i12",
+    "correctText": "He used to demand an answer.",
+    "correctResponseId": "en:lesson-25:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i13",
+    "correctText": "en:lesson-25:session-08:i13:p1=envy\nen:lesson-25:session-08:i13:p2=reward\nen:lesson-25:session-08:i13:p3=punish\nen:lesson-25:session-08:i13:p4=demand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i14",
+    "correctText": "I have found another job.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i15",
+    "correctText": "The other families moved last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i16",
+    "correctText": "We used to envy our brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-25:session-08:i17",
+    "correctText": "She used to demand an answer.",
+    "correctResponseId": null
+  }
+]

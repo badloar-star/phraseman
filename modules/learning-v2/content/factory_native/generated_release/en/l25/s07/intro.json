@@ -11,12 +11,12 @@
       "pageId": "en:lesson-25:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Где я жил",
-        "uk": "Де я жив"
+        "ru": "Откладывал обед",
+        "uk": "Відкладав обід"
       },
       "bodyByLocale": {
-        "ru": "Ukraine — Украина. I used to live in Ukraine — раньше я жил в Украине. Здесь used to live описывает прежнее место проживания: теперь я живу в другой стране. Перед Ukraine артикль не нужен. Название страны пишем с заглавной буквы.",
-        "uk": "Ukraine — Україна. I used to live in Ukraine — раніше я жив в Україні. Тут used to live описує колишнє місце проживання: тепер я живу в іншій країні. Перед Ukraine артикль не потрібен. Назву країни пишемо з великої літери."
+        "ru": "Hunger — голод. I used to ignore my hunger — раньше я не обращал внимания на голод. Например, увлекался работой и откладывал обед. Теперь эта привычка осталась в прошлом. Hungry описывает человека: I am hungry. Hunger называет само чувство: my hunger. После used to нужна форма ignore.",
+        "uk": "Hunger — голод. I used to ignore my hunger — раніше я не звертав уваги на голод. Наприклад, захоплювався роботою та відкладав обід. Тепер ця звичка залишилася в минулому. Hungry описує людину: I am hungry. Hunger називає саме відчуття: my hunger. Після used to потрібна форма ignore."
       },
       "question": {
         "interactionId": "en:lesson-25:session-07:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-25:session-07:intro1:r1",
-              "text": "I used to live in Ukraine."
+              "text": "I used to ignore my hunger."
             },
             {
               "responseId": "en:lesson-25:session-07:intro1:r2",
-              "text": "I used to lived in Ukraine."
+              "text": "I used to ignored my hunger."
             },
             {
               "responseId": "en:lesson-25:session-07:intro1:r3",
-              "text": "I used to living in Ukraine."
+              "text": "I used to ignoring my hunger."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-25:session-07:intro1:r1",
-              "text": "I used to live in Ukraine."
+              "text": "I used to ignore my hunger."
             },
             {
               "responseId": "en:lesson-25:session-07:intro1:r2",
-              "text": "I used to lived in Ukraine."
+              "text": "I used to ignored my hunger."
             },
             {
               "responseId": "en:lesson-25:session-07:intro1:r3",
-              "text": "I used to living in Ukraine."
+              "text": "I used to ignoring my hunger."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Работа и поездки",
-        "uk": "Робота й подорожі"
+        "ru": "Самочувствие и домашние дела",
+        "uk": "Самопочуття й домашні справи"
       },
       "bodyByLocale": {
-        "ru": "Russia — Россия. She used to work in Russia — раньше она работала в России. Thailand — Таиланд. We used to travel to Thailand — раньше мы ездили в Таиланд. Work in говорит о месте работы, travel to — о направлении поездки. Used to travel описывает повторявшиеся поездки.",
-        "uk": "Russia — Росія. She used to work in Russia — раніше вона працювала в Росії. Thailand — Таїланд. We used to travel to Thailand — раніше ми їздили до Таїланду. Work in говорить про місце роботи, travel to — про напрямок подорожі. Used to travel описує поїздки, які повторювалися."
+        "ru": "Thirst — жажда. She used to wake up with a terrible thirst — раньше она просыпалась с сильной жаждой. Thirsty — «испытывающий жажду», а thirst — само чувство. Chores — домашние обязанности: помыть посуду, вынести мусор, убрать комнату. We used to share the chores — раньше мы делили эти обязанности.",
+        "uk": "Thirst — спрага. She used to wake up with a terrible thirst — раніше вона прокидалася із сильною спрагою. Thirsty — «той, хто хоче пити», а thirst — саме відчуття. Chores — домашні обов’язки: помити посуд, винести сміття, прибрати кімнату. We used to share the chores — раніше ми ділили ці обов’язки."
       },
       "question": {
         "interactionId": "en:lesson-25:session-07:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-25:session-07:intro2:r1",
-              "text": "She used to work in Russia."
+              "text": "She used to wake up with a terrible thirst."
             },
             {
               "responseId": "en:lesson-25:session-07:intro2:r2",
-              "text": "She used to worked in Russia."
+              "text": "She used to woke up with a terrible thirst."
             },
             {
               "responseId": "en:lesson-25:session-07:intro2:r3",
-              "text": "She used to working in Russia."
+              "text": "She used to waking up with a terrible thirst."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-25:session-07:intro2:r1",
-              "text": "She used to work in Russia."
+              "text": "She used to wake up with a terrible thirst."
             },
             {
               "responseId": "en:lesson-25:session-07:intro2:r2",
-              "text": "She used to worked in Russia."
+              "text": "She used to woke up with a terrible thirst."
             },
             {
               "responseId": "en:lesson-25:session-07:intro2:r3",
-              "text": "She used to working in Russia."
+              "text": "She used to waking up with a terrible thirst."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-25:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Где он преподавал",
-        "uk": "Де він викладав"
+        "ru": "После работы",
+        "uk": "Після роботи"
       },
       "bodyByLocale": {
-        "ru": "Vietnam — Вьетнам. He used to teach in Vietnam — раньше он преподавал во Вьетнаме. После used to нужна форма teach, хотя сама работа осталась в прошлом. Не говорим used to taught. Все четыре названия в этом занятии употребляем без артикля.",
-        "uk": "Vietnam — В’єтнам. He used to teach in Vietnam — раніше він викладав у В’єтнамі. Після used to потрібна форма teach, хоча сама робота залишилася в минулому. Не кажемо used to taught. Усі чотири назви в цьому занятті вживаємо без артикля."
+        "ru": "Errands — мелкие дела, ради которых нужно куда-то сходить: забрать посылку, купить хлеб, отнести ключи. Run errands — ходить или ездить по таким делам, не обязательно бегать. He used to run errands after work — раньше после работы он ходил по мелким делам. После used to выбираем run, не ran.",
+        "uk": "Errands — дрібні справи, заради яких потрібно кудись сходити: забрати посилку, купити хліб, віднести ключі. Run errands — ходити або їздити в таких справах, не обов’язково бігати. He used to run errands after work — раніше після роботи він ходив у дрібних справах. Після used to вибираємо run, не ran."
       },
       "question": {
         "interactionId": "en:lesson-25:session-07:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-25:session-07:intro3:r1",
-              "text": "He used to teach in Vietnam."
+              "text": "He used to run errands after work."
             },
             {
               "responseId": "en:lesson-25:session-07:intro3:r2",
-              "text": "He used to taught in Vietnam."
+              "text": "He used to ran errands after work."
             },
             {
               "responseId": "en:lesson-25:session-07:intro3:r3",
-              "text": "He used to teaching in Vietnam."
+              "text": "He used to running errands after work."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-25:session-07:intro3:r1",
-              "text": "He used to teach in Vietnam."
+              "text": "He used to run errands after work."
             },
             {
               "responseId": "en:lesson-25:session-07:intro3:r2",
-              "text": "He used to taught in Vietnam."
+              "text": "He used to ran errands after work."
             },
             {
               "responseId": "en:lesson-25:session-07:intro3:r3",
-              "text": "He used to teaching in Vietnam."
+              "text": "He used to running errands after work."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fafffd3dfc09b8a995b0786ee85f33cefd1831e66f46920ac563c4fed34cae97"
+  "introFingerprint": "dfbda884980a5f59ee307d30f7648b5c1f02dd3c0ccbc02f68d471369023d43e"
 }

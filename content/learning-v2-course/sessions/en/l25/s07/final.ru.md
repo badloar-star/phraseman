@@ -1,137 +1,137 @@
-# Английский · Урок 25 · Занятие 07 — Где мы жили и работали
+# Английский · Урок 25 · Занятие 07 — Прежние повседневные привычки
 
-**Ситуация.** Вы рассказываете о жизни, работе и поездках в другие страны.
+**Ситуация.** Вы вспоминаете, как раньше проходили ваши будни.
 
 **Что вы освоите:** used to + base verb
-**Новые слова:** Ukraine, Russia, Thailand, Vietnam
+**Новые слова:** hunger, thirst, chores, errands
 
 ## Интро 1
 
-### Где я жил
+### Откладывал обед
 
-Ukraine — Украина. I used to live in Ukraine — раньше я жил в Украине. Здесь used to live описывает прежнее место проживания: теперь я живу в другой стране. Перед Ukraine артикль не нужен. Название страны пишем с заглавной буквы.
+Hunger — голод. I used to ignore my hunger — раньше я не обращал внимания на голод. Например, увлекался работой и откладывал обед. Теперь эта привычка осталась в прошлом. Hungry описывает человека: I am hungry. Hunger называет само чувство: my hunger. После used to нужна форма ignore.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I used to live in Ukraine.**
-- ❌ I used to lived in Ukraine. — *После used to нужна форма live.*
-- ❌ I used to living in Ukraine. — *Используйте базовую форму live.*
+- ✅ **I used to ignore my hunger.**
+- ❌ I used to ignored my hunger. — *После used to нужна форма ignore.*
+- ❌ I used to ignoring my hunger. — *Используйте базовую форму ignore.*
 
 ---
 
 ## Интро 2
 
-### Работа и поездки
+### Самочувствие и домашние дела
 
-Russia — Россия. She used to work in Russia — раньше она работала в России. Thailand — Таиланд. We used to travel to Thailand — раньше мы ездили в Таиланд. Work in говорит о месте работы, travel to — о направлении поездки. Used to travel описывает повторявшиеся поездки.
+Thirst — жажда. She used to wake up with a terrible thirst — раньше она просыпалась с сильной жаждой. Thirsty — «испытывающий жажду», а thirst — само чувство. Chores — домашние обязанности: помыть посуду, вынести мусор, убрать комнату. We used to share the chores — раньше мы делили эти обязанности.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She used to work in Russia.**
-- ❌ She used to worked in Russia. — *После used to нужна форма work.*
-- ❌ She used to working in Russia. — *Используйте базовую форму work.*
+- ✅ **She used to wake up with a terrible thirst.**
+- ❌ She used to woke up with a terrible thirst. — *После used to нужна форма wake.*
+- ❌ She used to waking up with a terrible thirst. — *Используйте базовую форму wake.*
 
 ---
 
 ## Интро 3
 
-### Где он преподавал
+### После работы
 
-Vietnam — Вьетнам. He used to teach in Vietnam — раньше он преподавал во Вьетнаме. После used to нужна форма teach, хотя сама работа осталась в прошлом. Не говорим used to taught. Все четыре названия в этом занятии употребляем без артикля.
+Errands — мелкие дела, ради которых нужно куда-то сходить: забрать посылку, купить хлеб, отнести ключи. Run errands — ходить или ездить по таким делам, не обязательно бегать. He used to run errands after work — раньше после работы он ходил по мелким делам. После used to выбираем run, не ran.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **He used to teach in Vietnam.**
-- ❌ He used to taught in Vietnam. — *После used to нужна форма teach.*
-- ❌ He used to teaching in Vietnam. — *Используйте базовую форму teach.*
+- ✅ **He used to run errands after work.**
+- ❌ He used to ran errands after work. — *После used to нужна форма run.*
+- ❌ He used to running errands after work. — *Используйте базовую форму run.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — Ukraine**
-<!-- interaction_id: en:lesson-25:session-07:word:Ukraine; family: word_card -->
-> **Ukraine** — Украина.
+**1 · Карточка слова — hunger**
+<!-- interaction_id: en:lesson-25:session-07:word:hunger; family: word_card -->
+> **hunger** — голод.
 
-**2 · Скажите: «Раньше я жил в Украине.»**
+**2 · Скажите: «Раньше я не обращал внимания на голод.»**
 <!-- interaction_id: en:lesson-25:session-07:i01; family: phrase_builder -->
-Плитки: `Ukraine` `in` `live` `to` `used` `I` → **I used to live in Ukraine.**
+Плитки: `hunger` `my` `ignore` `to` `used` `I` → **I used to ignore my hunger.**
 
 **3 · Дополните воспоминание.**
 <!-- interaction_id: en:lesson-25:session-07:i02; family: context_gap_grammar -->
-I used to ___ in Ukraine. → **live** · lived · living
-- lived — *После used to нужна форма live.*
-- living — *После used to нужна форма live.*
+I used to ___ my hunger. → **ignore** · ignored · ignoring
+- ignored — *После used to нужна форма ignore.*
+- ignoring — *После used to нужна форма ignore.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-07:i03; family: listen_choose -->
-🔊 *I used to live in Ukraine.* → **I used to live in Ukraine.** · We used to live in Ukraine. · I used to work in Ukraine.
-- We used to live in Ukraine. — *В записи звучит I used to live in Ukraine.*
-- I used to work in Ukraine. — *В записи звучит I used to live in Ukraine.*
+🔊 *I used to ignore my hunger.* → **I used to ignore my hunger.** · We used to ignore our hunger. · I used to notice my hunger.
+- We used to ignore our hunger. — *В записи звучит I used to ignore my hunger.*
+- I used to notice my hunger. — *В записи звучит I used to ignore my hunger.*
 
-**5 · Карточка слова — Russia**
-<!-- interaction_id: en:lesson-25:session-07:word:Russia; family: word_card -->
-> **Russia** — Россия.
+**5 · Карточка слова — thirst**
+<!-- interaction_id: en:lesson-25:session-07:word:thirst; family: word_card -->
+> **thirst** — жажда.
 
-**6 · Скажите: «Раньше она работала в России.»**
+**6 · Скажите: «Раньше она просыпалась с сильной жаждой.»**
 <!-- interaction_id: en:lesson-25:session-07:i04; family: phrase_builder -->
-Плитки: `Russia` `in` `work` `to` `used` `She` → **She used to work in Russia.**
+Плитки: `thirst` `terrible` `a` `with` `up` `wake` `to` `used` `She` → **She used to wake up with a terrible thirst.**
 
 **7 · Дополните воспоминание.**
 <!-- interaction_id: en:lesson-25:session-07:i05; family: context_gap_grammar -->
-She used to ___ in Russia. → **work** · worked · working
-- worked — *После used to нужна форма work.*
-- working — *После used to нужна форма work.*
+She used to ___ up with a terrible thirst. → **wake** · woke · waking
+- woke — *После used to нужна форма wake.*
+- waking — *После used to нужна форма wake.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-07:i06; family: listen_choose -->
-🔊 *She used to work in Russia.* → **She used to work in Russia.** · He used to work in Russia. · She used to live in Russia.
-- He used to work in Russia. — *В записи звучит She used to work in Russia.*
-- She used to live in Russia. — *В записи звучит She used to work in Russia.*
+🔊 *She used to wake up with a terrible thirst.* → **She used to wake up with a terrible thirst.** · He used to wake up with a terrible thirst. · She used to wake up with a slight thirst.
+- He used to wake up with a terrible thirst. — *В записи звучит She used to wake up with a terrible thirst.*
+- She used to wake up with a slight thirst. — *В записи звучит She used to wake up with a terrible thirst.*
 
-**9 · Карточка слова — Thailand**
-<!-- interaction_id: en:lesson-25:session-07:word:Thailand; family: word_card -->
-> **Thailand** — Таиланд.
+**9 · Карточка слова — chores**
+<!-- interaction_id: en:lesson-25:session-07:word:chores; family: word_card -->
+> **chores** — домашние обязанности.
 
-**10 · Скажите: «Раньше мы ездили в Таиланд.»**
+**10 · Скажите: «Раньше мы делили домашние обязанности.»**
 <!-- interaction_id: en:lesson-25:session-07:i07; family: phrase_builder -->
-Плитки: `Thailand` `to` `travel` `to` `used` `We` → **We used to travel to Thailand.**
+Плитки: `chores` `the` `share` `to` `used` `We` → **We used to share the chores.**
 
 **11 · Дополните воспоминание.**
 <!-- interaction_id: en:lesson-25:session-07:i08; family: context_gap_grammar -->
-We used to ___ to Thailand. → **travel** · travelled · travelling
-- travelled — *После used to нужна форма travel.*
-- travelling — *После used to нужна форма travel.*
+We used to ___ the chores. → **share** · shared · sharing
+- shared — *После used to нужна форма share.*
+- sharing — *После used to нужна форма share.*
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-07:i09; family: listen_choose -->
-🔊 *We used to travel to Thailand.* → **We used to travel to Thailand.** · They used to travel to Thailand. · We used to travel to France.
-- They used to travel to Thailand. — *В записи звучит We used to travel to Thailand.*
-- We used to travel to France. — *В записи звучит We used to travel to Thailand.*
+🔊 *We used to share the chores.* → **We used to share the chores.** · They used to share the chores. · We used to avoid the chores.
+- They used to share the chores. — *В записи звучит We used to share the chores.*
+- We used to avoid the chores. — *В записи звучит We used to share the chores.*
 
-**13 · Карточка слова — Vietnam**
-<!-- interaction_id: en:lesson-25:session-07:word:Vietnam; family: word_card -->
-> **Vietnam** — Вьетнам.
+**13 · Карточка слова — errands**
+<!-- interaction_id: en:lesson-25:session-07:word:errands; family: word_card -->
+> **errands** — мелкие дела вне дома.
 
-**14 · Скажите: «Раньше он преподавал во Вьетнаме.»**
+**14 · Скажите: «Раньше после работы он ходил по мелким делам.»**
 <!-- interaction_id: en:lesson-25:session-07:i10; family: phrase_builder -->
-Плитки: `Vietnam` `in` `teach` `to` `used` `He` → **He used to teach in Vietnam.**
+Плитки: `work` `after` `errands` `run` `to` `used` `He` → **He used to run errands after work.**
 
 **15 · Дополните воспоминание.**
 <!-- interaction_id: en:lesson-25:session-07:i11; family: context_gap_grammar -->
-He used to ___ in Vietnam. → **teach** · taught · teaching
-- taught — *После used to нужна форма teach.*
-- teaching — *После used to нужна форма teach.*
+He used to ___ errands after work. → **run** · ran · running
+- ran — *После used to нужна форма run.*
+- running — *После used to нужна форма run.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-07:i12; family: listen_choose -->
-🔊 *He used to teach in Vietnam.* → **He used to teach in Vietnam.** · She used to teach in Vietnam. · He used to work in Vietnam.
-- She used to teach in Vietnam. — *В записи звучит He used to teach in Vietnam.*
-- He used to work in Vietnam. — *В записи звучит He used to teach in Vietnam.*
+🔊 *He used to run errands after work.* → **He used to run errands after work.** · She used to run errands after work. · He used to run errands before work.
+- She used to run errands after work. — *В записи звучит He used to run errands after work.*
+- He used to run errands before work. — *В записи звучит He used to run errands after work.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-25:session-07:i13; family: speed_match -->
-Ukraine — Украина · Russia — Россия · Thailand — Таиланд · Vietnam — Вьетнам
+hunger — голод · thirst — жажда · chores — домашние обязанности · errands — мелкие дела вне дома
 
 **18 · Нашёл другую работу**
 <!-- interaction_id: en:lesson-25:session-07:i14; family: listen_build_dictation -->
@@ -141,11 +141,11 @@ Ukraine — Украина · Russia — Россия · Thailand — Таила
 <!-- interaction_id: en:lesson-25:session-07:i15; family: listen_build_dictation -->
 🔊 *The other families moved last year.* Плитки: `year` `last` `moved` `families` `other` `The` → **The other families moved last year.**
 
-**20 · Скажите: «Мы раньше жили в Украине».**
+**20 · Скажите: «Они раньше делили домашние обязанности».**
 <!-- interaction_id: en:lesson-25:session-07:i16; family: scripted_repeat_compare -->
-🎙 **We used to live in Ukraine.**
+🎙 **They used to share the chores.**
 
-**21 · Скажите: «Она раньше преподавала во Вьетнаме».**
+**21 · Скажите: «Она раньше ходила по мелким делам после работы».**
 <!-- interaction_id: en:lesson-25:session-07:i17; family: scripted_repeat_compare -->
-🎙 **She used to teach in Vietnam.**
+🎙 **She used to run errands after work.**
 

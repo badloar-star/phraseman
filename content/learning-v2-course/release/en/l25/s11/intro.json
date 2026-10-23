@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Игры в детстве",
+        "uk": "Ігри в дитинстві"
+      },
+      "bodyByLocale": {
+        "ru": "Doll — кукла. As children we would dress our dolls — в детстве мы часто наряжали своих кукол. As children задаёт время: когда мы были детьми. Would dress описывает повторявшуюся игру. Одна кукла — a doll, несколько — dolls.",
+        "uk": "Doll — лялька. As children we would dress our dolls — у дитинстві ми часто вбирали своїх ляльок. As children задає час: коли ми були дітьми. Would dress описує гру, яка повторювалася. Одна лялька — a doll, кілька — dolls."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-11:intro1:r1",
+              "text": "As children we would dress our dolls."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro1:r2",
+              "text": "As children we would dressed our dolls."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro1:r3",
+              "text": "As children we would dressing our dolls."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-11:intro1:r1",
+              "text": "As children we would dress our dolls."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro1:r2",
+              "text": "As children we would dressed our dolls."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro1:r3",
+              "text": "As children we would dressing our dolls."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Куклы и самокаты",
+        "uk": "Ляльки й самокати"
+      },
+      "bodyByLocale": {
+        "ru": "Puppet — театральная кукла, которую человек приводит в движение рукой или нитями. In those days we would make puppets — в те времена мы часто делали театральных кукол. Scooter — самокат. Вспоминаем школьные годы: After school we would ride our scooters — после школы мы обычно катались на самокатах. После would используем make и ride, не made и rode.",
+        "uk": "Puppet — театральна лялька, яку людина рухає рукою або нитками. In those days we would make puppets — у ті часи ми часто робили театральних ляльок. Scooter — самокат. Згадуємо шкільні роки: After school we would ride our scooters — після школи ми зазвичай каталися на самокатах. Після would використовуємо make і ride, не made і rode."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-11:intro2:r1",
+              "text": "In those days we would make puppets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro2:r2",
+              "text": "In those days we would made puppets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro2:r3",
+              "text": "In those days we would making puppets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-11:intro2:r1",
+              "text": "In those days we would make puppets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro2:r2",
+              "text": "In those days we would made puppets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro2:r3",
+              "text": "In those days we would making puppets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бумажные ракеты",
+        "uk": "Паперові ракети"
+      },
+      "bodyByLocale": {
+        "ru": "Rocket — ракета. At school we would build paper rockets — в школе мы часто делали бумажные ракеты. Это поделки из бумаги, а не настоящие ракеты. В рассказе о школьных годах would build передаёт повторявшееся занятие. После would нужна форма build.",
+        "uk": "Rocket — ракета. At school we would build paper rockets — у школі ми часто робили паперові ракети. Це вироби з паперу, а не справжні ракети. У розповіді про шкільні роки would build передає заняття, яке повторювалося. Після would потрібна форма build."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-11:intro3:r1",
+              "text": "At school we would build paper rockets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro3:r2",
+              "text": "At school we would built paper rockets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro3:r3",
+              "text": "At school we would building paper rockets."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-11:intro3:r1",
+              "text": "At school we would build paper rockets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro3:r2",
+              "text": "At school we would built paper rockets."
+            },
+            {
+              "responseId": "en:lesson-25:session-11:intro3:r3",
+              "text": "At school we would building paper rockets."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5dde7d54d9f59cfaef6514f9c04a860baded0e5ec75e29aeda8934b63dc8127a"
+}

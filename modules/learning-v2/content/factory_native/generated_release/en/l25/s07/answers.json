@@ -1,87 +1,87 @@
 [
   {
-    "interactionId": "en:lesson-25:session-07:word:Ukraine",
-    "correctText": "Ukraine",
+    "interactionId": "en:lesson-25:session-07:word:hunger",
+    "correctText": "hunger",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i01",
-    "correctText": "I used to live in Ukraine.",
+    "correctText": "I used to ignore my hunger.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i02",
-    "correctText": "live",
+    "correctText": "ignore",
     "correctResponseId": "en:lesson-25:session-07:i02:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:i03",
-    "correctText": "I used to live in Ukraine.",
+    "correctText": "I used to ignore my hunger.",
     "correctResponseId": "en:lesson-25:session-07:i03:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-07:word:Russia",
-    "correctText": "Russia",
+    "interactionId": "en:lesson-25:session-07:word:thirst",
+    "correctText": "thirst",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i04",
-    "correctText": "She used to work in Russia.",
+    "correctText": "She used to wake up with a terrible thirst.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i05",
-    "correctText": "work",
+    "correctText": "wake",
     "correctResponseId": "en:lesson-25:session-07:i05:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:i06",
-    "correctText": "She used to work in Russia.",
+    "correctText": "She used to wake up with a terrible thirst.",
     "correctResponseId": "en:lesson-25:session-07:i06:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-07:word:Thailand",
-    "correctText": "Thailand",
+    "interactionId": "en:lesson-25:session-07:word:chores",
+    "correctText": "chores",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i07",
-    "correctText": "We used to travel to Thailand.",
+    "correctText": "We used to share the chores.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i08",
-    "correctText": "travel",
+    "correctText": "share",
     "correctResponseId": "en:lesson-25:session-07:i08:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:i09",
-    "correctText": "We used to travel to Thailand.",
+    "correctText": "We used to share the chores.",
     "correctResponseId": "en:lesson-25:session-07:i09:r1"
   },
   {
-    "interactionId": "en:lesson-25:session-07:word:Vietnam",
-    "correctText": "Vietnam",
+    "interactionId": "en:lesson-25:session-07:word:errands",
+    "correctText": "errands",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i10",
-    "correctText": "He used to teach in Vietnam.",
+    "correctText": "He used to run errands after work.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i11",
-    "correctText": "teach",
+    "correctText": "run",
     "correctResponseId": "en:lesson-25:session-07:i11:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:i12",
-    "correctText": "He used to teach in Vietnam.",
+    "correctText": "He used to run errands after work.",
     "correctResponseId": "en:lesson-25:session-07:i12:r1"
   },
   {
     "interactionId": "en:lesson-25:session-07:i13",
-    "correctText": "en:lesson-25:session-07:i13:p1=Ukraine\nen:lesson-25:session-07:i13:p2=Russia\nen:lesson-25:session-07:i13:p3=Thailand\nen:lesson-25:session-07:i13:p4=Vietnam",
+    "correctText": "en:lesson-25:session-07:i13:p1=hunger\nen:lesson-25:session-07:i13:p2=thirst\nen:lesson-25:session-07:i13:p3=chores\nen:lesson-25:session-07:i13:p4=errands",
     "correctResponseId": null
   },
   {
@@ -96,12 +96,12 @@
   },
   {
     "interactionId": "en:lesson-25:session-07:i16",
-    "correctText": "We used to live in Ukraine.",
+    "correctText": "They used to share the chores.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-25:session-07:i17",
-    "correctText": "She used to teach in Vietnam.",
+    "correctText": "She used to run errands after work.",
     "correctResponseId": null
   }
 ]

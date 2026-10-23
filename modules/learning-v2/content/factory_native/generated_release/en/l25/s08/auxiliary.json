@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-25:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-25:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-08:intro1:r2": {
+          "ru": "После used to нужна форма envy.",
+          "uk": "Після used to потрібна форма envy."
+        },
+        "en:lesson-25:session-08:intro1:r3": {
+          "ru": "Используйте базовую форму envy.",
+          "uk": "Використайте базову форму envy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-08:intro2:r2": {
+          "ru": "После used to нужна форма reward.",
+          "uk": "Після used to потрібна форма reward."
+        },
+        "en:lesson-25:session-08:intro2:r3": {
+          "ru": "Используйте базовую форму reward.",
+          "uk": "Використайте базову форму reward."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-25:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-25:session-08:intro3:r2": {
+          "ru": "После used to нужна форма demand.",
+          "uk": "Після used to потрібна форма demand."
+        },
+        "en:lesson-25:session-08:intro3:r3": {
+          "ru": "Используйте базовую форму demand.",
+          "uk": "Використайте базову форму demand."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dea789d2d3fd1f68c0d94218e2593e6227728fbf07ac49f6f5df4bd4515faeac"
+}

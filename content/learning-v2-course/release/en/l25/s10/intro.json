@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-25:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "past context + would + action verb",
+    "uk": "past context + would + action verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-25:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Школьные соревнования",
+        "uk": "Шкільні змагання"
+      },
+      "bodyByLocale": {
+        "ru": "Winner — победитель. At school we would cheer for the winner — в школе мы обычно болели за победителя. Здесь вспоминаем школьные соревнования, которые проходили много раз. Would cheer передаёт повторявшееся действие. Cheer for — поддерживать, болеть за кого-то.",
+        "uk": "Winner — переможець. At school we would cheer for the winner — у школі ми зазвичай уболівали за переможця. Тут згадуємо шкільні змагання, які відбувалися багато разів. Would cheer передає дію, що повторювалася. Cheer for — підтримувати, уболівати за когось."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-10:intro1:r1",
+              "text": "At school we would cheer for the winner."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro1:r2",
+              "text": "At school we would cheered for the winner."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro1:r3",
+              "text": "At school we would cheering for the winner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-10:intro1:r1",
+              "text": "At school we would cheer for the winner."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro1:r2",
+              "text": "At school we would cheered for the winner."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro1:r3",
+              "text": "At school we would cheering for the winner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-25:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поддержка после игры",
+        "uk": "Підтримка після гри"
+      },
+      "bodyByLocale": {
+        "ru": "Loser — проигравший в игре или соревновании. In those days we would comfort the loser — в те времена мы обычно утешали проигравшего. Здесь loser обозначает результат игры, не оценку человека. Athlete — спортсмен. In those days I would train with an athlete — в те времена я регулярно тренировался со спортсменом. После would используем comfort и train, без окончания прошедшего времени.",
+        "uk": "Loser — той, хто програв у грі чи змаганні. In those days we would comfort the loser — у ті часи ми зазвичай втішали того, хто програв. Тут loser позначає результат гри, а не оцінку людини. Athlete — спортсмен. In those days I would train with an athlete — у ті часи я регулярно тренувався зі спортсменом. Після would використовуємо comfort і train, без закінчення минулого часу."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-10:intro2:r1",
+              "text": "In those days we would comfort the loser."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro2:r2",
+              "text": "In those days we would comforted the loser."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro2:r3",
+              "text": "In those days we would comforting the loser."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-10:intro2:r1",
+              "text": "In those days we would comfort the loser."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro2:r2",
+              "text": "In those days we would comforted the loser."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro2:r3",
+              "text": "In those days we would comforting the loser."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-25:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Играли в лиге",
+        "uk": "Грали в лізі"
+      },
+      "bodyByLocale": {
+        "ru": "League — лига: группа команд, которые соревнуются между собой. At school we would play in a local league — в школе мы регулярно играли в местной лиге. Контекст At school здесь отсылает к нашим школьным годам. Это история о прежних матчах, а не обещание сыграть в будущем.",
+        "uk": "League — ліга: група команд, які змагаються між собою. At school we would play in a local league — у школі ми регулярно грали в місцевій лізі. Контекст At school тут відсилає до наших шкільних років. Це історія про колишні матчі, а не обіцянка зіграти в майбутньому."
+      },
+      "question": {
+        "interactionId": "en:lesson-25:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-25:session-10:intro3:r1",
+              "text": "At school we would play in a local league."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro3:r2",
+              "text": "At school we would played in a local league."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro3:r3",
+              "text": "At school we would playing in a local league."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-25:session-10:intro3:r1",
+              "text": "At school we would play in a local league."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro3:r2",
+              "text": "At school we would played in a local league."
+            },
+            {
+              "responseId": "en:lesson-25:session-10:intro3:r3",
+              "text": "At school we would playing in a local league."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c22289746be140dfffc4704548ee0224e44310f951b1b0217d42a75b62f389e3"
+}

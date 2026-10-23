@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-14:word:act",
+    "correctText": "act",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i01",
+    "correctText": "She wants to act in films.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i02",
+    "correctText": "How long",
+    "correctResponseId": "en:lesson-24:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i03",
+    "correctText": "How long has she acted in films?",
+    "correctResponseId": "en:lesson-24:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:word:behave",
+    "correctText": "behave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i04",
+    "correctText": "Please behave well.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i05",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i06",
+    "correctText": "He has behaved well today.",
+    "correctResponseId": "en:lesson-24:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:word:continue",
+    "correctText": "continue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i07",
+    "correctText": "I want to continue the story.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i08",
+    "correctText": "continued",
+    "correctResponseId": "en:lesson-24:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i09",
+    "correctText": "We have already continued the story.",
+    "correctResponseId": "en:lesson-24:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:word:pause",
+    "correctText": "pause",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i10",
+    "correctText": "Can you pause the film?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i11",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i12",
+    "correctText": "I have just paused the film.",
+    "correctResponseId": "en:lesson-24:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i13",
+    "correctText": "en:lesson-24:session-14:i13:p1=act\nen:lesson-24:session-14:i13:p2=behave\nen:lesson-24:session-14:i13:p3=continue\nen:lesson-24:session-14:i13:p4=pause",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i14",
+    "correctText": "She has acted in films for five years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i15",
+    "correctText": "How long have you lived here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i16",
+    "correctText": "She has just paused the film.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-14:i17",
+    "correctText": "They have behaved well today.",
+    "correctResponseId": null
+  }
+]

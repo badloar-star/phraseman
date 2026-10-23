@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "How long; have/has + past participle; just/already",
+    "uk": "How long; have/has + past participle; just/already"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "В кино",
+        "uk": "У кіно"
+      },
+      "bodyByLocale": {
+        "ru": "Act — играть роль, сниматься. She wants to act in films — она хочет сниматься в фильмах. How long has she acted in films? — как давно она снимается? Например, For five years — уже пять лет. Знакомое actor называет человека, act — его действие.",
+        "uk": "Act — грати роль, зніматися. She wants to act in films — вона хоче зніматися у фільмах. How long has she acted in films? — як давно вона знімається? Наприклад, For five years — вже п’ять років. Знайоме actor називає людину, act — її дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-14:intro1:r1",
+              "text": "How long has she acted in films?"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro1:r2",
+              "text": "How long have she acted in films?"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro1:r3",
+              "text": "How many has she acted in films?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-14:intro1:r1",
+              "text": "How long has she acted in films?"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro1:r2",
+              "text": "How long have she acted in films?"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro1:r3",
+              "text": "How many has she acted in films?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как он себя вёл",
+        "uk": "Як він поводився"
+      },
+      "bodyByLocale": {
+        "ru": "Behave — вести себя. Please behave well — пожалуйста, веди себя хорошо. He has behaved well today — сегодня он хорошо себя вёл; день ещё продолжается. Хорошее поведение иногда означает просто не рассказывать концовку фильма соседу.",
+        "uk": "Behave — поводитися. Please behave well — будь ласка, поводься добре. He has behaved well today — сьогодні він добре поводився; день ще триває. Добра поведінка іноді означає просто не розповідати кінцівку фільму сусідові."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-14:intro2:r1",
+              "text": "He has behaved well today."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro2:r2",
+              "text": "He have behaved well today."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro2:r3",
+              "text": "He has behave well today."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-14:intro2:r1",
+              "text": "He has behaved well today."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro2:r2",
+              "text": "He have behaved well today."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro2:r3",
+              "text": "He has behave well today."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пауза и продолжение",
+        "uk": "Пауза й продовження"
+      },
+      "bodyByLocale": {
+        "ru": "Continue — продолжать; pause — делать паузу или ставить на паузу. I want to continue the story — я хочу продолжить рассказ. We have already continued the story — мы уже продолжили рассказ. I have just paused the film — я только что поставил фильм на паузу. Already сообщает, что действие уже произошло, just — что оно произошло совсем недавно.",
+        "uk": "Continue — продовжувати; pause — робити паузу або ставити на паузу. I want to continue the story — я хочу продовжити розповідь. We have already continued the story — ми вже продовжили розповідь. I have just paused the film — я щойно поставив фільм на паузу. Already повідомляє, що дія вже відбулася, just — що вона відбулася зовсім недавно."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-14:intro3:r1",
+              "text": "I have just paused the film."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro3:r2",
+              "text": "I has just paused the film."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro3:r3",
+              "text": "I have just pause the film."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-14:intro3:r1",
+              "text": "I have just paused the film."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro3:r2",
+              "text": "I has just paused the film."
+            },
+            {
+              "responseId": "en:lesson-24:session-14:intro3:r3",
+              "text": "I have just pause the film."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fc33d429578869972cb688695dee5bb1b1b9b4b730fab2a1a68ee5e64ff729e8"
+}

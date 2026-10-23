@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "have/has + past participle; just/already/yet; How long",
+    "uk": "have/has + past participle; just/already/yet; How long"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уже обсудили",
+        "uk": "Уже обговорили"
+      },
+      "bodyByLocale": {
+        "ru": "Discuss — обсуждать. We need to discuss the plan — нам нужно обсудить план. We have already discussed the plan — мы уже обсудили план. После discuss сразу называем тему: discuss the plan, без about. Можно обсуждать поездку с друзьями, это не только слово для работы.",
+        "uk": "Discuss — обговорювати. We need to discuss the plan — нам потрібно обговорити план. We have already discussed the plan — ми вже обговорили план. Після discuss одразу називаємо тему: discuss the plan, без about. Можна обговорювати подорож із друзями, це не лише слово для роботи."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-15:intro1:r1",
+              "text": "We have already discussed the plan."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro1:r2",
+              "text": "We has already discussed the plan."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro1:r3",
+              "text": "We have already discuss the plan."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-15:intro1:r1",
+              "text": "We have already discussed the plan."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro1:r2",
+              "text": "We has already discussed the plan."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro1:r3",
+              "text": "We have already discuss the plan."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Только что объявили",
+        "uk": "Щойно оголосили"
+      },
+      "bodyByLocale": {
+        "ru": "Announce — объявлять, сообщать всем. They have just announced the result — они только что объявили результат. Announced — форма announce после have. Например, ведущий объявил победителя игры. Хорошо, если ваш друг ещё не успел отпраздновать чужую победу.",
+        "uk": "Announce — оголошувати, повідомляти всім. They have just announced the result — вони щойно оголосили результат. Announced — форма announce після have. Наприклад, ведучий оголосив переможця гри. Добре, якщо ваш друг ще не встиг відсвяткувати чужу перемогу."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-15:intro2:r1",
+              "text": "They have just announced the result."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro2:r2",
+              "text": "They has just announced the result."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro2:r3",
+              "text": "They have just announce the result."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-15:intro2:r1",
+              "text": "They have just announced the result."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro2:r2",
+              "text": "They has just announced the result."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro2:r3",
+              "text": "They have just announce the result."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ждём ответа",
+        "uk": "Чекаємо відповіді"
+      },
+      "bodyByLocale": {
+        "ru": "Scream — кричать или вскрикивать, например от испуга. She has just screamed — она только что вскрикнула. Respond — отвечать или реагировать. He has not responded yet — он ещё не ответил. Yet ставим в конце; not показывает отрицание. Respond to a message — ответить на сообщение.",
+        "uk": "Scream — кричати або скрикувати, наприклад від переляку. She has just screamed — вона щойно скрикнула. Respond — відповідати або реагувати. He has not responded yet — він ще не відповів. Yet ставимо в кінці; not показує заперечення. Respond to a message — відповісти на повідомлення."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-15:intro3:r1",
+              "text": "He has not responded yet."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro3:r2",
+              "text": "He have not responded yet."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro3:r3",
+              "text": "He has not respond yet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-15:intro3:r1",
+              "text": "He has not responded yet."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro3:r2",
+              "text": "He have not responded yet."
+            },
+            {
+              "responseId": "en:lesson-24:session-15:intro3:r3",
+              "text": "He has not respond yet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "818371a4178346e1bc9d8849620c3b2ac7f996f1652b5b6d74da3b933df51a39"
+}

@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-16:word:plus",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — plus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:word:plus:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — plus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:word:plus:audio",
+          "transcript": "plus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:word:plus:r1",
+            "targetText": "plus",
+            "meaningByLocale": {
+              "ru": "плюс.",
+              "uk": "плюс."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plus",
+          "definitionByLocale": {
+            "ru": "плюс.",
+            "uk": "плюс."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Два плюс три — пять.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Два плюс три — пять.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Two plus three is five.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Два плюс три — пять.»",
+          "uk": "Скажіть: «Два плюс три — п’ять.»"
+        },
+        "orderedTokens": [
+          "Two",
+          "plus",
+          "three",
+          "is",
+          "five"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i02:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i02:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i02:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу.",
+          "uk": "Доповніть фразу."
+        },
+        "gappedTargetPhrase": "Two plus three ___ five.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-16:i02:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i02:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i02:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Дополните фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "Для результата этого примера используем is.",
+              "uk": "Для результату цього прикладу використовуємо is."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "Для результата этого примера используем is.",
+              "uk": "Для результату цього прикладу використовуємо is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i03:r1",
+          "text": "Two plus three is five."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i03:r2",
+          "text": "Two plus four is six."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i03:r3",
+          "text": "Three plus three is six."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i03:audio",
+          "transcript": "Two plus three is five."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:i03:r1",
+            "targetText": "Two plus three is five.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i03:r2",
+            "targetText": "Two plus four is six.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i03:r3",
+            "targetText": "Three plus three is six.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Two plus three is five.",
+              "uk": "У записі звучить Two plus three is five."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Two plus three is five.",
+              "uk": "У записі звучить Two plus three is five."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:word:sum",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sum",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:word:sum:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sum",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:word:sum:audio",
+          "transcript": "sum"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:word:sum:r1",
+            "targetText": "sum",
+            "meaningByLocale": {
+              "ru": "сумма, результат сложения.",
+              "uk": "сума, результат додавання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sum",
+          "definitionByLocale": {
+            "ru": "сумма, результат сложения.",
+            "uk": "сума, результат додавання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Я уже проверил сумму.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Я уже проверил сумму.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already checked the sum.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Я уже проверил сумму.»",
+          "uk": "Скажіть: «Я вже перевірив суму.»"
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "checked",
+          "the",
+          "sum"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i05:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i05:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i05:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу.",
+          "uk": "Доповніть фразу."
+        },
+        "gappedTargetPhrase": "I ___ already checked the sum.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-16:i05:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i05:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Дополните фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have.",
+              "uk": "Із I потрібно have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "С I нужно have.",
+              "uk": "Із I потрібно have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i06:r1",
+          "text": "I have already checked the sum."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i06:r2",
+          "text": "We have already checked the sum."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i06:r3",
+          "text": "She has already checked the sum."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i06:audio",
+          "transcript": "I have already checked the sum."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:i06:r1",
+            "targetText": "I have already checked the sum.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i06:r2",
+            "targetText": "We have already checked the sum.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i06:r3",
+            "targetText": "She has already checked the sum.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already checked the sum.",
+              "uk": "У записі звучить I have already checked the sum."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already checked the sum.",
+              "uk": "У записі звучить I have already checked the sum."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:word:multiply",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — multiply",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:word:multiply:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — multiply",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:word:multiply:audio",
+          "transcript": "multiply"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:word:multiply:r1",
+            "targetText": "multiply",
+            "meaningByLocale": {
+              "ru": "умножать.",
+              "uk": "множити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "multiply",
+          "definitionByLocale": {
+            "ru": "умножать.",
+            "uk": "множити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Умножь цену на три.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Умножь цену на три.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Multiply the price by three.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Умножь цену на три.»",
+          "uk": "Скажіть: «Помнож ціну на три.»"
+        },
+        "orderedTokens": [
+          "Multiply",
+          "the",
+          "price",
+          "by",
+          "three"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i08:r1",
+          "text": "multiplied"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i08:r2",
+          "text": "multiply"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i08:r3",
+          "text": "multiplies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу.",
+          "uk": "Доповніть фразу."
+        },
+        "gappedTargetPhrase": "We have already ___ the price by three.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-16:i08:r1",
+            "text": "multiplied"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i08:r2",
+            "text": "multiply"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i08:r3",
+            "text": "multiplies"
+          }
+        ],
+        "testedDimension": "Дополните фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "После have already нужна форма multiplied.",
+              "uk": "Після have already потрібна форма multiplied."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "После have already нужна форма multiplied.",
+              "uk": "Після have already потрібна форма multiplied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i09:r1",
+          "text": "We have already multiplied the price by three."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i09:r2",
+          "text": "They have already multiplied the price by three."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i09:r3",
+          "text": "We have already multiplied the price by two."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i09:audio",
+          "transcript": "We have already multiplied the price by three."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:i09:r1",
+            "targetText": "We have already multiplied the price by three.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i09:r2",
+            "targetText": "They have already multiplied the price by three.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i09:r3",
+            "targetText": "We have already multiplied the price by two.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have already multiplied the price by three.",
+              "uk": "У записі звучить We have already multiplied the price by three."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have already multiplied the price by three.",
+              "uk": "У записі звучить We have already multiplied the price by three."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:word:subtract",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — subtract",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:word:subtract:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — subtract",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:word:subtract:audio",
+          "transcript": "subtract"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:word:subtract:r1",
+            "targetText": "subtract",
+            "meaningByLocale": {
+              "ru": "вычитать.",
+              "uk": "віднімати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "subtract",
+          "definitionByLocale": {
+            "ru": "вычитать.",
+            "uk": "віднімати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Вычти скидку.»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Вычти скидку.»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Subtract the discount.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Вычти скидку.»",
+          "uk": "Скажіть: «Відніми знижку.»"
+        },
+        "orderedTokens": [
+          "Subtract",
+          "the",
+          "discount"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните фразу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i11:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i11:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i11:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните фразу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу.",
+          "uk": "Доповніть фразу."
+        },
+        "gappedTargetPhrase": "She ___ just subtracted the discount.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-16:i11:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i11:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i11:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Дополните фразу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "С she нужно has.",
+              "uk": "Із she потрібно has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Дополните фразу.",
+            "feedbackByLocale": {
+              "ru": "С she нужно has.",
+              "uk": "Із she потрібно has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-16:i12:r1",
+          "text": "She has just subtracted the discount."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i12:r2",
+          "text": "He has just subtracted the discount."
+        },
+        {
+          "responseId": "en:lesson-24:session-16:i12:r3",
+          "text": "They have just subtracted the discount."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i12:audio",
+          "transcript": "She has just subtracted the discount."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-16:i12:r1",
+            "targetText": "She has just subtracted the discount.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i12:r2",
+            "targetText": "He has just subtracted the discount.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i12:r3",
+            "targetText": "They have just subtracted the discount.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has just subtracted the discount.",
+              "uk": "У записі звучить She has just subtracted the discount."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She has just subtracted the discount.",
+              "uk": "У записі звучить She has just subtracted the discount."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-16:i13:p1",
+            "target": "plus",
+            "meaningByLocale": {
+              "ru": "плюс",
+              "uk": "плюс"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-16:i13:p2",
+            "target": "sum",
+            "meaningByLocale": {
+              "ru": "сумма, результат сложения",
+              "uk": "сума, результат додавання"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-16:i13:p3",
+            "target": "multiply",
+            "meaningByLocale": {
+              "ru": "умножать",
+              "uk": "множити"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-16:i13:p4",
+            "target": "subtract",
+            "meaningByLocale": {
+              "ru": "вычитать",
+              "uk": "віднімати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "plus",
+          "sum",
+          "multiply",
+          "subtract"
+        ],
+        "rightColumn": [
+          "плюс",
+          "сумма, результат сложения",
+          "умножать",
+          "вычитать"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Как давно она здесь работает",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Как давно она здесь работает",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i14:audio",
+          "transcript": "How long has she worked here?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How long has she worked here?",
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "she",
+          "worked",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уже три года",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Уже три года",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i15:audio",
+          "transcript": "She has worked here for three years."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has worked here for three years.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "worked",
+          "here",
+          "for",
+          "three",
+          "years"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Мы уже проверили сумму».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Мы уже проверили сумму».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i16:audio",
+          "transcript": "We have already checked the sum."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We have already checked the sum.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: «Он только что вычел скидку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: «Он только что вычел скидку».",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-16:i17:audio",
+          "transcript": "He has just subtracted the discount."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He has just subtracted the discount.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a5d8c1a7065eddb08430fc5818ce5fd20c4e57518e95fbb1bab36ee242e2d2a4"
+}

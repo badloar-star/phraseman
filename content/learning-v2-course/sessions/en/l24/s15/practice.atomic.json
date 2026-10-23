@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-15:word:discuss",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — discuss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:discuss:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — discuss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:discuss:audio",
+            "transcript": "discuss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:discuss:r1",
+              "targetText": "discuss",
+              "meaningByLocale": {
+                "ru": "обсуждать.",
+                "uk": "обговорювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discuss",
+            "definitionByLocale": {
+              "ru": "обсуждать.",
+              "uk": "обговорювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Нам нужно обсудить план.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Нам нужно обсудить план.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need to discuss the plan.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Нам нужно обсудить план.»",
+            "uk": "Скажіть: «Нам потрібно обговорити план.»"
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "to",
+            "discuss",
+            "the",
+            "plan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i02:r1",
+            "text": "discussed"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i02:r2",
+            "text": "discuss"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i02:r3",
+            "text": "discusses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "We have already ___ the plan.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i02:r1",
+              "text": "discussed"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i02:r2",
+              "text": "discuss"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i02:r3",
+              "text": "discusses"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма discussed.",
+                "uk": "Після have already потрібна форма discussed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма discussed.",
+                "uk": "Після have already потрібна форма discussed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i03:r1",
+            "text": "We have already discussed the plan."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i03:r2",
+            "text": "They have already discussed the plan."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i03:r3",
+            "text": "She has already discussed the plan."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i03:audio",
+            "transcript": "We have already discussed the plan."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i03:r1",
+              "targetText": "We have already discussed the plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i03:r2",
+              "targetText": "They have already discussed the plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i03:r3",
+              "targetText": "She has already discussed the plan.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already discussed the plan.",
+                "uk": "У записі звучить We have already discussed the plan."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already discussed the plan.",
+                "uk": "У записі звучить We have already discussed the plan."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:word:announce",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — announce",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:announce:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — announce",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:announce:audio",
+            "transcript": "announce"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:announce:r1",
+              "targetText": "announce",
+              "meaningByLocale": {
+                "ru": "объявлять.",
+                "uk": "оголошувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "announce",
+            "definitionByLocale": {
+              "ru": "объявлять.",
+              "uk": "оголошувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Пожалуйста, объявите результат.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Пожалуйста, объявите результат.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please announce the result.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Пожалуйста, объявите результат.»",
+            "uk": "Скажіть: «Будь ласка, оголосіть результат.»"
+          },
+          "orderedTokens": [
+            "Please",
+            "announce",
+            "the",
+            "result"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i05:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i05:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "They ___ just announced the result.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i05:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i05:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С they нужно have.",
+                "uk": "Із they потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С they нужно have.",
+                "uk": "Із they потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i06:r1",
+            "text": "They have just announced the result."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i06:r2",
+            "text": "We have just announced the result."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i06:r3",
+            "text": "She has just announced the result."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i06:audio",
+            "transcript": "They have just announced the result."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i06:r1",
+              "targetText": "They have just announced the result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i06:r2",
+              "targetText": "We have just announced the result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i06:r3",
+              "targetText": "She has just announced the result.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have just announced the result.",
+                "uk": "У записі звучить They have just announced the result."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have just announced the result.",
+                "uk": "У записі звучить They have just announced the result."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:word:scream",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:scream:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:scream:audio",
+            "transcript": "scream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:scream:r1",
+              "targetText": "scream",
+              "meaningByLocale": {
+                "ru": "кричать, вскрикивать.",
+                "uk": "кричати, скрикувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scream",
+            "definitionByLocale": {
+              "ru": "кричать, вскрикивать.",
+              "uk": "кричати, скрикувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Пожалуйста, не кричи.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Пожалуйста, не кричи.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please do not scream.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Пожалуйста, не кричи.»",
+            "uk": "Скажіть: «Будь ласка, не кричи.»"
+          },
+          "orderedTokens": [
+            "Please",
+            "do",
+            "not",
+            "scream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i08:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "She ___ just screamed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i08:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i09:r1",
+            "text": "She has just screamed."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i09:r2",
+            "text": "He has just screamed."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i09:r3",
+            "text": "They have just screamed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i09:audio",
+            "transcript": "She has just screamed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i09:r1",
+              "targetText": "She has just screamed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i09:r2",
+              "targetText": "He has just screamed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i09:r3",
+              "targetText": "They have just screamed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has just screamed.",
+                "uk": "У записі звучить She has just screamed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has just screamed.",
+                "uk": "У записі звучить She has just screamed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:word:respond",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — respond",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:respond:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — respond",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:respond:audio",
+            "transcript": "respond"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:respond:r1",
+              "targetText": "respond",
+              "meaningByLocale": {
+                "ru": "отвечать, реагировать.",
+                "uk": "відповідати, реагувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "respond",
+            "definitionByLocale": {
+              "ru": "отвечать, реагировать.",
+              "uk": "відповідати, реагувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Можешь ответить на моё сообщение?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Можешь ответить на моё сообщение?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you respond to my message?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Можешь ответить на моё сообщение?»",
+            "uk": "Скажіть: «Можеш відповісти на моє повідомлення?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "respond",
+            "to",
+            "my",
+            "message"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i11:r1",
+            "text": "responded"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i11:r2",
+            "text": "respond"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i11:r3",
+            "text": "responds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "He has not ___ yet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i11:r1",
+              "text": "responded"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i11:r2",
+              "text": "respond"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i11:r3",
+              "text": "responds"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "После has not нужна форма responded.",
+                "uk": "Після has not потрібна форма responded."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "После has not нужна форма responded.",
+                "uk": "Після has not потрібна форма responded."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i12:r1",
+            "text": "He has not responded yet."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i12:r2",
+            "text": "She has not responded yet."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i12:r3",
+            "text": "They have not responded yet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i12:audio",
+            "transcript": "He has not responded yet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i12:r1",
+              "targetText": "He has not responded yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i12:r2",
+              "targetText": "She has not responded yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i12:r3",
+              "targetText": "They have not responded yet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has not responded yet.",
+                "uk": "У записі звучить He has not responded yet."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has not responded yet.",
+                "uk": "У записі звучить He has not responded yet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-15:i13:p1",
+              "target": "discuss",
+              "meaningByLocale": {
+                "ru": "обсуждать",
+                "uk": "обговорювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-15:i13:p2",
+              "target": "announce",
+              "meaningByLocale": {
+                "ru": "объявлять",
+                "uk": "оголошувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-15:i13:p3",
+              "target": "scream",
+              "meaningByLocale": {
+                "ru": "кричать, вскрикивать",
+                "uk": "кричати, скрикувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-15:i13:p4",
+              "target": "respond",
+              "meaningByLocale": {
+                "ru": "отвечать, реагировать",
+                "uk": "відповідати, реагувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "discuss",
+            "announce",
+            "scream",
+            "respond"
+          ],
+          "rightColumn": [
+            "обсуждать",
+            "объявлять",
+            "кричать, вскрикивать",
+            "отвечать, реагировать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Как давно ты её знаешь",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Как давно ты её знаешь",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i14:audio",
+            "transcript": "How long have you known her?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How long have you known her?",
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "known",
+            "her"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "С мая",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "С мая",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i15:audio",
+            "transcript": "I have known her since May."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have known her since May.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "known",
+            "her",
+            "since",
+            "May"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она ещё не ответила».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она ещё не ответила».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i16:audio",
+            "transcript": "She has not responded yet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has not responded yet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Мы только что объявили результат».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Мы только что объявили результат».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i17:audio",
+            "transcript": "We have just announced the result."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have just announced the result.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-15:word:discuss",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — discuss",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:discuss:audio"
+        ],
+        "accessibilityLabel": "Картка слова — discuss",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:discuss:audio",
+            "transcript": "discuss"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:discuss:r1",
+              "targetText": "discuss",
+              "meaningByLocale": {
+                "ru": "обсуждать.",
+                "uk": "обговорювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discuss",
+            "definitionByLocale": {
+              "ru": "обсуждать.",
+              "uk": "обговорювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Нам потрібно обговорити план.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Нам потрібно обговорити план.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need to discuss the plan.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Нам нужно обсудить план.»",
+            "uk": "Скажіть: «Нам потрібно обговорити план.»"
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "to",
+            "discuss",
+            "the",
+            "plan"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i02:r1",
+            "text": "discussed"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i02:r2",
+            "text": "discuss"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i02:r3",
+            "text": "discusses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "We have already ___ the plan.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i02:r1",
+              "text": "discussed"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i02:r2",
+              "text": "discuss"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i02:r3",
+              "text": "discusses"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма discussed.",
+                "uk": "Після have already потрібна форма discussed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма discussed.",
+                "uk": "Після have already потрібна форма discussed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i03:r1",
+            "text": "We have already discussed the plan."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i03:r2",
+            "text": "They have already discussed the plan."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i03:r3",
+            "text": "She has already discussed the plan."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i03:audio",
+            "transcript": "We have already discussed the plan."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i03:r1",
+              "targetText": "We have already discussed the plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i03:r2",
+              "targetText": "They have already discussed the plan.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i03:r3",
+              "targetText": "She has already discussed the plan.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already discussed the plan.",
+                "uk": "У записі звучить We have already discussed the plan."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already discussed the plan.",
+                "uk": "У записі звучить We have already discussed the plan."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:word:announce",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — announce",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:announce:audio"
+        ],
+        "accessibilityLabel": "Картка слова — announce",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:announce:audio",
+            "transcript": "announce"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:announce:r1",
+              "targetText": "announce",
+              "meaningByLocale": {
+                "ru": "объявлять.",
+                "uk": "оголошувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "announce",
+            "definitionByLocale": {
+              "ru": "объявлять.",
+              "uk": "оголошувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Будь ласка, оголосіть результат.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Будь ласка, оголосіть результат.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please announce the result.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Пожалуйста, объявите результат.»",
+            "uk": "Скажіть: «Будь ласка, оголосіть результат.»"
+          },
+          "orderedTokens": [
+            "Please",
+            "announce",
+            "the",
+            "result"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i05:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i05:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i05:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "They ___ just announced the result.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i05:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i05:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i05:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С they нужно have.",
+                "uk": "Із they потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С they нужно have.",
+                "uk": "Із they потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i06:r1",
+            "text": "They have just announced the result."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i06:r2",
+            "text": "We have just announced the result."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i06:r3",
+            "text": "She has just announced the result."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i06:audio",
+            "transcript": "They have just announced the result."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i06:r1",
+              "targetText": "They have just announced the result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i06:r2",
+              "targetText": "We have just announced the result.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i06:r3",
+              "targetText": "She has just announced the result.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have just announced the result.",
+                "uk": "У записі звучить They have just announced the result."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They have just announced the result.",
+                "uk": "У записі звучить They have just announced the result."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:word:scream",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scream",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:scream:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scream",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:scream:audio",
+            "transcript": "scream"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:scream:r1",
+              "targetText": "scream",
+              "meaningByLocale": {
+                "ru": "кричать, вскрикивать.",
+                "uk": "кричати, скрикувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scream",
+            "definitionByLocale": {
+              "ru": "кричать, вскрикивать.",
+              "uk": "кричати, скрикувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Будь ласка, не кричи.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Будь ласка, не кричи.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please do not scream.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Пожалуйста, не кричи.»",
+            "uk": "Скажіть: «Будь ласка, не кричи.»"
+          },
+          "orderedTokens": [
+            "Please",
+            "do",
+            "not",
+            "scream"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i08:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i08:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i08:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "She ___ just screamed.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i08:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i08:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i08:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С she нужно has.",
+                "uk": "Із she потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i09:r1",
+            "text": "She has just screamed."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i09:r2",
+            "text": "He has just screamed."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i09:r3",
+            "text": "They have just screamed."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i09:audio",
+            "transcript": "She has just screamed."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i09:r1",
+              "targetText": "She has just screamed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i09:r2",
+              "targetText": "He has just screamed.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i09:r3",
+              "targetText": "They have just screamed.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has just screamed.",
+                "uk": "У записі звучить She has just screamed."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She has just screamed.",
+                "uk": "У записі звучить She has just screamed."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:word:respond",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — respond",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:word:respond:audio"
+        ],
+        "accessibilityLabel": "Картка слова — respond",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:word:respond:audio",
+            "transcript": "respond"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:word:respond:r1",
+              "targetText": "respond",
+              "meaningByLocale": {
+                "ru": "отвечать, реагировать.",
+                "uk": "відповідати, реагувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "respond",
+            "definitionByLocale": {
+              "ru": "отвечать, реагировать.",
+              "uk": "відповідати, реагувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Можеш відповісти на моє повідомлення?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Можеш відповісти на моє повідомлення?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you respond to my message?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Можешь ответить на моё сообщение?»",
+            "uk": "Скажіть: «Можеш відповісти на моє повідомлення?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "respond",
+            "to",
+            "my",
+            "message"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i11:r1",
+            "text": "responded"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i11:r2",
+            "text": "respond"
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i11:r3",
+            "text": "responds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "He has not ___ yet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-15:i11:r1",
+              "text": "responded"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i11:r2",
+              "text": "respond"
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i11:r3",
+              "text": "responds"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "После has not нужна форма responded.",
+                "uk": "Після has not потрібна форма responded."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "После has not нужна форма responded.",
+                "uk": "Після has not потрібна форма responded."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-15:i12:r1",
+            "text": "He has not responded yet."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i12:r2",
+            "text": "She has not responded yet."
+          },
+          {
+            "responseId": "en:lesson-24:session-15:i12:r3",
+            "text": "They have not responded yet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i12:audio",
+            "transcript": "He has not responded yet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-15:i12:r1",
+              "targetText": "He has not responded yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i12:r2",
+              "targetText": "She has not responded yet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i12:r3",
+              "targetText": "They have not responded yet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has not responded yet.",
+                "uk": "У записі звучить He has not responded yet."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has not responded yet.",
+                "uk": "У записі звучить He has not responded yet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-15:i13:p1",
+              "target": "discuss",
+              "meaningByLocale": {
+                "ru": "обсуждать",
+                "uk": "обговорювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-15:i13:p2",
+              "target": "announce",
+              "meaningByLocale": {
+                "ru": "объявлять",
+                "uk": "оголошувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-15:i13:p3",
+              "target": "scream",
+              "meaningByLocale": {
+                "ru": "кричать, вскрикивать",
+                "uk": "кричати, скрикувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-15:i13:p4",
+              "target": "respond",
+              "meaningByLocale": {
+                "ru": "отвечать, реагировать",
+                "uk": "відповідати, реагувати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "discuss",
+            "announce",
+            "scream",
+            "respond"
+          ],
+          "rightColumn": [
+            "обговорювати",
+            "оголошувати",
+            "кричати, скрикувати",
+            "відповідати, реагувати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Як давно ти її знаєш",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Як давно ти її знаєш",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i14:audio",
+            "transcript": "How long have you known her?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How long have you known her?",
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "known",
+            "her"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Із травня",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Із травня",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i15:audio",
+            "transcript": "I have known her since May."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I have known her since May.",
+          "orderedTokens": [
+            "I",
+            "have",
+            "known",
+            "her",
+            "since",
+            "May"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона ще не відповіла».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона ще не відповіла».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i16:audio",
+            "transcript": "She has not responded yet."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has not responded yet.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Ми щойно оголосили результат».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Ми щойно оголосили результат».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-15:i17:audio",
+            "transcript": "We have just announced the result."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We have just announced the result.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-15:word:discuss",
+      "correctText": "discuss",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i01",
+      "correctText": "We need to discuss the plan.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i02",
+      "correctText": "discussed",
+      "correctResponseId": "en:lesson-24:session-15:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i03",
+      "correctText": "We have already discussed the plan.",
+      "correctResponseId": "en:lesson-24:session-15:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:word:announce",
+      "correctText": "announce",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i04",
+      "correctText": "Please announce the result.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i05",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-15:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i06",
+      "correctText": "They have just announced the result.",
+      "correctResponseId": "en:lesson-24:session-15:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:word:scream",
+      "correctText": "scream",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i07",
+      "correctText": "Please do not scream.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i08",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-24:session-15:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i09",
+      "correctText": "She has just screamed.",
+      "correctResponseId": "en:lesson-24:session-15:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:word:respond",
+      "correctText": "respond",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i10",
+      "correctText": "Can you respond to my message?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i11",
+      "correctText": "responded",
+      "correctResponseId": "en:lesson-24:session-15:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i12",
+      "correctText": "He has not responded yet.",
+      "correctResponseId": "en:lesson-24:session-15:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i14",
+      "correctText": "How long have you known her?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i15",
+      "correctText": "I have known her since May.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i16",
+      "correctText": "She has not responded yet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:i17",
+      "correctText": "We have just announced the result.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -9107,4 +9107,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long + have|has + subject + past participle?","uk":"How long + have|has + subject + past participle?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 13,
+    sourceFingerprint: "aee9f4adf8e650c2b376b7ba4b57f9871b7e360384c226bb3117a2b49d4552de",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long + have|has + subject + past participle?","uk":"How long + have|has + subject + past participle?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 14,
+    sourceFingerprint: "249248843fa173d1bae11a694346d625ed21656603b1780d7470ee32ee142058",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"How long; have/has + past participle; just/already","uk":"How long; have/has + past participle; just/already"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 15,
+    sourceFingerprint: "80cbdad66b3532a32565373c88c6823c94983b10cac9115b650960045440385e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have/has + past participle; just/already/yet; How long","uk":"have/has + past participle; just/already/yet; How long"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 24, sessionOrdinal: 16,
+    sourceFingerprint: "5bb3f696a04af98cf106d3f896fd77d2fdf4d19f717857dfbd69c00dae5c78cd",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"have/has + past participle; just/already; How long","uk":"have/has + past participle; just/already; How long"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 24","uk":"Англійська · Урок 24"}),
+  }),
 ]);

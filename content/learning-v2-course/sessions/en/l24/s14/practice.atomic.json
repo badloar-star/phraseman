@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-24:session-14",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-24:session-14:word:act",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — act",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:act:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — act",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:act:audio",
+            "transcript": "act"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:act:r1",
+              "targetText": "act",
+              "meaningByLocale": {
+                "ru": "играть роль, сниматься.",
+                "uk": "грати роль, зніматися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "act",
+            "definitionByLocale": {
+              "ru": "играть роль, сниматься.",
+              "uk": "грати роль, зніматися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она хочет сниматься в фильмах.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она хочет сниматься в фильмах.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She wants to act in films.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она хочет сниматься в фильмах.»",
+            "uk": "Скажіть: «Вона хоче зніматися у фільмах.»"
+          },
+          "orderedTokens": [
+            "She",
+            "wants",
+            "to",
+            "act",
+            "in",
+            "films"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i02:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i02:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i02:r3",
+            "text": "How much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "___ has she acted in films?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i02:r1",
+              "text": "How long"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i02:r2",
+              "text": "How many"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i02:r3",
+              "text": "How much"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "О длительности спрашиваем How long.",
+                "uk": "Про тривалість запитуємо How long."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "О длительности спрашиваем How long.",
+                "uk": "Про тривалість запитуємо How long."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i03:r1",
+            "text": "How long has she acted in films?"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i03:r2",
+            "text": "How long has he acted in films?"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i03:r3",
+            "text": "How long have they acted in films?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i03:audio",
+            "transcript": "How long has she acted in films?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i03:r1",
+              "targetText": "How long has she acted in films?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i03:r2",
+              "targetText": "How long has he acted in films?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i03:r3",
+              "targetText": "How long have they acted in films?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she acted in films?",
+                "uk": "У записі звучить How long has she acted in films?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she acted in films?",
+                "uk": "У записі звучить How long has she acted in films?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:word:behave",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — behave",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:behave:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — behave",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:behave:audio",
+            "transcript": "behave"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:behave:r1",
+              "targetText": "behave",
+              "meaningByLocale": {
+                "ru": "вести себя.",
+                "uk": "поводитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "behave",
+            "definitionByLocale": {
+              "ru": "вести себя.",
+              "uk": "поводитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Пожалуйста, веди себя хорошо.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Пожалуйста, веди себя хорошо.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please behave well.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Пожалуйста, веди себя хорошо.»",
+            "uk": "Скажіть: «Будь ласка, поводься добре.»"
+          },
+          "orderedTokens": [
+            "Please",
+            "behave",
+            "well"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "He ___ behaved well today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С he нужно has.",
+                "uk": "Із he потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С he нужно has.",
+                "uk": "Із he потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i06:r1",
+            "text": "He has behaved well today."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i06:r2",
+            "text": "She has behaved well today."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i06:r3",
+            "text": "They have behaved well today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i06:audio",
+            "transcript": "He has behaved well today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i06:r1",
+              "targetText": "He has behaved well today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i06:r2",
+              "targetText": "She has behaved well today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i06:r3",
+              "targetText": "They have behaved well today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has behaved well today.",
+                "uk": "У записі звучить He has behaved well today."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has behaved well today.",
+                "uk": "У записі звучить He has behaved well today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:word:continue",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — continue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:continue:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — continue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:continue:audio",
+            "transcript": "continue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:continue:r1",
+              "targetText": "continue",
+              "meaningByLocale": {
+                "ru": "продолжать.",
+                "uk": "продовжувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "continue",
+            "definitionByLocale": {
+              "ru": "продолжать.",
+              "uk": "продовжувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Я хочу продолжить рассказ.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Я хочу продолжить рассказ.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to continue the story.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу продолжить рассказ.»",
+            "uk": "Скажіть: «Я хочу продовжити розповідь.»"
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "continue",
+            "the",
+            "story"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i08:r1",
+            "text": "continued"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i08:r2",
+            "text": "continue"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i08:r3",
+            "text": "continues"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "We have already ___ the story.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i08:r1",
+              "text": "continued"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i08:r2",
+              "text": "continue"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i08:r3",
+              "text": "continues"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма continued.",
+                "uk": "Після have already потрібна форма continued."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма continued.",
+                "uk": "Після have already потрібна форма continued."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i09:r1",
+            "text": "We have already continued the story."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i09:r2",
+            "text": "They have already continued the story."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i09:r3",
+            "text": "She has already continued the story."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i09:audio",
+            "transcript": "We have already continued the story."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i09:r1",
+              "targetText": "We have already continued the story.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i09:r2",
+              "targetText": "They have already continued the story.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i09:r3",
+              "targetText": "She has already continued the story.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already continued the story.",
+                "uk": "У записі звучить We have already continued the story."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already continued the story.",
+                "uk": "У записі звучить We have already continued the story."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:word:pause",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pause",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:pause:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pause",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:pause:audio",
+            "transcript": "pause"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:pause:r1",
+              "targetText": "pause",
+              "meaningByLocale": {
+                "ru": "делать паузу, ставить на паузу.",
+                "uk": "робити паузу, ставити на паузу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pause",
+            "definitionByLocale": {
+              "ru": "делать паузу, ставить на паузу.",
+              "uk": "робити паузу, ставити на паузу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Можешь поставить фильм на паузу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Можешь поставить фильм на паузу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pause the film?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Можешь поставить фильм на паузу?»",
+            "uk": "Скажіть: «Можеш поставити фільм на паузу?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pause",
+            "the",
+            "film"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i11:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i11:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "I ___ just paused the film.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i11:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i11:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Дополните фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Дополните фразу.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i12:r1",
+            "text": "I have just paused the film."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i12:r2",
+            "text": "We have just paused the film."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i12:r3",
+            "text": "She has just paused the film."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i12:audio",
+            "transcript": "I have just paused the film."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i12:r1",
+              "targetText": "I have just paused the film.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i12:r2",
+              "targetText": "We have just paused the film.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i12:r3",
+              "targetText": "She has just paused the film.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just paused the film.",
+                "uk": "У записі звучить I have just paused the film."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just paused the film.",
+                "uk": "У записі звучить I have just paused the film."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-14:i13:p1",
+              "target": "act",
+              "meaningByLocale": {
+                "ru": "играть роль, сниматься",
+                "uk": "грати роль, зніматися"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-14:i13:p2",
+              "target": "behave",
+              "meaningByLocale": {
+                "ru": "вести себя",
+                "uk": "поводитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-14:i13:p3",
+              "target": "continue",
+              "meaningByLocale": {
+                "ru": "продолжать",
+                "uk": "продовжувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-14:i13:p4",
+              "target": "pause",
+              "meaningByLocale": {
+                "ru": "делать паузу, ставить на паузу",
+                "uk": "робити паузу, ставити на паузу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "act",
+            "behave",
+            "continue",
+            "pause"
+          ],
+          "rightColumn": [
+            "играть роль, сниматься",
+            "вести себя",
+            "продолжать",
+            "делать паузу, ставить на паузу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уже пять лет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Уже пять лет",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i14:audio",
+            "transcript": "She has acted in films for five years."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has acted in films for five years.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "acted",
+            "in",
+            "films",
+            "for",
+            "five",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Как давно вы здесь живёте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Как давно вы здесь живёте",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i15:audio",
+            "transcript": "How long have you lived here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How long have you lived here?",
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "lived",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Она только что поставила фильм на паузу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Она только что поставила фильм на паузу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i16:audio",
+            "transcript": "She has just paused the film."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has just paused the film.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: «Сегодня они хорошо себя вели».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: «Сегодня они хорошо себя вели».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i17:audio",
+            "transcript": "They have behaved well today."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have behaved well today.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-24:session-14:word:act",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — act",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:act:audio"
+        ],
+        "accessibilityLabel": "Картка слова — act",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:act:audio",
+            "transcript": "act"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:act:r1",
+              "targetText": "act",
+              "meaningByLocale": {
+                "ru": "играть роль, сниматься.",
+                "uk": "грати роль, зніматися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "act",
+            "definitionByLocale": {
+              "ru": "играть роль, сниматься.",
+              "uk": "грати роль, зніматися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона хоче зніматися у фільмах.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона хоче зніматися у фільмах.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She wants to act in films.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она хочет сниматься в фильмах.»",
+            "uk": "Скажіть: «Вона хоче зніматися у фільмах.»"
+          },
+          "orderedTokens": [
+            "She",
+            "wants",
+            "to",
+            "act",
+            "in",
+            "films"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i02:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i02:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i02:r3",
+            "text": "How much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "___ has she acted in films?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i02:r1",
+              "text": "How long"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i02:r2",
+              "text": "How many"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i02:r3",
+              "text": "How much"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i02:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "О длительности спрашиваем How long.",
+                "uk": "Про тривалість запитуємо How long."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i02:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "О длительности спрашиваем How long.",
+                "uk": "Про тривалість запитуємо How long."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i03:r1",
+            "text": "How long has she acted in films?"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i03:r2",
+            "text": "How long has he acted in films?"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i03:r3",
+            "text": "How long have they acted in films?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i03:audio",
+            "transcript": "How long has she acted in films?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i03:r1",
+              "targetText": "How long has she acted in films?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i03:r2",
+              "targetText": "How long has he acted in films?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i03:r3",
+              "targetText": "How long have they acted in films?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she acted in films?",
+                "uk": "У записі звучить How long has she acted in films?"
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long has she acted in films?",
+                "uk": "У записі звучить How long has she acted in films?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:word:behave",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — behave",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:behave:audio"
+        ],
+        "accessibilityLabel": "Картка слова — behave",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:behave:audio",
+            "transcript": "behave"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:behave:r1",
+              "targetText": "behave",
+              "meaningByLocale": {
+                "ru": "вести себя.",
+                "uk": "поводитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "behave",
+            "definitionByLocale": {
+              "ru": "вести себя.",
+              "uk": "поводитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Будь ласка, поводься добре.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Будь ласка, поводься добре.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Please behave well.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Пожалуйста, веди себя хорошо.»",
+            "uk": "Скажіть: «Будь ласка, поводься добре.»"
+          },
+          "orderedTokens": [
+            "Please",
+            "behave",
+            "well"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i05:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "He ___ behaved well today.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i05:r1",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i05:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i05:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i05:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С he нужно has.",
+                "uk": "Із he потрібно has."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i05:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С he нужно has.",
+                "uk": "Із he потрібно has."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i06:r1",
+            "text": "He has behaved well today."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i06:r2",
+            "text": "She has behaved well today."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i06:r3",
+            "text": "They have behaved well today."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i06:audio",
+            "transcript": "He has behaved well today."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i06:r1",
+              "targetText": "He has behaved well today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i06:r2",
+              "targetText": "She has behaved well today.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i06:r3",
+              "targetText": "They have behaved well today.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has behaved well today.",
+                "uk": "У записі звучить He has behaved well today."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He has behaved well today.",
+                "uk": "У записі звучить He has behaved well today."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:word:continue",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — continue",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:continue:audio"
+        ],
+        "accessibilityLabel": "Картка слова — continue",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:continue:audio",
+            "transcript": "continue"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:continue:r1",
+              "targetText": "continue",
+              "meaningByLocale": {
+                "ru": "продолжать.",
+                "uk": "продовжувати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "continue",
+            "definitionByLocale": {
+              "ru": "продолжать.",
+              "uk": "продовжувати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Я хочу продовжити розповідь.»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Я хочу продовжити розповідь.»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I want to continue the story.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Я хочу продолжить рассказ.»",
+            "uk": "Скажіть: «Я хочу продовжити розповідь.»"
+          },
+          "orderedTokens": [
+            "I",
+            "want",
+            "to",
+            "continue",
+            "the",
+            "story"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i08:r1",
+            "text": "continued"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i08:r2",
+            "text": "continue"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i08:r3",
+            "text": "continues"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "We have already ___ the story.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i08:r1",
+              "text": "continued"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i08:r2",
+              "text": "continue"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i08:r3",
+              "text": "continues"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i08:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма continued.",
+                "uk": "Після have already потрібна форма continued."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i08:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "После have already нужна форма continued.",
+                "uk": "Після have already потрібна форма continued."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i09:r1",
+            "text": "We have already continued the story."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i09:r2",
+            "text": "They have already continued the story."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i09:r3",
+            "text": "She has already continued the story."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i09:audio",
+            "transcript": "We have already continued the story."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i09:r1",
+              "targetText": "We have already continued the story.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i09:r2",
+              "targetText": "They have already continued the story.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i09:r3",
+              "targetText": "She has already continued the story.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already continued the story.",
+                "uk": "У записі звучить We have already continued the story."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have already continued the story.",
+                "uk": "У записі звучить We have already continued the story."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:word:pause",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pause",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:word:pause:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pause",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:word:pause:audio",
+            "transcript": "pause"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:word:pause:r1",
+              "targetText": "pause",
+              "meaningByLocale": {
+                "ru": "делать паузу, ставить на паузу.",
+                "uk": "робити паузу, ставити на паузу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pause",
+            "definitionByLocale": {
+              "ru": "делать паузу, ставить на паузу.",
+              "uk": "робити паузу, ставити на паузу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Можеш поставити фільм на паузу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Можеш поставити фільм на паузу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pause the film?",
+          "localizedMeaning": {
+            "ru": "Скажите: «Можешь поставить фильм на паузу?»",
+            "uk": "Скажіть: «Можеш поставити фільм на паузу?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pause",
+            "the",
+            "film"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть фразу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i11:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i11:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i11:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть фразу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните фразу.",
+            "uk": "Доповніть фразу."
+          },
+          "gappedTargetPhrase": "I ___ just paused the film.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-24:session-14:i11:r1",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i11:r2",
+              "text": "has"
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i11:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Доповніть фразу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i11:r2",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i11:r3",
+              "correct": false,
+              "testedDimension": "Доповніть фразу.",
+              "feedbackByLocale": {
+                "ru": "С I нужно have.",
+                "uk": "Із I потрібно have."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-24:session-14:i12:r1",
+            "text": "I have just paused the film."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i12:r2",
+            "text": "We have just paused the film."
+          },
+          {
+            "responseId": "en:lesson-24:session-14:i12:r3",
+            "text": "She has just paused the film."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i12:audio",
+            "transcript": "I have just paused the film."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-24:session-14:i12:r1",
+              "targetText": "I have just paused the film.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i12:r2",
+              "targetText": "We have just paused the film.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i12:r3",
+              "targetText": "She has just paused the film.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-24:session-14:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just paused the film.",
+                "uk": "У записі звучить I have just paused the film."
+              }
+            },
+            {
+              "responseId": "en:lesson-24:session-14:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have just paused the film.",
+                "uk": "У записі звучить I have just paused the film."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-24:session-14:i13:p1",
+              "target": "act",
+              "meaningByLocale": {
+                "ru": "играть роль, сниматься",
+                "uk": "грати роль, зніматися"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-14:i13:p2",
+              "target": "behave",
+              "meaningByLocale": {
+                "ru": "вести себя",
+                "uk": "поводитися"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-14:i13:p3",
+              "target": "continue",
+              "meaningByLocale": {
+                "ru": "продолжать",
+                "uk": "продовжувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-24:session-14:i13:p4",
+              "target": "pause",
+              "meaningByLocale": {
+                "ru": "делать паузу, ставить на паузу",
+                "uk": "робити паузу, ставити на паузу"
+              }
+            }
+          ],
+          "leftColumn": [
+            "act",
+            "behave",
+            "continue",
+            "pause"
+          ],
+          "rightColumn": [
+            "грати роль, зніматися",
+            "поводитися",
+            "продовжувати",
+            "робити паузу, ставити на паузу"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вже п’ять років",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i14:audio"
+        ],
+        "accessibilityLabel": "Вже п’ять років",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i14:audio",
+            "transcript": "She has acted in films for five years."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She has acted in films for five years.",
+          "orderedTokens": [
+            "She",
+            "has",
+            "acted",
+            "in",
+            "films",
+            "for",
+            "five",
+            "years"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Як давно ви тут живете",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i15:audio"
+        ],
+        "accessibilityLabel": "Як давно ви тут живете",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i15:audio",
+            "transcript": "How long have you lived here?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "How long have you lived here?",
+          "orderedTokens": [
+            "How",
+            "long",
+            "have",
+            "you",
+            "lived",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Вона щойно поставила фільм на паузу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Вона щойно поставила фільм на паузу».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i16:audio",
+            "transcript": "She has just paused the film."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She has just paused the film.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-24:session-14:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: «Сьогодні вони добре поводилися».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-24:session-14:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: «Сьогодні вони добре поводилися».",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-24:session-14:i17:audio",
+            "transcript": "They have behaved well today."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "They have behaved well today.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-24:session-14:word:act",
+      "correctText": "act",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i01",
+      "correctText": "She wants to act in films.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i02",
+      "correctText": "How long",
+      "correctResponseId": "en:lesson-24:session-14:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i03",
+      "correctText": "How long has she acted in films?",
+      "correctResponseId": "en:lesson-24:session-14:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:word:behave",
+      "correctText": "behave",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i04",
+      "correctText": "Please behave well.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i05",
+      "correctText": "has",
+      "correctResponseId": "en:lesson-24:session-14:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i06",
+      "correctText": "He has behaved well today.",
+      "correctResponseId": "en:lesson-24:session-14:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:word:continue",
+      "correctText": "continue",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i07",
+      "correctText": "I want to continue the story.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i08",
+      "correctText": "continued",
+      "correctResponseId": "en:lesson-24:session-14:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i09",
+      "correctText": "We have already continued the story.",
+      "correctResponseId": "en:lesson-24:session-14:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:word:pause",
+      "correctText": "pause",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i10",
+      "correctText": "Can you pause the film?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i11",
+      "correctText": "have",
+      "correctResponseId": "en:lesson-24:session-14:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i12",
+      "correctText": "I have just paused the film.",
+      "correctResponseId": "en:lesson-24:session-14:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i14",
+      "correctText": "She has acted in films for five years.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i15",
+      "correctText": "How long have you lived here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i16",
+      "correctText": "She has just paused the film.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:i17",
+      "correctText": "They have behaved well today.",
+      "correctResponseId": null
+    }
+  ]
+}

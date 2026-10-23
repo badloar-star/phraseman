@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-16:intro1:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-16:intro1:r3": {
+          "ru": "После have нужна форма checked.",
+          "uk": "Після have потрібна форма checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-16:intro2:r2": {
+          "ru": "С we нужно have.",
+          "uk": "Із we потрібно have."
+        },
+        "en:lesson-24:session-16:intro2:r3": {
+          "ru": "Нужна форма multiplied.",
+          "uk": "Потрібна форма multiplied."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-16:intro3:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-24:session-16:intro3:r3": {
+          "ru": "После has нужна форма subtracted.",
+          "uk": "Після has потрібна форма subtracted."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a0d5f800c162e05a9defb4d4de28569b8ca75f8ac0acbd6dae1bba8c75d2ebec"
+}

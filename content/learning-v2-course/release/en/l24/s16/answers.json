@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-16:word:plus",
+    "correctText": "plus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i01",
+    "correctText": "Two plus three is five.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i02",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-24:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i03",
+    "correctText": "Two plus three is five.",
+    "correctResponseId": "en:lesson-24:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:word:sum",
+    "correctText": "sum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i04",
+    "correctText": "I have already checked the sum.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i05",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i06",
+    "correctText": "I have already checked the sum.",
+    "correctResponseId": "en:lesson-24:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:word:multiply",
+    "correctText": "multiply",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i07",
+    "correctText": "Multiply the price by three.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i08",
+    "correctText": "multiplied",
+    "correctResponseId": "en:lesson-24:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i09",
+    "correctText": "We have already multiplied the price by three.",
+    "correctResponseId": "en:lesson-24:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:word:subtract",
+    "correctText": "subtract",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i10",
+    "correctText": "Subtract the discount.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i11",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i12",
+    "correctText": "She has just subtracted the discount.",
+    "correctResponseId": "en:lesson-24:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i13",
+    "correctText": "en:lesson-24:session-16:i13:p1=plus\nen:lesson-24:session-16:i13:p2=sum\nen:lesson-24:session-16:i13:p3=multiply\nen:lesson-24:session-16:i13:p4=subtract",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i14",
+    "correctText": "How long has she worked here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i15",
+    "correctText": "She has worked here for three years.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i16",
+    "correctText": "We have already checked the sum.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-16:i17",
+    "correctText": "He has just subtracted the discount.",
+    "correctResponseId": null
+  }
+]

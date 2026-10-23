@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-14:intro1:r2": {
+          "ru": "С she нужно has.",
+          "uk": "Із she потрібно has."
+        },
+        "en:lesson-24:session-14:intro1:r3": {
+          "ru": "О длительности спрашиваем How long.",
+          "uk": "Про тривалість запитуємо How long."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-14:intro2:r2": {
+          "ru": "С he нужно has.",
+          "uk": "Із he потрібно has."
+        },
+        "en:lesson-24:session-14:intro2:r3": {
+          "ru": "После has используем behaved.",
+          "uk": "Після has використовуємо behaved."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-14:intro3:r2": {
+          "ru": "С I нужно have.",
+          "uk": "Із I потрібно have."
+        },
+        "en:lesson-24:session-14:intro3:r3": {
+          "ru": "После have нужна форма paused.",
+          "uk": "Після have потрібна форма paused."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ad7d26dcd0185d826058a0fbd13bcc13e8adffeaf0c4476fb0aac5d5f656e98"
+}

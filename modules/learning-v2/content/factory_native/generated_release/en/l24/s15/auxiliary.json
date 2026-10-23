@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-24:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-24:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-15:intro1:r2": {
+          "ru": "С we и they нужно have, с he — has.",
+          "uk": "З we та they потрібно have, з he — has."
+        },
+        "en:lesson-24:session-15:intro1:r3": {
+          "ru": "После have или has нужна форма с окончанием -ed.",
+          "uk": "Після have або has потрібна форма із закінченням -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-15:intro2:r2": {
+          "ru": "С we и they нужно have, с he — has.",
+          "uk": "З we та they потрібно have, з he — has."
+        },
+        "en:lesson-24:session-15:intro2:r3": {
+          "ru": "После have или has нужна форма с окончанием -ed.",
+          "uk": "Після have або has потрібна форма із закінченням -ed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-24:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-24:session-15:intro3:r2": {
+          "ru": "С we и they нужно have, с he — has.",
+          "uk": "З we та they потрібно have, з he — has."
+        },
+        "en:lesson-24:session-15:intro3:r3": {
+          "ru": "После have или has нужна форма с окончанием -ed.",
+          "uk": "Після have або has потрібна форма із закінченням -ed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "82f4d751eac9f530e5ff1ec4fc33994646720061f23e08215582246f26f674fc"
+}

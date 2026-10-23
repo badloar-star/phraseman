@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-24:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-24:session-13:word:world",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — world",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:word:world:audio"
+      ],
+      "accessibilityLabel": "Картка слова — world",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:word:world:audio",
+          "transcript": "world"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:word:world:r1",
+            "targetText": "world",
+            "meaningByLocale": {
+              "ru": "мир.",
+              "uk": "світ."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "world",
+          "definitionByLocale": {
+            "ru": "мир.",
+            "uk": "світ."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте: «Як довго ти вже подорожуєш світом?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте: «Як довго ти вже подорожуєш світом?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long have you travelled around the world?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как долго ты уже путешествуешь по миру?»",
+          "uk": "Запитайте: «Як довго ти вже подорожуєш світом?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "travelled",
+          "around",
+          "the",
+          "world"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть запитання про тривалість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i02:r1",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i02:r2",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i02:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть запитання про тривалість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ you travelled around the world?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-13:i02:r1",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i02:r2",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i02:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Доповніть запитання про тривалість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "С you используем have.",
+              "uk": "Із you використовуємо have."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i03:r1",
+          "text": "How long have you travelled around the world?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i03:r2",
+          "text": "How long has she travelled around the world?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i03:r3",
+          "text": "How long have they travelled around the world?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i03:audio",
+          "transcript": "How long have you travelled around the world?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:i03:r1",
+            "targetText": "How long have you travelled around the world?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i03:r2",
+            "targetText": "How long has she travelled around the world?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i03:r3",
+            "targetText": "How long have they travelled around the world?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you travelled around the world?",
+              "uk": "У записі звучить How long have you travelled around the world?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you travelled around the world?",
+              "uk": "У записі звучить How long have you travelled around the world?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:word:nature",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nature",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:word:nature:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nature",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:word:nature:audio",
+          "transcript": "nature"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:word:nature:r1",
+            "targetText": "nature",
+            "meaningByLocale": {
+              "ru": "природа.",
+              "uk": "природа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nature",
+          "definitionByLocale": {
+            "ru": "природа.",
+            "uk": "природа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте: «Як давно вона цікавиться природою?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте: «Як давно вона цікавиться природою?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long has she been interested in nature?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно она интересуется природой?»",
+          "uk": "Запитайте: «Як давно вона цікавиться природою?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "she",
+          "been",
+          "interested",
+          "in",
+          "nature"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть запитання про тривалість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i05:r1",
+          "text": "has"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i05:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i05:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть запитання про тривалість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long ___ she been interested in nature?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-13:i05:r1",
+            "text": "has"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i05:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i05:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Доповніть запитання про тривалість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "С she используем has.",
+              "uk": "Із she використовуємо has."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "С she используем has.",
+              "uk": "Із she використовуємо has."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i06:r1",
+          "text": "How long has she been interested in nature?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i06:r2",
+          "text": "How long has he been interested in nature?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i06:r3",
+          "text": "How long have you been interested in nature?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i06:audio",
+          "transcript": "How long has she been interested in nature?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:i06:r1",
+            "targetText": "How long has she been interested in nature?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i06:r2",
+            "targetText": "How long has he been interested in nature?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i06:r3",
+            "targetText": "How long have you been interested in nature?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she been interested in nature?",
+              "uk": "У записі звучить How long has she been interested in nature?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has she been interested in nature?",
+              "uk": "У записі звучить How long has she been interested in nature?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:word:planet",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — planet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:word:planet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — planet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:word:planet:audio",
+          "transcript": "planet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:word:planet:r1",
+            "targetText": "planet",
+            "meaningByLocale": {
+              "ru": "планета.",
+              "uk": "планета."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "planet",
+          "definitionByLocale": {
+            "ru": "планета.",
+            "uk": "планета."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте: «Як довго існує ця планета?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте: «Як довго існує ця планета?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long has this planet existed?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как долго существует эта планета?»",
+          "uk": "Запитайте: «Як довго існує ця планета?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "has",
+          "this",
+          "planet",
+          "existed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть запитання про тривалість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i08:r1",
+          "text": "How long"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i08:r2",
+          "text": "How many"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i08:r3",
+          "text": "How much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть запитання про тривалість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "___ has this planet existed?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-13:i08:r1",
+            "text": "How long"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i08:r2",
+            "text": "How many"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i08:r3",
+            "text": "How much"
+          }
+        ],
+        "testedDimension": "Доповніть запитання про тривалість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "Для длительности нужно How long.",
+              "uk": "Для тривалості потрібно How long."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "Для длительности нужно How long.",
+              "uk": "Для тривалості потрібно How long."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i09:r1",
+          "text": "How long has this planet existed?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i09:r2",
+          "text": "How long has that planet existed?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i09:r3",
+          "text": "How long have these planets existed?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i09:audio",
+          "transcript": "How long has this planet existed?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:i09:r1",
+            "targetText": "How long has this planet existed?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i09:r2",
+            "targetText": "How long has that planet existed?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i09:r3",
+            "targetText": "How long have these planets existed?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has this planet existed?",
+              "uk": "У записі звучить How long has this planet existed?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long has this planet existed?",
+              "uk": "У записі звучить How long has this planet existed?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:word:universe",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — universe",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:word:universe:audio"
+      ],
+      "accessibilityLabel": "Картка слова — universe",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:word:universe:audio",
+          "transcript": "universe"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:word:universe:r1",
+            "targetText": "universe",
+            "meaningByLocale": {
+              "ru": "Вселенная.",
+              "uk": "Всесвіт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "universe",
+          "definitionByLocale": {
+            "ru": "Вселенная.",
+            "uk": "Всесвіт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте: «Як давно ти вивчаєш Всесвіт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте: «Як давно ти вивчаєш Всесвіт?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "How long have you studied the universe?",
+        "localizedMeaning": {
+          "ru": "Спросите: «Как давно ты изучаешь Вселенную?»",
+          "uk": "Запитайте: «Як давно ти вивчаєш Всесвіт?»"
+        },
+        "orderedTokens": [
+          "How",
+          "long",
+          "have",
+          "you",
+          "studied",
+          "the",
+          "universe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть запитання про тривалість.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i11:r1",
+          "text": "studied"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i11:r2",
+          "text": "study"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i11:r3",
+          "text": "studies"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть запитання про тривалість.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните вопрос о длительности.",
+          "uk": "Доповніть запитання про тривалість."
+        },
+        "gappedTargetPhrase": "How long have you ___ the universe?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-24:session-13:i11:r1",
+            "text": "studied"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i11:r2",
+            "text": "study"
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i11:r3",
+            "text": "studies"
+          }
+        ],
+        "testedDimension": "Доповніть запитання про тривалість.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "После have you нужна форма studied.",
+              "uk": "Після have you потрібна форма studied."
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Доповніть запитання про тривалість.",
+            "feedbackByLocale": {
+              "ru": "После have you нужна форма studied.",
+              "uk": "Після have you потрібна форма studied."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-24:session-13:i12:r1",
+          "text": "How long have you studied the universe?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i12:r2",
+          "text": "How long has she studied the universe?"
+        },
+        {
+          "responseId": "en:lesson-24:session-13:i12:r3",
+          "text": "How long have they studied the universe?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i12:audio",
+          "transcript": "How long have you studied the universe?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-24:session-13:i12:r1",
+            "targetText": "How long have you studied the universe?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i12:r2",
+            "targetText": "How long has she studied the universe?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i12:r3",
+            "targetText": "How long have they studied the universe?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-24:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you studied the universe?",
+              "uk": "У записі звучить How long have you studied the universe?"
+            }
+          },
+          {
+            "responseId": "en:lesson-24:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How long have you studied the universe?",
+              "uk": "У записі звучить How long have you studied the universe?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-24:session-13:i13:p1",
+            "target": "world",
+            "meaningByLocale": {
+              "ru": "мир",
+              "uk": "світ"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-13:i13:p2",
+            "target": "nature",
+            "meaningByLocale": {
+              "ru": "природа",
+              "uk": "природа"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-13:i13:p3",
+            "target": "planet",
+            "meaningByLocale": {
+              "ru": "планета",
+              "uk": "планета"
+            }
+          },
+          {
+            "pairId": "en:lesson-24:session-13:i13:p4",
+            "target": "universe",
+            "meaningByLocale": {
+              "ru": "Вселенная",
+              "uk": "Всесвіт"
+            }
+          }
+        ],
+        "leftColumn": [
+          "world",
+          "nature",
+          "planet",
+          "universe"
+        ],
+        "rightColumn": [
+          "світ",
+          "природа",
+          "планета",
+          "Всесвіт"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вже шість місяців",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Вже шість місяців",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i14:audio",
+          "transcript": "I have travelled around the world for six months."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have travelled around the world for six months.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "travelled",
+          "around",
+          "the",
+          "world",
+          "for",
+          "six",
+          "months"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "З дитинства",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "З дитинства",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i15:audio",
+          "transcript": "She has been interested in nature since childhood."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She has been interested in nature since childhood.",
+        "orderedTokens": [
+          "She",
+          "has",
+          "been",
+          "interested",
+          "in",
+          "nature",
+          "since",
+          "childhood"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Як давно вона вивчає Всесвіт?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Як давно вона вивчає Всесвіт?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i16:audio",
+          "transcript": "How long has she studied the universe?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long has she studied the universe?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-24:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: «Як давно ти цікавишся природою?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-24:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте: «Як давно ти цікавишся природою?»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-24:session-13:i17:audio",
+          "transcript": "How long have you been interested in nature?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How long have you been interested in nature?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4563cb3e2b5c72e717c740464bf8193f2c8ec63e2553c23f4e6ba6aa56758d90"
+}

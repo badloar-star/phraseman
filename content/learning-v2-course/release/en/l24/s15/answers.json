@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-24:session-15:word:discuss",
+    "correctText": "discuss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i01",
+    "correctText": "We need to discuss the plan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i02",
+    "correctText": "discussed",
+    "correctResponseId": "en:lesson-24:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i03",
+    "correctText": "We have already discussed the plan.",
+    "correctResponseId": "en:lesson-24:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:word:announce",
+    "correctText": "announce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i04",
+    "correctText": "Please announce the result.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i05",
+    "correctText": "have",
+    "correctResponseId": "en:lesson-24:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i06",
+    "correctText": "They have just announced the result.",
+    "correctResponseId": "en:lesson-24:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:word:scream",
+    "correctText": "scream",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i07",
+    "correctText": "Please do not scream.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i08",
+    "correctText": "has",
+    "correctResponseId": "en:lesson-24:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i09",
+    "correctText": "She has just screamed.",
+    "correctResponseId": "en:lesson-24:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:word:respond",
+    "correctText": "respond",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i10",
+    "correctText": "Can you respond to my message?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i11",
+    "correctText": "responded",
+    "correctResponseId": "en:lesson-24:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i12",
+    "correctText": "He has not responded yet.",
+    "correctResponseId": "en:lesson-24:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i13",
+    "correctText": "en:lesson-24:session-15:i13:p1=discuss\nen:lesson-24:session-15:i13:p2=announce\nen:lesson-24:session-15:i13:p3=scream\nen:lesson-24:session-15:i13:p4=respond",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i14",
+    "correctText": "How long have you known her?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i15",
+    "correctText": "I have known her since May.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i16",
+    "correctText": "She has not responded yet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-24:session-15:i17",
+    "correctText": "We have just announced the result.",
+    "correctResponseId": null
+  }
+]

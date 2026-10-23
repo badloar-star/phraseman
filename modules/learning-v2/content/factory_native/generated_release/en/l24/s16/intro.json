@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-24:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "have/has + past participle; just/already; How long",
+    "uk": "have/has + past participle; just/already; How long"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-24:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сложение",
+        "uk": "Додавання"
+      },
+      "bodyByLocale": {
+        "ru": "Plus — плюс. Two plus three is five — два плюс три — пять. Sum — сумма, результат сложения: the sum of two and three is five. I have already checked the sum — я уже проверил сумму. Калькулятор помогает, но сначала важно ввести правильные числа.",
+        "uk": "Plus — плюс. Two plus three is five — два плюс три — п’ять. Sum — сума, результат додавання: the sum of two and three is five. I have already checked the sum — я вже перевірив суму. Калькулятор допомагає, але спочатку важливо ввести правильні числа."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-16:intro1:r1",
+              "text": "I have already checked the sum."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro1:r2",
+              "text": "I has already checked the sum."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro1:r3",
+              "text": "I have already check the sum."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-16:intro1:r1",
+              "text": "I have already checked the sum."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro1:r2",
+              "text": "I has already checked the sum."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro1:r3",
+              "text": "I have already check the sum."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-24:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Три билета",
+        "uk": "Три квитки"
+      },
+      "bodyByLocale": {
+        "ru": "Multiply — умножать. Multiply the price by three — умножь цену на три. Представьте три одинаковых билета: цена одного умножается на три. We have already multiplied the price by three — мы уже это сделали. В форме multiplied y меняется на i перед -ed.",
+        "uk": "Multiply — множити. Multiply the price by three — помнож ціну на три. Уявіть три однакові квитки: ціна одного множиться на три. We have already multiplied the price by three — ми вже це зробили. У формі multiplied y змінюється на i перед -ed."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-16:intro2:r1",
+              "text": "We have already multiplied the price by three."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro2:r2",
+              "text": "We has already multiplied the price by three."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro2:r3",
+              "text": "We have already multiply the price by three."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-16:intro2:r1",
+              "text": "We have already multiplied the price by three."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro2:r2",
+              "text": "We has already multiplied the price by three."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro2:r3",
+              "text": "We have already multiply the price by three."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-24:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вычитаем скидку",
+        "uk": "Віднімаємо знижку"
+      },
+      "bodyByLocale": {
+        "ru": "Subtract — вычитать. Subtract the discount — вычти скидку. She has just subtracted the discount — она только что вычла скидку. Если билет стоит десять, а скидка два, остаётся восемь. Скидку вычитаем, а не прибавляем: пусть кошелёк порадуется.",
+        "uk": "Subtract — віднімати. Subtract the discount — відніми знижку. She has just subtracted the discount — вона щойно відняла знижку. Якщо квиток коштує десять, а знижка два, залишається вісім. Знижку віднімаємо, а не додаємо: нехай гаманець зрадіє."
+      },
+      "question": {
+        "interactionId": "en:lesson-24:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-24:session-16:intro3:r1",
+              "text": "She has just subtracted the discount."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro3:r2",
+              "text": "She have just subtracted the discount."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro3:r3",
+              "text": "She has just subtract the discount."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-24:session-16:intro3:r1",
+              "text": "She has just subtracted the discount."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro3:r2",
+              "text": "She have just subtracted the discount."
+            },
+            {
+              "responseId": "en:lesson-24:session-16:intro3:r3",
+              "text": "She has just subtract the discount."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "265ce788aa041f77b1fc2a9452fb98a72114be9e88c10f9678f5623ac70cca1b"
+}

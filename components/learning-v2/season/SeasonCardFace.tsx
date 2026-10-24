@@ -69,9 +69,15 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, sta
     return (
       <View style={[styles.card, styles.examCard]}>
         <LinearGradient colors={colors} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
-        {/* зачем (замок владельца 22.10 «замочек трясётся», координатор 24.10): у закрытого экзамена плашки замка нет — тап трясёт печать, иначе была бы одна вибрация без движения */}
-        <Animated.View style={[styles.seal, lockShake]} testID="season-exam-seal"><Ionicons name="trophy" size={24} color={WHITE} /></Animated.View>
+        <View style={styles.seal} testID="season-exam-seal"><Ionicons name="trophy" size={24} color={WHITE} /></View>
         <Text style={styles.phrase} numberOfLines={3}>{phrase}</Text>
+        {/* зачем (координатор 24.10, замки владельца 22.10 «замки справа сверху» и «замочек трясётся»): у закрытого экзамена — та же плашка замка, что у эпизода,
+            и трясётся именно она; кубок остаётся эмблемой. Плашка под приглушением, как у эпизода, и не в потоке — печать и название не сдвигаются */}
+        {state === 'locked' ? (
+          <Animated.View style={[styles.mark, styles.examMark, lockShake]} testID="season-exam-lock" pointerEvents="none">
+            <Ionicons name="lock-closed" size={12} color={WHITE} />
+          </Animated.View>
+        ) : null}
         {state === 'locked' ? <View style={styles.mute} pointerEvents="none" /> : null}
       </View>
     );
@@ -116,6 +122,7 @@ const styles = StyleSheet.create({
     boxShadow: SHADOW,
   },
   examCard: { padding: 14 },
+  examMark: { position: 'absolute', top: 14, right: 14 },
   // зачем (владелец 22.10 по скриншоту карусели: «замочки справа, а не слева»): плашка «🔒 / ✓ / ▶ + номер» — в правом верхнем углу, одно место для всех карточек (центральной и боковых, закрытых, пройденных и текущей)
   mark: { flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-end', gap: 5, height: 26, paddingHorizontal: 9, borderRadius: 13, backgroundColor: CHIP },
   markText: { fontSize: 13, lineHeight: 17, fontWeight: '700', color: WHITE },

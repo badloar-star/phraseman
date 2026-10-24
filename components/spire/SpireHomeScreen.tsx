@@ -72,6 +72,7 @@ import { spireGameText } from './spire_game_strings';
 import { SPIRE_FLOOR_COUNT, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
 import { useSpireSummit } from './use_spire_summit';
 import { asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek } from './spire_home_week';
+import { usePeakPerfProbe } from '../../app/spire/peak_perf_probe';
 
 const LOG = '[SPIRE]';
 const DASH = '—';
@@ -79,6 +80,8 @@ const DASH = '—';
 const DOCK_PILL_GAP = 12;
 const DOCK_GAP = 16;
 export default function SpireHomeScreen() {
+  // зачем ([PEAK-PERF], жалоба №3): кадры и перерисовки экрана Пика с башней — растут ли они от ступени к ступени
+  usePeakPerfProbe('home', 'peak');
   const { lang } = useLang();
   const p = useSpirePalette();
   const bgBottom = useSpireBgBottom();

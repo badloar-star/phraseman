@@ -70,6 +70,7 @@ import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayActiveKey, useOverlayVisible } from '../../components/OverlayArbiter';
 import { useSpireWeekMoment } from '../spire/use_spire_week_moment';
+import { hydrateSpirePendingCoins, spirePendingCoinsTotal, subscribeSpirePendingCoins } from '../spire/spire_pending_coins';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { useWelcomeBackMoment } from '../../hooks/use_welcome_back_moment';
 import { useCoinRankEnoughMoment } from '../use_coin_rank_enough_moment';
@@ -1443,6 +1444,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (homeRuntimeActive) reconcileHomeRunes();
     }, [focusTick, homeRuntimeActive, reconcileHomeRunes]);
+    // зачем ([PEAK-COINS], координатор 24.10): монеты ступени Пика — на плашке сразу («ожидающие», сервер сверит при досылке очереди);
+    // только показ: кошелёк и покупки их не видят. Свой владелец — чужие ожидающие не показываем.
+    const [spirePendingCoins, setSpirePendingCoins] = useState(() => spirePendingCoinsTotal(captureAccountGeneration().stableId?.trim()));
+    useEffect(() => {
+        const read = () => setSpirePendingCoins(spirePendingCoinsTotal(captureAccountGeneration().stableId?.trim()));
+        const owner = captureAccountGeneration().stableId?.trim();
+        if (owner) void hydrateSpirePendingCoins(owner).then(read);
+        const unsubscribe = subscribeSpirePendingCoins(read);
+        const accountSub = subscribeAccountGeneration((token) => {
+            const next = token.stableId?.trim();
+            if (next) void hydrateSpirePendingCoins(next).then(read); else read();
+        });
+        return () => { unsubscribe(); accountSub.remove(); };
+    }, []);
+    useEffect(() => {
+        if (spirePendingCoins > 0) console.log('[PEAK-COINS]', JSON.stringify({ screen: 'home', pending: spirePendingCoins, shown: runesBalance + spirePendingCoins, wallet: runesBalance })); // guard-ok: что увидел пользователь
+    }, [runesBalance, spirePendingCoins]);
     // зачем (Ревизор 3.120): аватар 48 dp и значок 20 dp — копия 192² вместо исходника 768² (холодный старт Главной).
     const homeCoinRankSource = isValidCoinRank(myCoinRank) ? coinRankDisplaySource(myCoinRank, STORY_RING_SLOT) : null;
 
@@ -2900,7 +2918,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         cardsTileCenter, cardArrivals, dailyPhraseCardVisible, homeOnboardingDone, userName, streak, displayStreak, homeStatsReady, weekDone, weekDotAnimationToken, weekMarkers, weekPoints,
         lastLesson, continueResolved, mistakeAccountGeneration, mistakeReadySnapshot, homeV2Videos, homeV2VideoStatus, homeV2VideoNoChannel, homeFeatureTipsReplayCount, homeFeatureTipIndex,
         homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
-        celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance, runesKnown, belowFoldReady,
+        celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance: runesBalance + spirePendingCoins, runesKnown, belowFoldReady,
         overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
         goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,

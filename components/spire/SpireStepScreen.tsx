@@ -31,6 +31,7 @@ import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
 import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenOriginReset } from '../v2/ScreenBackButton';
+import { usePeakPerfProbe } from '../../app/spire/peak_perf_probe';
 
 type Props = Readonly<{
   lang: Lang;
@@ -93,6 +94,8 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
   const insets = useStableSafeAreaInsets();
   const counter = Math.min(taskIndex + 1, SPIRE_STEP_TASK_COUNT);
   const fb = feedback && !feedback.ok ? feedback : null;
+  // зачем ([PEAK-PERF], жалоба №3 «после 6–7 шага сильно тормозит»): время кадра и перерисовки ступени по фактам с устройства
+  usePeakPerfProbe('step', `floor=${ctx.floor} step=${ctx.stepInFloor + 1} task=${counter}`);
   return (
     <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top }]} testID="spire-step">
       {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место в строке шапки */}

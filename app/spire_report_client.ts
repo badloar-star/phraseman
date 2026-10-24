@@ -29,6 +29,7 @@ import { getLocalDayKey } from './local_date';
 import { peekStableId } from './stable_id';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { spireCurrentWeekKey } from '../components/spire/spire_tower_model';
+import { addSpirePendingCoins, spireStepPendingCoins, type SpirePendingCoinsConfig } from './spire/spire_pending_coins';
 import {
   type SpireFlushResponse,
   type SpireFlushTrigger,
@@ -151,7 +152,12 @@ export function peekSpireWeekLocal(lang: SpireLang): SpireWeekLocal | null {
 }
 
 /** Записать результат ступени на диск (очередь). Сеть не трогает. */
-export async function spireRecordStepResult(uid: string, lang: SpireLang, report: SpireStepReport) {
+export async function spireRecordStepResult(
+  uid: string,
+  lang: SpireLang,
+  report: SpireStepReport,
+  coins?: Readonly<{ owner: string; coins: SpirePendingCoinsConfig }>,
+) {
   const applied = await spireRecordStep(store, { uid, lang, report, logger });
   // зачем: после записи ступени память недели устарела — перечитываем фоном (локальный диск, 0 чтений облака), чтобы следующий вход нарисовал свежую.
   weekMemory.delete(weekMemoryKey(uid, lang));
@@ -161,6 +167,12 @@ export async function spireRecordStepResult(uid: string, lang: SpireLang, report
   // Серия — только за ПРОЙДЕННУЮ и новую ступень (провал и повтор дня не дают).
   if (report.outcome === 'passed' && applied.effect !== 'duplicate_ignored') {
     void markSpireStreakDay(report);
+    // зачем ([PEAK-COINS], координатор 24.10; контракт Ядра): ступень записана и пройдена впервые → её монеты на Главной сразу
+    // («ожидающие», гасит ответ spireReportSteps). Этаж ДО ступени: закрыт этаж — маркер уже на следующем.
+    if (applied.persisted && coins) {
+      const floorBefore = applied.effect === 'floor_cleared' ? applied.local.floor - 1 : applied.local.floor;
+      addSpirePendingCoins(coins.owner, report.reportId, spireStepPendingCoins(coins.coins, floorBefore, applied.effect === 'floor_cleared'));
+    }
   }
   return applied;
 }

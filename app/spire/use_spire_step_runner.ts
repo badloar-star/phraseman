@@ -34,7 +34,7 @@ import { DebugLogger } from '../debug-logger';
 import { spireBumpStepAttempt } from './spire_local_store';
 import { spireCaptureMistakeOutcome } from './spire_mistake_capture';
 import { useSpireCountdown } from './use_spire_countdown';
-
+import { measurePeakWork, PEAK_PERF } from './peak_perf_probe';
 const LOG = '[SPIRE]';
 const TICK_MS = 250;
 const CORRECT_FLASH_MS = 280;
@@ -126,7 +126,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
 
   const later = useCallback((fn: () => void, ms: number) => {
     const t = setTimeout(fn, ms);
-    timersRef.current.push(t);
+    timersRef.current.push(t); DebugLogger.info(LOG, `${PEAK_PERF} runner: таймер +${ms}мс, в списке ${timersRef.current.length}`); // зачем ([PEAK-PERF]): растёт ли список таймеров от задания к заданию
   }, []);
 
   // ── 1. Списание энергии на первом задании (D72); стартует после отсчёта ──
@@ -314,7 +314,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     const ok = next.hearts === cur.hearts;
     const bank = Array.isArray(task.payload.wordBank) ? task.payload.wordBank.map(textOf) : [];
     const count = Number(task.payload.correctTokenCount) || tokens.length;
-    const correct = ok ? tokens : spireRevealTokens(pick.plan.saltId, task.taskId, bank, count, pick.plan.tasks[cur.taskIndex].answerFingerprints[0] ?? '');
+    const correct = ok ? tokens : measurePeakWork(`runner: поиск верного порядка задание ${cur.taskIndex + 1} банк=${bank.length} слов=${count}`, () => spireRevealTokens(pick.plan.saltId, task.taskId, bank, count, pick.plan.tasks[cur.taskIndex].answerFingerprints[0] ?? '')); // зачем ([PEAK-PERF]): перебор до 40 000 порядков синхронно в кадре — меряем цену на устройстве
     DebugLogger.info(LOG, `step: задание ${cur.taskIndex + 1} сборка ok=${String(ok)} верный порядок ${correct ? 'найден' : 'не найден'}`);
     afterAnswer(next, { taskIndex: cur.taskIndex, ok, picked: null, itemIndex: null, correctIndex: null, correctText: correct ? correct.join(' ') : null, mistakeSaved: null }, tokens.join(' '), correct);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -342,7 +342,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     if (kind !== 'failed') { // save_failed здесь невозможен (kind сужен присваиванием выше) — он появляется позже, при откате записи
       tryPlayV2Event(kind === 'summit' ? 'summit' : kind === 'floor' ? 'floor' : 'step', 'spire_step_finish');
     }
-    void spireRecordStepResult(ids.uid, lang, finish.report).then((res) => {
+    void spireRecordStepResult(ids.uid, lang, finish.report, { owner: ids.stableId, coins: config.coins }).then((res) => { // зачем ([PEAK-COINS]): монеты ступени на Главной сразу
       if (lastReportRef.current !== finish.report.reportId) {
         DebugLogger.info(LOG, `game: запись ${finish.report.reportId} пришла поздно — экран уже новее, не трогаем`);
         return;

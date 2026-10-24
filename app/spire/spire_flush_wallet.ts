@@ -5,6 +5,7 @@
 // Поздний ответ не затирает свежий баланс: seq не новее локального — не вливаем вовсе. Нет полей (старый сервер) — ничего не делаем.
 // Новых запросов нет: ответ уже пришёл. Журнал [MOMENT-REWARD] spire:flush merged=… reason=… на каждый ответ.
 import type { AccountGenerationToken } from '../account_generation';
+import { settleSpirePendingCoins } from './spire_pending_coins';
 
 export type SpireFlushWalletResult = Readonly<{ merged: boolean; reason: string; balanceBefore: number | null; balanceAfter: number | null }>;
 
@@ -55,9 +56,16 @@ export async function mergeSpireFlushWallet(token: AccountGenerationToken, data:
   const balanceBefore = deps.peekBalance();
   try {
     const localSeq = await deps.readLocalSeq(stableId);
-    if (d.starsSeq <= localSeq) return log({ merged: false, reason: `older_seq:${d.starsSeq}<=${localSeq}`, balanceBefore, balanceAfter: balanceBefore }, extra);
+    // зачем ([PEAK-COINS], контракт Ядра 24.10): «ожидающие» монеты ступеней гасим в том же шаге, где вливаем баланс — цифра не прыгает;
+    // older_seq — баланс телефона уже новее и включает их, тоже гасим
+    const verdicts = Array.isArray(d.results) ? (d.results as Readonly<{ reportId: string; verdict: string; reason?: string }>[]).filter((r) => r && typeof r.reportId === 'string') : [];
+    if (d.starsSeq <= localSeq) {
+      settleSpirePendingCoins(stableId, verdicts, true, balanceBefore, balanceBefore);
+      return log({ merged: false, reason: `older_seq:${d.starsSeq}<=${localSeq}`, balanceBefore, balanceAfter: balanceBefore }, extra);
+    }
     const granted = isCount(d.coinsGranted) ? d.coinsGranted : undefined;
     const visible = await deps.merge(token, { stars: d.stars, starsSeq: d.starsSeq, ...(granted !== undefined ? { serverCreditedDelta: granted } : {}) });
+    settleSpirePendingCoins(stableId, verdicts, true, balanceBefore, visible.balance);
     return log({ merged: true, reason: `newer_seq:${d.starsSeq}>${localSeq}`, balanceBefore, balanceAfter: visible.balance }, extra);
   } catch (error) {
     return log({ merged: false, reason: `merge_failed:${error instanceof Error ? error.message : String(error)}`, balanceBefore, balanceAfter: null }, extra);

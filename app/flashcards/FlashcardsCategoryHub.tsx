@@ -79,6 +79,7 @@ import { emitPackNotDownloadedToast, stageCommunityPackCardsWithSilentRetry, sta
 import { addCommunityPackToLibrary } from '../community_packs/communityPackActions';
 import {
   applyCommunityPacksFilter,
+  communityFeedPacks,
   type CommunityPacksSort,
 } from '../community_packs/communityCatalogFilter';
 import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons';
@@ -525,10 +526,14 @@ export default function FlashcardsCategoryHub({
   }, [catalogOfflineEmpty]);
 
   const visibleCommunityPacks = useMemo(() => {
-    const found = applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage);
+    // зачем (владелец 24.10, баг T3): число на плитке «Сообщество» и этот список — одно правило (communityFeedPacks);
+    // поиск, сортировка и уровень — поверх него.
+    const feed = communityFeedPacks(communityPacks, { hiddenIds: hiddenCommunityPackIds, language: packLanguage, isLocalPack: isLocalAuthorPackId });
+    console.log('[COMMUNITY-COUNT] list', JSON.stringify({ source: 'community screen', total: communityPacks.length, language: packLanguage, hidden: hiddenCommunityPackIds.size, dropped: feed.dropped, feed: feed.packs.length, query: communityQuery, sort: communitySort, level: communityLevel ?? 'none' })); // guard-ok: откуда список и что отсечено
+    const found = applyCommunityPacksFilter(feed.packs, communityQuery, communitySort);
     // зачем (cards-v2 чипы A1…B2): фильтр по уровню — клиентский, поверх уже загруженного списка, без запросов.
     return communityLevel ? found.filter((pack) => packDeckLevel(pack) === communityLevel) : found;
-  }, [catalogCommunityPacks, communityQuery, communitySort, communityLevel, packLanguage]);
+  }, [communityPacks, hiddenCommunityPackIds, communityQuery, communitySort, communityLevel, packLanguage]);
 
   // зачем (владелец/координатор 15.10, «сперва логи»; [PACK-LANG]): при выбранном FR в списке был итальянский набор — журнал показывает выбранный язык, язык КАЖДОГО набора (поле и откуда), что оставлено и что убрано, плюс официальные наборы ленты.
   useEffect(() => {

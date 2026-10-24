@@ -58,8 +58,10 @@ import { hydrateLastKnownMyPacksCount, peekLastKnownMyPacksCount, rememberLastKn
 import { peekStableId } from '../stable_id';
 import { subscribeAccountGeneration } from '../account_generation';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from '../video_phrase_set_packs';
-import { applyCommunityPacksFilter, filterVideoPacks } from '../community_packs/communityCatalogFilter';
-import { peekStoredPackLanguage } from './pack_language_preferences';
+import { applyCommunityPacksFilter, communityFeedPacks, filterVideoPacks } from '../community_packs/communityCatalogFilter';
+import { loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
+import { onAppEvent } from '../events';
+import { peekStoredPackLanguage, subscribePackLanguage } from './pack_language_preferences';
 import { defaultPackLanguageForStudyTarget } from './pack_languages';
 import { buildFcCreateRoute } from './tabbar_state';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -246,11 +248,43 @@ export default function FlashcardsHubScreen() {
   const [catalogLoadState, setCatalogLoadState] = useState<'loading' | 'ready'>(
     () => (catalog.length > 0 ? 'ready' : 'loading'),
   );
+  // зачем (владелец 24.10, баг T3 «Сообщество показывает то, чего там нет»): плитка считала все наборы людей, а список —
+  // без скрытых на телефоне и только выбранного языка наборов (ES: плитка 2, список пуст). Число теперь — то же правило,
+  // что у списка (communityFeedPacks): скрытые и язык наборов читаются здесь так же, как на экране «Сообщество».
+  const [hiddenCommunityIds, setHiddenCommunityIds] = useState<ReadonlySet<string>>(() => new Set());
+  const [feedPackLanguage, setFeedPackLanguage] = useState(() => peekStoredPackLanguage() ?? defaultPackLanguageForStudyTarget(studyTarget));
+  useEffect(() => {
+    setFeedPackLanguage(peekStoredPackLanguage() ?? defaultPackLanguageForStudyTarget(studyTarget));
+    return subscribePackLanguage(setFeedPackLanguage);
+  }, [studyTarget]);
+  useFocusEffect(useCallback(() => {
+    let cancelled = false;
+    void loadHiddenCommunityPackIds(studyTarget).then((ids) => {
+      if (!cancelled) setHiddenCommunityIds((prev) => (prev.size === ids.length && ids.every((id) => prev.has(id)) ? prev : new Set(ids)));
+    }).catch((error: unknown) => {
+      console.warn('[COMMUNITY-COUNT] tile: скрытые наборы не прочитаны —', error instanceof Error ? error.message : String(error)); // guard-ok: причина в лог, счёт без учёта скрытых
+    });
+    return () => { cancelled = true; };
+  }, [studyTarget]));
+  useEffect(() => {
+    // Скрыл / вернул набор на другом экране — число плитки меняется сразу, без нового чтения хранилища.
+    const sub = onAppEvent('community_pack_hidden_changed', ({ packId, hidden }) => {
+      setHiddenCommunityIds((prev) => {
+        if (prev.has(packId) === hidden) return prev;
+        const next = new Set(prev);
+        if (hidden) next.add(packId); else next.delete(packId);
+        return next;
+      });
+    });
+    return () => sub.remove();
+  }, []);
   const communityPackCount = useMemo(() => {
     if (catalogLoadState !== 'ready') return null;
-    // зачем (владелец 18.10): «Сообщество» — только наборы людей; видео-наборы считаются в своей плитке «Из видео».
-    return catalog.filter((pack) => pack.isCommunityUgc && !isLocalAuthorPackId(pack.id) && !pack.videoId).length;
-  }, [catalog, catalogLoadState]);
+    const ugc = catalog.filter((pack) => pack.isCommunityUgc);
+    const feed = communityFeedPacks(ugc, { hiddenIds: hiddenCommunityIds, language: feedPackLanguage, isLocalPack: isLocalAuthorPackId });
+    console.log('[COMMUNITY-COUNT] tile', JSON.stringify({ source: 'hub catalog', ugc: ugc.length, language: feedPackLanguage, hidden: hiddenCommunityIds.size, dropped: feed.dropped, shown: feed.packs.length, studyTarget })); // guard-ok: откуда число плитки и что отсечено
+    return feed.packs.length;
+  }, [catalog, catalogLoadState, hiddenCommunityIds, feedPackLanguage, studyTarget]);
   const [catalogLoadRevision, setCatalogLoadRevision] = useState(0);
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const openingPackRef = useRef<string | null>(null);

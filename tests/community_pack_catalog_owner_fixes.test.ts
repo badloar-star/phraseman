@@ -274,7 +274,7 @@ describe('шапка каталога сообщества (замечания �
     expect(screen).toContain("params.sort === 'popular' ? 'popular' : 'new'");
     expect(screen).not.toContain("params.sort === 'new' ? 'new' : 'popular'");
     // сортировка клиентская над одним списком: нового запроса/индекса Firestore смена умолчания не требует
-    expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage)');
+    expect(hub).toContain('applyCommunityPacksFilter(feed.packs, communityQuery, communitySort)'); // 24.10 (T3): язык наборов — в общем правиле communityFeedPacks
   });
 
   it('нижней плавающей плашки нет — список не перекрывается доком (макет #c1, 11.10)', () => {
@@ -287,7 +287,7 @@ describe('шапка каталога сообщества (замечания �
     expect(screen).toContain('communityQuery={communityQuery}');
     expect(screen).toContain('communitySort={communitySort}');
     expect(screen).toContain('packLanguage={packLanguage}');
-    expect(hub).toContain('applyCommunityPacksFilter(catalogCommunityPacks, communityQuery, communitySort, packLanguage)');
+    expect(hub).toContain('applyCommunityPacksFilter(feed.packs, communityQuery, communitySort)'); // 24.10 (T3): язык наборов — в общем правиле communityFeedPacks
   });
 });
 

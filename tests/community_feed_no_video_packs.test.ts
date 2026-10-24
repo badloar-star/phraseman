@@ -25,6 +25,8 @@ test('экран Сообщества кладёт в ленту только н
 });
 
 test('плитка «Сообщество» на хабе не считает видео-наборы', () => {
+  // 24.10 (баг T3): плитка считает тем же правилом, что и лента (communityFeedPacks), а оно отсекает видео-наборы.
   const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
-  expect(hub).toContain('pack.isCommunityUgc && !isLocalAuthorPackId(pack.id) && !pack.videoId');
+  expect(hub).toContain('catalog.filter((pack) => pack.isCommunityUgc)');
+  expect(hub).toContain('communityFeedPacks(ugc,');
 });

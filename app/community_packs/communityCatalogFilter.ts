@@ -50,6 +50,40 @@ export function excludeVideoPacks(packs: readonly FlashcardMarketPack[]): Flashc
   return packs.filter((pack) => !pack.videoId);
 }
 
+/** Почему набор не попал в ленту Сообщества — для журнала [COMMUNITY-COUNT]. */
+export type CommunityFeedDropReason = 'video' | 'local' | 'hidden' | 'language';
+
+export type CommunityFeedResult = Readonly<{
+  packs: FlashcardMarketPack[];
+  dropped: Readonly<Record<CommunityFeedDropReason, number>>;
+}>;
+
+/**
+ * ЕДИНОЕ правило «что видит лента Сообщества» — для плитки «Сообщество» в хабе Карточек и для самого списка.
+ *
+ * зачем (владелец 24.10, баг T3: «Сообщество показывает то, чего там нет»): плитка считала все наборы людей каталога,
+ * а список сначала убирал скрытые на этом телефоне и свои неопубликованные, а потом оставлял только язык наборов
+ * (на ES — пусто, а плитка писала 2). Теперь число и список считаются ОДНОЙ функцией: без видео-наборов, без своих
+ * `local_pack_*` (они живут в «Мои наборы» до публикации), без скрытых на телефоне и только выбранного языка наборов.
+ * Поиск, сортировка («Новые» / «Популярные») и уровень — поверх этого; число на плитке от них не зависит.
+ * `isLocalPack` передаётся снаружи, чтобы этот модуль остался чистым (без Firebase).
+ */
+export function communityFeedPacks(
+  packs: readonly FlashcardMarketPack[],
+  opts: Readonly<{ hiddenIds: ReadonlySet<string>; language: PackLanguage; isLocalPack: (id: string) => boolean }>,
+): CommunityFeedResult {
+  const dropped: Record<CommunityFeedDropReason, number> = { video: 0, local: 0, hidden: 0, language: 0 };
+  const kept: FlashcardMarketPack[] = [];
+  for (const pack of packs) {
+    if (pack.videoId) { dropped.video += 1; continue; }
+    if (opts.isLocalPack(pack.id)) { dropped.local += 1; continue; }
+    if (opts.hiddenIds.has(pack.id)) { dropped.hidden += 1; continue; }
+    if (!packMatchesLanguageFilter(pack.packLanguage ?? pack.studyTarget, opts.language)) { dropped.language += 1; continue; }
+    kept.push(pack);
+  }
+  return { packs: kept, dropped };
+}
+
 export function communitySortLabel(sort: CommunityPacksSort, lang: Lang): string {
   if (sort === 'new') {
     return triLang(lang, {

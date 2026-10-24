@@ -15,8 +15,8 @@
         "uk": "Застебнути пальто"
       },
       "bodyByLocale": {
-        "ru": "Button up — застегнуть одежду на пуговицы. Это противоположность знакомого unbutton — расстегнуть пуговицы. Для молнии уже есть другое выражение: zip up. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Button up — застебнути одяг на ґудзики. Це протилежність знайомого unbutton — розстебнути ґудзики. Для блискавки вже є інший вираз: zip up. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "Перед выходом вы чувствуете холодный воздух из открытой двери: I need to button up my coat — «мне нужно застегнуть пальто». После I need ставим to button up — действие «застегнуть на пуговицы», затем my coat — что застёгиваем. To стоит перед button, а up остаётся частью выражения. После to нужна начальная форма button, не buttoning.",
+        "uk": "Перед виходом ви відчуваєте холодне повітря з відчинених дверей: I need to button up my coat — «мені потрібно застебнути пальто». Після I need ставимо to button up — дію «застебнути на ґудзики», потім my coat — що застібаємо. To стоїть перед button, а up залишається частиною виразу. Після to потрібна початкова форма button, не buttoning."
       },
       "question": {
         "interactionId": "en:lesson-21:session-49:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Вдягнутися тепло"
       },
       "bodyByLocale": {
-        "ru": "Dress warmly — тепло одеться. Wear layers — надеть несколько слоёв одежды, например футболку, свитер и куртку. Layers здесь — слои одежды. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Dress warmly — тепло вдягнутися. Wear layers — надягнути кілька шарів одягу, наприклад футболку, светр і куртку. Layers тут — шари одягу. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "На улице мороз, и вы выбираете одежду для прогулки: I want to dress warmly — «я хочу тепло одеться». Порядок такой: I want + to dress + warmly. После want действие присоединяется через to; dress остаётся в начальной форме. Warmly стоит после dress и объясняет, как вы хотите одеться.",
+        "uk": "Надворі мороз, і ви обираєте одяг для прогулянки: I want to dress warmly — «я хочу тепло вдягнутися». Порядок такий: I want + to dress + warmly. Після want дія приєднується через to; dress залишається в початковій формі. Warmly стоїть після dress і пояснює, як ви хочете вдягнутися."
       },
       "question": {
         "interactionId": "en:lesson-21:session-49:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-21:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Переодеться",
-        "uk": "Переодягнутися"
+        "ru": "Переодеться после дождя",
+        "uk": "Переодягнутися після дощу"
       },
       "bodyByLocale": {
-        "ru": "Change into — переодеться в другую одежду. После into называем, во что переодеваемся: change into dry clothes — переодеться в сухую одежду. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Change into — переодягнутися в інший одяг. Після into називаємо, у що переодягаємося: change into dry clothes — переодягнутися в сухий одяг. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "Вы вернулись домой в мокрой одежде: I need to change into dry clothes — «мне нужно переодеться в сухую одежду». Сначала I need, затем to change — действие в начальной форме. После change ставим into и называем одежду, которую наденете: dry clothes. To присоединяет действие к need, а into связывает change с новой одеждой.",
+        "uk": "Ви повернулися додому в мокрому одязі: I need to change into dry clothes — «мені потрібно переодягнутися в сухий одяг». Спочатку I need, потім to change — дія в початковій формі. Після change ставимо into й називаємо одяг, який вдягнете: dry clothes. To приєднує дію до need, а into пов’язує change з новим одягом."
       },
       "question": {
         "interactionId": "en:lesson-21:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5d71c2b1ab48fbbbfd985670ef84d685f9a1840cafe059c9318e5f9b169794f6"
+  "introFingerprint": "2b0ad9d100b4136a420777557dc26f2d9edb7c14bf3c28fbe16042948048cc82"
 }

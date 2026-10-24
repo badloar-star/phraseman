@@ -15,8 +15,8 @@
         "uk": "Розповісти жарт"
       },
       "bodyByLocale": {
-        "ru": "Tell a joke — рассказать шутку. В этом выражении используем tell, не say. Вы собираетесь рассказать короткую смешную историю друзьям. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Tell a joke — розповісти жарт. У цьому виразі використовуємо tell, не say. Ви збираєтеся розповісти коротку смішну історію друзям. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "Друзья сидят за столом, и вы хотите рассказать им шутку: I want to tell a joke. Начинаем с I want — «я хочу», затем добавляем to tell — «рассказать» и a joke — «шутку». После want действие присоединяется через to, а tell остаётся в начальной форме. Поэтому здесь to tell, а не to telling или for tell.",
+        "uk": "Друзі сидять за столом, і ви хочете розповісти їм жарт: I want to tell a joke. Починаємо з I want — «я хочу», потім додаємо to tell — «розповісти» та a joke — «жарт». Після want дія приєднується через to, а tell залишається в початковій формі. Тому тут to tell, а не to telling чи for tell."
       },
       "question": {
         "interactionId": "en:lesson-21:session-56:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-21:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Хорошо провести время",
-        "uk": "Гарно провести час"
+        "ru": "Рассмешить друга",
+        "uk": "Розсмішити друга"
       },
       "bodyByLocale": {
-        "ru": "Make you laugh — рассмешить тебя или вас. Учим выражение целиком. Enjoy yourself — хорошо провести время; здесь обращаемся к одному другу. В I want you to enjoy yourself отдыхает друг, а не говорящий. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Make you laugh — розсмішити тебе або вас. Вчимо вираз цілком. Enjoy yourself — гарно провести час; тут звертаємося до одного друга. У I want you to enjoy yourself відпочиває друг, а не мовець. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "Друг загрустил на встрече, и вы хотите его рассмешить: I want to make you laugh. Сначала I want to — «я хочу», затем make you laugh — «рассмешить тебя». После want нужен to перед make. Внутри make you laugh порядок другой: make + кого рассмешить + laugh без to. Получается to make you laugh, а не to making you laugh.",
+        "uk": "Друг засумував на зустрічі, і ви хочете його розсмішити: I want to make you laugh. Спочатку I want to — «я хочу», потім make you laugh — «розсмішити тебе». Після want потрібне to перед make. Усередині make you laugh порядок інший: make + кого розсмішити + laugh без to. Виходить to make you laugh, а не to making you laugh."
       },
       "question": {
         "interactionId": "en:lesson-21:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-21:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Поздравить друга",
-        "uk": "Привітати друга"
+        "ru": "Поднять бокал за Анну",
+        "uk": "Підняти келих за Анну"
       },
       "bodyByLocale": {
-        "ru": "Raise a glass — поднять бокал, произнося тост. Raise a glass to Anna — поднять бокал за Анну. Речь о поздравлении; напиток может быть безалкогольным. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Raise a glass — підняти келих, виголошуючи тост. Raise a glass to Anna — підняти келих за Анну. Йдеться про привітання; напій може бути безалкогольним. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "За праздничным столом вы хотите поздравить Анну: I want to raise a glass to Anna — «я хочу поднять бокал за Анну». После I want ставим to raise: to присоединяет действие, raise остаётся в начальной форме. Затем a glass — что поднимаем, и to Anna — за кого. Первое to стоит перед действием, второе — перед именем адресата тоста.",
+        "uk": "За святковим столом ви хочете привітати Анну: I want to raise a glass to Anna — «я хочу підняти келих за Анну». Після I want ставимо to raise: to приєднує дію, raise залишається в початковій формі. Потім a glass — що піднімаємо, і to Anna — за кого. Перше to стоїть перед дією, друге — перед ім’ям адресата тосту."
       },
       "question": {
         "interactionId": "en:lesson-21:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d3fab7663c02fb9430e51987ade058b95652653713b8f758781c4fe95d105d12"
+  "introFingerprint": "e9869ad9b1b82b3e5ed503c592edcd5da2aac02dbe00dc8bea20b6661a81da08"
 }

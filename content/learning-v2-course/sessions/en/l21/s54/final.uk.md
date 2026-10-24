@@ -7,23 +7,23 @@
 
 ## Інтро 1
 
-### Ціна та якість
+### Вдалий обід за свою ціну
 
-Good value — річ або послуга добра за свою ціну. У прикладі людина задоволена ціною та якістю їжі. Good news — добрі новини; англійське news узгоджується як однина: the news is good. Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so.
+У кафе вам подали смачний ситний обід за невелику суму. Ви кажете: This meal is such good value — «цей обід такий вдалий за свою ціну». Спочатку This meal is, потім such і сполука good value. Such підсилює сполуку з іменником value. У виразі good value тут не потрібен артикль a; so безпосередньо перед good value не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This meal is such good value.**
-- ❌ This meal is so good value. — *Перед незлічуваною сполукою тут потрібне such без a.*
-- ❌ This meal is such a good value. — *Перед незлічуваною сполукою тут потрібне such без a.*
+- ❌ This meal is so good value. — *Для підсилення сполуки з іменником тут потрібне such, а не so.*
+- ❌ This meal is so a good value. — *Для підсилення сполуки з іменником тут потрібне such, а не so.*
 
 ---
 
 ## Інтро 2
 
-### Невдала покупка
+### Гроші витрачено даремно
 
-Waste of money — марна трата грошей. У прикладі іграшка не виправдала очікувань покупця; це його оцінка покупки. Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so.
+Куплена іграшка зламалася першого дня. Ви засмучено кажете: This toy is such a waste of money — «ця іграшка — така марна трата грошей». Після This toy is іде оцінка покупки: such + a waste of money. У цьому виразі перед waste потрібен a; such ставимо перед усією групою a waste of money.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Waste of money — марна трата грошей. У прикладі іг�
 
 ## Інтро 3
 
-### Воно того варте
+### Поїздка того варта
 
-Worth it — варте витрачених зусиль, часу або грошей. Після цікавої поїздки так можна сказати, що витрати виправдалися. So worth it — розмовне підсилення: «справді того варте». Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so.
+Ви діставалися озера кілька годин, але краєвид виявився прекрасним. Ви кажете про поїздку: The trip is so worth it — «поїздка справді того варта». Після The trip is ставимо so, потім worth it — «того варте». У цій розмовній фразі so підсилює оцінку worth it. Тут немає сполуки з іменником для such або such a.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -65,9 +65,9 @@ Worth it — варте витрачених зусиль, часу або гр�
 
 **4 · Виберіть підсилення.**
 <!-- interaction_id: en:lesson-21:session-54:i03; family: context_gap_grammar -->
-This meal is ___ good value. → **such** · so · such a
-- so — *Перед незлічуваною сполукою тут потрібне such без a.*
-- such a — *Перед незлічуваною сполукою тут потрібне such без a.*
+This meal is ___ good value. → **such** · so · so a
+- so — *Для підсилення сполуки з іменником тут потрібне such, а не so.*
+- so a — *Для підсилення сполуки з іменником тут потрібне such, а не so.*
 
 **5 · Картка слова — waste of money**
 <!-- interaction_id: en:lesson-21:session-54:word:waste-of-money; family: word_card -->
@@ -106,8 +106,8 @@ This toy is ___ waste of money. → **such a** · so · such
 **12 · Виберіть підсилення.**
 <!-- interaction_id: en:lesson-21:session-54:i09; family: context_gap_grammar -->
 That is ___ good news. → **such** · so · such a
-- so — *Перед незлічуваною сполукою тут потрібне such без a.*
-- such a — *Перед незлічуваною сполукою тут потрібне such без a.*
+- so — *Для підсилення сполуки з іменником тут потрібне such, а не so.*
+- such a — *News тут незлічуване: перед good news не ставимо a.*
 
 **13 · Картка слова — worth it**
 <!-- interaction_id: en:lesson-21:session-54:word:worth-it; family: word_card -->

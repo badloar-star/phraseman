@@ -175,7 +175,7 @@
         },
         {
           "responseId": "en:lesson-21:session-54:i03:r3",
-          "text": "such a"
+          "text": "so a"
         }
       ],
       "mediaIds": [],
@@ -199,7 +199,7 @@
           },
           {
             "responseId": "en:lesson-21:session-54:i03:r3",
-            "text": "such a"
+            "text": "so a"
           }
         ],
         "testedDimension": "Виберіть підсилення.",
@@ -209,8 +209,8 @@
             "correct": false,
             "testedDimension": "Виберіть підсилення.",
             "feedbackByLocale": {
-              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
-              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+              "ru": "Для усиления сочетания с существительным здесь нужно such, а не so.",
+              "uk": "Для підсилення сполуки з іменником тут потрібне such, а не so."
             }
           },
           {
@@ -218,8 +218,8 @@
             "correct": false,
             "testedDimension": "Виберіть підсилення.",
             "feedbackByLocale": {
-              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
-              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+              "ru": "Для усиления сочетания с существительным здесь нужно such, а не so.",
+              "uk": "Для підсилення сполуки з іменником тут потрібне such, а не so."
             }
           }
         ]
@@ -656,8 +656,8 @@
             "correct": false,
             "testedDimension": "Виберіть підсилення.",
             "feedbackByLocale": {
-              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
-              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+              "ru": "Для усиления сочетания с существительным здесь нужно such, а не so.",
+              "uk": "Для підсилення сполуки з іменником тут потрібне such, а не so."
             }
           },
           {
@@ -665,8 +665,8 @@
             "correct": false,
             "testedDimension": "Виберіть підсилення.",
             "feedbackByLocale": {
-              "ru": "Перед неисчисляемым сочетанием здесь нужно such без a.",
-              "uk": "Перед незлічуваною сполукою тут потрібне such без a."
+              "ru": "News здесь неисчисляемое: перед good news не ставим a.",
+              "uk": "News тут незлічуване: перед good news не ставимо a."
             }
           }
         ]
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d8bca318355b741b28b254f9fd58c11169341fb498a57bba611cabbbf7ad6ac5"
+  "learnerFingerprint": "0aa8e9c68c73399e6830c01605db11bef8413ec7de5667968770661f1bfd7999"
 }

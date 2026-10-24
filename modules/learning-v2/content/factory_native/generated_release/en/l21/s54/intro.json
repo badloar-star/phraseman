@@ -11,12 +11,12 @@
       "pageId": "en:lesson-21:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Цена и качество",
-        "uk": "Ціна та якість"
+        "ru": "Удачный обед за свою цену",
+        "uk": "Вдалий обід за свою ціну"
       },
       "bodyByLocale": {
-        "ru": "Good value — вещь или услуга хороша за свою цену. В примере человек доволен ценой и качеством еды. Good news — хорошие новости; английское news согласуется как единственное число: the news is good. Such усиливает сочетание с существительным: such good value, such good news. Value и news в этих значениях неисчисляемые, поэтому без a. В such a waste of money слово waste обозначает одну напрасную трату. В разговорном so worth it выражение worth it усиливается словом so.",
-        "uk": "Good value — річ або послуга добра за свою ціну. У прикладі людина задоволена ціною та якістю їжі. Good news — добрі новини; англійське news узгоджується як однина: the news is good. Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so."
+        "ru": "В кафе вам подали вкусный сытный обед за небольшую сумму. Вы говорите: This meal is such good value — «этот обед так хорош за свою цену». Сначала This meal is, затем such и сочетание good value. Such усиливает сочетание с существительным value. В выражении good value здесь не нужен артикль a; so непосредственно перед good value не ставим.",
+        "uk": "У кафе вам подали смачний ситний обід за невелику суму. Ви кажете: This meal is such good value — «цей обід такий вдалий за свою ціну». Спочатку This meal is, потім such і сполука good value. Such підсилює сполуку з іменником value. У виразі good value тут не потрібен артикль a; so безпосередньо перед good value не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-21:session-54:intro1:q",
@@ -36,7 +36,7 @@
             },
             {
               "responseId": "en:lesson-21:session-54:intro1:r3",
-              "text": "This meal is such a good value."
+              "text": "This meal is so a good value."
             }
           ],
           "uk": [
@@ -50,7 +50,7 @@
             },
             {
               "responseId": "en:lesson-21:session-54:intro1:r3",
-              "text": "This meal is such a good value."
+              "text": "This meal is so a good value."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-21:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Неудачная покупка",
-        "uk": "Невдала покупка"
+        "ru": "Деньги потрачены зря",
+        "uk": "Гроші витрачено даремно"
       },
       "bodyByLocale": {
-        "ru": "Waste of money — напрасная трата денег. В примере игрушка не оправдала ожиданий покупателя; это его оценка покупки. Such усиливает сочетание с существительным: such good value, such good news. Value и news в этих значениях неисчисляемые, поэтому без a. В such a waste of money слово waste обозначает одну напрасную трату. В разговорном so worth it выражение worth it усиливается словом so.",
-        "uk": "Waste of money — марна трата грошей. У прикладі іграшка не виправдала очікувань покупця; це його оцінка покупки. Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so."
+        "ru": "Купленная игрушка сломалась в первый день. Вы досадуете: This toy is such a waste of money — «эта игрушка — такая напрасная трата денег». После This toy is идёт оценка покупки: such + a waste of money. В этом выражении перед waste нужен a; such ставим перед всей группой a waste of money.",
+        "uk": "Куплена іграшка зламалася першого дня. Ви засмучено кажете: This toy is such a waste of money — «ця іграшка — така марна трата грошей». Після This toy is іде оцінка покупки: such + a waste of money. У цьому виразі перед waste потрібен a; such ставимо перед усією групою a waste of money."
       },
       "question": {
         "interactionId": "en:lesson-21:session-54:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-21:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Оно того стоит",
-        "uk": "Воно того варте"
+        "ru": "Поездка того стоит",
+        "uk": "Поїздка того варта"
       },
       "bodyByLocale": {
-        "ru": "Worth it — стоит потраченных усилий, времени или денег. После интересной поездки так можно сказать, что затраты оправдались. So worth it — разговорное усиление: «действительно того стоит». Such усиливает сочетание с существительным: such good value, such good news. Value и news в этих значениях неисчисляемые, поэтому без a. В such a waste of money слово waste обозначает одну напрасную трату. В разговорном so worth it выражение worth it усиливается словом so.",
-        "uk": "Worth it — варте витрачених зусиль, часу або грошей. Після цікавої поїздки так можна сказати, що витрати виправдалися. So worth it — розмовне підсилення: «справді того варте». Such підсилює сполуку з іменником: such good value, such good news. Value і news у цих значеннях незлічувані, тому без a. У such a waste of money слово waste позначає одну марну трату. У розмовному so worth it вираз worth it підсилюється словом so."
+        "ru": "Вы добирались до озера несколько часов, но вид оказался прекрасным. Вы говорите о поездке: The trip is so worth it — «поездка действительно того стоит». После The trip is ставим so, затем worth it — «того стоит». В этой разговорной фразе so усиливает оценку worth it. Здесь нет сочетания с существительным для such или such a.",
+        "uk": "Ви діставалися озера кілька годин, але краєвид виявився прекрасним. Ви кажете про поїздку: The trip is so worth it — «поїздка справді того варта». Після The trip is ставимо so, потім worth it — «того варте». У цій розмовній фразі so підсилює оцінку worth it. Тут немає сполуки з іменником для such або such a."
       },
       "question": {
         "interactionId": "en:lesson-21:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "314ee206663380052305bef74df891dc54452554aa7628fe32c4b5c9fea1e1db"
+  "introFingerprint": "436926e2de8b27fd521ceb55b16cfca1fc1a343817f5c399159d635728994486"
 }

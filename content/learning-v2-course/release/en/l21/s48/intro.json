@@ -11,12 +11,12 @@
       "pageId": "en:lesson-21:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Готовить дома",
-        "uk": "Готувати вдома"
+        "ru": "Приготовить еду с нуля",
+        "uk": "Приготувати їжу з нуля"
       },
       "bodyByLocale": {
-        "ru": "Cook from scratch — готовить с нуля, из отдельных продуктов, а не разогревать готовое блюдо. Это обычное выражение о домашней готовке. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Cook from scratch — готувати з нуля, з окремих продуктів, а не розігрівати готову страву. Це звичайний вираз про домашнє приготування їжі. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "Сегодня вы хотите сами приготовить ужин из свежих продуктов: I want to cook from scratch today. Начинаем с I want — «я хочу», затем to cook — «готовить». From scratch уточняет, как: с нуля, из отдельных продуктов. Today в конце указывает время. После want нужна связка to cook, а не to cooking или for cook.",
+        "uk": "Сьогодні ви хочете самі приготувати вечерю зі свіжих продуктів: I want to cook from scratch today. Починаємо з I want — «я хочу», потім to cook — «готувати». From scratch уточнює, як: з нуля, з окремих продуктів. Today наприкінці вказує час. Після want потрібна сполука to cook, а не to cooking чи for cook."
       },
       "question": {
         "interactionId": "en:lesson-21:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-21:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Заказ и перекус",
-        "uk": "Замовлення і перекус"
+        "ru": "Заказать ужин домой",
+        "uk": "Замовити вечерю додому"
       },
       "bodyByLocale": {
-        "ru": "Order a takeaway — заказать готовую еду, чтобы забрать её или получить с доставкой. В примере вы заказываете ужин домой. Have a snack — перекусить, съесть немного между основными приёмами пищи. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Order a takeaway — замовити готову їжу, щоб забрати її або отримати з доставкою. У прикладі ви замовляєте вечерю додому. Have a snack — перекусити, з’їсти трохи між основними прийомами їжі. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "Вы поздно вернулись домой и хотите заказать готовый ужин: I want to order a takeaway tonight. Порядок: I want + to order + a takeaway + tonight. После want ставим to и начальную форму order. A takeaway называет заказанную готовую еду, tonight уточняет, когда вы хотите её заказать — сегодня вечером.",
+        "uk": "Ви пізно повернулися додому й хочете замовити готову вечерю: I want to order a takeaway tonight. Порядок: I want + to order + a takeaway + tonight. Після want ставимо to й початкову форму order. A takeaway називає замовлену готову їжу, tonight уточнює, коли ви хочете її замовити — сьогодні ввечері."
       },
       "question": {
         "interactionId": "en:lesson-21:session-48:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Не пропустити сніданок"
       },
       "bodyByLocale": {
-        "ru": "Skip breakfast — пропустить завтрак, не позавтракать. В примере человек говорит, что не хочет этого делать. Skip здесь означает пропустить действие, а не прыгать. После want и need здесь используем to + начальную форму: I want to go — «я хочу поехать», I need to go — «мне нужно поехать». Для отрицания желания скажите I do not want to go. После to не добавляем -ing.",
-        "uk": "Skip breakfast — пропустити сніданок, не поснідати. У прикладі людина каже, що не хоче цього робити. Skip тут означає пропустити дію, а не стрибати. Після want і need тут використовуємо to + початкову форму: I want to go — «я хочу поїхати», I need to go — «мені потрібно поїхати». Для заперечення бажання скажіть I do not want to go. Після to не додаємо -ing."
+        "ru": "Утром вы спешите на автобус, но хотите успеть поесть: I do not want to skip breakfast — «я не хочу пропускать завтрак». Do not ставим перед want, чтобы отрицать желание. Затем to skip — действие в начальной форме, и breakfast — что вы не хотите пропускать. После to здесь не добавляем -ing к skip.",
+        "uk": "Уранці ви поспішаєте на автобус, але хочете встигнути поїсти: I do not want to skip breakfast — «я не хочу пропускати сніданок». Do not ставимо перед want, щоб заперечити бажання. Потім to skip — дія в початковій формі, і breakfast — що ви не хочете пропускати. Після to тут не додаємо -ing до skip."
       },
       "question": {
         "interactionId": "en:lesson-21:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a03a19a0c6db1b3b22ec372d67e28a83ac4f301c410120cd2e3cfca20dbd6416"
+  "introFingerprint": "e090fd27b44a86f799688c1b22c66be90838bfc67a6892e8f32655feb4196da4"
 }

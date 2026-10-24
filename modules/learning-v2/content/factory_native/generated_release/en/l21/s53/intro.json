@@ -65,12 +65,12 @@
       "pageId": "en:lesson-21:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Надписи с no",
-        "uk": "Написи з no"
+        "ru": "Табличка о запрете курения",
+        "uk": "Табличка про заборону куріння"
       },
       "bodyByLocale": {
-        "ru": "No smoking — «Курить запрещено». No parking — «Парковка запрещена». Это короткие надписи на табличках; после no в них стоят формы smoking и parking, но после mustn’t в предложении — smoke и park. Mustn’t означает запрет: you mustn’t enter — «входить нельзя». После mustn’t ставим начальную форму без to и без -ing. Means означает «означает».",
-        "uk": "No smoking — «Курити заборонено». No parking — «Паркування заборонене». Це короткі написи на табличках; після no в них стоять форми smoking і parking, але після mustn’t у реченні — smoke і park. Mustn’t означає заборону: you mustn’t enter — «входити не можна». Після mustn’t ставимо початкову форму без to та без -ing. Means означає «означає»."
+        "ru": "У входа висит табличка No smoking. Вы объясняете её смысл: The no smoking sign means you mustn't smoke — «табличка “Курить запрещено” означает, что курить нельзя». Сначала называем табличку, затем means — «означает», после него you mustn't smoke. На самой табличке после no стоит smoking, а в предложении после mustn't нужна начальная форма smoke без to и без -ing.",
+        "uk": "Біля входу висить табличка No smoking. Ви пояснюєте її зміст: The no smoking sign means you mustn't smoke — «табличка “Курити заборонено” означає, що курити не можна». Спочатку називаємо табличку, потім means — «означає», після нього you mustn't smoke. На самій табличці після no стоїть smoking, а в реченні після mustn't потрібна початкова форма smoke без to та без -ing."
       },
       "question": {
         "interactionId": "en:lesson-21:session-53:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9b48abe26938a3db9beaa6944ee7378fd8696d1a32a79e6829861f70c1a053ff"
+  "introFingerprint": "a6a148b2d8461497816ee3d811f415dcb4476db1a27931d4a9725c24917f34e1"
 }

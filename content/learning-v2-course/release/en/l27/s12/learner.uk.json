@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-12:word:nausea",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nausea",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:word:nausea:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nausea",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:word:nausea:audio",
+          "transcript": "nausea"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:word:nausea:r1",
+            "targetText": "nausea",
+            "meaningByLocale": {
+              "ru": "Тошнота.",
+              "uk": "Нудота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nausea",
+          "definitionByLocale": {
+            "ru": "Тошнота.",
+            "uk": "Нудота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-12:i01:r1",
+          "text": "I have nausea."
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i01:r2",
+          "text": "I have a headache."
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i01:r3",
+          "text": "I have a fever."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i01:audio",
+          "transcript": "I have nausea."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:i01:r1",
+            "targetText": "I have nausea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i01:r2",
+            "targetText": "I have a headache.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i01:r3",
+            "targetText": "I have a fever.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-12:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have nausea.",
+              "uk": "У записі звучить I have nausea."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have nausea.",
+              "uk": "У записі звучить I have nausea."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте, що хотіли б записатися на прийом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Повідомте, що хотіли б записатися на прийом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i02:audio",
+          "transcript": "I would like an appointment."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I would like an appointment.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:word:heartburn",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — heartburn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:word:heartburn:audio"
+      ],
+      "accessibilityLabel": "Картка слова — heartburn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:word:heartburn:audio",
+          "transcript": "heartburn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:word:heartburn:r1",
+            "targetText": "heartburn",
+            "meaningByLocale": {
+              "ru": "Изжога.",
+              "uk": "Печія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "heartburn",
+          "definitionByLocale": {
+            "ru": "Изжога.",
+            "uk": "Печія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що у вас печія.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що у вас печія.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have heartburn.",
+        "localizedMeaning": {
+          "ru": "Скажите, что у вас изжога.",
+          "uk": "Скажіть, що у вас печія."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "heartburn"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви прийшли б сьогодні, якби мали запис.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-12:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i04:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прийшли б сьогодні, якби мали запис.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пришли бы сегодня, если бы у вас была запись.",
+          "uk": "Ви прийшли б сьогодні, якби мали запис."
+        },
+        "gappedTargetPhrase": "I would come today if I ___ an appointment.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-12:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i04:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Ви прийшли б сьогодні, якби мали запис.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Ви прийшли б сьогодні, якби мали запис.",
+            "feedbackByLocale": {
+              "ru": "В условии had без would.",
+              "uk": "В умові had без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i04:r3",
+            "correct": false,
+            "testedDimension": "Ви прийшли б сьогодні, якби мали запис.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма had.",
+              "uk": "Потрібна особова форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про початок відчуття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про початок відчуття.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i05:audio",
+          "transcript": "When did you first notice it?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "When did you first notice it?",
+        "orderedTokens": [
+          "When",
+          "did",
+          "you",
+          "first",
+          "notice",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:word:nosebleed",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nosebleed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:word:nosebleed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nosebleed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:word:nosebleed:audio",
+          "transcript": "nosebleed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:word:nosebleed:r1",
+            "targetText": "nosebleed",
+            "meaningByLocale": {
+              "ru": "Кровотечение из носа; a nosebleed.",
+              "uk": "Кровотеча з носа; a nosebleed."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nosebleed",
+          "definitionByLocale": {
+            "ru": "Кровотечение из носа; a nosebleed.",
+            "uk": "Кровотеча з носа; a nosebleed."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Розкажіть, що вчора у вас йшла кров із носа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i06:audio"
+      ],
+      "accessibilityLabel": "Розкажіть, що вчора у вас йшла кров із носа.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i06:audio",
+          "transcript": "I had a nosebleed yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I had a nosebleed yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-12:i07:r1",
+          "text": "I have written down the times."
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i07:r2",
+          "text": "I have written down the dates."
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i07:r3",
+          "text": "I have written down the names."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i07:audio",
+          "transcript": "I have written down the times."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:i07:r1",
+            "targetText": "I have written down the times.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i07:r2",
+            "targetText": "I have written down the dates.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i07:r3",
+            "targetText": "I have written down the names.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-12:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have written down the times.",
+              "uk": "У записі звучить I have written down the times."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have written down the times.",
+              "uk": "У записі звучить I have written down the times."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви записали їх учора. Назвіть завершений час.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-12:i08:r1",
+          "text": "wrote"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i08:r2",
+          "text": "have written"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i08:r3",
+          "text": "writed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви записали їх учора. Назвіть завершений час.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы записали их вчера. Назовите законченное время.",
+          "uk": "Ви записали їх учора. Назвіть завершений час."
+        },
+        "gappedTargetPhrase": "I ___ them down yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-12:i08:r1",
+            "text": "wrote"
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i08:r2",
+            "text": "have written"
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i08:r3",
+            "text": "writed"
+          }
+        ],
+        "testedDimension": "Ви записали їх учора. Назвіть завершений час.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Ви записали їх учора. Назвіть завершений час.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь past simple.",
+              "uk": "Із yesterday тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Ви записали їх учора. Назвіть завершений час.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма write — wrote.",
+              "uk": "Минула форма write — wrote."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:word:insomnia",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — insomnia",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:word:insomnia:audio"
+      ],
+      "accessibilityLabel": "Картка слова — insomnia",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:word:insomnia:audio",
+          "transcript": "insomnia"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:word:insomnia:r1",
+            "targetText": "insomnia",
+            "meaningByLocale": {
+              "ru": "Бессонница.",
+              "uk": "Безсоння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "insomnia",
+          "definitionByLocale": {
+            "ru": "Бессонница.",
+            "uk": "Безсоння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Назвіть безсоння в розмові про самопочуття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назвіть безсоння в розмові про самопочуття.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have insomnia.",
+        "localizedMeaning": {
+          "ru": "Назовите бессонницу в разговоре о самочувствии.",
+          "uk": "Назвіть безсоння в розмові про самопочуття."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "insomnia"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть повторити запитання повільніше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Попросіть повторити запитання повільніше.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i10:audio",
+          "transcript": "Could you say that more slowly?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you say that more slowly?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-12:i11:r1",
+          "text": "Are you free tomorrow morning?"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i11:r2",
+          "text": "Are you free tomorrow afternoon?"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i11:r3",
+          "text": "Are you free this morning?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i11:audio",
+          "transcript": "Are you free tomorrow morning?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:i11:r1",
+            "targetText": "Are you free tomorrow morning?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i11:r2",
+            "targetText": "Are you free tomorrow afternoon?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i11:r3",
+            "targetText": "Are you free this morning?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you free tomorrow morning?",
+              "uk": "У записі звучить Are you free tomorrow morning?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Are you free tomorrow morning?",
+              "uk": "У записі звучить Are you free tomorrow morning?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уранці ви зайняті. Уявіть, що вільні й обираєте цей час.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-12:i12:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i12:r2",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i12:r3",
+          "text": "taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уранці ви зайняті. Уявіть, що вільні й обираєте цей час.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Утром вы заняты. Вообразите, что свободны и выбираете это время.",
+          "uk": "Уранці ви зайняті. Уявіть, що вільні й обираєте цей час."
+        },
+        "gappedTargetPhrase": "I would ___ that appointment if I were free in the morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-12:i12:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i12:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i12:r3",
+            "text": "taking"
+          }
+        ],
+        "testedDimension": "Уранці ви зайняті. Уявіть, що вільні й обираєте цей час.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Уранці ви зайняті. Уявіть, що вільні й обираєте цей час.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма take.",
+              "uk": "Після would потрібна початкова форма take."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Уранці ви зайняті. Уявіть, що вільні й обираєте цей час.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим -ing.",
+              "uk": "Після would не ставимо -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть можливість прийти після обіду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть можливість прийти після обіду.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I come in the afternoon?",
+        "localizedMeaning": {
+          "ru": "Уточните возможность прийти после обеда.",
+          "uk": "Уточніть можливість прийти після обіду."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "come",
+          "in",
+          "the",
+          "afternoon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-12:i14:r1",
+          "text": "We have a space at three."
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i14:r2",
+          "text": "We have a space at two."
+        },
+        {
+          "responseId": "en:lesson-27:session-12:i14:r3",
+          "text": "We have a space at four."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i14:audio",
+          "transcript": "We have a space at three."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-12:i14:r1",
+            "targetText": "We have a space at three.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i14:r2",
+            "targetText": "We have a space at two.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i14:r3",
+            "targetText": "We have a space at four.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-12:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a space at three.",
+              "uk": "У записі звучить We have a space at three."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-12:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have a space at three.",
+              "uk": "У записі звучить We have a space at three."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Підтвердьте, що цей час вам підходить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Підтвердьте, що цей час вам підходить.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i15:audio",
+          "transcript": "Three is fine, thank you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Three is fine, thank you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почніть із результату: If I were you, I would set a reminder.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із результату: If I were you, I would set a reminder.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would set a reminder if I were you.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If I were you, I would set a reminder.",
+          "uk": "Почніть із результату: If I were you, I would set a reminder."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "set",
+          "a",
+          "reminder",
+          "if",
+          "I",
+          "were",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-12:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте прохання принести свої записи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Почуйте прохання принести свої записи.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-12:i17:audio",
+          "transcript": "Please bring your notes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please bring your notes.",
+        "orderedTokens": [
+          "Please",
+          "bring",
+          "your",
+          "notes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c2409ef7efd4b964aca2b5298f3a6ffafe52935788ecb6f609f72bd4db6422dc"
+}

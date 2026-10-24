@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-11:word:workmate",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — workmate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:word:workmate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — workmate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:word:workmate:audio",
+          "transcript": "workmate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:word:workmate:r1",
+            "targetText": "workmate",
+            "meaningByLocale": {
+              "ru": "Коллега по работе; разговорное слово.",
+              "uk": "Колега по роботі; розмовне слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "workmate",
+          "definitionByLocale": {
+            "ru": "Коллега по работе; разговорное слово.",
+            "uk": "Колега по роботі; розмовне слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Представте свого колегу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Представте свого колегу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i01:audio",
+          "transcript": "This is my workmate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is my workmate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-11:i02:r1",
+          "text": "How do you know each other?"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i02:r2",
+          "text": "How do you help each other?"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i02:r3",
+          "text": "How do you find each other?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i02:audio",
+          "transcript": "How do you know each other?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:i02:r1",
+            "targetText": "How do you know each other?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i02:r2",
+            "targetText": "How do you help each other?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i02:r3",
+            "targetText": "How do you find each other?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How do you know each other?",
+              "uk": "У записі звучить How do you know each other?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How do you know each other?",
+              "uk": "У записі звучить How do you know each other?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:word:schoolmate",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — schoolmate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:word:schoolmate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — schoolmate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:word:schoolmate:audio",
+          "transcript": "schoolmate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:word:schoolmate:r1",
+            "targetText": "schoolmate",
+            "meaningByLocale": {
+              "ru": "Человек, с которым вы учились в одной школе.",
+              "uk": "Людина, з якою ви вчилися в одній школі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "schoolmate",
+          "definitionByLocale": {
+            "ru": "Человек, с которым вы учились в одной школе.",
+            "uk": "Людина, з якою ви вчилися в одній школі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть, що вона ваша давня шкільна знайома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть, що вона ваша давня шкільна знайома.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is an old schoolmate.",
+        "localizedMeaning": {
+          "ru": "Объясните, что она ваша давняя школьная знакомая.",
+          "uk": "Поясніть, що вона ваша давня шкільна знайома."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "an",
+          "old",
+          "schoolmate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Порадьте другові зателефонувати їй.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-11:i04:r1",
+          "text": "call"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i04:r2",
+          "text": "called"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i04:r3",
+          "text": "to call"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Порадьте другові зателефонувати їй.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте другу позвонить ей.",
+          "uk": "Порадьте другові зателефонувати їй."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ her.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-11:i04:r1",
+            "text": "call"
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i04:r2",
+            "text": "called"
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i04:r3",
+            "text": "to call"
+          }
+        ],
+        "testedDimension": "Порадьте другові зателефонувати їй.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-11:i04:r2",
+            "correct": false,
+            "testedDimension": "Порадьте другові зателефонувати їй.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма call.",
+              "uk": "Після would потрібна початкова форма call."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i04:r3",
+            "correct": false,
+            "testedDimension": "Порадьте другові зателефонувати їй.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте відповідь про вже надіслане повідомлення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте відповідь про вже надіслане повідомлення.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i05:audio",
+          "transcript": "I have already sent her a message."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have already sent her a message.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "sent",
+          "her",
+          "a",
+          "message"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:word:bridesmaid",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bridesmaid",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:word:bridesmaid:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bridesmaid",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:word:bridesmaid:audio",
+          "transcript": "bridesmaid"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:word:bridesmaid:r1",
+            "targetText": "bridesmaid",
+            "meaningByLocale": {
+              "ru": "Подружка невесты на свадьбе.",
+              "uk": "Подружка нареченої на весіллі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bridesmaid",
+          "definitionByLocale": {
+            "ru": "Подружка невесты на свадьбе.",
+            "uk": "Подружка нареченої на весіллі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-11:i06:r1",
+          "text": "My sister is a bridesmaid."
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i06:r2",
+          "text": "My cousin is a bridesmaid."
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i06:r3",
+          "text": "My sister was a bridesmaid."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i06:audio",
+          "transcript": "My sister is a bridesmaid."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:i06:r1",
+            "targetText": "My sister is a bridesmaid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i06:r2",
+            "targetText": "My cousin is a bridesmaid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i06:r3",
+            "targetText": "My sister was a bridesmaid.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sister is a bridesmaid.",
+              "uk": "У записі звучить My sister is a bridesmaid."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My sister is a bridesmaid.",
+              "uk": "У записі звучить My sister is a bridesmaid."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, де зараз ваша сестра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i07:audio"
+      ],
+      "accessibilityLabel": "Уточніть, де зараз ваша сестра.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i07:audio",
+          "transcript": "Where is she now?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is she now?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:word:newlywed",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — newlywed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:word:newlywed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — newlywed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:word:newlywed:audio",
+          "transcript": "newlywed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:word:newlywed:r1",
+            "targetText": "newlywed",
+            "meaningByLocale": {
+              "ru": "Человек, который недавно вступил в брак.",
+              "uk": "Людина, яка нещодавно одружилася."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "newlywed",
+          "definitionByLocale": {
+            "ru": "Человек, который недавно вступил в брак.",
+            "uk": "Людина, яка нещодавно одружилася."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Розкажіть, що ваш знайомий нещодавно одружився.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть, що ваш знайомий нещодавно одружився.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He is a newlywed.",
+        "localizedMeaning": {
+          "ru": "Расскажите, что ваш знакомый недавно женился.",
+          "uk": "Розкажіть, що ваш знайомий нещодавно одружився."
+        },
+        "orderedTokens": [
+          "He",
+          "is",
+          "a",
+          "newlywed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Привітайте молодят.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i09:audio"
+      ],
+      "accessibilityLabel": "Привітайте молодят.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i09:audio",
+          "transcript": "Congratulations to the newlyweds!"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Congratulations to the newlyweds!",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви познайомилися з нею минулого року.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-11:i10:r1",
+          "text": "met"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i10:r2",
+          "text": "have met"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i10:r3",
+          "text": "meeted"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви познайомилися з нею минулого року.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы познакомились с ней в прошлом году.",
+          "uk": "Ви познайомилися з нею минулого року."
+        },
+        "gappedTargetPhrase": "I ___ her last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-11:i10:r1",
+            "text": "met"
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i10:r2",
+            "text": "have met"
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i10:r3",
+            "text": "meeted"
+          }
+        ],
+        "testedDimension": "Ви познайомилися з нею минулого року.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-11:i10:r2",
+            "correct": false,
+            "testedDimension": "Ви познайомилися з нею минулого року.",
+            "feedbackByLocale": {
+              "ru": "С last year здесь past simple.",
+              "uk": "Із last year тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i10:r3",
+            "correct": false,
+            "testedDimension": "Ви познайомилися з нею минулого року.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма meet — met.",
+              "uk": "Минула форма meet — met."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-11:i11:r1",
+          "text": "We have already chosen a date."
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i11:r2",
+          "text": "We have already chosen a place."
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i11:r3",
+          "text": "We have not chosen a date."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i11:audio",
+          "transcript": "We have already chosen a date."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:i11:r1",
+            "targetText": "We have already chosen a date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i11:r2",
+            "targetText": "We have already chosen a place.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i11:r3",
+            "targetText": "We have not chosen a date.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have already chosen a date.",
+              "uk": "У записі звучить We have already chosen a date."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have already chosen a date.",
+              "uk": "У записі звучить We have already chosen a date."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте допомогти розставити стільці.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте допомогти розставити стільці.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can help with the chairs.",
+        "localizedMeaning": {
+          "ru": "Предложите помочь расставить стулья.",
+          "uk": "Запропонуйте допомогти розставити стільці."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "help",
+          "with",
+          "the",
+          "chairs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг зараз далеко. Уявіть його допомогу з фотографіями.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-11:i13:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i13:r2",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i13:r3",
+          "text": "taking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг зараз далеко. Уявіть його допомогу з фотографіями.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг сейчас далеко. Вообразите его помощь с фотографиями.",
+          "uk": "Друг зараз далеко. Уявіть його допомогу з фотографіями."
+        },
+        "gappedTargetPhrase": "If he were here, he would ___ the photos.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-11:i13:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i13:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i13:r3",
+            "text": "taking"
+          }
+        ],
+        "testedDimension": "Друг зараз далеко. Уявіть його допомогу з фотографіями.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-11:i13:r2",
+            "correct": false,
+            "testedDimension": "Друг зараз далеко. Уявіть його допомогу з фотографіями.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма take.",
+              "uk": "Після would потрібна початкова форма take."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i13:r3",
+            "correct": false,
+            "testedDimension": "Друг зараз далеко. Уявіть його допомогу з фотографіями.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим -ing.",
+              "uk": "Після would не ставимо -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте прохання посунутися ближче.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Почуйте прохання посунутися ближче.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i14:audio",
+          "transcript": "Could you move a little closer?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you move a little closer?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "move",
+          "a",
+          "little",
+          "closer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть зачекати ще хвилину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Попросіть зачекати ще хвилину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i15:audio",
+          "transcript": "Please wait another minute."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please wait another minute.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-11:i16:r1",
+          "text": "Everyone is here now."
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i16:r2",
+          "text": "Everyone is ready now."
+        },
+        {
+          "responseId": "en:lesson-27:session-11:i16:r3",
+          "text": "Everyone is outside now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-11:i16:audio",
+          "transcript": "Everyone is here now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-11:i16:r1",
+            "targetText": "Everyone is here now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i16:r2",
+            "targetText": "Everyone is ready now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i16:r3",
+            "targetText": "Everyone is outside now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-11:i16:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Everyone is here now.",
+              "uk": "У записі звучить Everyone is here now."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-11:i16:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Everyone is here now.",
+              "uk": "У записі звучить Everyone is here now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подякуйте гостям за те, що прийшли.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подякуйте гостям за те, що прийшли.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thank you for coming.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите гостей за то, что пришли.",
+          "uk": "Подякуйте гостям за те, що прийшли."
+        },
+        "orderedTokens": [
+          "Thank",
+          "you",
+          "for",
+          "coming"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fd5ee067427f84f42b3b01742c0733041190c55d5fafeccd878abda495ab8025"
+}

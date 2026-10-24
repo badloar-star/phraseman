@@ -10269,4 +10269,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if I were you; if + past simple, would + base verb; past simple / present perfect","uk":"if I were you; if + past simple, would + base verb; past simple / present perfect"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 11,
+    sourceFingerprint: "fa8a4284d7725d95f0ca2647417c88380ee6e90fecc695279e07c75dc7aeace7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if I were you; if + subject + were; past simple / present perfect","uk":"if I were you; if + subject + were; past simple / present perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 12,
+    sourceFingerprint: "4d49b7680a9b4db9f0636d21f90f95400b9e21659538d8454d2742a5fb7c0e91",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if + past simple, would + base verb; if I were; past simple / present perfect","uk":"if + past simple, would + base verb; if I were; past simple / present perfect"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
 ]);

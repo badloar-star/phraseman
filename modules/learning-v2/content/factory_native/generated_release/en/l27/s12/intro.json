@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-12",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; if I were; past simple / present perfect",
+    "uk": "if + past simple, would + base verb; if I were; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-12:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать ощущение",
+        "uk": "Назвати відчуття"
+      },
+      "bodyByLocale": {
+        "ru": "Nausea — тошнота. I have nausea — меня тошнит, я испытываю тошноту. Это название ощущения, а не его причины. Heartburn — изжога. I have heartburn — у меня изжога. В этих фразах перед nausea и heartburn нет a. Вы звоните, чтобы записаться: I would come today if I had an appointment — я бы пришёл сегодня, если бы у меня была запись на приём. Had после if представляет воображаемое условие, would come — результат.",
+        "uk": "Nausea — нудота. I have nausea — мене нудить, я відчуваю нудоту. Це назва відчуття, а не його причини. Heartburn — печія. I have heartburn — у мене печія. У цих фразах перед nausea й heartburn немає a. Ви телефонуєте, щоб записатися: I would come today if I had an appointment — я б прийшов сьогодні, якби мав запис на прийом. Had після if уявляє умову, would come — результат."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-12:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-12:intro1:r1",
+              "text": "I would come today if I had an appointment."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro1:r2",
+              "text": "I would came today if I had an appointment."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro1:r3",
+              "text": "I would come today if I would had an appointment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-12:intro1:r1",
+              "text": "I would come today if I had an appointment."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro1:r2",
+              "text": "I would came today if I had an appointment."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro1:r3",
+              "text": "I would come today if I would had an appointment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-12:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рассказать, когда это было",
+        "uk": "Розповісти, коли це було"
+      },
+      "bodyByLocale": {
+        "ru": "Nosebleed — кровотечение из носа. I had a nosebleed yesterday — вчера у меня шла кровь из носа. Это исчисляемое слово: a nosebleed. Insomnia — бессонница. I have insomnia — у меня бессонница; здесь без a. Вы не объясняете лечение, а подбираете слова для разговора. I have written down the times — я записал время: сообщаем о готовом результате. I wrote them down yesterday — я записал их вчера: есть законченное время, поэтому wrote без have.",
+        "uk": "Nosebleed — кровотеча з носа. I had a nosebleed yesterday — учора в мене йшла кров із носа. Це злічуване слово: a nosebleed. Insomnia — безсоння. I have insomnia — у мене безсоння; тут без a. Ви не пояснюєте лікування, а добираєте слова для розмови. I have written down the times — я записав час: повідомляємо про готовий результат. I wrote them down yesterday — я записав їх учора: є завершений час, тому wrote без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-12:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-12:intro2:r1",
+              "text": "I wrote them down yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro2:r2",
+              "text": "I have written them down yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro2:r3",
+              "text": "I writed them down yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-12:intro2:r1",
+              "text": "I wrote them down yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro2:r2",
+              "text": "I have written them down yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro2:r3",
+              "text": "I writed them down yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-12:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Удобное время",
+        "uk": "Зручний час"
+      },
+      "bodyByLocale": {
+        "ru": "Вам предлагают раннее утро, но в это время вы заняты: If I were free in the morning, I would take that appointment — если бы утром я был свободен, я бы выбрал это время приёма. Were здесь относится к воображаемой ситуации. Could I come in the afternoon? — можно прийти после обеда? Друг предлагает записать время в телефон. If I were you, I would set a reminder — на твоём месте я бы поставил напоминание. Вы уже записали время на бумаге; осталось вспомнить, куда положили бумагу.",
+        "uk": "Вам пропонують ранній ранок, але в цей час ви зайняті: If I were free in the morning, I would take that appointment — якби вранці я був вільний, я б обрав цей час прийому. Were тут стосується уявної ситуації. Could I come in the afternoon? — можна прийти після обіду? Друг пропонує записати час у телефон. If I were you, I would set a reminder — на твоєму місці я б установив нагадування. Ви вже записали час на папері; залишилося згадати, куди поклали папір."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-12:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-12:intro3:r1",
+              "text": "If I were you, I would set a reminder."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro3:r2",
+              "text": "If I were you, I would setting a reminder."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro3:r3",
+              "text": "If I were you, I would to set a reminder."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-12:intro3:r1",
+              "text": "If I were you, I would set a reminder."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro3:r2",
+              "text": "If I were you, I would setting a reminder."
+            },
+            {
+              "responseId": "en:lesson-27:session-12:intro3:r3",
+              "text": "If I were you, I would to set a reminder."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ffca8ede42b49ede907bfc641e216a2233fc9d717073847b185d68610fa0c528"
+}

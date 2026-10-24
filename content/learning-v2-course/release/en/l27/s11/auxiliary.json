@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-11:intro1:r2": {
+          "ru": "После would нужна начальная форма call.",
+          "uk": "Після would потрібна початкова форма call."
+        },
+        "en:lesson-27:session-11:intro1:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-11:intro2:r2": {
+          "ru": "С last year здесь past simple.",
+          "uk": "Із last year тут past simple."
+        },
+        "en:lesson-27:session-11:intro2:r3": {
+          "ru": "Прошедшая форма meet — met.",
+          "uk": "Минула форма meet — met."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-11:intro3:r2": {
+          "ru": "После would нужна начальная форма take.",
+          "uk": "Після would потрібна початкова форма take."
+        },
+        "en:lesson-27:session-11:intro3:r3": {
+          "ru": "После would не ставим -ing.",
+          "uk": "Після would не ставимо -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d4af3ac659c0194a0d1ad5904bfafa3cdc7d13f392006dc83bec9b31a77d89c3"
+}

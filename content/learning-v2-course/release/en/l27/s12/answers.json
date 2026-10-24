@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-12:word:nausea",
+    "correctText": "nausea",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i01",
+    "correctText": "I have nausea.",
+    "correctResponseId": "en:lesson-27:session-12:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i02",
+    "correctText": "I would like an appointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:word:heartburn",
+    "correctText": "heartburn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i03",
+    "correctText": "I have heartburn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-12:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i05",
+    "correctText": "When did you first notice it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:word:nosebleed",
+    "correctText": "nosebleed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i06",
+    "correctText": "I had a nosebleed yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i07",
+    "correctText": "I have written down the times.",
+    "correctResponseId": "en:lesson-27:session-12:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i08",
+    "correctText": "wrote",
+    "correctResponseId": "en:lesson-27:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:word:insomnia",
+    "correctText": "insomnia",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i09",
+    "correctText": "I have insomnia.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i10",
+    "correctText": "Could you say that more slowly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i11",
+    "correctText": "Are you free tomorrow morning?",
+    "correctResponseId": "en:lesson-27:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i12",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-27:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i13",
+    "correctText": "Could I come in the afternoon?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i14",
+    "correctText": "We have a space at three.",
+    "correctResponseId": "en:lesson-27:session-12:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i15",
+    "correctText": "Three is fine, thank you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i16",
+    "correctText": "I would set a reminder if I were you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-12:i17",
+    "correctText": "Please bring your notes.",
+    "correctResponseId": null
+  }
+]

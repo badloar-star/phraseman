@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "if I were you; if + subject + were; past simple / present perfect",
+    "uk": "if I were you; if + subject + were; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Откуда вы знакомы",
+        "uk": "Звідки ви знайомі"
+      },
+      "bodyByLocale": {
+        "ru": "Workmate — коллега по работе, разговорное слово. This is my workmate — это мой коллега. Schoolmate — человек, с которым вы учитесь или учились в одной школе, не обязательно в одном классе. She is an old schoolmate — она моя давняя школьная знакомая. Old здесь о давности знакомства, а не о возрасте. Вы советуете другу позвонить ей: If I were you, I would call her — на твоём месте я бы ей позвонил. Were относится к воображаемому положению; после would стоит call без to.",
+        "uk": "Workmate — колега по роботі, розмовне слово. This is my workmate — це мій колега. Schoolmate — людина, з якою ви вчитеся або вчилися в одній школі, не обов’язково в одному класі. She is an old schoolmate — вона моя давня шкільна знайома. Old тут про давність знайомства, а не про вік. Ви радите другові зателефонувати їй: If I were you, I would call her — на твоєму місці я б їй зателефонував. Were стосується уявного становища; після would стоїть call без to."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-11:intro1:r1",
+              "text": "If I were you, I would call her."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro1:r2",
+              "text": "If I were you, I would called her."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro1:r3",
+              "text": "If I were you, I would to call her."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-11:intro1:r1",
+              "text": "If I were you, I would call her."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro1:r2",
+              "text": "If I were you, I would called her."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro1:r3",
+              "text": "If I were you, I would to call her."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "На семейном празднике",
+        "uk": "На родинному святі"
+      },
+      "bodyByLocale": {
+        "ru": "Bridesmaid — подружка невесты на свадьбе. My sister is a bridesmaid — моя сестра подружка невесты. Newlywed — человек, который недавно вступил в брак. He is a newlywed — он недавно женился, он молодожён. The newlyweds — молодожёны, оба супруга. Вы вспоминаете знакомство: I met her last year — я познакомился с ней в прошлом году. Last year называет законченное время, поэтому met без have. I have met her before — мы раньше встречались: здесь конкретное законченное время не названо.",
+        "uk": "Bridesmaid — подружка нареченої на весіллі. My sister is a bridesmaid — моя сестра подружка нареченої. Newlywed — людина, яка нещодавно одружилася. He is a newlywed — він нещодавно одружився. The newlyweds — молодята, обоє з подружжя. Ви згадуєте знайомство: I met her last year — я познайомився з нею минулого року. Last year називає завершений час, тому met без have. I have met her before — ми раніше зустрічалися: тут конкретного завершеного часу не названо."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-11:intro2:r1",
+              "text": "I met her last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro2:r2",
+              "text": "I have met her last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro2:r3",
+              "text": "I meeted her last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-11:intro2:r1",
+              "text": "I met her last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro2:r2",
+              "text": "I have met her last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro2:r3",
+              "text": "I meeted her last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Помочь со встречей",
+        "uk": "Допомогти із зустріччю"
+      },
+      "bodyByLocale": {
+        "ru": "Нужно расставить стулья и сделать общую фотографию. Друг, который любит снимать, сегодня далеко: If he were here, he would take the photos — если бы он был здесь, он бы сделал фотографии. В условии were, в результате would take. Вы можете предложить реальную помощь: I can help with the chairs — я могу помочь со стульями. Все уже приготовились к фото, но одного гостя всё ещё ждут. Оказывается, это тот, кто держит камеру.",
+        "uk": "Треба розставити стільці й зробити спільне фото. Друг, який любить фотографувати, сьогодні далеко: If he were here, he would take the photos — якби він був тут, він би зробив фотографії. В умові were, у результаті would take. Ви можете запропонувати реальну допомогу: I can help with the chairs — я можу допомогти зі стільцями. Усі вже приготувалися до фото, але одного гостя все ще чекають. Виявляється, це той, хто тримає камеру."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-11:intro3:r1",
+              "text": "If he were here, he would take the photos."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro3:r2",
+              "text": "If he were here, he would took the photos."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro3:r3",
+              "text": "If he were here, he would taking the photos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-11:intro3:r1",
+              "text": "If he were here, he would take the photos."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro3:r2",
+              "text": "If he were here, he would took the photos."
+            },
+            {
+              "responseId": "en:lesson-27:session-11:intro3:r3",
+              "text": "If he were here, he would taking the photos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7acfa460b4dd1e02dc2cdb69ec178787c127cb0feac69244217c18e47107e25d"
+}

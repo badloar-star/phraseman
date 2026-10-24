@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-11:word:workmate",
+    "correctText": "workmate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i01",
+    "correctText": "This is my workmate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i02",
+    "correctText": "How do you know each other?",
+    "correctResponseId": "en:lesson-27:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:word:schoolmate",
+    "correctText": "schoolmate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i03",
+    "correctText": "She is an old schoolmate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i04",
+    "correctText": "call",
+    "correctResponseId": "en:lesson-27:session-11:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i05",
+    "correctText": "I have already sent her a message.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:word:bridesmaid",
+    "correctText": "bridesmaid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i06",
+    "correctText": "My sister is a bridesmaid.",
+    "correctResponseId": "en:lesson-27:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i07",
+    "correctText": "Where is she now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:word:newlywed",
+    "correctText": "newlywed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i08",
+    "correctText": "He is a newlywed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i09",
+    "correctText": "Congratulations to the newlyweds!",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i10",
+    "correctText": "met",
+    "correctResponseId": "en:lesson-27:session-11:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i11",
+    "correctText": "We have already chosen a date.",
+    "correctResponseId": "en:lesson-27:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i12",
+    "correctText": "I can help with the chairs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i13",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-27:session-11:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i14",
+    "correctText": "Could you move a little closer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i15",
+    "correctText": "Please wait another minute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i16",
+    "correctText": "Everyone is here now.",
+    "correctResponseId": "en:lesson-27:session-11:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-11:i17",
+    "correctText": "Thank you for coming.",
+    "correctResponseId": null
+  }
+]

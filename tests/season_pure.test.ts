@@ -146,7 +146,8 @@ async function main(): Promise<void> {
   if (IS_STORE_RELEASE) assert.equal(SEASON_CHAPTER_EXAM_ENABLED, false, "в сторе экзамен главы выключен до вердикта Сверки");
   const flagsSource = require("node:fs").readFileSync(require("node:path").join(__dirname, "..", "components", "learning-v2", "season", "season_flags.ts"), "utf8") as string;
   assert.ok(flagsSource.includes("export const SEASON_CHAPTER_EXAM_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;"), "флаг экзамена — только «разработка и не стор»");
-  assert.ok(flagsSource.includes("export const SEASON_CHAPTER_EXAM_START_ENABLED = false as boolean;"), "кнопка запуска экзамена выключена до сигнала Learning V2");
+  // зачем (координатор 24.10, Р1): кнопка запуска экзамена включена — карта до эталона chapter-exam-season.html
+  assert.ok(flagsSource.includes("export const SEASON_CHAPTER_EXAM_START_ENABLED = true as boolean;"), "кнопка запуска экзамена включена (Р1)");
 
   console.log("SEASON PURE (phase 1): PASS");
 }

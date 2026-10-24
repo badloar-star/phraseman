@@ -53,8 +53,9 @@ describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
     expect(wire).toContain('loadLearningV2ChapterExamRecordsV1');
     expect(wire).toContain("learningV2PassedChaptersV1(examRecords, 'en', lesson)");
   });
-  it('кнопки экзамена идут на экран Learning V2 только по флагу запуска (до сигнала не рисуются)', () => {
-    expect(flags).toMatch(/SEASON_CHAPTER_EXAM_START_ENABLED = false as boolean/);
+  // зачем (координатор 24.10, Р1): флаг запуска включён — карта экзамена с кнопкой «Начать экзамен», ⚡1 и строкой Plus, как в эталоне
+  it('кнопки экзамена идут на экран Learning V2 по флагу запуска (включён 24.10)', () => {
+    expect(flags).toMatch(/SEASON_CHAPTER_EXAM_START_ENABLED = true as boolean/);
     expect(wire).toContain('onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}');
     expect(wire).toContain('onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}');
     expect(wire).toContain("learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal, source: 'exam_card' })");

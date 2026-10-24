@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-27:i01",
+    "correctText": "Could you clear the table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:word:grease",
+    "correctText": "grease",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i02",
+    "correctText": "There is grease on the tray.",
+    "correctResponseId": "en:lesson-27:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:word:limescale",
+    "correctText": "limescale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i03",
+    "correctText": "The kettle has some limescale.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-27:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i05",
+    "correctText": "Let me do that.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:word:suds",
+    "correctText": "suds",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i06",
+    "correctText": "There are too many suds.",
+    "correctResponseId": "en:lesson-27:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:word:stopper",
+    "correctText": "stopper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i07",
+    "correctText": "Where is the stopper?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i08",
+    "correctText": "I have already washed the cups.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i09",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-27:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i10",
+    "correctText": "Where do these plates go?",
+    "correctResponseId": "en:lesson-27:session-27:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i11",
+    "correctText": "Put them on the top shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i12",
+    "correctText": "helped",
+    "correctResponseId": "en:lesson-27:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i13",
+    "correctText": "We can leave this until tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i14",
+    "correctText": "I wish the kitchen were bigger.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i15",
+    "correctText": "We would eat here if we had more space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i16",
+    "correctText": "They will be here in ten minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-27:i17",
+    "correctText": "Could you put the kettle on?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1002 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-29:word:parenthood",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — parenthood",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:word:parenthood:audio"
+      ],
+      "accessibilityLabel": "Картка слова — parenthood",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:word:parenthood:audio",
+          "transcript": "parenthood"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-29:word:parenthood:r1",
+            "targetText": "parenthood",
+            "meaningByLocale": {
+              "ru": "Родительство, жизнь в роли родителя.",
+              "uk": "Батьківство, життя в ролі одного з батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "parenthood",
+          "definitionByLocale": {
+            "ru": "Родительство, жизнь в роли родителя.",
+            "uk": "Батьківство, життя в ролі одного з батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-29:i01:r1",
+          "text": "Parenthood can be tiring."
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i01:r2",
+          "text": "Parenthood can be expensive."
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i01:r3",
+          "text": "Travelling can be tiring."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i01:audio",
+          "transcript": "Parenthood can be tiring."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-29:i01:r1",
+            "targetText": "Parenthood can be tiring.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i01:r2",
+            "targetText": "Parenthood can be expensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i01:r3",
+            "targetText": "Travelling can be tiring.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-29:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Parenthood can be tiring.",
+              "uk": "У записі звучить Parenthood can be tiring."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Parenthood can be tiring.",
+              "uk": "У записі звучить Parenthood can be tiring."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви зазвичай повертаєтеся пізно й хотіли б раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-29:i02:r1",
+          "text": "got"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i02:r2",
+          "text": "get"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i02:r3",
+          "text": "getting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зазвичай повертаєтеся пізно й хотіли б раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы обычно возвращаетесь поздно и хотели бы раньше.",
+          "uk": "Ви зазвичай повертаєтеся пізно й хотіли б раніше."
+        },
+        "gappedTargetPhrase": "I wish I ___ home earlier.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-29:i02:r1",
+            "text": "got"
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i02:r2",
+            "text": "get"
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i02:r3",
+            "text": "getting"
+          }
+        ],
+        "testedDimension": "Ви зазвичай повертаєтеся пізно й хотіли б раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Ви зазвичай повертаєтеся пізно й хотіли б раніше.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь got.",
+              "uk": "Після wish тут got."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Ви зазвичай повертаєтеся пізно й хотіли б раніше.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма got.",
+              "uk": "Потрібна форма got."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:word:daycare",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — daycare",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:word:daycare:audio"
+      ],
+      "accessibilityLabel": "Картка слова — daycare",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:word:daycare:audio",
+          "transcript": "daycare"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-29:word:daycare:r1",
+            "targetText": "daycare",
+            "meaningByLocale": {
+              "ru": "Дневной присмотр за детьми; место такого присмотра.",
+              "uk": "Денний догляд за дітьми; місце такого догляду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daycare",
+          "definitionByLocale": {
+            "ru": "Дневной присмотр за детьми; место такого присмотра.",
+            "uk": "Денний догляд за дітьми; місце такого догляду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i03",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть час закриття групи денного догляду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i03:audio"
+      ],
+      "accessibilityLabel": "Уточніть час закриття групи денного догляду.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i03:audio",
+          "transcript": "What time does daycare close?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time does daycare close?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте відповідь про час закриття.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i04:audio"
+      ],
+      "accessibilityLabel": "Почуйте відповідь про час закриття.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i04:audio",
+          "transcript": "It closes at six."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It closes at six.",
+        "orderedTokens": [
+          "It",
+          "closes",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:word:kindergarten",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kindergarten",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:word:kindergarten:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kindergarten",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:word:kindergarten:audio",
+          "transcript": "kindergarten"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-29:word:kindergarten:r1",
+            "targetText": "kindergarten",
+            "meaningByLocale": {
+              "ru": "Детский сад или подготовительная ступень школы.",
+              "uk": "Дитячий садок або підготовчий ступінь школи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kindergarten",
+          "definitionByLocale": {
+            "ru": "Детский сад или подготовительная ступень школы.",
+            "uk": "Дитячий садок або підготовчий ступінь школи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте, що донька почне ходити до підготовчої групи наступного тижня.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте, що донька почне ходити до підготовчої групи наступного тижня.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She starts kindergarten next week.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что дочь начнёт ходить в подготовительную группу на следующей неделе.",
+          "uk": "Повідомте, що донька почне ходити до підготовчої групи наступного тижня."
+        },
+        "orderedTokens": [
+          "She",
+          "starts",
+          "kindergarten",
+          "next",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть сьогодні забрати вашу доньку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i06:audio"
+      ],
+      "accessibilityLabel": "Попросіть сьогодні забрати вашу доньку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i06:audio",
+          "transcript": "Could you pick our daughter up today?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you pick our daughter up today?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-29:i07:r1",
+          "text": "I have already arranged it."
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i07:r2",
+          "text": "I have already checked it."
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i07:r3",
+          "text": "I have already changed it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i07:audio",
+          "transcript": "I have already arranged it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-29:i07:r1",
+            "targetText": "I have already arranged it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i07:r2",
+            "targetText": "I have already checked it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i07:r3",
+            "targetText": "I have already changed it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-29:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already arranged it.",
+              "uk": "У записі звучить I have already arranged it."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i07:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already arranged it.",
+              "uk": "У записі звучить I have already arranged it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, що домовилися про це вчора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-29:i08:r1",
+          "text": "arranged"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i08:r2",
+          "text": "have arranged"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i08:r3",
+          "text": "arrange"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, що домовилися про це вчора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что договорились об этом вчера.",
+          "uk": "Уточніть, що домовилися про це вчора."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-29:i08:r1",
+            "text": "arranged"
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i08:r2",
+            "text": "have arranged"
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i08:r3",
+            "text": "arrange"
+          }
+        ],
+        "testedDimension": "Уточніть, що домовилися про це вчора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, що домовилися про це вчора.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь arranged без have.",
+              "uk": "Із yesterday тут arranged без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, що домовилися про це вчора.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма arranged.",
+              "uk": "Потрібна минула форма arranged."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:word:schoolwork",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — schoolwork",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:word:schoolwork:audio"
+      ],
+      "accessibilityLabel": "Картка слова — schoolwork",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:word:schoolwork:audio",
+          "transcript": "schoolwork"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-29:word:schoolwork:r1",
+            "targetText": "schoolwork",
+            "meaningByLocale": {
+              "ru": "Учебные задания и работа для школы, не только домашнее задание.",
+              "uk": "Навчальні завдання й робота для школи, не лише домашнє завдання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "schoolwork",
+          "definitionByLocale": {
+            "ru": "Учебные задания и работа для школы, не только домашнее задание.",
+            "uk": "Навчальні завдання й робота для школи, не лише домашнє завдання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте слова старшої дитини про завдання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте слова старшої дитини про завдання.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need to finish my schoolwork.",
+        "localizedMeaning": {
+          "ru": "Передайте слова старшего ребёнка о заданиях.",
+          "uk": "Передайте слова старшої дитини про завдання."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "to",
+          "finish",
+          "my",
+          "schoolwork"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте допомогу із завданням.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i10:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте допомогу із завданням.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i10:audio",
+          "transcript": "Do you need help with that?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you need help with that?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-29:i11:r1",
+          "text": "Can you explain this question?"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i11:r2",
+          "text": "Can you explain this word?"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i11:r3",
+          "text": "Can you read this question?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i11:audio",
+          "transcript": "Can you explain this question?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-29:i11:r1",
+            "targetText": "Can you explain this question?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i11:r2",
+            "targetText": "Can you explain this word?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i11:r3",
+            "targetText": "Can you read this question?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Can you explain this question?",
+              "uk": "У записі звучить Can you explain this question?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Can you explain this question?",
+              "uk": "У записі звучить Can you explain this question?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте другові зустріч після вечері.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте другові зустріч після вечері.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could we meet after dinner?",
+        "localizedMeaning": {
+          "ru": "Предложите другу встречу после ужина.",
+          "uk": "Запропонуйте другові зустріч після вечері."
+        },
+        "orderedTokens": [
+          "Could",
+          "we",
+          "meet",
+          "after",
+          "dinner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви приєдналися б, якби були вільні.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-29:i13:r1",
+          "text": "join"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i13:r2",
+          "text": "joined"
+        },
+        {
+          "responseId": "en:lesson-27:session-29:i13:r3",
+          "text": "to join"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви приєдналися б, якби були вільні.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы присоединились бы, если бы были свободны.",
+          "uk": "Ви приєдналися б, якби були вільні."
+        },
+        "gappedTargetPhrase": "I would ___ you if I were free.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-29:i13:r1",
+            "text": "join"
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i13:r2",
+            "text": "joined"
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i13:r3",
+            "text": "to join"
+          }
+        ],
+        "testedDimension": "Ви приєдналися б, якби були вільні.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-29:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви приєдналися б, якби були вільні.",
+            "feedbackByLocale": {
+              "ru": "После would ставим join.",
+              "uk": "Після would ставимо join."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-29:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви приєдналися б, якби були вільні.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію обрати інший день.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію обрати інший день.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i14:audio",
+          "transcript": "Let us choose another day."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Let us choose another day.",
+        "orderedTokens": [
+          "Let",
+          "us",
+          "choose",
+          "another",
+          "day"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть завтра нагадати вам.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Попросіть завтра нагадати вам.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-29:i15:audio",
+          "transcript": "Can you remind me tomorrow?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you remind me tomorrow?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть другові, що хотілося б жити ближче одне до одного.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть другові, що хотілося б жити ближче одне до одного.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish you lived nearby.",
+        "localizedMeaning": {
+          "ru": "Скажите другу, что хотелось бы жить поближе друг к другу.",
+          "uk": "Скажіть другові, що хотілося б жити ближче одне до одного."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "you",
+          "lived",
+          "nearby"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почніть із результату: If we had a free evening, we would visit you.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із результату: If we had a free evening, we would visit you.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would visit you if we had a free evening.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we had a free evening, we would visit you.",
+          "uk": "Почніть із результату: If we had a free evening, we would visit you."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "visit",
+          "you",
+          "if",
+          "we",
+          "had",
+          "a",
+          "free",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7590a8c01a7a864a869b1ecaf3fc3a171fd9adf9c9a6fe684d57989eec6b68d2"
+}

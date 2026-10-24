@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-29:word:parenthood",
+    "correctText": "parenthood",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i01",
+    "correctText": "Parenthood can be tiring.",
+    "correctResponseId": "en:lesson-27:session-29:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i02",
+    "correctText": "got",
+    "correctResponseId": "en:lesson-27:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:word:daycare",
+    "correctText": "daycare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i03",
+    "correctText": "What time does daycare close?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i04",
+    "correctText": "It closes at six.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:word:kindergarten",
+    "correctText": "kindergarten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i05",
+    "correctText": "She starts kindergarten next week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i06",
+    "correctText": "Could you pick our daughter up today?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i07",
+    "correctText": "I have already arranged it.",
+    "correctResponseId": "en:lesson-27:session-29:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i08",
+    "correctText": "arranged",
+    "correctResponseId": "en:lesson-27:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:word:schoolwork",
+    "correctText": "schoolwork",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i09",
+    "correctText": "I need to finish my schoolwork.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i10",
+    "correctText": "Do you need help with that?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i11",
+    "correctText": "Can you explain this question?",
+    "correctResponseId": "en:lesson-27:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i12",
+    "correctText": "Could we meet after dinner?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i13",
+    "correctText": "join",
+    "correctResponseId": "en:lesson-27:session-29:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i14",
+    "correctText": "Let us choose another day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i15",
+    "correctText": "Can you remind me tomorrow?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i16",
+    "correctText": "I wish you lived nearby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-29:i17",
+    "correctText": "We would visit you if we had a free evening.",
+    "correctResponseId": null
+  }
+]

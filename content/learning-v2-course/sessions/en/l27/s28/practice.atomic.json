@@ -1,0 +1,2095 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-28:word:brisk",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brisk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:brisk:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brisk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:brisk:audio",
+            "transcript": "brisk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:brisk:r1",
+              "targetText": "brisk",
+              "meaningByLocale": {
+                "ru": "Быстрый, энергичный.",
+                "uk": "Швидкий, енергійний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brisk",
+            "definitionByLocale": {
+              "ru": "Быстрый, энергичный.",
+              "uk": "Швидкий, енергійний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i01:r1",
+            "text": "We went for a brisk walk."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i01:r2",
+            "text": "We went for a short walk."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i01:r3",
+            "text": "We went for a long walk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i01:audio",
+            "transcript": "We went for a brisk walk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:i01:r1",
+              "targetText": "We went for a brisk walk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i01:r2",
+              "targetText": "We went for a short walk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i01:r3",
+              "targetText": "We went for a long walk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We went for a brisk walk.",
+                "uk": "У записі звучить We went for a brisk walk."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We went for a brisk walk.",
+                "uk": "У записі звучить We went for a brisk walk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите немного сбавить темп.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Попросите немного сбавить темп.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i02:audio",
+            "transcript": "Can we slow down a little?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can we slow down a little?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:word:leisurely",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — leisurely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:leisurely:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — leisurely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:leisurely:audio",
+            "transcript": "leisurely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:leisurely:r1",
+              "targetText": "leisurely",
+              "meaningByLocale": {
+                "ru": "Неторопливый, неспешный.",
+                "uk": "Неквапливий, неспішний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leisurely",
+            "definitionByLocale": {
+              "ru": "Неторопливый, неспешный.",
+              "uk": "Неквапливий, неспішний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о неспешной прогулке.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о неспешной прогулке.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had a leisurely walk.",
+          "localizedMeaning": {
+            "ru": "Расскажите о неспешной прогулке.",
+            "uk": "Розкажіть про неспішну прогулянку."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "a",
+            "leisurely",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Времени мало, а вы хотели бы иметь больше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i04:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Времени мало, а вы хотели бы иметь больше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Времени мало, а вы хотели бы иметь больше.",
+            "uk": "Часу мало, а ви хотіли б мати більше."
+          },
+          "gappedTargetPhrase": "I wish we ___ more time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-28:i04:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i04:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i04:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Времени мало, а вы хотели бы иметь больше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i04:r2",
+              "correct": false,
+              "testedDimension": "Времени мало, а вы хотели бы иметь больше.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь had.",
+                "uk": "Після wish тут had."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i04:r3",
+              "correct": false,
+              "testedDimension": "Времени мало, а вы хотели бы иметь больше.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма had.",
+                "uk": "Потрібна форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:word:scenic",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — scenic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:scenic:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — scenic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:scenic:audio",
+            "transcript": "scenic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:scenic:r1",
+              "targetText": "scenic",
+              "meaningByLocale": {
+                "ru": "Живописный, с красивыми видами.",
+                "uk": "Мальовничий, із гарними краєвидами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scenic",
+            "definitionByLocale": {
+              "ru": "Живописный, с красивыми видами.",
+              "uk": "Мальовничий, із гарними краєвидами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите живописный маршрут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Предложите живописный маршрут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i05:audio",
+            "transcript": "Let us take the scenic route."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let us take the scenic route.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i06:r1",
+            "text": "How long will it take?"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i06:r2",
+            "text": "How much will it cost?"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i06:r3",
+            "text": "How far will we walk?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i06:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i06:audio",
+            "transcript": "How long will it take?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:i06:r1",
+              "targetText": "How long will it take?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i06:r2",
+              "targetText": "How much will it cost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i06:r3",
+              "targetText": "How far will we walk?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long will it take?",
+                "uk": "У записі звучить How long will it take?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long will it take?",
+                "uk": "У записі звучить How long will it take?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:word:shoreline",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shoreline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:shoreline:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shoreline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:shoreline:audio",
+            "transcript": "shoreline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:shoreline:r1",
+              "targetText": "shoreline",
+              "meaningByLocale": {
+                "ru": "Береговая линия.",
+                "uk": "Берегова лінія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoreline",
+            "definitionByLocale": {
+              "ru": "Береговая линия.",
+              "uk": "Берегова лінія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Объясните, где проходит тропинка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Объясните, где проходит тропинка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The path follows the shoreline.",
+          "localizedMeaning": {
+            "ru": "Объясните, где проходит тропинка.",
+            "uk": "Поясніть, де проходить стежка."
+          },
+          "orderedTokens": [
+            "The",
+            "path",
+            "follows",
+            "the",
+            "shoreline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы пошли бы там, если бы путь был короче.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i08:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i08:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i08:r3",
+            "text": "to take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы пошли бы там, если бы путь был короче.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы пошли бы там, если бы путь был короче.",
+            "uk": "Ви пішли б там, якби шлях був коротшим."
+          },
+          "gappedTargetPhrase": "We would ___ that path if it were shorter.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-28:i08:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i08:r2",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i08:r3",
+              "text": "to take"
+            }
+          ],
+          "testedDimension": "Вы пошли бы там, если бы путь был короче.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Вы пошли бы там, если бы путь был короче.",
+              "feedbackByLocale": {
+                "ru": "После would ставим take.",
+                "uk": "Після would ставимо take."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Вы пошли бы там, если бы путь был короче.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте предложение отдохнуть здесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i09:audio"
+        ],
+        "accessibilityLabel": "Услышьте предложение отдохнуть здесь.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i09:audio",
+            "transcript": "We can rest here for a while."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can rest here for a while.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "rest",
+            "here",
+            "for",
+            "a",
+            "while"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i10",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите сфотографировать вас вместе.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i10:audio"
+        ],
+        "accessibilityLabel": "Попросите сфотографировать вас вместе.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i10:audio",
+            "transcript": "Could you take a photo of us?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you take a photo of us?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i11:r1",
+            "text": "I have already taken one."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i11:r2",
+            "text": "I have already seen one."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i11:r3",
+            "text": "I have already sent one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i11:audio",
+            "transcript": "I have already taken one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:i11:r1",
+              "targetText": "I have already taken one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i11:r2",
+              "targetText": "I have already seen one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i11:r3",
+              "targetText": "I have already sent one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already taken one.",
+                "uk": "У записі звучить I have already taken one."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already taken one.",
+                "uk": "У записі звучить I have already taken one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы сделали фотографию минуту назад.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i12:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i12:r2",
+            "text": "have taken"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i12:r3",
+            "text": "taked"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы сделали фотографию минуту назад.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сделали фотографию минуту назад.",
+            "uk": "Ви зробили фотографію хвилину тому."
+          },
+          "gappedTargetPhrase": "I ___ it a minute ago.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-28:i12:r1",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i12:r2",
+              "text": "have taken"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i12:r3",
+              "text": "taked"
+            }
+          ],
+          "testedDimension": "Вы сделали фотографию минуту назад.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы сделали фотографию минуту назад.",
+              "feedbackByLocale": {
+                "ru": "С a minute ago здесь took без have.",
+                "uk": "Із a minute ago тут took без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы сделали фотографию минуту назад.",
+              "feedbackByLocale": {
+                "ru": "Прошедшая форма take — took.",
+                "uk": "Минула форма take — took."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что жаль отсутствия подруги.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что жаль отсутствия подруги.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wish she were here.",
+          "localizedMeaning": {
+            "ru": "Скажите, что жаль отсутствия подруги.",
+            "uk": "Скажіть, що шкода відсутності подруги."
+          },
+          "orderedTokens": [
+            "I",
+            "wish",
+            "she",
+            "were",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите вернуться в воскресенье.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Предложите вернуться в воскресенье.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i14:audio",
+            "transcript": "Shall we come back on Sunday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we come back on Sunday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с результата: If we lived nearby, we would come more often.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с результата: If we lived nearby, we would come more often.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would come more often if we lived nearby.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we lived nearby, we would come more often.",
+            "uk": "Почніть із результату: If we lived nearby, we would come more often."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "come",
+            "more",
+            "often",
+            "if",
+            "we",
+            "lived",
+            "nearby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, где оставили воду.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Услышьте, где оставили воду.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i16:audio",
+            "transcript": "The water is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The water is in my bag.",
+          "orderedTokens": [
+            "The",
+            "water",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите подождать у моста.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Попросите подождать у моста.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i17:audio",
+            "transcript": "Could you wait by the bridge?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you wait by the bridge?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-28:word:brisk",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brisk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:brisk:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brisk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:brisk:audio",
+            "transcript": "brisk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:brisk:r1",
+              "targetText": "brisk",
+              "meaningByLocale": {
+                "ru": "Быстрый, энергичный.",
+                "uk": "Швидкий, енергійний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brisk",
+            "definitionByLocale": {
+              "ru": "Быстрый, энергичный.",
+              "uk": "Швидкий, енергійний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i01:r1",
+            "text": "We went for a brisk walk."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i01:r2",
+            "text": "We went for a short walk."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i01:r3",
+            "text": "We went for a long walk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i01:audio",
+            "transcript": "We went for a brisk walk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:i01:r1",
+              "targetText": "We went for a brisk walk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i01:r2",
+              "targetText": "We went for a short walk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i01:r3",
+              "targetText": "We went for a long walk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We went for a brisk walk.",
+                "uk": "У записі звучить We went for a brisk walk."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We went for a brisk walk.",
+                "uk": "У записі звучить We went for a brisk walk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть трохи сповільнитися.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Попросіть трохи сповільнитися.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i02:audio",
+            "transcript": "Can we slow down a little?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can we slow down a little?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:word:leisurely",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — leisurely",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:leisurely:audio"
+        ],
+        "accessibilityLabel": "Картка слова — leisurely",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:leisurely:audio",
+            "transcript": "leisurely"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:leisurely:r1",
+              "targetText": "leisurely",
+              "meaningByLocale": {
+                "ru": "Неторопливый, неспешный.",
+                "uk": "Неквапливий, неспішний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "leisurely",
+            "definitionByLocale": {
+              "ru": "Неторопливый, неспешный.",
+              "uk": "Неквапливий, неспішний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i03",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про неспішну прогулянку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про неспішну прогулянку.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had a leisurely walk.",
+          "localizedMeaning": {
+            "ru": "Расскажите о неспешной прогулке.",
+            "uk": "Розкажіть про неспішну прогулянку."
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "a",
+            "leisurely",
+            "walk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Часу мало, а ви хотіли б мати більше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i04:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Часу мало, а ви хотіли б мати більше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Времени мало, а вы хотели бы иметь больше.",
+            "uk": "Часу мало, а ви хотіли б мати більше."
+          },
+          "gappedTargetPhrase": "I wish we ___ more time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-28:i04:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i04:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i04:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Часу мало, а ви хотіли б мати більше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i04:r2",
+              "correct": false,
+              "testedDimension": "Часу мало, а ви хотіли б мати більше.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь had.",
+                "uk": "Після wish тут had."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i04:r3",
+              "correct": false,
+              "testedDimension": "Часу мало, а ви хотіли б мати більше.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма had.",
+                "uk": "Потрібна форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:word:scenic",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — scenic",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:scenic:audio"
+        ],
+        "accessibilityLabel": "Картка слова — scenic",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:scenic:audio",
+            "transcript": "scenic"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:scenic:r1",
+              "targetText": "scenic",
+              "meaningByLocale": {
+                "ru": "Живописный, с красивыми видами.",
+                "uk": "Мальовничий, із гарними краєвидами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "scenic",
+            "definitionByLocale": {
+              "ru": "Живописный, с красивыми видами.",
+              "uk": "Мальовничий, із гарними краєвидами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i05",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте мальовничий маршрут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте мальовничий маршрут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i05:audio",
+            "transcript": "Let us take the scenic route."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Let us take the scenic route.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i06:r1",
+            "text": "How long will it take?"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i06:r2",
+            "text": "How much will it cost?"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i06:r3",
+            "text": "How far will we walk?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i06:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i06:audio",
+            "transcript": "How long will it take?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:i06:r1",
+              "targetText": "How long will it take?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i06:r2",
+              "targetText": "How much will it cost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i06:r3",
+              "targetText": "How far will we walk?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long will it take?",
+                "uk": "У записі звучить How long will it take?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long will it take?",
+                "uk": "У записі звучить How long will it take?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:word:shoreline",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shoreline",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:word:shoreline:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shoreline",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:word:shoreline:audio",
+            "transcript": "shoreline"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:word:shoreline:r1",
+              "targetText": "shoreline",
+              "meaningByLocale": {
+                "ru": "Береговая линия.",
+                "uk": "Берегова лінія."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoreline",
+            "definitionByLocale": {
+              "ru": "Береговая линия.",
+              "uk": "Берегова лінія."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i07",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поясніть, де проходить стежка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поясніть, де проходить стежка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The path follows the shoreline.",
+          "localizedMeaning": {
+            "ru": "Объясните, где проходит тропинка.",
+            "uk": "Поясніть, де проходить стежка."
+          },
+          "orderedTokens": [
+            "The",
+            "path",
+            "follows",
+            "the",
+            "shoreline"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i08",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви пішли б там, якби шлях був коротшим.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i08:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i08:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i08:r3",
+            "text": "to take"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви пішли б там, якби шлях був коротшим.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы пошли бы там, если бы путь был короче.",
+            "uk": "Ви пішли б там, якби шлях був коротшим."
+          },
+          "gappedTargetPhrase": "We would ___ that path if it were shorter.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-28:i08:r1",
+              "text": "take"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i08:r2",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i08:r3",
+              "text": "to take"
+            }
+          ],
+          "testedDimension": "Ви пішли б там, якби шлях був коротшим.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Ви пішли б там, якби шлях був коротшим.",
+              "feedbackByLocale": {
+                "ru": "После would ставим take.",
+                "uk": "Після would ставимо take."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Ви пішли б там, якби шлях був коротшим.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i09",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пропозицію відпочити тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i09:audio"
+        ],
+        "accessibilityLabel": "Почуйте пропозицію відпочити тут.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i09:audio",
+            "transcript": "We can rest here for a while."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We can rest here for a while.",
+          "orderedTokens": [
+            "We",
+            "can",
+            "rest",
+            "here",
+            "for",
+            "a",
+            "while"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i10",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть сфотографувати вас разом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i10:audio"
+        ],
+        "accessibilityLabel": "Попросіть сфотографувати вас разом.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i10:audio",
+            "transcript": "Could you take a photo of us?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you take a photo of us?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i11:r1",
+            "text": "I have already taken one."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i11:r2",
+            "text": "I have already seen one."
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i11:r3",
+            "text": "I have already sent one."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i11:audio",
+            "transcript": "I have already taken one."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-28:i11:r1",
+              "targetText": "I have already taken one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i11:r2",
+              "targetText": "I have already seen one.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i11:r3",
+              "targetText": "I have already sent one.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already taken one.",
+                "uk": "У записі звучить I have already taken one."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have already taken one.",
+                "uk": "У записі звучить I have already taken one."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви зробили фотографію хвилину тому.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-28:i12:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i12:r2",
+            "text": "have taken"
+          },
+          {
+            "responseId": "en:lesson-27:session-28:i12:r3",
+            "text": "taked"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви зробили фотографію хвилину тому.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы сделали фотографию минуту назад.",
+            "uk": "Ви зробили фотографію хвилину тому."
+          },
+          "gappedTargetPhrase": "I ___ it a minute ago.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-28:i12:r1",
+              "text": "took"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i12:r2",
+              "text": "have taken"
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i12:r3",
+              "text": "taked"
+            }
+          ],
+          "testedDimension": "Ви зробили фотографію хвилину тому.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви зробили фотографію хвилину тому.",
+              "feedbackByLocale": {
+                "ru": "С a minute ago здесь took без have.",
+                "uk": "Із a minute ago тут took без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви зробили фотографію хвилину тому.",
+              "feedbackByLocale": {
+                "ru": "Прошедшая форма take — took.",
+                "uk": "Минула форма take — took."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що шкода відсутності подруги.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що шкода відсутності подруги.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wish she were here.",
+          "localizedMeaning": {
+            "ru": "Скажите, что жаль отсутствия подруги.",
+            "uk": "Скажіть, що шкода відсутності подруги."
+          },
+          "orderedTokens": [
+            "I",
+            "wish",
+            "she",
+            "were",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте повернутися в неділю.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте повернутися в неділю.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i14:audio",
+            "transcript": "Shall we come back on Sunday?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we come back on Sunday?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть із результату: If we lived nearby, we would come more often.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть із результату: If we lived nearby, we would come more often.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would come more often if we lived nearby.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we lived nearby, we would come more often.",
+            "uk": "Почніть із результату: If we lived nearby, we would come more often."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "come",
+            "more",
+            "often",
+            "if",
+            "we",
+            "lived",
+            "nearby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, де залишили воду.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Почуйте, де залишили воду.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i16:audio",
+            "transcript": "The water is in my bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The water is in my bag.",
+          "orderedTokens": [
+            "The",
+            "water",
+            "is",
+            "in",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть зачекати біля мосту.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Попросіть зачекати біля мосту.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-28:i17:audio",
+            "transcript": "Could you wait by the bridge?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you wait by the bridge?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-28:word:brisk",
+      "correctText": "brisk",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i01",
+      "correctText": "We went for a brisk walk.",
+      "correctResponseId": "en:lesson-27:session-28:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i02",
+      "correctText": "Can we slow down a little?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:word:leisurely",
+      "correctText": "leisurely",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i03",
+      "correctText": "We had a leisurely walk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i04",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-27:session-28:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:word:scenic",
+      "correctText": "scenic",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i05",
+      "correctText": "Let us take the scenic route.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i06",
+      "correctText": "How long will it take?",
+      "correctResponseId": "en:lesson-27:session-28:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:word:shoreline",
+      "correctText": "shoreline",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i07",
+      "correctText": "The path follows the shoreline.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i08",
+      "correctText": "take",
+      "correctResponseId": "en:lesson-27:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i09",
+      "correctText": "We can rest here for a while.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i10",
+      "correctText": "Could you take a photo of us?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i11",
+      "correctText": "I have already taken one.",
+      "correctResponseId": "en:lesson-27:session-28:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i12",
+      "correctText": "took",
+      "correctResponseId": "en:lesson-27:session-28:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i13",
+      "correctText": "I wish she were here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i14",
+      "correctText": "Shall we come back on Sunday?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i15",
+      "correctText": "We would come more often if we lived nearby.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i16",
+      "correctText": "The water is in my bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:i17",
+      "correctText": "Could you wait by the bridge?",
+      "correctResponseId": null
+    }
+  ]
+}

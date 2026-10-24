@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were; unreal condition; present perfect / past simple",
+    "uk": "wish + past simple / were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Семейный распорядок",
+        "uk": "Сімейний розпорядок"
+      },
+      "bodyByLocale": {
+        "ru": "Parenthood — родительство, жизнь в роли родителя. Parenthood can be tiring — быть родителем бывает утомительно. Это не название одного родителя: для человека есть знакомое parent. Daycare — дневной присмотр за детьми; также место, где за ними присматривают. What time does daycare close? — во сколько закрывается группа дневного присмотра? Вы часто возвращаетесь поздно: I wish I got home earlier — хотелось бы возвращаться домой раньше. Got после wish здесь относится к обычному распорядку сейчас, а не к одному вчерашнему возвращению.",
+        "uk": "Parenthood — батьківство, життя в ролі одного з батьків. Parenthood can be tiring — бути батьками буває втомливо. Це не назва однієї людини: для неї є знайоме parent. Daycare — денний догляд за дітьми; також місце, де за ними доглядають. What time does daycare close? — о котрій закривається група денного догляду? Ви часто повертаєтеся пізно: I wish I got home earlier — хотілося б повертатися додому раніше. Got після wish тут стосується звичного розпорядку тепер, а не одного вчорашнього повернення."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-29:intro1:r1",
+              "text": "I wish I got home earlier."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro1:r2",
+              "text": "I wish I get home earlier."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro1:r3",
+              "text": "I wish I getting home earlier."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-29:intro1:r1",
+              "text": "I wish I got home earlier."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro1:r2",
+              "text": "I wish I get home earlier."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro1:r3",
+              "text": "I wish I getting home earlier."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Договориться, кто заберёт ребёнка",
+        "uk": "Домовитися, хто забере дитину"
+      },
+      "bodyByLocale": {
+        "ru": "Kindergarten — детский сад или подготовительная ступень школы; точное устройство зависит от местной системы. She starts kindergarten next week — на следующей неделе она идёт в подготовительную группу. Вы говорите о дочери и договариваетесь, кто её заберёт: Could you pick our daughter up today? — можешь сегодня забрать нашу дочь? I have already arranged it — я уже это организовал. Если называете время, скажите I arranged it yesterday — я договорился об этом вчера.",
+        "uk": "Kindergarten — дитячий садок або підготовчий ступінь школи; точний устрій залежить від місцевої системи. She starts kindergarten next week — наступного тижня вона йде до підготовчої групи. Ви говорите про доньку й домовляєтеся, хто її забере: Could you pick our daughter up today? — можеш сьогодні забрати нашу доньку? I have already arranged it — я вже це організував. Якщо називаєте час, скажіть I arranged it yesterday — я домовився про це вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-29:intro2:r1",
+              "text": "I arranged it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro2:r2",
+              "text": "I have arranged it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro2:r3",
+              "text": "I arrange it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-29:intro2:r1",
+              "text": "I arranged it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro2:r2",
+              "text": "I have arranged it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro2:r3",
+              "text": "I arrange it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Учёба и встреча с другом",
+        "uk": "Навчання й зустріч із другом"
+      },
+      "bodyByLocale": {
+        "ru": "Schoolwork — учебные задания и работа для школы, не только домашнее задание. I need to finish my schoolwork — мне нужно закончить учебные задания. Это может сказать старший ребёнок; взрослый уточняет, нужна ли помощь: Do you need help with that? — тебе с этим помочь? Позже друг зовёт встретиться: I would join you if I were free — я бы присоединился, если бы был свободен. Можно предложить другое время: Could we meet after dinner? — можем встретиться после ужина?",
+        "uk": "Schoolwork — навчальні завдання й робота для школи, не лише домашнє завдання. I need to finish my schoolwork — мені потрібно закінчити навчальні завдання. Це може сказати старша дитина; дорослий уточнює, чи потрібна допомога: Do you need help with that? — тобі з цим допомогти? Пізніше друг кличе зустрітися: I would join you if I were free — я б приєднався, якби був вільний. Можна запропонувати інший час: Could we meet after dinner? — можемо зустрітися після вечері?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-29:intro3:r1",
+              "text": "I would join you if I were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro3:r2",
+              "text": "I would joined you if I were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro3:r3",
+              "text": "I would to join you if I were free."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-29:intro3:r1",
+              "text": "I would join you if I were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro3:r2",
+              "text": "I would joined you if I were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-29:intro3:r3",
+              "text": "I would to join you if I were free."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9c456a5b8e31772e693a8139fcc66819728327e32eff7e7f4afca09bd66574df"
+}

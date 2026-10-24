@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were; unreal condition; present perfect / past simple",
+    "uk": "wish + past simple / were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Распределить дела",
+        "uk": "Розподілити справи"
+      },
+      "bodyByLocale": {
+        "ru": "Grease — жир, в том числе жирный налёт на кухонной посуде. There is grease on the tray — на противне жир. Limescale — известковый налёт. The kettle has some limescale — в чайнике есть известковый налёт. Вы называете, что заметили, а не объясняете способ очистки. Дел много: I wish I had more help — жаль, что мне не помогают больше. Had здесь относится к желаемому настоящему. Чтобы действительно попросить помощи, скажите Could you clear the table? — можешь убрать со стола?",
+        "uk": "Grease — жир, зокрема жирний наліт на кухонному посуді. There is grease on the tray — на деку жир. Limescale — вапняний наліт. The kettle has some limescale — у чайнику є вапняний наліт. Ви називаєте те, що помітили, а не пояснюєте спосіб очищення. Справ багато: I wish I had more help — шкода, що мені не допомагають більше. Had тут стосується бажаного теперішнього. Щоб справді попросити допомоги, скажіть Could you clear the table? — можеш прибрати зі столу?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-27:intro1:r1",
+              "text": "I wish I had more help."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro1:r2",
+              "text": "I wish I have more help."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro1:r3",
+              "text": "I wish I having more help."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-27:intro1:r1",
+              "text": "I wish I had more help."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro1:r2",
+              "text": "I wish I have more help."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro1:r3",
+              "text": "I wish I having more help."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "У раковины",
+        "uk": "Біля мийки"
+      },
+      "bodyByLocale": {
+        "ru": "Suds — мыльная пена. Это слово обычно употребляется во множественном числе: There are too many suds — слишком много пены. Поэтому are и many, хотя по-русски говорим «пена». Stopper — пробка, затычка. Where is the stopper? — где пробка? По ситуации понятно, о какой вещи речь: здесь вы стоите у раковины, а не открываете бутылку. Вы уже помыли чашки: I have already washed the cups. I cleaned the kitchen yesterday — я убрал кухню вчера: yesterday называет законченное время.",
+        "uk": "Suds — мильна піна. Це слово зазвичай уживається у множині: There are too many suds — забагато піни. Тому are і many, хоча українською кажемо «піна». Stopper — корок, затичка. Where is the stopper? — де затичка? Із ситуації зрозуміло, про яку річ ідеться: тут ви стоїте біля мийки, а не відкриваєте пляшку. Ви вже помили чашки: I have already washed the cups. I cleaned the kitchen yesterday — я прибрав кухню вчора: yesterday називає завершений час."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-27:intro2:r1",
+              "text": "I cleaned the kitchen yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro2:r2",
+              "text": "I have cleaned the kitchen yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro2:r3",
+              "text": "I clean the kitchen yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-27:intro2:r1",
+              "text": "I cleaned the kitchen yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro2:r2",
+              "text": "I have cleaned the kitchen yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro2:r3",
+              "text": "I clean the kitchen yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться, что делать сейчас",
+        "uk": "Домовитися, що робити зараз"
+      },
+      "bodyByLocale": {
+        "ru": "I would finish sooner if someone helped me — я бы закончил быстрее, если бы кто-нибудь помог. Would finish — воображаемый результат, helped — условие. Друг предлагает взять дело на себя: Let me do that — давай я это сделаю. Остальное можно обсудить отдельно: We can leave this until tomorrow — это можно оставить до завтра. Кухня тесная: I wish the kitchen were bigger — хотелось бы, чтобы кухня была больше. Это пожелание о нынешней кухне, а не сообщение о прежней.",
+        "uk": "I would finish sooner if someone helped me — я б закінчив швидше, якби хтось допоміг. Would finish — уявний результат, helped — умова. Друг пропонує взяти справу на себе: Let me do that — давай я це зроблю. Решту можна обговорити окремо: We can leave this until tomorrow — це можна залишити до завтра. Кухня тісна: I wish the kitchen were bigger — хотілося б, щоб кухня була більшою. Це побажання про теперішню кухню, а не повідомлення про колишню."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-27:intro3:r1",
+              "text": "I wish the kitchen were bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro3:r2",
+              "text": "I wish the kitchen is bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro3:r3",
+              "text": "I wish the kitchen be bigger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-27:intro3:r1",
+              "text": "I wish the kitchen were bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro3:r2",
+              "text": "I wish the kitchen is bigger."
+            },
+            {
+              "responseId": "en:lesson-27:session-27:intro3:r3",
+              "text": "I wish the kitchen be bigger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "17955d7905bdf9cae4747818ecf1225027ac52088b85e2557d2272ccded23591"
+}

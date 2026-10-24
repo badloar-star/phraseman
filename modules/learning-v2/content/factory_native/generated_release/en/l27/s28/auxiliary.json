@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-28",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-28:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-28:intro1:r2": {
+          "ru": "В этом пожелании о настоящем нужна форма had.",
+          "uk": "У цьому побажанні про теперішнє потрібна форма had."
+        },
+        "en:lesson-27:session-28:intro1:r3": {
+          "ru": "Здесь ставим had.",
+          "uk": "Тут ставимо had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-28:intro2:r2": {
+          "ru": "После would нужна форма take.",
+          "uk": "Після would потрібна форма take."
+        },
+        "en:lesson-27:session-28:intro2:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-28:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-28:intro3:r2": {
+          "ru": "С a minute ago здесь took без have.",
+          "uk": "Із a minute ago тут took без have."
+        },
+        "en:lesson-27:session-28:intro3:r3": {
+          "ru": "Прошедшая форма take — took.",
+          "uk": "Минула форма take — took."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c15e1bda966b928041761f54a5d48ef4852a2f61288b63b4757c6cca896bd802"
+}

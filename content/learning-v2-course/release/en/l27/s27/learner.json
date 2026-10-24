@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-27:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите убрать со стола.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Попросите убрать со стола.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i01:audio",
+          "transcript": "Could you clear the table?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you clear the table?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:word:grease",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grease",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:word:grease:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grease",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:word:grease:audio",
+          "transcript": "grease"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-27:word:grease:r1",
+            "targetText": "grease",
+            "meaningByLocale": {
+              "ru": "Жир, жирный налёт.",
+              "uk": "Жир, жирний наліт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grease",
+          "definitionByLocale": {
+            "ru": "Жир, жирный налёт.",
+            "uk": "Жир, жирний наліт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-27:i02:r1",
+          "text": "There is grease on the tray."
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i02:r2",
+          "text": "There is grease on the plate."
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i02:r3",
+          "text": "There is water on the tray."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i02:audio",
+          "transcript": "There is grease on the tray."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-27:i02:r1",
+            "targetText": "There is grease on the tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i02:r2",
+            "targetText": "There is grease on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i02:r3",
+            "targetText": "There is water on the tray.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is grease on the tray.",
+              "uk": "У записі звучить There is grease on the tray."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is grease on the tray.",
+              "uk": "У записі звучить There is grease on the tray."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:word:limescale",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — limescale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:word:limescale:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — limescale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:word:limescale:audio",
+          "transcript": "limescale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-27:word:limescale:r1",
+            "targetText": "limescale",
+            "meaningByLocale": {
+              "ru": "Известковый налёт.",
+              "uk": "Вапняний наліт."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "limescale",
+          "definitionByLocale": {
+            "ru": "Известковый налёт.",
+            "uk": "Вапняний наліт."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о налёте в чайнике.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о налёте в чайнике.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The kettle has some limescale.",
+        "localizedMeaning": {
+          "ru": "Скажите о налёте в чайнике.",
+          "uk": "Скажіть про наліт у чайнику."
+        },
+        "orderedTokens": [
+          "The",
+          "kettle",
+          "has",
+          "some",
+          "limescale"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас помощи мало. Вы хотели бы получать её больше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-27:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i04:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас помощи мало. Вы хотели бы получать её больше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас помощи мало. Вы хотели бы получать её больше.",
+          "uk": "Зараз допомоги мало. Ви хотіли б отримувати її більше."
+        },
+        "gappedTargetPhrase": "I wish I ___ more help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-27:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Сейчас помощи мало. Вы хотели бы получать её больше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Сейчас помощи мало. Вы хотели бы получать её больше.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь had.",
+              "uk": "Після wish тут had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i04:r3",
+            "correct": false,
+            "testedDimension": "Сейчас помощи мало. Вы хотели бы получать её больше.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужна форма had.",
+              "uk": "У цій конструкції потрібна форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение взять дело на себя.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение взять дело на себя.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i05:audio",
+          "transcript": "Let me do that."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Let me do that.",
+        "orderedTokens": [
+          "Let",
+          "me",
+          "do",
+          "that"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:word:suds",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — suds",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:word:suds:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — suds",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:word:suds:audio",
+          "transcript": "suds"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-27:word:suds:r1",
+            "targetText": "suds",
+            "meaningByLocale": {
+              "ru": "Мыльная пена; слово во множественном числе.",
+              "uk": "Мильна піна; слово у множині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "suds",
+          "definitionByLocale": {
+            "ru": "Мыльная пена; слово во множественном числе.",
+            "uk": "Мильна піна; слово у множині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-27:i06:r1",
+          "text": "There are too many suds."
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i06:r2",
+          "text": "There are too many cups."
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i06:r3",
+          "text": "There are too many plates."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i06:audio",
+          "transcript": "There are too many suds."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-27:i06:r1",
+            "targetText": "There are too many suds.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i06:r2",
+            "targetText": "There are too many cups.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i06:r3",
+            "targetText": "There are too many plates.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are too many suds.",
+              "uk": "У записі звучить There are too many suds."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are too many suds.",
+              "uk": "У записі звучить There are too many suds."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:word:stopper",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stopper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:word:stopper:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stopper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:word:stopper:audio",
+          "transcript": "stopper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-27:word:stopper:r1",
+            "targetText": "stopper",
+            "meaningByLocale": {
+              "ru": "Пробка, затычка.",
+              "uk": "Корок, затичка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stopper",
+          "definitionByLocale": {
+            "ru": "Пробка, затычка.",
+            "uk": "Корок, затичка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "У раковины спросите, где пробка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "У раковины спросите, где пробка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i07:audio",
+          "transcript": "Where is the stopper?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the stopper?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что уже помыли чашки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что уже помыли чашки.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already washed the cups.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что уже помыли чашки.",
+          "uk": "Повідомте, що вже помили чашки."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "washed",
+          "the",
+          "cups"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы убрали кухню вчера. Назовите время.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-27:i09:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i09:r2",
+          "text": "have cleaned"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i09:r3",
+          "text": "clean"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы убрали кухню вчера. Назовите время.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы убрали кухню вчера. Назовите время.",
+          "uk": "Ви прибрали кухню вчора. Назвіть час."
+        },
+        "gappedTargetPhrase": "I ___ the kitchen yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-27:i09:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i09:r2",
+            "text": "have cleaned"
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i09:r3",
+            "text": "clean"
+          }
+        ],
+        "testedDimension": "Вы убрали кухню вчера. Назовите время.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы убрали кухню вчера. Назовите время.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь cleaned без have.",
+              "uk": "Із yesterday тут cleaned без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы убрали кухню вчера. Назовите время.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма cleaned.",
+              "uk": "Потрібна минула форма cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-27:i10:r1",
+          "text": "Where do these plates go?"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i10:r2",
+          "text": "Where do these cups go?"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i10:r3",
+          "text": "Where does this plate go?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i10:audio",
+          "transcript": "Where do these plates go?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-27:i10:r1",
+            "targetText": "Where do these plates go?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i10:r2",
+            "targetText": "Where do these cups go?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i10:r3",
+            "targetText": "Where does this plate go?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-27:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Where do these plates go?",
+              "uk": "У записі звучить Where do these plates go?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Where do these plates go?",
+              "uk": "У записі звучить Where do these plates go?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите место в шкафу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите место в шкафу.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Put them on the top shelf.",
+        "localizedMeaning": {
+          "ru": "Покажите место в шкафу.",
+          "uk": "Покажіть місце в шафі."
+        },
+        "orderedTokens": [
+          "Put",
+          "them",
+          "on",
+          "the",
+          "top",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы закончили бы быстрее с чьей-нибудь помощью.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-27:i12:r1",
+          "text": "helped"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i12:r2",
+          "text": "would helped"
+        },
+        {
+          "responseId": "en:lesson-27:session-27:i12:r3",
+          "text": "helping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы закончили бы быстрее с чьей-нибудь помощью.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы закончили бы быстрее с чьей-нибудь помощью.",
+          "uk": "Ви закінчили б швидше з чиєюсь допомогою."
+        },
+        "gappedTargetPhrase": "I would finish sooner if someone ___ me.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-27:i12:r1",
+            "text": "helped"
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i12:r2",
+            "text": "would helped"
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i12:r3",
+            "text": "helping"
+          }
+        ],
+        "testedDimension": "Вы закончили бы быстрее с чьей-нибудь помощью.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы закончили бы быстрее с чьей-нибудь помощью.",
+            "feedbackByLocale": {
+              "ru": "В условии здесь helped без would.",
+              "uk": "В умові тут helped без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы закончили бы быстрее с чьей-нибудь помощью.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма helped.",
+              "uk": "Потрібна форма helped."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите оставить это дело на завтра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Предложите оставить это дело на завтра.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i13:audio",
+          "transcript": "We can leave this until tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can leave this until tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что хотелось бы кухню побольше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что хотелось бы кухню побольше.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish the kitchen were bigger.",
+        "localizedMeaning": {
+          "ru": "Скажите, что хотелось бы кухню побольше.",
+          "uk": "Скажіть, що хотілося б більшу кухню."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "the",
+          "kitchen",
+          "were",
+          "bigger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we had more space, we would eat here.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we had more space, we would eat here.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would eat here if we had more space.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we had more space, we would eat here.",
+          "uk": "Почніть із результату: If we had more space, we would eat here."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "eat",
+          "here",
+          "if",
+          "we",
+          "had",
+          "more",
+          "space"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте сообщение о приходе гостей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Услышьте сообщение о приходе гостей.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i16:audio",
+          "transcript": "They will be here in ten minutes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They will be here in ten minutes.",
+        "orderedTokens": [
+          "They",
+          "will",
+          "be",
+          "here",
+          "in",
+          "ten",
+          "minutes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите поставить чайник.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите поставить чайник.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-27:i17:audio",
+          "transcript": "Could you put the kettle on?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you put the kettle on?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e89bd90126a18b827bb3e996147d4ca708aec827a1fc0959846424b97357c3fc"
+}

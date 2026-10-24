@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-27:intro1:r2": {
+          "ru": "В этой конструкции о настоящем нужна форма had.",
+          "uk": "У цій конструкції про теперішнє потрібна форма had."
+        },
+        "en:lesson-27:session-27:intro1:r3": {
+          "ru": "Здесь нужно had.",
+          "uk": "Тут потрібне had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-27:intro2:r2": {
+          "ru": "С yesterday здесь cleaned без have.",
+          "uk": "Із yesterday тут cleaned без have."
+        },
+        "en:lesson-27:session-27:intro2:r3": {
+          "ru": "Нужна прошедшая форма cleaned.",
+          "uk": "Потрібна минула форма cleaned."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-27:intro3:r2": {
+          "ru": "В этом пожелании о настоящем используем were.",
+          "uk": "У цьому побажанні про теперішнє використовуємо were."
+        },
+        "en:lesson-27:session-27:intro3:r3": {
+          "ru": "Здесь нужна форма were.",
+          "uk": "Тут потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f608d5bec2867e844be74532626c3e5324771e70af0c355f22f23e86591b44bb"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were; unreal condition; present perfect / past simple",
+    "uk": "wish + past simple / were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать темп",
+        "uk": "Обрати темп"
+      },
+      "bodyByLocale": {
+        "ru": "Brisk — быстрый, энергичный: a brisk walk — прогулка быстрым шагом. Leisurely — неторопливый, неспешный: a leisurely walk — неспешная прогулка. Несмотря на окончание -ly, здесь leisurely описывает существительное walk. We had a leisurely walk — мы неспешно прогулялись. Вы не хотите торопиться: Can we slow down a little? — можем немного сбавить темп? I wish we had more time — жаль, что у нас нет больше времени. Had после wish описывает желаемое настоящее.",
+        "uk": "Brisk — швидкий, енергійний: a brisk walk — прогулянка швидким кроком. Leisurely — неквапливий, неспішний: a leisurely walk — неспішна прогулянка. Попри закінчення -ly, тут leisurely описує іменник walk. We had a leisurely walk — ми неспішно прогулялися. Ви не хочете поспішати: Can we slow down a little? — можемо трохи сповільнитися? I wish we had more time — шкода, що ми не маємо більше часу. Had після wish описує бажане теперішнє."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-28:intro1:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro1:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro1:r3",
+              "text": "I wish we having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-28:intro1:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro1:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro1:r3",
+              "text": "I wish we having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Дорога с красивым видом",
+        "uk": "Дорога з гарним краєвидом"
+      },
+      "bodyByLocale": {
+        "ru": "Scenic — живописный, с красивыми видами. Let us take the scenic route — давай пойдём по живописному маршруту. Он не обязательно самый короткий. Shoreline — береговая линия, место, где вода встречается с сушей. The path follows the shoreline — тропинка идёт вдоль берега. Вы обсуждаете другой маршрут: We would take that path if it were shorter — мы бы пошли по той тропинке, если бы она была короче. Would take — результат, were — воображаемое условие.",
+        "uk": "Scenic — мальовничий, із гарними краєвидами. Let us take the scenic route — давай підемо мальовничим маршрутом. Він не обов’язково найкоротший. Shoreline — берегова лінія, місце, де вода зустрічається із суходолом. The path follows the shoreline — стежка йде вздовж берега. Ви обговорюєте інший маршрут: We would take that path if it were shorter — ми б пішли тією стежкою, якби вона була коротшою. Would take — результат, were — уявна умова."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-28:intro2:r1",
+              "text": "We would take that path if it were shorter."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro2:r2",
+              "text": "We would took that path if it were shorter."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro2:r3",
+              "text": "We would to take that path if it were shorter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-28:intro2:r1",
+              "text": "We would take that path if it were shorter."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro2:r2",
+              "text": "We would took that path if it were shorter."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro2:r3",
+              "text": "We would to take that path if it were shorter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Остановиться и договориться",
+        "uk": "Зупинитися й домовитися"
+      },
+      "bodyByLocale": {
+        "ru": "Красивый вид хочется сохранить: Could you take a photo of us? — можешь нас сфотографировать? I have already taken one — я уже сделал одну фотографию. I took it a minute ago — я сделал её минуту назад: с a minute ago используем took без have. Подруга не смогла приехать: I wish she were here — жаль, что её здесь нет. Это пожелание о настоящем. Затем договоритесь о встрече в другой день: Shall we come back on Sunday? — вернёмся в воскресенье?",
+        "uk": "Гарний краєвид хочеться зберегти: Could you take a photo of us? — можеш нас сфотографувати? I have already taken one — я вже зробив одну фотографію. I took it a minute ago — я зробив її хвилину тому: з a minute ago використовуємо took без have. Подруга не змогла приїхати: I wish she were here — шкода, що її тут немає. Це побажання про теперішнє. Потім домовтеся про зустріч іншого дня: Shall we come back on Sunday? — повернемося в неділю?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-28:intro3:r1",
+              "text": "I took it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro3:r2",
+              "text": "I have taken it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro3:r3",
+              "text": "I taked it a minute ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-28:intro3:r1",
+              "text": "I took it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro3:r2",
+              "text": "I have taken it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-28:intro3:r3",
+              "text": "I taked it a minute ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c3d4071fd1bbc55e59bda3a424b207c588aebc779cbfa1485cbb692c80dff3ab"
+}

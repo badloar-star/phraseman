@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-28:word:brisk",
+    "correctText": "brisk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i01",
+    "correctText": "We went for a brisk walk.",
+    "correctResponseId": "en:lesson-27:session-28:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i02",
+    "correctText": "Can we slow down a little?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:word:leisurely",
+    "correctText": "leisurely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i03",
+    "correctText": "We had a leisurely walk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-28:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:word:scenic",
+    "correctText": "scenic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i05",
+    "correctText": "Let us take the scenic route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i06",
+    "correctText": "How long will it take?",
+    "correctResponseId": "en:lesson-27:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:word:shoreline",
+    "correctText": "shoreline",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i07",
+    "correctText": "The path follows the shoreline.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i08",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-27:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i09",
+    "correctText": "We can rest here for a while.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i10",
+    "correctText": "Could you take a photo of us?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i11",
+    "correctText": "I have already taken one.",
+    "correctResponseId": "en:lesson-27:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i12",
+    "correctText": "took",
+    "correctResponseId": "en:lesson-27:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i13",
+    "correctText": "I wish she were here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i14",
+    "correctText": "Shall we come back on Sunday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i15",
+    "correctText": "We would come more often if we lived nearby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i16",
+    "correctText": "The water is in my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-28:i17",
+    "correctText": "Could you wait by the bridge?",
+    "correctResponseId": null
+  }
+]

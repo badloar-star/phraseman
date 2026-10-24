@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-29",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-29:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-29:intro1:r2": {
+          "ru": "В этой конструкции о желаемом настоящем нужна форма got.",
+          "uk": "У цій конструкції про бажане теперішнє потрібна форма got."
+        },
+        "en:lesson-27:session-29:intro1:r3": {
+          "ru": "Здесь нужно got.",
+          "uk": "Тут потрібне got."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-29:intro2:r2": {
+          "ru": "С yesterday здесь arranged без have.",
+          "uk": "Із yesterday тут arranged без have."
+        },
+        "en:lesson-27:session-29:intro2:r3": {
+          "ru": "Нужна прошедшая форма arranged.",
+          "uk": "Потрібна минула форма arranged."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-29:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-29:intro3:r2": {
+          "ru": "После would нужна форма join.",
+          "uk": "Після would потрібна форма join."
+        },
+        "en:lesson-27:session-29:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b58d3cf3783a7a202f7d9fbf5beaa7a87d007b926925ef8ceb1a03586214ce47"
+}

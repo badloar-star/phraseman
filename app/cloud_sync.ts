@@ -322,6 +322,8 @@ import {
   mergeCourseProgressSyncRestoreValueV1,
   mergeSessionStarsSyncRestoreValueV1,
 } from '../modules/learning-v2/progress/progress_sync_v1';
+import { LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1, mergeCourseMasksRestoreValueV1 } from '../modules/learning-v2/progress/course_progress_masks_v1';
+import { LEARNING_V2_COURSE_SESSION_COUNT_V1 } from '../modules/learning-v2/content/course_topology_v1';
 import {
   isDeferredBootRestoreWaiting,
   onDeferredBootRestoreSettled,
@@ -516,6 +518,9 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   [LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1]: mergeCourseProgressSyncRestoreValueV1,
   [LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1]: mergeChapterExamSyncRestoreValueV1,
   [LEARNING_V2_SESSION_STARS_SYNC_KEY_V1]: mergeSessionStarsSyncRestoreValueV1,
+  // зачем (владелец 21.10 №8/№10 «просто открыты»; координатор 22.10, прогресс v2): маски пройденного и открытого — только
+  // побитовое ИЛИ, ни одна сторона ничего не стирает. Старое число LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1 едет как прежде.
+  [LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1]: (localRaw, cloudRaw) => mergeCourseMasksRestoreValueV1(localRaw, cloudRaw, LEARNING_V2_COURSE_SESSION_COUNT_V1),
   learning_v2_not_from_start_used_v1: mergeTruthyFlagRestoreValue,
 };
 
@@ -701,6 +706,9 @@ export const SYNC_KEYS = [
   LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
   // звёзды эпизодов: строка цифр 0–3 по порядку курса (≤ 1792 байт), слияние — лучшая звезда по каждому занятию
   LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
+  // прогресс v2 (координатор 22.10): маски пройденного и открытого по порядку курса, ≤ 448 символов каждая, в той же записи
+  // синка — новых чтений и записей нет; слияние — побитовое ИЛИ (FC_RESTORE_MERGE_STRATEGIES)
+  LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1,
   // зачем (владелец 22.10): «Не хочу с начала» — один раз на аккаунт; флаг ставит телефон, облако хранит, чтобы он пережил
   // переустановку (app/learning_v2_not_from_start_once_v1.ts). Слияние ИЛИ — снять флаг нельзя.
   'learning_v2_not_from_start_used_v1',
@@ -782,6 +790,8 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   // зачем (координатор 22.10, вариант А): локальный прогресс курса и результаты экзаменов — по отпечатку аккаунта; переносятся и
   // стираются вместе с аккаунтом (облачная копия — ключи learning_v2_*_sync_v1 в SYNC_KEYS, стираются при смене как все ключи синка).
   'learning-v2:course-local-progress:v1:',
+  // прогресс v2 (22.10): маски пройденного и открытого этого аккаунта — стираются и переносятся вместе с цепочкой
+  'learning-v2:course-local-progress:masks:v1:',
   'v2:chapter-exam:v1:',
   'learning-v2:session-star-results:v1:',
   // Client-authoritative pearl journal and its crash/sync bookkeeping.

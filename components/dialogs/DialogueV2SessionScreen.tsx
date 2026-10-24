@@ -1,7 +1,7 @@
 import EnergyBar from '../EnergyBar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
-import { ActivityIndicator, BackHandler, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, BackHandler, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { PressableScale } from '../feedback/PressableScale';
@@ -37,6 +37,7 @@ import { glassTone } from './glass/glassTone';
 import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
 import DialogHintModal from './DialogHintModal';
+import { dialogListViewportDecision, isDialogListAtEnd } from './dialog_list_viewport';
 import { DialogSayHints } from './hints/DialogSayHints';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import DialogWhySheet from './DialogWhySheet';
@@ -300,8 +301,61 @@ export function DialogueV2SessionScreen({
 
   const openGoals = React.useCallback(() => setGoalsOpen(true), []);
   const openHint = React.useCallback(() => setHintOpen(true), []);
-  const scrollToEnd = React.useCallback(() => {
+  // зачем (жалоба тестера 24.10 «встречный вопрос появляется на секунду и исчезает»; координатор: логи остаются в релизе): [DIALOG-VANISH] —
+  // что в ленте, сколько ей места, у конца ли она и когда её докручиваем. Текст реплик не пишем — только id, автор, длина.
+  const [keyboardOpen, setKeyboardOpen] = React.useState(false);
+  // зачем (скрин тестера: между карточкой цели и строкой ввода ленты не видно): пока открыта клавиатура, карточка цели свёрнута —
+  // на небольшом экране шапка + цель + ввод с подсказками + клавиатура съедали всю высоту ленты. Цель остаётся в «Задания».
+  const goalShown = !!(goal && coachingLabels && bottom === 'input' && !keyboardOpen);
+  const vanishPrevRef = React.useRef<{ count: number; lastId: string | null }>({ count: 0, lastId: null });
+  const vanishLayoutRef = React.useRef({ header: 0, list: 0, content: 0, keyboard: 0, scrollY: 0 });
+  const atEndRef = React.useRef(true);
+  const scrollToEnd = React.useCallback((_width?: number, height?: number) => {
+    if (typeof height === 'number') {
+      vanishLayoutRef.current = { ...vanishLayoutRef.current, content: Math.round(height) };
+      console.log('[DIALOG-VANISH] content', JSON.stringify({ height: Math.round(height), layout: vanishLayoutRef.current }));
+    }
     scrollRef.current?.scrollToEnd({ animated: true });
+  }, []);
+  React.useEffect(() => {
+    const last = messages[messages.length - 1];
+    const prev = vanishPrevRef.current;
+    const lastId = last?.id ?? null;
+    if (messages.length === prev.count && lastId === prev.lastId) return; // guard-ok: лента не менялась — писать нечего
+    const change = messages.length < prev.count ? 'shrunk'
+      : lastId !== prev.lastId ? (messages.length > prev.count ? 'appended' : 'replaced_last') : 'same_last';
+    console.log('[DIALOG-VANISH] messages', JSON.stringify({
+      count: messages.length, prevCount: prev.count, lastId, lastAuthor: last?.author ?? null,
+      lastLen: typeof last?.text === 'string' ? last.text.length : null, change, bottom: String(bottom), goalShown, sending,
+      atEnd: atEndRef.current, layout: vanishLayoutRef.current,
+    }));
+    vanishPrevRef.current = { count: messages.length, lastId };
+  }, [bottom, goalShown, messages, sending]);
+  const onVanishHeaderLayout = React.useCallback((event: LayoutChangeEvent) => {
+    const height = Math.round(event.nativeEvent.layout.height);
+    if (height === vanishLayoutRef.current.header) return; // guard-ok: высота шапки прежняя
+    vanishLayoutRef.current = { ...vanishLayoutRef.current, header: height };
+    console.log('[DIALOG-VANISH] header', JSON.stringify({ height, goalShown, keyboardOpen, layout: vanishLayoutRef.current }));
+  }, [goalShown, keyboardOpen]);
+  // зачем: окно ленты сжалось или выросло (карточка цели, строка ввода с подсказками, клавиатура) — содержимое не менялось, и
+  // onContentSizeChange молчит. Был у конца — докручиваем без анимации; листал историю вверх — не дёргаем.
+  const onListLayout = React.useCallback((event: LayoutChangeEvent) => {
+    const height = Math.round(event.nativeEvent.layout.height);
+    const prevViewport = vanishLayoutRef.current.list;
+    const decision = dialogListViewportDecision({ prevViewport, viewport: height, wasAtEnd: atEndRef.current });
+    if (decision === 'same_height') return; // guard-ok: высота окна ленты прежняя
+    vanishLayoutRef.current = { ...vanishLayoutRef.current, list: height };
+    console.log('[DIALOG-VANISH] list', JSON.stringify({ height, prevViewport, decision, count: messages.length, layout: vanishLayoutRef.current }));
+    if (decision === 'stick_to_end') scrollRef.current?.scrollToEnd({ animated: false });
+  }, [messages.length]);
+  const onListScroll = React.useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
+    const state = { offsetY: Math.round(contentOffset.y), viewport: Math.round(layoutMeasurement.height), content: Math.round(contentSize.height) };
+    vanishLayoutRef.current = { ...vanishLayoutRef.current, scrollY: state.offsetY };
+    const atEnd = isDialogListAtEnd(state);
+    if (atEnd === atEndRef.current) return; // guard-ok: пишем только смену «у конца / листает вверх»
+    atEndRef.current = atEnd;
+    console.log('[DIALOG-VANISH] scroll', JSON.stringify({ atEnd, ...state }));
   }, []);
 
   // зачем (координатор 12.10, «сперва логи», Сверка dialogs-030/031): где стоит строка ввода после отправки — [DLG-INPUT-LAYOUT] (высота клавиатуры, зазор до низа окна, нижний отступ безопасной зоны).
@@ -321,9 +375,15 @@ export function DialogueV2SessionScreen({
         console.log('[DIALOGUE-KEYBOARD] scroll_to_end after show', JSON.stringify({ settleMs })); // guard-ok: ветка решает значение
         scrollRef.current?.scrollToEnd({ animated: true });
       }, settleMs);
+      vanishLayoutRef.current = { ...vanishLayoutRef.current, keyboard: Math.round(event.endCoordinates?.height ?? 0) };
+      console.log('[DIALOG-VANISH] keyboard:show', JSON.stringify({ layout: vanishLayoutRef.current }));
+      setKeyboardOpen(true);
     });
     const hide = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide', () => {
       console.log('[DIALOGUE-KEYBOARD] hide', JSON.stringify({ os: Platform.OS }));
+      vanishLayoutRef.current = { ...vanishLayoutRef.current, keyboard: 0 };
+      console.log('[DIALOG-VANISH] keyboard:hide', JSON.stringify({ layout: vanishLayoutRef.current }));
+      setKeyboardOpen(false);
     });
     return () => { show.remove(); hide.remove(); };
   }, []);
@@ -340,6 +400,7 @@ export function DialogueV2SessionScreen({
         <SafeTopBackButton screen="dialogue_v2_session" accessibilityLabel={labels.back} onPress={requestBack} />
         <View
           testID="dialogue-v2-session-header"
+          onLayout={onVanishHeaderLayout}
           style={{ paddingHorizontal: 14, paddingTop: 2, paddingBottom: 12, backgroundColor: glass.bg }}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -386,7 +447,7 @@ export function DialogueV2SessionScreen({
               <Ionicons name="ellipsis-horizontal" size={18} color={glass.text} />
             </DialogueGlassSquareButton>
           </View>
-          {goal && coachingLabels && bottom === 'input' ? (
+          {goalShown && goal && coachingLabels ? (
             <DialogueGlassGoalCard
               glass={glass}
               testID="dialogue-v2-session-goal"
@@ -406,6 +467,9 @@ export function DialogueV2SessionScreen({
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
           onContentSizeChange={scrollToEnd} decelerationRate="fast"
+          onLayout={onListLayout}
+          onScroll={onListScroll}
+          scrollEventThrottle={64}
         >
           {/* зачем (C24): после финальной реплики тап по ленте ведёт к итогу. */}
           {/* guard-ok: лента ограничена потолком хода сессии на сервере (≤ 64 хода), виртуализация не нужна. */}

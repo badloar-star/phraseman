@@ -11,12 +11,12 @@
       "pageId": "en:lesson-17:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Один предмет или человек",
-        "uk": "Один предмет або людина"
+        "ru": "Книга о чужой жизни",
+        "uk": "Книжка про чуже життя"
       },
       "bodyByLocale": {
-        "ru": "biography — биография, книга о чьей-то жизни. Это исчисляемое слово: один — a biography. A ставим перед согласным звуком, an — перед гласным.",
-        "uk": "biography — біографія, книжка про чиєсь життя. Це злічуване слово: один — a biography. A ставимо перед приголосним звуком, an — перед голосним."
+        "ru": "Вы показываете другу книгу о жизни художника, написанную другим человеком. Назовите её вид: This is a biography. Biography — одна книга-биография, исчисляемое слово. Соберите предложение: This + is + a biography. This указывает на книгу, is связывает её с названием, а a стоит перед biography, которое начинается с согласного звука.",
+        "uk": "Ви показуєте другу книжку про життя художника, написану іншою людиною. Назвіть її вид: This is a biography. Biography — одна книжка-біографія, злічуване слово. Складіть речення: This + is + a biography. This указує на книжку, is пов'язує її з назвою, а a стоїть перед biography, яке починається з приголосного звука."
       },
       "question": {
         "interactionId": "en:lesson-17:session-03:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Считаем несколько",
-        "uk": "Рахуємо декілька"
+        "ru": "Две автобиографии на полке",
+        "uk": "Дві автобіографії на полиці"
       },
       "bodyByLocale": {
-        "ru": "autobiography — автобиография, книга автора о собственной жизни. Один: an autobiography. Два: two autobiographies. У autobiography во множественном числе y меняется на ies: autobiographies.",
-        "uk": "autobiography — автобіографія, книжка автора про власне життя. Один: an autobiography. Два: two autobiographies. У autobiography у множині y змінюється на ies: autobiographies."
+        "ru": "Друг ищет книги, в которых авторы рассказывают о собственной жизни. Вы замечаете две на полке. Autobiography — автобиография; во множественном числе y меняем на ies: autobiographies. Соберите фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двух книг используем are; после количества называем книги, затем место.",
+        "uk": "Друг шукає книжки, у яких автори розповідають про власне життя. Ви помічаєте дві на полиці. Autobiography — автобіографія; у множині y змінюємо на ies: autobiographies. Складіть фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двох книжок використовуємо are; після кількості називаємо книжки, потім місце."
       },
       "question": {
         "interactionId": "en:lesson-17:session-03:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-17:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Общее название без a",
-        "uk": "Загальна назва без a"
+        "ru": "Интересная художественная литература",
+        "uk": "Цікава художня література"
       },
       "bodyByLocale": {
-        "ru": "fiction — художественная литература, вымышленные истории. Fiction как вид литературы — неисчисляемое слово: is. non-fiction — нехудожественная литература о реальных фактах. Non-fiction как вид литературы — без a и без множественного -s. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.",
-        "uk": "fiction — художня література, вигадані історії. Fiction як вид літератури — незлічуване слово: is. non-fiction — нехудожня література про реальні факти. Non-fiction як вид літератури — без a та без множинного -s. Окремі предмети або події можна назвати іншими злічуваними словами; тут тренуємо загальні назви."
+        "ru": "Вы делитесь с другом впечатлением от художественной литературы, которую сейчас читаете. Fiction здесь обозначает литературу как общее понятие, а не отдельные книги. Скажите: This fiction is interesting. Соберите фразу: This fiction + is + interesting. С неисчисляемым fiction используем this и is, а interesting в конце передаёт впечатление. Здесь не образуем множественную форму fictions.",
+        "uk": "Ви ділитеся з другом враженням від художньої літератури, яку зараз читаєте. Fiction тут позначає літературу як загальне поняття, а не окремі книжки. Скажіть: This fiction is interesting. Складіть фразу: This fiction + is + interesting. Із незлічуваним fiction використовуємо this та is, а interesting наприкінці передає враження. Тут не утворюємо множини fictions."
       },
       "question": {
         "interactionId": "en:lesson-17:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f9ab174f44080ab7a1c79c472afa32926efed881b138eb820418bd5bb8ea981"
+  "introFingerprint": "332c0091babab89a4d8320c970e0d649df15848fa78f7a7a27015fa64e0a5c53"
 }

@@ -12557,7 +12557,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 1,
-    sourceFingerprint: "42f68e5bee184f9d372ac5c1515eaa6a7da3f545eb777227459d8d272f612046",
+    sourceFingerprint: "58808ae0641562c53a6d5be1415d8fbe5765a89622c02bc0460a67146e9386a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Bookend начинается с согласного звука: a bookend.","Перед исчисляемым существительным в единственном числе здесь нужен a."],["После two нужно ottomans с -s.","A означает один предмет и не ставится перед two."],["Неисчисляемое crockery согласуется с is.","В значении «посуда» не делаем множественное crockeries."]],"uk":[["Bookend починається з приголосного звука: a bookend.","Перед злічуваним іменником в однині тут потрібен a."],["Після two потрібне ottomans із -s.","A означає один предмет і не ставиться перед two."],["Незлічуване crockery узгоджується з is.","У значенні «посуд» не робимо множину crockeries."]]}),
@@ -12571,7 +12571,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 2,
-    sourceFingerprint: "16ed339384d5399dd7ff2bc13261f815a7883250505e1d5259f23d65a22f8b23",
+    sourceFingerprint: "0771b8d8f1035297269a0fea4fbae4e6b1dd6876aa0f182e5b35121818ff6deb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Shallot начинается с согласного звука: a shallot.","Здесь нельзя оставлять исчисляемое существительное в единственном числе без a."],["После two нужно множественное peppercorns.","Не ставьте a перед two."],["Bulgur как название крупы — неисчисляемое слово: is.","В этом значении у слова нет множественного -s."]],"uk":[["Shallot починається з приголосного звука: a shallot.","Тут не можна залишати злічуваний іменник в однині без a."],["Після two потрібна множина peppercorns.","Не ставте a перед two."],["Bulgur як назва крупи — незлічуване слово: is.","У цьому значенні слово не має множинного -s."]]}),
@@ -12585,7 +12585,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 3,
-    sourceFingerprint: "abf45a7ff06c72604f51cb4fa253cab8a691501048f3b6f6fe577e6bd8dc6d88",
+    sourceFingerprint: "5d58ac76f506864287283fcd608d7ae772848f8beadd9d665ca2416ba0b0b7c2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Biography начинается с согласного звука: a biography.","Здесь нельзя оставлять исчисляемое существительное в единственном числе без a."],["У autobiography во множественном числе y меняется на ies: autobiographies.","Не ставьте a перед two."],["Fiction как вид литературы — неисчисляемое слово: is.","В этом значении у слова нет множественного -s."]],"uk":[["Biography починається з приголосного звука: a biography.","Тут не можна залишати злічуваний іменник в однині без a."],["У autobiography у множині y змінюється на ies: autobiographies.","Не ставте a перед two."],["Fiction як вид літератури — незлічуване слово: is.","У цьому значенні слово не має множинного -s."]]}),

@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Заощаджена сотня
+### Уже заощадив сто фунтів
 
-Hundred — сто. A hundred pounds — сто фунтів; можна також сказати one hundred pounds. I have saved a hundred pounds — я заощадив сто фунтів: гроші є зараз. Із yesterday було б I saved a hundred pounds yesterday — без have. Після точного числа hundred не отримує -s: two hundred pounds.
+Ви відкладали гроші на покупку, і тепер у вас є сто фунтів. I have saved a hundred pounds — я заощадив сто фунтів. Після I ставимо have, потім saved — третю форму save з доданою -d. Так повідомляємо про результат зараз. A hundred pounds називає заощаджену суму: a hundred означає «сто», pounds стоїть у множині. Порядок — I + have + saved + a hundred pounds.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ Hundred — сто. A hundred pounds — сто фунтів; можна так�
 
 ## Інтро 2
 
-### Тисяча й мільйон
+### Учорашня оплата
 
-Thousand — тисяча, million — мільйон. She paid a thousand dollars yesterday — учора вона заплатила тисячу доларів. We have sold a million books — ми продали мільйон книжок: наприклад, видавництво повідомляє результат. Із yesterday потрібне paid без has. Із точною кількістю кажемо two thousand, three million — без -s.
+Учора сестра заплатила тисячу доларів за покупку. Ви розповідаєте, скільки вона витратила. She paid a thousand dollars yesterday — учора вона заплатила тисячу доларів. Після she ставимо paid — минулу форму pay. Yesterday задає завершений день, тому has не потрібен. A thousand dollars називає суму: thousand залишається без -s, а dollars отримує -s. Наприкінці yesterday уточнює час.
 
 **Виберіть фразу для цієї ситуації.**
 

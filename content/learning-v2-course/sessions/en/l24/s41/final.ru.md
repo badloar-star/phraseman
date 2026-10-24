@@ -35,9 +35,9 @@ Army — армия. He joined the army last year — он поступил на
 
 ## Интро 3
 
-### После соревнования
+### Разговор о проигранном матче
 
-Victory — победа, defeat — поражение. Эти слова подходят и для спорта: We have celebrated our victory — мы отпраздновали нашу победу. She talked about the defeat yesterday — вчера она говорила о поражении. Результат празднования передаём через have celebrated; рассказ с yesterday — через talked.
+Вчера тренер обсуждала с командой поражение в матче. Вы рассказываете об этом разговоре. She talked about the defeat yesterday — вчера она говорила о поражении. После she ставим talked, прошедшую форму talk: yesterday указывает на завершившийся день. About the defeat называет тему разговора. The относится к конкретному поражению, о котором знают собеседники. Собираем she + talked + about the defeat + yesterday, без has.
 
 **Выберите фразу для этой ситуации.**
 

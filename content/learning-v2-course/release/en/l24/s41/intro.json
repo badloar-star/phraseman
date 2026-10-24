@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "После соревнования",
-        "uk": "Після змагання"
+        "ru": "Разговор о проигранном матче",
+        "uk": "Розмова про програний матч"
       },
       "bodyByLocale": {
-        "ru": "Victory — победа, defeat — поражение. Эти слова подходят и для спорта: We have celebrated our victory — мы отпраздновали нашу победу. She talked about the defeat yesterday — вчера она говорила о поражении. Результат празднования передаём через have celebrated; рассказ с yesterday — через talked.",
-        "uk": "Victory — перемога, defeat — поразка. Ці слова підходять і для спорту: We have celebrated our victory — ми відсвяткували нашу перемогу. She talked about the defeat yesterday — учора вона говорила про поразку. Результат святкування передаємо через have celebrated; розповідь із yesterday — через talked."
+        "ru": "Вчера тренер обсуждала с командой поражение в матче. Вы рассказываете об этом разговоре. She talked about the defeat yesterday — вчера она говорила о поражении. После she ставим talked, прошедшую форму talk: yesterday указывает на завершившийся день. About the defeat называет тему разговора. The относится к конкретному поражению, о котором знают собеседники. Собираем she + talked + about the defeat + yesterday, без has.",
+        "uk": "Учора тренерка обговорювала з командою поразку в матчі. Ви розповідаєте про цю розмову. She talked about the defeat yesterday — учора вона говорила про поразку. Після she ставимо talked, минулу форму talk: yesterday указує на завершений день. About the defeat називає тему розмови. The стосується конкретної поразки, про яку знають співрозмовники. Складаємо she + talked + about the defeat + yesterday, без has."
       },
       "question": {
         "interactionId": "en:lesson-24:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8982072615768e39d094fd8fcee9839a27861520faa5a55760e16ccb4b7b1c37"
+  "introFingerprint": "3b758e4515bf8a36afa367712979396e9084b095f356d16498e63097b0a0fe2f"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Богатство и бедность",
-        "uk": "Багатство й бідність"
+        "ru": "Вчерашний разговор о богатстве",
+        "uk": "Учорашня розмова про багатство"
       },
       "bodyByLocale": {
-        "ru": "Wealth — богатство, poverty — бедность. She talked about his wealth yesterday — вчера она говорила о его богатстве. We have read about poverty — мы прочитали о бедности. С yesterday выбираем talked; без даты можно сообщить о результате чтения через have read. Read здесь произносится «ред».",
-        "uk": "Wealth — багатство, poverty — бідність. She talked about his wealth yesterday — учора вона говорила про його багатство. We have read about poverty — ми прочитали про бідність. Із yesterday вибираємо talked; без дати можна повідомити про результат читання через have read. Read тут вимовляється «ред»."
+        "ru": "Вчера подруга рассказывала о богатстве известного человека. Вы пересказываете тему разговора. She talked about his wealth yesterday — вчера она говорила о его богатстве. Начинаем с she, затем ставим talked: вчерашний день закончился, поэтому нужен Past Simple. About вводит тему, а his wealth уточняет, о чьём богатстве шла речь. В конце ставим yesterday. Здесь не добавляем has перед talked.",
+        "uk": "Учора подруга розповідала про багатство відомої людини. Ви переказуєте тему розмови. She talked about his wealth yesterday — учора вона говорила про його багатство. Починаємо з she, потім ставимо talked: учорашній день завершився, тому потрібен Past Simple. About уводить тему, а his wealth уточнює, про чиє багатство йшлося. Наприкінці ставимо yesterday. Тут не додаємо has перед talked."
       },
       "question": {
         "interactionId": "en:lesson-24:session-40:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "13d140f0232b257251200da084c4cfa121992308c016d534576830115e96e082"
+  "introFingerprint": "0298f7f658c0541010b2f3aec6dd7edc20b96fe275afe4025b029e710a25a9aa"
 }

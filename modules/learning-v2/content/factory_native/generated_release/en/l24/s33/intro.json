@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дождь и засуха",
-        "uk": "Дощ і посуха"
+        "ru": "Данные об осадках перед поездкой",
+        "uk": "Дані про опади перед поїздкою"
       },
       "bodyByLocale": {
-        "ru": "Rainfall — количество выпавшего дождя. She checked the rainfall yesterday — вчера она посмотрела данные об осадках. Например, перед поездкой узнала, много ли там дождей. Drought — засуха, долгое время без достаточного количества дождя. We have had a drought here before — у нас здесь уже бывала засуха. Yesterday требует checked, а опыт без даты допускает have had.",
-        "uk": "Rainfall — кількість дощу, що випав. She checked the rainfall yesterday — учора вона переглянула дані про опади. Наприклад, перед поїздкою дізналася, чи багато там дощів. Drought — посуха, тривалий час без достатньої кількості дощу. We have had a drought here before — у нас тут уже була посуха. Yesterday потребує checked, а досвід без дати допускає have had."
+        "ru": "Вчера подруга готовилась к поездке и посмотрела данные о количестве дождя в месте отдыха. She checked the rainfall yesterday — вчера она посмотрела данные об осадках. После she ставим checked: к check добавляем -ed, поскольку говорим о событии в закончившийся день. The rainfall называет, что она проверила, а yesterday — когда. Здесь нужен Past Simple, поэтому has перед checked не добавляем.",
+        "uk": "Учора подруга готувалася до поїздки й переглянула дані про кількість дощу в місці відпочинку. She checked the rainfall yesterday — учора вона переглянула дані про опади. Після she ставимо checked: до check додаємо -ed, оскільки говоримо про подію в завершений день. The rainfall називає, що вона перевірила, а yesterday — коли. Тут потрібен Past Simple, тому has перед checked не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-33:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d8a0783ec9093737ff7a63cc6d7c5418ff8fcb2c24b0db2d2340afa70342673e"
+  "introFingerprint": "a8419fa1b3046c748c032721b93c65e5a94a0aec24f71ca99e5f93a1b2389b8d"
 }

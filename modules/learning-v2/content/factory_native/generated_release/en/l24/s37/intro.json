@@ -15,8 +15,8 @@
         "uk": "Не пам’ятаю віку"
       },
       "bodyByLocale": {
-        "ru": "Age — возраст. I have forgotten his age — я забыл, сколько ему лет. Have forgotten показывает результат: сейчас я не помню. Forgotten — форма знакомого forget. His age — его возраст, her age — её возраст. Чтобы спросить возраст, можно использовать знакомый вопрос How old is he?",
-        "uk": "Age — вік. I have forgotten his age — я забув, скільки йому років. Have forgotten показує результат: зараз я не пам’ятаю. Forgotten — форма знайомого forget. His age — його вік, her age — її вік. Щоб запитати вік, можна використати знайоме запитання How old is he?"
+        "ru": "Вы выбираете подарок племяннику и понимаете, что забыли, сколько ему лет. I have forgotten his age — я забыл, сколько ему лет. После I ставим have, затем forgotten — третью форму forget. Present Perfect показывает нынешний результат: сейчас вы не помните возраст. His age называет, что вы забыли. Порядок — I + have + forgotten + his age.",
+        "uk": "Ви вибираєте подарунок племінникові й розумієте, що забули, скільки йому років. I have forgotten his age — я забув, скільки йому років. Після I ставимо have, потім forgotten — третю форму forget. Present Perfect показує теперішній результат: зараз ви не пам’ятаєте віку. His age називає, що ви забули. Порядок — I + have + forgotten + his age."
       },
       "question": {
         "interactionId": "en:lesson-24:session-37:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Печальная новость",
-        "uk": "Сумна новина"
+        "ru": "Были на похоронах",
+        "uk": "Були на похороні"
       },
       "bodyByLocale": {
-        "ru": "Death — смерть, funeral — похороны. We have heard about his death — мы узнали о его смерти: сообщаем новость без даты. They attended the funeral last week — на прошлой неделе они были на похоронах. Last week требует attended без have. В английском the funeral — одно событие, хотя русское «похороны» имеет форму множественного числа.",
-        "uk": "Death — смерть, funeral — похорон. We have heard about his death — ми дізналися про його смерть: повідомляємо новину без дати. They attended the funeral last week — минулого тижня вони були на похороні. Last week потребує attended без have. Після attend називаємо подію прямо: attend the funeral, без at."
+        "ru": "Вы рассказываете, что знакомые на прошлой неделе были на похоронах. They attended the funeral last week — на прошлой неделе они были на похоронах. Last week называет завершившийся период, поэтому после they ставим attended — Past Simple от attend. Затем прямо называем событие: the funeral, без at. В конце last week уточняет время. Have здесь не нужен.",
+        "uk": "Ви розповідаєте, що знайомі минулого тижня були на похороні. They attended the funeral last week — минулого тижня вони були на похороні. Last week називає завершений період, тому після they ставимо attended — Past Simple від attend. Потім прямо називаємо подію: the funeral, без at. Наприкінці last week уточнює час. Have тут не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e3e2acf4989ac4751acaa30d5bafb0007d87050251a01583df37d547c709dd56"
+  "introFingerprint": "5ec106b8e2e7bfbf849a0fd5d84bb079bd657401f746cc5a7a1c385a36ce3506"
 }

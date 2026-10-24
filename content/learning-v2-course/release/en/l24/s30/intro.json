@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Звучит лучше",
-        "uk": "Звучить краще"
+        "ru": "Произношение стало лучше",
+        "uk": "Вимова стала кращою"
       },
       "bodyByLocale": {
-        "ru": "Pronunciation — произношение: как звучат слова. I have improved my pronunciation — я улучшил своё произношение. Сообщаем о результате, который заметен сейчас. С yesterday нужен Past Simple: I practised my pronunciation yesterday — я тренировал произношение вчера.",
-        "uk": "Pronunciation — вимова: як звучать слова. I have improved my pronunciation — я поліпшив свою вимову. Повідомляємо про результат, який помітний зараз. Із yesterday потрібен Past Simple: I practised my pronunciation yesterday — я тренував вимову вчора."
+        "ru": "Вы занимались произношением и теперь замечаете, что слова звучат лучше. I have improved my pronunciation — я улучшил своё произношение. После I ставим have, затем improved — третью форму improve с добавленной -d. Так показываем результат занятий к настоящему моменту. My pronunciation называет, что улучшилось. Собираем I + have + improved + my pronunciation.",
+        "uk": "Ви працювали над вимовою й тепер помічаєте, що слова звучать краще. I have improved my pronunciation — я поліпшив свою вимову. Після I ставимо have, потім improved — третю форму improve з доданою -d. Так показуємо результат занять на теперішній момент. My pronunciation називає, що поліпшилося. Складаємо I + have + improved + my pronunciation."
       },
       "question": {
         "interactionId": "en:lesson-24:session-30:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Слова и правила",
-        "uk": "Слова й правила"
+        "ru": "Вчера упражнялась со словами",
+        "uk": "Учора вправлялася зі словами"
       },
       "bodyByLocale": {
-        "ru": "Vocabulary — словарный запас, слова, которые мы знаем и используем. She practised vocabulary yesterday — вчера она упражнялась в употреблении слов. Grammar — грамматика, правила построения фраз. We have studied this grammar before — мы уже изучали эту грамматику раньше. Before не называет конкретную законченную дату, поэтому здесь подходит have studied.",
-        "uk": "Vocabulary — словниковий запас, слова, які ми знаємо й використовуємо. She practised vocabulary yesterday — учора вона вправлялася у вживанні слів. Grammar — граматика, правила побудови фраз. We have studied this grammar before — ми вже вивчали цю граматику раніше. Before не називає конкретної завершеної дати, тому тут підходить have studied."
+        "ru": "Вчера сестра выполняла упражнения со знакомыми словами. She practised vocabulary yesterday — вчера она упражнялась в употреблении слов. После she ставим practised: yesterday задаёт законченный день, поэтому нужен Past Simple. Practise заканчивается на e, и для прошедшей формы добавляем -d. Vocabulary называет, что она отрабатывала; yesterday в конце уточняет время. Has перед practised не добавляем.",
+        "uk": "Учора сестра виконувала вправи зі знайомими словами. She practised vocabulary yesterday — учора вона вправлялася у вживанні слів. Після she ставимо practised: yesterday задає завершений день, тому потрібен Past Simple. Practise закінчується на e, і для минулої форми додаємо -d. Vocabulary називає, що вона відпрацьовувала; yesterday наприкінці уточнює час. Has перед practised не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-30:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Проверили значение",
-        "uk": "Перевірили значення"
+        "ru": "Проверили значение вчера",
+        "uk": "Перевірили значення вчора"
       },
       "bodyByLocale": {
-        "ru": "Meaning — значение слова или фразы. They checked the meaning yesterday — вчера они проверили значение. С yesterday используем checked без have. They have checked the meaning — значение уже проверено, точное прошлое время не называем. Произнести слово уверенно приятно; знать его значение ещё полезнее.",
-        "uk": "Meaning — значення слова або фрази. They checked the meaning yesterday — учора вони перевірили значення. Із yesterday використовуємо checked без have. They have checked the meaning — значення вже перевірено, точного минулого часу не називаємо. Вимовити слово впевнено приємно; знати його значення ще корисніше."
+        "ru": "Вчера друзья встретили незнакомое слово и проверили его значение в словаре. They checked the meaning yesterday — вчера они проверили значение. После they ставим checked: к check добавляем -ed. The meaning называет, что проверили, а yesterday — когда. Этот законченный день требует Past Simple, поэтому have здесь не нужен. Порядок — they + checked + the meaning + yesterday.",
+        "uk": "Учора друзі натрапили на незнайоме слово й перевірили його значення у словнику. They checked the meaning yesterday — учора вони перевірили значення. Після they ставимо checked: до check додаємо -ed. The meaning називає, що перевірили, а yesterday — коли. Цей завершений день потребує Past Simple, тому have тут не потрібен. Порядок — they + checked + the meaning + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "06e252b67d458a9c77ab5db329f1987cd9fda4852e750a0f83f607e5215e79f0"
+  "introFingerprint": "2f4a65c4414625698e82e5e2853d3de3c38ac4a63f4ae7e96a4f876980f8def8"
 }

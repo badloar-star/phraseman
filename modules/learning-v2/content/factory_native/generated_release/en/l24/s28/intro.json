@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Полиция поймала вора",
-        "uk": "Поліція спіймала злодія"
+        "ru": "Домушника уже поймали",
+        "uk": "Квартирного злодія вже спіймали"
       },
       "bodyByLocale": {
-        "ru": "Burglar — вор, который проникает в здание, чтобы украсть. The police have caught the burglar — полиция поймала домушника: сообщаем свежий результат. Police согласуется как множественное число, поэтому have. Caught — форма catch, «поймать». С yesterday фраза стала бы The police caught the burglar yesterday.",
-        "uk": "Burglar — злодій, який проникає до будівлі, щоб украсти. The police have caught the burglar — поліція спіймала квартирного злодія: повідомляємо свіжий результат. Police узгоджується як множина, тому have. Caught — форма catch, «спіймати». Із yesterday фраза стала б The police caught the burglar yesterday."
+        "ru": "Вы узнали, что полиция поймала вора, который проникал в квартиры, и сообщаете эту новость соседям. The police have caught the burglar — полиция поймала домушника. The police в английском согласуется как множественное число, поэтому ставим have, не has. Затем caught — третью форму catch. The burglar называет, кого поймали. Present Perfect передаёт свежий результат без указания законченной даты.",
+        "uk": "Ви дізналися, що поліція спіймала злодія, який проникав до квартир, і повідомляєте цю новину сусідам. The police have caught the burglar — поліція спіймала квартирного злодія. The police в англійській узгоджується як множина, тому ставимо have, не has. Потім caught — третю форму catch. The burglar називає, кого спіймали. Present Perfect передає свіжий результат без зазначення завершеної дати."
       },
       "question": {
         "interactionId": "en:lesson-24:session-28:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что произошло в прошлом году",
-        "uk": "Що сталося торік"
+        "ru": "Попал в тюрьму в прошлом году",
+        "uk": "Потрапив до в’язниці торік"
       },
       "bodyByLocale": {
-        "ru": "Criminal — преступник, prison — тюрьма. She saw the criminal yesterday — вчера она видела преступника. He went to prison last year — в прошлом году он попал в тюрьму. Go to prison без the означает оказаться там заключённым. Yesterday и last year — законченные периоды: saw и went, без has.",
-        "uk": "Criminal — злочинець, prison — в’язниця. She saw the criminal yesterday — учора вона бачила злочинця. He went to prison last year — торік він потрапив до в’язниці. Go to prison без the означає опинитися там ув’язненим. Yesterday і last year — завершені періоди: saw і went, без has."
+        "ru": "Вы рассказываете, что знакомый человек оказался в тюрьме в прошлом году. He went to prison last year — в прошлом году он попал в тюрьму. После he ставим went, прошедшую форму go. Last year задаёт законченный период, поэтому здесь Past Simple, без has. To prison без the означает, что человек оказался там заключённым. В конце last year уточняет время события.",
+        "uk": "Ви розповідаєте, що знайома людина опинилася у в’язниці минулого року. He went to prison last year — торік він потрапив до в’язниці. Після he ставимо went, минулу форму go. Last year задає завершений період, тому тут Past Simple, без has. To prison без the означає, що людина опинилася там ув’язненою. Наприкінці last year уточнює час події."
       },
       "question": {
         "interactionId": "en:lesson-24:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e3d538f49020ac84483c595ff3c3cf21aac6c2a9740c5264568677c346cd5e95"
+  "introFingerprint": "2aaf83241b29d0b21df16fee24b9781c7a2850fff6cd65f57c2280fbc3fa5d12"
 }

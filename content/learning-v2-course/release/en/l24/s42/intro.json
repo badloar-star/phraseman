@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Покупка и хранение",
-        "uk": "Купівля та зберігання"
+        "ru": "Убрали зерно на хранение",
+        "uk": "Поклали зерно на зберігання"
       },
       "bodyByLocale": {
-        "ru": "Corn — кукуруза, grain — зерно. Здесь corn означает кукурузу как продукт. We have bought some corn — мы купили немного кукурузы. They stored the grain yesterday — вчера они убрали зерно на хранение. Grain здесь обозначает зерно в целом. Покупка без даты — have bought, действие с yesterday — stored.",
-        "uk": "Corn — кукурудза, grain — зерно. Тут corn означає кукурудзу як продукт. We have bought some corn — ми купили трохи кукурудзи. They stored the grain yesterday — учора вони поклали зерно на зберігання. Grain тут позначає зерно загалом. Купівля без дати — have bought, дія із yesterday — stored."
+        "ru": "Вы рассказываете о вчерашней работе на ферме: работники убрали зерно на хранение. They stored the grain yesterday — вчера они убрали зерно на хранение. После they ставим stored: к правильному глаголу store добавляем -d, поскольку он уже заканчивается на e. Yesterday задаёт законченный день, поэтому используем Past Simple, без have. The grain называет, что убрали. Собираем they + stored + the grain + yesterday.",
+        "uk": "Ви розповідаєте про вчорашню роботу на фермі: працівники поклали зерно на зберігання. They stored the grain yesterday — учора вони поклали зерно на зберігання. Після they ставимо stored: до правильного дієслова store додаємо -d, оскільки воно вже закінчується на e. Yesterday задає завершений день, тому використовуємо Past Simple, без have. The grain називає, що поклали на зберігання. Складаємо they + stored + the grain + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e94e58bac0733043f5042d72f348e7c1978e81ab59042962bb90ed256b156f56"
+  "introFingerprint": "853166691b440dfa7640504716e15866c71215ca2f99eddecbbbf63254038779"
 }

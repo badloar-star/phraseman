@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Камень и сталь",
-        "uk": "Камінь і сталь"
+        "ru": "Камень с прогулки",
+        "uk": "Камінь із прогулянки"
       },
       "bodyByLocale": {
-        "ru": "Stone — камень. She picked up a stone yesterday — вчера она подняла камень. Один камень можно посчитать: a stone, two stones. Steel — сталь. We have chosen a steel shelf — мы выбрали стальную полку. Steel перед shelf указывает материал. Yesterday требует picked, а результат без даты — have chosen.",
-        "uk": "Stone — камінь. She picked up a stone yesterday — учора вона підняла камінь. Один камінь можна порахувати: a stone, two stones. Steel — сталь. We have chosen a steel shelf — ми вибрали сталеву полицю. Steel перед shelf указує матеріал. Yesterday потребує picked, а результат без дати — have chosen."
+        "ru": "Вчера подруга заметила красивый камень на дорожке и подняла его. She picked up a stone yesterday — вчера она подняла камень. После she ставим picked up: для вчерашнего события используем Past Simple, добавляя -ed к pick. Up сохраняем после глагола: pick up означает «поднять». A stone называет один камень, yesterday — время. Has в этом предложении не нужен.",
+        "uk": "Учора подруга помітила гарний камінь на доріжці й підняла його. She picked up a stone yesterday — учора вона підняла камінь. Після she ставимо picked up: для вчорашньої події використовуємо Past Simple, додаючи -ed до pick. Up зберігаємо після дієслова: pick up означає «підняти». A stone називає один камінь, yesterday — час. Has у цьому реченні не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-39:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "caf624067797c9e008edad650c82bf9d2e2ad2cb1208461255598c938349161f"
+  "introFingerprint": "cd87b296de2cdee1cf0052de89b08d6260172288f4e4f6ffdb35c01816676284"
 }

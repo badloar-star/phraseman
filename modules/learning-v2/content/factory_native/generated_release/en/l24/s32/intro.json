@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Замок с историей",
-        "uk": "Замок з історією"
+        "ru": "Вчерашняя экскурсия в замок",
+        "uk": "Учорашня екскурсія до замку"
       },
       "bodyByLocale": {
-        "ru": "Historic — исторически важный. Это не просто «старый»: место связано со значимым прошлым. I have visited a historic castle — я посетил исторически важный замок. Рассказываем об опыте без даты. I visited a historic castle yesterday — та же поездка с указанием вчерашнего дня: visited без have.",
-        "uk": "Historic — історично важливий. Це не просто «старий»: місце пов’язане зі значущим минулим. I have visited a historic castle — я відвідав історично важливий замок. Розповідаємо про досвід без дати. I visited a historic castle yesterday — та сама поїздка із зазначенням учорашнього дня: visited без have."
+        "ru": "Вчера вы были на экскурсии в замке, связанном с важными историческими событиями. I visited a historic castle yesterday — вчера я посетил исторически важный замок. После I ставим visited: yesterday называет законченный день, поэтому нужен Past Simple. A historic castle называет место посещения, historic стоит перед castle. Have перед visited здесь не добавляем. Получается I + visited + a historic castle + yesterday.",
+        "uk": "Учора ви були на екскурсії в замку, пов’язаному з важливими історичними подіями. I visited a historic castle yesterday — учора я відвідав історично важливий замок. Після I ставимо visited: yesterday називає завершений день, тому потрібен Past Simple. A historic castle називає місце відвідування, historic стоїть перед castle. Have перед visited тут не додаємо. Виходить I + visited + a historic castle + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-32:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Плани майбутні, розмова вчорашня"
       },
       "bodyByLocale": {
-        "ru": "Previous — предыдущий. We have read your previous message — мы прочитали твоё предыдущее сообщение. Future — будущий. They discussed their future plans yesterday — вчера они обсудили свои будущие планы. Планы относятся к будущему, но обсуждали их вчера: поэтому discussed. Время глагола показывает время действия, а не время, о котором говорили.",
-        "uk": "Previous — попередній. We have read your previous message — ми прочитали твоє попереднє повідомлення. Future — майбутній. They discussed their future plans yesterday — учора вони обговорили свої майбутні плани. Плани стосуються майбутнього, але обговорювали їх учора: тому discussed. Час дієслова показує час дії, а не час, про який говорили."
+        "ru": "Вчера друзья обсуждали, что собираются делать дальше. They discussed their future plans yesterday — вчера они обсудили свои будущие планы. После they ставим discussed: к discuss добавляем -ed, поскольку само обсуждение было вчера. Their future plans называет тему разговора; future описывает планы и не меняет время глагола. В конце yesterday уточняет, когда обсуждали. Поэтому здесь Past Simple, без have или will.",
+        "uk": "Учора друзі обговорювали, що збираються робити далі. They discussed their future plans yesterday — учора вони обговорили свої майбутні плани. Після they ставимо discussed: до discuss додаємо -ed, оскільки саме обговорення було вчора. Their future plans називає тему розмови; future описує плани й не змінює час дієслова. Наприкінці yesterday уточнює, коли обговорювали. Тому тут Past Simple, без have або will."
       },
       "question": {
         "interactionId": "en:lesson-24:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "62e2ba7ccfb3882c399abf43a239f5d05037b9d80ff201c06797f922401cad21"
+  "introFingerprint": "03c641be78706f2512cf7c3cb55000c85d59e9353fd13464974989652c4e6591"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Край стола",
-        "uk": "Край столу"
+        "ru": "Край стола уже чистый",
+        "uk": "Край столу вже чистий"
       },
       "bodyByLocale": {
-        "ru": "Edge — край. The edge of the table — край стола. I have cleaned the edge of the table — я вытер край стола: он теперь чистый. Of связывает край с предметом. Если рассказываем о вчерашней уборке, говорим I cleaned the edge of the table yesterday — без have.",
-        "uk": "Edge — край. The edge of the table — край столу. I have cleaned the edge of the table — я витер край столу: він тепер чистий. Of пов’язує край із предметом. Якщо розповідаємо про вчорашнє прибирання, кажемо I cleaned the edge of the table yesterday — без have."
+        "ru": "Вы вытерли липкий край стола и сообщаете, что работа сделана. I have cleaned the edge of the table — я вытер край стола. После I ставим have + cleaned: сообщаем о результате сейчас, не называя законченной даты. Cleaned — третья форма правильного глагола clean с -ed. The edge of the table называет, что вы вытерли; of связывает край с конкретным столом.",
+        "uk": "Ви витерли липкий край столу й повідомляєте, що роботу зроблено. I have cleaned the edge of the table — я витер край столу. Після I ставимо have + cleaned: повідомляємо про результат зараз, не називаючи завершеної дати. Cleaned — третя форма правильного дієслова clean з -ed. The edge of the table називає, що ви витерли; of пов’язує край із конкретним столом."
       },
       "question": {
         "interactionId": "en:lesson-24:session-38:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Раздел анкеты и дно сумки",
-        "uk": "Розділ анкети й дно сумки"
+        "ru": "Ключи на дне сумки",
+        "uk": "Ключі на дні сумки"
       },
       "bodyByLocale": {
-        "ru": "Section — раздел: this section of the form — этот раздел анкеты. We have completed this section of the form — мы его заполнили. Bottom — дно или нижняя часть. She found the keys at the bottom of her bag yesterday — вчера она нашла ключи на дне сумки. Ключи снова оказались ниже всего остального. С yesterday нужен found без has.",
-        "uk": "Section — розділ: this section of the form — цей розділ анкети. We have completed this section of the form — ми його заповнили. Bottom — дно або нижня частина. She found the keys at the bottom of her bag yesterday — учора вона знайшла ключі на дні сумки. Ключі знову опинилися нижче за все інше. Із yesterday потрібне found без has."
+        "ru": "Вчера сестра долго искала ключи и нашла их на дне сумки. She found the keys at the bottom of her bag yesterday — вчера она нашла ключи на дне сумки. После she ставим found — прошедшую форму find, потому что yesterday обозначает законченный день. The keys называет находку, at the bottom of her bag — место. At the bottom означает «на дне», а of her bag уточняет, какой сумки. Has перед found здесь не добавляем.",
+        "uk": "Учора сестра довго шукала ключі й знайшла їх на дні сумки. She found the keys at the bottom of her bag yesterday — учора вона знайшла ключі на дні сумки. Після she ставимо found — минулу форму find, тому що yesterday позначає завершений день. The keys називає знахідку, at the bottom of her bag — місце. At the bottom означає «на дні», а of her bag уточнює, якої сумки. Has перед found тут не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "af9fdd42b016e7e27a09d646325718013bff928053738e26eae55ff79a49f598"
+  "introFingerprint": "27a382d8fa8e36f4cbb8fcb54eceefbc94aea8fd36faeb6bfeefb985e83e3643"
 }

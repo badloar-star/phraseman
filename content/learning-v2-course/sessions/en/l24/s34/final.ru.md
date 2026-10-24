@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Накопленная сотня
+### Уже накопил сто фунтов
 
-Hundred — сто. A hundred pounds — сто фунтов; можно также сказать one hundred pounds. I have saved a hundred pounds — я накопил сто фунтов: деньги есть сейчас. С yesterday было бы I saved a hundred pounds yesterday — без have. После точного числа hundred не получает -s: two hundred pounds.
+Вы откладывали деньги на покупку, и теперь у вас есть сто фунтов. I have saved a hundred pounds — я накопил сто фунтов. После I ставим have, затем saved — третью форму save с добавленной -d. Так сообщаем о результате сейчас. A hundred pounds называет накопленную сумму: a hundred означает «сто», pounds стоит во множественном числе. Порядок — I + have + saved + a hundred pounds.
 
 **Выберите фразу для этой ситуации.**
 
@@ -21,9 +21,9 @@ Hundred — сто. A hundred pounds — сто фунтов; можно так�
 
 ## Интро 2
 
-### Тысяча и миллион
+### Вчерашняя оплата
 
-Thousand — тысяча, million — миллион. She paid a thousand dollars yesterday — вчера она заплатила тысячу долларов. We have sold a million books — мы продали миллион книг: например, издательство сообщает результат. С yesterday нужен paid без has. С точным количеством говорим two thousand, three million — без -s.
+Вчера сестра заплатила тысячу долларов за покупку. Вы рассказываете, сколько она потратила. She paid a thousand dollars yesterday — вчера она заплатила тысячу долларов. После she ставим paid — прошедшую форму pay. Yesterday задаёт законченный день, поэтому has не нужен. A thousand dollars называет сумму: thousand остаётся без -s, а dollars получает -s. В конце yesterday уточняет время.
 
 **Выберите фразу для этой ситуации.**
 

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Уже знаем счёт",
-        "uk": "Уже знаємо рахунок"
+        "ru": "Теперь знаю счёт",
+        "uk": "Тепер знаю рахунок"
       },
       "bodyByLocale": {
-        "ru": "Score — счёт в игре. I have checked the score — я проверил счёт: теперь знаю, кто ведёт. I checked the score yesterday — я проверил счёт вчера. В первом случае сообщаем результат, во втором называем законченное прошлое время. Вчерашний счёт, конечно, не расскажет, кто побеждает сегодня.",
-        "uk": "Score — рахунок у грі. I have checked the score — я перевірив рахунок: тепер знаю, хто веде. I checked the score yesterday — я перевірив рахунок учора. У першому випадку повідомляємо результат, у другому називаємо завершений минулий час. Учорашній рахунок, звісно, не розповість, хто перемагає сьогодні."
+        "ru": "Вы посмотрели счёт текущего матча и сообщаете другу, что уже проверили его. I have checked the score — я проверил счёт. После I ставим have, затем checked — третью форму правильного глагола check с -ed. Present Perfect передаёт нынешний результат: теперь счёт вам известен. The score называет, что проверили. Собираем I + have + checked + the score.",
+        "uk": "Ви подивилися рахунок поточного матчу й повідомляєте другові, що вже перевірили його. I have checked the score — я перевірив рахунок. Після I ставимо have, потім checked — третю форму правильного дієслова check з -ed. Present Perfect передає теперішній результат: тепер рахунок вам відомий. The score називає, що перевірили. Складаємо I + have + checked + the score."
       },
       "question": {
         "interactionId": "en:lesson-24:session-29:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поиграли и попробовали",
-        "uk": "Пограли й спробували"
+        "ru": "Играла в крикет вчера",
+        "uk": "Грала в крикет учора"
       },
       "bodyByLocale": {
-        "ru": "Cricket — крикет, командная игра с мячом и битой. She played cricket yesterday — вчера она играла в крикет. Boxing — бокс. We have tried boxing — мы попробовали заниматься боксом: рассказываем об опыте без даты. С cricket используем play; с boxing здесь try, «попробовать».",
-        "uk": "Cricket — крикет, командна гра з м’ячем і битою. She played cricket yesterday — учора вона грала в крикет. Boxing — бокс. We have tried boxing — ми спробували займатися боксом: розповідаємо про досвід без дати. Із cricket використовуємо play; із boxing тут try, «спробувати»."
+        "ru": "Вчера подруга играла в крикет — командную игру с мячом и битой. She played cricket yesterday — вчера она играла в крикет. После she ставим played: к play добавляем -ed для Past Simple. Cricket называет игру; после play название этого спорта идёт без артикля. Yesterday указывает на законченный день, поэтому has перед played не нужен.",
+        "uk": "Учора подруга грала в крикет — командну гру з м’ячем і битою. She played cricket yesterday — учора вона грала в крикет. Після she ставимо played: до play додаємо -ed для Past Simple. Cricket називає гру; після play назва цього спорту йде без артикля. Yesterday указує на завершений день, тому has перед played не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-29:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Победа в прошлом году",
-        "uk": "Перемога торік"
+        "ru": "Выиграли турнир в прошлом году",
+        "uk": "Виграли турнір торік"
       },
       "bodyByLocale": {
-        "ru": "Tournament — турнир, соревнование с несколькими играми или участниками. They won the tournament last year — в прошлом году они выиграли турнир. Won — прошедшая форма win. Last year требует Past Simple, поэтому не добавляем have. They have won the tournament — другая подача: объявляем результат без указания прошлого года.",
-        "uk": "Tournament — турнір, змагання з кількома іграми або учасниками. They won the tournament last year — торік вони виграли турнір. Won — минула форма win. Last year потребує Past Simple, тому не додаємо have. They have won the tournament — інша подача: оголошуємо результат без зазначення минулого року."
+        "ru": "Вы вспоминаете победу команды в прошлогоднем турнире. They won the tournament last year — в прошлом году они выиграли турнир. После they ставим won, прошедшую форму win. The tournament называет конкретное соревнование, а last year — время победы. Поскольку этот период закончился, используем Past Simple, без have. Порядок — they + won + the tournament + last year.",
+        "uk": "Ви згадуєте перемогу команди в торішньому турнірі. They won the tournament last year — торік вони виграли турнір. Після they ставимо won, минулу форму win. The tournament називає конкретне змагання, а last year — час перемоги. Оскільки цей період завершився, використовуємо Past Simple, без have. Порядок — they + won + the tournament + last year."
       },
       "question": {
         "interactionId": "en:lesson-24:session-29:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1e6b101a983a2d4be36889e34b4984826012c14144c2becc0b8e3c076bbb5685"
+  "introFingerprint": "a6f4a7544044df15546633ee38ffe51a9100edbb964a67fbcee032e2d4f846c2"
 }

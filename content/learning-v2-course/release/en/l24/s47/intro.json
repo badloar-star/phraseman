@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вчера и сейчас",
-        "uk": "Учора й зараз"
+        "ru": "Не показала, что ей стыдно",
+        "uk": "Не показала, що їй соромно"
       },
       "bodyByLocale": {
-        "ru": "Shame — стыд, неловкое чувство из-за себя или своего поступка. She hid her shame yesterday — вчера она скрыла свой стыд. Yesterday указывает на законченный день, используем hid — Past Simple от hide. Desire — желание. He has expressed a desire to learn — он выразил желание учиться. Здесь важен нынешний результат: мы знаем, чего он хочет; точный прошедший момент не назван.",
-        "uk": "Shame — сором, ніякове відчуття через себе або свій учинок. She hid her shame yesterday — учора вона приховала свій сором. Yesterday вказує на завершений день, використовуємо hid — Past Simple від hide. Desire — бажання. He has expressed a desire to learn — він висловив бажання вчитися. Тут важливий теперішній результат: ми знаємо, чого він хоче; точний минулий момент не названо."
+        "ru": "Вчера подруге было стыдно за свой поступок, но она не показала этого окружающим. She hid her shame yesterday — вчера она скрыла свой стыд. Начинаем с she, затем ставим hid — прошедшую форму hide. Yesterday указывает на законченный день, поэтому выбираем Past Simple, без has. Her shame называет, что она скрыла; her связывает чувство с ней. Порядок частей: she + hid + her shame + yesterday.",
+        "uk": "Учора подрузі було соромно за свій учинок, але вона не показала цього іншим. She hid her shame yesterday — учора вона приховала свій сором. Починаємо з she, потім ставимо hid — минулу форму hide. Yesterday указує на завершений день, тому вибираємо Past Simple, без has. Her shame називає, що вона приховала; her пов’язує почуття з нею. Порядок частин: she + hid + her shame + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-47:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "676aaff1bdf612f3b175000ae16d22284c6bbe593fe826fc6df701ce69a0429d"
+  "introFingerprint": "2c1b182af955dbd3065d0a0ca047db20dbab1403768036ca4ac900125b7917d4"
 }

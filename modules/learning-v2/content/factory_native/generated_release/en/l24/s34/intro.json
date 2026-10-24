@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Накопленная сотня",
-        "uk": "Заощаджена сотня"
+        "ru": "Уже накопил сто фунтов",
+        "uk": "Уже заощадив сто фунтів"
       },
       "bodyByLocale": {
-        "ru": "Hundred — сто. A hundred pounds — сто фунтов; можно также сказать one hundred pounds. I have saved a hundred pounds — я накопил сто фунтов: деньги есть сейчас. С yesterday было бы I saved a hundred pounds yesterday — без have. После точного числа hundred не получает -s: two hundred pounds.",
-        "uk": "Hundred — сто. A hundred pounds — сто фунтів; можна також сказати one hundred pounds. I have saved a hundred pounds — я заощадив сто фунтів: гроші є зараз. Із yesterday було б I saved a hundred pounds yesterday — без have. Після точного числа hundred не отримує -s: two hundred pounds."
+        "ru": "Вы откладывали деньги на покупку, и теперь у вас есть сто фунтов. I have saved a hundred pounds — я накопил сто фунтов. После I ставим have, затем saved — третью форму save с добавленной -d. Так сообщаем о результате сейчас. A hundred pounds называет накопленную сумму: a hundred означает «сто», pounds стоит во множественном числе. Порядок — I + have + saved + a hundred pounds.",
+        "uk": "Ви відкладали гроші на покупку, і тепер у вас є сто фунтів. I have saved a hundred pounds — я заощадив сто фунтів. Після I ставимо have, потім saved — третю форму save з доданою -d. Так повідомляємо про результат зараз. A hundred pounds називає заощаджену суму: a hundred означає «сто», pounds стоїть у множині. Порядок — I + have + saved + a hundred pounds."
       },
       "question": {
         "interactionId": "en:lesson-24:session-34:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тысяча и миллион",
-        "uk": "Тисяча й мільйон"
+        "ru": "Вчерашняя оплата",
+        "uk": "Учорашня оплата"
       },
       "bodyByLocale": {
-        "ru": "Thousand — тысяча, million — миллион. She paid a thousand dollars yesterday — вчера она заплатила тысячу долларов. We have sold a million books — мы продали миллион книг: например, издательство сообщает результат. С yesterday нужен paid без has. С точным количеством говорим two thousand, three million — без -s.",
-        "uk": "Thousand — тисяча, million — мільйон. She paid a thousand dollars yesterday — учора вона заплатила тисячу доларів. We have sold a million books — ми продали мільйон книжок: наприклад, видавництво повідомляє результат. Із yesterday потрібне paid без has. Із точною кількістю кажемо two thousand, three million — без -s."
+        "ru": "Вчера сестра заплатила тысячу долларов за покупку. Вы рассказываете, сколько она потратила. She paid a thousand dollars yesterday — вчера она заплатила тысячу долларов. После she ставим paid — прошедшую форму pay. Yesterday задаёт законченный день, поэтому has не нужен. A thousand dollars называет сумму: thousand остаётся без -s, а dollars получает -s. В конце yesterday уточняет время.",
+        "uk": "Учора сестра заплатила тисячу доларів за покупку. Ви розповідаєте, скільки вона витратила. She paid a thousand dollars yesterday — учора вона заплатила тисячу доларів. Після she ставимо paid — минулу форму pay. Yesterday задає завершений день, тому has не потрібен. A thousand dollars називає суму: thousand залишається без -s, а dollars отримує -s. Наприкінці yesterday уточнює час."
       },
       "question": {
         "interactionId": "en:lesson-24:session-34:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d54f75b23edb2b39017bb1a06ed350f86daf81b8369465612ec36d013cda0001"
+  "introFingerprint": "051ff9a43dab3b814ad75dc2bb0a09a2ed4c75e7b80c3dea9e6e6ec170ea1f98"
 }

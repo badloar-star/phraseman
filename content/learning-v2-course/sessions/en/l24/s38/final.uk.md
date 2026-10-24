@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Край столу
+### Край столу вже чистий
 
-Edge — край. The edge of the table — край столу. I have cleaned the edge of the table — я витер край столу: він тепер чистий. Of пов’язує край із предметом. Якщо розповідаємо про вчорашнє прибирання, кажемо I cleaned the edge of the table yesterday — без have.
+Ви витерли липкий край столу й повідомляєте, що роботу зроблено. I have cleaned the edge of the table — я витер край столу. Після I ставимо have + cleaned: повідомляємо про результат зараз, не називаючи завершеної дати. Cleaned — третя форма правильного дієслова clean з -ed. The edge of the table називає, що ви витерли; of пов’язує край із конкретним столом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Beginning — початок. The beginning of the story — початок оп
 
 ## Інтро 3
 
-### Розділ анкети й дно сумки
+### Ключі на дні сумки
 
-Section — розділ: this section of the form — цей розділ анкети. We have completed this section of the form — ми його заповнили. Bottom — дно або нижня частина. She found the keys at the bottom of her bag yesterday — учора вона знайшла ключі на дні сумки. Ключі знову опинилися нижче за все інше. Із yesterday потрібне found без has.
+Учора сестра довго шукала ключі й знайшла їх на дні сумки. She found the keys at the bottom of her bag yesterday — учора вона знайшла ключі на дні сумки. Після she ставимо found — минулу форму find, тому що yesterday позначає завершений день. The keys називає знахідку, at the bottom of her bag — місце. At the bottom означає «на дні», а of her bag уточнює, якої сумки. Has перед found тут не додаємо.
 
 **Виберіть фразу для цієї ситуації.**
 

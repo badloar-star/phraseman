@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока не повезло",
-        "uk": "Поки не пощастило"
+        "ru": "Ключ пока не нашёлся",
+        "uk": "Ключ поки не знайшовся"
       },
       "bodyByLocale": {
-        "ru": "Luck — удача. Вы искали потерянный ключ и возвращаетесь ни с чем: I have had no luck — мне не повезло. Have had говорит о результате попыток до настоящего момента. Знакомое lucky описывает человека: I am lucky. Luck — сама удача, существительное.",
-        "uk": "Luck — удача. Ви шукали загублений ключ і повертаєтеся ні з чим: I have had no luck — мені не пощастило. Have had говорить про результат спроб до теперішнього моменту. Знайоме lucky описує людину: I am lucky. Luck — сама удача, іменник."
+        "ru": "Вы искали потерянный ключ и возвращаетесь ни с чем. I have had no luck — мне не повезло. После I ставим have, затем had — третью форму глагола have. Первое have помогает построить Present Perfect, а had входит в выражение have no luck — «не иметь удачи». No luck сообщает, что попытки пока не принесли успеха. Собираем I + have + had + no luck и описываем результат поисков к настоящему моменту.",
+        "uk": "Ви шукали загублений ключ і повертаєтеся ні з чим. I have had no luck — мені не пощастило. Після I ставимо have, потім had — третю форму дієслова have. Перше have допомагає утворити Present Perfect, а had входить до виразу have no luck — «не мати удачі». No luck повідомляє, що спроби поки не принесли успіху. Складаємо I + have + had + no luck і описуємо результат пошуків на теперішній момент."
       },
       "question": {
         "interactionId": "en:lesson-24:session-36:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сюрприз и юмор",
-        "uk": "Сюрприз і гумор"
+        "ru": "План сюрприза",
+        "uk": "План сюрпризу"
       },
       "bodyByLocale": {
-        "ru": "Surprise — сюрприз или неожиданность. She planned a surprise yesterday — вчера она спланировала сюрприз. Yesterday требует planned без has. Humour — юмор. We have enjoyed the humour in this film — нам понравился юмор в этом фильме. Сообщаем впечатление без законченной даты. В американском написании — humor.",
-        "uk": "Surprise — сюрприз або несподіванка. She planned a surprise yesterday — учора вона спланувала сюрприз. Yesterday потребує planned без has. Humour — гумор. We have enjoyed the humour in this film — нам сподобався гумор у цьому фільмі. Повідомляємо враження без завершеної дати. В американському написанні — humor."
+        "ru": "Вчера подруга придумала, как устроить сюрприз ко дню рождения брата. She planned a surprise yesterday — вчера она спланировала сюрприз. После she ставим planned: yesterday задаёт законченный день, поэтому нужен Past Simple. В plan перед -ed удваиваем n. A surprise называет, что она спланировала. В конце yesterday уточняет время; has перед planned не ставим.",
+        "uk": "Учора подруга придумала, як улаштувати сюрприз до дня народження брата. She planned a surprise yesterday — учора вона спланувала сюрприз. Після she ставимо planned: yesterday задає завершений день, тому потрібен Past Simple. У plan перед -ed подвоюємо n. A surprise називає, що вона спланувала. Наприкінці yesterday уточнює час; has перед planned не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-36:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "43895d862ab6aa4734a891f4c7fd28aa42e1d7d1ae82dc32eeb6131326ee29f4"
+  "introFingerprint": "5f54ff86fc2a96690587d34f82e1008936e79b3b6e94d8ca356736b21e64ad47"
 }

@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Шум и головоломка",
-        "uk": "Шум і головоломка"
+        "ru": "Вчера решили головоломку",
+        "uk": "Учора розв’язали головоломку"
       },
       "bodyByLocale": {
-        "ru": "Strange — странный, необычный. We have heard a strange noise — мы услышали странный шум: сообщаем, что случилось. Complex — сложный, состоящий из связанных частей. They solved a complex puzzle yesterday — вчера они решили сложную головоломку. С yesterday нужен solved без have. Complex близко к знакомому complicated.",
-        "uk": "Strange — дивний, незвичний. We have heard a strange noise — ми почули дивний шум: повідомляємо, що сталося. Complex — складний, такий, що складається з пов’язаних частин. They solved a complex puzzle yesterday — учора вони розв’язали складну головоломку. Із yesterday потрібне solved без have. Complex близьке до знайомого complicated."
+        "ru": "Вчера друзья вместе решили сложную головоломку. They solved a complex puzzle yesterday — вчера они решили сложную головоломку. После they ставим solved: к solve добавляем -d для Past Simple. A complex puzzle называет, что они решили; complex стоит перед puzzle и означает «сложный». Yesterday указывает на законченный день, поэтому перед solved не добавляем have.",
+        "uk": "Учора друзі разом розв’язали складну головоломку. They solved a complex puzzle yesterday — учора вони розв’язали складну головоломку. Після they ставимо solved: до solve додаємо -d для Past Simple. A complex puzzle називає, що вони розв’язали; complex стоїть перед puzzle й означає «складний». Yesterday указує на завершений день, тому перед solved не додаємо have."
       },
       "question": {
         "interactionId": "en:lesson-24:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8d914159bc1f86232a6373e80c120186b4f08bd8153610664b0e7ae6edf25d39"
+  "introFingerprint": "88a2efa9debdb30c184efa2cc7d0c7cdaccf4639a89d3c731e2958f23eeb540d"
 }

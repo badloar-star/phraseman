@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Край стола
+### Край стола уже чистый
 
-Edge — край. The edge of the table — край стола. I have cleaned the edge of the table — я вытер край стола: он теперь чистый. Of связывает край с предметом. Если рассказываем о вчерашней уборке, говорим I cleaned the edge of the table yesterday — без have.
+Вы вытерли липкий край стола и сообщаете, что работа сделана. I have cleaned the edge of the table — я вытер край стола. После I ставим have + cleaned: сообщаем о результате сейчас, не называя законченной даты. Cleaned — третья форма правильного глагола clean с -ed. The edge of the table называет, что вы вытерли; of связывает край с конкретным столом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -35,9 +35,9 @@ Beginning — начало. The beginning of the story — начало расс
 
 ## Интро 3
 
-### Раздел анкеты и дно сумки
+### Ключи на дне сумки
 
-Section — раздел: this section of the form — этот раздел анкеты. We have completed this section of the form — мы его заполнили. Bottom — дно или нижняя часть. She found the keys at the bottom of her bag yesterday — вчера она нашла ключи на дне сумки. Ключи снова оказались ниже всего остального. С yesterday нужен found без has.
+Вчера сестра долго искала ключи и нашла их на дне сумки. She found the keys at the bottom of her bag yesterday — вчера она нашла ключи на дне сумки. После she ставим found — прошедшую форму find, потому что yesterday обозначает законченный день. The keys называет находку, at the bottom of her bag — место. At the bottom означает «на дне», а of her bag уточняет, какой сумки. Has перед found здесь не добавляем.
 
 **Выберите фразу для этой ситуации.**
 

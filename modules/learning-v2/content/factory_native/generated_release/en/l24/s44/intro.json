@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сильное впечатление и примерная сумма",
-        "uk": "Сильне враження й приблизна сума"
+        "ru": "Фильм очень понравился",
+        "uk": "Фільм дуже сподобався"
       },
       "bodyByLocale": {
-        "ru": "Absolutely может усиливать чувство: She absolutely loved the film yesterday — вчера фильм ей очень понравился. Здесь loved не о любви к человеку, а о сильном удовольствии от фильма. Roughly — примерно: We have spent roughly ten pounds — мы потратили примерно десять фунтов. Сумма приблизительная, не точная.",
-        "uk": "Absolutely може посилювати почуття: She absolutely loved the film yesterday — учора фільм їй дуже сподобався. Тут loved не про кохання до людини, а про велике задоволення від фільму. Roughly — приблизно: We have spent roughly ten pounds — ми витратили приблизно десять фунтів. Сума приблизна, не точна."
+        "ru": "Вчера подруга посмотрела фильм и осталась в восторге. Вы передаёте её впечатление. She absolutely loved the film yesterday — вчера фильм ей очень понравился. После she ставим absolutely, чтобы усилить loved — «очень понравился». Затем the film называет фильм, о котором идёт речь. Yesterday указывает на законченный день, поэтому используем loved в Past Simple, без has. Порядок — she + absolutely + loved + the film + yesterday.",
+        "uk": "Учора подруга подивилася фільм і залишилася в захваті. Ви передаєте її враження. She absolutely loved the film yesterday — учора фільм їй дуже сподобався. Після she ставимо absolutely, щоб посилити loved — «дуже сподобався». Потім the film називає фільм, про який ідеться. Yesterday указує на завершений день, тому використовуємо loved у Past Simple, без has. Порядок — she + absolutely + loved + the film + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-44:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Майже без сну"
       },
       "bodyByLocale": {
-        "ru": "Hardly — почти не. He hardly slept last night — прошлой ночью он почти не спал. Hardly уже передаёт отрицательный смысл, поэтому дополнительное not не нужно. Это не hard — «усердно»: hardly worked означало бы «почти не работал». Last night — законченный период, поэтому slept без has.",
-        "uk": "Hardly — майже не. He hardly slept last night — минулої ночі він майже не спав. Hardly вже передає заперечне значення, тому додаткове not не потрібне. Це не hard — «наполегливо»: hardly worked означало б «майже не працював». Last night — завершений період, тому slept без has."
+        "ru": "Сосед всю ночь ворочался и лишь ненадолго заснул. Утром вы рассказываете об этой ночи. He hardly slept last night — прошлой ночью он почти не спал. После he ставим hardly — «почти не», затем slept, прошедшую форму sleep. Hardly уже передаёт отрицательный смысл, поэтому not не добавляем. Last night называет закончившуюся ночь; здесь нужен Past Simple, без has.",
+        "uk": "Сусід усю ніч крутився в ліжку й лише ненадовго заснув. Уранці ви розповідаєте про цю ніч. He hardly slept last night — минулої ночі він майже не спав. Після he ставимо hardly — «майже не», потім slept, минулу форму sleep. Hardly вже передає заперечне значення, тому not не додаємо. Last night називає завершену ніч; тут потрібен Past Simple, без has."
       },
       "question": {
         "interactionId": "en:lesson-24:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bbdfd365b1f313a4f3967ca7c112a486f1b3705e68326577a283b3d737a77df5"
+  "introFingerprint": "1e9233ae762cf47733066e5660e6a362719ab9597c8ae32dde98c449aa49ad70"
 }

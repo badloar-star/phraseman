@@ -9,7 +9,7 @@
 
 ### Не пам’ятаю віку
 
-Age — вік. I have forgotten his age — я забув, скільки йому років. Have forgotten показує результат: зараз я не пам’ятаю. Forgotten — форма знайомого forget. His age — його вік, her age — її вік. Щоб запитати вік, можна використати знайоме запитання How old is he?
+Ви вибираєте подарунок племінникові й розумієте, що забули, скільки йому років. I have forgotten his age — я забув, скільки йому років. Після I ставимо have, потім forgotten — третю форму forget. Present Perfect показує теперішній результат: зараз ви не пам’ятаєте віку. His age називає, що ви забули. Порядок — I + have + forgotten + his age.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Friendship — дружба. Friend — друг, а friendship — стосун
 
 ## Інтро 3
 
-### Сумна новина
+### Були на похороні
 
-Death — смерть, funeral — похорон. We have heard about his death — ми дізналися про його смерть: повідомляємо новину без дати. They attended the funeral last week — минулого тижня вони були на похороні. Last week потребує attended без have. Після attend називаємо подію прямо: attend the funeral, без at.
+Ви розповідаєте, що знайомі минулого тижня були на похороні. They attended the funeral last week — минулого тижня вони були на похороні. Last week називає завершений період, тому після they ставимо attended — Past Simple від attend. Потім прямо називаємо подію: the funeral, без at. Наприкінці last week уточнює час. Have тут не потрібен.
 
 **Виберіть фразу для цієї ситуації.**
 

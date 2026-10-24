@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "После умывания",
-        "uk": "Після вмивання"
+        "ru": "Кожа уже чистая",
+        "uk": "Шкіра вже чиста"
       },
       "bodyByLocale": {
-        "ru": "Skin — кожа человека. I have washed my skin — я вымыл кожу. Skin здесь обозначает кожу в целом, поэтому перед my skin не нужен a. Сообщаем о результате без законченной даты: have washed.",
-        "uk": "Skin — шкіра людини. I have washed my skin — я вимив шкіру. Skin тут позначає шкіру загалом, тому перед my skin не потрібне a. Повідомляємо про результат без завершеної дати: have washed."
+        "ru": "Вы закончили мыться и сообщаете, что кожа уже чистая. I have washed my skin — я вымыл кожу. После I ставим have, затем третью форму washed: у правильного глагола wash добавляем -ed. Так сообщаем о результате к настоящему моменту, не называя законченной даты. My skin указывает, что вы вымыли. My уже определяет существительное, поэтому перед ним не добавляем a или the.",
+        "uk": "Ви закінчили митися й повідомляєте, що шкіра вже чиста. I have washed my skin — я вимив шкіру. Після I ставимо have, потім третю форму washed: у правильного дієслова wash додаємо -ed. Так повідомляємо про результат на теперішній момент, не називаючи завершеної дати. My skin указує, що ви вимили. My вже визначає іменник, тому перед ним не додаємо a або the."
       },
       "question": {
         "interactionId": "en:lesson-24:session-46:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "О теле человека",
-        "uk": "Про тіло людини"
+        "ru": "Травма в прошлом году",
+        "uk": "Травма торік"
       },
       "bodyByLocale": {
-        "ru": "Rib — ребро. She broke a rib last year — она сломала ребро в прошлом году. Одна кость — a rib, несколько — ribs. Broke — прошедшая форма знакомого break. Last year уже закончился, поэтому broke без has. Liver — печень. We have read about the liver — мы прочитали о печени: например, в учебнике.",
-        "uk": "Rib — ребро. She broke a rib last year — вона зламала ребро торік. Одна кістка — a rib, кілька — ribs. Broke — минула форма знайомого break. Last year уже закінчився, тому broke без has. Liver — печінка. We have read about the liver — ми прочитали про печінку: наприклад, у підручнику."
+        "ru": "Вы рассказываете, что сестра сломала ребро в прошлом году. She broke a rib last year — она сломала ребро в прошлом году. Last year называет завершившийся период, поэтому после she используем Past Simple: broke — прошедшую форму break. A rib обозначает одно ребро. В конце last year сообщает, когда произошла травма. Has перед broke не ставим.",
+        "uk": "Ви розповідаєте, що сестра зламала ребро минулого року. She broke a rib last year — вона зламала ребро торік. Last year називає завершений період, тому після she використовуємо Past Simple: broke — минулу форму break. A rib позначає одне ребро. Наприкінці last year повідомляє, коли сталася травма. Has перед broke не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-46:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "581a1cce1968db2527f8ae17fb0de099075d21f3dd5a85741efa2df623020298"
+  "introFingerprint": "56d976b51af57618b984711d56c24a4410b720a305db5ac1353c7e1acebf91ca"
 }

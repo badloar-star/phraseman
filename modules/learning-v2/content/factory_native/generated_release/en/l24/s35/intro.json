@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Официальное письмо",
-        "uk": "Офіційний лист"
+        "ru": "Письмо уже прочитано",
+        "uk": "Листа вже прочитано"
       },
       "bodyByLocale": {
-        "ru": "Official — официальный. The official letter — официальное письмо, например от учреждения. I have read the official letter — я прочитал официальное письмо: теперь знаю его содержание. I read the official letter yesterday — я прочитал его вчера. В прошлом read пишется так же, но произносится «ред».",
-        "uk": "Official — офіційний. The official letter — офіційний лист, наприклад від установи. I have read the official letter — я прочитав офіційного листа: тепер знаю його зміст. I read the official letter yesterday — я прочитав його вчора. У минулому read пишеться так само, але вимовляється «ред»."
+        "ru": "Вам пришло официальное письмо. Вы прочитали его и теперь знаете, что в нём написано. I have read the official letter — я прочитал официальное письмо. После I ставим have, затем третью форму read, которая произносится «ред». Present Perfect передаёт результат к настоящему моменту. The official letter называет прочитанное письмо; official стоит перед letter. Здесь собираем I + have + read + the official letter.",
+        "uk": "Вам надійшов офіційний лист. Ви прочитали його й тепер знаєте, що в ньому написано. I have read the official letter — я прочитав офіційного листа. Після I ставимо have, потім третю форму read, яка вимовляється «ред». Present Perfect передає результат на теперішній момент. The official letter називає прочитаного листа; official стоїть перед letter. Тут складаємо I + have + read + the official letter."
       },
       "question": {
         "interactionId": "en:lesson-24:session-35:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Законно или незаконно",
-        "uk": "Законно чи незаконно"
+        "ru": "Сообщили о парковке вчера",
+        "uk": "Повідомили про паркування вчора"
       },
       "bodyByLocale": {
-        "ru": "Legal — юридический или законный. We have asked for legal advice — мы попросили юридическую консультацию. Illegal — незаконный. They reported illegal parking yesterday — вчера они сообщили о незаконной парковке. В первой фразе сообщаем результат без даты; во второй есть yesterday, поэтому reported без have.",
-        "uk": "Legal — юридичний або законний. We have asked for legal advice — ми попросили юридичну консультацію. Illegal — незаконний. They reported illegal parking yesterday — учора вони повідомили про незаконне паркування. У першій фразі повідомляємо результат без дати; у другій є yesterday, тому reported без have."
+        "ru": "Вчера соседи сообщили о машине, припаркованной в запрещённом месте. They reported illegal parking yesterday — вчера они сообщили о незаконной парковке. После they ставим reported: к report добавляем -ed, потому что yesterday называет завершившийся день. Illegal parking называет, о чём они сообщили; illegal описывает parking. В конце добавляем yesterday. Have перед reported здесь не нужен.",
+        "uk": "Учора сусіди повідомили про машину, припарковану в забороненому місці. They reported illegal parking yesterday — учора вони повідомили про незаконне паркування. Після they ставимо reported: до report додаємо -ed, тому що yesterday називає завершений день. Illegal parking називає, про що вони повідомили; illegal описує parking. Наприкінці додаємо yesterday. Have перед reported тут не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0f464bd2d84f048ce08229dc7932119f5666cb03715372225f0f2f28b92ca503"
+  "introFingerprint": "155556b010277ae444f3d8706d4c6b23eac85e00a2e82d4167b9e1220f4b63f8"
 }

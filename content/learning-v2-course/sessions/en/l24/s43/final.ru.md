@@ -35,9 +35,9 @@ Lately — в последнее время. She has been feeling tired lately �
 
 ## Интро 3
 
-### Выделяем впечатление
+### Особенно понравилась музыка
 
-Extremely усиливает описание: It was extremely cold yesterday — вчера было очень холодно. Particularly — особенно: We have particularly enjoyed the music — нам особенно понравилась музыка. Оно выделяет музыку среди других впечатлений. Вчерашняя погода — was; впечатление без законченной даты — have enjoyed.
+Праздник подходит к концу, и вы благодарите организаторов: больше всего вам понравилась музыка. We have particularly enjoyed the music — нам особенно понравилась музыка. После we ставим have, затем третью форму enjoyed. Particularly — «особенно» — помещаем между have и enjoyed: так выделяем музыкальную часть праздника. The music называет, что доставило удовольствие. Получается we + have + particularly + enjoyed + the music.
 
 **Выберите фразу для этой ситуации.**
 

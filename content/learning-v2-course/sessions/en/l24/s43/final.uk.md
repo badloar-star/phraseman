@@ -35,9 +35,9 @@ Lately — останнім часом. She has been feeling tired lately — о
 
 ## Інтро 3
 
-### Виділяємо враження
+### Особливо сподобалася музика
 
-Extremely посилює опис: It was extremely cold yesterday — учора було надзвичайно холодно. Particularly — особливо: We have particularly enjoyed the music — нам особливо сподобалася музика. Воно виділяє музику серед інших вражень. Учорашня погода — was; враження без завершеної дати — have enjoyed.
+Свято добігає кінця, і ви дякуєте організаторам: найбільше вам сподобалася музика. We have particularly enjoyed the music — нам особливо сподобалася музика. Після we ставимо have, потім третю форму enjoyed. Particularly — «особливо» — розміщуємо між have та enjoyed: так виділяємо музичну частину свята. The music називає, що принесло задоволення. Виходить we + have + particularly + enjoyed + the music.
 
 **Виберіть фразу для цієї ситуації.**
 

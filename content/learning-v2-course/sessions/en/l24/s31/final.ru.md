@@ -35,9 +35,9 @@ Modern — современный. She visited a modern museum yesterday — в�
 
 ## Интро 3
 
-### Шум и головоломка
+### Вчера решили головоломку
 
-Strange — странный, необычный. We have heard a strange noise — мы услышали странный шум: сообщаем, что случилось. Complex — сложный, состоящий из связанных частей. They solved a complex puzzle yesterday — вчера они решили сложную головоломку. С yesterday нужен solved без have. Complex близко к знакомому complicated.
+Вчера друзья вместе решили сложную головоломку. They solved a complex puzzle yesterday — вчера они решили сложную головоломку. После they ставим solved: к solve добавляем -d для Past Simple. A complex puzzle называет, что они решили; complex стоит перед puzzle и означает «сложный». Yesterday указывает на законченный день, поэтому перед solved не добавляем have.
 
 **Выберите фразу для этой ситуации.**
 

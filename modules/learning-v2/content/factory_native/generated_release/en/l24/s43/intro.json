@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Выделяем впечатление",
-        "uk": "Виділяємо враження"
+        "ru": "Особенно понравилась музыка",
+        "uk": "Особливо сподобалася музика"
       },
       "bodyByLocale": {
-        "ru": "Extremely усиливает описание: It was extremely cold yesterday — вчера было очень холодно. Particularly — особенно: We have particularly enjoyed the music — нам особенно понравилась музыка. Оно выделяет музыку среди других впечатлений. Вчерашняя погода — was; впечатление без законченной даты — have enjoyed.",
-        "uk": "Extremely посилює опис: It was extremely cold yesterday — учора було надзвичайно холодно. Particularly — особливо: We have particularly enjoyed the music — нам особливо сподобалася музика. Воно виділяє музику серед інших вражень. Учорашня погода — was; враження без завершеної дати — have enjoyed."
+        "ru": "Праздник подходит к концу, и вы благодарите организаторов: больше всего вам понравилась музыка. We have particularly enjoyed the music — нам особенно понравилась музыка. После we ставим have, затем третью форму enjoyed. Particularly — «особенно» — помещаем между have и enjoyed: так выделяем музыкальную часть праздника. The music называет, что доставило удовольствие. Получается we + have + particularly + enjoyed + the music.",
+        "uk": "Свято добігає кінця, і ви дякуєте організаторам: найбільше вам сподобалася музика. We have particularly enjoyed the music — нам особливо сподобалася музика. Після we ставимо have, потім третю форму enjoyed. Particularly — «особливо» — розміщуємо між have та enjoyed: так виділяємо музичну частину свята. The music називає, що принесло задоволення. Виходить we + have + particularly + enjoyed + the music."
       },
       "question": {
         "interactionId": "en:lesson-24:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "20d4b1e876086b10db7966fa54ca428d72dced614cbcb34c5341a72e316f8d59"
+  "introFingerprint": "deff016e4498ce64da1a2a33223418774f967711042059f756d2e45d3ae7cd49"
 }

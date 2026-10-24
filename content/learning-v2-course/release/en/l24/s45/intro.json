@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "На заправке",
-        "uk": "На заправці"
+        "ru": "Вчера на заправке",
+        "uk": "Учора на заправці"
       },
       "bodyByLocale": {
-        "ru": "Fuel — топливо. She bought some fuel yesterday — вчера она купила немного топлива. Diesel — дизельное топливо. We have paid for the diesel — мы заплатили за дизельное топливо. Fuel — общее название; diesel — один из видов топлива. С yesterday нужно bought без has.",
-        "uk": "Fuel — пальне. She bought some fuel yesterday — учора вона купила трохи пального. Diesel — дизельне пальне. We have paid for the diesel — ми заплатили за дизельне пальне. Fuel — загальна назва; diesel — один із видів пального. Із yesterday потрібне bought без has."
+        "ru": "Сестра вчера заехала на заправку и купила топливо. Вы рассказываете об этой остановке. She bought some fuel yesterday — вчера она купила немного топлива. После she используем bought — прошедшую форму buy. Yesterday называет законченный день, поэтому has здесь не нужен. Some fuel добавляет, что она купила: некоторое количество топлива. Порядок — she + bought + some fuel + yesterday.",
+        "uk": "Сестра вчора заїхала на заправку й купила пальне. Ви розповідаєте про цю зупинку. She bought some fuel yesterday — учора вона купила трохи пального. Після she використовуємо bought — минулу форму buy. Yesterday називає завершений день, тому has тут не потрібен. Some fuel додає, що вона купила: певну кількість пального. Порядок — she + bought + some fuel + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-45:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5f04318ea1712ab2bc63bc2be19941040e319c7942c9eb20c5217ab9212d3e4e"
+  "introFingerprint": "6d4cd30e272a99e51d274c4c4af736050abe89e8b2f89f402be5e473d4ed612d"
 }

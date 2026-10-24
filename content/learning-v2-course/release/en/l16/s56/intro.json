@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Предположение перед осмотром",
+        "uk": "Припущення перед оглядом"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. south-facing — выходящий на юг. Вы предполагаете, в какую сторону выходит сад у дома, который ещё не осмотрели. I think the garden will be south-facing. — Думаю, сад будет выходить на юг. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. south-facing — що виходить на південь. Ви припускаєте, у який бік виходить сад біля будинку, який ще не оглянули. I think the garden will be south-facing. — Думаю, сад виходитиме на південь. Передайте думку-прогноз через will."
+        "ru": "Вы ещё не осмотрели выбранный дом и предполагаете, что его сад выходит на юг. South-facing — выходящий на юг. Передайте своё предположение через will: I think + the garden + will be + south-facing → I think the garden will be south-facing. После will используем be без to; I think показывает, что это ваше мнение. Другие формы возможны при другом акценте, но здесь отрабатываем предположение с will.",
+        "uk": "Ви ще не оглянули обраний будинок і припускаєте, що його сад виходить на південь. South-facing — той, що виходить на південь. Передайте своє припущення через will: I think + the garden + will be + south-facing → I think the garden will be south-facing. Після will використовуємо be без to; I think показує, що це ваша думка. Інші форми можливі за іншого акценту, але тут відпрацьовуємо припущення з will."
       },
       "question": {
         "interactionId": "en:lesson-16:session-56:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Решение искать квартиру",
+        "uk": "Рішення шукати квартиру"
       },
       "bodyByLocale": {
-        "ru": "north-facing — выходящий на север. built-in — встроенный. Вы решили, что в новой квартире нужен встроенный шкаф; поиски ещё не начали. I am going to look for a flat with a built-in wardrobe. — Я собираюсь искать квартиру со встроенным шкафом. Передайте заранее принятое намерение через going to.",
-        "uk": "north-facing — що виходить на північ. built-in — вбудований. Ви вирішили, що в новій квартирі потрібна вбудована шафа; пошуки ще не почали. I am going to look for a flat with a built-in wardrobe. — Я збираюся шукати квартиру із вбудованою шафою. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили искать квартиру со встроенным шкафом, но поиски ещё не начали. Built-in — встроенный. Передайте принятое намерение: I am going to look for a flat with a built-in wardrobe. Соберите начало I + am going to + look for, затем добавьте, какое жильё ищете. С I используем am, после going to — исходную форму look. With a built-in wardrobe уточняет, что должно быть в квартире.",
+        "uk": "Ви вирішили шукати квартиру із вбудованою шафою, але пошуків ще не почали. Built-in — вбудований. Передайте прийнятий намір: I am going to look for a flat with a built-in wardrobe. Складіть початок I + am going to + look for, потім додайте, яке житло шукаєте. З I використовуємо am, після going to — початкову форму look. With a built-in wardrobe уточнює, що має бути у квартирі."
       },
       "question": {
         "interactionId": "en:lesson-16:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Просмотр назначен на завтра",
+        "uk": "Огляд призначено на завтра"
       },
       "bodyByLocale": {
-        "ru": "waterfront — расположенный у самой воды. Вы договорились с агентом завтра посмотреть квартиру у набережной. We are viewing a waterfront flat tomorrow. — Завтра мы осматриваем квартиру у самой воды. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "waterfront — розташований біля самої води. Ви домовилися з агентом завтра подивитися квартиру біля набережної. We are viewing a waterfront flat tomorrow. — Завтра ми оглядаємо квартиру біля самої води. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с агентом согласовали завтрашний просмотр квартиры у воды. Waterfront здесь означает расположенный у самой воды. Передайте договорённость через Present Continuous: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. После we используем are, к view добавляем -ing. Tomorrow и согласованный просмотр показывают, что речь о будущем, а не о действии прямо сейчас.",
+        "uk": "Ви з агентом узгодили завтрашній огляд квартири біля води. Waterfront тут означає розташований біля самої води. Передайте домовленість через Present Continuous: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. Після we використовуємо are, до view додаємо -ing. Tomorrow та узгоджений огляд показують, що йдеться про майбутнє, а не про дію просто зараз."
       },
       "question": {
         "interactionId": "en:lesson-16:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "db766accb0bb390c11b4fb6a94165dac5d83756c23f8ba6a71359abe982808bf"
+  "introFingerprint": "d373b9b3f177aedfae7c4129795203a8e6f2773457d77ec3d7b6a204446f7698"
 }

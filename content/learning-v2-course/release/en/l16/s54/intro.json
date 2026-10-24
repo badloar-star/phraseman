@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Предположить тип дома",
+        "uk": "Припустити тип будинку"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. semi-detached — с одной общей стеной с соседним домом. Вы предполагаете, какой дом вам покажет агент; адрес ещё не получили. I think the house will be semi-detached. — Думаю, у дома будет одна общая стена с соседним домом. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. semi-detached — з однією спільною стіною із сусіднім будинком. Ви припускаєте, який будинок вам покаже агент; адреси ще не отримали. I think the house will be semi-detached. — Думаю, будинок матиме одну спільну стіну із сусіднім будинком. Передайте думку-прогноз через will."
+        "ru": "Агент обещал показать вам дом, и вы предполагаете, что у него будет общая стена с соседним домом. Semi-detached — именно такой тип дома. Передайте предположение через will: I think + the house + will be + semi-detached → I think the house will be semi-detached. Will соединяем с be без to, после be называем признак дома. I think показывает, что это мнение. Другие формы могут подходить в иных контекстах; здесь упражняемся в will.",
+        "uk": "Агент обіцяв показати вам будинок, і ви припускаєте, що він матиме спільну стіну із сусіднім будинком. Semi-detached — саме такий тип будинку. Передайте припущення через will: I think + the house + will be + semi-detached → I think the house will be semi-detached. Will поєднуємо з be без to, після be називаємо ознаку будинку. I think показує, що це думка. Інші форми можуть підходити в інших контекстах; тут вправляємося у will."
       },
       "question": {
         "interactionId": "en:lesson-16:session-54:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Решить, какое жильё искать",
+        "uk": "Вирішити, яке житло шукати"
       },
       "bodyByLocale": {
-        "ru": "double-glazed — с двойным остеклением. central heating — центральное отопление. Вы решили искать квартиру с отоплением для всего жилья; это пока намерение. I am going to look for a flat with central heating. — Я собираюсь искать квартиру с центральным отоплением. Передайте заранее принятое намерение через going to.",
-        "uk": "double-glazed — із подвійним склінням. central heating — центральне опалення. Ви вирішили шукати квартиру з опаленням для всього житла; це поки намір. I am going to look for a flat with central heating. — Я збираюся шукати квартиру з центральним опаленням. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили искать квартиру с центральным отоплением, но ещё не начали поиски. Central heating — система отопления всего жилья. Соберите намерение: I + am going to + look for + a flat with central heating → I am going to look for a flat with central heating. С I используем am; после going to ставим look в исходной форме. With central heating уточняет требование к квартире.",
+        "uk": "Ви вирішили шукати квартиру із центральним опаленням, але ще не почали пошуків. Central heating — система опалення всього житла. Складіть намір: I + am going to + look for + a flat with central heating → I am going to look for a flat with central heating. З I використовуємо am; після going to ставимо look у початковій формі. With central heating уточнює вимогу до квартири."
       },
       "question": {
         "interactionId": "en:lesson-16:session-54:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Согласовать осмотр дома",
+        "uk": "Узгодити огляд будинку"
       },
       "bodyByLocale": {
-        "ru": "utility room — хозяйственная комната, обычно со стиральной машиной. Вы договорились с владельцем завтра посмотреть дом с отдельной комнатой для стирки и хозяйственных вещей. We are viewing a house with a utility room tomorrow. — Завтра мы осматриваем дом с хозяйственной комнатой. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "utility room — господарська кімната, зазвичай із пральною машиною. Ви домовилися з власником завтра подивитися будинок з окремою кімнатою для прання та господарських речей. We are viewing a house with a utility room tomorrow. — Завтра ми оглядаємо будинок із господарською кімнатою. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы договорились с владельцем завтра осмотреть дом с хозяйственной комнатой. Utility room — комната для стирки и других домашних дел. Скажите о договорённости: We are viewing a house with a utility room tomorrow. Начните с We + are viewing, добавьте дом a house with a utility room, затем время tomorrow. Are + viewing образует Present Continuous; согласованный план и время показывают его будущее значение.",
+        "uk": "Ви домовилися з власником завтра оглянути будинок із господарською кімнатою. Utility room — кімната для прання та інших домашніх справ. Скажіть про домовленість: We are viewing a house with a utility room tomorrow. Почніть із We + are viewing, додайте будинок a house with a utility room, потім час tomorrow. Are + viewing утворює Present Continuous; узгоджений план і час показують його майбутнє значення."
       },
       "question": {
         "interactionId": "en:lesson-16:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d33ece6a65cb603698c7b8b1d9a036fca76fc915db37b132e2b5b776952d0e34"
+  "introFingerprint": "e839767ab3cfbd73a50d60e1b38696fe58d8d5f21471fee4dceab53d2e837b4c"
 }

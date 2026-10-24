@@ -4,7 +4,8 @@
  *
  * зачем (владелец 21.10, макет docs/design/v2-app/friends-full.html, идея 2 «Финал занятия», «Отправлено», «Нет друзей»):
  * вторичная кнопка-пилюля (.c2) под главной; «Продолжить» — как сейчас. Друзья для выбора — из снимка «Вместе» на телефоне
- * (без сети); прогресса курса друга в профиле пока нет — статус «не знаем», выбор свободный, до трёх.
+ * (без сети); статус «открыт / уже прошёл / закрыт» — по маскам курса друга из того же профиля (friendCourse, 0 чтений;
+ * координатор 22.10); масок нет (старый клиент друга) — «не знаем», выбор свободный, до трёх.
  * Optimistic UI: после «Позвать» кнопка сразу «Приглашения ушли…» и тост; сбой сервера — кнопка возвращается, тост ошибки.
  * Виден только при FRIENDS_TOGETHER_UI_ENABLED, включённом friends_together_enabled и известном занятии (lessonKey).
  */
@@ -23,7 +24,7 @@ import { getLocalDayKey } from '../../app/local_date';
 import { FRIENDS_TOGETHER_UI_ENABLED, useFriendsTogetherEnabled } from '../../app/friends_together/together_config';
 import { primeFriendsTogetherSnapshot, readMyActiveDays } from '../../app/friends_together/together_store';
 import { pairCandidatesFromSnapshot } from '../../app/friends_together/pair_today';
-import type { LessonInviteRow } from '../../app/friends_together/lesson_together';
+import { lessonInviteStatusFromCourse, type LessonInviteRow } from '../../app/friends_together/lesson_together';
 import { sendLessonInvites } from '../../app/friends_together/lesson_invite_client';
 import {
   lessonInviteButton,
@@ -74,16 +75,20 @@ export default function FinishLessonInvite({ lessonKey, lesson, sessionOrdinal, 
           return;
         }
         const next = snapshot
-          ? pairCandidatesFromSnapshot(snapshot, myDays, getLocalDayKey()).map((c): LessonInviteRow => ({ friendUid: c.friendUid, name: c.name, coinRank: c.coinRank, isPlus: c.isPlus, status: 'unknown' }))
+          ? pairCandidatesFromSnapshot(snapshot, myDays, getLocalDayKey()).map((c): LessonInviteRow => ({
+            friendUid: c.friendUid, name: c.name, coinRank: c.coinRank, isPlus: c.isPlus,
+            status: lessonInviteStatusFromCourse(snapshot.pairs[c.friendUid]?.course, lesson, sessionOrdinal),
+          }))
           : [];
-        log(`finish:invite rows=${next.length} snapshot=${snapshot ? 'yes' : 'none'} lesson=${lessonKey}`);
+        const statuses = next.reduce<Record<string, number>>((acc, row) => ({ ...acc, [row.status]: (acc[row.status] ?? 0) + 1 }), {});
+        log(`finish:invite rows=${next.length} snapshot=${snapshot ? 'yes' : 'none'} lesson=${lessonKey} statuses=${JSON.stringify(statuses)}`);
         setRows(next);
       } catch (e) {
         console.warn(`[FRIENDS-2] finish:invite rows failed → выбор пустой: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
       }
     })();
     return () => { alive = false; };
-  }, [lessonKey, on]);
+  }, [lesson, lessonKey, on, sessionOrdinal]);
 
   const onSend = useCallback((friendUids: readonly string[]) => {
     if (!lessonKey || inFlightRef.current) {

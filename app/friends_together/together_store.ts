@@ -25,6 +25,7 @@ import { pairViewForToday } from './pair_today';
 import { parseStudyLanguagesStarted } from './duel_eligibility';
 import { parseFriendWeekRecord, type FriendWeekRecord } from './friend_week';
 import { parseFriendPhraseAnswer, type FriendPhraseAnswer } from './friend_phrase';
+import { parseFriendCourse, type FriendCourseMasks } from './lesson_together';
 import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -74,6 +75,8 @@ export type FriendTogetherPairState = Readonly<{
   week?: FriendWeekRecord | null;
   /** «Фраза дня вдвоём» (идея 8): последний ответ друга на фразу дня (тот же профиль, 0 новых чтений); null — нет записи. */
   phrase?: FriendPhraseAnswer | null;
+  /** «Урок вместе» (идея 2): маски курса друга (строки — снимок хранится в JSON); null — записи нет. */
+  course?: FriendCourseMasks | null;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -301,6 +304,8 @@ export async function refreshFriendsTogether(
       week: parseFriendWeekRecord(profile.friendWeek),
       // зачем (идея 8): ответ друга на фразу дня — тем же профилем; карточка «Фраза дня вдвоём» сверяет день и фразу сама
       phrase: parseFriendPhraseAnswer(profile.friendPhrase),
+      // зачем (идея 2): статусы «открыт / прошёл / закрыт» в выборе друзей — из того же профиля, 0 новых чтений
+      course: parseFriendCourse(profile.friendCourse),
     };
   }
 

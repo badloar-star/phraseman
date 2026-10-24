@@ -66,6 +66,20 @@ export interface FriendWeekWire {
  * «Фраза дня вдвоём» (идея 8): ответ друга на фразу дня — его телефон решил верность и записал progress.friends_phrase_v1.
  * зачем (закон владельца «сервер только хранит записи»): сервер строго разбирает и отдаёт тем же чтением users/{uid}.
  */
+/**
+ * «Урок вместе» (идея 2): маски курса друга — какие занятия он прошёл и какие у него открыты (прогресс v2,
+ * modules/learning-v2/progress/course_progress_masks_v1.ts: бит = (урок − 1) · 56 + (занятие − 1), шестнадцатеричная строка).
+ * зачем (координатор 22.10; закон владельца «сервер только хранит записи»): выбор друзей показывает «урок открыт / уже прошёл /
+ * закрыт» — телефон друга сам пишет маски в синхронизируемый прогресс, сервер лишь строго отдаёт их тем же чтением users/{uid}.
+ */
+export interface FriendCourseWire {
+  v: 1;
+  /** Пройдено. */
+  c: string;
+  /** Открыто, но не пройдено. */
+  o: string;
+}
+
 export interface FriendPhraseWire {
   v: 1;
   day: string;
@@ -110,6 +124,8 @@ export interface FriendPublicProfile {
   friendWeek: FriendWeekWire | null;
   /** «Фраза дня вдвоём» (идея 8): последний ответ друга из friends_phrase_v1; null — нет записи. */
   friendPhrase: FriendPhraseWire | null;
+  /** «Урок вместе»: маски курса друга из learning_v2_course_masks_sync_v1; null — записи нет или она чужой раскладки. */
+  friendCourse: FriendCourseWire | null;
 }
 
 type ProfilesResponse = { ok: true; profiles: Record<string, FriendPublicProfile | null> };
@@ -282,6 +298,19 @@ export function friendWeekFromProgress(progress: Record<string, unknown>): Frien
   return cur || prev ? { v: 1, cur, prev } : null;
 }
 
+/** 32 урока × 56 занятий = 1792 бита = не больше 448 шестнадцатеричных символов на маску. */
+const COURSE_MASK_RE = /^[0-9a-f]{0,448}$/;
+
+export function friendCourseFromProgress(progress: Record<string, unknown>): FriendCourseWire | null {
+  const r = parseJsonObject(progress['learning_v2_course_masks_sync_v1']);
+  // без поля v — первые записи той же раскладки v1; иная версия — чужая раскладка, друзьям не отдаём
+  if (r.v !== undefined && r.v !== 1) return null;
+  const c = typeof r.c === 'string' ? r.c.toLowerCase() : null;
+  const o = typeof r.o === 'string' ? r.o.toLowerCase() : null;
+  if (c === null || o === null || !COURSE_MASK_RE.test(c) || !COURSE_MASK_RE.test(o)) return null;
+  return { v: 1, c, o };
+}
+
 export function friendPhraseFromProgress(progress: Record<string, unknown>): FriendPhraseWire | null {
   const r = parseJsonObject(progress['friends_phrase_v1']);
   const token = (value: unknown): string => (typeof value === 'string' && /^[A-Za-z0-9_.:-]{1,80}$/.test(value) ? value : '');
@@ -301,6 +330,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
   spireLang: string | null;
   friendWeek: FriendWeekWire | null;
   friendPhrase: FriendPhraseWire | null;
+  friendCourse: FriendCourseWire | null;
 } {
   const progress = getProgress(userData);
   const lastActiveDate = typeof progress['last_active_date'] === 'string' && progress['last_active_date']
@@ -327,6 +357,7 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
     spireLang: spire.spireLang,
     friendWeek: friendWeekFromProgress(progress),
     friendPhrase: friendPhraseFromProgress(progress),
+    friendCourse: friendCourseFromProgress(progress),
   };
 }
 
@@ -373,6 +404,7 @@ export function buildFriendProfile(
     spireLang: together.spireLang,
     friendWeek: together.friendWeek,
     friendPhrase: together.friendPhrase,
+    friendCourse: together.friendCourse,
   };
   if (!profile.displayName && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;

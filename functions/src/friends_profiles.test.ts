@@ -128,6 +128,20 @@ describe('friendsGetProfiles reads', () => {
     expect(reads).toHaveLength(2 * 5);
   });
 
+  it('passes the friend course masks (idea 2 statuses) from the already-read user doc; foreign layout or broken masks give null', async () => {
+    // зачем (координатор 22.10; закон владельца «сервер только хранит записи»): маски пишет телефон друга, сервер только отдаёт
+    const rows: Record<string, Row> = { ...friendRows('caller-d7', 'masks'), ...friendRows('caller-d7', 'foreign'), ...friendRows('caller-d7', 'broken') };
+    rows['users/masks'] = { progress: { learning_v2_course_masks_sync_v1: JSON.stringify({ v: 1, c: 'FF3', o: '0004' }) } };
+    rows['users/foreign'] = { progress: { learning_v2_course_masks_sync_v1: JSON.stringify({ v: 2, c: 'ff', o: '' }) } };
+    rows['users/broken'] = { progress: { learning_v2_course_masks_sync_v1: JSON.stringify({ v: 1, c: 'zz', o: '' }) } };
+    const { db, reads } = makeDb(rows);
+    const result = await runFriendsGetProfiles(db, 'caller-d7', ['masks', 'foreign', 'broken']);
+    expect(result.profiles.masks?.friendCourse).toEqual({ v: 1, c: 'ff3', o: '0004' });
+    expect(result.profiles.foreign?.friendCourse).toBeNull();
+    expect(result.profiles.broken?.friendCourse).toBeNull();
+    expect(reads).toHaveLength(3 * 5);
+  });
+
   it('the caller own profile still reads its user doc and deletion marker itself', async () => {
     const { db, reads } = makeDb({ 'users/caller-d3': { progress: {} }, 'public_profiles/caller-d3': { name: 'Я' } });
     const result = await runFriendsGetProfiles(db, 'caller-d3', ['caller-d3']);

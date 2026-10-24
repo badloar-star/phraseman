@@ -31,7 +31,8 @@ const S = {
   timerPaused: ['таймер на паузе', 'таймер на паузі', 'timer paused', 'tiempo en pausa', 'tempo pausado', 'đồng hồ tạm dừng', 'waktu dijeda', 'süre durdu', 'licznik wstrzymany'],
   promptGuess: ['Выбери перевод', 'Обери переклад', 'Choose the translation', 'Elige la traducción', 'Escolha a tradução', 'Chọn bản dịch', 'Pilih terjemahan', 'Çeviriyi seç', 'Wybierz tłumaczenie'],
   promptGap: ['Вставь слово', 'Встав слово', 'Fill in the word', 'Completa la palabra', 'Complete a palavra', 'Điền từ', 'Isi kata', 'Kelimeyi yerleştir', 'Wstaw słowo'],
-  promptOdd: ['Найди лишнее', 'Знайди зайве', 'Find the odd one out', 'Encuentra la intrusa', 'Encontre o intruso', 'Tìm từ khác loại', 'Temukan yang berbeda', 'Farklı olanı bul', 'Znajdź niepasujące'],
+  // зачем (координатор 24.10, Сверка: city/village): все find_oddity проверяют ошибку, а «Найди лишнее» звало искать по смыслу
+  promptOdd: ['Найди ошибку', 'Знайди помилку', 'Find the mistake', 'Encuentra el error', 'Encontre o erro', 'Tìm lỗi sai', 'Temukan kesalahan', 'Hatayı bul', 'Znajdź błąd'],
   promptBuild: ['Собери перевод', 'Склади переклад', 'Build the translation', 'Arma la traducción', 'Monte a tradução', 'Ghép bản dịch', 'Susun terjemahan', 'Çeviriyi oluştur', 'Ułóż tłumaczenie'],
   // зачем (Ядро 01.10, PM-286): задания на слух — своя подсказка, а не общая «Выбери перевод».
   promptListenChoose: ['Послушай и выбери', 'Послухай і обери', 'Listen and choose', 'Escucha y elige', 'Ouça e escolha', 'Nghe và chọn', 'Dengarkan dan pilih', 'Dinle ve seç', 'Posłuchaj i wybierz'],

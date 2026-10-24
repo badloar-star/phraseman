@@ -247,7 +247,8 @@ const stepPhone = (o) => phone(`${stepHead(o.hearts ?? 3, o.e ?? 2)}${ringHtml(o
 
 /* тексты заданий — условные примеры в формате пакета недели (payload.phrase / options / wordBank) */
 const tFillGap = () => stepPhone({ prompt: 'Вставь слово', n: 2, body: qCard('Can I help ___ with that?') + opts(['them', 'you', 'him', 'her']) });
-const tOdd = () => stepPhone({ prompt: 'Найди лишнее', n: 5, hearts: 2, left: '2:39', frac: .58, body: qCard('Найди фразу с ошибкой согласования.') + opts(['I am from Spain.', 'I am from Russia.', 'They am from Russia.', 'I am from Italy.']) });
+/* зачем (координатор 24.10): заголовок типа «Найди ошибку» — задание проверяет ошибку, не смысл (Сверка: city/village) */
+const tOdd = () => stepPhone({ prompt: 'Найди ошибку', n: 5, hearts: 2, left: '2:39', frac: .58, body: qCard('Найди фразу с ошибкой согласования.') + opts(['I am from Spain.', 'I am from Russia.', 'They am from Russia.', 'I am from Italy.']) });
 const tBuild = () => stepPhone({ prompt: 'Собери перевод', n: 4, left: '2:58', frac: .65, body: qCard('Она работает каждый день') + tokens(['She', 'works'], ['She', 'works', 'every', 'day', 'work', 'the', 'is']) });
 const tListenChoose = () => stepPhone({ prompt: 'Послушай и выбери', n: 6, left: '2:14', frac: .49, body: listenCard() + opts(['landlord', 'landmark', 'landslide']) });
 const tListenBuild = () => stepPhone({ prompt: 'Послушай и собери', n: 8, hearts: 2, left: '1:30', frac: .33, body: listenCard() + tokens(['Where', 'are'], ['Where', 'shops', 'the', 'is', 'are']) });

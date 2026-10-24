@@ -73,8 +73,10 @@ const LEGAL_FILES = [
   // 24.10 (координатор, «Урок вместе», идея 2): §5 — маски курса (пройдено / открыто) едут с прогрессом и видны принятым друзьям,
   // чтобы приглашение показывало «открыт / прошёл / закрыт» (functions/src/friends_profiles.ts friendCourseFromProgress).
   // 24.10 (владелец кнопкой «Да, выложить с датой», через координатора): дата политики «Last updated: October 24, 2026».
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'eab03fc2f5c46c3d47677976fa1ac77df52a2cf5a98e1a2a519b43bf0ae7f3d8'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'fe64132c9d258e04482d0c8f500d526225f1615b4af982e127a7bad1b9cf5ee0'],
+  // 24.10 (координатор, пакет премиум-тем a50cfbf18): §5 — особые темы по достижениям: сервер хранит время просмотра видео (premium_theme_video_watch,
+  // удаляется с аккаунтом — account_delete.ts:324) и смотрит ранг монеты, серию, этаж Пика, курс (покупка Plus не учитывается — «ТЕМЫ ВСЕ ФРИ», 30.09).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'eb5523db58b45965a99db0820eb1db5ec5309ce68689e99b2e7536bcc7ca06a1'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '6dc7a465592ee1ff43e5c76f93cf5aa97e22527dfc6e9003d9d309ca0ad0c5ef'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3'],

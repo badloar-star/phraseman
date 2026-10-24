@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; unreal condition; present perfect / past simple",
+    "uk": "wish + past; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разделить домашние дела",
+        "uk": "Розподілити домашні справи"
+      },
+      "bodyByLocale": {
+        "ru": "Fairness — справедливость, честное отношение ко всем. Fairness matters to me — для меня важна справедливость. Вы готовите ужин вместе и не хотите оставлять всю уборку одному человеку. Could we take turns? — можем делать это по очереди? I would help more if I had more time — я бы помогал больше, если бы у меня было больше времени. Would help описывает результат, had — воображаемое условие сейчас.",
+        "uk": "Fairness — справедливість, чесне ставлення до всіх. Fairness matters to me — для мене важлива справедливість. Ви готуєте вечерю разом і не хочете залишати все прибирання одній людині. Could we take turns? — можемо робити це по черзі? I would help more if I had more time — я б допомагав більше, якби мав більше часу. Would help описує результат, had — уявну умову зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-38:intro1:r1",
+              "text": "I would help more if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro1:r2",
+              "text": "I would helped more if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro1:r3",
+              "text": "I would to help more if I had more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-38:intro1:r1",
+              "text": "I would help more if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro1:r2",
+              "text": "I would helped more if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro1:r3",
+              "text": "I would to help more if I had more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поблагодарить за щедрость",
+        "uk": "Подякувати за щедрість"
+      },
+      "bodyByLocale": {
+        "ru": "Generosity — щедрость: человек охотно делится едой, временем или помощью. Thank you for your generosity — спасибо за твою щедрость. Друг принёс продукты для всех, а вы предлагаете накрыть на стол: Shall I set the table? I have already washed the dishes — я уже помыл посуду. I washed them yesterday — я помыл её вчера: это сообщение о законченном времени, без have.",
+        "uk": "Generosity — щедрість: людина охоче ділиться їжею, часом або допомогою. Thank you for your generosity — дякую за твою щедрість. Друг приніс продукти для всіх, а ви пропонуєте накрити на стіл: Shall I set the table? I have already washed the dishes — я вже помив посуд. I washed them yesterday — я помив його вчора: це повідомлення про завершений час, без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-38:intro2:r1",
+              "text": "I washed them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro2:r2",
+              "text": "I have washed them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro2:r3",
+              "text": "I washing them yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-38:intro2:r1",
+              "text": "I washed them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro2:r2",
+              "text": "I have washed them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro2:r3",
+              "text": "I washing them yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Резкая реплика",
+        "uk": "Різка репліка"
+      },
+      "bodyByLocale": {
+        "ru": "Politeness — вежливость. A little politeness would help — немного вежливости не помешало бы. Это замечание о тоне разговора; оно само может прозвучать строго. Rudeness — грубость. I am sorry for my rudeness — прости за мою грубость. Так человек признаёт своё поведение, а не обвиняет другого. I wish we were calmer — хотелось бы, чтобы мы были спокойнее. После wish were относится к нынешнему состоянию. Дальше можно попросить конкретно: Could you let me finish? — можно мне договорить?",
+        "uk": "Politeness — ввічливість. A little politeness would help — трохи ввічливості не завадило б. Це зауваження про тон розмови; воно саме може прозвучати суворо. Rudeness — грубість. I am sorry for my rudeness — перепрошую за свою грубість. Так людина визнає власну поведінку, а не звинувачує іншого. I wish we were calmer — хотілося б, щоб ми були спокійнішими. Після wish were стосується теперішнього стану. Далі можна попросити конкретно: Could you let me finish? — можна мені договорити?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-38:intro3:r1",
+              "text": "I wish we were calmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro3:r2",
+              "text": "I wish we are calmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro3:r3",
+              "text": "I wish we be calmer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-38:intro3:r1",
+              "text": "I wish we were calmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro3:r2",
+              "text": "I wish we are calmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-38:intro3:r3",
+              "text": "I wish we be calmer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "332baab6590588b24e71eab0d1e0412c0779b51d7fd662ce3c24a55da288e8b0"
+}

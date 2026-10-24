@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-39:word:curiosity",
+    "correctText": "curiosity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i01",
+    "correctText": "I asked out of curiosity.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i02",
+    "correctText": "How did you learn to draw?",
+    "correctResponseId": "en:lesson-27:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i03",
+    "correctText": "May I have a closer look?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-39:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:word:affection",
+    "correctText": "affection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i05",
+    "correctText": "The dog needs affection.",
+    "correctResponseId": "en:lesson-27:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i06",
+    "correctText": "Is that your dog?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:word:admiration",
+    "correctText": "admiration",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i07",
+    "correctText": "I have great admiration for your work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i08",
+    "correctText": "This drawing is lovely.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i09",
+    "correctText": "I have already tried drawing my dog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i10",
+    "correctText": "tried",
+    "correctResponseId": "en:lesson-27:session-39:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:word:empathy",
+    "correctText": "empathy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i11",
+    "correctText": "A little empathy can help.",
+    "correctResponseId": "en:lesson-27:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i12",
+    "correctText": "How do you feel about it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i13",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-27:session-39:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i14",
+    "correctText": "Shall I make some tea?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i15",
+    "correctText": "I would practise more if we did it together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i16",
+    "correctText": "Shall we draw together this weekend?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-39:i17",
+    "correctText": "What should I bring?",
+    "correctResponseId": null
+  }
+]

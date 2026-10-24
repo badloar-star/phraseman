@@ -10458,4 +10458,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wish + past; unreal condition; present perfect / past simple","uk":"wish + past; unreal condition; present perfect / past simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 38,
+    sourceFingerprint: "b90c54bc9a9ea5c232d2d4e04ad6f31c913716b761a199a49fe2db63a127f3d7",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wish + past; unreal condition; present perfect / past simple","uk":"wish + past; unreal condition; present perfect / past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 39,
+    sourceFingerprint: "13742dc8a5ce19f84e2d71d911b00a0ff138ec45f42f973144b38c6b6dc7738f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wish + past; if I were; unreal condition; present perfect / past simple","uk":"wish + past; if I were; unreal condition; present perfect / past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-39",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-39:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-39:intro1:r2": {
+          "ru": "После wish здесь had.",
+          "uk": "Після wish тут had."
+        },
+        "en:lesson-27:session-39:intro1:r3": {
+          "ru": "Нужна форма had.",
+          "uk": "Потрібна форма had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-39:intro2:r2": {
+          "ru": "С yesterday здесь tried без have.",
+          "uk": "Із yesterday тут tried без have."
+        },
+        "en:lesson-27:session-39:intro2:r3": {
+          "ru": "Прошедшая форма try — tried.",
+          "uk": "Минула форма try — tried."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-39:intro3:r2": {
+          "ru": "После would нужна practise.",
+          "uk": "Після would потрібна practise."
+        },
+        "en:lesson-27:session-39:intro3:r3": {
+          "ru": "После would нет to.",
+          "uk": "Після would немає to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "69fcf8c6e1f8595d0e6076e61454867be16e68ded5131d2eca14684a522601fe"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-38:i01",
+    "correctText": "Could we take turns?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:word:fairness",
+    "correctText": "fairness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i02",
+    "correctText": "Fairness matters to me.",
+    "correctResponseId": "en:lesson-27:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i03",
+    "correctText": "Shall I set the table?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i04",
+    "correctText": "help",
+    "correctResponseId": "en:lesson-27:session-38:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:word:generosity",
+    "correctText": "generosity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i05",
+    "correctText": "Thank you for your generosity.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i06",
+    "correctText": "Where do these plates go?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i07",
+    "correctText": "I have already washed the dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-27:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:word:politeness",
+    "correctText": "politeness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i09",
+    "correctText": "A little politeness would help.",
+    "correctResponseId": "en:lesson-27:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i10",
+    "correctText": "Could you let me finish?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:word:rudeness",
+    "correctText": "rudeness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i11",
+    "correctText": "I am sorry for my rudeness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i13",
+    "correctText": "We can take a short break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i14",
+    "correctText": "Would you like some tea?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i15",
+    "correctText": "We would finish earlier if we shared the work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i16",
+    "correctText": "I can put the chairs away.",
+    "correctResponseId": "en:lesson-27:session-38:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-38:i17",
+    "correctText": "Is there anything else to do?",
+    "correctResponseId": null
+  }
+]

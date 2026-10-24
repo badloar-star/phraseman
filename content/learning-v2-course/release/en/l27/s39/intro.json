@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
+    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить из интереса",
+        "uk": "Запитати з цікавості"
+      },
+      "bodyByLocale": {
+        "ru": "Curiosity — любопытство, желание узнать. I asked out of curiosity — я спросил из любопытства. Друг показывает рисунки, и вам интересно, как он научился рисовать. How did you learn to draw? — как ты научился рисовать? I wish I had more time to practise — хотелось бы иметь больше времени на практику. Had после wish относится к времени, которого не хватает сейчас.",
+        "uk": "Curiosity — цікавість, бажання дізнатися. I asked out of curiosity — я запитав із цікавості. Друг показує малюнки, і вам цікаво, як він навчився малювати. How did you learn to draw? — як ти навчився малювати? I wish I had more time to practise — хотілося б мати більше часу на практику. Had після wish стосується часу, якого бракує зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-39:intro1:r1",
+              "text": "I wish I had more time to practise."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro1:r2",
+              "text": "I wish I have more time to practise."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro1:r3",
+              "text": "I wish I having more time to practise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-39:intro1:r1",
+              "text": "I wish I had more time to practise."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro1:r2",
+              "text": "I wish I have more time to practise."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro1:r3",
+              "text": "I wish I having more time to practise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тёплое отношение и восхищение",
+        "uk": "Тепле ставлення й захоплення"
+      },
+      "bodyByLocale": {
+        "ru": "Affection — привязанность, нежность. The dog needs affection — собаке нужна ласка. На рисунке изображён любимый пёс друга. Admiration — восхищение: I have great admiration for your work — я очень восхищаюсь твоими работами. Это подчёркнутая похвала; в обычной беседе можно сказать проще: This drawing is lovely. I have already tried drawing my dog — я уже пробовал рисовать свою собаку. I tried it yesterday — я попробовал вчера: законченное время требует past simple в этой фразе.",
+        "uk": "Affection — прихильність, ніжність. The dog needs affection — собаці потрібна ласка. На малюнку зображено улюбленого пса друга. Admiration — захоплення: I have great admiration for your work — я дуже захоплююся твоїми роботами. Це підкреслена похвала; у звичайній розмові можна сказати простіше: This drawing is lovely. I have already tried drawing my dog — я вже пробував малювати свого собаку. I tried it yesterday — я спробував учора: завершений час потребує past simple у цій фразі."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-39:intro2:r1",
+              "text": "I tried it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro2:r2",
+              "text": "I have tried it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro2:r3",
+              "text": "I tryed it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-39:intro2:r1",
+              "text": "I tried it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro2:r2",
+              "text": "I have tried it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro2:r3",
+              "text": "I tryed it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выслушать друга",
+        "uk": "Вислухати друга"
+      },
+      "bodyByLocale": {
+        "ru": "Empathy — способность понимать чувства другого человека. A little empathy can help — немного понимания чужих чувств может помочь. Друг расстроен, что рисунок не получился. Можно спросить: How do you feel about it? — что ты об этом чувствуешь? Не нужно сразу оценивать рисунок или давать совет. If I were you, I would take a break — на твоём месте я бы сделал перерыв. I would practise more if we did it together — я бы больше практиковался, если бы мы занимались вместе.",
+        "uk": "Empathy — здатність розуміти почуття іншої людини. A little empathy can help — трохи розуміння чужих почуттів може допомогти. Друг засмучений, що малюнок не вдався. Можна запитати: How do you feel about it? — що ти відчуваєш із цього приводу? Не потрібно одразу оцінювати малюнок або давати пораду. If I were you, I would take a break — на твоєму місці я б зробив перерву. I would practise more if we did it together — я б більше практикувався, якби ми займалися разом."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-39:intro3:r1",
+              "text": "I would practise more if we did it together."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro3:r2",
+              "text": "I would practised more if we did it together."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro3:r3",
+              "text": "I would to practise more if we did it together."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-39:intro3:r1",
+              "text": "I would practise more if we did it together."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro3:r2",
+              "text": "I would practised more if we did it together."
+            },
+            {
+              "responseId": "en:lesson-27:session-39:intro3:r3",
+              "text": "I would to practise more if we did it together."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d6df2efd9b88b2a1282abdcad8065b05748e21608aeba3028164b1fe5e32c9c0"
+}

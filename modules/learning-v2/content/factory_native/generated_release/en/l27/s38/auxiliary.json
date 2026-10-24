@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-38:intro1:r2": {
+          "ru": "После would нужна help.",
+          "uk": "Після would потрібна help."
+        },
+        "en:lesson-27:session-38:intro1:r3": {
+          "ru": "После would нет to.",
+          "uk": "Після would немає to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-38:intro2:r2": {
+          "ru": "С yesterday здесь washed без have.",
+          "uk": "Із yesterday тут washed без have."
+        },
+        "en:lesson-27:session-38:intro2:r3": {
+          "ru": "Для законченного действия нужна washed.",
+          "uk": "Для завершеної дії потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-38:intro3:r2": {
+          "ru": "В этом пожелании нужна were.",
+          "uk": "У цьому побажанні потрібна were."
+        },
+        "en:lesson-27:session-38:intro3:r3": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "39223b40f8c3c3b09c27da5692cf10d279403b45134e0b20da2bd59aad846f36"
+}

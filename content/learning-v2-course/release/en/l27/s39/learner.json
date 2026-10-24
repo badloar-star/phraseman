@@ -1,0 +1,1003 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-39:word:curiosity",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — curiosity",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:word:curiosity:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — curiosity",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:word:curiosity:audio",
+          "transcript": "curiosity"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-39:word:curiosity:r1",
+            "targetText": "curiosity",
+            "meaningByLocale": {
+              "ru": "Любопытство, желание узнать.",
+              "uk": "Цікавість, бажання дізнатися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "curiosity",
+          "definitionByLocale": {
+            "ru": "Любопытство, желание узнать.",
+            "uk": "Цікавість, бажання дізнатися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, почему задали вопрос.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, почему задали вопрос.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I asked out of curiosity.",
+        "localizedMeaning": {
+          "ru": "Объясните, почему задали вопрос.",
+          "uk": "Поясніть, чому поставили запитання."
+        },
+        "orderedTokens": [
+          "I",
+          "asked",
+          "out",
+          "of",
+          "curiosity"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-39:i02:r1",
+          "text": "How did you learn to draw?"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i02:r2",
+          "text": "When did you learn to draw?"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i02:r3",
+          "text": "How did you learn to paint?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i02:audio",
+          "transcript": "How did you learn to draw?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-39:i02:r1",
+            "targetText": "How did you learn to draw?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i02:r2",
+            "targetText": "When did you learn to draw?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i02:r3",
+            "targetText": "How did you learn to paint?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How did you learn to draw?",
+              "uk": "У записі звучить How did you learn to draw?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит How did you learn to draw?",
+              "uk": "У записі звучить How did you learn to draw?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i03",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите посмотреть рисунок поближе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите посмотреть рисунок поближе.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i03:audio",
+          "transcript": "May I have a closer look?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I have a closer look?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотелось бы больше времени для практики.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-39:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i04:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотелось бы больше времени для практики.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы больше времени для практики.",
+          "uk": "Вам хотілося б більше часу для практики."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time to practise.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-39:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i04:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Вам хотелось бы больше времени для практики.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-39:i04:r2",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы больше времени для практики.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь had.",
+              "uk": "Після wish тут had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i04:r3",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы больше времени для практики.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма had.",
+              "uk": "Потрібна форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:word:affection",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — affection",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:word:affection:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — affection",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:word:affection:audio",
+          "transcript": "affection"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-39:word:affection:r1",
+            "targetText": "affection",
+            "meaningByLocale": {
+              "ru": "Привязанность, нежность.",
+              "uk": "Прихильність, ніжність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "affection",
+          "definitionByLocale": {
+            "ru": "Привязанность, нежность.",
+            "uk": "Прихильність, ніжність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-39:i05:r1",
+          "text": "The dog needs affection."
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i05:r2",
+          "text": "The cat needs affection."
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i05:r3",
+          "text": "The dog needs attention."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i05:audio",
+          "transcript": "The dog needs affection."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-39:i05:r1",
+            "targetText": "The dog needs affection.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i05:r2",
+            "targetText": "The cat needs affection.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i05:r3",
+            "targetText": "The dog needs attention.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-39:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog needs affection.",
+              "uk": "У записі звучить The dog needs affection."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog needs affection.",
+              "uk": "У записі звучить The dog needs affection."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о собаке на рисунке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о собаке на рисунке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i06:audio",
+          "transcript": "Is that your dog?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Is that your dog?",
+        "orderedTokens": [
+          "Is",
+          "that",
+          "your",
+          "dog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:word:admiration",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — admiration",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:word:admiration:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — admiration",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:word:admiration:audio",
+          "transcript": "admiration"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-39:word:admiration:r1",
+            "targetText": "admiration",
+            "meaningByLocale": {
+              "ru": "Восхищение.",
+              "uk": "Захоплення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "admiration",
+          "definitionByLocale": {
+            "ru": "Восхищение.",
+            "uk": "Захоплення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Выразите восхищение работами друга.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выразите восхищение работами друга.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have great admiration for your work.",
+        "localizedMeaning": {
+          "ru": "Выразите восхищение работами друга.",
+          "uk": "Висловіть захоплення роботами друга."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "great",
+          "admiration",
+          "for",
+          "your",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Похвалите конкретный рисунок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i08:audio"
+      ],
+      "accessibilityLabel": "Похвалите конкретный рисунок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i08:audio",
+          "transcript": "This drawing is lovely."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This drawing is lovely.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что уже пробовали рисовать свою собаку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что уже пробовали рисовать свою собаку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already tried drawing my dog.",
+        "localizedMeaning": {
+          "ru": "Скажите, что уже пробовали рисовать свою собаку.",
+          "uk": "Скажіть, що вже пробували малювати свого собаку."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "tried",
+          "drawing",
+          "my",
+          "dog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы попробовали вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-39:i10:r1",
+          "text": "tried"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i10:r2",
+          "text": "have tried"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i10:r3",
+          "text": "tryed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы попробовали вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы попробовали вчера.",
+          "uk": "Ви спробували вчора."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-39:i10:r1",
+            "text": "tried"
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i10:r2",
+            "text": "have tried"
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i10:r3",
+            "text": "tryed"
+          }
+        ],
+        "testedDimension": "Вы попробовали вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-39:i10:r2",
+            "correct": false,
+            "testedDimension": "Вы попробовали вчера.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь tried без have.",
+              "uk": "Із yesterday тут tried без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i10:r3",
+            "correct": false,
+            "testedDimension": "Вы попробовали вчера.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма try — tried.",
+              "uk": "Минула форма try — tried."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:word:empathy",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — empathy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:word:empathy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — empathy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:word:empathy:audio",
+          "transcript": "empathy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-39:word:empathy:r1",
+            "targetText": "empathy",
+            "meaningByLocale": {
+              "ru": "Способность понимать чувства другого человека.",
+              "uk": "Здатність розуміти почуття іншої людини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "empathy",
+          "definitionByLocale": {
+            "ru": "Способность понимать чувства другого человека.",
+            "uk": "Здатність розуміти почуття іншої людини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-39:i11:r1",
+          "text": "A little empathy can help."
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i11:r2",
+          "text": "A little patience can help."
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i11:r3",
+          "text": "A little empathy could help."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i11:audio",
+          "transcript": "A little empathy can help."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-39:i11:r1",
+            "targetText": "A little empathy can help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i11:r2",
+            "targetText": "A little patience can help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i11:r3",
+            "targetText": "A little empathy could help.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A little empathy can help.",
+              "uk": "У записі звучить A little empathy can help."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит A little empathy can help.",
+              "uk": "У записі звучить A little empathy can help."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга о его чувствах.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i12:audio"
+      ],
+      "accessibilityLabel": "Спросите друга о его чувствах.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i12:audio",
+          "transcript": "How do you feel about it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How do you feel about it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Посоветуйте сделать перерыв.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-39:i13:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i13:r2",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-27:session-39:i13:r3",
+          "text": "to take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посоветуйте сделать перерыв.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте сделать перерыв.",
+          "uk": "Порадьте зробити перерву."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ a break.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-39:i13:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i13:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i13:r3",
+            "text": "to take"
+          }
+        ],
+        "testedDimension": "Посоветуйте сделать перерыв.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-39:i13:r2",
+            "correct": false,
+            "testedDimension": "Посоветуйте сделать перерыв.",
+            "feedbackByLocale": {
+              "ru": "После would нужна take.",
+              "uk": "Після would потрібна take."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-39:i13:r3",
+            "correct": false,
+            "testedDimension": "Посоветуйте сделать перерыв.",
+            "feedbackByLocale": {
+              "ru": "После would нет to.",
+              "uk": "Після would немає to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение принести чай.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение принести чай.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i14:audio",
+          "transcript": "Shall I make some tea?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall I make some tea?",
+        "orderedTokens": [
+          "Shall",
+          "I",
+          "make",
+          "some",
+          "tea"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we did it together, I would practise more.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we did it together, I would practise more.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would practise more if we did it together.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we did it together, I would practise more.",
+          "uk": "Почніть із результату: If we did it together, I would practise more."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "practise",
+          "more",
+          "if",
+          "we",
+          "did",
+          "it",
+          "together"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите рисовать вместе на выходных.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i16:audio"
+      ],
+      "accessibilityLabel": "Предложите рисовать вместе на выходных.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i16:audio",
+          "transcript": "Shall we draw together this weekend?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we draw together this weekend?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-39:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, что принести с собой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Уточните, что принести с собой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-39:i17:audio",
+          "transcript": "What should I bring?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What should I bring?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f66317c1311dcbd33b0866cd554aadf1089e7967d40439dbef03413093025c5f"
+}

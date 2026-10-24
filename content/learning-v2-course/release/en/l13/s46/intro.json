@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Белка",
-        "uk": "Білка"
+        "ru": "Что друг увидел в парке",
+        "uk": "Що друг побачив у парку"
       },
       "bodyByLocale": {
-        "ru": "Squirrel — белка. Did you see a squirrel? — Ты видел белку? Вспоминаем прошлую прогулку. Выберите вопрос о прошлом.",
-        "uk": "Squirrel — білка. Did you see a squirrel? — Ти бачив білку? Згадуємо минулу прогулянку. Виберіть запитання про минуле."
+        "ru": "Друг вернулся с прогулки по парку. Спросите, видел ли он белку: Did you see a squirrel? — Ты видел белку? Соберите Did + you + see. Did ставим перед you, а после you используем начальную форму see, не прошедшую saw. Затем добавьте a squirrel — одну белку. Так получаем вопрос о завершённой прогулке.",
+        "uk": "Друг повернувся з прогулянки парком. Запитайте, чи бачив він білку: Did you see a squirrel? — Ти бачив білку? Складіть Did + you + see. Did ставимо перед you, а після you використовуємо початкову форму see, не минулу saw. Потім додайте a squirrel — одну білку. Так отримуємо запитання про завершену прогулянку."
       },
       "question": {
         "interactionId": "en:lesson-13:session-46:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ёж и барсук",
-        "uk": "Їжак і борсук"
+        "ru": "Кого сестра встретила в саду",
+        "uk": "Кого сестра зустріла в саду"
       },
       "bodyByLocale": {
-        "ru": "Hedgehog — ёж; badger — барсук. Did she see a hedgehog? — Она видела ежа? Выберите ежа.",
-        "uk": "Hedgehog — їжак; badger — борсук. Did she see a hedgehog? — Вона бачила їжака? Виберіть їжака."
+        "ru": "Сестра вчера гуляла по саду. Спросите брата, видела ли она ежа: Did she see a hedgehog? — Она видела ежа? Соберите Did + she + see + a hedgehog. После did нужна see без изменений: ни saw, ни sees сюда не подходят. В конце a hedgehog называет животное, о котором спрашиваете.",
+        "uk": "Сестра вчора гуляла садом. Запитайте брата, чи бачила вона їжака: Did she see a hedgehog? — Вона бачила їжака? Складіть Did + she + see + a hedgehog. Після did потрібна see без змін: ні saw, ні sees сюди не підходять. Наприкінці a hedgehog називає тварину, про яку запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-13:session-46:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Лиса",
-        "uk": "Лисиця"
+        "ru": "Была ли лиса у дороги",
+        "uk": "Чи була лисиця біля дороги"
       },
       "bodyByLocale": {
-        "ru": "Fox — лиса. Did you see a fox? — Ты видел лису? First we saw a squirrel. Then we saw a fox. — Сначала мы увидели белку. Затем увидели лису. Выберите вопрос о лисе.",
-        "uk": "Fox — лисиця. Did you see a fox? — Ти бачив лисицю? First we saw a squirrel. Then we saw a fox. — Спочатку ми побачили білку. Потім побачили лисицю. Виберіть запитання про лисицю."
+        "ru": "Друг вчера возвращался домой по дороге вдоль леса. Уточните, видел ли он лису: Did you see a fox? — Ты видел лису? Начните с Did + you, затем поставьте see. Прошлое уже выражено словом did, поэтому saw заменяем на начальную форму see. В конце добавьте a fox — одну лису.",
+        "uk": "Друг учора повертався додому дорогою вздовж лісу. Уточніть, чи бачив він лисицю: Did you see a fox? — Ти бачив лисицю? Почніть із Did + you, потім поставте see. Минуле вже виражене словом did, тому saw замінюємо на початкову форму see. Наприкінці додайте a fox — одну лисицю."
       },
       "question": {
         "interactionId": "en:lesson-13:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e6b4ac9e1220eeafe9fb594ba30b0b38cfa2530e7d6b77ef77d849e6dc9c040d"
+  "introFingerprint": "8e0939849704eca78ef96d6dcc7de78491f5dea32568624699e9a64bfe23ff4f"
 }

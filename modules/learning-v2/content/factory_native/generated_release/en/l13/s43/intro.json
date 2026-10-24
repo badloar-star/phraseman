@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Фломастер",
-        "uk": "Фломастер"
+        "ru": "Чем друг написал плакат",
+        "uk": "Чим друг написав плакат"
       },
       "bodyByLocale": {
-        "ru": "Felt-tip pen — фломастер. Did you use a felt-tip pen? — Ты использовал фломастер? Выберите вопрос о прошлом.",
-        "uk": "Felt-tip pen — фломастер. Did you use a felt-tip pen? — Ти використав фломастер? Виберіть запитання про минуле."
+        "ru": "Друг вчера сделал яркий плакат. Уточните, использовал ли он фломастер: Did you use a felt-tip pen? — Ты использовал фломастер? Соберите Did + you + use. После did нужна начальная форма use, не used: прошлое уже выражено словом did. Затем добавьте a felt-tip pen — один фломастер, о котором спрашиваете.",
+        "uk": "Друг учора зробив яскравий плакат. Уточніть, чи використав він фломастер: Did you use a felt-tip pen? — Ти використав фломастер? Складіть Did + you + use. Після did потрібна початкова форма use, не used: минуле вже виражене словом did. Потім додайте a felt-tip pen — один фломастер, про який запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-13:session-43:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шариковая ручка",
-        "uk": "Кулькова ручка"
+        "ru": "С чего началось письмо",
+        "uk": "З чого почався лист"
       },
       "bodyByLocale": {
-        "ru": "Ballpoint pen — шариковая ручка. First I found a ballpoint pen — сначала я нашёл шариковую ручку. Выберите эту ручку, не фломастер.",
-        "uk": "Ballpoint pen — кулькова ручка. First I found a ballpoint pen — спершу я знайшов кулькову ручку. Виберіть цю ручку, не фломастер."
+        "ru": "Вчера вы собирались написать записку и сначала нашли шариковую ручку в ящике. Начните рассказ: First I found a ballpoint pen. — Сначала я нашёл шариковую ручку. Соберите First + I + found + a ballpoint pen. First отмечает первое событие. После I нужна found — прошедшая форма find, потому что это утверждение о вчерашней находке. В конце назовите найденный предмет.",
+        "uk": "Учора ви збиралися написати записку й спочатку знайшли кулькову ручку в шухляді. Почніть розповідь: First I found a ballpoint pen. — Спочатку я знайшов кулькову ручку. Складіть First + I + found + a ballpoint pen. First позначає першу подію. Після I потрібна found — минула форма find, бо це твердження про вчорашню знахідку. Наприкінці назвіть знайдений предмет."
       },
       "question": {
         "interactionId": "en:lesson-13:session-43:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Перьевая ручка и карандаш",
-        "uk": "Пір’яна ручка й олівець"
+        "ru": "Чем друг раскрасил рисунок",
+        "uk": "Чим друг розфарбував малюнок"
       },
       "bodyByLocale": {
-        "ru": "Fountain pen — перьевая ручка с чернилами; coloured pencil — цветной карандаш. Did you use a coloured pencil? — Ты использовал цветной карандаш? Выберите карандаш.",
-        "uk": "Fountain pen — пір’яна ручка з чорнилом; coloured pencil — кольоровий олівець. Did you use a coloured pencil? — Ти використав кольоровий олівець? Виберіть олівець."
+        "ru": "Друг вчера раскрасил небольшой рисунок. Спросите, использовал ли он цветной карандаш: Did you use a coloured pencil? — Ты использовал цветной карандаш? Начните с Did + you, затем поставьте use без -d. В конце добавьте a coloured pencil: coloured стоит перед pencil и уточняет, какой карандаш имеется в виду.",
+        "uk": "Друг учора розфарбував невеликий малюнок. Запитайте, чи використав він кольоровий олівець: Did you use a coloured pencil? — Ти використав кольоровий олівець? Почніть із Did + you, потім поставте use без -d. Наприкінці додайте a coloured pencil: coloured стоїть перед pencil і уточнює, який олівець мається на увазі."
       },
       "question": {
         "interactionId": "en:lesson-13:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0b5d2184b1a4f0eeeb3aecd66290c5f5a38bc0c920b76d16859b0248f6603ffa"
+  "introFingerprint": "206ebd543366044cbcb8bac6771f4ba1620695ca60516b253f88d81c497ab6bf"
 }

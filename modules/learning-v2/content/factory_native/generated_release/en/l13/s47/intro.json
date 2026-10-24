@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вафля",
-        "uk": "Вафля"
+        "ru": "Попробовал ли друг вафлю",
+        "uk": "Чи скуштував друг вафлю"
       },
       "bodyByLocale": {
-        "ru": "Waffle — вафля с ячейками. Did you try a waffle? — Ты попробовал вафлю? После did нужна try, не tried. Выберите вопрос.",
-        "uk": "Waffle — вафля з комірками. Did you try a waffle? — Ти скуштував вафлю? Після did потрібна try, не tried. Виберіть запитання."
+        "ru": "Друг вчера зашёл в пекарню, где готовят вафли. Спросите, попробовал ли он одну: Did you try a waffle? — Ты попробовал вафлю? Соберите Did + you + try. После did нужна начальная форма try, а не прошедшая tried. Затем добавьте a waffle — одну вафлю. Did в начале превращает эту фразу в вопрос о прошлом.",
+        "uk": "Друг учора зайшов до пекарні, де готують вафлі. Запитайте, чи скуштував він одну: Did you try a waffle? — Ти скуштував вафлю? Складіть Did + you + try. Після did потрібна початкова форма try, а не минула tried. Потім додайте a waffle — одну вафлю. Did на початку перетворює цю фразу на запитання про минуле."
       },
       "question": {
         "interactionId": "en:lesson-13:session-47:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Два вида хлеба",
-        "uk": "Два види хліба"
+        "ru": "Купила ли сестра багет",
+        "uk": "Чи купила сестра багет"
       },
       "bodyByLocale": {
-        "ru": "Baguette — багет, длинный узкий хлеб; bagel — бейгл, хлебное кольцо с плотным мякишем. Did she buy a baguette? — Она купила багет? Выберите длинный хлеб.",
-        "uk": "Baguette — багет, довгий вузький хліб; bagel — бейгл, хлібне кільце зі щільним м’якушем. Did she buy a baguette? — Вона купила багет? Виберіть довгий хліб."
+        "ru": "Сестра вернулась из пекарни. Спросите брата, купила ли она багет для ужина: Did she buy a baguette? — Она купила багет? Соберите Did + she + buy. После did используйте buy, не bought. В конце добавьте a baguette — один багет. Даже с she после did глагол остаётся в начальной форме, без -s.",
+        "uk": "Сестра повернулася з пекарні. Запитайте брата, чи купила вона багет для вечері: Did she buy a baguette? — Вона купила багет? Складіть Did + she + buy. Після did використовуйте buy, не bought. Наприкінці додайте a baguette — один багет. Навіть із she після did дієслово залишається в початковій формі, без -s."
       },
       "question": {
         "interactionId": "en:lesson-13:session-47:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пончик",
-        "uk": "Пончик"
+        "ru": "Что друг купил к чаю",
+        "uk": "Що друг купив до чаю"
       },
       "bodyByLocale": {
-        "ru": "Doughnut — пончик; в американском английском также пишут donut. Did you buy a doughnut? — Ты купил пончик? First I bought a bagel. Then I bought a doughnut. — Сначала я купил бейгл. Затем купил пончик. Выберите вопрос о пончике.",
-        "uk": "Doughnut — пончик; в американській англійській також пишуть donut. Did you buy a doughnut? — Ти купив пончик? First I bought a bagel. Then I bought a doughnut. — Спочатку я купив бейгл. Потім купив пончик. Виберіть запитання про пончик."
+        "ru": "Друг вчера выбирал выпечку к чаю. Уточните, купил ли он пончик: Did you buy a doughnut? — Ты купил пончик? Соберите вопрос Did + you + buy + a doughnut. Сначала did, затем you и начальная форма buy. В конце a doughnut называет один пончик, о котором вы спрашиваете.",
+        "uk": "Друг учора вибирав випічку до чаю. Уточніть, чи купив він пончик: Did you buy a doughnut? — Ти купив пончик? Складіть запитання Did + you + buy + a doughnut. Спочатку did, потім you і початкова форма buy. Наприкінці a doughnut називає один пончик, про який ви запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-13:session-47:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "981e35c9064a43fc2c49a7e01450f3e8328066ca6d822128749c6de8f9bb568f"
+  "introFingerprint": "843c58d53c61bb521986a6c2a326929532d329bb3bc412689524d7a04d609db9"
 }

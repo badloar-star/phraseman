@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Маргаритка",
-        "uk": "Стокротка"
+        "ru": "Что друг заметил у дома",
+        "uk": "Що друг помітив біля будинку"
       },
       "bodyByLocale": {
-        "ru": "Daisy — маргаритка, небольшой цветок с белыми лепестками и жёлтой серединкой. Did you see a daisy? — Ты видел маргаритку? После did нужна see, не saw. Выберите вопрос.",
-        "uk": "Daisy — стокротка, невелика квітка з білими пелюстками та жовтою серединкою. Did you see a daisy? — Ти бачив стокротку? Після did потрібна see, не saw. Виберіть запитання."
+        "ru": "Друг вчера осматривал цветы у дома. Спросите, видел ли он маргаритку: Did you see a daisy? — Ты видел маргаритку? Соберите Did + you + see. Вопрос о вчерашнем дне начинается с did, затем идут you и начальная форма see. Прошедшую форму saw после did не используем. В конце добавьте a daisy — одну маргаритку.",
+        "uk": "Друг учора оглядав квіти біля будинку. Запитайте, чи бачив він стокротку: Did you see a daisy? — Ти бачив стокротку? Складіть Did + you + see. Запитання про вчорашній день починається з did, потім ідуть you і початкова форма see. Минулу форму saw після did не використовуємо. Наприкінці додайте a daisy — одну стокротку."
       },
       "question": {
         "interactionId": "en:lesson-13:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тюльпан и нарцисс",
-        "uk": "Тюльпан і нарцис"
+        "ru": "Полила ли сестра цветок",
+        "uk": "Чи полила сестра квітку"
       },
       "bodyByLocale": {
-        "ru": "Tulip — тюльпан; daffodil — нарцисс. Did she water the tulip? — Она полила тюльпан? Выберите вопрос о тюльпане.",
-        "uk": "Tulip — тюльпан; daffodil — нарцис. Did she water the tulip? — Вона полила тюльпан? Виберіть запитання про тюльпан."
+        "ru": "Сестра вчера ухаживала за цветами. Уточните у брата, полила ли она тюльпан у окна: Did she water the tulip? — Она полила тюльпан? Соберите Did + she + water. Здесь water — глагол «поливать». После did он остаётся без -ed. Затем добавьте the tulip — тот тюльпан, о котором спрашиваете.",
+        "uk": "Сестра вчора доглядала квіти. Уточніть у брата, чи полила вона тюльпан біля вікна: Did she water the tulip? — Вона полила тюльпан? Складіть Did + she + water. Тут water — дієслово «поливати». Після did воно залишається без -ed. Потім додайте the tulip — той тюльпан, про який запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-13:session-45:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подсолнух",
-        "uk": "Соняшник"
+        "ru": "Что друг посадил в саду",
+        "uk": "Що друг посадив у саду"
       },
       "bodyByLocale": {
-        "ru": "Sunflower — подсолнух. Did you plant a sunflower? — Ты посадил подсолнух? Сначала посадили, затем полили: First I planted it. Then I watered it. Выберите вопрос о посадке.",
-        "uk": "Sunflower — соняшник. Did you plant a sunflower? — Ти посадив соняшник? Спочатку посадили, потім полили: First I planted it. Then I watered it. Виберіть запитання про садіння."
+        "ru": "Друг вчера сажал цветы в саду. Спросите, посадил ли он подсолнух: Did you plant a sunflower? — Ты посадил подсолнух? Соберите Did + you + plant. После did нужна plant без -ed: прошлое уже выражено словом did. В конце назовите растение: a sunflower — один подсолнух.",
+        "uk": "Друг учора садив квіти в саду. Запитайте, чи посадив він соняшник: Did you plant a sunflower? — Ти посадив соняшник? Складіть Did + you + plant. Після did потрібна plant без -ed: минуле вже виражене словом did. Наприкінці назвіть рослину: a sunflower — один соняшник."
       },
       "question": {
         "interactionId": "en:lesson-13:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9db52272db883cce093747ccd48f1937cf5e37e90187e4a3c8db51bf55194676"
+  "introFingerprint": "081f77479a6551149c4906d32d6d7f452d9a559ac9f43ab5449fbeb707e79c3b"
 }

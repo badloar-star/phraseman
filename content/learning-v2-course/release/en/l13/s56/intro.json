@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два направления",
-        "uk": "Два напрямки"
+        "ru": "Понравилась ли дорога туда",
+        "uk": "Чи сподобалася дорога туди"
       },
       "bodyByLocale": {
-        "ru": "Outward journey — дорога из дома к месту поездки; return journey — обратная дорога домой. Это две части round trip, всей поездки туда и обратно. Did you enjoy the outward journey? — Тебе понравилась дорога туда?",
-        "uk": "Outward journey — дорога з дому до місця поїздки; return journey — зворотна дорога додому. Це дві частини round trip, усієї поїздки туди й назад. Did you enjoy the outward journey? — Тобі сподобалася дорога туди?"
+        "ru": "Друг приехал на отдых поездом. Спросите, понравилась ли ему дорога от дома до места отдыха: Did you enjoy the outward journey? — Тебе понравилась дорога туда? Соберите Did + you + enjoy. В вопросе о завершённой поездке прошлое уже выражено словом did, поэтому enjoy остаётся без -ed. Затем добавьте the outward journey — ту дорогу, о которой спрашиваете.",
+        "uk": "Друг приїхав на відпочинок потягом. Запитайте, чи сподобалася йому дорога від дому до місця відпочинку: Did you enjoy the outward journey? — Тобі сподобалася дорога туди? Складіть Did + you + enjoy. У запитанні про завершену поїздку минуле вже виражене словом did, тому enjoy залишається без -ed. Потім додайте the outward journey — ту дорогу, про яку запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-13:session-56:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Следующий рейс",
-        "uk": "Наступний рейс"
+        "ru": "Успел ли друг на пересадку",
+        "uk": "Чи встиг друг на пересадку"
       },
       "bodyByLocale": {
-        "ru": "Connecting flight — стыковочный рейс, на который пересаживаются после предыдущего самолёта. Did you catch your connecting flight? — Ты успел на свой стыковочный рейс? Выберите вопрос.",
-        "uk": "Connecting flight — стикувальний рейс, на який пересідають після попереднього літака. Did you catch your connecting flight? — Ти встиг на свій стикувальний рейс? Виберіть запитання."
+        "ru": "Первый самолёт друга прилетел с опозданием. Теперь спросите, успел ли он на следующий рейс: Did you catch your connecting flight? — Ты успел на свой стыковочный рейс? Для вопроса соберите Did + you + catch. После did используем начальную форму catch, а не прошедшую caught. Затем добавьте your connecting flight — рейс, на который друг должен был пересесть.",
+        "uk": "Перший літак друга прилетів із запізненням. Тепер запитайте, чи встиг він на наступний рейс: Did you catch your connecting flight? — Ти встиг на свій стикувальний рейс? Для запитання складіть Did + you + catch. Після did використовуємо початкову форму catch, а не минулу caught. Потім додайте your connecting flight — рейс, на який друг мав пересісти."
       },
       "question": {
         "interactionId": "en:lesson-13:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Остановиться на ночь",
-        "uk": "Зупинитися на ніч"
+        "ru": "Забронировал ли друг ночёвку",
+        "uk": "Чи забронював друг ночівлю"
       },
       "bodyByLocale": {
-        "ru": "Overnight stay — ночёвка, пребывание где-то на одну ночь. Did you book an overnight stay? — Ты забронировал ночёвку? Сначала переночевали, затем поехали домой. Выберите вопрос о бронировании.",
-        "uk": "Overnight stay — ночівля, перебування десь на одну ніч. Did you book an overnight stay? — Ти забронював ночівлю? Спочатку переночували, потім поїхали додому. Виберіть запитання про бронювання."
+        "ru": "Друг собирался переночевать в гостинице по дороге. Уточните, сделал ли он бронирование: Did you book an overnight stay? — Ты забронировал ночёвку? Соберите Did + you + book: после did нужна book без -ed. Затем добавьте an overnight stay — одну ночёвку. Перед overnight используем an, потому что слово начинается с гласного звука.",
+        "uk": "Друг збирався переночувати в готелі дорогою. Уточніть, чи зробив він бронювання: Did you book an overnight stay? — Ти забронював ночівлю? Складіть Did + you + book: після did потрібна book без -ed. Потім додайте an overnight stay — одну ночівлю. Перед overnight використовуємо an, бо слово починається з голосного звука."
       },
       "question": {
         "interactionId": "en:lesson-13:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "86c39fb74c5d61e6903daf9197064441813ea4c6f357b8dbe6a465c32e91bf87"
+  "introFingerprint": "70370936f4185b090cbbfb782f0ecc4fd5798b009ba4539bae3e471c35ba9c97"
 }

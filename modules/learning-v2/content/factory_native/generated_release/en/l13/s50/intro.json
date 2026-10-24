@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "День зарплаты",
-        "uk": "День зарплати"
+        "ru": "Когда была зарплата",
+        "uk": "Коли була зарплата"
       },
       "bodyByLocale": {
-        "ru": "Payday — день выплаты зарплаты. Was yesterday payday? — Вчера был день зарплаты? Повторяем was: речь о том, каким был день.",
-        "uk": "Payday — день виплати зарплати. Was yesterday payday? — Учора був день зарплати? Повторюємо was: ідеться про те, яким був день."
+        "ru": "Друг сказал, что уже получил зарплату. Уточните, был ли день выплаты вчера: Was yesterday payday? — Вчера был день зарплаты? Соберите Was + yesterday + payday. Здесь спрашиваем, каким был вчерашний день, поэтому вопрос строится с was: поставьте его перед yesterday. Did не добавляем. Payday в этой фразе называет день выплаты зарплаты.",
+        "uk": "Друг сказав, що вже отримав зарплату. Уточніть, чи був день виплати вчора: Was yesterday payday? — Учора був день зарплати? Складіть Was + yesterday + payday. Тут запитуємо, яким був учорашній день, тому запитання будується з was: поставте його перед yesterday. Did не додаємо. Payday у цій фразі називає день виплати зарплати."
       },
       "question": {
         "interactionId": "en:lesson-13:session-50:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Карманные деньги и копилка",
-        "uk": "Кишенькові гроші й скарбничка"
+        "ru": "Остались ли карманные деньги",
+        "uk": "Чи залишилися кишенькові гроші"
       },
       "bodyByLocale": {
-        "ru": "Pocket money — карманные деньги; piggy bank — копилка, часто в форме поросёнка. Did you save your pocket money? — Ты отложил свои карманные деньги? Выберите вопрос о деньгах.",
-        "uk": "Pocket money — кишенькові гроші; piggy bank — скарбничка, часто у формі поросятка. Did you save your pocket money? — Ти відклав свої кишенькові гроші? Виберіть запитання про гроші."
+        "ru": "Младший брат получил карманные деньги на прошлой неделе. Спросите, отложил ли он их: Did you save your pocket money? — Ты отложил свои карманные деньги? Соберите Did + you + save. После did нужна save без -d: прошлое уже выражено словом did. Затем добавьте your pocket money — его карманные деньги; при обращении к брату говорим your, «твои».",
+        "uk": "Молодший брат отримав кишенькові гроші минулого тижня. Запитайте, чи відклав він їх: Did you save your pocket money? — Ти відклав свої кишенькові гроші? Складіть Did + you + save. Після did потрібна save без -d: минуле вже виражене словом did. Потім додайте your pocket money — його кишенькові гроші; звертаючись до брата, говоримо your, «твої»."
       },
       "question": {
         "interactionId": "en:lesson-13:session-50:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мелочь в кармане",
-        "uk": "Дрібні гроші в кишені"
+        "ru": "Нашлась ли мелочь",
+        "uk": "Чи знайшовся дріб’язок"
       },
       "bodyByLocale": {
-        "ru": "Loose change — мелочь, небольшая сумма монетами. Did you find any loose change? — Ты нашёл немного мелочи? Выберите вопрос о прошлом.",
-        "uk": "Loose change — дрібні гроші, невелика сума монетами. Did you find any loose change? — Ти знайшов трохи дрібних грошей? Виберіть запитання про минуле."
+        "ru": "Друг проверил карманы, чтобы найти монеты для автомата. Уточните результат: Did you find any loose change? — Ты нашёл немного мелочи? Соберите Did + you + find. После did используйте начальную форму find, а не прошедшую found. Затем добавьте any loose change: в этом вопросе any помогает спросить, нашлась ли хоть какая-то мелочь.",
+        "uk": "Друг перевірив кишені, щоб знайти монети для автомата. Уточніть результат: Did you find any loose change? — Ти знайшов трохи дріб’язку? Складіть Did + you + find. Після did використовуйте початкову форму find, а не минулу found. Потім додайте any loose change: у цьому запитанні any допомагає запитати, чи знайшовся хоч якийсь дріб’язок."
       },
       "question": {
         "interactionId": "en:lesson-13:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "eff86d63859e44fab2bcb92dcb3cdcdfcde52cb9a5b25982258da0db568c02fb"
+  "introFingerprint": "6ff90166bcb69943f10eb0cb4e5c91dc6a951d3c2abc06a3bc2222090a778be2"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Посмотреть достопримечательности",
-        "uk": "Подивитися визначні місця"
+        "ru": "Как друг провёл вчерашний день",
+        "uk": "Як друг провів учорашній день"
       },
       "bodyByLocale": {
-        "ru": "Sightseeing — осмотр достопримечательностей. Go sightseeing — ходить или ездить смотреть интересные места. Did you go sightseeing? — Ты ходил смотреть достопримечательности? После did нужна go.",
-        "uk": "Sightseeing — огляд визначних місць. Go sightseeing — ходити або їздити дивитися цікаві місця. Did you go sightseeing? — Ти ходив оглядати визначні місця? Після did потрібна go."
+        "ru": "Друг вчера впервые гулял по городу. Уточните, ходил ли он смотреть достопримечательности: Did you go sightseeing? — Ты ходил смотреть достопримечательности? Соберите Did + you + go + sightseeing. После did используйте go, а не прошедшую форму went. Go sightseeing — цельное сочетание для осмотра интересных мест; перед sightseeing не ставим to.",
+        "uk": "Друг учора вперше гуляв містом. Уточніть, чи ходив він оглядати визначні місця: Did you go sightseeing? — Ти ходив оглядати визначні місця? Складіть Did + you + go + sightseeing. Після did використовуйте go, а не минулу форму went. Go sightseeing — цілісне сполучення для огляду цікавих місць; перед sightseeing не ставимо to."
       },
       "question": {
         "interactionId": "en:lesson-13:session-53:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Автобусная или пешая экскурсия",
-        "uk": "Автобусна чи піша екскурсія"
+        "ru": "Понравилась ли прогулка с гидом",
+        "uk": "Чи сподобалася прогулянка з гідом"
       },
       "bodyByLocale": {
-        "ru": "Coach tour — автобусная экскурсия; walking tour — пешая экскурсия. Did you enjoy the walking tour? — Тебе понравилась пешая экскурсия? Выберите пешую прогулку с экскурсией.",
-        "uk": "Coach tour — автобусна екскурсія; walking tour — піша екскурсія. Did you enjoy the walking tour? — Тобі сподобалася піша екскурсія? Виберіть пішу прогулянку з екскурсією."
+        "ru": "Друг вчера прошёл по городу с гидом. Спросите о его впечатлении: Did you enjoy the walking tour? — Тебе понравилась пешая экскурсия? Соберите Did + you + enjoy. В вопросе прошлое выражено словом did, поэтому enjoy остаётся без -ed. Затем добавьте the walking tour — ту экскурсию, на которой он побывал.",
+        "uk": "Друг учора пройшов містом із гідом. Запитайте про його враження: Did you enjoy the walking tour? — Тобі сподобалася піша екскурсія? Складіть Did + you + enjoy. У запитанні минуле виражене словом did, тому enjoy залишається без -ed. Потім додайте the walking tour — ту екскурсію, на якій він побував."
       },
       "question": {
         "interactionId": "en:lesson-13:session-53:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Туда и обратно",
-        "uk": "Туди й назад"
+        "ru": "Как прошла поездка туда и обратно",
+        "uk": "Як пройшла поїздка туди й назад"
       },
       "bodyByLocale": {
-        "ru": "Round trip — вся поездка туда и обратно. Did you enjoy the round trip? — Тебе понравилась поездка туда и обратно? Речь обо всём маршруте с возвращением. Выберите вопрос о поездке.",
-        "uk": "Round trip — уся поїздка туди й назад. Did you enjoy the round trip? — Тобі сподобалася поїздка туди й назад? Ідеться про весь маршрут із поверненням. Виберіть запитання про поїздку."
+        "ru": "Друг вчера съездил из города к озеру и вернулся. Уточните, понравилась ли ему вся поездка: Did you enjoy the round trip? — Тебе понравилась поездка туда и обратно? Соберите Did + you + enjoy + the round trip. После did нужна начальная форма enjoy. В конце the round trip называет всю поездку, включая возвращение.",
+        "uk": "Друг учора з’їздив із міста до озера й повернувся. Уточніть, чи сподобалася йому вся поїздка: Did you enjoy the round trip? — Тобі сподобалася поїздка туди й назад? Складіть Did + you + enjoy + the round trip. Після did потрібна початкова форма enjoy. Наприкінці the round trip називає всю поїздку, включно з поверненням."
       },
       "question": {
         "interactionId": "en:lesson-13:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f4a06f4bb815077ffc604a583ddc2595c24e1b9fe75be3275dda4c10a9601289"
+  "introFingerprint": "eec8a821baadc29c1ef4018626b20fd59878137151d8b40ad54a765c21b13548"
 }

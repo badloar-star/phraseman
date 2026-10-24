@@ -1,0 +1,2099 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-37:word:reassurance",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reassurance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:reassurance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reassurance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:reassurance:audio",
+            "transcript": "reassurance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:reassurance:r1",
+              "targetText": "reassurance",
+              "meaningByLocale": {
+                "ru": "Поддержка, которая помогает успокоиться и меньше сомневаться.",
+                "uk": "Підтримка, яка допомагає заспокоїтися й менше сумніватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reassurance",
+            "definitionByLocale": {
+              "ru": "Поддержка, которая помогает успокоиться и меньше сомневаться.",
+              "uk": "Підтримка, яка допомагає заспокоїтися й менше сумніватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что нужна поддержка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что нужна поддержка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need some reassurance.",
+          "localizedMeaning": {
+            "ru": "Скажите, что нужна поддержка.",
+            "uk": "Скажіть, що потрібна підтримка."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "some",
+            "reassurance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите друга пойти с вами.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Попросите друга пойти с вами.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i02:audio",
+            "transcript": "Would you come with me?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Would you come with me?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам хотелось бы больше уверенности сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i03:r1",
+            "text": "felt"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i03:r2",
+            "text": "feel"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i03:r3",
+            "text": "feeling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам хотелось бы больше уверенности сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам хотелось бы больше уверенности сейчас.",
+            "uk": "Вам хотілося б більше впевненості зараз."
+          },
+          "gappedTargetPhrase": "I wish I ___ more confident.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-37:i03:r1",
+              "text": "felt"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i03:r2",
+              "text": "feel"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i03:r3",
+              "text": "feeling"
+            }
+          ],
+          "testedDimension": "Вам хотелось бы больше уверенности сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Вам хотелось бы больше уверенности сейчас.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь felt.",
+                "uk": "Після wish тут felt."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Вам хотелось бы больше уверенности сейчас.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма felt.",
+                "uk": "Потрібна форма felt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:word:hesitation",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hesitation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:hesitation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hesitation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:hesitation:audio",
+            "transcript": "hesitation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:hesitation:r1",
+              "targetText": "hesitation",
+              "meaningByLocale": {
+                "ru": "Колебание, нерешительность.",
+                "uk": "Вагання, нерішучість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hesitation",
+            "definitionByLocale": {
+              "ru": "Колебание, нерешительность.",
+              "uk": "Вагання, нерішучість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i04:r1",
+            "text": "My friend agreed without hesitation."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i04:r2",
+            "text": "My friend left without hesitation."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i04:r3",
+            "text": "My sister agreed without hesitation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i04:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i04:audio",
+            "transcript": "My friend agreed without hesitation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:i04:r1",
+              "targetText": "My friend agreed without hesitation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i04:r2",
+              "targetText": "My friend left without hesitation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i04:r3",
+              "targetText": "My sister agreed without hesitation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i04:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My friend agreed without hesitation.",
+                "uk": "У записі звучить My friend agreed without hesitation."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i04:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My friend agreed without hesitation.",
+                "uk": "У записі звучить My friend agreed without hesitation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о начале занятия.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о начале занятия.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i05:audio",
+            "transcript": "What time does the class start?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "What time does the class start?",
+          "orderedTokens": [
+            "What",
+            "time",
+            "does",
+            "the",
+            "class",
+            "start"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите, что расписание уже проверено.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите, что расписание уже проверено.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already checked the timetable.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что расписание уже проверено.",
+            "uk": "Повідомте, що розклад уже перевірено."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "checked",
+            "the",
+            "timetable"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточните, что сделали это вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i07:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i07:r2",
+            "text": "have checked"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i07:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточните, что сделали это вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните, что сделали это вчера.",
+            "uk": "Уточніть, що зробили це вчора."
+          },
+          "gappedTargetPhrase": "I ___ it yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-37:i07:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i07:r2",
+              "text": "have checked"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i07:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Уточните, что сделали это вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i07:r2",
+              "correct": false,
+              "testedDimension": "Уточните, что сделали это вчера.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь checked.",
+                "uk": "Із yesterday тут checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i07:r3",
+              "correct": false,
+              "testedDimension": "Уточните, что сделали это вчера.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма checked.",
+                "uk": "Потрібна форма checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:word:certainty",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — certainty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:certainty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — certainty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:certainty:audio",
+            "transcript": "certainty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:certainty:r1",
+              "targetText": "certainty",
+              "meaningByLocale": {
+                "ru": "Уверенность, отсутствие сомнений.",
+                "uk": "Упевненість, відсутність сумнівів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "certainty",
+            "definitionByLocale": {
+              "ru": "Уверенность, отсутствие сомнений.",
+              "uk": "Упевненість, відсутність сумнівів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Признайте, что не можете ответить уверенно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Признайте, что не можете ответить уверенно.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i08:audio",
+            "transcript": "I cannot say with certainty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I cannot say with certainty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i09:r1",
+            "text": "Is the date confirmed?"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i09:r2",
+            "text": "Is the time confirmed?"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i09:r3",
+            "text": "Is the room confirmed?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i09:audio",
+            "transcript": "Is the date confirmed?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:i09:r1",
+              "targetText": "Is the date confirmed?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i09:r2",
+              "targetText": "Is the time confirmed?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i09:r3",
+              "targetText": "Is the room confirmed?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is the date confirmed?",
+                "uk": "У записі звучить Is the date confirmed?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is the date confirmed?",
+                "uk": "У записі звучить Is the date confirmed?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:word:uncertainty",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — uncertainty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:uncertainty:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — uncertainty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:uncertainty:audio",
+            "transcript": "uncertainty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:uncertainty:r1",
+              "targetText": "uncertainty",
+              "meaningByLocale": {
+                "ru": "Неопределённость.",
+                "uk": "Невизначеність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "uncertainty",
+            "definitionByLocale": {
+              "ru": "Неопределённость.",
+              "uk": "Невизначеність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Объясните, что дата пока под вопросом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Объясните, что дата пока под вопросом.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some uncertainty about the date.",
+          "localizedMeaning": {
+            "ru": "Объясните, что дата пока под вопросом.",
+            "uk": "Поясніть, що дата поки під питанням."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "uncertainty",
+            "about",
+            "the",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите сообщить вам позже.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Попросите сообщить вам позже.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i11:audio",
+            "transcript": "Could you let me know later?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you let me know later?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы пришли бы на занятие, начинающееся позже.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i12:r1",
+            "text": "join"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i12:r2",
+            "text": "joined"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i12:r3",
+            "text": "to join"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы пришли бы на занятие, начинающееся позже.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы пришли бы на занятие, начинающееся позже.",
+            "uk": "Ви прийшли б на заняття, що починається пізніше."
+          },
+          "gappedTargetPhrase": "I would ___ the class if it started later.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-37:i12:r1",
+              "text": "join"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i12:r2",
+              "text": "joined"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i12:r3",
+              "text": "to join"
+            }
+          ],
+          "testedDimension": "Вы пришли бы на занятие, начинающееся позже.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы пришли бы на занятие, начинающееся позже.",
+              "feedbackByLocale": {
+                "ru": "После would нужна join.",
+                "uk": "Після would потрібна join."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы пришли бы на занятие, начинающееся позже.",
+              "feedbackByLocale": {
+                "ru": "После would нет to.",
+                "uk": "Після would немає to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, где можно оставить сумку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Услышьте, где можно оставить сумку.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i13:audio",
+            "transcript": "You can leave your bag here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You can leave your bag here.",
+          "orderedTokens": [
+            "You",
+            "can",
+            "leave",
+            "your",
+            "bag",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите друга подождать у входа.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Попросите друга подождать у входа.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i14:audio",
+            "transcript": "Please wait by the entrance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please wait by the entrance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с результата: If we arrived early, we would have time to talk.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с результата: If we arrived early, we would have time to talk.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would have time to talk if we arrived early.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we arrived early, we would have time to talk.",
+            "uk": "Почніть із результату: If we arrived early, we would have time to talk."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "have",
+            "time",
+            "to",
+            "talk",
+            "if",
+            "we",
+            "arrived",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i16:r1",
+            "text": "We can try one lesson first."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i16:r2",
+            "text": "We can try two lessons first."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i16:r3",
+            "text": "We can try one lesson tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i16:audio",
+            "transcript": "We can try one lesson first."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:i16:r1",
+              "targetText": "We can try one lesson first.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i16:r2",
+              "targetText": "We can try two lessons first.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i16:r3",
+              "targetText": "We can try one lesson tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can try one lesson first.",
+                "uk": "У записі звучить We can try one lesson first."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can try one lesson first.",
+                "uk": "У записі звучить We can try one lesson first."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поблагодарите друга за компанию.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Поблагодарите друга за компанию.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i17:audio",
+            "transcript": "Thank you for coming with me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thank you for coming with me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-37:word:reassurance",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reassurance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:reassurance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reassurance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:reassurance:audio",
+            "transcript": "reassurance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:reassurance:r1",
+              "targetText": "reassurance",
+              "meaningByLocale": {
+                "ru": "Поддержка, которая помогает успокоиться и меньше сомневаться.",
+                "uk": "Підтримка, яка допомагає заспокоїтися й менше сумніватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reassurance",
+            "definitionByLocale": {
+              "ru": "Поддержка, которая помогает успокоиться и меньше сомневаться.",
+              "uk": "Підтримка, яка допомагає заспокоїтися й менше сумніватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що потрібна підтримка.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що потрібна підтримка.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I need some reassurance.",
+          "localizedMeaning": {
+            "ru": "Скажите, что нужна поддержка.",
+            "uk": "Скажіть, що потрібна підтримка."
+          },
+          "orderedTokens": [
+            "I",
+            "need",
+            "some",
+            "reassurance"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть друга піти з вами.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Попросіть друга піти з вами.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i02:audio",
+            "transcript": "Would you come with me?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Would you come with me?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам хотілося б більше впевненості зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i03:r1",
+            "text": "felt"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i03:r2",
+            "text": "feel"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i03:r3",
+            "text": "feeling"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам хотілося б більше впевненості зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам хотелось бы больше уверенности сейчас.",
+            "uk": "Вам хотілося б більше впевненості зараз."
+          },
+          "gappedTargetPhrase": "I wish I ___ more confident.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-37:i03:r1",
+              "text": "felt"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i03:r2",
+              "text": "feel"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i03:r3",
+              "text": "feeling"
+            }
+          ],
+          "testedDimension": "Вам хотілося б більше впевненості зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Вам хотілося б більше впевненості зараз.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь felt.",
+                "uk": "Після wish тут felt."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Вам хотілося б більше впевненості зараз.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма felt.",
+                "uk": "Потрібна форма felt."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:word:hesitation",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hesitation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:hesitation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hesitation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:hesitation:audio",
+            "transcript": "hesitation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:hesitation:r1",
+              "targetText": "hesitation",
+              "meaningByLocale": {
+                "ru": "Колебание, нерешительность.",
+                "uk": "Вагання, нерішучість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hesitation",
+            "definitionByLocale": {
+              "ru": "Колебание, нерешительность.",
+              "uk": "Вагання, нерішучість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i04:r1",
+            "text": "My friend agreed without hesitation."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i04:r2",
+            "text": "My friend left without hesitation."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i04:r3",
+            "text": "My sister agreed without hesitation."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i04:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i04:audio",
+            "transcript": "My friend agreed without hesitation."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:i04:r1",
+              "targetText": "My friend agreed without hesitation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i04:r2",
+              "targetText": "My friend left without hesitation.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i04:r3",
+              "targetText": "My sister agreed without hesitation.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i04:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My friend agreed without hesitation.",
+                "uk": "У записі звучить My friend agreed without hesitation."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i04:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My friend agreed without hesitation.",
+                "uk": "У записі звучить My friend agreed without hesitation."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запитання про початок заняття.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Почуйте запитання про початок заняття.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i05:audio",
+            "transcript": "What time does the class start?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "What time does the class start?",
+          "orderedTokens": [
+            "What",
+            "time",
+            "does",
+            "the",
+            "class",
+            "start"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте, що розклад уже перевірено.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте, що розклад уже перевірено.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already checked the timetable.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что расписание уже проверено.",
+            "uk": "Повідомте, що розклад уже перевірено."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "checked",
+            "the",
+            "timetable"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточніть, що зробили це вчора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i07:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i07:r2",
+            "text": "have checked"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i07:r3",
+            "text": "checking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточніть, що зробили це вчора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните, что сделали это вчера.",
+            "uk": "Уточніть, що зробили це вчора."
+          },
+          "gappedTargetPhrase": "I ___ it yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-37:i07:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i07:r2",
+              "text": "have checked"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i07:r3",
+              "text": "checking"
+            }
+          ],
+          "testedDimension": "Уточніть, що зробили це вчора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i07:r2",
+              "correct": false,
+              "testedDimension": "Уточніть, що зробили це вчора.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь checked.",
+                "uk": "Із yesterday тут checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i07:r3",
+              "correct": false,
+              "testedDimension": "Уточніть, що зробили це вчора.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма checked.",
+                "uk": "Потрібна форма checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:word:certainty",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — certainty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:certainty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — certainty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:certainty:audio",
+            "transcript": "certainty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:certainty:r1",
+              "targetText": "certainty",
+              "meaningByLocale": {
+                "ru": "Уверенность, отсутствие сомнений.",
+                "uk": "Упевненість, відсутність сумнівів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "certainty",
+            "definitionByLocale": {
+              "ru": "Уверенность, отсутствие сомнений.",
+              "uk": "Упевненість, відсутність сумнівів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Визнайте, що не можете відповісти впевнено.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Визнайте, що не можете відповісти впевнено.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i08:audio",
+            "transcript": "I cannot say with certainty."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I cannot say with certainty.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i09:r1",
+            "text": "Is the date confirmed?"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i09:r2",
+            "text": "Is the time confirmed?"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i09:r3",
+            "text": "Is the room confirmed?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i09:audio",
+            "transcript": "Is the date confirmed?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:i09:r1",
+              "targetText": "Is the date confirmed?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i09:r2",
+              "targetText": "Is the time confirmed?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i09:r3",
+              "targetText": "Is the room confirmed?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is the date confirmed?",
+                "uk": "У записі звучить Is the date confirmed?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Is the date confirmed?",
+                "uk": "У записі звучить Is the date confirmed?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:word:uncertainty",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — uncertainty",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:word:uncertainty:audio"
+        ],
+        "accessibilityLabel": "Картка слова — uncertainty",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:word:uncertainty:audio",
+            "transcript": "uncertainty"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:word:uncertainty:r1",
+              "targetText": "uncertainty",
+              "meaningByLocale": {
+                "ru": "Неопределённость.",
+                "uk": "Невизначеність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "uncertainty",
+            "definitionByLocale": {
+              "ru": "Неопределённость.",
+              "uk": "Невизначеність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поясніть, що дата поки під питанням.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поясніть, що дата поки під питанням.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There is some uncertainty about the date.",
+          "localizedMeaning": {
+            "ru": "Объясните, что дата пока под вопросом.",
+            "uk": "Поясніть, що дата поки під питанням."
+          },
+          "orderedTokens": [
+            "There",
+            "is",
+            "some",
+            "uncertainty",
+            "about",
+            "the",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i11",
+        "ordinal": 18,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть повідомити вам пізніше.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Попросіть повідомити вам пізніше.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i11:audio",
+            "transcript": "Could you let me know later?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you let me know later?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви прийшли б на заняття, що починається пізніше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i12:r1",
+            "text": "join"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i12:r2",
+            "text": "joined"
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i12:r3",
+            "text": "to join"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви прийшли б на заняття, що починається пізніше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы пришли бы на занятие, начинающееся позже.",
+            "uk": "Ви прийшли б на заняття, що починається пізніше."
+          },
+          "gappedTargetPhrase": "I would ___ the class if it started later.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-37:i12:r1",
+              "text": "join"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i12:r2",
+              "text": "joined"
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i12:r3",
+              "text": "to join"
+            }
+          ],
+          "testedDimension": "Ви прийшли б на заняття, що починається пізніше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви прийшли б на заняття, що починається пізніше.",
+              "feedbackByLocale": {
+                "ru": "После would нужна join.",
+                "uk": "Після would потрібна join."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви прийшли б на заняття, що починається пізніше.",
+              "feedbackByLocale": {
+                "ru": "После would нет to.",
+                "uk": "Після would немає to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, де можна залишити сумку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i13:audio"
+        ],
+        "accessibilityLabel": "Почуйте, де можна залишити сумку.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i13:audio",
+            "transcript": "You can leave your bag here."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "You can leave your bag here.",
+          "orderedTokens": [
+            "You",
+            "can",
+            "leave",
+            "your",
+            "bag",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i14",
+        "ordinal": 21,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть друга зачекати біля входу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Попросіть друга зачекати біля входу.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i14:audio",
+            "transcript": "Please wait by the entrance."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please wait by the entrance.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть із результату: If we arrived early, we would have time to talk.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть із результату: If we arrived early, we would have time to talk.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would have time to talk if we arrived early.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we arrived early, we would have time to talk.",
+            "uk": "Почніть із результату: If we arrived early, we would have time to talk."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "have",
+            "time",
+            "to",
+            "talk",
+            "if",
+            "we",
+            "arrived",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-37:i16:r1",
+            "text": "We can try one lesson first."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i16:r2",
+            "text": "We can try two lessons first."
+          },
+          {
+            "responseId": "en:lesson-27:session-37:i16:r3",
+            "text": "We can try one lesson tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i16:audio",
+            "transcript": "We can try one lesson first."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-37:i16:r1",
+              "targetText": "We can try one lesson first.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i16:r2",
+              "targetText": "We can try two lessons first.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i16:r3",
+              "targetText": "We can try one lesson tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-37:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can try one lesson first.",
+                "uk": "У записі звучить We can try one lesson first."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-37:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We can try one lesson first.",
+                "uk": "У записі звучить We can try one lesson first."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подякуйте другові за компанію.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Подякуйте другові за компанію.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-37:i17:audio",
+            "transcript": "Thank you for coming with me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thank you for coming with me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-37:word:reassurance",
+      "correctText": "reassurance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i01",
+      "correctText": "I need some reassurance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i02",
+      "correctText": "Would you come with me?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i03",
+      "correctText": "felt",
+      "correctResponseId": "en:lesson-27:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:word:hesitation",
+      "correctText": "hesitation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i04",
+      "correctText": "My friend agreed without hesitation.",
+      "correctResponseId": "en:lesson-27:session-37:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i05",
+      "correctText": "What time does the class start?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i06",
+      "correctText": "I have already checked the timetable.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i07",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-27:session-37:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:word:certainty",
+      "correctText": "certainty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i08",
+      "correctText": "I cannot say with certainty.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i09",
+      "correctText": "Is the date confirmed?",
+      "correctResponseId": "en:lesson-27:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:word:uncertainty",
+      "correctText": "uncertainty",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i10",
+      "correctText": "There is some uncertainty about the date.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i11",
+      "correctText": "Could you let me know later?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i12",
+      "correctText": "join",
+      "correctResponseId": "en:lesson-27:session-37:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i13",
+      "correctText": "You can leave your bag here.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i14",
+      "correctText": "Please wait by the entrance.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i15",
+      "correctText": "We would have time to talk if we arrived early.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i16",
+      "correctText": "We can try one lesson first.",
+      "correctResponseId": "en:lesson-27:session-37:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:i17",
+      "correctText": "Thank you for coming with me.",
+      "correctResponseId": null
+    }
+  ]
+}

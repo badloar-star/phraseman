@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-37:word:reassurance",
+    "correctText": "reassurance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i01",
+    "correctText": "I need some reassurance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i02",
+    "correctText": "Would you come with me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i03",
+    "correctText": "felt",
+    "correctResponseId": "en:lesson-27:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:word:hesitation",
+    "correctText": "hesitation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i04",
+    "correctText": "My friend agreed without hesitation.",
+    "correctResponseId": "en:lesson-27:session-37:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i05",
+    "correctText": "What time does the class start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i06",
+    "correctText": "I have already checked the timetable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i07",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-27:session-37:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:word:certainty",
+    "correctText": "certainty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i08",
+    "correctText": "I cannot say with certainty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i09",
+    "correctText": "Is the date confirmed?",
+    "correctResponseId": "en:lesson-27:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:word:uncertainty",
+    "correctText": "uncertainty",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i10",
+    "correctText": "There is some uncertainty about the date.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i11",
+    "correctText": "Could you let me know later?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i12",
+    "correctText": "join",
+    "correctResponseId": "en:lesson-27:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i13",
+    "correctText": "You can leave your bag here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i14",
+    "correctText": "Please wait by the entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i15",
+    "correctText": "We would have time to talk if we arrived early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i16",
+    "correctText": "We can try one lesson first.",
+    "correctResponseId": "en:lesson-27:session-37:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-37:i17",
+    "correctText": "Thank you for coming with me.",
+    "correctResponseId": null
+  }
+]

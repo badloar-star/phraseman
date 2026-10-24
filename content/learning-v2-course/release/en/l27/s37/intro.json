@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; unreal condition; present perfect / past simple",
+    "uk": "wish + past; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросить поддержки",
+        "uk": "Попросити підтримки"
+      },
+      "bodyByLocale": {
+        "ru": "Reassurance — поддержка, которая помогает успокоиться и меньше сомневаться. I need some reassurance — мне нужно немного поддержки. Перед первым занятием танцами можно попросить друга пойти вместе: Would you come with me? — ты бы пошёл со мной? I wish I felt more confident — хотелось бы чувствовать себя увереннее. Felt после wish описывает желаемое состояние сейчас.",
+        "uk": "Reassurance — підтримка, яка допомагає заспокоїтися й менше сумніватися. I need some reassurance — мені потрібно трохи підтримки. Перед першим заняттям танцями можна попросити друга піти разом: Would you come with me? — ти б пішов зі мною? I wish I felt more confident — хотілося б почуватися впевненіше. Felt після wish описує бажаний стан зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-37:intro1:r1",
+              "text": "I wish I felt more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro1:r2",
+              "text": "I wish I feel more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro1:r3",
+              "text": "I wish I feeling more confident."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-37:intro1:r1",
+              "text": "I wish I felt more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro1:r2",
+              "text": "I wish I feel more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro1:r3",
+              "text": "I wish I feeling more confident."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Без колебаний",
+        "uk": "Без вагань"
+      },
+      "bodyByLocale": {
+        "ru": "Hesitation — колебание, нерешительность. My friend agreed without hesitation — мой друг согласился без колебаний. Without hesitation значит, что он не сомневался, соглашаться ли. Вы уже посмотрели расписание: I have already checked the timetable. I checked it yesterday — я проверил его вчера: yesterday требует past simple. Перед выходом уточните: What time does the class start?",
+        "uk": "Hesitation — вагання, нерішучість. My friend agreed without hesitation — мій друг погодився без вагань. Without hesitation означає, що він не сумнівався, чи погоджуватися. Ви вже переглянули розклад: I have already checked the timetable. I checked it yesterday — я перевірив його вчора: yesterday потребує past simple. Перед виходом уточніть: What time does the class start?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-37:intro2:r1",
+              "text": "I checked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro2:r2",
+              "text": "I have checked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro2:r3",
+              "text": "I checking it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-37:intro2:r1",
+              "text": "I checked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro2:r2",
+              "text": "I have checked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro2:r3",
+              "text": "I checking it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чего пока не знаете",
+        "uk": "Чого поки не знаєте"
+      },
+      "bodyByLocale": {
+        "ru": "Certainty — уверенность, отсутствие сомнений. I cannot say with certainty — я не могу сказать с уверенностью. Так можно ответить, если точного расписания ещё нет. Uncertainty — неопределённость: There is some uncertainty about the date — дата пока точно не определена. Можно спросить проще: Is the date confirmed? — дата подтверждена? I would join the class if it started later — я бы присоединился к занятию, если бы оно начиналось позже. После would стоит join, а started входит в условие.",
+        "uk": "Certainty — упевненість, відсутність сумнівів. I cannot say with certainty — я не можу сказати з упевненістю. Так можна відповісти, якщо точного розкладу ще немає. Uncertainty — невизначеність: There is some uncertainty about the date — дату поки точно не визначено. Можна запитати простіше: Is the date confirmed? — дату підтверджено? I would join the class if it started later — я б долучився до заняття, якби воно починалося пізніше. Після would стоїть join, а started входить до умови."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-37:intro3:r1",
+              "text": "I would join the class if it started later."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro3:r2",
+              "text": "I would joined the class if it started later."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro3:r3",
+              "text": "I would to join the class if it started later."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-37:intro3:r1",
+              "text": "I would join the class if it started later."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro3:r2",
+              "text": "I would joined the class if it started later."
+            },
+            {
+              "responseId": "en:lesson-27:session-37:intro3:r3",
+              "text": "I would to join the class if it started later."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4db48399ef05d5350aaf6d57d4cadd22dda0e9e5fefc850d6f3b47f694919970"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-37:intro1:r2": {
+          "ru": "В этой конструкции нужна felt.",
+          "uk": "У цій конструкції потрібна felt."
+        },
+        "en:lesson-27:session-37:intro1:r3": {
+          "ru": "После wish здесь felt, не feeling.",
+          "uk": "Після wish тут felt, не feeling."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-37:intro2:r2": {
+          "ru": "С yesterday здесь checked без have.",
+          "uk": "Із yesterday тут checked без have."
+        },
+        "en:lesson-27:session-37:intro2:r3": {
+          "ru": "Для законченного действия нужна checked.",
+          "uk": "Для завершеної дії потрібна checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-37:intro3:r2": {
+          "ru": "После would нужна join.",
+          "uk": "Після would потрібна join."
+        },
+        "en:lesson-27:session-37:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9937f2c997543d35996d7939d18961c9bc5a1b41d6b340ede183da7df3a5430c"
+}

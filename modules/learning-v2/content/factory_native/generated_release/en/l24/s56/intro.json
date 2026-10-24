@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Азия и Африка",
-        "uk": "Азія й Африка"
+        "ru": "Поездка в прошлом году",
+        "uk": "Поїздка минулого року"
       },
       "bodyByLocale": {
-        "ru": "Asia — Азия, Africa — Африка. She visited Asia last year — она побывала в Азии в прошлом году. We have been to Africa — мы бывали в Африке. С last year нужен visited без has; опыт без даты можно передать через have been to. Эти названия тоже употребляются без the.",
-        "uk": "Asia — Азія, Africa — Африка. She visited Asia last year — вона побувала в Азії торік. We have been to Africa — ми бували в Африці. Із last year потрібне visited без has; досвід без дати можна передати через have been to. Ці назви теж уживаються без the."
+        "ru": "Подруга рассказывает о поездке, которая состоялась в прошлом году. She visited Asia last year — она побывала в Азии в прошлом году. Собираем: she + visited + Asia + last year. Last year называет законченный период, поэтому используем Past Simple: к visit добавляем -ed. Has перед visited здесь не ставим. Это сообщение об одной поездке в определённое время.",
+        "uk": "Подруга розповідає про поїздку, яка відбулася минулого року. She visited Asia last year — вона побувала в Азії торік. Складаємо: she + visited + Asia + last year. Last year називає завершений період, тому використовуємо Past Simple: до visit додаємо -ed. Has перед visited тут не ставимо. Це повідомлення про одну поїздку в певний час."
       },
       "question": {
         "interactionId": "en:lesson-24:session-56:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a2eea3bb8ab723ebf9aaa9f3e55adbeefc12b4e6bb5bafc606abce5e454eac40"
+  "introFingerprint": "fc15516383d2f07677b2c2c222f71c39b12096d7160850d9d513bbc02f413075"
 }

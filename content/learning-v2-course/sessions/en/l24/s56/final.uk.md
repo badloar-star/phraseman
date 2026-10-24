@@ -21,9 +21,9 @@ Europe — Європа. I have travelled around Europe — я подорожу�
 
 ## Інтро 2
 
-### Азія й Африка
+### Поїздка минулого року
 
-Asia — Азія, Africa — Африка. She visited Asia last year — вона побувала в Азії торік. We have been to Africa — ми бували в Африці. Із last year потрібне visited без has; досвід без дати можна передати через have been to. Ці назви теж уживаються без the.
+Подруга розповідає про поїздку, яка відбулася минулого року. She visited Asia last year — вона побувала в Азії торік. Складаємо: she + visited + Asia + last year. Last year називає завершений період, тому використовуємо Past Simple: до visit додаємо -ed. Has перед visited тут не ставимо. Це повідомлення про одну поїздку в певний час.
 
 **Виберіть фразу для цієї ситуації.**
 

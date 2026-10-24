@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Узнали о местных жителях",
+        "uk": "Дізналися про місцевих жителів"
       },
       "bodyByLocale": {
-        "ru": "Border — граница; в рассказе о поездке обычно граница страны. She has crossed the border — она пересекла границу. Population — население, люди, живущие в определённом месте, или их число. We have learned about the local population — мы узнали о местном населении.",
-        "uk": "Border — кордон; у розповіді про поїздку зазвичай кордон країни. She has crossed the border — вона перетнула кордон. Population — населення, люди, які живуть у певному місці, або їхня кількість. We have learned about the local population — ми дізналися про місцеве населення."
+        "ru": "На экскурсии вам рассказали о людях, которые живут в этом районе. Вы делитесь тем, что узнали: We have learned about the local population — мы узнали о местном населении. Population означает «население». Собираем: we + have + learned + about the local population. После we ставим have, learned — третью форму learn. About связывает действие с темой: о ком вы узнали. Have learned показывает, что теперь у вас есть эти сведения.",
+        "uk": "На екскурсії вам розповіли про людей, які живуть у цьому районі. Ви ділитеся тим, що дізналися: We have learned about the local population — ми дізналися про місцеве населення. Population означає «населення». Складаємо: we + have + learned + about the local population. Після we ставимо have, learned — третя форма learn. About пов’язує дію з темою: про кого ви дізналися. Have learned показує, що тепер ви маєте ці відомості."
       },
       "question": {
         "interactionId": "en:lesson-23:session-53:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Опыт дальней поездки",
+        "uk": "Досвід далекої поїздки"
       },
       "bodyByLocale": {
-        "ru": "Continent — континент, например Африка. He has travelled to another continent — он путешествовал на другой континент. Another стоит перед одним: another continent. Travelled пишется с двумя l в британском варианте; traveled с одной l — американский вариант. Поездка в соседний супермаркет всё-таки не считается другим континентом.",
-        "uk": "Continent — континент, наприклад Африка. He has travelled to another continent — він подорожував на інший континент. Another стоїть перед одним: another continent. Travelled пишеться з двома l у британському варіанті; traveled з однією l — американський варіант. Поїздка до сусіднього супермаркету все-таки не вважається іншим континентом."
+        "ru": "Знакомый рассказывает о друге, который уже побывал на другом континенте. He has travelled to another continent — он путешествовал на другой континент. Continent означает «континент». Собираем: he + has + travelled + to another continent. С he ставим has; travelled — третья форма travel. To вводит направление поездки. Has travelled сообщает об опыте без указания даты.",
+        "uk": "Знайомий розповідає про друга, який уже побував на іншому континенті. He has travelled to another continent — він подорожував на інший континент. Continent означає «континент». Складаємо: he + has + travelled + to another continent. Із he ставимо has; travelled — третя форма travel. To вводить напрямок поїздки. Has travelled повідомляє про досвід без зазначення дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8961468ae8d6aee67deba57fda30f5b116f28f2af5606c3e4b8297cd227c163b"
+  "introFingerprint": "eaf4dbd1d2ae046c093a3536418dc969939422884eb33eadfdc295a6fc1bf3b3"
 }

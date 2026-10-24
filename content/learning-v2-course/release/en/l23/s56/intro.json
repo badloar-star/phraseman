@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Вопрос врачу уже задан",
+        "uk": "Запитання лікарю вже поставлено"
       },
       "bodyByLocale": {
-        "ru": "Operation — хирургическое вмешательство. В разговоре о здоровье She has had an operation означает ей сделали операцию. Она могла быть пациенткой, не хирургом: has had не означает сама сделала. Infection — инфекция. We have asked about the infection — мы спросили об инфекции.",
-        "uk": "Operation — хірургічне втручання. У розмові про здоров’я She has had an operation означає їй зробили операцію. Вона могла бути пацієнткою, не хірургом: has had не означає сама зробила. Infection — інфекція. We have asked about the infection — ми запитали про інфекцію."
+        "ru": "Вы с родственником поговорили с врачом об инфекции и сообщаете об этом семье. We have asked about the infection — мы спросили об инфекции. Infection означает «инфекция». Собираем: we + have + asked + about the infection. С we используем have, asked — третья форма правильного глагола ask. About вводит тему вопроса. Have asked показывает, что вопрос уже задан; время разговора здесь не уточняем.",
+        "uk": "Ви з родичем поговорили з лікарем про інфекцію й повідомляєте про це сім’ї. We have asked about the infection — ми запитали про інфекцію. Infection означає «інфекція». Складаємо: we + have + asked + about the infection. Із we використовуємо have, asked — третя форма правильного дієслова ask. About вводить тему запитання. Have asked показує, що запитання вже поставлено; час розмови тут не уточнюємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Снова может ходить",
+        "uk": "Знову може ходити"
       },
       "bodyByLocale": {
-        "ru": "Injury — травма, например после падения. He has recovered from an injury — он восстановился после травмы. Illness говорит о болезни, injury — о повреждении тела. На примере учимся рассказывать о травме; получать её для практики, к счастью, не нужно.",
-        "uk": "Injury — травма, наприклад після падіння. He has recovered from an injury — він відновився після травми. Illness говорить про хворобу, injury — про пошкодження тіла. На прикладі вчимося розповідати про травму; отримувати її для практики, на щастя, не потрібно."
+        "ru": "Ваш знакомый повредил ногу, но теперь восстановился и снова ходит как прежде. He has recovered from an injury — он восстановился после травмы. Injury означает «травма». Собираем: he + has + recovered + from an injury. С he ставим has, затем recovered — третью форму recover. После recover используем from, чтобы назвать, после чего человек восстановился. Has recovered сообщает о результате сейчас: восстановление завершилось.",
+        "uk": "Ваш знайомий травмував ногу, але тепер відновився й знову ходить як раніше. He has recovered from an injury — він відновився після травми. Injury означає «травма». Складаємо: he + has + recovered + from an injury. Із he ставимо has, потім recovered — третю форму recover. Після recover використовуємо from, щоб назвати, після чого людина відновилася. Has recovered повідомляє про результат зараз: відновлення завершилося."
       },
       "question": {
         "interactionId": "en:lesson-23:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "55f61e2ce5a190ee3808d960149049cdeb305328ba3eb546aa31254262727c81"
+  "introFingerprint": "6cf0a9adfdea3071394c22d56a60bd8138b0c92b3c6a66b0beb27b0b4cea4f6d"
 }

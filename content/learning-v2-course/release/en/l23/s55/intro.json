@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Симптомы уже описали",
+        "uk": "Симптоми вже описали"
       },
       "bodyByLocale": {
-        "ru": "Virus — вирус. She has caught a virus — она подхватила вирус. Caught — форма catch после has. Вирус здесь не ловят руками: catch a virus означает заразиться. Symptoms — симптомы. We have described the symptoms — мы описали симптомы. Один симптом — a symptom.",
-        "uk": "Virus — вірус. She has caught a virus — вона підхопила вірус. Caught — форма catch після has. Вірус тут не ловлять руками: catch a virus означає заразитися. Symptoms — симптоми. We have described the symptoms — ми описали симптоми. Один симптом — a symptom."
+        "ru": "Вы вместе с заболевшим родственником объяснили врачу, что его беспокоит. We have described the symptoms — мы описали симптомы. Symptoms означает «симптомы». Собираем: we + have + described + the symptoms. С we используем have, к describe добавляем -d и получаем described. The symptoms — конкретные симптомы, о которых шёл разговор. Have described показывает, что описание уже дано: врач теперь знает, что беспокоит пациента.",
+        "uk": "Ви разом із хворим родичем пояснили лікарю, що його турбує. We have described the symptoms — ми описали симптоми. Symptoms означає «симптоми». Складаємо: we + have + described + the symptoms. Із we використовуємо have, до describe додаємо -d й отримуємо described. The symptoms — конкретні симптоми, про які йшла розмова. Have described показує, що опис уже надано: лікар тепер знає, що турбує пацієнта."
       },
       "question": {
         "interactionId": "en:lesson-23:session-55:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Уже задал вопрос",
+        "uk": "Уже поставив запитання"
       },
       "bodyByLocale": {
-        "ru": "Vaccine — вакцина. He has asked about the vaccine — он спросил о вакцине. Asked about — спросил о чём-то. Фраза говорит о вопросе, а не о том, что прививка уже сделана. Врач мог ответить на десять вопросов, а одиннадцатый вспомнится уже у двери.",
-        "uk": "Vaccine — вакцина. He has asked about the vaccine — він запитав про вакцину. Asked about — запитав про щось. Фраза говорить про запитання, а не про те, що щеплення вже зроблено. Лікар міг відповісти на десять запитань, а одинадцяте згадається вже біля дверей."
+        "ru": "Друг хотел узнать о вакцине и уже задал вопрос врачу. He has asked about the vaccine — он спросил о вакцине. Vaccine означает «вакцина». Собираем: he + has + asked + about the vaccine. После he ставим has, затем asked — третью форму ask. About вводит тему вопроса. Has asked сообщает о совершённом действии: вопрос уже задан, но из этой фразы неизвестно, получен ли ответ.",
+        "uk": "Друг хотів дізнатися про вакцину й уже поставив запитання лікарю. He has asked about the vaccine — він запитав про вакцину. Vaccine означає «вакцина». Після he ставимо has, потім asked — третю форму ask: he + has + asked + about the vaccine. About вводить тему запитання. Has asked повідомляє про виконану дію: запитання вже поставлено, але з цієї фрази невідомо, чи отримано відповідь."
       },
       "question": {
         "interactionId": "en:lesson-23:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "383d549e5e5ba2842942f203c3173b4c545d6ead9efb1189f6a094ef8221e37b"
+  "introFingerprint": "ecce343b7721edd5625e50d8295507da7d2a37ce9c315f31ed3de221cdb06d00"
 }

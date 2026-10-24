@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Разговор с переводчиком состоялся",
+        "uk": "Розмова з перекладачем відбулася"
       },
       "bodyByLocale": {
-        "ru": "Translator обычно переводит письменные тексты, interpreter — устную речь. She has found a translator — она нашла письменного переводчика. We have spoken to an interpreter — мы поговорили с устным переводчиком. Встреча может требовать interpreter, а перевод документа — translator.",
-        "uk": "Translator зазвичай перекладає письмові тексти, interpreter — усне мовлення. She has found a translator — вона знайшла письмового перекладача. We have spoken to an interpreter — ми поговорили з усним перекладачем. Зустріч може потребувати interpreter, а переклад документа — translator."
+        "ru": "Перед встречей вы с коллегой поговорили с устным переводчиком и сообщаете об этом организатору. We have spoken to an interpreter — мы поговорили с устным переводчиком. Interpreter переводит устную речь. Собираем: we + have + spoken + to an interpreter. С we используем have; spoken — третья форма speak. После spoken ставим to, затем называем собеседника. Have spoken сообщает, что разговор уже состоялся.",
+        "uk": "Перед зустріччю ви з колегою поговорили з усним перекладачем і повідомляєте про це організатору. We have spoken to an interpreter — ми поговорили з усним перекладачем. Interpreter перекладає усне мовлення. Складаємо: we + have + spoken + to an interpreter. Із we використовуємо have; spoken — третя форма speak. Після spoken ставимо to, потім називаємо співрозмовника. Have spoken повідомляє, що розмова вже відбулася."
       },
       "question": {
         "interactionId": "en:lesson-23:session-54:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b4b380afaff3f4191e64d99debbd9ed6f29939c954b747068e5aa8e5fdba45b3"
+  "introFingerprint": "4145cc6f3833c5de7d9eb3a18d59cd852616f761629acd95e1259396a7ed0222"
 }

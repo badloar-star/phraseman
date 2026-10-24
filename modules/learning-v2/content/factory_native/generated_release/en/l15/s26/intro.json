@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Подписаться на журнал",
+        "uk": "Передплатити журнал"
       },
       "bodyByLocale": {
-        "ru": "subscription — регулярно оплачиваемая подписка на издание или услугу. Повторим going to для намерения. Вы решили подписаться на журнал, но ещё не оформили заказ. I am going to buy a subscription. — Я собираюсь оформить подписку. Передайте намерение через going to.",
-        "uk": "subscription — регулярно оплачувана передплата на видання або послугу. Повторімо going to для наміру. Ви вирішили передплатити журнал, але ще не оформили замовлення. I am going to buy a subscription. — Я збираюся оформити передплату. Передайте намір через going to."
+        "ru": "Вы решили оформить подписку на журнал, но пока не сделали заказ. Subscription — подписка. I am going to buy a subscription. — Я собираюсь оформить подписку. Начните с I am going to, затем действие buy и покупка a subscription. После going to слово buy остаётся без изменений. В этом задании сообщите о намерении через going to.",
+        "uk": "Ви вирішили оформити передплату на журнал, але поки не зробили замовлення. Subscription — передплата. I am going to buy a subscription. — Я збираюся оформити передплату. Почніть з I am going to, потім дія buy і покупка a subscription. Після going to слово buy залишається без змін. У цьому завданні повідомте про намір через going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-26:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Забрать дневной пропуск",
+        "uk": "Забрати денну перепустку"
       },
       "bodyByLocale": {
-        "ru": "day pass — билет или пропуск, действующий один день. season ticket — абонемент на повторные посещения или поездки в течение сезона. Если время уже согласовано, потренируем Present Continuous. Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. We are collecting our day pass tomorrow. — Мы забираем свой дневной пропуск завтра. Передайте договорённость через Present Continuous.",
-        "uk": "day pass — квиток або перепустка, що діє один день. season ticket — абонемент на повторні відвідування або поїздки протягом сезону. Якщо час уже узгоджено, потренуймо Present Continuous. Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. We are collecting our day pass tomorrow. — Ми забираємо свою денну перепустку завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с супругом оплатили общий дневной пропуск в бассейн для двоих и договорились забрать его завтра. Day pass — пропуск на один день. We are collecting our day pass tomorrow. — Завтра мы забираем наш дневной пропуск. О договорённости скажите We are collecting, затем назовите пропуск — our day pass. Our означает «наш», поэтому перед ним не добавляем a. В конце поставьте tomorrow. Здесь тренируем are collecting; going to тоже возможно.",
+        "uk": "Ви з чоловіком оплатили спільну денну перепустку до басейну для двох і домовилися забрати її завтра. Day pass — перепустка на один день. We are collecting our day pass tomorrow. — Завтра ми забираємо нашу денну перепустку. Про домовленість скажіть We are collecting, потім назвіть перепустку — our day pass. Our означає «наш», тому перед ним не додаємо a. Наприкінці поставте tomorrow. Тут тренуємо are collecting; going to теж можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-26:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Семейный поход в музей",
+        "uk": "Сімейний похід до музею"
       },
       "bodyByLocale": {
-        "ru": "family pass — общий билет или пропуск для семьи. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья забронировали семейное посещение музея на воскресенье. They are using their family pass on Sunday. — Они пользуются семейным билетом в воскресенье. Передайте договорённость через Present Continuous.",
-        "uk": "family pass — спільний квиток або перепустка для сім’ї. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі забронювали сімейне відвідування музею на неділю. They are using their family pass on Sunday. — Вони користуються сімейним квитком у неділю. Передайте домовленість через Present Continuous."
+        "ru": "Ваши друзья купили семейный билет в музей и забронировали посещение на воскресенье. Family pass — семейный билет. They are using their family pass on Sunday. — В воскресенье они воспользуются своим семейным билетом. Начните с They are using. Затем добавьте their family pass: билет принадлежит им. День укажите через on: on Sunday. Здесь используйте are using для согласованного плана; going to тоже может передавать этот план.",
+        "uk": "Ваші друзі купили сімейний квиток до музею й забронювали відвідування на неділю. Family pass — сімейний квиток. They are using their family pass on Sunday. — У неділю вони скористаються своїм сімейним квитком. Почніть з They are using. Потім додайте their family pass: квиток належить їм. День укажіть через on: on Sunday. Тут використайте are using для узгодженого плану; going to теж може передавати цей план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4ba5b35df5bcdf0d93448fb9436d4a44d82b18103753824332971471a8316846"
+  "introFingerprint": "998e5276c41d8d91c7edb82bc969ac0e08d0bf85280f9c4513a1ae219fa255e8"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Время уже согласовано",
-        "uk": "Час уже узгоджено"
+        "ru": "В пятницу на спектакль",
+        "uk": "У п'ятницю на виставу"
       },
       "bodyByLocale": {
-        "ru": "school play — спектакль, который ставят ученики школы. Вы с семьёй купили билеты на школьный спектакль в пятницу. We are watching the school play on Friday. — Мы смотрим школьный спектакль в пятницу. Здесь Present Continuous обозначает уже согласованное будущее дело.",
-        "uk": "school play — вистава, яку ставлять учні школи. Ви із сім’єю купили квитки на шкільну виставу в п’ятницю. We are watching the school play on Friday. — Ми дивимося шкільну виставу в п’ятницю. Тут Present Continuous означає вже узгоджену майбутню справу."
+        "ru": "Вы с семьёй купили билеты на школьный спектакль в пятницу. School play — школьный спектакль. We are watching the school play on Friday. — В пятницу мы смотрим школьный спектакль. Начните с We are watching, затем назовите спектакль — the school play. Перед днём недели поставьте on: on Friday. Are watching здесь описывает будущий план: билеты уже куплены. Не пропускайте are перед watching.",
+        "uk": "Ви з родиною купили квитки на шкільну виставу в п'ятницю. School play — шкільна вистава. We are watching the school play on Friday. — У п'ятницю ми дивимося шкільну виставу. Почніть з We are watching, потім назвіть виставу — the school play. Перед днем тижня поставте on: on Friday. Are watching тут описує майбутній план: квитки вже куплені. Не пропускайте are перед watching."
       },
       "question": {
         "interactionId": "en:lesson-15:session-22:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "О чём договорились",
-        "uk": "Про що домовилися"
+        "ru": "Завтра репетиция",
+        "uk": "Завтра репетиція"
       },
       "bodyByLocale": {
-        "ru": "rehearsal — репетиция; matinee — дневной спектакль или сеанс. Руководитель подтвердил, что ждёт вас на завтрашней репетиции. I am attending a rehearsal tomorrow. — Я иду на репетицию завтра. Выберите правильную форму be.",
-        "uk": "rehearsal — репетиція; matinee — денна вистава або сеанс. Керівник підтвердив, що чекає на вас на завтрашній репетиції. I am attending a rehearsal tomorrow. — Я йду на репетицію завтра. Виберіть правильну форму be."
+        "ru": "Руководитель подтвердил, что ждёт вас на завтрашней репетиции. Rehearsal — репетиция. I am attending a rehearsal tomorrow. — Завтра я иду на репетицию. Начните с I am attending: с I нужно am. Затем назовите мероприятие — a rehearsal — без предлога после attending. Завершите временем tomorrow. Так сообщаем о будущем посещении, о котором уже договорились.",
+        "uk": "Керівник підтвердив, що чекає на вас на завтрашній репетиції. Rehearsal — репетиція. I am attending a rehearsal tomorrow. — Завтра я йду на репетицію. Почніть з I am attending: з I потрібне am. Потім назвіть захід — a rehearsal — без прийменника після attending. Завершіть часом tomorrow. Так повідомляємо про майбутнє відвідування, про яке вже домовилися."
       },
       "question": {
         "interactionId": "en:lesson-15:session-22:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договорённость на конкретное время",
-        "uk": "Домовленість на конкретний час"
+        "ru": "Места в первом ряду",
+        "uk": "Місця в першому ряду"
       },
       "bodyByLocale": {
-        "ru": "front row — первый ряд перед сценой. Друзья купили билеты в первый ряд на сегодняшний вечерний спектакль. They are sitting in the front row tonight. — Они сидят в первом ряду сегодня вечером. Слова времени показывают: речь о будущем, а не о действии сейчас.",
-        "uk": "front row — перший ряд перед сценою. Друзі купили квитки в перший ряд на сьогоднішню вечірню виставу. They are sitting in the front row tonight. — Вони сидять у першому ряді сьогодні ввечері. Слова часу показують: ідеться про майбутнє, а не про дію зараз."
+        "ru": "Друзья купили билеты в первый ряд на сегодняшний вечерний спектакль. Front row — первый ряд. They are sitting in the front row tonight. — Сегодня вечером они будут сидеть в первом ряду. Сначала They are sitting. В sitting буква t удваивается перед -ing. Место добавьте через in: in the front row, затем время tonight. В этой ситуации речь о будущих местах на спектакле, а не о том, где друзья сидят сейчас.",
+        "uk": "Друзі купили квитки в перший ряд на сьогоднішню вечірню виставу. Front row — перший ряд. They are sitting in the front row tonight. — Сьогодні ввечері вони сидітимуть у першому ряду. Спочатку They are sitting. У sitting літера t подвоюється перед -ing. Місце додайте через in: in the front row, потім час tonight. У цій ситуації йдеться про майбутні місця на виставі, а не про те, де друзі сидять зараз."
       },
       "question": {
         "interactionId": "en:lesson-15:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d27e038ffbeac1082a3142e2a31404eff5570c4c844020ad5d74b5c871e576ec"
+  "introFingerprint": "1310b9f29cfd7f02652cbce666d9831d1e219739db4495db4c695817db17fcca"
 }

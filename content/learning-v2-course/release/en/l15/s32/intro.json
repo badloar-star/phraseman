@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Попробовать вышивать",
+        "uk": "Спробувати вишивати"
       },
       "bodyByLocale": {
-        "ru": "needlework — рукоделие с иглой и нитками. Повторим going to для намерения. Вы решили попробовать шить или вышивать, но ещё не выбрали первое изделие. I am going to try needlework. — Я собираюсь попробовать рукоделие с иглой и нитками. Передайте намерение через going to.",
-        "uk": "needlework — рукоділля з голкою й нитками. Повторімо going to для наміру. Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. I am going to try needlework. — Я збираюся спробувати рукоділля з голкою й нитками. Передайте намір через going to."
+        "ru": "Вы решили попробовать вышивать, но ещё не выбрали первый узор. Needlework — рукоделие с иглой и нитками. I am going to try needlework. — Я собираюсь попробовать рукоделие с иглой и нитками. Начните с I am going to try: после going to ставим try без окончания. Затем добавьте название занятия — needlework. Так сообщаем о намерении попробовать новое дело. В задании используйте going to.",
+        "uk": "Ви вирішили спробувати вишивати, але ще не обрали перший візерунок. Needlework — рукоділля з голкою та нитками. I am going to try needlework. — Я збираюся спробувати рукоділля з голкою та нитками. Почніть з I am going to try: після going to ставимо try без закінчення. Потім додайте назву заняття — needlework. Так повідомляємо про намір спробувати нову справу. У завданні використайте going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-32:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Завтра пробуем каллиграфию",
+        "uk": "Завтра пробуємо каліграфію"
       },
       "bodyByLocale": {
-        "ru": "calligraphy — искусство красивого письма. scrapbooking — оформление альбомов фотографиями, вырезками и памятными мелочами. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на завтрашнее занятие красивым письмом. We are trying calligraphy tomorrow. — Мы пробуем каллиграфию завтра. Передайте договорённость через Present Continuous.",
-        "uk": "calligraphy — мистецтво красивого письма. scrapbooking — оформлення альбомів фотографіями, вирізками й пам’ятними дрібницями. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на завтрашнє заняття красивим письмом. We are trying calligraphy tomorrow. — Ми пробуємо каліграфію завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с другом записались на завтрашнее занятие каллиграфией. Calligraphy — искусство красивого письма. We are trying calligraphy tomorrow. — Завтра мы попробуем каллиграфию. О согласованном плане скажите We are trying. Затем добавьте calligraphy и время tomorrow. В trying буква y остаётся перед -ing. Здесь тренируем are trying; going to тоже может описывать этот план.",
+        "uk": "Ви з другом записалися на завтрашнє заняття каліграфією. Calligraphy — мистецтво красивого письма. We are trying calligraphy tomorrow. — Завтра ми спробуємо каліграфію. Про узгоджений план скажіть We are trying. Потім додайте calligraphy і час tomorrow. У trying літера y залишається перед -ing. Тут тренуємо are trying; going to теж може описувати цей план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-32:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Занятие в воскресенье",
+        "uk": "Заняття в неділю"
       },
       "bodyByLocale": {
-        "ru": "flower pressing — высушивание цветов под прессом для сохранения формы. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители подтвердили участие в воскресном занятии по сушке цветов под прессом. They are trying flower pressing on Sunday. — Они пробуют сушить цветы под прессом в воскресенье. Передайте договорённость через Present Continuous.",
-        "uk": "flower pressing — висушування квітів під пресом для збереження форми. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. They are trying flower pressing on Sunday. — Вони пробують сушити квіти під пресом у неділю. Передайте домовленість через Present Continuous."
+        "ru": "Родители записались на воскресное занятие, где будут сушить цветы под прессом. Flower pressing — сушка цветов под прессом. They are trying flower pressing on Sunday. — В воскресенье они попробуют сушить цветы под прессом. Сначала They are trying, затем название занятия flower pressing, затем день on Sunday. Are trying сообщает о запланированном действии, а flower pressing называет само занятие. Здесь используйте are trying; вариант с going to тоже возможен.",
+        "uk": "Батьки записалися на недільне заняття, де сушитимуть квіти під пресом. Flower pressing — сушіння квітів під пресом. They are trying flower pressing on Sunday. — У неділю вони спробують сушити квіти під пресом. Спочатку They are trying, потім назва заняття flower pressing, потім день on Sunday. Are trying повідомляє про заплановану дію, а flower pressing називає саме заняття. Тут використайте are trying; варіант із going to теж можливий."
       },
       "question": {
         "interactionId": "en:lesson-15:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5ab04bd1d8f17dc992da6459f5de893292c63c8eadbd394c6f7e7c7763521b97"
+  "introFingerprint": "aedb87f763fdd22dbb2df2ed66f4940ce76f7fdbfdddf61be8b1d480090ca121"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Сломалась стиральная машина",
+        "uk": "Зламалася пральна машина"
       },
       "bodyByLocale": {
-        "ru": "launderette — прачечная самообслуживания. Повторим going to для намерения. Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. I am going to use the launderette. — Я собираюсь воспользоваться прачечной самообслуживания. Передайте намерение через going to.",
-        "uk": "launderette — пральня самообслуговування. Повторімо going to для наміру. Ваша пральна машина зламалася; ви вирішили випрати речі в пральні. I am going to use the launderette. — Я збираюся скористатися пральнею самообслуговування. Передайте намір через going to."
+        "ru": "Стиральная машина сломалась, и вы решили воспользоваться знакомой прачечной самообслуживания. Launderette — прачечная самообслуживания. I am going to use the launderette. — Я собираюсь воспользоваться прачечной самообслуживания. Сначала I am going to, затем действие use и место the launderette. После use не нужен предлог: говорим use the launderette. В задании передайте намерение через going to.",
+        "uk": "Пральна машина зламалася, і ви вирішили скористатися знайомою пральнею самообслуговування. Launderette — пральня самообслуговування. I am going to use the launderette. — Я збираюся скористатися пральнею самообслуговування. Спочатку I am going to, потім дія use і місце the launderette. Після use не потрібен прийменник: кажемо use the launderette. У завданні передайте намір через going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-27:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Заплатить за копию ключа",
+        "uk": "Заплатити за копію ключа"
       },
       "bodyByLocale": {
-        "ru": "key cutting — изготовление копии ключа. dry cleaning — химчистка одежды. Если время уже согласовано, потренируем Present Continuous. Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. We are paying for key cutting tomorrow. — Мы оплачиваем изготовление копии ключа завтра. Передайте договорённость через Present Continuous.",
-        "uk": "key cutting — виготовлення копії ключа. dry cleaning — хімчистка одягу. Якщо час уже узгоджено, потренуймо Present Continuous. Майстер підтвердив замовлення копії ключа; ви домовилися прийти й оплатити його завтра. We are paying for key cutting tomorrow. — Ми оплачуємо виготовлення копії ключа завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с партнёром заказали копию ключа и договорились с мастером прийти и заплатить завтра. Key cutting — изготовление копии ключа. We are paying for key cutting tomorrow. — Завтра мы оплачиваем изготовление копии ключа. О согласованном плане скажите We are paying. За что платите, добавьте через for: for key cutting. Завершите временем tomorrow. Здесь тренируем are paying; going to тоже может описывать этот план.",
+        "uk": "Ви з партнером замовили копію ключа й домовилися з майстром прийти та заплатити завтра. Key cutting — виготовлення копії ключа. We are paying for key cutting tomorrow. — Завтра ми оплачуємо виготовлення копії ключа. Про узгоджений план скажіть We are paying. За що платите, додайте через for: for key cutting. Завершіть часом tomorrow. Тут тренуємо are paying; going to теж може описувати цей план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-27:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Забрать обувь в пятницу",
+        "uk": "Забрати взуття в п'ятницю"
       },
       "bodyByLocale": {
-        "ru": "shoe repair — ремонт обуви. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. They are paying for shoe repair on Friday. — Они оплачивают ремонт обуви в пятницу. Передайте договорённость через Present Continuous.",
-        "uk": "shoe repair — ремонт взуття. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки домовилися забрати й оплатити відремонтоване взуття в п’ятницю. They are paying for shoe repair on Friday. — Вони оплачують ремонт взуття в п’ятницю. Передайте домовленість через Present Continuous."
+        "ru": "Родители договорились забрать обувь из ремонта и оплатить работу в пятницу. Shoe repair — ремонт обуви. They are paying for shoe repair on Friday. — В пятницу они оплачивают ремонт обуви. Начните с They are paying, затем for shoe repair. Перед днём недели поставьте on: on Friday. Не пропускайте are перед paying, хотя оплата будет в будущем. Здесь используйте are paying; вариант с going to также возможен.",
+        "uk": "Батьки домовилися забрати взуття з ремонту й оплатити роботу в п'ятницю. Shoe repair — ремонт взуття. They are paying for shoe repair on Friday. — У п'ятницю вони оплачують ремонт взуття. Почніть з They are paying, потім for shoe repair. Перед днем тижня поставте on: on Friday. Не пропускайте are перед paying, хоча оплата буде в майбутньому. Тут використайте are paying; варіант із going to також можливий."
       },
       "question": {
         "interactionId": "en:lesson-15:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e637ec4685d8e2f78aa9777a34bdc21e1b25c90015c7e2ef69d1888d6a8bf8f"
+  "introFingerprint": "9fef66f0dd79fca9eacd099d1187528ec763d7bf5fe49910c9d011d2d8cebea7"
 }

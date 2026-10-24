@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Выбрать время доставки",
+        "uk": "Обрати час доставки"
       },
       "bodyByLocale": {
-        "ru": "delivery slot — выбранный промежуток времени доставки. Повторим going to для намерения. Вы решили заказать продукты домой, но время доставки ещё не выбрали. I am going to choose a delivery slot. — Я собираюсь выбрать время доставки. Передайте намерение через going to.",
-        "uk": "delivery slot — вибраний проміжок часу доставки. Повторімо going to для наміру. Ви вирішили замовити продукти додому, але час доставки ще не вибрали. I am going to choose a delivery slot. — Я збираюся вибрати час доставки. Передайте намір через going to."
+        "ru": "Вы решили заказать продукты домой и собираетесь выбрать время доставки. Delivery slot — промежуток времени для доставки. I am going to choose a delivery slot. — Я собираюсь выбрать время доставки. Начните с I am going to, затем действие choose и то, что выбираете, — a delivery slot. Choose после going to не меняется. В задании выразите намерение через going to.",
+        "uk": "Ви вирішили замовити продукти додому й збираєтеся обрати час доставки. Delivery slot — проміжок часу для доставки. I am going to choose a delivery slot. — Я збираюся обрати час доставки. Почніть з I am going to, потім дія choose і те, що обираєте, — a delivery slot. Choose після going to не змінюється. У завданні висловіть намір через going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-28:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Завтра забираем интернет-заказ",
+        "uk": "Завтра забираємо інтернет-замовлення"
       },
       "bodyByLocale": {
-        "ru": "click and collect — заказ через интернет с получением в магазине. collection point — место, где можно забрать заказ. Если время уже согласовано, потренируем Present Continuous. Магазин подтвердил ваш заказ; время получения назначено на завтра. We are using click and collect tomorrow. — Мы получаем интернет-заказ в магазине завтра. Передайте договорённость через Present Continuous.",
-        "uk": "click and collect — замовлення через інтернет з отриманням у магазині. collection point — місце, де можна забрати замовлення. Якщо час уже узгоджено, потренуймо Present Continuous. Магазин підтвердив ваше замовлення; час отримання призначено на завтра. We are using click and collect tomorrow. — Ми отримуємо інтернет-замовлення в магазині завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с партнёром заказали товары через интернет и договорились забрать их в магазине завтра. Click and collect — интернет-заказ с получением в магазине. We are using click and collect tomorrow. — Завтра мы воспользуемся получением интернет-заказа в магазине. Начните с We are using, затем назовите услугу click and collect и время tomorrow. Чтобы получить using, убираем конечную e из use и добавляем -ing. Здесь тренируем are using для согласованного плана; going to тоже возможно.",
+        "uk": "Ви з партнером замовили товари через інтернет і домовилися забрати їх у магазині завтра. Click and collect — інтернет-замовлення з отриманням у магазині. We are using click and collect tomorrow. — Завтра ми скористаємося отриманням інтернет-замовлення в магазині. Почніть з We are using, потім назвіть послугу click and collect і час tomorrow. Щоб отримати using, прибираємо кінцеву e з use і додаємо -ing. Тут тренуємо are using для узгодженого плану; going to теж можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-28:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Встретиться возле фотокабины",
+        "uk": "Зустрітися біля фотокабіни"
       },
       "bodyByLocale": {
-        "ru": "photo booth — кабина для автоматической фотосъёмки. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья согласовали встречу завтра в десять у фотокабины. They are meeting by the photo booth at ten tomorrow. — Они встречаются возле фотокабины завтра в десять. Передайте договорённость через Present Continuous.",
-        "uk": "photo booth — кабіна для автоматичного фотографування. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. They are meeting by the photo booth at ten tomorrow. — Вони зустрічаються біля фотокабіни завтра о десятій. Передайте домовленість через Present Continuous."
+        "ru": "Друзья договорились встретиться возле фотокабины завтра в десять. Photo booth — фотокабина. They are meeting by the photo booth at ten tomorrow. — Завтра в десять они встречаются возле фотокабины. Сначала They are meeting, затем место — by the photo booth. By здесь означает «возле». Добавьте время at ten tomorrow: at перед часом, без предлога перед tomorrow. В задании используйте are meeting; going to тоже может описывать эту договорённость.",
+        "uk": "Друзі домовилися зустрітися біля фотокабіни завтра о десятій. Photo booth — фотокабіна. They are meeting by the photo booth at ten tomorrow. — Завтра о десятій вони зустрічаються біля фотокабіни. Спочатку They are meeting, потім місце — by the photo booth. By тут означає «біля». Додайте час at ten tomorrow: at перед годиною, без прийменника перед tomorrow. У завданні використайте are meeting; going to теж може описувати цю домовленість."
       },
       "question": {
         "interactionId": "en:lesson-15:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "908e356bd0709014a9b0a9e17e124249331162b509775a3736fac7d0cde6e5a1"
+  "introFingerprint": "cc786475d2bba8999e6289fb3f4ebe9d4821cd2a27721656cd59f4e375d3512c"
 }

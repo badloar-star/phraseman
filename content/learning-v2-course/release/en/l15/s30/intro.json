@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Позвонить брату",
+        "uk": "Зателефонувати братові"
       },
       "bodyByLocale": {
-        "ru": "half-brother — брат, с которым общий только один родитель. Повторим going to для намерения. Вы решили позвонить брату, с которым у вас общая мама, но разные папы. I am going to call my half-brother. — Я собираюсь позвонить брату, с которым у нас один общий родитель. Передайте намерение через going to.",
-        "uk": "half-brother — брат, з яким спільний лише один із батьків. Повторімо going to для наміру. Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. I am going to call my half-brother. — Я збираюся зателефонувати братові, з яким у нас один спільний із батьків. Передайте намір через going to."
+        "ru": "Вы решили позвонить брату, с которым у вас общая мама, но разные папы. Half-brother — брат, с которым общий один родитель. I am going to call my half-brother. — Я собираюсь позвонить своему брату, с которым у нас один общий родитель. Начните с I am going to call. Затем сразу назовите человека — my half-brother: после call предлог не нужен. В этом задании передайте намерение через going to.",
+        "uk": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Half-brother — брат, з яким спільний один із батьків. I am going to call my half-brother. — Я збираюся зателефонувати своєму братові, з яким у нас спільний один із батьків. Почніть з I am going to call. Потім відразу назвіть людину — my half-brother: після call прийменник не потрібен. У цьому завданні передайте намір через going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-30:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Зять придёт в воскресенье",
+        "uk": "Зять прийде в неділю"
       },
       "bodyByLocale": {
-        "ru": "son-in-law — муж дочери, зять. half-sister — сестра, с которой общий только один родитель. Если время уже согласовано, потренируем Present Continuous. Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. We are meeting our son-in-law on Sunday. — Мы встречаемся с зятем в воскресенье. Передайте договорённость через Present Continuous.",
-        "uk": "son-in-law — чоловік доньки, зять. half-sister — сестра, з якою спільний лише один із батьків. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. We are meeting our son-in-law on Sunday. — Ми зустрічаємося із зятем у неділю. Передайте домовленість через Present Continuous."
+        "ru": "Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Son-in-law — зять, муж дочери. We are meeting our son-in-law on Sunday. — В воскресенье мы встречаемся с нашим зятем. Для договорённости начните с We are meeting. Затем добавьте our son-in-law без предлога перед our, а день — через on: on Sunday. Здесь тренируем are meeting; going to тоже может описывать этот план.",
+        "uk": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Son-in-law — зять, чоловік доньки. We are meeting our son-in-law on Sunday. — У неділю ми зустрічаємося з нашим зятем. Для домовленості почніть з We are meeting. Потім додайте our son-in-law без прийменника перед our, а день — через on: on Sunday. Тут тренуємо are meeting; going to теж може описувати цей план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-30:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Завтра встреча с невесткой",
+        "uk": "Завтра зустріч із невісткою"
       },
       "bodyByLocale": {
-        "ru": "daughter-in-law — жена сына, невестка. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители согласовали встречу с женой вашего брата на завтра. They are meeting their daughter-in-law tomorrow. — Они встречаются с невесткой завтра. Передайте договорённость через Present Continuous.",
-        "uk": "daughter-in-law — дружина сина, невістка. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. They are meeting their daughter-in-law tomorrow. — Вони зустрічаються з невісткою завтра. Передайте домовленість через Present Continuous."
+        "ru": "Родители договорились завтра встретиться с женой вашего брата. Daughter-in-law — невестка, жена сына. They are meeting their daughter-in-law tomorrow. — Завтра они встречаются со своей невесткой. Начните с They are meeting, затем their daughter-in-law: для родителей жена их сына — их невестка. Время tomorrow поставьте в конце. Здесь используйте are meeting; going to в такой ситуации тоже возможно.",
+        "uk": "Батьки домовилися завтра зустрітися з дружиною вашого брата. Daughter-in-law — невістка, дружина сина. They are meeting their daughter-in-law tomorrow. — Завтра вони зустрічаються зі своєю невісткою. Почніть з They are meeting, потім their daughter-in-law: для батьків дружина їхнього сина — їхня невістка. Час tomorrow поставте наприкінці. Тут використайте are meeting; going to в такій ситуації теж можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fada69d3b749f1b7eed0b73cd775163b68c1c899609ce3b2c11a1a013cd31f93"
+  "introFingerprint": "6a056dc3271c0f52017504e818786dd1af9df8bba5c04123d749f0e520223d1e"
 }

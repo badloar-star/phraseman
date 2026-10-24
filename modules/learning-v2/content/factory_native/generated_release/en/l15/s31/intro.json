@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Бумажные фигурки",
+        "uk": "Паперові фігурки"
       },
       "bodyByLocale": {
-        "ru": "origami — складывание фигурок из бумаги. Повторим going to для намерения. Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. I am going to try origami. — Я собираюсь попробовать оригами. Передайте намерение через going to.",
-        "uk": "origami — складання фігурок із паперу. Повторімо going to для наміру. Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. I am going to try origami. — Я збираюся спробувати оригамі. Передайте намір через going to."
+        "ru": "Вы решили попробовать складывать фигурки из бумаги, но ещё не выбрали занятие. Origami — оригами. I am going to try origami. — Я собираюсь попробовать оригами. Начните с I am going to, затем поставьте действие try без изменений и добавьте origami. Здесь going to показывает намерение, а try называет действие. В задании используйте эту форму.",
+        "uk": "Ви вирішили спробувати складати фігурки з паперу, але ще не обрали заняття. Origami — оригамі. I am going to try origami. — Я збираюся спробувати оригамі. Почніть з I am going to, потім поставте дію try без змін і додайте origami. Тут going to показує намір, а try називає дію. У завданні використайте цю форму."
       },
       "question": {
         "interactionId": "en:lesson-15:session-31:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Прогулка в субботу",
+        "uk": "Прогулянка в суботу"
       },
       "bodyByLocale": {
-        "ru": "birdwatching — наблюдение за птицами. woodworking — изготовление вещей из дерева. Если время уже согласовано, потренируем Present Continuous. Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. We are going birdwatching on Saturday. — Мы идём наблюдать за птицами в субботу. Передайте договорённость через Present Continuous.",
-        "uk": "birdwatching — спостереження за птахами. woodworking — виготовлення речей із дерева. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. We are going birdwatching on Saturday. — Ми йдемо спостерігати за птахами в суботу. Передайте домовленість через Present Continuous."
+        "ru": "Вы с друзьями договорились в субботу пойти наблюдать за птицами. Birdwatching — наблюдение за птицами. We are going birdwatching on Saturday. — В субботу мы идём наблюдать за птицами. Соберите договорённость: We are going, затем занятие birdwatching, затем день on Saturday. Здесь going означает «идём», а после него сразу стоит birdwatching, без to. В задании тренируем are going birdwatching; вариант are going to go birdwatching тоже возможен, но это другая форма.",
+        "uk": "Ви з друзями домовилися в суботу піти спостерігати за птахами. Birdwatching — спостереження за птахами. We are going birdwatching on Saturday. — У суботу ми йдемо спостерігати за птахами. Складіть домовленість: We are going, потім заняття birdwatching, потім день on Saturday. Тут going означає «йдемо», а після нього відразу стоїть birdwatching, без to. У завданні тренуємо are going birdwatching; варіант are going to go birdwatching теж можливий, але це інша форма."
       },
       "question": {
         "interactionId": "en:lesson-15:session-31:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Вечером смотреть на звёзды",
+        "uk": "Увечері дивитися на зорі"
       },
       "bodyByLocale": {
-        "ru": "stargazing — наблюдение за звёздами. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. They are going stargazing tonight. — Они идут наблюдать за звёздами сегодня вечером. Передайте договорённость через Present Continuous.",
-        "uk": "stargazing — спостереження за зорями. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. They are going stargazing tonight. — Вони йдуть спостерігати за зорями сьогодні ввечері. Передайте домовленість через Present Continuous."
+        "ru": "Родители договорились сегодня вечером встретиться с клубом любителей звёзд. Stargazing — наблюдение за звёздами. They are going stargazing tonight. — Сегодня вечером они идут наблюдать за звёздами. Начните с They are going, затем добавьте stargazing без to. Время tonight поставьте в конце без предлога. Здесь тренируем are going stargazing для согласованного плана; более длинный вариант are going to go stargazing тоже грамматически возможен.",
+        "uk": "Батьки домовилися сьогодні ввечері зустрітися з клубом любителів зір. Stargazing — спостереження за зорями. They are going stargazing tonight. — Сьогодні ввечері вони йдуть спостерігати за зорями. Почніть з They are going, потім додайте stargazing без to. Час tonight поставте наприкінці без прийменника. Тут тренуємо are going stargazing для узгодженого плану; довший варіант are going to go stargazing теж граматично можливий."
       },
       "question": {
         "interactionId": "en:lesson-15:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4e763a139e2332ebd12df9e5e1b92dba87492ce229994d960b9e9eecb4a49d6d"
+  "introFingerprint": "2f00e580b15789cf12818c5e499f11f62912c49e6e49e8d28ae4f2344b9e7480"
 }

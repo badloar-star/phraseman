@@ -11,12 +11,12 @@
       "pageId": "en:lesson-25:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вспомнил имя",
-        "uk": "Згадав ім’я"
+        "ru": "Вспомнил имя до начала разговора",
+        "uk": "Згадав ім’я до початку розмови"
       },
       "bodyByLocale": {
-        "ru": "Вы встретили знакомую и сначала не могли вспомнить её имя. Recall — вспомнить, восстановить в памяти. He had recalled her name before she spoke — он вспомнил её имя до того, как она заговорила. Had recalled показывает, что имя он вспомнил раньше. Recall близко по смыслу к remember; здесь внимание на том, что нужное имя удалось вспомнить.",
-        "uk": "Ви зустріли знайому й спочатку не могли згадати її ім’я. Recall — згадати, відновити в пам’яті. He had recalled her name before she spoke — він згадав її ім’я до того, як вона заговорила. Had recalled показує, що ім’я він згадав раніше. Recall близьке за значенням до remember; тут увага на тому, що потрібне ім’я вдалося згадати."
+        "ru": "Ваш друг встретил знакомую и успел вспомнить её имя ещё до её первых слов. Расскажите: He had recalled her name before she spoke — он вспомнил её имя до того, как она заговорила. Собираем: He + had recalled + her name + before she spoke — кто, что сделал раньше, что вспомнил, до какого события. После had нужна recalled с -ed. Had recalled отмечает более раннее воспоминание, spoke — последующее начало разговора.",
+        "uk": "Ваш друг зустрів знайому й устиг згадати її ім’я ще до її перших слів. Розкажіть: He had recalled her name before she spoke — він згадав її ім’я до того, як вона заговорила. Складаємо: He + had recalled + her name + before she spoke — хто, що зробив раніше, що згадав, до якої події. Після had потрібна recalled із -ed. Had recalled позначає попереднє пригадування, spoke — пізніший початок розмови."
       },
       "question": {
         "interactionId": "en:lesson-25:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Прогноз и осмотр",
-        "uk": "Прогноз і огляд"
+        "ru": "Предсказала дождь до нашего ухода",
+        "uk": "Передбачила дощ до нашого виходу"
       },
       "bodyByLocale": {
-        "ru": "Predict — предсказать, сказать заранее, что, по вашему мнению, произойдёт. She had predicted rain before we left — она предсказала дождь до нашего ухода. Это её прогноз, а не гарантия. Examine — внимательно осмотреть: The doctor had examined my knee before I went home — врач осмотрел моё колено до того, как я пошёл домой. В обоих примерах had + третья форма отмечает действие, завершённое раньше другого события в прошлом.",
-        "uk": "Predict — передбачити, сказати заздалегідь, що, на вашу думку, станеться. She had predicted rain before we left — вона передбачила дощ до нашого виходу. Це її прогноз, а не гарантія. Examine — уважно оглянути: The doctor had examined my knee before I went home — лікар оглянув моє коліно до того, як я пішов додому. В обох прикладах had + третя форма позначає дію, завершену раніше за іншу подію в минулому."
+        "ru": "Вы вспоминаете прогулку: ещё перед выходом подруга сказала, что будет дождь. Скажите: She had predicted rain before we left — она предсказала дождь до того, как мы ушли. Собираем: She + had predicted + rain + before we left — кто, что сделал раньше, что предсказал, до какого события. После had нужна predicted с -ed. Had predicted относится к прогнозу до выхода, left обозначает более поздний уход. Фраза сообщает о прогнозе, не о том, сбылся ли он.",
+        "uk": "Ви згадуєте прогулянку: ще перед виходом подруга сказала, що буде дощ. Скажіть: She had predicted rain before we left — вона передбачила дощ до того, як ми пішли. Складаємо: She + had predicted + rain + before we left — хто, що зробив раніше, що передбачив, до якої події. Після had потрібна predicted із -ed. Had predicted стосується прогнозу до виходу, left позначає пізніший вихід. Фраза повідомляє про прогноз, а не про те, чи справдився він."
       },
       "question": {
         "interactionId": "en:lesson-25:session-45:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b5f940ef9e6b2d55a1a3a22e0bc5aa72fb31af4fff9d6d1aefe6d16a8010a4ba"
+  "introFingerprint": "227986c842a6529edc36b2c1609aad32f656a065334d4e53aaf8b8bfe4364fd8"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Материал и ощущение",
-        "uk": "Матеріал і відчуття"
+        "ru": "Какие носки носили раньше",
+        "uk": "Які шкарпетки носили раніше"
       },
       "bodyByLocale": {
-        "ru": "Woollen — шерстяной: I used to wear woollen socks — раньше я носил шерстяные носки. Silky — шелковистый, гладкий и мягкий на ощупь: She used to wear a silky scarf — раньше она носила шелковистый шарф. Silky не гарантирует, что вещь сделана из настоящего шёлка: это описание ощущения. Woollen говорит о материале, silky — о похожей на шёлк поверхности.",
-        "uk": "Woollen — вовняний: I used to wear woollen socks — раніше я носив вовняні шкарпетки. Silky — шовковистий, гладенький і м’який на дотик: She used to wear a silky scarf — раніше вона носила шовковистий шарф. Silky не гарантує, що річ зроблена зі справжнього шовку: це опис відчуття. Woollen говорить про матеріал, silky — про схожу на шовк поверхню."
+        "ru": "Вы нашли старые шерстяные носки и рассказываете другу о прежней привычке: I used to wear woollen socks — раньше я носил шерстяные носки. Собираем: I + used to + wear + woollen socks — кто, указание на прежнюю привычку, действие, что носил. В утвердительной фразе пишем used с -d. После used to ставим wear в начальной форме, а не wore. Woollen стоит перед socks и описывает материал носков.",
+        "uk": "Ви знайшли старі вовняні шкарпетки й розповідаєте другові про колишню звичку: I used to wear woollen socks — раніше я носив вовняні шкарпетки. Складаємо: I + used to + wear + woollen socks — хто, вказівка на колишню звичку, дія, що носив. У стверджувальній фразі пишемо used із -d. Після used to ставимо wear у початковій формі, а не wore. Woollen стоїть перед socks і описує матеріал шкарпеток."
       },
       "question": {
         "interactionId": "en:lesson-25:session-55:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-25:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пояс на резинке",
-        "uk": "Пояс на гумці"
+        "ru": "Какие брюки носили раньше",
+        "uk": "Які штани носили раніше"
       },
       "bodyByLocale": {
-        "ru": "Elastic — эластичный: растягивается и возвращается к прежней форме. I used to wear trousers with an elastic waist — раньше я носил брюки с эластичным поясом. Здесь waist — часть брюк на талии; elastic waist означает пояс на резинке. Так удобно описать одежду в магазине. В рассказе о прежней привычке используем used to wear.",
-        "uk": "Elastic — еластичний: розтягується й повертається до попередньої форми. I used to wear trousers with an elastic waist — раніше я носив штани з еластичним поясом. Тут waist — частина штанів на талії; elastic waist означає пояс на гумці. Так зручно описати одяг у магазині. У розповіді про колишню звичку використовуємо used to wear."
+        "ru": "Вы рассматриваете старое фото и вспоминаете брюки, которые тогда часто носили: I used to wear trousers with an elastic waist — раньше я носил брюки с эластичным поясом. Собираем: I + used to + wear + trousers + with an elastic waist — кто, прежняя привычка, действие, одежда, её деталь. Used to уже обозначает прошлое, поэтому после него нужна wear, а не wore. With an elastic waist относится к trousers и уточняет, какие это были брюки.",
+        "uk": "Ви розглядаєте старе фото й згадуєте штани, які тоді часто носили: I used to wear trousers with an elastic waist — раніше я носив штани з еластичним поясом. Складаємо: I + used to + wear + trousers + with an elastic waist — хто, колишня звичка, дія, одяг, його деталь. Used to вже позначає минуле, тому після нього потрібна wear, а не wore. With an elastic waist стосується trousers і уточнює, які це були штани."
       },
       "question": {
         "interactionId": "en:lesson-25:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d5acf8d440ede2cfe0caf5ea7b8320a776a960726705bcbb9638af1375ee6c67"
+  "introFingerprint": "65c92b97aeb1857bd65fbf917b41977f3823b7b138235827b7be94114d5b87e0"
 }

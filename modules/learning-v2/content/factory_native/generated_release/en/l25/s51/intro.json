@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Обдумать снова и выдержать дорогу",
-        "uk": "Обміркувати знову й витримати дорогу"
+        "ru": "Обдумать план перед звонком",
+        "uk": "Обдумати план перед дзвінком"
       },
       "bodyByLocale": {
-        "ru": "Reconsider — ещё раз обдумать решение или план. She had reconsidered her plan before she called — она пересмотрела свой план до звонка. Это не обязательно означает, что план изменился: его обдумали повторно. Endure — вытерпеть что-то тяжёлое. We had endured a long journey before we reached the hotel — мы вытерпели долгую дорогу до гостиницы. Например, ехали много часов в тесном автобусе. Had reconsidered и had endured относятся к тому, что произошло раньше звонка или прибытия.",
-        "uk": "Reconsider — ще раз обміркувати рішення чи план. She had reconsidered her plan before she called — вона переглянула свій план до дзвінка. Це не обов’язково означає, що план змінився: його обдумали повторно. Endure — витримати щось важке. We had endured a long journey before we reached the hotel — ми витримали довгу дорогу до готелю. Наприклад, їхали багато годин у тісному автобусі. Had reconsidered і had endured стосуються того, що сталося раніше за дзвінок чи прибуття."
+        "ru": "Вы рассказываете, как подруга готовилась позвонить: сначала она ещё раз обдумала свой план. Скажите: She had reconsidered her plan before she called — она повторно обдумала свой план до того, как позвонила. Собираем: She + had reconsidered + her plan + before she called — кто, что сделал раньше, что обдумал, до какого события. После had нужна reconsidered с -ed. Had reconsidered отмечает более раннее обдумывание, called — последующий звонок. Фраза не утверждает, что план обязательно изменился.",
+        "uk": "Ви розповідаєте, як подруга готувалася зателефонувати: спочатку вона ще раз обдумала свій план. Скажіть: She had reconsidered her plan before she called — вона повторно обдумала свій план до того, як зателефонувала. Складаємо: She + had reconsidered + her plan + before she called — хто, що зробив раніше, що обдумав, до якої події. Після had потрібна reconsidered із -ed. Had reconsidered позначає попереднє обдумування, called — пізніший дзвінок. Фраза не стверджує, що план обов’язково змінився."
       },
       "question": {
         "interactionId": "en:lesson-25:session-51:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fbc9272f78287b83550e5f42f0cf53a44e21b132277d50c5bcfaa1e0403e3a87"
+  "introFingerprint": "cb213b52fbceff4f965d27facbaec17b24ea2b8e0a660b666c2a289fc9b3275f"
 }

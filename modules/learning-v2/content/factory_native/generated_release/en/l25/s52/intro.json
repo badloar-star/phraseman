@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Удивление и тревога",
-        "uk": "Здивування й тривога"
+        "ru": "Удивиться вчерашней цене",
+        "uk": "Здивуватися вчорашній ціні"
       },
       "bodyByLocale": {
-        "ru": "Astonished — изумлённый, очень сильно удивлённый. I was astonished by the price yesterday — вчера я был изумлён ценой. Она могла оказаться неожиданно высокой или низкой: само слово не говорит, приятным ли было удивление. Uneasy — встревоженный, испытывающий беспокойство. I was uneasy before the journey yesterday — вчера перед поездкой мне было тревожно. В обоих примерах рассказываем о конкретном вчерашнем состоянии: I was.",
-        "uk": "Astonished — вражений, дуже сильно здивований. I was astonished by the price yesterday — учора я був вражений ціною. Вона могла виявитися несподівано високою або низькою: саме слово не каже, чи було здивування приємним. Uneasy — стривожений, той, хто відчуває неспокій. I was uneasy before the journey yesterday — учора перед поїздкою мені було тривожно. В обох прикладах розповідаємо про конкретний учорашній стан: I was."
+        "ru": "Вы вспоминаете вчерашний поход в магазин: цена оказалась совсем не такой, как вы ожидали. Скажите: I was astonished by the price yesterday — вчера я был изумлён ценой. Собираем: I + was + astonished + by the price + yesterday — кто, был, в каком состоянии, чем оно вызвано, когда. Yesterday задаёт законченное время в прошлом, поэтому с I нужна was. Astonished стоит после was, а by the price называет причину удивления.",
+        "uk": "Ви згадуєте вчорашній похід до крамниці: ціна виявилася зовсім не такою, як ви очікували. Скажіть: I was astonished by the price yesterday — учора я був вражений ціною. Складаємо: I + was + astonished + by the price + yesterday — хто, був, у якому стані, чим він викликаний, коли. Yesterday задає завершений час у минулому, тому з I потрібна was. Astonished стоїть після was, а by the price називає причину здивування."
       },
       "question": {
         "interactionId": "en:lesson-25:session-52:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f2175c7f44386900e33a9ff08bfd0e7d64c9db873209ab38c061907bebd2e6d5"
+  "introFingerprint": "2f0aa3c9fab5e5fcc3b3d815c36e065664878a906925178a74ffb11aeef8df2c"
 }

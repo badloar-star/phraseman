@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Домой до мороза",
-        "uk": "Додому до морозу"
+        "ru": "Добраться домой до мороза",
+        "uk": "Дістатися додому до морозу"
       },
       "bodyByLocale": {
-        "ru": "Frosty — морозный. We had reached home before it became frosty — мы добрались домой до наступления мороза. Sleet здесь — дождь со снегом. The sleet had stopped before we left — дождь со снегом прекратился до нашего выхода. В первом примере раньше закончилась дорога домой, во втором — осадки. Для более раннего события используем had + третья форма: had reached, had stopped.",
-        "uk": "Frosty — морозний. We had reached home before it became frosty — ми дісталися додому до настання морозу. Sleet тут — дощ зі снігом. The sleet had stopped before we left — дощ зі снігом припинився до нашого виходу. У першому прикладі раніше закінчилася дорога додому, у другому — опади. Для ранішої події використовуємо had + третя форма: had reached, had stopped."
+        "ru": "Вы рассказываете о вчерашней дороге: похолодало уже после того, как вы добрались домой. Скажите: We had reached home before it became frosty — мы добрались домой до наступления мороза. Собираем: We + had reached + home + before it became frosty — кто, что сделал раньше, куда добрался, до какого события. После had нужна reached с -ed. Home идёт сразу после reached. Before it became frosty обозначает более позднюю перемену погоды; it здесь служит подлежащим в описании погоды.",
+        "uk": "Ви розповідаєте про вчорашню дорогу: похолодало вже після того, як ви дісталися додому. Скажіть: We had reached home before it became frosty — ми дісталися додому до настання морозу. Складаємо: We + had reached + home + before it became frosty — хто, що зробив раніше, куди дістався, до якої події. Після had потрібна reached із -ed. Home йде одразу після reached. Before it became frosty позначає пізнішу зміну погоди; it тут є підметом в описі погоди."
       },
       "question": {
         "interactionId": "en:lesson-25:session-49:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a29e8dfa88fdf1fc8bb92807fce6a6dd603e04d6aa62ad5a1eabc6873124fa58"
+  "introFingerprint": "eb0a2289db92cf24e0ab69d74ab56b095323f0dc9ed520bc3d74c885d11c69c6"
 }

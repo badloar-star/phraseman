@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Оценка и значение слова",
-        "uk": "Оцінка й значення слова"
+        "ru": "Узнать оценку до звонка",
+        "uk": "Дізнатися оцінку до дзвінка"
       },
       "bodyByLocale": {
-        "ru": "Grade здесь — оценка за учебную работу. I had checked my grade by the time she called — я уже проверил свою оценку к её звонку. Definition — определение, объяснение значения слова. We had read the definition by the time he explained the word — мы уже прочитали определение к тому моменту, когда он объяснил слово. Определение объясняет смысл, а перевод даёт соответствие на другом языке: это не одно и то же.",
-        "uk": "Grade тут — оцінка за навчальну роботу. I had checked my grade by the time she called — я вже перевірив свою оцінку до її дзвінка. Definition — визначення, пояснення значення слова. We had read the definition by the time he explained the word — ми вже прочитали визначення до того моменту, коли він пояснив слово. Визначення пояснює зміст, а переклад дає відповідник іншою мовою: це не те саме."
+        "ru": "Вы рассказываете о вчерашнем звонке подруги: к этому времени вы уже посмотрели оценку за работу. Скажите: I had checked my grade by the time she called — я проверил свою оценку к тому времени, как она позвонила. Собираем: I + had checked + my grade + by the time she called — кто, что сделал раньше, что проверил, к какому прошлому моменту. После had нужна checked с -ed. Had checked отмечает действие до звонка, called — последующий звонок.",
+        "uk": "Ви розповідаєте про вчорашній дзвінок подруги: до цього часу ви вже переглянули оцінку за роботу. Скажіть: I had checked my grade by the time she called — я перевірив свою оцінку до того часу, як вона зателефонувала. Складаємо: I + had checked + my grade + by the time she called — хто, що зробив раніше, що перевірив, до якого минулого моменту. Після had потрібна checked із -ed. Had checked позначає дію до дзвінка, called — пізніший дзвінок."
       },
       "question": {
         "interactionId": "en:lesson-25:session-44:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4504b26b6bb755a4c0b34641bb53add941dd5366c0db0de1cab6d25ecc86965c"
+  "introFingerprint": "f8f4e1af2223185f06a3cf36da1895ead25b0662d2f506e39a433cbc060dcbd6"
 }

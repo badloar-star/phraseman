@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поведение, а не возраст",
-        "uk": "Поведінка, а не вік"
+        "ru": "Казалась взрослой не по годам",
+        "uk": "Здавалася дорослою не за роками"
       },
       "bodyByLocale": {
-        "ru": "Mature здесь описывает зрелое, ответственное поведение, а не просто возраст. She used to seem mature for her age — раньше она казалась зрелой для своего возраста. Immature — незрелый, ведущий себя по-детски. He used to be immature at school — в школе он был незрелым. Он мог дурачиться и не думать о последствиях, а позже измениться. Used to seem и used to be описывают прежнее впечатление и состояние.",
-        "uk": "Mature тут описує зрілу, відповідальну поведінку, а не просто вік. She used to seem mature for her age — раніше вона здавалася зрілою як на свій вік. Immature — незрілий, той, хто поводиться по-дитячому. He used to be immature at school — у школі він був незрілим. Він міг дуріти й не думати про наслідки, а згодом змінитися. Used to seem і used to be описують колишнє враження й стан."
+        "ru": "Вы вспоминаете школьную подругу, которая рассуждала ответственнее сверстников: She used to seem mature for her age — раньше она казалась зрелой для своего возраста. Собираем: She + used to + seem + mature + for her age — кто, прежнее впечатление, казаться, какой, относительно чего. После used to нужна seem, а не seemed. Mature описывает впечатление от её поведения; for her age уточняет сравнение с тем, чего ожидают в её возрасте.",
+        "uk": "Ви згадуєте шкільну подругу, яка міркувала відповідальніше за ровесників: She used to seem mature for her age — раніше вона здавалася зрілою для свого віку. Складаємо: She + used to + seem + mature + for her age — хто, колишнє враження, здаватися, якою, відносно чого. Після used to потрібна seem, а не seemed. Mature описує враження від її поведінки; for her age уточнює порівняння з тим, чого очікують у її віці."
       },
       "question": {
         "interactionId": "en:lesson-25:session-47:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6f77a0616550c54219e0f4017c434246c26699e2371744d34aac3a48eae14108"
+  "introFingerprint": "b035f1b5fca3886660783565931a3cc75167694526b43cacc7a7f44a46786f80"
 }

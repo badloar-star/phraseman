@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вдоль реки и под деревом",
-        "uk": "Уздовж річки й під деревом"
+        "ru": "Детские прогулки вдоль реки",
+        "uk": "Дитячі прогулянки вздовж річки"
       },
       "bodyByLocale": {
-        "ru": "Продолжаем то же воспоминание о детских прогулках. Alongside — вдоль, рядом с. We would walk alongside the river — мы обычно шли вдоль реки, рядом с водой. Beneath — под, ниже чего-то. We would sit beneath a tree — мы обычно сидели под деревом. Beneath здесь близко к знакомому under. Walk и sit после would стоят в начальной форме, хотя вся история о прошлом.",
-        "uk": "Продовжуємо той самий спогад про дитячі прогулянки. Alongside — уздовж, поруч із. We would walk alongside the river — ми зазвичай ішли вздовж річки, поруч із водою. Beneath — під, нижче за щось. We would sit beneath a tree — ми зазвичай сиділи під деревом. Beneath тут близьке до знайомого under. Walk і sit після would стоять у початковій формі, хоча вся історія про минуле."
+        "ru": "Вы вспоминаете семейные прогулки в детстве: ваш обычный маршрут шёл вдоль реки. Скажите: We would walk alongside the river — мы обычно гуляли вдоль реки. Собираем: We + would + walk + alongside the river — кто, указание на повторявшееся действие, действие, где проходил путь. Контекст детства уже задаёт прошлое, а would показывает повторение. После would нужна walk без -ed и без -ing. Alongside the river относится к walk и уточняет маршрут.",
+        "uk": "Ви згадуєте сімейні прогулянки в дитинстві: ваш звичайний маршрут ішов уздовж річки. Скажіть: We would walk alongside the river — ми зазвичай гуляли вздовж річки. Складаємо: We + would + walk + alongside the river — хто, вказівка на повторювану дію, дія, де пролягав шлях. Контекст дитинства вже задає минуле, а would показує повторення. Після would потрібна walk без -ed і без -ing. Alongside the river стосується walk та уточнює маршрут."
       },
       "question": {
         "interactionId": "en:lesson-25:session-53:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "aa857efa1e2b0166ddddf117eb5c59b0eadbb04f38ada37589a745b96210b569"
+  "introFingerprint": "36c7e54abd43181c3aba0d984b994dfc66284313986b6b201feb935513873df8"
 }

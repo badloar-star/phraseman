@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Раньше чувствовал себя иначе",
-        "uk": "Раніше почувався інакше"
+        "ru": "Раньше не справлялся на кухне",
+        "uk": "Раніше не давав собі ради на кухні"
       },
       "bodyByLocale": {
-        "ru": "Helpless — беспомощный, не способный справиться без помощи. He used to feel helpless in the kitchen — раньше он чувствовал себя беспомощным на кухне. Например, не умел готовить, а теперь научился. Outgoing — общительный, легко знакомящийся с людьми. She used to be outgoing at school — в школе она была общительной. Used to подходит и для чувств, и для черт характера в прошлом: used to feel, used to be.",
-        "uk": "Helpless — безпорадний, той, хто не може впоратися без допомоги. He used to feel helpless in the kitchen — раніше він почувався безпорадним на кухні. Наприклад, не вмів готувати, а тепер навчився. Outgoing — товариський, той, хто легко знайомиться з людьми. She used to be outgoing at school — у школі вона була товариською. Used to підходить і для почуттів, і для рис характеру в минулому: used to feel, used to be."
+        "ru": "Вы рассказываете о друге, который теперь научился готовить, а раньше без помощи терялся на кухне: He used to feel helpless in the kitchen — раньше он чувствовал себя беспомощным на кухне. Собираем: He + used to + feel + helpless + in the kitchen — кто, прежнее состояние, чувствовать себя, каким, где. После used to нужна feel, а не felt. Helpless описывает чувство после feel; in the kitchen называет ситуацию, в которой оно возникало.",
+        "uk": "Ви розповідаєте про друга, який тепер навчився готувати, а раніше без допомоги губився на кухні: He used to feel helpless in the kitchen — раніше він почувався безпорадним на кухні. Складаємо: He + used to + feel + helpless + in the kitchen — хто, колишній стан, почуватися, яким, де. Після used to потрібна feel, а не felt. Helpless описує відчуття після feel; in the kitchen називає ситуацію, у якій воно виникало."
       },
       "question": {
         "interactionId": "en:lesson-25:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-25:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Без забот, а не без внимания",
-        "uk": "Без турбот, а не без уваги"
+        "ru": "Беззаботные каникулы",
+        "uk": "Безтурботні канікули"
       },
       "bodyByLocale": {
-        "ru": "Carefree — беззаботный. We used to be carefree during the holidays — раньше на каникулах мы были беззаботными. Carefree не равно знакомому careless: carefree — без забот, careless — невнимательный или неосторожный. Здесь описываем прежнее состояние, поэтому used to be. Привычное would из прошлых занятий подходит для повторяющихся действий, но в таком описании состояния выбираем used to.",
-        "uk": "Carefree — безтурботний. We used to be carefree during the holidays — раніше на канікулах ми були безтурботними. Carefree не дорівнює знайомому careless: carefree — без турбот, careless — неуважний чи необережний. Тут описуємо колишній стан, тому used to be. Звичне would з попередніх занять підходить для повторюваних дій, але в такому описі стану вибираємо used to."
+        "ru": "Вы вспоминаете школьные каникулы, когда не приходилось думать о повседневных заботах: We used to be carefree during the holidays — раньше на каникулах мы были беззаботными. Собираем: We + used to + be + carefree + during the holidays — кто, прежнее состояние, быть, какими, когда. После used to нужна be в начальной форме, а не were. Carefree описывает состояние после be; during the holidays уточняет период, о котором вы вспоминаете.",
+        "uk": "Ви згадуєте шкільні канікули, коли не доводилося думати про повсякденні клопоти: We used to be carefree during the holidays — раніше на канікулах ми були безтурботними. Складаємо: We + used to + be + carefree + during the holidays — хто, колишній стан, бути, якими, коли. Після used to потрібна be в початковій формі, а не were. Carefree описує стан після be; during the holidays уточнює період, про який ви згадуєте."
       },
       "question": {
         "interactionId": "en:lesson-25:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "727d1378433f40a50a1b32dda9c13725c275387a52824e5aeb0509d1c171f02d"
+  "introFingerprint": "3060a4cb30e71f7c893c2bca66cfe76f5943eb1b61f91886c5a3582f4fa300cc"
 }

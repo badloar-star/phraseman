@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "За едой и до темноты",
-        "uk": "За їжею й до темряви"
+        "ru": "Семейные разговоры за едой",
+        "uk": "Сімейні розмови за їжею"
       },
       "bodyByLocale": {
-        "ru": "Mealtime — время приёма пищи; mealtimes — такие периоды в течение дня. We used to talk at mealtimes — раньше мы разговаривали во время еды. Nightfall — наступление темноты вечером. We used to get home before nightfall — раньше мы возвращались домой до темноты. Это не фиксированный час: летом и зимой темнеет в разное время. Before nightfall — до темноты, after nightfall — после её наступления.",
-        "uk": "Mealtime — час приймання їжі; mealtimes — такі періоди протягом дня. We used to talk at mealtimes — раніше ми розмовляли під час їжі. Nightfall — настання темряви ввечері. We used to get home before nightfall — раніше ми поверталися додому до темряви. Це не фіксована година: улітку й узимку темнішає в різний час. Before nightfall — до темряви, after nightfall — після її настання."
+        "ru": "Вы вспоминаете, как раньше семья собиралась за столом и делилась новостями: We used to talk at mealtimes — раньше мы разговаривали во время еды. Собираем: We + used to + talk + at mealtimes — кто, прежняя привычка, действие, когда. После used to нужна talk без -ed: прошлое уже выражено used to. At mealtimes ставим после talk; это время повторявшихся разговоров, а не одного конкретного ужина.",
+        "uk": "Ви згадуєте, як раніше родина збиралася за столом і ділилася новинами: We used to talk at mealtimes — раніше ми розмовляли під час їжі. Складаємо: We + used to + talk + at mealtimes — хто, колишня звичка, дія, коли. Після used to потрібна talk без -ed: минуле вже виражене used to. At mealtimes ставимо після talk; це час повторюваних розмов, а не однієї конкретної вечері."
       },
       "question": {
         "interactionId": "en:lesson-25:session-50:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "97168c0f962e9c6af4aa940127713b382ef929273bff3a1586600bc688ae255d"
+  "introFingerprint": "f20d1f99c7b0977fe934dfffe15ecb098954286c7aac3864bd4fc82d583f7bb6"
 }

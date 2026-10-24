@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Напротив и дальше",
-        "uk": "Навпроти й далі"
+        "ru": "Дом напротив школы",
+        "uk": "Будинок навпроти школи"
       },
       "bodyByLocale": {
-        "ru": "Opposite — напротив. I used to live opposite the school — раньше я жил напротив школы. Например, школа была через дорогу от моего дома. Beyond — дальше указанного места, за ним. We used to walk beyond the bridge — раньше мы обычно ходили дальше моста. Мы не останавливались у моста, а шли дальше. Used to live описывает прежнее место жительства, used to walk — прежнюю привычку.",
-        "uk": "Opposite — навпроти. I used to live opposite the school — раніше я жив навпроти школи. Наприклад, школа була через дорогу від мого будинку. Beyond — далі за вказане місце, за ним. We used to walk beyond the bridge — раніше ми зазвичай ходили далі за міст. Ми не зупинялися біля мосту, а йшли далі. Used to live описує колишнє місце проживання, used to walk — колишню звичку."
+        "ru": "Вы рассказываете другу о своём прежнем доме: школа была через дорогу. Скажите: I used to live opposite the school — раньше я жил напротив школы. Собираем: I + used to + live + opposite the school — кто, прежнее состояние, жить, где. После used to нужна live, а не lived. Opposite the school ставим после live: эта часть указывает расположение дома. Used to live показывает, что речь о прежнем месте жительства.",
+        "uk": "Ви розповідаєте другові про свій колишній будинок: школа була через дорогу. Скажіть: I used to live opposite the school — раніше я жив навпроти школи. Складаємо: I + used to + live + opposite the school — хто, колишній стан, жити, де. Після used to потрібна live, а не lived. Opposite the school ставимо після live: ця частина вказує розташування будинку. Used to live показує, що йдеться про колишнє місце проживання."
       },
       "question": {
         "interactionId": "en:lesson-25:session-43:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-25:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Внутри границ",
-        "uk": "Усередині меж"
+        "ru": "Не выходили за пределы деревни",
+        "uk": "Не виходили за межі села"
       },
       "bodyByLocale": {
-        "ru": "Within — в пределах, внутри границ. We used to stay within the village — раньше мы обычно оставались в пределах деревни. Здесь мы не выходили за её границы. Beyond указывает на место дальше границы, within — на место внутри неё. В этом примере stay не обязательно значит «жить»: можно оставаться в деревне во время прогулок и не уходить далеко.",
-        "uk": "Within — у межах, усередині меж. We used to stay within the village — раніше ми зазвичай залишалися в межах села. Тут ми не виходили за його межі. Beyond указує на місце далі за межу, within — на місце всередині неї. У цьому прикладі stay не обов’язково означає «жити»: можна залишатися в селі під час прогулянок і не йти далеко."
+        "ru": "Вы вспоминаете детские прогулки: тогда вы обычно не уходили за границы деревни. Скажите: We used to stay within the village — раньше мы обычно оставались в пределах деревни. Собираем: We + used to + stay + within the village — кто, прежняя привычка, действие, где. После used to нужна stay без -ed. Within the village идёт после stay и ограничивает место действия границами деревни. В этой ситуации stay означает оставаться, а не жить.",
+        "uk": "Ви згадуєте дитячі прогулянки: тоді ви зазвичай не йшли за межі села. Скажіть: We used to stay within the village — раніше ми зазвичай залишалися в межах села. Складаємо: We + used to + stay + within the village — хто, колишня звичка, дія, де. Після used to потрібна stay без -ed. Within the village іде після stay та обмежує місце дії межами села. У цій ситуації stay означає залишатися, а не жити."
       },
       "question": {
         "interactionId": "en:lesson-25:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "837cff6a7351a86efb704c2533750b31f822ca5692f6efd25db1bfdcb80dc5f7"
+  "introFingerprint": "d3963c1a8c213347eb97a766c31fa71769c8bff7da0cfd3e8359870938973236"
 }

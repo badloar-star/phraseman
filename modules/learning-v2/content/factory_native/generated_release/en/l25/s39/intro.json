@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что выбрали и что заметили",
-        "uk": "Що вибрали й що помітили"
+        "ru": "Объяснила выбор до заказа",
+        "uk": "Пояснила вибір до замовлення"
       },
       "bodyByLocale": {
-        "ru": "Preference — предпочтение: что человеку нравится больше. She had explained her preference by the time we ordered — она уже объяснила своё предпочтение к тому моменту, когда мы сделали заказ. Например, выбрала чай вместо кофе и объяснила почему. Similarity — сходство. I had noticed the similarity by the time he showed me the photo — я уже заметил сходство к тому моменту, когда он показал мне фотографию. Можно сначала заметить, что сын похож на отца, а позже увидеть ещё и фотографию.",
-        "uk": "Preference — уподобання: що людині подобається більше. She had explained her preference by the time we ordered — вона вже пояснила своє уподобання до того моменту, коли ми зробили замовлення. Наприклад, вибрала чай замість кави й пояснила чому. Similarity — схожість. I had noticed the similarity by the time he showed me the photo — я вже помітив схожість до того моменту, коли він показав мені фотографію. Можна спочатку помітити, що син схожий на батька, а пізніше побачити ще й фотографію."
+        "ru": "Вы вспоминаете поход в кафе: подруга объяснила, почему предпочитает чай, ещё до заказа. Скажите: She had explained her preference by the time we ordered — она объяснила своё предпочтение к тому времени, как мы сделали заказ. Собираем: She + had explained + her preference + by the time we ordered — кто, что сделал раньше, что объяснил, к какому моменту в прошлом. После had нужна explained с -ed. Had explained отмечает готовое объяснение до заказа; ordered обозначает последующий заказ.",
+        "uk": "Ви згадуєте похід до кафе: подруга пояснила, чому віддає перевагу чаю, ще до замовлення. Скажіть: She had explained her preference by the time we ordered — до того часу, як ми зробили замовлення, вона пояснила, чому віддає перевагу чаю. Складаємо: She + had explained + her preference + by the time we ordered — хто, що зробив раніше, що пояснив, до якого моменту в минулому. Після had потрібна explained із -ed. Had explained позначає готове пояснення до замовлення; ordered позначає пізніше замовлення."
       },
       "question": {
         "interactionId": "en:lesson-25:session-39:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ce0d0388e366b8e8005c8e95c5998bf82d44e25f28bb1d0d493af8b44de1564a"
+  "introFingerprint": "9350b6b6f4c0336abc979add98c4c2ac944bdf1f0a1125a0ba4cd74c50d43d6d"
 }

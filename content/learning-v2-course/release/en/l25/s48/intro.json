@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ручной кролик и грязные лапы",
-        "uk": "Ручний кролик і брудні лапи"
+        "ru": "Раньше жил ручной кролик",
+        "uk": "Раніше жив ручний кролик"
       },
       "bodyByLocale": {
-        "ru": "Tame — ручной, привыкший к человеку. I used to have a tame rabbit — раньше у меня был ручной кролик. Здесь used to have описывает прежнее состояние: кролик жил у меня, а теперь уже нет. Paw — лапа кошки, собаки или похожего животного; paws — лапы. We used to wash the dog’s paws — раньше мы мыли собаке лапы. Например, после прогулки по грязной дороге.",
-        "uk": "Tame — ручний, звиклий до людини. I used to have a tame rabbit — раніше в мене був ручний кролик. Тут used to have описує колишній стан: кролик жив у мене, а тепер уже ні. Paw — лапа кішки, собаки чи схожої тварини; paws — лапи. We used to wash the dog’s paws — раніше ми мили собаці лапи. Наприклад, після прогулянки брудною дорогою."
+        "ru": "Вы показываете другу старую фотографию своего питомца: I used to have a tame rabbit — раньше у меня был ручной кролик. Собираем: I + used to + have + a tame rabbit — кто, указание на прежнее состояние, иметь, кого. Used to have говорит, что кролик жил у вас раньше, а сейчас уже нет. После used to нужна have, а не had. A tame rabbit стоит после have; tame перед rabbit описывает кролика.",
+        "uk": "Ви показуєте другові стару фотографію свого улюбленця: I used to have a tame rabbit — раніше в мене був ручний кролик. Складаємо: I + used to + have + a tame rabbit — хто, вказівка на колишній стан, мати, кого. Used to have говорить, що кролик жив у вас раніше, а зараз уже ні. Після used to потрібна have, а не had. A tame rabbit стоїть після have; tame перед rabbit описує кролика."
       },
       "question": {
         "interactionId": "en:lesson-25:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-25:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Лапы и когти",
-        "uk": "Лапи й кігті"
+        "ru": "Где кошка раньше точила когти",
+        "uk": "Де кішка раніше гострила кігті"
       },
       "bodyByLocale": {
-        "ru": "Claw — коготь, claws — когти. The cat used to sharpen its claws outside — раньше кошка точила когти на улице. Не путайте paws и claws: лапы и когти на них. Its здесь значит «свои», речь о когтях кошки. Used to sharpen описывает повторяющееся действие в прошлом. Outside — на улице, inside — внутри: смена этого слова меняет место действия.",
-        "uk": "Claw — кіготь, claws — кігті. The cat used to sharpen its claws outside — раніше кішка гострила кігті надворі. Не плутайте paws і claws: лапи й кігті на них. Its тут означає «свої», ідеться про кігті кішки. Used to sharpen описує повторювану дію в минулому. Outside — надворі, inside — усередині: заміна цього слова змінює місце дії."
+        "ru": "Вы вспоминаете привычку кошки, когда жили в доме с садом: The cat used to sharpen its claws outside — раньше кошка точила когти на улице. Собираем: The cat + used to + sharpen + its claws + outside — кто, прежняя привычка, действие, что, где. После used to нужна sharpen без -s: прошлая привычка уже обозначена used to. Its claws означает когти этой кошки, а outside в конце указывает место.",
+        "uk": "Ви згадуєте звичку кішки, коли жили в будинку із садом: The cat used to sharpen its claws outside — раніше кішка гострила кігті надворі. Складаємо: The cat + used to + sharpen + its claws + outside — хто, колишня звичка, дія, що, де. Після used to потрібна sharpen без -s: минула звичка вже позначена used to. Its claws означає кігті цієї кішки, а outside наприкінці вказує місце."
       },
       "question": {
         "interactionId": "en:lesson-25:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c7be7607b4e57b5db488ac9a5adab07b63f82cc45d7b4ae127e863f385f87f07"
+  "introFingerprint": "3a0fc03931c3e18994120ad6088b635113c21e423de6daf75145d81dcd9eeb16"
 }

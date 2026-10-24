@@ -19361,7 +19361,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 39,
-    sourceFingerprint: "c304f4fb785a65d2c1864913c87a312b9ac46afea2ef45fb3d409d493daac701",
+    sourceFingerprint: "66650e7fe34405b6820645d56a7cf6fe0b446f25a0ce5660d08e20462192384b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Результат к моменту в прошлом: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Результат к моменту в прошлом: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Результат к моменту в прошлом: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."]],"uk":[["Результат до моменту в минулому: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Результат до моменту в минулому: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Результат до моменту в минулому: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."]]}),
@@ -19375,7 +19375,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 40,
-    sourceFingerprint: "147f8f5fc2af8e534f4d73966ffd9b01ba26f7aca1680ad96169b2c544711d92",
+    sourceFingerprint: "b9eb8a3de04fabbabe58ce73693193da96a43456fa1a38493dbd454b33a68280",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Результат к моменту в прошлом: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Результат к моменту в прошлом: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Результат к моменту в прошлом: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."]],"uk":[["Результат до моменту в минулому: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Результат до моменту в минулому: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Результат до моменту в минулому: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."]]}),
@@ -19389,7 +19389,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 41,
-    sourceFingerprint: "9275600b154609f4748356c0cabad130756d2c7a0c8aa144847056d2bf04c373",
+    sourceFingerprint: "2e6b1b41288f4fac2e7c649d91584fa072527e645564399b3d1df7f2069f606d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Прежнее состояние: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние: used to + начальная форма.","В утверждении о прошлом нужно used to."]],"uk":[["Колишній стан: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан: used to + початкова форма.","У ствердженні про минуле потрібно used to."]]}),
@@ -19403,7 +19403,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 42,
-    sourceFingerprint: "db4640bced4593f1744cb67b0141f2e23bf05ffa0ea448ca4903d14a0a57cdf7",
+    sourceFingerprint: "5db20537a42cdb8daa92647649bae43c7d9d5d759f19e18575f8bb86e1c8207e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна начальная форма purr.","Прошлое передаёт would; окончание к глаголу не добавляем."],["После would нужна начальная форма growl.","Прошлое передаёт would; окончание к глаголу не добавляем."],["После would нужна начальная форма howl.","Прошлое передаёт would; окончание к глаголу не добавляем."]],"uk":[["Після would потрібна початкова форма purr.","Минуле передає would; закінчення до дієслова не додаємо."],["Після would потрібна початкова форма growl.","Минуле передає would; закінчення до дієслова не додаємо."],["Після would потрібна початкова форма howl.","Минуле передає would; закінчення до дієслова не додаємо."]]}),
@@ -19417,7 +19417,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 43,
-    sourceFingerprint: "efd275f673e0e721d0c1e1c034b36ce35a81c0033dac4ac98930f3b03597fde0",
+    sourceFingerprint: "6c14267619e95ed23a29eb8af48d4c5f7cf50c2d4dfe8beaed2f027aef6fc207",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."]],"uk":[["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."]]}),
@@ -19431,7 +19431,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 44,
-    sourceFingerprint: "c98656b78cb614579c21435baa779e13c34a7d53dcc37a661ce46987998ff6e7",
+    sourceFingerprint: "4d35fd5b2b735dc9b497faf274ef5ab4f512658279efe1604ab50ec4e3bd7198",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Ранее завершённое действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Ранее завершённое действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Ранее завершённое действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."]],"uk":[["Раніше завершена дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніше завершена дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніше завершена дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."]]}),
@@ -19445,7 +19445,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 45,
-    sourceFingerprint: "87782d5c18454859373655a3864400693cbf5a552cbf74ae479ab755561812ef",
+    sourceFingerprint: "2a0c859aa183c4207de61ac941f49e5fe44132cb08623337c979c8de852cb6a3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."]],"uk":[["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."]]}),
@@ -19459,7 +19459,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 46,
-    sourceFingerprint: "0d0c8f5334ef5ad2c0f2d760d65ee647c366eb47966d3066dc7ee1f40bd0d29e",
+    sourceFingerprint: "e01f9e0952837607df5a245cf8bf5f9c403d3c9d25ed34dbf047d327a5997c13",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."]],"uk":[["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."]]}),
@@ -19473,7 +19473,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 47,
-    sourceFingerprint: "ec9959d7f2f133e3288492313235b67f367de9b68a468379f8f6f4d0a62c8557",
+    sourceFingerprint: "c750b337ed4958be485cd41da58bdb3e0091643740d3eda586ea25b8999d566b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежнее состояние или привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."]],"uk":[["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишній стан або звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."]]}),
@@ -19487,7 +19487,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 48,
-    sourceFingerprint: "9675e28dd009b0902ec84c6bd2c8f313af0f35039c0567bc73206c7191e02aac",
+    sourceFingerprint: "fd60a9737774b0fe0ad90fcc4e1dc7a2a02fd9cc218a246487b6536517e8f122",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Прежняя привычка или состояние: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежняя привычка или состояние: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежняя привычка или состояние: used to + начальная форма.","В утверждении о прошлом нужно used to."]],"uk":[["Колишня звичка або стан: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишня звичка або стан: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишня звичка або стан: used to + початкова форма.","У ствердженні про минуле потрібно used to."]]}),
@@ -19501,7 +19501,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 49,
-    sourceFingerprint: "837689bfbca50ee3f72ad07e27cd4457031c3d59ebd31af69118ecfaca461bb2",
+    sourceFingerprint: "d65339b332ed111f69db8ced722079686cab8f9a1b827079f00a187289f76b26",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Ранее завершённое действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Ранее завершённое действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Ранее завершённое действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."]],"uk":[["Раніше завершена дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніше завершена дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніше завершена дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."]]}),
@@ -19515,7 +19515,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 50,
-    sourceFingerprint: "9fa58b26ee431137e63c4968edb2a2d7a0daf340b86e70b82825454fe7d299be",
+    sourceFingerprint: "78cdd8c0ae3646ad9040495d336f14e3cb2008d7ebdf728af9c6e32078ce5c89",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Прежняя привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежняя привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежняя привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."]],"uk":[["Колишня звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишня звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишня звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."]]}),
@@ -19529,7 +19529,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 51,
-    sourceFingerprint: "fb37f7d4f6a505cb0b06803f64aaa16cd237c93161c11482b7f516ad68ef0c3b",
+    sourceFingerprint: "b273b461f31b269c4a483ed28703c5e424da287ec4ae2a5e6a1a390f0957d334",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."]],"uk":[["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."]]}),
@@ -19543,7 +19543,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 52,
-    sourceFingerprint: "dd1cad368bb80043d7fa20cc25ff5361536bf00d8124c71e9ed3d3db6c793276",
+    sourceFingerprint: "10880363d0c747bf9b3c80bbdb1e5225a1ceea850af1bf836ba1b662e0c3cde7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Yesterday — законченное время в прошлом: was.","Для I или she в Past Simple нужна форма was."],["Yesterday — законченное время в прошлом: was.","Для I или she в Past Simple нужна форма was."],["Yesterday — законченное время в прошлом: was.","Для I или she в Past Simple нужна форма was."]],"uk":[["Yesterday — завершений час у минулому: was.","Для I чи she у Past Simple потрібна форма was."],["Yesterday — завершений час у минулому: was.","Для I чи she у Past Simple потрібна форма was."],["Yesterday — завершений час у минулому: was.","Для I чи she у Past Simple потрібна форма was."]]}),
@@ -19557,7 +19557,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 53,
-    sourceFingerprint: "c9e39baa60729b0a5b6b5ec82d1f6cd1690ec1527718e54c89de0a2f1752c530",
+    sourceFingerprint: "9016f7a2cba5bc907b5901fb3c2c10a8ca21adde1f94ad9014824ecd544711c0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна начальная форма walk.","Прошлое передаёт would; окончание к глаголу не добавляем."],["После would нужна начальная форма walk.","Прошлое передаёт would; окончание к глаголу не добавляем."],["После would нужна начальная форма talk.","Прошлое передаёт would; окончание к глаголу не добавляем."]],"uk":[["Після would потрібна початкова форма walk.","Минуле передає would; закінчення до дієслова не додаємо."],["Після would потрібна початкова форма walk.","Минуле передає would; закінчення до дієслова не додаємо."],["Після would потрібна початкова форма talk.","Минуле передає would; закінчення до дієслова не додаємо."]]}),
@@ -19571,7 +19571,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 54,
-    sourceFingerprint: "5ba482f8bf7de7f3580975e8112f366bd4e298ab1a7f54094abe75be5f91320d",
+    sourceFingerprint: "f98411bca5bed7847a9bcd3eac3c19236aa0b31e18c5b56816d77f079afb43c5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."],["Более раннее действие: had + третья форма.","Здесь нужен Past Perfect: had + третья форма."]],"uk":[["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."],["Раніша дія: had + третя форма.","Тут потрібен Past Perfect: had + третя форма."]]}),
@@ -19585,7 +19585,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 55,
-    sourceFingerprint: "1ea5c76a735b517c4b5de89932fadfc8619dd41c22ce32c1c6d8af9c045f8b17",
+    sourceFingerprint: "36766eca39462405930832c32ad240857bb0a959de786118d94f56f15ce1e712",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Прежняя привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежняя привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."],["Прежняя привычка: used to + начальная форма.","В утверждении о прошлом нужно used to."]],"uk":[["Колишня звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишня звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."],["Колишня звичка: used to + початкова форма.","У ствердженні про минуле потрібно used to."]]}),
@@ -19599,7 +19599,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 56,
-    sourceFingerprint: "d3c45a3fc02a6e0573f9e99fb703170f10df53ef1848bd1b4e4669b9ea0683c4",
+    sourceFingerprint: "7d3998ad4af7bdcdb14b320c3547caf7e0b206431c0254dc4e1fcc7a0d3d79c8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Состояние в названный момент прошлого: was.","Для единственного числа в Past Simple нужна форма was."],["Состояние в названный момент прошлого: was.","Для единственного числа в Past Simple нужна форма was."],["Состояние в названный момент прошлого: was.","Для единственного числа в Past Simple нужна форма was."]],"uk":[["Стан у названий момент минулого: was.","Для однини в Past Simple потрібна форма was."],["Стан у названий момент минулого: was.","Для однини в Past Simple потрібна форма was."],["Стан у названий момент минулого: was.","Для однини в Past Simple потрібна форма was."]]}),

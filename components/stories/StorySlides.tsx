@@ -9,6 +9,7 @@
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Svg, { Circle, Ellipse } from 'react-native-svg';
 import type { Lang } from '../../constants/i18n';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { clampSpireTierIndex, spireTierName } from '../../modules/spire/tier_names';
@@ -154,10 +155,14 @@ function ThemeUnlockSlide({ event, lang }: StorySlideProps) {
   const copy = premiumThemeUnlockCopy(themeId, lang);
   return (
     <>
-      <View testID="story-theme-unlock-mark" style={[s.themeMark, { borderColor: def?.accent ?? p.accentTextSafe }]}> 
-        <View style={[s.themeOrbitLarge, { borderColor: def?.glowA ?? p.accentTextSafe }]} />
-        <View style={[s.themeOrbitSmall, { borderColor: def?.glowB ?? p.textSecondary }]} />
-        <View style={[s.themeCore, { backgroundColor: def?.accent ?? p.accentTextSafe }]} />
+      {/* зачем (замок владельца «без обводок контейнеров», сторож stories_ring_viewer): знак темы — рисунок SVG (кольцо, две орбиты, ядро), а не View с рамкой */}
+      <View testID="story-theme-unlock-mark" style={s.themeMark}>
+        <Svg width={154} height={154} viewBox="0 0 154 154">
+          <Circle cx={77} cy={77} r={65} fill="none" stroke={def?.accent ?? p.accentTextSafe} strokeWidth={1} />
+          <Ellipse cx={77} cy={77} rx={73} ry={33} fill="none" stroke={def?.glowA ?? p.accentTextSafe} strokeWidth={8} strokeOpacity={0.72} transform="rotate(-22 77 77)" />
+          <Ellipse cx={77} cy={77} rx={40} ry={59} fill="none" stroke={def?.glowB ?? p.textSecondary} strokeWidth={5} strokeOpacity={0.56} transform="rotate(31 77 77)" />
+          <Circle cx={77} cy={77} r={15} fill={def?.accent ?? p.accentTextSafe} />
+        </Svg>
       </View>
       <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'themeOverline')}</Text>
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{copy.title}</Text>
@@ -188,10 +193,7 @@ const s = StyleSheet.create({
   rankRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   rankFrom: { opacity: 0.5 },
   achArt: { width: 120, height: 120, alignItems: 'center', justifyContent: 'center' },
-  themeMark: { width: 132, height: 132, borderRadius: 66, borderWidth: 1, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  themeOrbitLarge: { position: 'absolute', width: 154, height: 74, borderRadius: 77, borderWidth: 8, transform: [{ rotate: '-22deg' }], opacity: 0.72 },
-  themeOrbitSmall: { position: 'absolute', width: 88, height: 126, borderRadius: 64, borderWidth: 5, transform: [{ rotate: '31deg' }], opacity: 0.56 },
-  themeCore: { width: 30, height: 30, borderRadius: 15 },
+  themeMark: { width: 132, height: 132, borderRadius: 66, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
 });
 
 export default memo(StorySlide);

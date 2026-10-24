@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Попробовать перед покупкой",
-        "uk": "Спробувати перед покупкою"
+        "ru": "Купить сладкие мандарины",
+        "uk": "Купити солодкі мандарини"
       },
       "bodyByLocale": {
-        "ru": "Mandarin — мандарин. Would you like a mandarin? — хочешь мандарин? Продавец предлагает попробовать фрукт: Try one if you want — попробуй один, если хочешь. Условие можно перенести в начало: If you want, try one. Это всё ещё предложение попробовать, а не обещание. Вы принимаете решение: I will buy some if they are sweet — я куплю несколько, если они сладкие. После if здесь are, без will.",
-        "uk": "Mandarin — мандарин. Would you like a mandarin? — хочеш мандарин? Продавець пропонує спробувати фрукт: Try one if you want — спробуй один, якщо хочеш. Умову можна перенести на початок: If you want, try one. Це все ще пропозиція спробувати, а не обіцянка. Ви приймаєте рішення: I will buy some if they are sweet — я куплю кілька, якщо вони солодкі. Після if тут are, без will."
+        "ru": "Продавец предлагает попробовать мандарины. Вы объясняете, от чего зависит покупка: I will buy some if they are sweet — я куплю несколько, если они сладкие. Собираем: I + will buy + some + if they are sweet — кто, что сделает, сколько купит, при каком условии. Some заменяет несколько мандаринов. В условии после if используем are без will; they заменяет мандарины и требует are.",
+        "uk": "Продавець пропонує скуштувати мандарини. Ви пояснюєте, від чого залежить покупка: I will buy some if they are sweet — я куплю кілька, якщо вони солодкі. Складаємо: I + will buy + some + if they are sweet — хто, що зробить, скільки купить, за якої умови. Some замінює кілька мандаринів. В умові після if використовуємо are без will; they замінює мандарини й потребує are."
       },
       "question": {
         "interactionId": "en:lesson-26:session-37:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Зелень для супа",
-        "uk": "Зелень до супу"
+        "ru": "Зелень уже вымыта",
+        "uk": "Зелень уже помито"
       },
       "bodyByLocale": {
-        "ru": "Dill — укроп. Scallion — зелёный лук, обычно одна луковица с зелёными перьями. We need dill and two scallions — нам нужен укроп и две луковицы зелёного лука. Вы спрашиваете о подготовке: Have you washed the herbs yet? — ты уже помыл зелень? I have already washed them — я уже её помыл. Herbs в английском во множественном числе, поэтому в ответе them. Для обычной привычки: I wash herbs when I get home — я мою зелень, когда прихожу домой. Оба действия стоят в Present Simple.",
-        "uk": "Dill — кріп. Scallion — зелена цибуля, зазвичай одна цибулина із зеленим пір’ям. We need dill and two scallions — нам потрібен кріп і дві цибулини зеленої цибулі. Ви запитуєте про підготовку: Have you washed the herbs yet? — ти вже помив зелень? I have already washed them — я вже її помив. Herbs в англійській у множині, тому у відповіді them. Для звичайної звички: I wash herbs when I get home — я мию зелень, коли приходжу додому. Обидві дії стоять у Present Simple."
+        "ru": "Друг предлагает помыть зелень для супа, но вы уже это сделали. Ответьте: I have already washed them — я уже её помыл. Them заменяет herbs: в английском это множественное число. Собираем: I + have + already + washed + them — кто, have, уже, действие, что помыл. Already ставим между have и washed. После have нужна третья форма washed с -ed. Present perfect сообщает о результате сейчас.",
+        "uk": "Друг пропонує помити зелень для супу, але ви вже це зробили. Дайте відповідь: I have already washed them — я вже її помив. Them замінює herbs: в англійській це множина. Складаємо: I + have + already + washed + them — хто, have, уже, дія, що помив. Already ставимо між have і washed. Після have потрібна третя форма washed із -ed. Present perfect повідомляє про результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-37:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "У каждого свой вкус",
-        "uk": "У кожного свій смак"
+        "ru": "Суп остыл до начала ужина",
+        "uk": "Суп охолов до початку вечері"
       },
       "bodyByLocale": {
-        "ru": "Cilantro — кинза, зелень кориандра; это другое название знакомого coriander, когда речь о листьях. Please leave out the cilantro — пожалуйста, не добавляй кинзу. Можно договориться: I will add it to your bowl unless you say no — я добавлю её в твою тарелку, если ты не откажешься. Для времени подачи: We will eat when everyone is ready — мы поедим, когда все будут готовы. О вчерашнем ужине: The soup had cooled by the time we sat down — суп остыл к тому времени, как мы сели. Had cooled показывает более раннее действие.",
-        "uk": "Cilantro — кінза, зелень коріандру; це інша назва знайомого coriander, коли йдеться про листя. Please leave out the cilantro — будь ласка, не додавай кінзу. Можна домовитися: I will add it to your bowl unless you say no — я додам її у твою тарілку, якщо ти не відмовишся. Для часу подачі: We will eat when everyone is ready — ми поїмо, коли всі будуть готові. Про вчорашню вечерю: The soup had cooled by the time we sat down — суп охолов до того часу, як ми сіли. Had cooled показує ранішу дію."
+        "ru": "Вы рассказываете о вчерашнем ужине: когда все сели за стол, суп уже остыл. Скажите: The soup had cooled by the time we sat down — суп остыл к тому времени, как мы сели. Собираем: The soup + had cooled + by the time we sat down — что, что произошло раньше, к какому моменту в прошлом. Had cooled показывает остывание до того, как вы сели. После had нужна cooled с -ed, не cooling.",
+        "uk": "Ви розповідаєте про вчорашню вечерю: коли всі сіли за стіл, суп уже охолов. Скажіть: The soup had cooled by the time we sat down — суп охолов до того часу, як ми сіли. Складаємо: The soup + had cooled + by the time we sat down — що, що сталося раніше, до якого моменту в минулому. Had cooled показує охолодження до того, як ви сіли. Після had потрібна cooled із -ed, не cooling."
       },
       "question": {
         "interactionId": "en:lesson-26:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ff4690e2e48c1df4198ce60b8c99610ea7403bf31b703eb5a68f62aaf3dbf6db"
+  "introFingerprint": "e9680d1539db1fd04532a1bcaf773033291296b7a4634081d8a1b895f14eb510"
 }

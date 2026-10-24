@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Знайти інгредієнти
+### Принести миски, коли знадобляться
 
-Refrigerator — холодильник; повна назва знайомого fridge. The milk is in the refrigerator — молоко в холодильнику. Mixer — міксер, прилад для змішування продуктів. Where is the mixer? — де міксер? Друг готує, а ви допомагаєте: I will get the bowls when you are ready — я принесу миски, коли ти будеш готовий. У частині з when тут are, без will. Для плану з умовою: We will make pancakes if we have milk — ми приготуємо млинці, якщо в нас є молоко.
+Друг готує суміш і ще не готовий розкладати її по мисках. Пообіцяйте: I will get the bowls when you are ready — я принесу миски, коли ти будеш готовий. Складаємо: I + will get + the bowls + when you are ready — хто, що зробить, що принесе, коли. Will get стосується майбутнього. Після when, яке вказує час дії, використовуємо are без will; з you потрібна are, не is.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ Refrigerator — холодильник; повна назва знайомог�
 
 ## Інтро 2
 
-### Попросити кухонну річ
+### Картоплю вже помито
 
-Grater — тертка. Peeler — овочечистка, інструмент для зняття шкірки. Could you pass me the grater? — можеш передати мені тертку? The peeler is in the drawer — овочечистка в шухляді. Ви перевіряєте підготовку: Have you washed the potatoes yet? — ти вже помив картоплю? I have already washed them — я вже її помив. Potatoes у множині, тому them. Звичайну звичку можна описати так: I wash vegetables when I get home — я мию овочі, коли приходжу додому.
+Друг збирається мити картоплю, але ви вже це зробили. Дайте відповідь: I have already washed them — я вже її помив. Them замінює potatoes: в англійській це множина. Складаємо: I + have + already + washed + them — хто, have, уже, дія, що помив. Already ставимо між have і washed. Після have потрібна третя форма washed із -ed; present perfect повідомляє про результат зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Grater — тертка. Peeler — овочечистка, інструмент
 
 ## Інтро 3
 
-### Домовитися про вечерю
+### Закінчили готувати до приходу друзів
 
-I have just set the table — я щойно накрив на стіл. Про вчорашній вечір: We had finished cooking by the time our friends arrived — ми закінчили готувати до того часу, як прийшли друзі. Had finished показує ранішу дію. Запропонуйте почекати: If the potatoes are hard, we can wait — якщо картопля тверда, ми можемо почекати. Та сама умова в кінці: We can wait if the potatoes are hard. Для запрошення з можливістю відмовитися: I will put some on your plate unless you say no — я покладу трохи тобі на тарілку, якщо ти не відмовишся.
+Учора друзі прийшли до готової вечері. Розкажіть: We had finished cooking by the time our friends arrived — ми закінчили готувати до того часу, як прийшли наші друзі. Складаємо: We + had finished + cooking + by the time our friends arrived — хто, що закінчив раніше, яке заняття, до якого моменту в минулому. Had finished показує завершення до приходу. Після had потрібна finished; після finish дія називається формою з -ing: cooking.
 
 **Виберіть фразу для цієї ситуації.**
 

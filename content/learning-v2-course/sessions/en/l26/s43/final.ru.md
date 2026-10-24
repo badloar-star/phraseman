@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Вода дома и во дворе
+### Помочь после своего дела
 
-Sprinkler — разбрызгиватель для полива. The sprinkler is on — разбрызгиватель включён. Showerhead — душевая лейка. The showerhead is dripping — из душевой лейки капает вода. Вы называете предметы, а не объясняете ремонт. Could you turn it off? — можешь это выключить? Для привычки: I turn off the tap when I finish — я закрываю кран, когда заканчиваю. Для будущего обещания: I will help when I finish — я помогу, когда закончу. После when в обоих примерах finish, без will.
+Друг просит помочь во дворе, но вы ещё заканчиваете своё дело. Пообещайте: I will help when I finish — я помогу, когда закончу. Собираем: I + will help + when I finish — кто, что сделает, когда. Will help выражает будущее обещание. После when, указывающего время помощи, используем finish без will. С I к finish не добавляем -es.
 
 **Выберите фразу для этой ситуации.**
 
@@ -21,9 +21,9 @@ Sprinkler — разбрызгиватель для полива. The sprinkler 
 
 ## Интро 2
 
-### Найти вещи снаружи
+### Если стулья сухие
 
-Backyard — задний двор. The chairs are in the backyard — стулья на заднем дворе. Greenhouse — теплица. The pots are in the greenhouse — горшки в теплице. Вы хотите сесть снаружи: If the chairs are dry, we can sit outside — если стулья сухие, мы можем посидеть снаружи. Можно поставить условие в конец: We can sit outside if the chairs are dry. Это тот же план. Спросить о сделанном деле: Have you watered the plants yet? — ты уже полил растения?
+После дождя вы хотите посидеть во дворе. Предложите: We can sit outside if the chairs are dry — мы можем посидеть снаружи, если стулья сухие. Собираем: We + can sit + outside + if the chairs are dry — кто, что может сделать, где, при каком условии. После can нужна sit без to. В условии после if используем настоящее are без will; chairs — множественное число.
 
 **Выберите фразу для этой ситуации.**
 
@@ -35,9 +35,9 @@ Backyard — задний двор. The chairs are in the backyard — стул�
 
 ## Интро 3
 
-### Закончить дела до дождя
+### Убрали инструменты до дождя
 
-I have already watered them — я уже их полил. I have just put the hose away — я только что убрал шланг. Already и just говорят о результате сейчас. О вчерашней работе: We had put the tools away by the time it started raining — мы убрали инструменты к тому времени, как начался дождь. Had put обозначает более раннее действие. Сегодня можно изменить план: We will have tea outside unless it rains — мы выпьем чай снаружи, если не пойдёт дождь. Unless задаёт исключение из плана.
+Вчера вы закончили работу во дворе до начала дождя. Расскажите: We had put the tools away by the time it started raining — мы убрали инструменты к тому времени, как начался дождь. Собираем: We + had put + the tools + away + by the time it started raining. Put the tools away означает убрать инструменты на место. Had put отмечает действие раньше начала дождя. После had нужна третья форма put, не putting.
 
 **Выберите фразу для этой ситуации.**
 

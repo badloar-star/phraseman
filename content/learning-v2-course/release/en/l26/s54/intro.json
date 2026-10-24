@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Немного, а не сильно",
-        "uk": "Трохи, а не сильно"
+        "ru": "Когда купите хлеб",
+        "uk": "Коли купите хліб"
       },
       "bodyByLocale": {
-        "ru": "Slightly — слегка, немного. The soup is slightly salty — суп слегка солёный. Slightly смягчает признак: речь не об очень солёном супе. Totally — совершенно, полностью; часто разговорное усиление. I totally forgot the bread — я совсем забыл про хлеб. Суп готов, стол накрыт, а хлеб всё ещё отдыхает в магазине. I will get some when I go out — я куплю немного, когда выйду. После when здесь go без will.",
-        "uk": "Slightly — злегка, трохи. The soup is slightly salty — суп трохи солоний. Slightly пом’якшує ознаку: ідеться не про дуже солоний суп. Totally — цілком, повністю; часто розмовне підсилення. I totally forgot the bread — я зовсім забув про хліб. Суп готовий, стіл накритий, а хліб досі відпочиває в магазині. I will get some when I go out — я куплю трохи, коли вийду. Після when тут go без will."
+        "ru": "Дома закончился хлеб. Вы собираетесь выйти и обещаете: I will get some when I go out — я куплю немного, когда выйду. Some заменяет немного хлеба. Собираем: I + will get + some + when I go out — кто, что сделает, что купит, когда. В главной части будущее передаёт will get. После when, которое задаёт время этого будущего действия, используем настоящее go, без will.",
+        "uk": "Удома закінчився хліб. Ви збираєтеся вийти й обіцяєте: I will get some when I go out — я куплю трохи, коли вийду. Some замінює трохи хліба. Складаємо: I + will get + some + when I go out — хто, що зробить, що купить, коли. У головній частині майбутнє передає will get. Після when, яке задає час цієї майбутньої дії, використовуємо теперішню форму go, без will."
       },
       "question": {
         "interactionId": "en:lesson-26:session-54:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тем временем",
-        "uk": "Тим часом"
+        "ru": "Стол был накрыт до прихода гостей",
+        "uk": "Стіл був накритий до приходу гостей"
       },
       "bodyByLocale": {
-        "ru": "Meanwhile — тем временем, пока происходит другое действие. Друг пошёл за хлебом. Meanwhile, I will set the table — тем временем я накрою на стол. Одно действие происходит параллельно другому. Have you put the plates out yet? — ты уже поставил тарелки? I have already done it — я уже это сделал. О вчерашнем ужине: I had set the table by the time they arrived — я накрыл на стол к тому времени, как они пришли. Had set показывает более раннее действие; set не меняется.",
-        "uk": "Meanwhile — тим часом, поки відбувається інша дія. Друг пішов по хліб. Meanwhile, I will set the table — тим часом я накрию на стіл. Одна дія відбувається паралельно з іншою. Have you put the plates out yet? — ти вже поставив тарілки? I have already done it — я вже це зробив. Про вчорашню вечерю: I had set the table by the time they arrived — я накрив на стіл до того часу, як вони прийшли. Had set показує ранішу дію; set не змінюється."
+        "ru": "Вы рассказываете о вчерашнем ужине: гости пришли к уже накрытому столу. Скажите: I had set the table by the time they arrived — я накрыл на стол к тому времени, как они пришли. Собираем: I + had set + the table + by the time they arrived — кто, что сделал раньше, что подготовил, к какому моменту в прошлом. Had set отмечает более раннее действие, arrived — более позднее. После had нужна третья форма set; она пишется так же, не setted.",
+        "uk": "Ви розповідаєте про вчорашню вечерю: гості прийшли до вже накритого столу. Скажіть: I had set the table by the time they arrived — я накрив на стіл до того часу, як вони прийшли. Складаємо: I + had set + the table + by the time they arrived — хто, що зробив раніше, що підготував, до якого моменту в минулому. Had set позначає ранішу дію, arrived — пізнішу. Після had потрібна третя форма set; вона пишеться так само, не setted."
       },
       "question": {
         "interactionId": "en:lesson-26:session-54:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Добавить ещё одну причину",
-        "uk": "Додати ще одну причину"
+        "ru": "Предложить суп голодному другу",
+        "uk": "Запропонувати суп голодному другові"
       },
       "bodyByLocale": {
-        "ru": "Besides — кроме того, к тому же, когда вы добавляете довод. Вы уже отказались идти в кафе из-за дождя и добавляете: Besides, we have food at home — к тому же у нас есть еда дома. Не путайте с beside без -s: оно означает рядом с. Если друг голоден: If you are hungry, have some soup — если ты голоден, поешь супа. Можно переставить условие: Have some soup if you are hungry. Для планов: We will eat outside unless it rains — мы поедим на улице, если не пойдёт дождь.",
-        "uk": "Besides — крім того, до того ж, коли ви додаєте аргумент. Ви вже відмовилися йти до кафе через дощ і додаєте: Besides, we have food at home — до того ж у нас є їжа вдома. Не плутайте з beside без -s: воно означає поруч із. Якщо друг голодний: If you are hungry, have some soup — якщо ти голодний, поїж супу. Можна переставити умову: Have some soup if you are hungry. Для планів: We will eat outside unless it rains — ми поїмо надворі, якщо не піде дощ."
+        "ru": "Друг пришёл к вам, и вы не знаете, успел ли он поесть. Предложите: Have some soup if you are hungry — поешь супа, если ты голоден. Собираем: Have + some soup + if you are hungry — предложение сделать что-то, что поесть, при каком условии. Начальная форма Have без you делает эту часть предложением или побуждением. If означает если; в условии с you используем are.",
+        "uk": "Друг прийшов до вас, і ви не знаєте, чи встиг він поїсти. Запропонуйте: Have some soup if you are hungry — поїж супу, якщо ти голодний. Складаємо: Have + some soup + if you are hungry — пропозиція щось зробити, що поїсти, за якої умови. Початкова форма Have без you робить цю частину пропозицією або спонуканням. If означає якщо; в умові з you використовуємо are."
       },
       "question": {
         "interactionId": "en:lesson-26:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "334387d09c9795afaaea1a33b68c548d338caab3485fa852484eda0069ac7259"
+  "introFingerprint": "535975e456d9ab66d0164895d2b30f71a79d5bde9ddbc8fa011b7d18eb1f2747"
 }

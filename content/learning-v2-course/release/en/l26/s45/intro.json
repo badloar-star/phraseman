@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Встретиться в помещении",
-        "uk": "Зустрітися в приміщенні"
+        "ru": "Встретиться внутри здания",
+        "uk": "Зустрітися всередині будівлі"
       },
       "bodyByLocale": {
-        "ru": "Smog — смог, загрязнённая дымка в воздухе. There is smog over the city — над городом смог. Вы договорились встретиться внутри здания: I will meet you inside when I arrive — я встречусь с тобой внутри, когда приеду. После when здесь arrive без will. Друг спрашивает, где вы. I have just arrived — я только что приехал. Just стоит между have и arrived. Это сообщение о недавнем действии и результате сейчас.",
-        "uk": "Smog — смог, забруднена димка в повітрі. There is smog over the city — над містом смог. Ви домовилися зустрітися всередині будівлі: I will meet you inside when I arrive — я зустрінуся з тобою всередині, коли приїду. Після when тут arrive без will. Друг запитує, де ви. I have just arrived — я щойно приїхав. Just стоїть між have і arrived. Це повідомлення про недавню дію й результат зараз."
+        "ru": "Вы ещё в пути и договариваетесь с другом, где встретитесь по приезде. Скажите: I will meet you inside when I arrive — я встречусь с тобой внутри, когда приеду. Собираем: I + will meet + you + inside + when I arrive — кто, что сделает, с кем, где, когда. Будущую встречу выражаем через will meet. В части с when, задающей время встречи, нужна arrive без will. После I к arrive не добавляем -s.",
+        "uk": "Ви ще в дорозі й домовляєтеся з другом, де зустрінетеся після приїзду. Скажіть: I will meet you inside when I arrive — я зустрінуся з тобою всередині, коли приїду. Складаємо: I + will meet + you + inside + when I arrive — хто, що зробить, з ким, де, коли. Майбутню зустріч виражаємо через will meet. У частині з when, яка задає час зустрічі, потрібна arrive без will. Після I до arrive не додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Обувь после прогулки",
-        "uk": "Взуття після прогулянки"
+        "ru": "Оставить мокрую обувь у двери",
+        "uk": "Залишити мокре взуття біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Filthy — очень грязный; сильнее, чем dirty. My shoes are filthy — моя обувь очень грязная. Stinky — вонючий, разговорное слово. These socks are stinky — эти носки вонючие. О человеке это звучит обидно; здесь речь о вещах. Грязь и запах — разные признаки. Носки могут выглядеть чистыми, но всё равно отправиться в стирку после короткого знакомства с носом. If your shoes are wet, leave them here — если обувь мокрая, оставь её здесь. Можно начать с просьбы: Leave them here if your shoes are wet. Условие остаётся тем же.",
-        "uk": "Filthy — дуже брудний; сильніше, ніж dirty. My shoes are filthy — моє взуття дуже брудне. Stinky — смердючий, розмовне слово. These socks are stinky — ці шкарпетки смердючі. Про людину це звучить образливо; тут ідеться про речі. Бруд і запах — різні ознаки. Шкарпетки можуть виглядати чистими, але все одно потрапити до прання після короткого знайомства з носом. If your shoes are wet, leave them here — якщо взуття мокре, залиш його тут. Можна почати з прохання: Leave them here if your shoes are wet. Умова залишається тією самою."
+        "ru": "Друг пришёл после дождя. Покажите ему место у двери: Leave them here if your shoes are wet — оставь их здесь, если обувь мокрая. Them заменяет shoes. Собираем: Leave + them + here + if your shoes are wet — что сделать, что оставить, где, при каком условии. Leave без подлежащего выражает просьбу. Shoes — множественное число, поэтому в условии используем are, не is.",
+        "uk": "Друг прийшов після дощу. Покажіть йому місце біля дверей: Leave them here if your shoes are wet — залиш їх тут, якщо взуття мокре. Them замінює shoes. Складаємо: Leave + them + here + if your shoes are wet — що зробити, що залишити, де, за якої умови. Leave без підмета виражає прохання. Shoes — множина, тому в умові використовуємо are, не is."
       },
       "question": {
         "interactionId": "en:lesson-26:session-45:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Попросить другую комнату",
-        "uk": "Попросити іншу кімнату"
+        "ru": "Комнату убрали до приезда",
+        "uk": "Кімнату прибрали до приїзду"
       },
       "bodyByLocale": {
-        "ru": "Musty — затхлый, с запахом сырости. The room smells musty — в комнате затхлый запах. Вы описываете запах, а не устанавливаете его причину. Could we use another room? — можно нам воспользоваться другой комнатой? Have you asked yet? — ты уже спросил? I have already asked — я уже спросил. Already стоит перед asked, yet — в конце вопроса. О вчерашнем приезде: They had cleaned the room by the time we arrived — они убрали комнату к тому времени, как мы приехали. Had cleaned показывает, что уборка была раньше приезда.",
-        "uk": "Musty — затхлий, із запахом вогкості. The room smells musty — у кімнаті затхлий запах. Ви описуєте запах, а не встановлюєте його причину. Could we use another room? — можна нам скористатися іншою кімнатою? Have you asked yet? — ти вже запитав? I have already asked — я вже запитав. Already стоїть перед asked, yet — наприкінці запитання. Про вчорашній приїзд: They had cleaned the room by the time we arrived — вони прибрали кімнату до того часу, як ми приїхали. Had cleaned показує, що прибирання було раніше за приїзд."
+        "ru": "Вы рассказываете о вчерашнем приезде: комната уже была убрана, когда вы вошли. Скажите: They had cleaned the room by the time we arrived — они убрали комнату к тому времени, как мы приехали. Собираем: They + had cleaned + the room + by the time we arrived — кто, что сделал раньше, что убрал, к какому моменту в прошлом. Had cleaned показывает завершённую до приезда уборку. После had нужна cleaned с -ed; arrived обозначает более позднее событие.",
+        "uk": "Ви розповідаєте про вчорашній приїзд: кімната вже була прибрана, коли ви ввійшли. Скажіть: They had cleaned the room by the time we arrived — вони прибрали кімнату до того часу, як ми приїхали. Складаємо: They + had cleaned + the room + by the time we arrived — хто, що зробив раніше, що прибрав, до якого моменту в минулому. Had cleaned показує завершене до приїзду прибирання. Після had потрібна cleaned із -ed; arrived позначає пізнішу подію."
       },
       "question": {
         "interactionId": "en:lesson-26:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "be51a3115002c7b7d1407c6cce91196f4d91bd473d33a35e62c152f88dd3ec6d"
+  "introFingerprint": "ef65ee05694f2cf07deea2584e6d1d45da6ad12138ee7e343c1089d1cdf13555"
 }

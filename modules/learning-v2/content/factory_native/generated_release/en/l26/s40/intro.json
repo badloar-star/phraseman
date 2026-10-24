@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Найти ингредиенты",
-        "uk": "Знайти інгредієнти"
+        "ru": "Принести миски, когда понадобятся",
+        "uk": "Принести миски, коли знадобляться"
       },
       "bodyByLocale": {
-        "ru": "Refrigerator — холодильник; полное название знакомого fridge. The milk is in the refrigerator — молоко в холодильнике. Mixer — миксер, прибор для смешивания продуктов. Where is the mixer? — где миксер? Друг готовит, а вы помогаете: I will get the bowls when you are ready — я принесу миски, когда ты будешь готов. В части с when здесь are, без will. Для плана с условием: We will make pancakes if we have milk — мы приготовим блины, если у нас есть молоко.",
-        "uk": "Refrigerator — холодильник; повна назва знайомого fridge. The milk is in the refrigerator — молоко в холодильнику. Mixer — міксер, прилад для змішування продуктів. Where is the mixer? — де міксер? Друг готує, а ви допомагаєте: I will get the bowls when you are ready — я принесу миски, коли ти будеш готовий. У частині з when тут are, без will. Для плану з умовою: We will make pancakes if we have milk — ми приготуємо млинці, якщо в нас є молоко."
+        "ru": "Друг готовит смесь и ещё не готов раскладывать её по мискам. Пообещайте: I will get the bowls when you are ready — я принесу миски, когда ты будешь готов. Собираем: I + will get + the bowls + when you are ready — кто, что сделает, что принесёт, когда. Will get относится к будущему. После when, указывающего время действия, используем are без will; с you нужна are, не is.",
+        "uk": "Друг готує суміш і ще не готовий розкладати її по мисках. Пообіцяйте: I will get the bowls when you are ready — я принесу миски, коли ти будеш готовий. Складаємо: I + will get + the bowls + when you are ready — хто, що зробить, що принесе, коли. Will get стосується майбутнього. Після when, яке вказує час дії, використовуємо are без will; з you потрібна are, не is."
       },
       "question": {
         "interactionId": "en:lesson-26:session-40:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Попросить кухонную вещь",
-        "uk": "Попросити кухонну річ"
+        "ru": "Картофель уже вымыт",
+        "uk": "Картоплю вже помито"
       },
       "bodyByLocale": {
-        "ru": "Grater — тёрка. Peeler — овощечистка, инструмент для снятия кожуры. Could you pass me the grater? — можешь передать мне тёрку? The peeler is in the drawer — овощечистка в ящике. Вы проверяете подготовку: Have you washed the potatoes yet? — ты уже помыл картошку? I have already washed them — я уже её помыл. Potatoes во множественном числе, поэтому them. Обычную привычку можно описать так: I wash vegetables when I get home — я мою овощи, когда прихожу домой.",
-        "uk": "Grater — тертка. Peeler — овочечистка, інструмент для зняття шкірки. Could you pass me the grater? — можеш передати мені тертку? The peeler is in the drawer — овочечистка в шухляді. Ви перевіряєте підготовку: Have you washed the potatoes yet? — ти вже помив картоплю? I have already washed them — я вже її помив. Potatoes у множині, тому them. Звичайну звичку можна описати так: I wash vegetables when I get home — я мию овочі, коли приходжу додому."
+        "ru": "Друг собирается мыть картофель, но вы уже это сделали. Ответьте: I have already washed them — я уже его помыл. Them заменяет potatoes: в английском это множественное число. Собираем: I + have + already + washed + them — кто, have, уже, действие, что помыл. Already ставим между have и washed. После have нужна третья форма washed с -ed; present perfect сообщает о результате сейчас.",
+        "uk": "Друг збирається мити картоплю, але ви вже це зробили. Дайте відповідь: I have already washed them — я вже її помив. Them замінює potatoes: в англійській це множина. Складаємо: I + have + already + washed + them — хто, have, уже, дія, що помив. Already ставимо між have і washed. Після have потрібна третя форма washed із -ed; present perfect повідомляє про результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-40:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться об ужине",
-        "uk": "Домовитися про вечерю"
+        "ru": "Закончили готовить до прихода друзей",
+        "uk": "Закінчили готувати до приходу друзів"
       },
       "bodyByLocale": {
-        "ru": "I have just set the table — я только что накрыл на стол. О вчерашнем вечере: We had finished cooking by the time our friends arrived — мы закончили готовить к тому времени, как пришли друзья. Had finished показывает более раннее действие. Предложите подождать: If the potatoes are hard, we can wait — если картошка твёрдая, мы можем подождать. То же условие в конце: We can wait if the potatoes are hard. Для приглашения с возможностью отказаться: I will put some on your plate unless you say no — я положу немного тебе на тарелку, если ты не откажешься.",
-        "uk": "I have just set the table — я щойно накрив на стіл. Про вчорашній вечір: We had finished cooking by the time our friends arrived — ми закінчили готувати до того часу, як прийшли друзі. Had finished показує ранішу дію. Запропонуйте почекати: If the potatoes are hard, we can wait — якщо картопля тверда, ми можемо почекати. Та сама умова в кінці: We can wait if the potatoes are hard. Для запрошення з можливістю відмовитися: I will put some on your plate unless you say no — я покладу трохи тобі на тарілку, якщо ти не відмовишся."
+        "ru": "Вчера друзья пришли к готовому ужину. Расскажите: We had finished cooking by the time our friends arrived — мы закончили готовить к тому времени, как пришли наши друзья. Собираем: We + had finished + cooking + by the time our friends arrived — кто, что закончил раньше, какое занятие, к какому моменту в прошлом. Had finished показывает завершение до прихода. После had нужна finished; после finish действие называется формой с -ing: cooking.",
+        "uk": "Учора друзі прийшли до готової вечері. Розкажіть: We had finished cooking by the time our friends arrived — ми закінчили готувати до того часу, як прийшли наші друзі. Складаємо: We + had finished + cooking + by the time our friends arrived — хто, що закінчив раніше, яке заняття, до якого моменту в минулому. Had finished показує завершення до приходу. Після had потрібна finished; після finish дія називається формою з -ing: cooking."
       },
       "question": {
         "interactionId": "en:lesson-26:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "41fee98ca107cb6418b6811eb69e9795988de3db2c46aa31a70cc12cd37256ab"
+  "introFingerprint": "840b99056dac49b8b724e82fab4bbb261a06d184b9c0abc6813e78e553efe859"
 }

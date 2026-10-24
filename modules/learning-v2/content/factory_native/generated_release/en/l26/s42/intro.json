@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Посмотреть в окно",
-        "uk": "Подивитися у вікно"
+        "ru": "Если дорожка свободна",
+        "uk": "Якщо доріжка вільна"
       },
       "bodyByLocale": {
-        "ru": "Snowy — снежный, покрытый снегом или со снегом: a snowy morning — снежное утро. Misty — туманный, с лёгким туманом. It is misty outside — на улице туманно. Вы обсуждаете прогулку: If the path is clear, we can walk — если дорожка свободна, мы можем пройти пешком. То же условие в конце: We can walk if the path is clear. Это не гарантия состояния дорожки, а условие вашего плана. О привычке: I check the weather when I wake up — я смотрю погоду, когда просыпаюсь.",
-        "uk": "Snowy — сніжний, укритий снігом або зі снігом: a snowy morning — сніжний ранок. Misty — туманний, із легким туманом. It is misty outside — надворі туманно. Ви обговорюєте прогулянку: If the path is clear, we can walk — якщо доріжка вільна, ми можемо пройти пішки. Та сама умова в кінці: We can walk if the path is clear. Це не гарантія стану доріжки, а умова вашого плану. Про звичку: I check the weather when I wake up — я дивлюся погоду, коли прокидаюся."
+        "ru": "После снегопада вы решаете с другом, можно ли пройти пешком. Скажите: We can walk if the path is clear — мы можем пройти пешком, если дорожка свободна. Собираем: We + can walk + if the path is clear — кто, что может сделать, при каком условии. После can нужна walk без to. If задаёт условие вашего плана; в этой части используем is без will.",
+        "uk": "Після снігопаду ви вирішуєте з другом, чи можна пройти пішки. Скажіть: We can walk if the path is clear — ми можемо пройти пішки, якщо доріжка вільна. Складаємо: We + can walk + if the path is clear — хто, що може зробити, за якої умови. Після can потрібна walk без to. If задає умову вашого плану; у цій частині використовуємо is без will."
       },
       "question": {
         "interactionId": "en:lesson-26:session-42:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Снег и стекло машины",
-        "uk": "Сніг і скло машини"
+        "ru": "Расписание уже проверено",
+        "uk": "Розклад уже перевірено"
       },
       "bodyByLocale": {
-        "ru": "Snowfall — снегопад, выпадение снега. The snowfall has stopped — снегопад прекратился. Windshield — лобовое стекло автомобиля; другое название знакомого windscreen. There is snow on the windshield — на лобовом стекле снег. Вы не спешите выходить: Have you checked the bus times yet? — ты уже посмотрел расписание автобуса? I have already checked them — я уже посмотрел. Just в ответе подчёркивает недавность: I have just checked them — я только что посмотрел.",
-        "uk": "Snowfall — снігопад, випадання снігу. The snowfall has stopped — снігопад припинився. Windshield — лобове скло автомобіля; інша назва знайомого windscreen. There is snow on the windshield — на лобовому склі сніг. Ви не поспішаєте виходити: Have you checked the bus times yet? — ти вже подивився розклад автобуса? I have already checked them — я вже подивився. Just у відповіді підкреслює недавність: I have just checked them — я щойно подивився."
+        "ru": "Друг предлагает посмотреть время автобуса, но вы уже сделали это. Ответьте: I have already checked them — я уже проверил расписание. Them заменяет bus times — обсуждаемые часы отправления автобусов. Собираем: I + have + already + checked + them — кто, have, уже, действие, что проверил. Already ставим между have и checked. После have нужна третья форма checked с -ed; present perfect сообщает о готовом результате сейчас.",
+        "uk": "Друг пропонує подивитися час автобуса, але ви вже зробили це. Дайте відповідь: I have already checked them — я вже перевірив розклад. Them замінює bus times — обговорювані години відправлення автобусів. Складаємо: I + have + already + checked + them — хто, have, уже, дія, що перевірив. Already ставимо між have і checked. Після have потрібна третя форма checked із -ed; present perfect повідомляє про готовий результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-42:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Изменить время встречи",
-        "uk": "Змінити час зустрічі"
+        "ru": "Снег растаял до встречи",
+        "uk": "Сніг розтанув до зустрічі"
       },
       "bodyByLocale": {
-        "ru": "We will leave when the bus arrives — мы выйдем, когда приедет автобус. После when здесь arrives, без will. Если друг не позвонит, вы останетесь дома: We will stay home unless you call — мы останемся дома, если ты не позвонишь. Unless вводит исключение из плана. О вчерашней встрече: The snow had melted by the time we met — снег растаял к тому времени, как мы встретились. Had melted — более раннее событие, met — более позднее. Это описание конкретного дня, а не правило о погоде.",
-        "uk": "We will leave when the bus arrives — ми вийдемо, коли приїде автобус. Після when тут arrives, без will. Якщо друг не зателефонує, ви залишитеся вдома: We will stay home unless you call — ми залишимося вдома, якщо ти не зателефонуєш. Unless вводить виняток із плану. Про вчорашню зустріч: The snow had melted by the time we met — сніг розтанув до того часу, як ми зустрілися. Had melted — раніша подія, met — пізніша. Це опис конкретного дня, а не правило про погоду."
+        "ru": "Вы вспоминаете вчерашнюю встречу: к вашему приходу снега уже не было. Скажите: The snow had melted by the time we met — снег растаял к тому времени, как мы встретились. Собираем: The snow + had melted + by the time we met — что, что произошло раньше, к какому моменту в прошлом. Had melted показывает таяние до встречи. После had нужна melted с -ed, а met называет более позднее событие.",
+        "uk": "Ви згадуєте вчорашню зустріч: до вашого приходу снігу вже не було. Скажіть: The snow had melted by the time we met — сніг розтанув до того часу, як ми зустрілися. Складаємо: The snow + had melted + by the time we met — що, що сталося раніше, до якого моменту в минулому. Had melted показує танення до зустрічі. Після had потрібна melted із -ed, а met називає пізнішу подію."
       },
       "question": {
         "interactionId": "en:lesson-26:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ee6a26ce5454b89f7b47960f8634df89569f0e90a1b6e55a915611db32cd753c"
+  "introFingerprint": "9e42f9c346d4223f5a3765e93f3be8c096b64d621582d218adf62a72ddfd3b37"
 }

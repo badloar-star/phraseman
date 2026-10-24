@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Найти ингредиенты
+### Принести миски, когда понадобятся
 
-Refrigerator — холодильник; полное название знакомого fridge. The milk is in the refrigerator — молоко в холодильнике. Mixer — миксер, прибор для смешивания продуктов. Where is the mixer? — где миксер? Друг готовит, а вы помогаете: I will get the bowls when you are ready — я принесу миски, когда ты будешь готов. В части с when здесь are, без will. Для плана с условием: We will make pancakes if we have milk — мы приготовим блины, если у нас есть молоко.
+Друг готовит смесь и ещё не готов раскладывать её по мискам. Пообещайте: I will get the bowls when you are ready — я принесу миски, когда ты будешь готов. Собираем: I + will get + the bowls + when you are ready — кто, что сделает, что принесёт, когда. Will get относится к будущему. После when, указывающего время действия, используем are без will; с you нужна are, не is.
 
 **Выберите фразу для этой ситуации.**
 
@@ -21,9 +21,9 @@ Refrigerator — холодильник; полное название знак�
 
 ## Интро 2
 
-### Попросить кухонную вещь
+### Картофель уже вымыт
 
-Grater — тёрка. Peeler — овощечистка, инструмент для снятия кожуры. Could you pass me the grater? — можешь передать мне тёрку? The peeler is in the drawer — овощечистка в ящике. Вы проверяете подготовку: Have you washed the potatoes yet? — ты уже помыл картошку? I have already washed them — я уже её помыл. Potatoes во множественном числе, поэтому them. Обычную привычку можно описать так: I wash vegetables when I get home — я мою овощи, когда прихожу домой.
+Друг собирается мыть картофель, но вы уже это сделали. Ответьте: I have already washed them — я уже его помыл. Them заменяет potatoes: в английском это множественное число. Собираем: I + have + already + washed + them — кто, have, уже, действие, что помыл. Already ставим между have и washed. После have нужна третья форма washed с -ed; present perfect сообщает о результате сейчас.
 
 **Выберите фразу для этой ситуации.**
 
@@ -35,9 +35,9 @@ Grater — тёрка. Peeler — овощечистка, инструмент �
 
 ## Интро 3
 
-### Договориться об ужине
+### Закончили готовить до прихода друзей
 
-I have just set the table — я только что накрыл на стол. О вчерашнем вечере: We had finished cooking by the time our friends arrived — мы закончили готовить к тому времени, как пришли друзья. Had finished показывает более раннее действие. Предложите подождать: If the potatoes are hard, we can wait — если картошка твёрдая, мы можем подождать. То же условие в конце: We can wait if the potatoes are hard. Для приглашения с возможностью отказаться: I will put some on your plate unless you say no — я положу немного тебе на тарелку, если ты не откажешься.
+Вчера друзья пришли к готовому ужину. Расскажите: We had finished cooking by the time our friends arrived — мы закончили готовить к тому времени, как пришли наши друзья. Собираем: We + had finished + cooking + by the time our friends arrived — кто, что закончил раньше, какое занятие, к какому моменту в прошлом. Had finished показывает завершение до прихода. После had нужна finished; после finish действие называется формой с -ing: cooking.
 
 **Выберите фразу для этой ситуации.**
 

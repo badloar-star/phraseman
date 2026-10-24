@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Вода вдома й надворі
+### Допомогти після своєї справи
 
-Sprinkler — розбризкувач для поливу. The sprinkler is on — розбризкувач увімкнений. Showerhead — душова лійка. The showerhead is dripping — із душової лійки крапає вода. Ви називаєте предмети, а не пояснюєте ремонт. Could you turn it off? — можеш це вимкнути? Для звички: I turn off the tap when I finish — я закриваю кран, коли закінчую. Для майбутньої обіцянки: I will help when I finish — я допоможу, коли закінчу. Після when в обох прикладах finish, без will.
+Друг просить допомогти у дворі, але ви ще закінчуєте свою справу. Пообіцяйте: I will help when I finish — я допоможу, коли закінчу. Складаємо: I + will help + when I finish — хто, що зробить, коли. Will help виражає майбутню обіцянку. Після when, яке вказує час допомоги, використовуємо finish без will. З I до finish не додаємо -es.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ Sprinkler — розбризкувач для поливу. The sprinkler is on 
 
 ## Інтро 2
 
-### Знайти речі надворі
+### Якщо стільці сухі
 
-Backyard — заднє подвір’я. The chairs are in the backyard — стільці на задньому подвір’ї. Greenhouse — теплиця. The pots are in the greenhouse — горщики в теплиці. Ви хочете сісти надворі: If the chairs are dry, we can sit outside — якщо стільці сухі, ми можемо посидіти надворі. Можна поставити умову в кінець: We can sit outside if the chairs are dry. Це той самий план. Запитати про зроблену справу: Have you watered the plants yet? — ти вже полив рослини?
+Після дощу ви хочете посидіти у дворі. Запропонуйте: We can sit outside if the chairs are dry — ми можемо посидіти надворі, якщо стільці сухі. Складаємо: We + can sit + outside + if the chairs are dry — хто, що може зробити, де, за якої умови. Після can потрібна sit без to. В умові після if використовуємо теперішню форму are без will; chairs — множина.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Backyard — заднє подвір’я. The chairs are in the backyard — с
 
 ## Інтро 3
 
-### Закінчити справи до дощу
+### Прибрали інструменти до дощу
 
-I have already watered them — я вже їх полив. I have just put the hose away — я щойно прибрав шланг. Already і just говорять про результат зараз. Про вчорашню роботу: We had put the tools away by the time it started raining — ми прибрали інструменти до того часу, як почався дощ. Had put позначає ранішу дію. Сьогодні можна змінити план: We will have tea outside unless it rains — ми вип’ємо чай надворі, якщо не піде дощ. Unless задає виняток із плану.
+Учора ви закінчили роботу у дворі до початку дощу. Розкажіть: We had put the tools away by the time it started raining — ми прибрали інструменти до того часу, як почався дощ. Складаємо: We + had put + the tools + away + by the time it started raining. Put the tools away означає прибрати інструменти на місце. Had put позначає дію раніше за початок дощу. Після had потрібна третя форма put, не putting.
 
 **Виберіть фразу для цієї ситуації.**
 

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Зайти в прачечную",
-        "uk": "Зайти до пральні"
+        "ru": "Позвонить после стирки",
+        "uk": "Зателефонувати після прання"
       },
       "bodyByLocale": {
-        "ru": "Laundromat — прачечная самообслуживания, обычное американское слово. Is there a laundromat nearby? — поблизости есть прачечная самообслуживания? Вы ждёте окончания стирки: I will call you when the washing is done — я позвоню тебе, когда стирка закончится. После when здесь is без will. Have you started the machine yet? — ты уже включил машину? I have just started it — я только что её включил. Just перед started, yet в конце вопроса.",
-        "uk": "Laundromat — пральня самообслуговування, звичне американське слово. Is there a laundromat nearby? — поблизу є пральня самообслуговування? Ви чекаєте завершення прання: I will call you when the washing is done — я зателефоную тобі, коли прання закінчиться. Після when тут is без will. Have you started the machine yet? — ти вже ввімкнув машину? I have just started it — я щойно її ввімкнув. Just перед started, yet наприкінці запитання."
+        "ru": "Вы ждёте окончания стирки и обещаете другу: I will call you when the washing is done — я позвоню тебе, когда стирка закончится. Собираем: I + will call + you + when the washing is done — кто, что сделает, кому, когда. Будущий звонок выражаем через will call. После when, задающего время звонка, используем is done без will: в этой части настоящее обозначает будущий момент. Washing здесь единственное неисчисляемое понятие, поэтому is, не are.",
+        "uk": "Ви чекаєте завершення прання й обіцяєте другові: I will call you when the washing is done — я зателефоную тобі, коли прання закінчиться. Складаємо: I + will call + you + when the washing is done — хто, що зробить, кому, коли. Майбутній дзвінок виражаємо через will call. Після when, яке задає час дзвінка, використовуємо is done без will: у цій частині теперішній час позначає майбутній момент. Washing тут єдине незлічуване поняття, тому is, не are."
       },
       "question": {
         "interactionId": "en:lesson-26:session-52:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выбрать одежду",
-        "uk": "Вибрати одяг"
+        "ru": "Если пиджак слишком мал",
+        "uk": "Якщо піджак замалий"
       },
       "bodyByLocale": {
-        "ru": "Sweatpants — мягкие спортивные штаны. These sweatpants are comfortable — эти спортивные штаны удобные. Слово во множественном числе, поэтому these и are. Blazer — пиджак, который носят отдельно, не обязательно как часть костюма. Does this blazer fit me? — этот пиджак мне впору? Для встречи вы выбираете пиджак, а диван голосует за спортивные штаны. Если размер не подходит: If it is too small, try another size — если он слишком мал, попробуй другой размер. Можно начать с совета: Try another size if it is too small.",
-        "uk": "Sweatpants — м’які спортивні штани. These sweatpants are comfortable — ці спортивні штани зручні. Слово у множині, тому these й are. Blazer — піджак, який носять окремо, не обов’язково як частину костюма. Does this blazer fit me? — цей піджак мені впору? Для зустрічі ви вибираєте піджак, а диван голосує за спортивні штани. Якщо розмір не підходить: If it is too small, try another size — якщо він замалий, спробуй інший розмір. Можна почати з поради: Try another size if it is too small."
+        "ru": "Друг примеряет пиджак. Посоветуйте: Try another size if it is too small — попробуй другой размер, если он слишком мал. It заменяет пиджак. Собираем: Try + another size + if it is too small — что сделать, что попробовать, при каком условии. Начальная форма Try без you выражает совет. В условии с it нужна is; too small означает слишком мал для человека, который его примеряет.",
+        "uk": "Друг приміряє піджак. Порадьте: Try another size if it is too small — спробуй інший розмір, якщо він замалий. It замінює піджак. Складаємо: Try + another size + if it is too small — що зробити, що спробувати, за якої умови. Початкова форма Try без you виражає пораду. В умові з it потрібна is; too small означає замалий для людини, яка його приміряє."
       },
       "question": {
         "interactionId": "en:lesson-26:session-52:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Успеть на стрижку",
-        "uk": "Встигнути на стрижку"
+        "ru": "Парикмахерская закрылась до звонка",
+        "uk": "Перукарня закрилася до дзвінка"
       },
       "bodyByLocale": {
-        "ru": "Barbershop — парикмахерская, обычно для мужских стрижек. What time does the barbershop close? — во сколько закрывается парикмахерская? I have already booked an appointment — я уже записался. О вчерашнем звонке: The barbershop had closed by the time I called — парикмахерская закрылась к тому времени, как я позвонил. Had closed показывает более раннее действие. Когда вас спрашивают о стрижке, можно сказать Just a trim, please — только немного подровнять, пожалуйста.",
-        "uk": "Barbershop — перукарня, зазвичай для чоловічих стрижок. What time does the barbershop close? — о котрій зачиняється перукарня? I have already booked an appointment — я вже записався. Про вчорашній дзвінок: The barbershop had closed by the time I called — перукарня зачинилася до того часу, як я зателефонував. Had closed показує ранішу дію. Коли вас запитують про стрижку, можна сказати Just a trim, please — тільки трохи підрівняти, будь ласка."
+        "ru": "Вчера вы позвонили в парикмахерскую, но она к тому моменту уже закрылась. Расскажите: The barbershop had closed by the time I called — парикмахерская закрылась к тому времени, как я позвонил. Собираем: The barbershop + had closed + by the time I called — что, что произошло раньше, к какому моменту в прошлом. Had closed показывает более раннее закрытие, called — последующий звонок. После had нужна closed, не close.",
+        "uk": "Учора ви зателефонували до перукарні, але вона на той момент уже закрилася. Розкажіть: The barbershop had closed by the time I called — перукарня закрилася до того часу, як я зателефонував. Складаємо: The barbershop + had closed + by the time I called — що, що сталося раніше, до якого моменту в минулому. Had closed показує раніше закриття, called — подальший дзвінок. Після had потрібна closed, не close."
       },
       "question": {
         "interactionId": "en:lesson-26:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9476fd8ab9a8946adb0b9ac68eb937ce3ce253eec40debc10bec5801653a08a8"
+  "introFingerprint": "148ab1496fabcabb0805b14df457d6720ff6eaf4c0235c3571a8590aaf107e3a"
 }

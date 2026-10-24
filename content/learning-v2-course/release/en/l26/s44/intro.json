@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Найти бумагу и ручку",
-        "uk": "Знайти папір і ручку"
+        "ru": "Принести бумагу после возвращения",
+        "uk": "Принести папір після повернення"
       },
       "bodyByLocale": {
-        "ru": "Stationery — канцелярские принадлежности: бумага, ручки и подобные вещи. Это общее неисчисляемое слово. Where is the stationery? — где канцелярские принадлежности? Paperclip — скрепка. I need a paperclip — мне нужна скрепка. Вы хотите скрепить несколько листов. Попросите: Could you pass me one? — можешь передать мне одну? Для будущей помощи: I will bring some paper when I come back — я принесу бумагу, когда вернусь. После when здесь come без will.",
-        "uk": "Stationery — канцелярське приладдя: папір, ручки й подібні речі. Це загальне незлічуване слово. Where is the stationery? — де канцелярське приладдя? Paperclip — скріпка. I need a paperclip — мені потрібна скріпка. Ви хочете скріпити кілька аркушів. Попросіть: Could you pass me one? — можеш передати мені одну? Для майбутньої допомоги: I will bring some paper when I come back — я принесу папір, коли повернуся. Після when тут come без will."
+        "ru": "Другу нужна бумага, а вы сейчас выходите. Пообещайте: I will bring some paper when I come back — я принесу немного бумаги, когда вернусь. Собираем: I + will bring + some paper + when I come back — кто, что сделает, что принесёт, когда. Will bring выражает намерение о будущем. После when, задающего время действия, нужна come back без will. С I к come не добавляем -s.",
+        "uk": "Другові потрібен папір, а ви зараз виходите. Пообіцяйте: I will bring some paper when I come back — я принесу трохи паперу, коли повернуся. Складаємо: I + will bring + some paper + when I come back — хто, що зробить, що принесе, коли. Will bring виражає намір про майбутнє. Після when, яке задає час дії, потрібна come back без will. З I до come не додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-44:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Рисовать и писать наспех",
-        "uk": "Малювати й писати нашвидкуруч"
+        "ru": "Если оборот листа чистый",
+        "uk": "Якщо зворотний бік аркуша чистий"
       },
       "bodyByLocale": {
-        "ru": "Doodle — рисовать машинально, например простые узоры во время ожидания. I sometimes doodle when I wait — я иногда рисую что-нибудь, когда жду. Scribble — писать или рисовать наспех, небрежными штрихами. Please do not scribble on this page — пожалуйста, не черкай на этой странице. Эти глаголы не означают одно и то же: doodle — обычно машинальный рисунок, scribble подчёркивает небрежность. Предложите чистую обратную сторону: If the back is blank, you can use it — если оборот пустой, можешь его использовать. Условие можно поставить в конец.",
-        "uk": "Doodle — малювати машинально, наприклад прості візерунки під час очікування. I sometimes doodle when I wait — я іноді щось малюю, коли чекаю. Scribble — писати або малювати нашвидкуруч, недбалими штрихами. Please do not scribble on this page — будь ласка, не черкай на цій сторінці. Ці дієслова не означають те саме: doodle — зазвичай машинальний малюнок, scribble підкреслює недбалість. Запропонуйте чистий зворотний бік: If the back is blank, you can use it — якщо зворотний бік порожній, можеш його використати. Умову можна поставити в кінець."
+        "ru": "Другу нужен лист для заметок. Предложите проверить обратную сторону имеющегося листа: You can use it if the back is blank — можешь его использовать, если оборот пустой. Собираем: You + can use + it + if the back is blank — кто, что может сделать, что использовать, при каком условии. It заменяет лист. После can нужна use без to; после if здесь is без will.",
+        "uk": "Другові потрібен аркуш для нотаток. Запропонуйте перевірити зворотний бік наявного аркуша: You can use it if the back is blank — можеш його використати, якщо зворотний бік порожній. Складаємо: You + can use + it + if the back is blank — хто, що може зробити, що використати, за якої умови. It замінює аркуш. Після can потрібна use без to; після if тут is без will."
       },
       "question": {
         "interactionId": "en:lesson-26:session-44:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Оставить понятную записку",
-        "uk": "Залишити зрозумілу записку"
+        "ru": "Записка была готова до ухода друга",
+        "uk": "Записка була готова до того, як друг пішов"
       },
       "bodyByLocale": {
-        "ru": "Have you written the address yet? — ты уже записал адрес? I have already written it — я уже его записал. I have just checked it — я только что его проверил. Эти ответы сообщают о результате сейчас. О вчерашней записке: I had written the note by the time he left — я написал записку к тому времени, как он ушёл. Had written показывает более раннее действие. Сохранить лист можно так: I will keep it unless you need it — я оставлю его себе, если он тебе не нужен. Не тратить бумагу зря: Do not waste paper — не трать бумагу зря.",
-        "uk": "Have you written the address yet? — ти вже записав адресу? I have already written it — я вже її записав. I have just checked it — я щойно її перевірив. Ці відповіді повідомляють про результат зараз. Про вчорашню записку: I had written the note by the time he left — я написав записку до того часу, як він пішов. Had written показує ранішу дію. Зберегти аркуш можна так: I will keep it unless you need it — я залишу його собі, якщо він тобі не потрібен. Не витрачати папір марно: Do not waste paper — не витрачай папір марно."
+        "ru": "Вчера вы успели написать другу записку до его ухода. Расскажите: I had written the note by the time he left — я написал записку к тому времени, как он ушёл. Собираем: I + had written + the note + by the time he left — кто, что сделал раньше, что написал, к какому моменту в прошлом. Had written показывает, что записка была написана до ухода друга. После had нужна третья форма write — written, не wrote.",
+        "uk": "Учора ви встигли написати другові записку до того, як він пішов. Розкажіть: I had written the note by the time he left — я написав записку до того часу, як він пішов. Складаємо: I + had written + the note + by the time he left — хто, що зробив раніше, що написав, до якого моменту в минулому. Had written показує написання до виходу друга. Після had потрібна третя форма write — written, не wrote."
       },
       "question": {
         "interactionId": "en:lesson-26:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ecbb44c57b24e96bd69af89d569777fd48632b7b9f677617235dbb1503b1d2ae"
+  "introFingerprint": "75e32e0dd8ec1a26af7612ad09de297d38139b31e7a978b86faaf78d3506feee"
 }

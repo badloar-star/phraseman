@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Корм и прогулка",
-        "uk": "Корм і прогулянка"
+        "ru": "Погулять с собакой после возвращения друга",
+        "uk": "Погуляти із собакою після повернення друга"
       },
       "bodyByLocale": {
-        "ru": "Kibble — сухой корм в гранулах для домашних животных. The kibble is in the cupboard — сухой корм в шкафу. В этом значении слово неисчисляемое: some kibble, без a. Muzzle — намордник. Where is the muzzle? — где намордник? Вы распределяете дела: I will walk the dog when you get home — я погуляю с собакой, когда ты придёшь домой. После when здесь get, без will. Сохранить что-то на потом можно фразой Save some for later — оставь немного на потом.",
-        "uk": "Kibble — сухий корм у гранулах для домашніх тварин. The kibble is in the cupboard — сухий корм у шафі. У цьому значенні слово незлічуване: some kibble, без a. Muzzle — намордник. Where is the muzzle? — де намордник? Ви розподіляєте справи: I will walk the dog when you get home — я погуляю із собакою, коли ти прийдеш додому. Після when тут get, без will. Залишити щось на потім можна фразою Save some for later — залиш трохи на потім."
+        "ru": "Вы договариваетесь, кто выведет собаку. Пообещайте другу: I will walk the dog when you get home — я погуляю с собакой, когда ты придёшь домой. Собираем: I + will walk + the dog + when you get home — кто, что сделает, с кем погуляет, когда. Walk the dog означает выгулять собаку. Будущее выражаем через will walk; после when, задающего время, используем get без will и без -s.",
+        "uk": "Ви домовляєтеся, хто виведе собаку. Пообіцяйте другові: I will walk the dog when you get home — я погуляю із собакою, коли ти прийдеш додому. Складаємо: I + will walk + the dog + when you get home — хто, що зробить, з ким погуляє, коли. Walk the dog означає вигуляти собаку. Майбутнє виражаємо через will walk; після when, яке задає час, використовуємо get без will і без -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-38:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Назвать то, что заметили",
-        "uk": "Назвати те, що помітили"
+        "ru": "Спросить, если сомневаетесь",
+        "uk": "Запитати, якщо сумніваєтеся"
       },
       "bodyByLocale": {
-        "ru": "Flea — блоха. Tick — клещ. I think this is a flea — думаю, это блоха. Is that a tick? — это клещ? Эти фразы позволяют назвать замеченное и задать вопрос, не утверждая то, в чём вы не уверены. I have just noticed it — я только что это заметил. Have you seen it yet? — ты уже это видел? Just и yet связывают ситуацию с настоящим. Если нужна помощь: If you are unsure, you can ask — если ты не уверен, можешь спросить. В конце условие звучит так: You can ask if you are unsure.",
-        "uk": "Flea — блоха. Tick — кліщ. I think this is a flea — думаю, це блоха. Is that a tick? — це кліщ? Ці фрази дають змогу назвати помічене й поставити запитання, не стверджуючи того, у чому ви не впевнені. I have just noticed it — я щойно це помітив. Have you seen it yet? — ти вже це бачив? Just і yet пов’язують ситуацію з теперішнім. Якщо потрібна допомога: If you are unsure, you can ask — якщо ти не впевнений, можеш запитати. У кінці умова звучить так: You can ask if you are unsure."
+        "ru": "Друг не уверен, как называется замеченное на шерсти собаки насекомое. Предложите уточнить: You can ask if you are unsure — можешь спросить, если не уверен. Собираем: You + can ask + if you are unsure — кто, что может сделать, при каком условии. После can нужна ask без to. В условии после if используем are без will; с you нужна are, не is.",
+        "uk": "Друг не впевнений, як називається помічена на шерсті собаки комаха. Запропонуйте уточнити: You can ask if you are unsure — можеш запитати, якщо не впевнений. Складаємо: You + can ask + if you are unsure — хто, що може зробити, за якої умови. Після can потрібна ask без to. В умові після if використовуємо are без will; з you потрібна are, не is."
       },
       "question": {
         "interactionId": "en:lesson-26:session-38:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не сделать одно дело дважды",
-        "uk": "Не зробити одну справу двічі"
+        "ru": "Наполнили миску до возвращения",
+        "uk": "Наповнили миску до повернення"
       },
       "bodyByLocale": {
-        "ru": "I have already fed the dog — я уже покормил собаку. Вы сообщаете о готовом результате, чтобы другой человек знал о нём. О вчерашнем вечере: I had filled the bowl by the time you came home — я наполнил миску к тому времени, как ты пришёл домой. Had filled — действие раньше прихода. О привычке: I take a bag when I walk the dog — я беру пакет, когда гуляю с собакой. О сегодняшнем плане: We will go out unless it rains — мы выйдем, если не пойдёт дождь. Unless задаёт исключение из плана.",
-        "uk": "I have already fed the dog — я вже погодував собаку. Ви повідомляєте про готовий результат, щоб інша людина знала про нього. Про вчорашній вечір: I had filled the bowl by the time you came home — я наповнив миску до того часу, як ти прийшов додому. Had filled — дія раніше за прихід. Про звичку: I take a bag when I walk the dog — я беру пакет, коли гуляю із собакою. Про сьогоднішній план: We will go out unless it rains — ми вийдемо, якщо не піде дощ. Unless задає виняток із плану."
+        "ru": "Вчера друг пришёл домой, когда миска собаки уже была наполнена. Расскажите: I had filled the bowl by the time you came home — я наполнил миску к тому времени, как ты пришёл домой. Собираем: I + had filled + the bowl + by the time you came home — кто, что сделал раньше, что наполнил, к какому моменту в прошлом. Had filled показывает действие до прихода. После had нужна filled с -ed; came home обозначает более позднее событие.",
+        "uk": "Учора друг прийшов додому, коли миска собаки вже була наповнена. Розкажіть: I had filled the bowl by the time you came home — я наповнив миску до того часу, як ти прийшов додому. Складаємо: I + had filled + the bowl + by the time you came home — хто, що зробив раніше, що наповнив, до якого моменту в минулому. Had filled показує дію до приходу. Після had потрібна filled із -ed; came home позначає пізнішу подію."
       },
       "question": {
         "interactionId": "en:lesson-26:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f1677d25a33e04aac035441fa19e8029ac64cae071572daf355d21f746d4cc80"
+  "introFingerprint": "31d67411f385508fd9eba186afc0cc1d27183b85f4fa457057fe85dc6acef75d"
 }

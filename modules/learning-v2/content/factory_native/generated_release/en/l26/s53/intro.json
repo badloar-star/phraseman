@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Объяснить желаемую стрижку",
-        "uk": "Пояснити бажану стрижку"
+        "ru": "Что происходит с волосами под дождём",
+        "uk": "Що відбувається з волоссям під дощем"
       },
       "bodyByLocale": {
-        "ru": "Bangs — чёлка, обычное американское слово; здесь употребляется во множественном числе. My bangs are too long — моя чёлка слишком длинная. Можно попросить: Please keep them above my eyes — пожалуйста, оставьте их выше глаз. Frizzy — пушащийся, с непослушными мелкими завитками; о волосах. My hair gets frizzy in the rain — мои волосы пушатся под дождём. Hair здесь неисчисляемое, поэтому gets. Причёска утром была одна, а после дождя решила стать другой.",
-        "uk": "Bangs — чубчик, звичне американське слово; тут уживається у множині. My bangs are too long — мій чубчик задовгий. Можна попросити: Please keep them above my eyes — будь ласка, залиште їх вище очей. Frizzy — пухнастий, із неслухняними дрібними завитками; про волосся. My hair gets frizzy in the rain — моє волосся пушиться під дощем. Hair тут незлічуване, тому gets. Зачіска вранці була одна, а після дощу вирішила стати іншою."
+        "ru": "Парикмахер спрашивает, как ваши волосы ведут себя во влажную погоду. Объясните: My hair gets frizzy in the rain — мои волосы пушатся под дождём. Собираем: My hair + gets + frizzy + in the rain — что, становится, каким, при каких обстоятельствах. Hair здесь обозначает волосы как целое и требует gets с -s. Frizzy описывает результат изменения. Это обычная повторяющаяся реакция, поэтому используем present simple.",
+        "uk": "Перукар запитує, як ваше волосся поводиться у вологу погоду. Поясніть: My hair gets frizzy in the rain — моє волосся пушиться під дощем. Складаємо: My hair + gets + frizzy + in the rain — що, стає, яким, за яких обставин. Hair тут позначає волосся як ціле й потребує gets із -s. Frizzy описує результат зміни. Це звичайна повторювана реакція, тому використовуємо present simple."
       },
       "question": {
         "interactionId": "en:lesson-26:session-53:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уточнить детали",
-        "uk": "Уточнити деталі"
+        "ru": "Показать после завершения",
+        "uk": "Показати після завершення"
       },
       "bodyByLocale": {
-        "ru": "Stubble — короткая щетина, например на лице после того, как человек некоторое время не брился. I have stubble on my chin — у меня щетина на подбородке. Stubble здесь неисчисляемое. Sideburns — бакенбарды, волосы по бокам лица перед ушами. Please trim my sideburns — пожалуйста, подровняйте мои бакенбарды. Вы просите подровнять, а не сбрить всё. I will show you when I finish — я покажу вам, когда закончу. После when здесь finish без will.",
-        "uk": "Stubble — коротка щетина, наприклад на обличчі після того, як людина певний час не голилася. I have stubble on my chin — у мене щетина на підборідді. Stubble тут незлічуване. Sideburns — бакенбарди, волосся з боків обличчя перед вухами. Please trim my sideburns — будь ласка, підрівняйте мої бакенбарди. Ви просите підрівняти, а не зголити все. I will show you when I finish — я покажу вам, коли закінчу. Після when тут finish без will."
+        "ru": "Вы выбираете на телефоне фотографию стрижки, которую хотите показать мастеру. Скажите: I will show you when I finish — я покажу вам, когда закончу. Собираем: I + will show + you + when I finish — кто, что сделает, кому, когда. Will show выражает намерение о будущем. В части с when используем finish без will, хотя речь о будущем завершении. После I к finish не добавляем -es.",
+        "uk": "Ви вибираєте на телефоні фотографію стрижки, яку хочете показати майстрові. Скажіть: I will show you when I finish — я покажу вам, коли закінчу. Складаємо: I + will show + you + when I finish — хто, що зробить, кому, коли. Will show виражає намір про майбутнє. У частині з when використовуємо finish без will, хоча йдеться про майбутнє завершення. Після I до finish не додаємо -es."
       },
       "question": {
         "interactionId": "en:lesson-26:session-53:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Фото после стрижки",
-        "uk": "Фото після стрижки"
+        "ru": "Ушли из салона до звонка",
+        "uk": "Пішли із салону до дзвінка"
       },
       "bodyByLocale": {
-        "ru": "Have you been to the salon yet? — ты уже сходил в салон? I have just come back — я только что вернулся. Just стоит между have и come. О вчерашней встрече: I had left the salon by the time she called — я ушёл из салона к тому времени, как она позвонила. Had left показывает более раннее действие. Вы сфотографировались с подругой: I will not share the photo unless you agree — я не буду делиться фотографией без твоего согласия. Unless здесь задаёт необходимое условие: сначала согласие.",
-        "uk": "Have you been to the salon yet? — ти вже сходив до салону? I have just come back — я щойно повернувся. Just стоїть між have і come. Про вчорашню зустріч: I had left the salon by the time she called — я пішов із салону до того часу, як вона зателефонувала. Had left показує ранішу дію. Ви сфотографувалися з подругою: I will not share the photo unless you agree — я не ділитимуся фотографією без твоєї згоди. Unless тут задає необхідну умову: спочатку згода."
+        "ru": "Подруга вчера позвонила, когда вы уже вышли из салона. Объясните: I had left the salon by the time she called — я ушёл из салона к тому времени, как она позвонила. Собираем: I + had left + the salon + by the time she called — кто, что сделал раньше, откуда ушёл, к какому моменту в прошлом. Had left показывает уход раньше звонка. После had нужна третья форма leave — left; called называет последующее событие.",
+        "uk": "Подруга вчора зателефонувала, коли ви вже вийшли із салону. Поясніть: I had left the salon by the time she called — я пішов із салону до того часу, як вона зателефонувала. Складаємо: I + had left + the salon + by the time she called — хто, що зробив раніше, звідки пішов, до якого моменту в минулому. Had left показує вихід раніше за дзвінок. Після had потрібна третя форма leave — left; called називає подальшу подію."
       },
       "question": {
         "interactionId": "en:lesson-26:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2835ecd60009034c42b79828e13bc71f91fb93dbcaabaf9eadcb914a3f4d3d85"
+  "introFingerprint": "e7ef96c88f2e2f0a58640b23adc86e62c6ad5c74e3aebf7b5ac88329432e91ed"
 }

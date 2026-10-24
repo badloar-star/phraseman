@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Войти с занятыми руками",
-        "uk": "Зайти із зайнятими руками"
+        "ru": "Где обычно оставляете обувь",
+        "uk": "Де зазвичай залишаєте взуття"
       },
       "bodyByLocale": {
-        "ru": "Doorknob — круглая дверная ручка, которую поворачивают. I cannot turn the doorknob — я не могу повернуть дверную ручку. Если руки заняты сумками, попросите: Could you open the door for me? — можешь открыть мне дверь? Hallway — прихожая или коридор внутри здания. Leave the bags in the hallway — оставь сумки в прихожей. Для обычного действия: I leave my shoes there when I come in — я оставляю там обувь, когда захожу. Здесь оба действия в Present Simple.",
-        "uk": "Doorknob — кругла дверна ручка, яку повертають. I cannot turn the doorknob — я не можу повернути дверну ручку. Якщо руки зайняті сумками, попросіть: Could you open the door for me? — можеш відчинити мені двері? Hallway — передпокій або коридор усередині будівлі. Leave the bags in the hallway — залиш сумки в передпокої. Для звичайної дії: I leave my shoes there when I come in — я залишаю там взуття, коли заходжу. Тут обидві дії в Present Simple."
+        "ru": "Гость спрашивает, куда вы ставите обувь дома. Покажите место в прихожей: I leave my shoes there when I come in — я оставляю там обувь, когда захожу. Собираем: I + leave + my shoes + there + when I come in — кто, что делает, что оставляет, где, когда. Это привычка, поэтому обе части стоят в present simple. После I используем leave и come без -s. When связывает повторяющиеся действия.",
+        "uk": "Гість запитує, куди ви ставите взуття вдома. Покажіть місце в передпокої: I leave my shoes there when I come in — я залишаю там взуття, коли заходжу. Складаємо: I + leave + my shoes + there + when I come in — хто, що робить, що залишає, де, коли. Це звичка, тому обидві частини стоять у present simple. Після I використовуємо leave і come без -s. When пов’язує повторювані дії."
       },
       "question": {
         "interactionId": "en:lesson-26:session-39:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поискать в комнате",
-        "uk": "Пошукати в кімнаті"
+        "ru": "Включить свет, если темно",
+        "uk": "Увімкнути світло, якщо темно"
       },
       "bodyByLocale": {
-        "ru": "Couch — диван, другое обычное название sofa. Look under the couch — посмотри под диваном. Have you found your keys yet? — ты уже нашёл ключи? I have already looked there — я уже там посмотрел. I have just found them — я только что их нашёл. Yet в вопросе проверяет результат сейчас; already и just уточняют, что уже произошло. Если нужен свет: If the room is dark, I will turn on the light — если в комнате темно, я включу свет. Условие можно поставить в конец без изменения смысла.",
-        "uk": "Couch — диван, інша звичайна назва sofa. Look under the couch — подивися під диваном. Have you found your keys yet? — ти вже знайшов ключі? I have already looked there — я вже там подивився. I have just found them — я щойно їх знайшов. Yet у запитанні перевіряє результат зараз; already і just уточнюють, що вже сталося. Якщо потрібне світло: If the room is dark, I will turn on the light — якщо в кімнаті темно, я ввімкну світло. Умову можна поставити в кінець без зміни змісту."
+        "ru": "Друг собирается искать ключи в комнате. Предложите: I will turn on the light if the room is dark — я включу свет, если в комнате темно. Собираем: I + will turn on + the light + if the room is dark — кто, что сделает, что включит, при каком условии. Will turn on выражает предложение помощи. После if, задающего условие, используем is без will; the room требует is, не are.",
+        "uk": "Друг збирається шукати ключі в кімнаті. Запропонуйте: I will turn on the light if the room is dark — я ввімкну світло, якщо в кімнаті темно. Складаємо: I + will turn on + the light + if the room is dark — хто, що зробить, що ввімкне, за якої умови. Will turn on виражає пропозицію допомоги. Після if, яке задає умову, використовуємо is без will; the room потребує is, не are."
       },
       "question": {
         "interactionId": "en:lesson-26:session-39:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подготовить место гостю",
-        "uk": "Підготувати місце гостю"
+        "ru": "Кровать была готова до приезда",
+        "uk": "Ліжко було готове до приїзду"
       },
       "bodyByLocale": {
-        "ru": "Comforter — тёплое стёганое одеяло. There is a comforter on the bed — на кровати лежит тёплое одеяло. Вы объясняете вчерашнюю подготовку: I had made the bed by the time she arrived — я застелил кровать к тому времени, как она приехала. Had made показывает более раннее действие. О сегодняшней встрече: I will show you the room when you arrive — я покажу тебе комнату, когда ты приедешь. После when здесь arrive без will. Предложить помощь можно условно: I will bring another blanket if you are cold — я принесу ещё одно одеяло, если тебе холодно.",
-        "uk": "Comforter — тепла стьобана ковдра. There is a comforter on the bed — на ліжку лежить тепла ковдра. Ви пояснюєте вчорашню підготовку: I had made the bed by the time she arrived — я застелив ліжко до того часу, як вона приїхала. Had made показує ранішу дію. Про сьогоднішню зустріч: I will show you the room when you arrive — я покажу тобі кімнату, коли ти приїдеш. Після when тут arrive без will. Запропонувати допомогу можна умовно: I will bring another blanket if you are cold — я принесу ще одну ковдру, якщо тобі холодно."
+        "ru": "Вы рассказываете о вчерашней подготовке к приезду гостьи. К её приезду кровать уже была застелена: I had made the bed by the time she arrived — я застелил кровать к тому времени, как она приехала. Собираем: I + had made + the bed + by the time she arrived — кто, что сделал раньше, что подготовил, к какому моменту в прошлом. Had made показывает действие до приезда. После had нужна третья форма make — made.",
+        "uk": "Ви розповідаєте про вчорашню підготовку до приїзду гості. До її приїзду ліжко вже було застелене: I had made the bed by the time she arrived — я застелив ліжко до того часу, як вона приїхала. Складаємо: I + had made + the bed + by the time she arrived — хто, що зробив раніше, що підготував, до якого моменту в минулому. Had made показує дію до приїзду. Після had потрібна третя форма make — made."
       },
       "question": {
         "interactionId": "en:lesson-26:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f6c9adb8faaaeb6620312722b8ca48893911100a3b6f018dd7f47fd859fa2518"
+  "introFingerprint": "836ee638def036fdef5e47d21e9af74302bd7e7e8becb5bb7c4464a20fee864b"
 }

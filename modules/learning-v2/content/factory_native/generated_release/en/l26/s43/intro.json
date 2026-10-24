@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вода дома и во дворе",
-        "uk": "Вода вдома й надворі"
+        "ru": "Помочь после своего дела",
+        "uk": "Допомогти після своєї справи"
       },
       "bodyByLocale": {
-        "ru": "Sprinkler — разбрызгиватель для полива. The sprinkler is on — разбрызгиватель включён. Showerhead — душевая лейка. The showerhead is dripping — из душевой лейки капает вода. Вы называете предметы, а не объясняете ремонт. Could you turn it off? — можешь это выключить? Для привычки: I turn off the tap when I finish — я закрываю кран, когда заканчиваю. Для будущего обещания: I will help when I finish — я помогу, когда закончу. После when в обоих примерах finish, без will.",
-        "uk": "Sprinkler — розбризкувач для поливу. The sprinkler is on — розбризкувач увімкнений. Showerhead — душова лійка. The showerhead is dripping — із душової лійки крапає вода. Ви називаєте предмети, а не пояснюєте ремонт. Could you turn it off? — можеш це вимкнути? Для звички: I turn off the tap when I finish — я закриваю кран, коли закінчую. Для майбутньої обіцянки: I will help when I finish — я допоможу, коли закінчу. Після when в обох прикладах finish, без will."
+        "ru": "Друг просит помочь во дворе, но вы ещё заканчиваете своё дело. Пообещайте: I will help when I finish — я помогу, когда закончу. Собираем: I + will help + when I finish — кто, что сделает, когда. Will help выражает будущее обещание. После when, указывающего время помощи, используем finish без will. С I к finish не добавляем -es.",
+        "uk": "Друг просить допомогти у дворі, але ви ще закінчуєте свою справу. Пообіцяйте: I will help when I finish — я допоможу, коли закінчу. Складаємо: I + will help + when I finish — хто, що зробить, коли. Will help виражає майбутню обіцянку. Після when, яке вказує час допомоги, використовуємо finish без will. З I до finish не додаємо -es."
       },
       "question": {
         "interactionId": "en:lesson-26:session-43:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Найти вещи снаружи",
-        "uk": "Знайти речі надворі"
+        "ru": "Если стулья сухие",
+        "uk": "Якщо стільці сухі"
       },
       "bodyByLocale": {
-        "ru": "Backyard — задний двор. The chairs are in the backyard — стулья на заднем дворе. Greenhouse — теплица. The pots are in the greenhouse — горшки в теплице. Вы хотите сесть снаружи: If the chairs are dry, we can sit outside — если стулья сухие, мы можем посидеть снаружи. Можно поставить условие в конец: We can sit outside if the chairs are dry. Это тот же план. Спросить о сделанном деле: Have you watered the plants yet? — ты уже полил растения?",
-        "uk": "Backyard — заднє подвір’я. The chairs are in the backyard — стільці на задньому подвір’ї. Greenhouse — теплиця. The pots are in the greenhouse — горщики в теплиці. Ви хочете сісти надворі: If the chairs are dry, we can sit outside — якщо стільці сухі, ми можемо посидіти надворі. Можна поставити умову в кінець: We can sit outside if the chairs are dry. Це той самий план. Запитати про зроблену справу: Have you watered the plants yet? — ти вже полив рослини?"
+        "ru": "После дождя вы хотите посидеть во дворе. Предложите: We can sit outside if the chairs are dry — мы можем посидеть снаружи, если стулья сухие. Собираем: We + can sit + outside + if the chairs are dry — кто, что может сделать, где, при каком условии. После can нужна sit без to. В условии после if используем настоящее are без will; chairs — множественное число.",
+        "uk": "Після дощу ви хочете посидіти у дворі. Запропонуйте: We can sit outside if the chairs are dry — ми можемо посидіти надворі, якщо стільці сухі. Складаємо: We + can sit + outside + if the chairs are dry — хто, що може зробити, де, за якої умови. Після can потрібна sit без to. В умові після if використовуємо теперішню форму are без will; chairs — множина."
       },
       "question": {
         "interactionId": "en:lesson-26:session-43:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Закончить дела до дождя",
-        "uk": "Закінчити справи до дощу"
+        "ru": "Убрали инструменты до дождя",
+        "uk": "Прибрали інструменти до дощу"
       },
       "bodyByLocale": {
-        "ru": "I have already watered them — я уже их полил. I have just put the hose away — я только что убрал шланг. Already и just говорят о результате сейчас. О вчерашней работе: We had put the tools away by the time it started raining — мы убрали инструменты к тому времени, как начался дождь. Had put обозначает более раннее действие. Сегодня можно изменить план: We will have tea outside unless it rains — мы выпьем чай снаружи, если не пойдёт дождь. Unless задаёт исключение из плана.",
-        "uk": "I have already watered them — я вже їх полив. I have just put the hose away — я щойно прибрав шланг. Already і just говорять про результат зараз. Про вчорашню роботу: We had put the tools away by the time it started raining — ми прибрали інструменти до того часу, як почався дощ. Had put позначає ранішу дію. Сьогодні можна змінити план: We will have tea outside unless it rains — ми вип’ємо чай надворі, якщо не піде дощ. Unless задає виняток із плану."
+        "ru": "Вчера вы закончили работу во дворе до начала дождя. Расскажите: We had put the tools away by the time it started raining — мы убрали инструменты к тому времени, как начался дождь. Собираем: We + had put + the tools + away + by the time it started raining. Put the tools away означает убрать инструменты на место. Had put отмечает действие раньше начала дождя. После had нужна третья форма put, не putting.",
+        "uk": "Учора ви закінчили роботу у дворі до початку дощу. Розкажіть: We had put the tools away by the time it started raining — ми прибрали інструменти до того часу, як почався дощ. Складаємо: We + had put + the tools + away + by the time it started raining. Put the tools away означає прибрати інструменти на місце. Had put позначає дію раніше за початок дощу. Після had потрібна третя форма put, не putting."
       },
       "question": {
         "interactionId": "en:lesson-26:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "108467d2f5fc16abdf7b6313eb05c72db95cec5ef5e044de80c14ed0d879428b"
+  "introFingerprint": "cbe63226d22807c3a0c4634e9803ee5bf72eb63f77c331a7c74a0e9522b0c826"
 }

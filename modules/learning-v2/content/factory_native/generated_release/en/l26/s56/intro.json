@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Найти поворот",
-        "uk": "Знайти поворот"
+        "ru": "Позвонить у моста",
+        "uk": "Зателефонувати біля мосту"
       },
       "bodyByLocale": {
-        "ru": "Crossroads — перекрёсток, место пересечения дорог. Turn left at the crossroads — поверни налево на перекрёстке. Окончание -s сохраняется и когда речь об одном перекрёстке: a crossroads. Overpass — мост или путепровод над другой дорогой либо железнодорожными путями. We will pass under the overpass — мы пройдём под путепроводом. Вы уточняете маршрут: Is it far from here? — это далеко отсюда? I will call you when I reach the bridge — я позвоню тебе, когда дойду до моста. После when здесь reach без will.",
-        "uk": "Crossroads — перехрестя, місце перетину доріг. Turn left at the crossroads — поверни ліворуч на перехресті. Закінчення -s зберігається й коли йдеться про одне перехрестя: a crossroads. Overpass — міст або шляхопровід над іншою дорогою чи залізничними коліями. We will pass under the overpass — ми пройдемо під шляхопроводом. Ви уточнюєте маршрут: Is it far from here? — це далеко звідси? I will call you when I reach the bridge — я зателефоную тобі, коли дістануся мосту. Після when тут reach без will."
+        "ru": "Вы идёте к месту встречи и договариваетесь с подругой: I will call you when I reach the bridge — я позвоню тебе, когда дойду до моста. Собираем: I + will call + you + when I reach the bridge — кто, что сделает, кому, когда. В обещании используем will call. Часть с when указывает время будущего звонка, но в ней нужна настоящая форма reach без will. После I к reach не добавляем -s.",
+        "uk": "Ви йдете до місця зустрічі й домовляєтеся з подругою: I will call you when I reach the bridge — я зателефоную тобі, коли дійду до мосту. Складаємо: I + will call + you + when I reach the bridge — хто, що зробить, кому, коли. В обіцянці використовуємо will call. Частина з when указує час майбутнього дзвінка, але в ній потрібна теперішня форма reach без will. Після I до reach не додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-56:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пешеходный проход",
-        "uk": "Пішохідний прохід"
+        "ru": "Если проход закрыт",
+        "uk": "Якщо прохід закритий"
       },
       "bodyByLocale": {
-        "ru": "Walkway — проход или дорожка для пешеходов. The walkway is closed — пешеходный проход закрыт. Слово не означает обязательно мост: дорожка может быть на земле или над ней. Если закрыто, нужен другой путь: If it is closed, use the other entrance — если закрыто, воспользуйся другим входом. Можно поставить условие в конец: Use the other entrance if it is closed. Have you found it yet? — ты уже его нашёл? I have just found it — я только что его нашёл. Речь здесь о другом входе.",
-        "uk": "Walkway — прохід або доріжка для пішоходів. The walkway is closed — пішохідний прохід закритий. Слово не означає обов’язково міст: доріжка може бути на землі або над нею. Якщо закрито, потрібен інший шлях: If it is closed, use the other entrance — якщо закрито, скористайся іншим входом. Можна поставити умову в кінець: Use the other entrance if it is closed. Have you found it yet? — ти вже його знайшов? I have just found it — я щойно його знайшов. Тут ідеться про інший вхід."
+        "ru": "Друг собирается пройти через знакомый проход, но вы не знаете, открыт ли он. Посоветуйте: Use the other entrance if it is closed — воспользуйся другим входом, если он закрыт. It здесь заменяет ранее обсуждаемый проход. Собираем: Use + the other entrance + if it is closed — что сделать, какой вход использовать, при каком условии. Use без подлежащего выражает совет. If означает если; с it используем is.",
+        "uk": "Друг збирається пройти через знайомий прохід, але ви не знаєте, чи він відкритий. Порадьте: Use the other entrance if it is closed — скористайся іншим входом, якщо він закритий. It тут замінює раніше обговорюваний прохід. Складаємо: Use + the other entrance + if it is closed — що зробити, який вхід використати, за якої умови. Use без підмета виражає пораду. If означає якщо; з it використовуємо is."
       },
       "question": {
         "interactionId": "en:lesson-26:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Встреча у реки",
-        "uk": "Зустріч біля річки"
+        "ru": "Она пришла до звонка",
+        "uk": "Вона прийшла до дзвінка"
       },
       "bodyByLocale": {
-        "ru": "Riverbank — берег реки. I am waiting on the riverbank — я жду на берегу реки. Это место рядом с водой, а не отделение банка: наличные здесь разве что у уток, и то вряд ли. Which side are you on? — на какой ты стороне? I have already crossed the bridge — я уже перешёл мост. О вчерашней встрече: She had arrived by the time I called — она пришла к тому времени, как я позвонил. Had arrived показывает более раннее действие. We will walk by the river unless it rains — мы погуляем у реки, если не пойдёт дождь.",
-        "uk": "Riverbank — берег річки. I am waiting on the riverbank — я чекаю на березі річки. Це місце біля води, а не відділення банку: готівка тут хіба що в качок, та й то навряд. Which side are you on? — на якому ти боці? I have already crossed the bridge — я вже перейшов міст. Про вчорашню зустріч: She had arrived by the time I called — вона прийшла до того часу, як я зателефонував. Had arrived показує ранішу дію. We will walk by the river unless it rains — ми погуляємо біля річки, якщо не піде дощ."
+        "ru": "Вы вспоминаете вчерашнюю встречу: когда вы позвонили подруге, она уже была на месте. Скажите: She had arrived by the time I called — она пришла к тому времени, как я позвонил. Собираем: She + had arrived + by the time I called — кто, что сделал раньше, к какому моменту в прошлом. Had arrived показывает более ранний приход; called — последующий звонок. После had нужна arrived: к arrive добавляем -d.",
+        "uk": "Ви згадуєте вчорашню зустріч: коли ви зателефонували подрузі, вона вже була на місці. Скажіть: She had arrived by the time I called — вона прийшла до того часу, як я зателефонував. Складаємо: She + had arrived + by the time I called — хто, що зробив раніше, до якого моменту в минулому. Had arrived показує раніший прихід; called — подальший дзвінок. Після had потрібна arrived: до arrive додаємо -d."
       },
       "question": {
         "interactionId": "en:lesson-26:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1ffbb759cd43562190aa31b212e39b72f256b43c6ea7ecbe9918fad2c711d74b"
+  "introFingerprint": "61bb942f4be12cf3bb82b340c88c7bcd38d9fe2758f823cae28077d0884f7c7d"
 }

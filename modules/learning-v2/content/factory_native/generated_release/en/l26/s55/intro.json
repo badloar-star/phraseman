@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сказать о привязанности",
-        "uk": "Сказати про прихильність"
+        "ru": "Позвонить после возвращения домой",
+        "uk": "Зателефонувати після повернення додому"
       },
       "bodyByLocale": {
-        "ru": "Adore — обожать, очень любить. I adore my little nephew — я обожаю своего маленького племянника. Это сильнее обычного like. Console — утешать человека, который расстроен. I want to console her — я хочу её утешить. Не обязательно сразу давать совет: можно предложить выслушать. Do you want to talk? — хочешь поговорить? I will call you when I get home — я позвоню тебе, когда доберусь домой. После when здесь get без will.",
-        "uk": "Adore — обожнювати, дуже любити. I adore my little nephew — я обожнюю свого маленького племінника. Це сильніше за звичайне like. Console — утішати людину, яка засмучена. I want to console her — я хочу її втішити. Не обов’язково відразу давати пораду: можна запропонувати вислухати. Do you want to talk? — хочеш поговорити? I will call you when I get home — я зателефоную тобі, коли дістануся додому. Після when тут get без will."
+        "ru": "Подруга хочет поговорить, а вы ещё в дороге. Пообещайте: I will call you when I get home — я позвоню тебе, когда доберусь домой. Собираем: I + will call + you + when I get home — кто, что сделает, кому, когда. Will call выражает обещание о будущем. После when, которое указывает время звонка, нужна get без will и без -s: подлежащее этой части — I.",
+        "uk": "Подруга хоче поговорити, а ви ще в дорозі. Пообіцяйте: I will call you when I get home — я зателефоную тобі, коли дістануся додому. Складаємо: I + will call + you + when I get home — хто, що зробить, кому, коли. Will call виражає обіцянку про майбутнє. Після when, яке вказує час дзвінка, потрібна get без will і без -s: підмет цієї частини — I."
       },
       "question": {
         "interactionId": "en:lesson-26:session-55:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Успокоить ребёнка",
-        "uk": "Заспокоїти дитину"
+        "ru": "Дать ребёнку отдохнуть",
+        "uk": "Дати дитині відпочити"
       },
       "bodyByLocale": {
-        "ru": "Soothe — успокаивать, смягчать беспокойство. I sing to soothe the baby — я пою, чтобы успокоить малыша. Так можно описать действие человека, не обещая, что ребёнок обязательно заснёт. Он, возможно, просто ждёт второй куплет. Have you fed him yet? — ты уже его покормил? I have just fed him — я только что его покормил. После have форма fed, не feed. Если ребёнок устал: If he is tired, let him rest — если он устал, дай ему отдохнуть. Можно переставить условие: Let him rest if he is tired.",
-        "uk": "Soothe — заспокоювати, пом’якшувати неспокій. I sing to soothe the baby — я співаю, щоб заспокоїти малюка. Так можна описати дію людини, не обіцяючи, що дитина обов’язково засне. Він, можливо, просто чекає на другий куплет. Have you fed him yet? — ти вже його нагодував? I have just fed him — я щойно його нагодував. Після have форма fed, не feed. Якщо дитина втомилася: If he is tired, let him rest — якщо він утомився, дай йому відпочити. Можна переставити умову: Let him rest if he is tired."
+        "ru": "Вы обсуждаете с близким, нужно ли сейчас занимать ребёнка игрой. Скажите: Let him rest if he is tired — дай ему отдохнуть, если он устал. Собираем: Let + him + rest + if he is tired — дай, кому, что сделать, при каком условии. После let называем человека, затем ставим rest без to. If задаёт условие; с he используем is.",
+        "uk": "Ви обговорюєте з близькою людиною, чи потрібно зараз займати дитину грою. Скажіть: Let him rest if he is tired — дай йому відпочити, якщо він утомився. Складаємо: Let + him + rest + if he is tired — дай, кому, що зробити, за якої умови. Після let називаємо людину, потім ставимо rest без to. If задає умову; з he використовуємо is."
       },
       "question": {
         "interactionId": "en:lesson-26:session-55:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не одобрять, но говорить спокойно",
-        "uk": "Не схвалювати, але говорити спокійно"
+        "ru": "Обсудили до её прихода",
+        "uk": "Обговорили до її приходу"
       },
       "bodyByLocale": {
-        "ru": "Disapprove — не одобрять. I disapprove of that idea — я не одобряю эту идею. Перед предметом неодобрения ставим of. Это не означает запретить: вы выражаете отношение. Можно спросить Why do you think so? — почему ты так думаешь? I have already explained it — я уже это объяснил. О вчерашнем споре: We had talked it through by the time she arrived — мы всё обсудили к тому времени, как она пришла. Had talked показывает более раннее действие.",
-        "uk": "Disapprove — не схвалювати. I disapprove of that idea — я не схвалюю цю ідею. Перед предметом несхвалення ставимо of. Це не означає заборонити: ви висловлюєте ставлення. Можна запитати Why do you think so? — чому ти так думаєш? I have already explained it — я вже це пояснив. Про вчорашню суперечку: We had talked it through by the time she arrived — ми все обговорили до того часу, як вона прийшла. Had talked показує ранішу дію."
+        "ru": "Вчера вы с другом обсудили вопрос, а подруга пришла позже. Объясните: We had talked it through by the time she arrived — мы всё обсудили к тому времени, как она пришла. Собираем: We + had talked + it + through + by the time she arrived. Talk it through означает подробно обсудить вопрос; it стоит между talked и through. Had talked показывает, что обсуждение закончилось раньше её прихода. После had нужна talked с -ed.",
+        "uk": "Учора ви з другом обговорили питання, а подруга прийшла пізніше. Поясніть: We had talked it through by the time she arrived — ми все обговорили до того часу, як вона прийшла. Складаємо: We + had talked + it + through + by the time she arrived. Talk it through означає докладно обговорити питання; it стоїть між talked та through. Had talked показує, що обговорення закінчилося раніше за її прихід. Після had потрібна talked із -ed."
       },
       "question": {
         "interactionId": "en:lesson-26:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ba8b76d35dfc06b265f547016e99ea63bdbf996b6fefa630c744fd2215b2851a"
+  "introFingerprint": "0738b6027491f7ea7f17fbe25cf7e52e5086087875c5dc5208088c55168131b2"
 }

@@ -4689,7 +4689,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 55,
-    sourceFingerprint: "8c447a2d14e70cd7d9ec9eb51975fcda1099f0384a71f6ad6ee893cb847fb1cc",
+    sourceFingerprint: "c0530a0cefe58d3b7d38a16d64f68b6ab5577da444d19e45f8525b197ddd698e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Друг объясняет, кем работает соседка. Скажите о ней: «Она художница».","Друг спрашивает, что рисует художник у фонтана. Скажите: «Этот художник рисует портреты».","Вы нашли набросок на столе. Спросите у людей рядом: «Чей это набросок?»"],"uk":["Друг пояснює, ким працює сусідка. Скажіть про неї: «Вона художниця».","Друг питає, що малює художник біля фонтану. Скажіть: «Цей художник малює портрети».","Ви знайшли начерк на столі. Спитайте в людей поруч: «Чий це начерк?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед гласным звуком нужно an, а не a.","После she нужно is, а не are."],["Художник один: нужно paints, с s.","Здесь действие: artist paints, без is."],["О владельце спрашиваем Whose, а не Who.","Набросок один: нужно is this."]],"uk":[["Перед голосним звуком потрібно an, а не a.","Після she потрібно is, а не are."],["Художник один: потрібно paints, з s.","Тут дія: artist paints, без is."],["Про власника питаємо Whose, а не Who.","Начерк один: потрібно is this."]]}),
@@ -4703,7 +4703,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 56,
-    sourceFingerprint: "5a61fc25387785a5200c3f2af0db568799ca57efa22858765c17497fef6815ea",
+    sourceFingerprint: "2044054e9fd4d96b07488c22e4f217679b6a7f7688d08689de653e9eae6ff838",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Сосед спрашивает, кто печёт хлеб. Скажите: «Он пекарь».","Сосед спрашивает, где починить форму. Скажите: «Портной ремонтирует форму».","Вы нашли трость в холле. Спросите у людей рядом: «Чья это трость?»"],"uk":["Сусід питає, хто пече хліб. Скажіть: «Він пекар».","Сусід питає, де полагодити форму. Скажіть: «Кравець ремонтує форму».","Ви знайшли ціпок у холі. Спитайте в людей поруч: «Чий це ціпок?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед названием профессии нужно a: He is a baker.","После he нужно is, а не are."],["Портной один: нужно repairs, с s.","Здесь действие: tailor repairs, без is."],["О владельце спрашиваем Whose, а не Who.","Трость одна: нужно is this."]],"uk":[["Перед назвою професії потрібно a: He is a baker.","Після he потрібно is, а не are."],["Кравець один: потрібно repairs, з s.","Тут дія: tailor repairs, без is."],["Про власника питаємо Whose, а не Who.","Ціпок один: потрібно is this."]]}),
@@ -4787,7 +4787,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 6,
-    sourceFingerprint: "e7e263db11b0383407e6da55b6837500c7e61c9fb637f1a6f5f51e9b5df93a16",
+    sourceFingerprint: "f7b12fa8374c4ef3ff7c50b4a551a0491da4bc80f36339ab9bf98dbe98a3c2fc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Незнакомый мастер стоит у двери с сумкой. Спросите его: «Вы сантехник?»","Сосед хвалит мастеров из соседнего подъезда. Спросите: «Они чинят лампы?»","Мастер просит плоскогубцы, а в сумке их нет. Скажите ему: «Здесь нет плоскогубцев»."],"uk":["Незнайомий майстер стоїть біля дверей із сумкою. Спитайте його: «Ви сантехнік?»","Сусід хвалить майстрів із сусіднього під’їзду. Спитайте: «Вони лагодять лампи?»","Майстер просить плоскогубці, а в сумці їх немає. Скажіть йому: «Тут немає плоскогубців»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Спрашиваем, кто человек, поэтому нужно Are you, без Do.","Здесь называем одного специалиста: a plumber, an electrician. В этом вопросе нужно a plumber."],["Здесь действие fix, поэтому нужно Do they fix, без Are.","После Do they слово fix остаётся без изменений."],["С pliers нужно are, как с glasses.","Чтобы сказать, что плоскогубцев нет, здесь используем no pliers."]],"uk":[["Питаємо, хто людина, тому потрібно Are you, без Do.","Тут називаємо одного фахівця: a plumber, an electrician. У цьому питанні потрібно a plumber."],["Тут дія fix, тому потрібно Do they fix, без Are.","Після Do they слово fix лишається без змін."],["З pliers потрібно are, як із glasses.","Щоб сказати, що плоскогубців немає, тут використовуємо no pliers."]]}),
@@ -4815,7 +4815,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 8,
-    sourceFingerprint: "3627e6f858db16926ce43d8c4165be05602e273c6837223dae644a88e5d14f0c",
+    sourceFingerprint: "bfc4220a188d0cdbe9f6a77f672e74c6470f520e8a9311f71300342cdcdf8df5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Сосед выходит из библиотеки с книгами. Спросите его: «Вы берёте книги на время?»","Друг предупреждает о билетах. Спросите его: «Здесь проверяют билеты?»","Сосед удивляется открытым воротам. Скажите ему: «У ворот нет охранника»."],"uk":["Сусід виходить із бібліотеки з книжками. Спитайте його: «Ви берете книжки на деякий час?»","Друг попереджає про квитки. Спитайте його: «Тут перевіряють квитки?»","Сусід дивується відчиненим воротам. Скажіть йому: «Біля воріт немає охоронця»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь действие borrow, поэтому нужно Do you borrow, без Are.","После Do you слово borrow остаётся без s."],["Здесь действие check, поэтому нужно Do they check, без Are.","После Do they слово check остаётся без s."],["Слово guard стоит в единственном числе: нужно There is no.","После not здесь не хватает a. В нашем ответе используем no guard."]],"uk":[["Тут дія borrow, тому потрібно Do you borrow, без Are.","Після Do you слово borrow лишається без s."],["Тут дія check, тому потрібно Do they check, без Are.","Після Do they слово check лишається без s."],["Слово guard стоїть в однині: потрібно There is no.","Після not тут бракує a. У нашій відповіді використовуємо no guard."]]}),
@@ -4829,7 +4829,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 9,
-    sourceFingerprint: "ea878f4f3ebcd96b4155786eb0719dedaeb7e4e482a88fa00c3a140a2b3750a0",
+    sourceFingerprint: "a17850e6a6ac9040af55774b202ea0381aefc3fe3d5e400c0671c674c6ce8feb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вы у входа в салон. Спросите прохожего: «Парикмахер работает здесь?»","Соседка говорит про почтальона. Спросите у неё: «Почтальон оставляет посылки здесь?»","Соседка советует ветеринара. Спросите у неё: «Ветеринар начинает рано?»"],"uk":["Ви біля входу в салон. Спитайте перехожого: «Перукар працює тут?»","Сусідка розповідає про листоношу. Спитайте в неї: «Листоноша залишає посилки тут?»","Сусідка радить ветеринара. Спитайте в неї: «Ветеринар починає рано?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Парикмахер один: нужно Does.","После Does нужно work, без s."],["Почтальон один: нужно Does.","После Does нужно leave, без s."],["С действием start нужен вопрос с Does, а не с Is.","После Does нужно start, без s."]],"uk":[["Перукар один: потрібно Does.","Після Does потрібно work, без s."],["Листоноша один: потрібно Does.","Після Does потрібно leave, без s."],["З дією start потрібне запитання з Does, а не з Is.","Після Does потрібно start, без s."]]}),

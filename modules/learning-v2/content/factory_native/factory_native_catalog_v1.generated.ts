@@ -2347,14 +2347,14 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 55,
-    sourceFingerprint: "8c447a2d14e70cd7d9ec9eb51975fcda1099f0384a71f6ad6ee893cb847fb1cc",
+    sourceFingerprint: "c0530a0cefe58d3b7d38a16d64f68b6ab5577da444d19e45f8525b197ddd698e",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать профессию художника, рассказать о его работе и найти владельца вещи","uk":"назвати професію художника, розповісти про його роботу і знайти власника речі"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 6","uk":"Англійська · Урок 6"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 6, sessionOrdinal: 56,
-    sourceFingerprint: "5a61fc25387785a5200c3f2af0db568799ca57efa22858765c17497fef6815ea",
+    sourceFingerprint: "2044054e9fd4d96b07488c22e4f217679b6a7f7688d08689de653e9eae6ff838",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно рассказать о работе людей и спросить о владельце вещи","uk":"самостійно розповісти про роботу людей і спитати про власника речі"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 6","uk":"Англійська · Урок 6"}),
@@ -2396,7 +2396,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 6,
-    sourceFingerprint: "e7e263db11b0383407e6da55b6837500c7e61c9fb637f1a6f5f51e9b5df93a16",
+    sourceFingerprint: "f7b12fa8374c4ef3ff7c50b4a551a0491da4bc80f36339ab9bf98dbe98a3c2fc",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различать вопрос о человеке и вопрос о его действиях и сказать, что инструмента нет","uk":"розрізняти питання про людину й питання про її дії та сказати, що інструмента немає"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 7","uk":"Англійська · Урок 7"}),
@@ -2410,14 +2410,14 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 8,
-    sourceFingerprint: "3627e6f858db16926ce43d8c4165be05602e273c6837223dae644a88e5d14f0c",
+    sourceFingerprint: "bfc4220a188d0cdbe9f6a77f672e74c6470f520e8a9311f71300342cdcdf8df5",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задавать вопросы с Do о людях и местах района и сказать, что человека нет","uk":"ставити питання з Do про людей і місця району та сказати, що людини немає"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 7","uk":"Англійська · Урок 7"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 9,
-    sourceFingerprint: "ea878f4f3ebcd96b4155786eb0719dedaeb7e4e482a88fa00c3a140a2b3750a0",
+    sourceFingerprint: "a17850e6a6ac9040af55774b202ea0381aefc3fe3d5e400c0671c674c6ce8feb",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о действии одного человека с помощью Does","uk":"запитати про дію однієї людини за допомогою Does"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 7","uk":"Англійська · Урок 7"}),

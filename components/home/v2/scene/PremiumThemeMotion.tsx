@@ -76,9 +76,13 @@ function useStormPlateData(themeId: LiquidGlassThemeId): string | null {
     if (!source) return () => { alive = false; };
     new File(source).base64().then((base64) => {
       if (alive) setData(`data:image/webp;base64,${base64}`);
-    }).catch(() => { if (alive) setData(null); });
+    }).catch((error: unknown) => {
+      // зачем (координатор 24.10): плита движения не прочиталась — тема показывается без неё, как раньше, но причина больше не теряется
+      console.warn('[PREMIUM-THEME-MOTION] plate read failed', JSON.stringify({ themeId, alive, message: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
+      if (alive) setData(null);
+    });
     return () => { alive = false; };
-  }, [source]);
+  }, [source, themeId]);
   return data;
 }
 

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Малярный валик",
-        "uk": "Малярний валик"
+        "ru": "Выбрать валик для стены",
+        "uk": "Вибрати валик для стіни"
       },
       "bodyByLocale": {
-        "ru": "Paint roller — малярный валик. I am going to use a paint roller. — Я собираюсь пользоваться малярным валиком. Выберите план с going to.",
-        "uk": "Paint roller — малярний валик. I am going to use a paint roller. — Я збираюся користуватися малярним валиком. Виберіть план із going to."
+        "ru": "Вы решили красить стену валиком. Paint roller — малярный валик. О принятом решении скажите через I am going to: «я собираюсь». Добавьте действие use и инструмент a paint roller. I am going to use a paint roller. — Я собираюсь пользоваться малярным валиком. Между going и use обязательно стоит to.",
+        "uk": "Ви вирішили фарбувати стіну валиком. Paint roller — малярний валик. Про ухвалене рішення скажіть через I am going to: «я збираюся». Додайте дію use та інструмент a paint roller. I am going to use a paint roller. — Я збираюся користуватися малярним валиком. Між going і use обов’язково стоїть to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-04:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Лоток и защитное полотнище",
-        "uk": "Лоток і захисне полотнище"
+        "ru": "Защитить мебель",
+        "uk": "Захистити меблі"
       },
       "bodyByLocale": {
-        "ru": "Paint tray — лоток для краски; dust sheet — полотнище, которым накрывают пол или мебель во время ремонта. She is going to buy a dust sheet. — Она собирается купить защитное полотнище. Выберите полотнище.",
-        "uk": "Paint tray — лоток для фарби; dust sheet — полотнище, яким накривають підлогу або меблі під час ремонту. She is going to buy a dust sheet. — Вона збирається купити захисне полотнище. Виберіть полотнище."
+        "ru": "Ваша сестра решила купить полотнище, чтобы накрыть мебель перед покраской. Dust sheet — защитное полотнище для ремонта. О её намерении начните с She is going to, затем поставьте buy и назовите покупку: a dust sheet. She is going to buy a dust sheet. — Она собирается купить защитное полотнище. С she используйте is.",
+        "uk": "Ваша сестра вирішила купити полотнище, щоб накрити меблі перед фарбуванням. Dust sheet — захисне полотнище для ремонту. Про її намір почніть із She is going to, потім поставте buy і назвіть покупку: a dust sheet. She is going to buy a dust sheet. — Вона збирається купити захисне полотнище. Із she використовуйте is."
       },
       "question": {
         "interactionId": "en:lesson-15:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подготовительный слой краски",
-        "uk": "Підготовчий шар фарби"
+        "ru": "Нанести первый слой",
+        "uk": "Нанести перший шар"
       },
       "bodyByLocale": {
-        "ru": "Undercoat — подготовительный слой краски под окончательным цветом. We are going to apply an undercoat. — Мы собираемся нанести подготовительный слой краски. Apply здесь значит «нанести».",
-        "uk": "Undercoat — підготовчий шар фарби під остаточним кольором. We are going to apply an undercoat. — Ми збираємося нанести підготовчий шар фарби. Apply тут означає «нанести»."
+        "ru": "Вы с братом решили сначала нанести подготовительный слой краски на стену. Undercoat — подготовительный слой краски. Начните общее намерение с We are going to, затем добавьте apply — «нанести» — и an undercoat. We are going to apply an undercoat. — Мы собираемся нанести подготовительный слой краски. После going to нужна начальная форма apply, без -ing.",
+        "uk": "Ви з братом вирішили спочатку нанести підготовчий шар фарби на стіну. Undercoat — підготовчий шар фарби. Почніть спільний намір із We are going to, потім додайте apply — «нанести» — та an undercoat. We are going to apply an undercoat. — Ми збираємося нанести підготовчий шар фарби. Після going to потрібна початкова форма apply, без -ing."
       },
       "question": {
         "interactionId": "en:lesson-15:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ded6244245a46f499978f720de345f3197cc1acafd2652a67772669055684a4e"
+  "introFingerprint": "cc87f41d8d8132e44366f9735ad14359102695a79a80d2e1528760e4a2e6c8e4"
 }

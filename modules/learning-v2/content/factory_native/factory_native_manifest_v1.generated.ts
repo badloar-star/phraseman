@@ -11017,7 +11017,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 3,
-    sourceFingerprint: "ca0d72e36762878c214c372265ffeab4fb0e0de43a2715a33aa9d174b2678ddc",
+    sourceFingerprint: "b53b91d01bd0743bc7b3398ef6adcc01cc49ceba1b38d1d552cd9605452c4394",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После going to нужна repot.","С I нужна am."],["Fertilise — удобрить, а не укрыть почву.","С she нужна is."],["С we нужна are.","После going to нужна compost."]],"uk":[["Після going to потрібна repot.","З I потрібна am."],["Fertilise — удобрити, а не вкрити ґрунт.","З she потрібна is."],["З we потрібна are.","Після going to потрібна compost."]]}),
@@ -11031,7 +11031,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 4,
-    sourceFingerprint: "781ab8341589d6ac4c86ffe601942016f1203e0609ffe480f0b9e5567792da77",
+    sourceFingerprint: "28f2a98f13a24704082b5288de16b9508036a4736b7962109740b06ee3d7392f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После going нужна to.","С I нужна am."],["Paint tray — лоток для краски.","С she нужна is."],["С we нужна are.","После going to нужна apply."]],"uk":[["Після going потрібна to.","З I потрібна am."],["Paint tray — лоток для фарби.","З she потрібна is."],["З we потрібна are.","Після going to потрібна apply."]]}),
@@ -11045,7 +11045,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 5,
-    sourceFingerprint: "3b4e6a9325e928343dfc926ecb4c2d21dbdf6061e78dc1fdb08d0b8501dd91ea",
+    sourceFingerprint: "d4694a20e03857a72ebabca5c7f15638d668918a57752e4413f560de488d8d77",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После going нужна to.","С I нужна am."],["Это план забронировать отдых «всё включено», а не смежный номер.","С they нужна are."],["С we нужна are.","Chose — прошлое; после going to нужна choose."]],"uk":[["Після going потрібна to.","З I потрібна am."],["Це план забронювати відпочинок «усе включено», а не суміжний номер.","З they потрібна are."],["З we потрібна are.","Chose — минуле; після going to потрібна choose."]]}),

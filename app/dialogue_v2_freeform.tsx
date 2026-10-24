@@ -326,10 +326,18 @@ function DialogueV2FreeformContent() {
     } catch (error: unknown) {
       const current = isCurrentPending(pending);
       console.warn('[DIALOGUE-V2] freeform: turn → failed', { turnId: pending.turnId, current, message: error instanceof Error ? error.message : String(error) });
+      if (current && isFreeformConsentRequired(error)) {
+        // зачем (координатор 22.10): сервер не нашёл согласия на ИИ — снова окно согласия, а не плашка сбоя.
+        console.warn('[AI-CONSENT] freeform: turn → server requires consent, ask again', { turnId: pending.turnId });
+        askConsentAgain('freeform_turn');
+        return;
+      }
       if (current && isFreeformDailyCap(error)) {
         console.warn('[DIALOGUE-V2] freeform: turn → daily cap', { turnId: pending.turnId });
         setDailyCap(true);
       }
+      // зачем (координатор 24.10, «вечные •••»): что увидел человек после сбоя хода — плашка с «Повторить» (или «на сегодня всё»).
+      console.warn('[FREEFORM-HANG] turn:shown', JSON.stringify({ turnId: pending.turnId, current, shown: current ? (isFreeformDailyCap(error) ? 'daily_cap' : 'retry_bar') : 'nothing_contour_changed' }));
       if (current) setTurnFailed(true); // R52: плашка под лентой, лента и черновик на месте
     } finally {
       if (isCurrentPending(pending)) {
@@ -337,7 +345,7 @@ function DialogueV2FreeformContent() {
         startingRef.current = false;
       }
     }
-  }, [isCurrentPending]);
+  }, [askConsentAgain, isCurrentPending]);
 
   const sendRef = useRef<(queued: string | null) => Promise<void>>(async () => undefined);
   useEffect(() => {

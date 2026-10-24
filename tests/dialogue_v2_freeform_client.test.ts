@@ -33,6 +33,7 @@ describe('Dialogue V2 freeform callable client', () => {
     expect(mockHttpsCallable).toHaveBeenCalledWith(
       { region: 'us-central1' },
       'dialogueV2FreeformSessionStart',
+      { timeout: 22000 }, // потолок вызова (сервер + запас)
     );
     expect(mockCallableRun).toHaveBeenCalledWith({ studyTarget: 'de' });
   });
@@ -60,6 +61,7 @@ describe('Dialogue V2 freeform callable client', () => {
     expect(mockHttpsCallable).toHaveBeenCalledWith(
       { region: 'us-central1' },
       'dialogueV2FreeformSessionTurn',
+      { timeout: 32000 }, // потолок вызова (сервер + запас)
     );
     expect(mockCallableRun).toHaveBeenCalledWith(request);
   });

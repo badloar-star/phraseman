@@ -11,6 +11,13 @@ import {
 } from '../shared/dialogue_v2_freeform_session_contract';
 
 const FUNCTIONS_REGION = 'us-central1';
+/**
+ * Потолки вызовов: сервер — старт 20 с, ход 30 с (timeoutSeconds), плюс запас на сеть.
+ * зачем (координатор 24.10, «вечные •••»): без своего потолка клиент ждал нативные минуты; теперь по потолку вызов падает
+ * deadline-exceeded, экран гасит «•••» и показывает плашку с «Повторить».
+ */
+export const DIALOGUE_V2_FREEFORM_START_TIMEOUT_MS = 22_000;
+export const DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS = 32_000;
 const SESSION_ID_RE = /^d2fs_[A-Za-z0-9_-]{32,96}$/;
 const TURN_ID_RE = /^d2ft_[A-Za-z0-9_-]{16,80}$/;
 const UNSAFE_TEXT_RE = /[\u0000-\u0009\u000b-\u001f\u007f-\u009f]/u;
@@ -176,6 +183,7 @@ export async function startDialogueV2FreeformSession(
     const callable = httpsCallable<DialogueV2FreeformSessionStart, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformSessionStart',
+      { timeout: DIALOGUE_V2_FREEFORM_START_TIMEOUT_MS },
     );
     return validStartResponse((await callable(request)).data);
   } catch (error) {
@@ -209,13 +217,23 @@ export async function sendDialogueV2FreeformTurn(
     return { ok: true, assistantMessage: 'Sure! Ask me anything about it. (dev)', sessionId: request.sessionId, expiresAtMs: Date.now() + 3_600_000 };
   }
   const startedAt = Date.now();
+  console.log('[FREEFORM-HANG] turn:send', JSON.stringify({ turnId: request.turnId, studyTarget: request.studyTarget, length: request.userMessage.length, timeoutMs: DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS }));
   try {
     const callable = httpsCallable<DialogueV2FreeformSessionTurn, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformSessionTurn',
+      { timeout: DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS },
     );
-    return validTurnResponse((await callable(request)).data, request);
+    const response = validTurnResponse((await callable(request)).data, request);
+    console.log('[FREEFORM-HANG] turn:response', JSON.stringify({ turnId: request.turnId, ms: Date.now() - startedAt, valid: response !== null }));
+    return response;
   } catch (error) {
+    const code = typeof (error as { code?: unknown })?.code === 'string' ? (error as { code: string }).code : 'unknown';
+    console.warn('[FREEFORM-HANG] turn:failed', JSON.stringify({
+      turnId: request.turnId, ms: Date.now() - startedAt, code,
+      timedOut: code.includes('deadline-exceeded') || Date.now() - startedAt >= DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS,
+      reason: (error instanceof Error ? error.message : String(error)).slice(0, 120),
+    }));
     logFreeformFailure('turn', startedAt, error);
     throw freeformFailure(error);
   }

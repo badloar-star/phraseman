@@ -3849,7 +3849,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 51,
-    sourceFingerprint: "3524c83adde25b817e8fedefce82fa5b6a754ca4f1cf8e3d43feba9083840c1b",
+    sourceFingerprint: "c0b9ebf4974825ecece825a391eb49361d2f1628d5b72e08a4df3a703fa0a550",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Сестра показывает на огромное здание за деревьями и спрашивает, что это. Скажите: «Это стадион».","Контролёр спрашивает, чей флаг на траве. Его принёс ваш двоюродный брат. Скажите: «Флаг моего двоюродного брата».","Сестра листает программку, которую вы отдали ей утром. Скажите: «Программа твоя»."],"uk":["Сестра показує на величезну будівлю за деревами й питає, що це. Скажіть: «Це стадіон».","Контролер питає, чий прапор на траві. Його приніс ваш двоюрідний брат. Скажіть: «Прапор мого двоюрідного брата».","Сестра гортає програмку, яку ви віддали їй зранку. Скажіть: «Програма твоя»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["school — школа, а перед вами стадион: нужно stadium.","Стадион один, поэтому нужно That is."],["После cousin нужно 's: my cousin's.","Перед cousin's нужно my: my cousin's."],["Без названия вещи нужно yours, а не your.","mine — моя, а вы отдали программу сестре: нужно yours."]],"uk":[["school — школа, а перед вами стадіон: потрібно stadium.","Стадіон один, тому потрібно That is."],["Після cousin потрібно 's: my cousin's.","Перед cousin's потрібно my: my cousin's."],["Без назви речі потрібно yours, а не your.","mine — моя, а ви віддали програму сестрі: потрібно yours."]]}),
@@ -3863,7 +3863,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 52,
-    sourceFingerprint: "0f7a1ddba7f5e1355b5e0900505f56b32743c52af4072b9cbd897d55b7cf2972",
+    sourceFingerprint: "7188d2a264766a1edee94a93867ad8592e95b97360247ce65c7776b06072c3bb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вы держите в руках синие ласты из общей сумки. Спросите брата, чьи они.","Соседка спрашивает, чьи нарукавники на песке. Их купили вы с сестрой. Скажите: «Нарукавники наши».","Спасатель спрашивает, чей круг у воды. Его принесла соседская семья. Скажите: «Круг их»."],"uk":["Ви тримаєте в руках сині ласти із спільної сумки. Спитайте брата, чиї вони.","Сусідка питає, чиї нарукавники на піску. Їх купили ви із сестрою. Скажіть: «Нарукавники наші».","Рятувальник питає, чиє коло біля води. Його принесла сусідська родина. Скажіть: «Коло їхнє»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Это «Где ласты?». О хозяине спрашиваем с whose.","Ласт две, поэтому нужно are these."],["Нарукавники два, поэтому нужно are.","Без названия вещи нужно ours, а не our."],["Без названия вещи нужно theirs, а не their.","ours — наш, а круг принесла соседская семья: нужно theirs."]],"uk":[["Це «Де ласти?». Про господаря питаємо з whose.","Ласт дві, тому потрібно are these."],["Нарукавники два, тому потрібно are.","Без назви речі потрібно ours, а не our."],["Без назви речі потрібно theirs, а не their.","ours — наш, а коло принесла сусідська родина: потрібно theirs."]]}),
@@ -3877,7 +3877,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 53,
-    sourceFingerprint: "7c37f2a5fdea926d73df5e99e33bfe3deb4c1c0728ad0aed58957252a05bb8b4",
+    sourceFingerprint: "2e8da21390b36bbc4fa25323fd32c0e2647f03fc8c222ce2c1e39e5f9575910a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Прохожий спрашивает, где можно поиграть в бадминтон. Корт за школой. Скажите: «Корт за школой».","Тренер раскладывает сетку у дальнего края площадки. Спросите друга, чья она.","Вы нашли волан в траве, рядом стоит друг. Спросите его: «Это твой волан?»"],"uk":["Перехожий питає, де можна пограти в бадмінтон. Корт за школою. Скажіть: «Корт за школою».","Тренер розкладає сітку біля дальнього краю майданчика. Спитайте друга, чия вона.","Ви знайшли волан у траві, поруч стоїть друг. Спитайте його: «Це твій волан?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед school нужно the: the school.","Корт один, поэтому нужно is."],["this — это про вещь рядом, а сетка лежит далеко: нужно that.","Это «Где сетка?». О хозяине спрашиваем с whose."],["В конце вопроса нужно yours, а не your.","Это утверждение, а вам нужен вопрос: is ставим перед this."]],"uk":[["Перед school потрібно the: the school.","Корт один, тому потрібно is."],["this — це про річ поруч, а сітка лежить далеко: потрібно that.","Це «Де сітка?». Про господаря питаємо з whose."],["Наприкінці питання потрібно yours, а не your.","Це ствердження, а вам потрібне питання: is ставимо перед this."]]}),

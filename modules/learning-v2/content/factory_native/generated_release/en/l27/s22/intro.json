@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "С блюдом что-то не так",
-        "uk": "Зі стравою щось не так"
+        "ru": "Попросить другое блюдо",
+        "uk": "Попросити іншу страву"
       },
       "bodyByLocale": {
-        "ru": "Overcooked — готовившийся слишком долго, переваренный или пережаренный. The vegetables are overcooked — овощи переварены. Undercooked — недостаточно приготовленный, недоваренный или недожаренный. This rice is undercooked — этот рис недоварен. Оба слова описывают приготовление, а не просто то, нравится ли вам вкус. Вы обращаетесь к официанту: Could I have something else? — можно мне что-нибудь другое? Официант предлагает суп: Would you like soup instead? — хотите вместо этого суп?",
-        "uk": "Overcooked — той, який готували надто довго, переварений або пересмажений. The vegetables are overcooked — овочі переварені. Undercooked — недостатньо приготований, недоварений або недосмажений. This rice is undercooked — цей рис недоварений. Обидва слова описують приготування, а не просто те, чи подобається вам смак. Ви звертаєтеся до офіціанта: Could I have something else? — можна мені щось інше? Офіціант пропонує суп: Would you like soup instead? — хочете замість цього суп?"
+        "ru": "В кафе вам принесли блюдо, которое вы не хотите есть. Вежливо попросите замену: Could I have something else? — можно мне что-нибудь другое? Could I начинает вежливую просьбу для себя. После could нужна начальная форма have без to. Собираем предложение: Could + I + have + something else? — вежливый вопрос, кто просит, получить, что именно. Had здесь не подходит: просьба не относится к прошлому.",
+        "uk": "У кафе вам принесли страву, яку ви не хочете їсти. Ввічливо попросіть заміну: Could I have something else? — можна мені щось інше? Could I починає ввічливе прохання для себе. Після could потрібна початкова форма have без to. Складаємо речення: Could + I + have + something else? — ввічливе запитання, хто просить, отримати, що саме. Had тут не підходить: прохання не стосується минулого."
       },
       "question": {
         "interactionId": "en:lesson-27:session-22:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Другой выбор",
-        "uk": "Інший вибір"
+        "ru": "Если бы были голодны",
+        "uk": "Якби були голодні"
       },
       "bodyByLocale": {
-        "ru": "Uneaten — несъеденный. Half of the sandwich is uneaten — половина сэндвича осталась несъеденной. Half of the sandwich здесь обозначает одну часть, поэтому is. Вам уже не хочется большого блюда: I would choose the soup if I were hungry — я бы выбрал суп, если бы был голоден. Это воображаемый выбор сейчас, а не заказ: would choose описывает результат, were — условие. Чтобы действительно заказать суп, достаточно I will have the soup — я возьму суп.",
-        "uk": "Uneaten — нез’їдений. Half of the sandwich is uneaten — половина сендвіча залишилася нез’їденою. Half of the sandwich тут позначає одну частину, тому is. Вам уже не хочеться великої страви: I would choose the soup if I were hungry — я б обрав суп, якби був голодний. Це уявний вибір зараз, а не замовлення: would choose описує результат, were — умову. Щоб справді замовити суп, достатньо I will have the soup — я візьму суп."
+        "ru": "Друг спрашивает, выбрали бы вы суп. Сейчас вы не голодны. Ответьте: I would choose the soup if I were hungry — я бы выбрал суп, если бы был голоден. Would choose — воображаемый выбор; if I were hungry — условие, которое сейчас не выполняется. Собираем предложение: I + would choose + the soup + if I were hungry — кто, что сделал бы, какое блюдо, при каком условии. После would нужна choose, а в условии — were без would.",
+        "uk": "Друг запитує, чи вибрали б ви суп. Зараз ви не голодні. Дайте відповідь: I would choose the soup if I were hungry — я б вибрав суп, якби був голодний. Would choose — уявний вибір; if I were hungry — умова, яка зараз не виконується. Складаємо речення: I + would choose + the soup + if I were hungry — хто, що зробив би, яку страву, за якої умови. Після would потрібна choose, а в умові — were без would."
       },
       "question": {
         "interactionId": "en:lesson-27:session-22:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Уточнить состав напитка",
-        "uk": "Уточнити склад напою"
+        "ru": "Когда сделали заказ",
+        "uk": "Коли зробили замовлення"
       },
       "bodyByLocale": {
-        "ru": "Caffeine — кофеин. Does this contain caffeine? — здесь есть кофеин? Вы уточняете состав напитка, а затем выбираете подходящий вам вариант. В вопросе после does стоит contain без -s. Заказ уже сделан: I have already ordered — я уже заказал. Но если называете время, скажите I ordered ten minutes ago — я заказал десять минут назад. Ten minutes ago относится к законченному времени, поэтому ordered без have. Напиток ещё не принесли: Could you check my order? — можете проверить мой заказ?",
-        "uk": "Caffeine — кофеїн. Does this contain caffeine? — тут є кофеїн? Ви уточнюєте склад напою, а потім обираєте варіант, який вам підходить. У запитанні після does стоїть contain без -s. Замовлення вже зроблено: I have already ordered — я вже замовив. Але якщо називаєте час, скажіть I ordered ten minutes ago — я замовив десять хвилин тому. Ten minutes ago стосується завершеного часу, тому ordered без have. Напій ще не принесли: Could you check my order? — можете перевірити моє замовлення?"
+        "ru": "Официант спрашивает, когда вы сделали заказ. Ответьте: I ordered ten minutes ago — я заказал десять минут назад. Ordered — прошедшая форма order с окончанием -ed. Ten minutes ago называет законченный момент, поэтому have не нужен. Собираем предложение: I + ordered + ten minutes ago — кто, действие в прошлом, когда.",
+        "uk": "Офіціант запитує, коли ви зробили замовлення. Дайте відповідь: I ordered ten minutes ago — я замовив десять хвилин тому. Ordered — минула форма order із закінченням -ed. Ten minutes ago називає завершений момент, тому have не потрібне. Складаємо речення: I + ordered + ten minutes ago — хто, дія в минулому, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b85b30c80cf03d3cc33e2d246213afa5f4b714c96f77b093f5662f303019e1bd"
+  "introFingerprint": "2ae0616c948c78d9505f7c8eb4f3d97439cc2fe03f0f7d12d18745edee7130b8"
 }

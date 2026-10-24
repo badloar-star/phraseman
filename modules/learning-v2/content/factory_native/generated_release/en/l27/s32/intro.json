@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Рассказать, что вас увлекает",
-        "uk": "Розповісти, що вас захоплює"
+        "ru": "Хотелось бы больше знать о месте",
+        "uk": "Хотілося б більше знати про місце"
       },
       "bodyByLocale": {
-        "ru": "Fascinate — очень интересовать, увлекать. Old photographs fascinate me — старые фотографии меня увлекают. Здесь фотографии вызывают интерес, а me называет того, кому интересно. Вы пришли на выставку и спрашиваете друга: What would you like to see first? — что ты хотел бы посмотреть сначала? I wish I knew more about this place — жаль, что я не знаю больше об этом месте. Knew после wish относится к знанию сейчас, а не к прошлому.",
-        "uk": "Fascinate — дуже цікавити, захоплювати. Old photographs fascinate me — старі фотографії мене захоплюють. Тут фотографії викликають інтерес, а me називає того, кому цікаво. Ви прийшли на виставку й запитуєте друга: What would you like to see first? — що ти хотів би подивитися спочатку? I wish I knew more about this place — шкода, що я не знаю більше про це місце. Knew після wish стосується знання зараз, а не минулого."
+        "ru": "Вы рассматриваете старые фотографии города на выставке и понимаете, что мало знаете об этом месте. Скажите: I wish I knew more about this place — жаль, что я не знаю больше об этом месте. Knew после wish описывает желаемое знание сейчас. About this place уточняет тему. Собираем предложение: I wish + I + knew + more + about this place — желание, кто, knew, сколько хотелось бы знать, о чём.",
+        "uk": "Ви розглядаєте старі фотографії міста на виставці й розумієте, що мало знаєте про це місце. Скажіть: I wish I knew more about this place — шкода, що я не знаю більше про це місце. Knew після wish описує бажане знання зараз. About this place уточнює тему. Складаємо речення: I wish + I + knew + more + about this place — бажання, хто, knew, скільки хотілося б знати, про що."
       },
       "question": {
         "interactionId": "en:lesson-27:session-32:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Очередь и задержка",
-        "uk": "Черга й затримка"
+        "ru": "Когда купили билеты",
+        "uk": "Коли купили квитки"
       },
       "bodyByLocale": {
-        "ru": "Discourage — обескураживать, отбивать охоту. The queue did not discourage us — очередь нас не отпугнула. После did not стоит discourage без окончания. Frustrate — раздражать или огорчать, мешая сделать желаемое. Small delays can frustrate me — небольшие задержки могут меня раздражать. Вы описываете свою реакцию, а не обвиняете собеседника. Билеты уже куплены: I have already bought the tickets. I bought them yesterday — я купил их вчера: с yesterday используем bought без have.",
-        "uk": "Discourage — знеохочувати, відбивати бажання. The queue did not discourage us — черга нас не відлякала. Після did not стоїть discourage без закінчення. Frustrate — дратувати або засмучувати, заважаючи зробити бажане. Small delays can frustrate me — невеликі затримки можуть мене дратувати. Ви описуєте свою реакцію, а не звинувачуєте співрозмовника. Квитки вже куплені: I have already bought the tickets. I bought them yesterday — я купив їх учора: з yesterday використовуємо bought без have."
+        "ru": "Друг спрашивает, когда вы купили билеты на выставку. Это было вчера. Ответьте: I bought them yesterday — я купил их вчера. Them заменяет the tickets. Bought — прошедшая форма buy, не buyed. Yesterday называет законченное время; have не добавляем. Собираем предложение: I + bought + them + yesterday — кто, действие в прошлом, что купил, когда.",
+        "uk": "Друг запитує, коли ви купили квитки на виставку. Це було вчора. Дайте відповідь: I bought them yesterday — я купив їх учора. Them замінює the tickets. Bought — минула форма buy, не buyed. Yesterday називає завершений час; have не додаємо. Складаємо речення: I + bought + them + yesterday — хто, дія в минулому, що купив, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-32:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Попросить более спокойное место",
-        "uk": "Попросити спокійніше місце"
+        "ru": "Хотелось бы тишины в зале",
+        "uk": "Хотілося б тиші в залі"
       },
       "bodyByLocale": {
-        "ru": "Overwhelm — подавлять, перегружать количеством впечатлений или дел. Large crowds overwhelm me — мне тяжело среди больших толп людей. Это описание ощущения, не название болезни. I wish this place were quieter — хотелось бы, чтобы здесь было тише. Were описывает желаемое настоящее. Затем нужна конкретная просьба: Could we go somewhere quieter? — можем пойти куда-нибудь потише? I would stay longer if there were fewer people — я бы остался дольше, если бы людей было меньше. Would stay — результат, were — условие.",
-        "uk": "Overwhelm — пригнічувати, перевантажувати кількістю вражень або справ. Large crowds overwhelm me — мені важко серед великих натовпів людей. Це опис відчуття, не назва хвороби. I wish this place were quieter — хотілося б, щоб тут було тихіше. Were описує бажане теперішнє. Потім потрібне конкретне прохання: Could we go somewhere quieter? — можемо піти кудись тихіше? I would stay longer if there were fewer people — я б залишився довше, якби людей було менше. Would stay — результат, were — умова."
+        "ru": "В выставочном зале шумно, и вам трудно сосредоточиться. Скажите: I wish this place were quieter — хотелось бы, чтобы здесь было тише. This place — это место; quieter — тише. После wish форма were показывает желаемое положение сейчас: в действительности шум мешает. Собираем предложение: I wish + this place + were + quieter — желание, о чём говорим, were, желаемое качество.",
+        "uk": "У виставковому залі шумно, і вам важко зосередитися. Скажіть: I wish this place were quieter — хотілося б, щоб тут було тихіше. This place — це місце; quieter — тихіше. Після wish форма were показує бажане становище зараз: насправді шум заважає. Складаємо речення: I wish + this place + were + quieter — бажання, про що говоримо, were, бажана якість."
       },
       "question": {
         "interactionId": "en:lesson-27:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3ba8cf051f14496e9d560252ccc26928adb6cd4bfd378dba4118e946bd0e674a"
+  "introFingerprint": "b0ad4b8f47768edfef8aeafcac8ebccfd5b235c551737403362110b8141e598b"
 }

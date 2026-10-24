@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Когда мешает шум",
-        "uk": "Коли заважає шум"
+        "ru": "Хотелось бы тише",
+        "uk": "Хотілося б тихіше"
       },
       "bodyByLocale": {
-        "ru": "Tolerate — терпеть, переносить что-либо неприятное. I cannot tolerate this noise — я не могу терпеть этот шум. Это сильное высказывание; конкретная просьба звучит спокойнее: Could you turn the music down? — можешь сделать музыку тише? I wish the room were quieter — хотелось бы, чтобы в комнате было тише. Were после wish описывает желаемую ситуацию сейчас.",
-        "uk": "Tolerate — терпіти, зносити щось неприємне. I cannot tolerate this noise — я не можу терпіти цей шум. Це сильне висловлювання; конкретне прохання звучить спокійніше: Could you turn the music down? — можеш зробити музику тихішою? I wish the room were quieter — хотілося б, щоб у кімнаті було тихіше. Were після wish описує бажану ситуацію зараз."
+        "ru": "Вы читаете, а в комнате громко играет музыка. Вы хотите другой обстановки. Скажите: I wish the room were quieter — хотелось бы, чтобы в комнате было тише. Quieter — тише. После wish используем were для желаемого положения сейчас; комната пока остаётся шумной. Собираем предложение: I wish + the room + were + quieter — желание, о чём говорим, were, желаемое качество.",
+        "uk": "Ви читаєте, а в кімнаті голосно грає музика. Ви хочете іншої обстановки. Скажіть: I wish the room were quieter — хотілося б, щоб у кімнаті було тихіше. Quieter — тихіше. Після wish використовуємо were для бажаного становища зараз; кімната поки залишається шумною. Складаємо речення: I wish + the room + were + quieter — бажання, про що говоримо, were, бажана якість."
       },
       "question": {
         "interactionId": "en:lesson-27:session-34:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Записка и домашние дела",
-        "uk": "Записка й домашні справи"
+        "ru": "Не заметили записку",
+        "uk": "Не помітили записку"
       },
       "bodyByLocale": {
-        "ru": "Overlook — не заметить, упустить из внимания. I overlooked your note — я не заметил твою записку. Это не обязательно намеренное игнорирование. Resent — испытывать обиду или недовольство из-за того, что кажется несправедливым. I resent doing all the cleaning — мне обидно, что вся уборка на мне. Здесь после resent стоит doing. Можно перейти к решению: Which jobs can you do? — какие дела ты можешь взять на себя?",
-        "uk": "Overlook — не помітити, випустити з уваги. I overlooked your note — я не помітив твоєї записки. Це не обов’язково навмисне ігнорування. Resent — відчувати образу або невдоволення через те, що здається несправедливим. I resent doing all the cleaning — мені прикро, що все прибирання на мені. Тут після resent стоїть doing. Можна перейти до рішення: Which jobs can you do? — які справи ти можеш узяти на себе?"
+        "ru": "Друг оставил вам записку на столе, но вы её не заметили. Объясните: I overlooked your note — я не заметил твою записку. Overlook здесь — упустить из внимания. Вы рассказываете об одном уже случившемся действии, поэтому добавляем -ed: overlooked. Собираем предложение: I + overlooked + your note — кто, действие в прошлом, что не заметил. Для обычного утверждения did не нужен.",
+        "uk": "Друг залишив вам записку на столі, але ви її не помітили. Поясніть: I overlooked your note — я не помітив твоєї записки. Overlook тут — випустити з уваги. Ви розповідаєте про одну дію, яка вже сталася, тому додаємо -ed: overlooked. Складаємо речення: I + overlooked + your note — хто, дія в минулому, чого не помітив. Для звичайного твердження did не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-27:session-34:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начать трудный разговор",
-        "uk": "Почати складну розмову"
+        "ru": "Если делить домашние дела",
+        "uk": "Якщо ділити домашні справи"
       },
       "bodyByLocale": {
-        "ru": "Dread — очень бояться чего-то предстоящего, ждать с тревогой. I dread this conversation — я очень боюсь этого разговора. Слово описывает ожидание, а не опасность, которую точно установили. If I were you, I would choose a quiet moment — на твоём месте я бы выбрал спокойный момент. I would feel better if we shared the chores — мне было бы легче, если бы мы делили домашние дела. Would feel — результат, shared — условие.",
-        "uk": "Dread — дуже боятися чогось майбутнього, чекати з тривогою. I dread this conversation — я дуже боюся цієї розмови. Слово описує очікування, а не небезпеку, яку точно встановили. If I were you, I would choose a quiet moment — на твоєму місці я б вибрав спокійний момент. I would feel better if we shared the chores — мені було б легше, якби ми ділили домашні справи. Would feel — результат, shared — умова."
+        "ru": "Сейчас все домашние дела на вас, и вы хотите разделить их с соседом. Объясните: I would feel better if we shared the chores — мне было бы легче, если бы мы делили домашние дела. Would feel better — воображаемый результат, if we shared the chores — условие. Собираем предложение: I + would feel + better + if we shared the chores — кто, что чувствовал бы, как, при каком условии. После would нужна feel, не felt.",
+        "uk": "Зараз усі домашні справи на вас, і ви хочете розділити їх із сусідом. Поясніть: I would feel better if we shared the chores — мені було б легше, якби ми ділили домашні справи. Would feel better — уявний результат, if we shared the chores — умова. Складаємо речення: I + would feel + better + if we shared the chores — хто, що відчував би, як, за якої умови. Після would потрібна feel, не felt."
       },
       "question": {
         "interactionId": "en:lesson-27:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c52f9f223ba287fe884dc0e61fc59240f95fffd69c2d8222354a13e406ea9e5c"
+  "introFingerprint": "63e85efdae8215f9cf87545f378b86861e02dd71636dff6b9058530bffc3275a"
 }

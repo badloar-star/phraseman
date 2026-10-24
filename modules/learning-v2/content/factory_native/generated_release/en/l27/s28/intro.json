@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выбрать темп",
-        "uk": "Обрати темп"
+        "ru": "Хотелось бы гулять дольше",
+        "uk": "Хотілося б гуляти довше"
       },
       "bodyByLocale": {
-        "ru": "Brisk — быстрый, энергичный: a brisk walk — прогулка быстрым шагом. Leisurely — неторопливый, неспешный: a leisurely walk — неспешная прогулка. Несмотря на окончание -ly, здесь leisurely описывает существительное walk. We had a leisurely walk — мы неспешно прогулялись. Вы не хотите торопиться: Can we slow down a little? — можем немного сбавить темп? I wish we had more time — жаль, что у нас нет больше времени. Had после wish описывает желаемое настоящее.",
-        "uk": "Brisk — швидкий, енергійний: a brisk walk — прогулянка швидким кроком. Leisurely — неквапливий, неспішний: a leisurely walk — неспішна прогулянка. Попри закінчення -ly, тут leisurely описує іменник walk. We had a leisurely walk — ми неспішно прогулялися. Ви не хочете поспішати: Can we slow down a little? — можемо трохи сповільнитися? I wish we had more time — шкода, що ми не маємо більше часу. Had після wish описує бажане теперішнє."
+        "ru": "Вы гуляете у воды, но скоро нужно возвращаться. Скажите другу: I wish we had more time — жаль, что у нас нет больше времени. Had после wish выражает желание о настоящем: сейчас времени мало. Собираем предложение: I wish + we + had + more time — желание, кто, had, чего хочется больше. Это не рассказ о том, сколько времени было вчера.",
+        "uk": "Ви гуляєте біля води, але незабаром потрібно повертатися. Скажіть другові: I wish we had more time — шкода, що в нас немає більше часу. Had після wish виражає бажання щодо теперішнього: зараз часу мало. Складаємо речення: I wish + we + had + more time — бажання, хто, had, чого хочеться більше. Це не розповідь про те, скільки часу було вчора."
       },
       "question": {
         "interactionId": "en:lesson-27:session-28:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дорога с красивым видом",
-        "uk": "Дорога з гарним краєвидом"
+        "ru": "Если бы тропинка была короче",
+        "uk": "Якби стежка була коротшою"
       },
       "bodyByLocale": {
-        "ru": "Scenic — живописный, с красивыми видами. Let us take the scenic route — давай пойдём по живописному маршруту. Он не обязательно самый короткий. Shoreline — береговая линия, место, где вода встречается с сушей. The path follows the shoreline — тропинка идёт вдоль берега. Вы обсуждаете другой маршрут: We would take that path if it were shorter — мы бы пошли по той тропинке, если бы она была короче. Would take — результат, were — воображаемое условие.",
-        "uk": "Scenic — мальовничий, із гарними краєвидами. Let us take the scenic route — давай підемо мальовничим маршрутом. Він не обов’язково найкоротший. Shoreline — берегова лінія, місце, де вода зустрічається із суходолом. The path follows the shoreline — стежка йде вздовж берега. Ви обговорюєте інший маршрут: We would take that path if it were shorter — ми б пішли тією стежкою, якби вона була коротшою. Would take — результат, were — уявна умова."
+        "ru": "Вы видите красивую тропинку, но она слишком длинная для сегодняшней прогулки. Объясните: We would take that path if it were shorter — мы бы пошли по той тропинке, если бы она была короче. Would take — воображаемый выбор, if it were shorter — условие. Собираем предложение: We + would take + that path + if it were shorter — кто, что сделал бы, какой путь выбрал бы, при каком условии. После would используем take без to.",
+        "uk": "Ви бачите гарну стежку, але вона надто довга для сьогоднішньої прогулянки. Поясніть: We would take that path if it were shorter — ми б пішли тією стежкою, якби вона була коротшою. Would take — уявний вибір, if it were shorter — умова. Складаємо речення: We + would take + that path + if it were shorter — хто, що зробив би, який шлях вибрав би, за якої умови. Після would використовуємо take без to."
       },
       "question": {
         "interactionId": "en:lesson-27:session-28:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Остановиться и договориться",
-        "uk": "Зупинитися й домовитися"
+        "ru": "Когда сделали фотографию",
+        "uk": "Коли зробили фотографію"
       },
       "bodyByLocale": {
-        "ru": "Красивый вид хочется сохранить: Could you take a photo of us? — можешь нас сфотографировать? I have already taken one — я уже сделал одну фотографию. I took it a minute ago — я сделал её минуту назад: с a minute ago используем took без have. Подруга не смогла приехать: I wish she were here — жаль, что её здесь нет. Это пожелание о настоящем. Затем договоритесь о встрече в другой день: Shall we come back on Sunday? — вернёмся в воскресенье?",
-        "uk": "Гарний краєвид хочеться зберегти: Could you take a photo of us? — можеш нас сфотографувати? I have already taken one — я вже зробив одну фотографію. I took it a minute ago — я зробив її хвилину тому: з a minute ago використовуємо took без have. Подруга не змогла приїхати: I wish she were here — шкода, що її тут немає. Це побажання про теперішнє. Потім домовтеся про зустріч іншого дня: Shall we come back on Sunday? — повернемося в неділю?"
+        "ru": "Друг спрашивает, когда вы сделали фотографию берега. Это было минуту назад. Ответьте: I took it a minute ago — я сделал её минуту назад. It заменяет the photo; took — прошедшая форма take, не taked. A minute ago называет законченный момент, поэтому have не нужен. Собираем предложение: I + took + it + a minute ago — кто, действие в прошлом, что сделал, когда.",
+        "uk": "Друг запитує, коли ви зробили фотографію берега. Це було хвилину тому. Дайте відповідь: I took it a minute ago — я зробив її хвилину тому. It замінює the photo; took — минула форма take, не taked. A minute ago називає завершений момент, тому have не потрібне. Складаємо речення: I + took + it + a minute ago — хто, дія в минулому, що зробив, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c3d4071fd1bbc55e59bda3a424b207c588aebc779cbfa1485cbb692c80dff3ab"
+  "introFingerprint": "7c0d6ccc6706d903625269aca0e5e7cb228a4f6c277c63729f82c82b937ae205"
 }

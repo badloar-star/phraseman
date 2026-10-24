@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Распределить дела",
-        "uk": "Розподілити справи"
+        "ru": "Хотелось бы больше помощи",
+        "uk": "Хотілося б більше допомоги"
       },
       "bodyByLocale": {
-        "ru": "Grease — жир, в том числе жирный налёт на кухонной посуде. There is grease on the tray — на противне жир. Limescale — известковый налёт. The kettle has some limescale — в чайнике есть известковый налёт. Вы называете, что заметили, а не объясняете способ очистки. Дел много: I wish I had more help — жаль, что мне не помогают больше. Had здесь относится к желаемому настоящему. Чтобы действительно попросить помощи, скажите Could you clear the table? — можешь убрать со стола?",
-        "uk": "Grease — жир, зокрема жирний наліт на кухонному посуді. There is grease on the tray — на деку жир. Limescale — вапняний наліт. The kettle has some limescale — у чайнику є вапняний наліт. Ви називаєте те, що помітили, а не пояснюєте спосіб очищення. Справ багато: I wish I had more help — шкода, що мені не допомагають більше. Had тут стосується бажаного теперішнього. Щоб справді попросити допомоги, скажіть Could you clear the table? — можеш прибрати зі столу?"
+        "ru": "Вы один убираете кухню перед приходом гостей и не успеваете. Скажите: I wish I had more help — хотелось бы, чтобы мне больше помогали. Help здесь — помощь, а не действие «помогать». После wish форма had описывает желаемое положение сейчас: пока помощи недостаточно. Собираем предложение: I wish + I + had + more help — желание, кто, had, чего хотелось бы больше.",
+        "uk": "Ви самі прибираєте кухню перед приходом гостей і не встигаєте. Скажіть: I wish I had more help — хотілося б, щоб мені більше допомагали. Help тут — допомога, а не дія «допомагати». Після wish форма had описує бажане становище зараз: поки допомоги недостатньо. Складаємо речення: I wish + I + had + more help — бажання, хто, had, чого хотілося б більше."
       },
       "question": {
         "interactionId": "en:lesson-27:session-27:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "У раковины",
-        "uk": "Біля мийки"
+        "ru": "Когда убрали кухню",
+        "uk": "Коли прибрали кухню"
       },
       "bodyByLocale": {
-        "ru": "Suds — мыльная пена. Это слово обычно употребляется во множественном числе: There are too many suds — слишком много пены. Поэтому are и many, хотя по-русски говорим «пена». Stopper — пробка, затычка. Where is the stopper? — где пробка? По ситуации понятно, о какой вещи речь: здесь вы стоите у раковины, а не открываете бутылку. Вы уже помыли чашки: I have already washed the cups. I cleaned the kitchen yesterday — я убрал кухню вчера: yesterday называет законченное время.",
-        "uk": "Suds — мильна піна. Це слово зазвичай уживається у множині: There are too many suds — забагато піни. Тому are і many, хоча українською кажемо «піна». Stopper — корок, затичка. Where is the stopper? — де затичка? Із ситуації зрозуміло, про яку річ ідеться: тут ви стоїте біля мийки, а не відкриваєте пляшку. Ви вже помили чашки: I have already washed the cups. I cleaned the kitchen yesterday — я прибрав кухню вчора: yesterday називає завершений час."
+        "ru": "Друг спрашивает, когда вы убрали кухню. Ответьте: I cleaned the kitchen yesterday — я убрал кухню вчера. Cleaned — прошедшая форма clean с окончанием -ed. Yesterday называет законченное время, поэтому перед cleaned не ставим have. Собираем предложение: I + cleaned + the kitchen + yesterday — кто, действие в прошлом, что убрал, когда.",
+        "uk": "Друг запитує, коли ви прибрали кухню. Дайте відповідь: I cleaned the kitchen yesterday — я прибрав кухню вчора. Cleaned — минула форма clean із закінченням -ed. Yesterday називає завершений час, тому перед cleaned не ставимо have. Складаємо речення: I + cleaned + the kitchen + yesterday — хто, дія в минулому, що прибрав, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-27:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться, что делать сейчас",
-        "uk": "Домовитися, що робити зараз"
+        "ru": "Хотелось бы просторнее кухню",
+        "uk": "Хотілося б просторішу кухню"
       },
       "bodyByLocale": {
-        "ru": "I would finish sooner if someone helped me — я бы закончил быстрее, если бы кто-нибудь помог. Would finish — воображаемый результат, helped — условие. Друг предлагает взять дело на себя: Let me do that — давай я это сделаю. Остальное можно обсудить отдельно: We can leave this until tomorrow — это можно оставить до завтра. Кухня тесная: I wish the kitchen were bigger — хотелось бы, чтобы кухня была больше. Это пожелание о нынешней кухне, а не сообщение о прежней.",
-        "uk": "I would finish sooner if someone helped me — я б закінчив швидше, якби хтось допоміг. Would finish — уявний результат, helped — умова. Друг пропонує взяти справу на себе: Let me do that — давай я це зроблю. Решту можна обговорити окремо: We can leave this until tomorrow — це можна залишити до завтра. Кухня тісна: I wish the kitchen were bigger — хотілося б, щоб кухня була більшою. Це побажання про теперішню кухню, а не повідомлення про колишню."
+        "ru": "На кухне тесно, и вам трудно разложить всё для приготовления ужина. Скажите: I wish the kitchen were bigger — хотелось бы, чтобы кухня была больше. Bigger — больше по размеру. После wish используем were для желаемого состояния сейчас. Собираем предложение: I wish + the kitchen + were + bigger — желание, о чём говорим, were, желаемое качество.",
+        "uk": "На кухні тісно, і вам важко розкласти все для приготування вечері. Скажіть: I wish the kitchen were bigger — хотілося б, щоб кухня була більшою. Bigger — більший за розміром. Після wish використовуємо were для бажаного стану зараз. Складаємо речення: I wish + the kitchen + were + bigger — бажання, про що говоримо, were, бажана якість."
       },
       "question": {
         "interactionId": "en:lesson-27:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "17955d7905bdf9cae4747818ecf1225027ac52088b85e2557d2272ccded23591"
+  "introFingerprint": "1830235a0ce1fb1c3adce1a3e85021d4c45977ac43d65afba9abdcf00f8f31a9"
 }

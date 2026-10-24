@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Описать своё состояние",
-        "uk": "Описати свій стан"
+        "ru": "Если бы был номер клиники",
+        "uk": "Якби був номер клініки"
       },
       "bodyByLocale": {
-        "ru": "Groggy — вялый, с затуманенной головой, например после пробуждения. I still feel groggy — я всё ещё чувствую себя разбитым. Dizziness — головокружение. The dizziness started this morning — головокружение началось сегодня утром. Эти слова помогают назвать ощущение, но не объясняют его причину. Сейчас уже день, и вы сообщаете, когда всё началось: started без have. Вы хотите позвонить в клинику, но не знаете номера: I would call the clinic if I had the number — я бы позвонил в клинику, если бы у меня был номер.",
-        "uk": "Groggy — млявий, із затуманеною головою, наприклад після пробудження. I still feel groggy — я все ще почуваюся розбитим. Dizziness — запаморочення. The dizziness started this morning — запаморочення почалося сьогодні вранці. Ці слова допомагають назвати відчуття, але не пояснюють його причини. Зараз уже день, і ви повідомляєте, коли все почалося: started без have. Ви хочете зателефонувати до клініки, але не знаєте номера: I would call the clinic if I had the number — я б зателефонував до клініки, якби мав номер."
+        "ru": "Вы хотите узнать часы приёма в клинике, но не знаете её номера. Объясните другу: I would call the clinic if I had the number — я бы позвонил в клинику, если бы у меня был номер. Would call — воображаемое действие; if I had the number — условие, которое сейчас не выполняется. Собираем предложение: I + would call + the clinic + if I had the number — кто, что сделал бы, куда позвонил бы, при каком условии. После would нужна call; в условии ставим had без would.",
+        "uk": "Ви хочете дізнатися години прийому в клініці, але не знаєте її номера. Поясніть другові: I would call the clinic if I had the number — я б зателефонував до клініки, якби мав номер. Would call — уявна дія; if I had the number — умова, яка зараз не виконується. Складаємо речення: I + would call + the clinic + if I had the number — хто, що зробив би, куди зателефонував би, за якої умови. Після would потрібна call; в умові ставимо had без would."
       },
       "question": {
         "interactionId": "en:lesson-27:session-24:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Назвать ощущение точнее",
-        "uk": "Назвати відчуття точніше"
+        "ru": "Есть ли запись на сегодня",
+        "uk": "Чи є запис на сьогодні"
       },
       "bodyByLocale": {
-        "ru": "Stiffness — скованность, затруднение движения из-за ощущения жёсткости. There is some stiffness in my neck — я чувствую скованность в шее. Numbness — онемение, снижение чувствительности. I have some numbness in my hand — у меня немного немеет кисть. Это разные ощущения: не нужно заменять каждое из них общим pain — боль. По телефону вы просите время: Is there an appointment today? — есть запись на сегодня? Собеседник уточняет: What time can you come? — во сколько вы можете прийти?",
-        "uk": "Stiffness — скутість, утруднення руху через відчуття жорсткості. There is some stiffness in my neck — я відчуваю скутість у шиї. Numbness — оніміння, зниження чутливості. I have some numbness in my hand — у мене трохи німіє кисть. Це різні відчуття: не потрібно замінювати кожне з них загальним pain — біль. Телефоном ви просите час: Is there an appointment today? — є запис на сьогодні? Співрозмовник уточнює: What time can you come? — о котрій ви можете прийти?"
+        "ru": "Вы звоните в клинику, чтобы узнать, можно ли записаться на сегодня. Спросите: Is there an appointment today? — есть запись на сегодня? Is there начинает вопрос о наличии одного варианта записи. Appointment начинается с гласного звука, поэтому перед ним нужен an. Собираем предложение: Is there + an appointment + today? — есть ли, что именно, когда. Для одного appointment используем is, а не are.",
+        "uk": "Ви телефонуєте до клініки, щоб дізнатися, чи можна записатися на сьогодні. Запитайте: Is there an appointment today? — є запис на сьогодні? Is there починає запитання про наявність одного варіанта запису. Appointment починається з голосного звука, тому перед ним потрібне an. Складаємо речення: Is there + an appointment + today? — чи є, що саме, коли. Для одного appointment використовуємо is, а не are."
       },
       "question": {
         "interactionId": "en:lesson-27:session-24:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться о времени",
-        "uk": "Домовитися про час"
+        "ru": "Когда звонили в клинику",
+        "uk": "Коли телефонували до клініки"
       },
       "bodyByLocale": {
-        "ru": "Вам предложили время, и вы записали его: I have already written it down — я уже это записал. Если называете вчерашнее действие, скажите I called yesterday — я звонил вчера. Yesterday указывает на законченное время, поэтому called без have. Друг обсуждает вашу встречу: We would meet later if you were busy — мы бы встретились позже, если бы ты был занят. Можно начать с условия: If you were busy, we would meet later. Would остаётся с результатом meet, а were — с условием.",
-        "uk": "Вам запропонували час, і ви записали його: I have already written it down — я вже це записав. Якщо називаєте вчорашню дію, скажіть I called yesterday — я телефонував учора. Yesterday вказує на завершений час, тому called без have. Друг обговорює вашу зустріч: We would meet later if you were busy — ми б зустрілися пізніше, якби ти був зайнятий. Можна почати з умови: If you were busy, we would meet later. Would залишається з результатом meet, а were — з умовою."
+        "ru": "Друг спрашивает, когда вы звонили в клинику. Это было вчера. Ответьте: I called yesterday — я звонил вчера. Called — прошедшая форма call с окончанием -ed. Yesterday называет законченное время, поэтому have не нужен. Собираем предложение: I + called + yesterday — кто, действие в прошлом, когда. Куда вы звонили, уже понятно из вопроса.",
+        "uk": "Друг запитує, коли ви телефонували до клініки. Це було вчора. Дайте відповідь: I called yesterday — я телефонував учора. Called — минула форма call із закінченням -ed. Yesterday називає завершений час, тому have не потрібне. Складаємо речення: I + called + yesterday — хто, дія в минулому, коли. Куди ви телефонували, уже зрозуміло із запитання."
       },
       "question": {
         "interactionId": "en:lesson-27:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1242c85c3b58dfd7569ccb0f97844c1c306b6785b507bc7f10e877416ed25202"
+  "introFingerprint": "d8df32864fc470a2c7d59808c529fba67b4892eb015047c989048499307a1f7c"
 }

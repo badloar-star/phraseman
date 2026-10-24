@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»",
+      "prompt": "Ваш брат іде, дивлячись у телефон, і ось-ось зачепить ногою загнутий край килима. Скажіть: «Схоже, він зараз спіткнеться»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»",
+      "accessibilityLabel": "Ваш брат іде, дивлячись у телефон, і ось-ось зачепить ногою загнутий край килима. Скажіть: «Схоже, він зараз спіткнеться»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is going to stumble.",
         "localizedMeaning": {
-          "ru": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
-          "uk": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»"
+          "ru": "Ваш брат идёт, глядя в телефон, и вот-вот заденет ногой загнувшийся край ковра. Скажите: «Похоже, он сейчас споткнётся»",
+          "uk": "Ваш брат іде, дивлячись у телефон, і ось-ось зачепить ногою загнутий край килима. Скажіть: «Схоже, він зараз спіткнеться»"
         },
         "orderedTokens": [
           "He",
@@ -1078,13 +1078,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваша мама зачепилася ногою за килим. Скажіть: вона, схоже, зараз спіткнеться",
+      "prompt": "Ваша мама йде до загнутого краю килима, не помічаючи його. Скажіть: вона, схоже, зараз спіткнеться",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Ваша мама зачепилася ногою за килим. Скажіть: вона, схоже, зараз спіткнеться",
+      "accessibilityLabel": "Ваша мама йде до загнутого краю килима, не помічаючи його. Скажіть: вона, схоже, зараз спіткнеться",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8716c090a1bf07a4405084987331f8fb1ce0b952b1c8a74adcf40f4c7b5435af"
+  "learnerFingerprint": "e79e41b039e80b1b5f98a28e74f5cf7de9e5711b7c16f78a19ee8b18abb6049e"
 }

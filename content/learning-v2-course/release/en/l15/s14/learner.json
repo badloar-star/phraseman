@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вечер ясный, трава быстро остывает, на ней появляются первые капли. Скажите: «На траве будет роса»",
+      "prompt": "Ясным вечером трава остывает, воздух влажный, и вы ожидаете росу к утру. Скажите: «На траве будет роса»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вечер ясный, трава быстро остывает, на ней появляются первые капли. Скажите: «На траве будет роса»",
+      "accessibilityLabel": "Ясным вечером трава остывает, воздух влажный, и вы ожидаете росу к утру. Скажите: «На траве будет роса»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "There is going to be dew on the grass.",
         "localizedMeaning": {
-          "ru": "Вечер ясный, трава быстро остывает, на ней появляются первые капли. Скажите: «На траве будет роса»",
-          "uk": "Вечір ясний, трава швидко холоне, на ній з’являються перші краплі. Скажіть: «На траві буде роса»"
+          "ru": "Ясным вечером трава остывает, воздух влажный, и вы ожидаете росу к утру. Скажите: «На траве будет роса»",
+          "uk": "Ясного вечора трава охолоджується, повітря вологе, і ви очікуєте росу до ранку. Скажіть: «На траві буде роса»"
         },
         "orderedTokens": [
           "There",
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "adff649544058a8ec46c81e2a64ccc07b089808e2c27a271ba7afdf3facbbd96"
+  "learnerFingerprint": "d0fff17e574f441ba6fa24cba2a7e389bd6853137937c6cde4d2e7c86bb229e4"
 }

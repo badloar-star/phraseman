@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
+      "prompt": "Ваш брат идёт, глядя в телефон, и вот-вот заденет ногой загнувшийся край ковра. Скажите: «Похоже, он сейчас споткнётся»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
+      "accessibilityLabel": "Ваш брат идёт, глядя в телефон, и вот-вот заденет ногой загнувшийся край ковра. Скажите: «Похоже, он сейчас споткнётся»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is going to stumble.",
         "localizedMeaning": {
-          "ru": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
-          "uk": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»"
+          "ru": "Ваш брат идёт, глядя в телефон, и вот-вот заденет ногой загнувшийся край ковра. Скажите: «Похоже, он сейчас споткнётся»",
+          "uk": "Ваш брат іде, дивлячись у телефон, і ось-ось зачепить ногою загнутий край килима. Скажіть: «Схоже, він зараз спіткнеться»"
         },
         "orderedTokens": [
           "He",
@@ -1078,13 +1078,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваша мама зацепилась ногой за ковёр. Скажите: она, похоже, сейчас споткнётся",
+      "prompt": "Ваша мама идёт к загнувшемуся краю ковра, не замечая его. Скажите: она, похоже, сейчас споткнётся",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-16:i17:audio"
       ],
-      "accessibilityLabel": "Ваша мама зацепилась ногой за ковёр. Скажите: она, похоже, сейчас споткнётся",
+      "accessibilityLabel": "Ваша мама идёт к загнувшемуся краю ковра, не замечая его. Скажите: она, похоже, сейчас споткнётся",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "70c24821c283a977874bfb13e679bf05dfeeba85847b17b87e0409c9e9f1d722"
+  "learnerFingerprint": "00faad0fc30c51dd020540c1ac5c541c5c13678f7f63d3834359c711027b4a5b"
 }

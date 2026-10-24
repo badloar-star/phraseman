@@ -10,8 +10,8 @@
           "uk": "Після going потрібна to."
         },
         "en:lesson-15:session-14:intro1:r3": {
-          "ru": "Здесь один предмет: нужна is.",
-          "uk": "Тут один предмет: потрібна is."
+          "ru": "Росу здесь не считают поштучно: с dew нужна is.",
+          "uk": "Росу тут не рахують поштучно: з dew потрібне is."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "751a6d49b4ceca2b815463a6a6ae5765b77d6ee9494500db0be0fbee721c7edf"
+  "auxiliaryFingerprint": "eab0eeb326b31791bf485ca3391a316aebecc8cdcd954b5c391cdde828c4184a"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Родители мужа или жены",
-        "uk": "Батьки чоловіка або дружини"
+        "ru": "Навестили мать супруги",
+        "uk": "Відвідали матір дружини"
       },
       "bodyByLocale": {
-        "ru": "Mother-in-law — «мать мужа или жены»: свекровь или тёща. Father-in-law — «отец мужа или жены»: свёкор или тесть. I visited my mother-in-law — я навестил мать своего супруга или супруги. Выберите сообщение о матери, не об отце.",
-        "uk": "Mother-in-law — «мати чоловіка або дружини»: свекруха або теща. Father-in-law — «батько чоловіка або дружини»: свекор або тесть. I visited my mother-in-law — я навідав матір свого чоловіка або своєї дружини. Виберіть повідомлення про матір, не про батька."
+        "ru": "Вчера вы навестили мать своей жены. Mother-in-law — мать мужа или жены; в этой ситуации тёща. Расскажите о визите: I visited my mother-in-law — Я навестил свою тёщу. После I поставьте visited: окончание -ed показывает прошлое посещение. Затем назовите человека: my mother-in-law. My связывает родство с вами. После visited человек называется сразу, без предлога.",
+        "uk": "Учора ви відвідали матір своєї дружини. Mother-in-law — мати чоловіка або дружини; у цій ситуації теща. Розкажіть про візит: I visited my mother-in-law — Я відвідав свою тещу. Після I поставте visited: закінчення -ed показує минуле відвідування. Потім назвіть людину: my mother-in-law. My пов’язує спорідненість із вами. Після visited людину називаємо відразу, без прийменника."
       },
       "question": {
         "interactionId": "en:lesson-12:session-35:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Прабабушка",
-        "uk": "Прабабуся"
+        "ru": "Навестили общую прабабушку",
+        "uk": "Відвідали спільну прабабусю"
       },
       "bodyByLocale": {
-        "ru": "Great-grandmother — «прабабушка», мать вашей бабушки или дедушки. We visited our great-grandmother — мы навестили прабабушку. В visited окончание /ɪd/. Выберите сообщение о прошлом.",
-        "uk": "Great-grandmother — «прабабуся», мати вашої бабусі або дідуся. We visited our great-grandmother — ми навідали прабабусю. У visited закінчення /ɪd/. Виберіть повідомлення про минуле."
+        "ru": "Вчера вы с сестрой навестили вашу общую прабабушку. Great-grandmother — прабабушка. Соберите фразу: We + visited + our great-grandmother. Получится We visited our great-grandmother — Мы навестили нашу прабабушку. We называет вас обоих, а our показывает общее родство. В visited окончание -ed обозначает прошлое и звучит /ɪd/. Человек, которого навестили, идёт после действия.",
+        "uk": "Учора ви із сестрою відвідали вашу спільну прабабусю. Great-grandmother — прабабуся. Складіть фразу: We + visited + our great-grandmother. Вийде We visited our great-grandmother — Ми відвідали нашу прабабусю. We називає вас обох, а our показує спільну спорідненість. У visited закінчення -ed позначає минуле й звучить /ɪd/. Людина, яку відвідали, йде після дії."
       },
       "question": {
         "interactionId": "en:lesson-12:session-35:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Прадедушка",
-        "uk": "Прадідусь"
+        "ru": "Сестра помогла прадедушке",
+        "uk": "Сестра допомогла прадідусеві"
       },
       "bodyByLocale": {
-        "ru": "Great-grandfather — «прадедушка», отец вашей бабушки или дедушки. She helped her great-grandfather — она помогла прадедушке. В helped окончание /t/. Выберите помощь, не описание человека.",
-        "uk": "Great-grandfather — «прадідусь», батько вашої бабусі або дідуся. She helped her great-grandfather — вона допомогла прадідусеві. У helped закінчення /t/. Виберіть допомогу, не опис людини."
+        "ru": "Вчера ваша сестра помогла своему прадедушке донести покупки. Great-grandfather — прадедушка. Расскажите о её помощи: She helped her great-grandfather — Она помогла своему прадедушке. После She поставьте helped: к help добавили -ed для прошлого, здесь окончание звучит /t/. Затем назовите того, кому помогли: her great-grandfather. После helped не нужен to; her показывает, что речь о её прадедушке.",
+        "uk": "Учора ваша сестра допомогла своєму прадідусеві донести покупки. Great-grandfather — прадідусь. Розкажіть про її допомогу: She helped her great-grandfather — Вона допомогла своєму прадідусеві. Після She поставте helped: до help додали -ed для минулого, тут закінчення звучить /t/. Потім назвіть того, кому допомогли: her great-grandfather. Після helped не потрібне to; her показує, що йдеться про її прадідуся."
       },
       "question": {
         "interactionId": "en:lesson-12:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9720a0d2f85cca9b3c6adc7c10732c618670f07dc143205f44cd60536473e482"
+  "introFingerprint": "99c0bc69b95c99ff028d801f8e2e718ab6f207cc455253f932fe1a80394a8957"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Помогли с посудой",
-        "uk": "Допомогли з посудом"
+        "ru": "Помогли на кухне вчера",
+        "uk": "Допомогли на кухні вчора"
       },
       "bodyByLocale": {
-        "ru": "Mixing bowl — «миска для смешивания продуктов», soup bowl — «глубокая миска для супа». I helped in the kitchen — я помог на кухне. В helped окончание /t/, как в washed. Выберите сообщение о вчерашней помощи.",
-        "uk": "Mixing bowl — «миска для змішування продуктів», soup bowl — «глибока миска для супу». I helped in the kitchen — я допоміг на кухні. У helped закінчення /t/, як у washed. Виберіть повідомлення про вчорашню допомогу."
+        "ru": "Вчера вы помогали маме на кухне готовить обед. Расскажите об этой помощи: I helped in the kitchen yesterday — Я помог на кухне вчера. После I поставьте helped: к help добавили -ed для прошлого, здесь окончание звучит /t/, без отдельного слога. Затем добавьте место: in the kitchen — на кухне. В конце yesterday указывает день. Порядок: кто + что сделал + где + когда.",
+        "uk": "Учора ви допомагали мамі на кухні готувати обід. Розкажіть про цю допомогу: I helped in the kitchen yesterday — Я допоміг на кухні вчора. Після I поставте helped: до help додали -ed для минулого, тут закінчення звучить /t/, без окремого складу. Потім додайте місце: in the kitchen — на кухні. Наприкінці yesterday вказує день. Порядок: хто + що зробив + де + коли."
       },
       "question": {
         "interactionId": "en:lesson-12:session-27:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Доска",
-        "uk": "Дошка"
+        "ru": "Почистили разделочную доску",
+        "uk": "Почистили обробну дошку"
       },
       "bodyByLocale": {
-        "ru": "Chopping board — «разделочная доска». I cleaned the chopping board — я почистил разделочную доску. В cleaned окончание /d/, без дополнительного слога. Выберите действие в прошлом.",
-        "uk": "Chopping board — «обробна дошка». I cleaned the chopping board — я почистив обробну дошку. У cleaned закінчення /d/, без додаткового складу. Виберіть дію в минулому."
+        "ru": "Вчера после готовки вы почистили разделочную доску. Chopping board — разделочная доска. Соберите фразу: I + cleaned + the chopping board. Получится I cleaned the chopping board — Я почистил разделочную доску. В cleaned окончание -ed показывает прошлое и звучит /d/, без дополнительного слога. После действия назовите предмет: the chopping board. The указывает на доску, которой вы пользовались при готовке.",
+        "uk": "Учора після готування ви почистили обробну дошку. Chopping board — обробна дошка. Складіть фразу: I + cleaned + the chopping board. Вийде I cleaned the chopping board — Я почистив обробну дошку. У cleaned закінчення -ed показує минуле й звучить /d/, без додаткового складу. Після дії назвіть предмет: the chopping board. The вказує на дошку, якою ви користувалися під час готування."
       },
       "question": {
         "interactionId": "en:lesson-12:session-27:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Противень",
-        "uk": "Деко"
+        "ru": "Нужен был противень",
+        "uk": "Потрібне було деко"
       },
       "bodyByLocale": {
-        "ru": "Baking tray — «противень». We needed a baking tray — нам нужен был противень. В needed слышен отдельный слог /ɪd/. Выберите сообщение о потребности в прошлом.",
-        "uk": "Baking tray — «деко». We needed a baking tray — нам було потрібне деко. У needed чути окремий склад /ɪd/. Виберіть повідомлення про потребу в минулому."
+        "ru": "Вчера вы с сестрой собирались испечь печенье и искали противень. Baking tray — противень. Расскажите, что вам было нужно: We needed a baking tray — Нам нужен был противень. В английском начните с We, затем поставьте needed: к need добавили -ed для прошлого. После звука /d/ это окончание произносится отдельным слогом /ɪd/. Затем назовите нужную вещь: a baking tray; a относится к одному противню.",
+        "uk": "Учора ви із сестрою збиралися спекти печиво й шукали деко. Baking tray — деко. Розкажіть, що вам було потрібно: We needed a baking tray — Нам потрібне було деко. В англійській почніть із We, потім поставте needed: до need додали -ed для минулого. Після звука /d/ це закінчення вимовляється окремим складом /ɪd/. Потім назвіть потрібну річ: a baking tray; a стосується одного дека."
       },
       "question": {
         "interactionId": "en:lesson-12:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "03453be8a9a4d477eb153975771812d361a43659070636c1c70eddd8e15d0e35"
+  "introFingerprint": "6f2988d5ab92237672dbe54cd646b4ac63f18d6a9a11cd0c22ac3acae637dfe4"
 }

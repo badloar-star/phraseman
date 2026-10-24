@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пенал и портфель",
-        "uk": "Пенал і портфель"
+        "ru": "Собрали пенал",
+        "uk": "Зібрали пенал"
       },
       "bodyByLocale": {
-        "ru": "Pencil case — «пенал», schoolbag — «школьный портфель или рюкзак». I packed my pencil case — я собрал пенал. В packed окончание /t/, без отдельного слога. Как в finished: I finished my homework. Выберите сообщение о пенале.",
-        "uk": "Pencil case — «пенал», schoolbag — «шкільний портфель або рюкзак». I packed my pencil case — я зібрав пенал. У packed закінчення /t/, без окремого складу. Як у finished: I finished my homework. Виберіть повідомлення про пенал."
+        "ru": "Вчера вечером вы сложили ручки и карандаши в свой пенал для школы. Pencil case — пенал. Расскажите об этом: I packed my pencil case — Я собрал свой пенал. После I поставьте packed: к pack добавили -ed для прошлого, здесь окончание звучит /t/, без отдельного слога. Затем назовите предмет: my pencil case. My показывает, что пенал ваш; дополнительное a перед my не нужно.",
+        "uk": "Учора ввечері ви склали ручки й олівці у свій пенал для школи. Pencil case — пенал. Розкажіть про це: I packed my pencil case — Я зібрав свій пенал. Після I поставте packed: до pack додали -ed для минулого, тут закінчення звучить /t/, без окремого складу. Потім назвіть предмет: my pencil case. My показує, що пенал ваш; додаткове a перед my не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-12:session-26:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тетрадь",
-        "uk": "Зошит"
+        "ru": "Нужна была тетрадь",
+        "uk": "Потрібен був зошит"
       },
       "bodyByLocale": {
-        "ru": "Exercise book — «школьная тетрадь». I needed an exercise book — мне нужна была тетрадь. В needed окончание /ɪd/ даёт второй слог, потому что need заканчивается звуком /d/. Выберите сообщение о прошлом.",
-        "uk": "Exercise book — «шкільний зошит». I needed an exercise book — мені був потрібен зошит. У needed закінчення /ɪd/ дає другий склад, бо need закінчується звуком /d/. Виберіть повідомлення про минуле."
+        "ru": "Вчера для школьного задания вам понадобилась тетрадь. Exercise book — школьная тетрадь. Скажите: I needed an exercise book — Мне нужна была тетрадь. Английскую фразу начните с I, затем поставьте needed. К need добавили -ed для прошлого; после звука /d/ оно произносится /ɪd/, поэтому в needed два слога. Затем назовите нужную вещь: an exercise book. An нужно перед гласным звуком в начале exercise.",
+        "uk": "Учора для шкільного завдання вам знадобився зошит. Exercise book — шкільний зошит. Скажіть: I needed an exercise book — Мені потрібен був зошит. Англійську фразу почніть з I, потім поставте needed. До need додали -ed для минулого; після звука /d/ воно вимовляється /ɪd/, тому в needed два склади. Потім назвіть потрібну річ: an exercise book. An потрібне перед голосним звуком на початку exercise."
       },
       "question": {
         "interactionId": "en:lesson-12:session-26:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Точилка",
-        "uk": "Точилка"
+        "ru": "Сестра хотела точилку",
+        "uk": "Сестра хотіла точилку"
       },
       "bodyByLocale": {
-        "ru": "Pencil sharpener — «точилка для карандашей». She wanted a pencil sharpener — она хотела точилку. В wanted окончание /ɪd/, как в needed. Выберите эту фразу.",
-        "uk": "Pencil sharpener — «точилка для олівців». She wanted a pencil sharpener — вона хотіла точилку. У wanted закінчення /ɪd/, як у needed. Виберіть цю фразу."
+        "ru": "Вчера младшая сестра собирала школьные принадлежности и хотела точилку для карандашей. Pencil sharpener — точилка для карандашей. Расскажите о её желании: She wanted a pencil sharpener — Она хотела точилку. После She поставьте wanted: к want добавили -ed для прошлого. После звука /t/ окончание звучит отдельным слогом /ɪd/. Затем добавьте a pencil sharpener — одну точилку. С she форма wanted не получает дополнительного -s.",
+        "uk": "Учора молодша сестра збирала шкільне приладдя й хотіла точилку для олівців. Pencil sharpener — точилка для олівців. Розкажіть про її бажання: She wanted a pencil sharpener — Вона хотіла точилку. Після She поставте wanted: до want додали -ed для минулого. Після звука /t/ закінчення звучить окремим складом /ɪd/. Потім додайте a pencil sharpener — одну точилку. Із she форма wanted не отримує додаткового -s."
       },
       "question": {
         "interactionId": "en:lesson-12:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "030377a6cb6021f69befd06c3699afe75e6ecb6b8154510e27f67a0421b16cbf"
+  "introFingerprint": "c58305351a0f922789078d96ed517e9e6cc990cfe8d24dea9672a068216554d2"
 }

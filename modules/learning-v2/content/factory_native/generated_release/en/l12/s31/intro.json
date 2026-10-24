@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Посадили куст",
-        "uk": "Посадили кущ"
+        "ru": "Посадили розовый куст вчера",
+        "uk": "Посадили кущ троянд учора"
       },
       "bodyByLocale": {
-        "ru": "Rose bush — «розовый куст». I planted a rose bush — я посадил розовый куст. Plant → planted: после /t/ слышен отдельный слог /ɪd/. В planted два слога. Выберите вчерашнее действие.",
-        "uk": "Rose bush — «кущ троянди». I planted a rose bush — я посадив кущ троянди. Plant → planted: після /t/ чути окремий склад /ɪd/. У planted два склади. Виберіть учорашню дію."
+        "ru": "Вчера вы посадили в саду розовый куст. Rose bush — розовый куст. Расскажите о посадке: I planted a rose bush yesterday — Я посадил розовый куст вчера. После I поставьте planted: к plant добавили -ed для прошлого. После звука /t/ это окончание произносится отдельным слогом /ɪd/, поэтому в planted два слога. Затем назовите посаженное растение: a rose bush. В конце yesterday указывает день посадки.",
+        "uk": "Учора ви посадили в саду кущ троянд. Rose bush — кущ троянд. Розкажіть про посадку: I planted a rose bush yesterday — Я посадив кущ троянд учора. Після I поставте planted: до plant додали -ed для минулого. Після звука /t/ це закінчення вимовляється окремим складом /ɪd/, тому в planted два склади. Потім назвіть посаджену рослину: a rose bush. Наприкінці yesterday вказує день посадки."
       },
       "question": {
         "interactionId": "en:lesson-12:session-31:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Клумба и помидоры",
-        "uk": "Клумба й помідори"
+        "ru": "Полили клумбу вместе",
+        "uk": "Полили клумбу разом"
       },
       "bodyByLocale": {
-        "ru": "Flowerbed — «клумба», tomato plant — «куст помидоров». We watered the flowerbed — мы полили клумбу. В watered окончание /d/, без дополнительного слога -ed. Выберите действие с клумбой.",
-        "uk": "Flowerbed — «клумба», tomato plant — «кущ помідорів». We watered the flowerbed — ми полили клумбу. У watered закінчення /d/, без додаткового складу -ed. Виберіть дію з клумбою."
+        "ru": "Вчера вы с братом полили клумбу возле дома. Flowerbed — клумба. Соберите фразу: We + watered + the flowerbed. Получится We watered the flowerbed — Мы полили клумбу. We называет вас обоих. В watered окончание -ed показывает прошлое и произносится /d/, без дополнительного слога. После действия назовите то, что полили: the flowerbed. The указывает на конкретную клумбу возле вашего дома.",
+        "uk": "Учора ви з братом полили клумбу біля будинку. Flowerbed — клумба. Складіть фразу: We + watered + the flowerbed. Вийде We watered the flowerbed — Ми полили клумбу. We називає вас обох. У watered закінчення -ed показує минуле й вимовляється /d/, без додаткового складу. Після дії назвіть те, що полили: the flowerbed. The вказує на конкретну клумбу біля вашого будинку."
       },
       "question": {
         "interactionId": "en:lesson-12:session-31:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Плодовое дерево",
-        "uk": "Плодове дерево"
+        "ru": "Сестра посадила дерево",
+        "uk": "Сестра посадила дерево"
       },
       "bodyByLocale": {
-        "ru": "Fruit tree — «плодовое дерево». She planted a fruit tree — она посадила плодовое дерево. Planted одинаково после I, she и they. Выберите эту фразу.",
-        "uk": "Fruit tree — «плодове дерево». She planted a fruit tree — вона посадила плодове дерево. Planted однаково після I, she і they. Виберіть цю фразу."
+        "ru": "Вчера ваша сестра посадила в саду плодовое дерево. Fruit tree — плодовое дерево. Расскажите о её действии: She planted a fruit tree — Она посадила плодовое дерево. Начните с She, затем поставьте planted — форму plant для прошлого. Эта форма не меняется в зависимости от того, кто действовал: с she тоже planted, без дополнительного -s. После действия назовите растение: a fruit tree; a относится к одному дереву.",
+        "uk": "Учора ваша сестра посадила в саду плодове дерево. Fruit tree — плодове дерево. Розкажіть про її дію: She planted a fruit tree — Вона посадила плодове дерево. Почніть із She, потім поставте planted — форму plant для минулого. Ця форма не змінюється залежно від того, хто діяв: із she теж planted, без додаткового -s. Після дії назвіть рослину: a fruit tree; a стосується одного дерева."
       },
       "question": {
         "interactionId": "en:lesson-12:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "107c1d1508637d9bf134898a6f9cabaf184e2d295ad2285adde6ffab0567c057"
+  "introFingerprint": "87068802e1cb3ec853aa04510023e0d91756edd968f8561c2c9c4fcb62e796c1"
 }

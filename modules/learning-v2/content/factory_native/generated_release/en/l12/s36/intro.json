@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Главная дорога",
-        "uk": "Головна дорога"
+        "ru": "Перешли главную дорогу",
+        "uk": "Перейшли головну дорогу"
       },
       "bodyByLocale": {
-        "ru": "Main road — «главная дорога». We crossed the main road — мы перешли главную дорогу. Cross → crossed, окончание /t/. Выберите прошлое действие.",
-        "uk": "Main road — «головна дорога». We crossed the main road — ми перейшли головну дорогу. Cross → crossed, закінчення /t/. Виберіть минулу дію."
+        "ru": "Вчера вы с другом перешли главную дорогу по переходу. Main road — главная дорога. Расскажите о действии: We crossed the main road — Мы перешли главную дорогу. После We поставьте crossed: к cross добавили -ed для прошлого, здесь окончание звучит /t/. Затем назовите то, что пересекли: the main road. После crossed дорогу называем сразу, без предлога.",
+        "uk": "Учора ви з другом перейшли головну дорогу по переходу. Main road — головна дорога. Розкажіть про дію: We crossed the main road — Ми перейшли головну дорогу. Після We поставте crossed: до cross додали -ed для минулого, тут закінчення звучить /t/. Потім назвіть те, що перетнули: the main road. Після crossed дорогу називаємо відразу, без прийменника."
       },
       "question": {
         "interactionId": "en:lesson-12:session-36:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Боковая улица и парк",
-        "uk": "Бічна вулиця й парк"
+        "ru": "Припарковались на боковой улице",
+        "uk": "Припаркувалися на бічній вулиці"
       },
       "bodyByLocale": {
-        "ru": "Side street — «боковая улица», public park — «общественный парк». I parked in a side street — я припарковался на боковой улице. Выберите парковку, не посещение парка.",
-        "uk": "Side street — «бічна вулиця», public park — «громадський парк». I parked in a side street — я припаркувався на бічній вулиці. Виберіть паркування, не відвідування парку."
+        "ru": "Вчера вы оставили машину на небольшой улице рядом с главной дорогой. Side street — боковая улица. Соберите фразу: I + parked + in a side street. Получится I parked in a side street — Я припарковался на боковой улице. Parked показывает прошлое действие. После него in a side street указывает место парковки; здесь русскому «на улице» соответствует английское in a street.",
+        "uk": "Учора ви залишили машину на невеликій вулиці поруч із головною дорогою. Side street — бічна вулиця. Складіть фразу: I + parked + in a side street. Вийде I parked in a side street — Я припаркувався на бічній вулиці. Parked показує минулу дію. Після нього in a side street указує місце паркування; тут українському «на вулиці» відповідає англійське in a street."
       },
       "question": {
         "interactionId": "en:lesson-12:session-36:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пешеходная улица",
-        "uk": "Пішохідна вулиця"
+        "ru": "Побывали на пешеходной улице",
+        "uk": "Побували на пішохідній вулиці"
       },
       "bodyByLocale": {
-        "ru": "Pedestrian street — «пешеходная улица». We visited a pedestrian street — мы побывали на пешеходной улице. В visited окончание /ɪd/. Выберите сообщение о посещении.",
-        "uk": "Pedestrian street — «пішохідна вулиця». We visited a pedestrian street — ми побували на пішохідній вулиці. У visited закінчення /ɪd/. Виберіть повідомлення про відвідування."
+        "ru": "Вчера вы с другом побывали на улице, открытой только для пешеходов. Pedestrian street — пешеходная улица. Расскажите о посещении: We visited a pedestrian street — Мы побывали на пешеходной улице. Начните с We, затем поставьте visited: окончание -ed обозначает прошлое и здесь звучит /ɪd/. После visited назовите место без предлога: a pedestrian street. A относится к одной улице, о которой вы впервые сообщаете.",
+        "uk": "Учора ви з другом побували на вулиці, відкритій лише для пішоходів. Pedestrian street — пішохідна вулиця. Розкажіть про відвідування: We visited a pedestrian street — Ми побували на пішохідній вулиці. Почніть із We, потім поставте visited: закінчення -ed позначає минуле й тут звучить /ɪd/. Після visited назвіть місце без прийменника: a pedestrian street. A стосується однієї вулиці, про яку ви вперше повідомляєте."
       },
       "question": {
         "interactionId": "en:lesson-12:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "68ee9616185d6582093b9f58d7aba90cfd0889d3be4a0c0d741e588a1746b697"
+  "introFingerprint": "0523c49d12cdf7afa8b9342147abd7310263275e4e9239875f95281ff1cd74e0"
 }

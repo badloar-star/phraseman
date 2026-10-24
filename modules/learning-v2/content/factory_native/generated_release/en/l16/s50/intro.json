@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Кто занесёт бельё",
+        "uk": "Хто занесе білизну"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. bring in — занести внутрь. Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. I think Anna will bring in the washing. — Думаю, Анна занесёт высохшее бельё в дом. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. bring in — занести всередину. Ви припускаєте, що Анна занесе білизну з вулиці, але ще не обговорювали це з нею. I think Anna will bring in the washing. — Думаю, Анна занесе висохлу білизну в дім. Передайте думку-прогноз через will."
+        "ru": "Бельё сохнет во дворе. Вы предполагаете, что Анна занесёт его в дом, хотя ещё не говорили с ней об этом. Bring in — занести внутрь. Передайте мнение: I think Anna will bring in the washing. Порядок: I think + Anna + will + bring in + the washing. После will используем bring без to и без -s; in сохраняет значение движения внутрь. Здесь отрабатываем предположение с will, не объявляя другие формы всегда неверными.",
+        "uk": "Білизна сохне у дворі. Ви припускаєте, що Анна занесе її в дім, хоча ще не говорили з нею про це. Bring in — занести всередину. Передайте думку: I think Anna will bring in the washing. Порядок: I think + Anna + will + bring in + the washing. Після will використовуємо bring без to та без -s; in зберігає значення руху всередину. Тут відпрацьовуємо припущення з will, не оголошуючи інші форми завжди неправильними."
       },
       "question": {
         "interactionId": "en:lesson-16:session-50:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Решить убрать игрушки",
+        "uk": "Вирішити прибрати іграшки"
       },
       "bodyByLocale": {
-        "ru": "keep out — не заходить, держаться вне чего-либо. clear up — убрать беспорядок. Вы решили убрать игрушки и сообщаете о своём намерении. I am going to clear up the toys. — Я собираюсь убрать разбросанные игрушки. Передайте заранее принятое намерение через going to.",
-        "uk": "keep out — не заходити, триматися поза чимось. clear up — прибрати безлад. Ви вирішили прибрати іграшки й повідомляєте про свій намір. I am going to clear up the toys. — Я збираюся прибрати розкидані іграшки. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы увидели разбросанные игрушки, решили их убрать и сообщаете о намерении до начала уборки. Clear up — убрать беспорядок. Скажите: I am going to clear up the toys. Соберите фразу: I + am going to + clear up + the toys. После I используем am, после going to ставим clear в исходной форме и сохраняем up. The toys называет то, что вы собираетесь убрать.",
+        "uk": "Ви побачили розкидані іграшки, вирішили їх прибрати й повідомляєте про намір до початку прибирання. Clear up — прибрати безлад. Скажіть: I am going to clear up the toys. Складіть фразу: I + am going to + clear up + the toys. Після I використовуємо am, після going to ставимо clear у початковій формі та зберігаємо up. The toys називає те, що ви збираєтеся прибрати."
       },
       "question": {
         "interactionId": "en:lesson-16:session-50:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Уборка гаража в субботу",
+        "uk": "Прибирання гаража в суботу"
       },
       "bodyByLocale": {
-        "ru": "clean out — вычистить, убрав всё лишнее изнутри. Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. We are cleaning out the garage on Saturday. — В субботу мы вычищаем гараж и убираем из него всё лишнее. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "clean out — вичистити, прибравши все зайве зсередини. Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. We are cleaning out the garage on Saturday. — У суботу ми вичищаємо гараж і прибираємо з нього все зайве. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы согласовали с семьёй уборку гаража на субботу. Clean out — вычистить изнутри, убрав лишнее. Передайте договорённость: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. С we ставим are, окончание -ing добавляем к clean, а out сохраняем. Согласованный день показывает, что Present Continuous описывает будущую уборку.",
+        "uk": "Ви узгодили із сім'єю прибирання гаража на суботу. Clean out — вичистити зсередини, прибравши зайве. Передайте домовленість: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. З we ставимо are, закінчення -ing додаємо до clean, а out зберігаємо. Узгоджений день показує, що Present Continuous описує майбутнє прибирання."
       },
       "question": {
         "interactionId": "en:lesson-16:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5d53b6328e055d3c6d3ccb91262025c840218e94960df6c32f68356123fe8833"
+  "introFingerprint": "a085c31c86cb8b1d09888d37958ff0dda541a393fafc66507d7cd32b99847a7c"
 }

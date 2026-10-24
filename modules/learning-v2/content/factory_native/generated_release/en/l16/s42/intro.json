@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Какие груши привезут",
+        "uk": "Які груші привезуть"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. unripe — неспелый. Вы ещё не получили заказанные груши и предполагаете, что они окажутся неспелыми. I think the pears will be unripe. — Думаю, груши будут неспелыми. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. unripe — недостиглий. Ви ще не отримали замовлені груші й припускаєте, що вони виявляться недостиглими. I think the pears will be unripe. — Думаю, груші будуть недостиглими. Передайте думку-прогноз через will."
+        "ru": "Вы ждёте заказанные груши и предполагаете, что они окажутся неспелыми. Unripe — неспелый. Выразите мнение: I think the pears will be unripe. Соберите фразу: I think + the pears + will be + unripe. После will ставим be без to независимо от множественного pears. Unripe описывает груши, а I think показывает предположение. Здесь тренируем will; другие формы могут быть уместны при другом акценте.",
+        "uk": "Ви чекаєте замовлені груші й припускаєте, що вони виявляться нестиглими. Unripe — нестиглий. Висловіть думку: I think the pears will be unripe. Складіть фразу: I think + the pears + will be + unripe. Після will ставимо be без to незалежно від множини pears. Unripe описує груші, а I think показує припущення. Тут тренуємо will; інші форми можуть бути доречними за іншого акценту."
       },
       "question": {
         "interactionId": "en:lesson-16:session-42:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Намерение испечь пирог",
+        "uk": "Намір спекти пиріг"
       },
       "bodyByLocale": {
-        "ru": "overripe — переспелый. bruised — с помятыми, потемневшими местами — о фруктах. Вы решили испечь пирог из яблок с небольшими помятыми местами; это пока намерение. I am going to use the bruised apples for a pie. — Я собираюсь использовать помятые яблоки для пирога. Передайте заранее принятое намерение через going to.",
-        "uk": "overripe — перестиглий. bruised — із пом’ятими, потемнілими місцями — про фрукти. Ви вирішили спекти пиріг із яблук із невеликими пом’ятими місцями; це поки намір. I am going to use the bruised apples for a pie. — Я збираюся використати пом’яті яблука для пирога. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили использовать яблоки с помятыми местами для пирога, но ещё не начали готовить. Bruised здесь — с помятыми местами. Передайте намерение: I am going to use the bruised apples for a pie. Порядок: I + am going to + use + the bruised apples + for a pie. С I ставим am, после going to — use в исходной форме. The bruised apples называет выбранные яблоки, for a pie — для чего они нужны.",
+        "uk": "Ви вирішили використати яблука з пом'ятими місцями для пирога, але ще не почали готувати. Bruised тут — із пом'ятими місцями. Передайте намір: I am going to use the bruised apples for a pie. Порядок: I + am going to + use + the bruised apples + for a pie. З I ставимо am, після going to — use у початковій формі. The bruised apples називає обрані яблука, for a pie — для чого вони потрібні."
       },
       "question": {
         "interactionId": "en:lesson-16:session-42:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Забрать заказ завтра",
+        "uk": "Забрати замовлення завтра"
       },
       "bodyByLocale": {
-        "ru": "seedless — без косточек или семян. Вы заказали виноград и согласовали с продавцом, что заберёте его завтра. We are collecting the seedless grapes tomorrow. — Мы забираем виноград без косточек завтра. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "seedless — без кісточок або насіння. Ви замовили виноград і узгодили з продавцем, що заберете його завтра. We are collecting the seedless grapes tomorrow. — Ми забираємо виноград без кісточок завтра. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с близким человеком заказали виноград без косточек и согласовали с продавцом, что заберёте его завтра. Seedless — без косточек или семян. Скажите о договорённости: We are collecting the seedless grapes tomorrow. Соберите предложение: We + are collecting + the seedless grapes + tomorrow. С we используем are, к collect добавляем -ing. Tomorrow и согласованный заказ показывают, что это будущая договорённость.",
+        "uk": "Ви з близькою людиною замовили виноград без кісточок і узгодили з продавцем, що заберете його завтра. Seedless — без кісточок або насіння. Скажіть про домовленість: We are collecting the seedless grapes tomorrow. Складіть речення: We + are collecting + the seedless grapes + tomorrow. З we використовуємо are, до collect додаємо -ing. Tomorrow та узгоджене замовлення показують, що це майбутня домовленість."
       },
       "question": {
         "interactionId": "en:lesson-16:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b998238f8cdf61ebf486f04aad1e6db22c2f15855dfeeeba05c94481fd4e4e24"
+  "introFingerprint": "c5fc260a40323b4229cc97be840f4d3990c1d0ff93d06aae48b918507ebc28d2"
 }

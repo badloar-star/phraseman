@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Предположить, будет ли дуть из окон",
+        "uk": "Припустити, чи дутиме з вікон"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. draughty — со сквозняками. Вы ещё не были в комнате и предполагаете, что в ней может дуть из окон. I think the room will be draughty. — Думаю, в комнате будут сквозняки. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. draughty — з протягами. Ви ще не були в кімнаті й припускаєте, що в ній може дути з вікон. I think the room will be draughty. — Думаю, у кімнаті будуть протяги. Передайте думку-прогноз через will."
+        "ru": "Вы ещё не осмотрели комнату и предполагаете, что в ней будут сквозняки. Draughty — со сквозняками. Выразите мнение: I think the room will be draughty. Соберите фразу: I think + the room + will be + draughty. После will используем be без to; draughty описывает комнату. I think подчёркивает, что это предположение. Здесь тренируем will, а не утверждаем, что другие формы всегда ошибочны.",
+        "uk": "Ви ще не оглянули кімнату й припускаєте, що в ній будуть протяги. Draughty — із протягами. Висловіть думку: I think the room will be draughty. Складіть фразу: I think + the room + will be + draughty. Після will використовуємо be без to; draughty описує кімнату. I think підкреслює, що це припущення. Тут тренуємо will, а не стверджуємо, що інші форми завжди помилкові."
       },
       "question": {
         "interactionId": "en:lesson-16:session-51:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Намерение найти тихую комнату",
+        "uk": "Намір знайти тиху кімнату"
       },
       "bodyByLocale": {
-        "ru": "well-lit — хорошо освещённый. soundproof — со звукоизоляцией, не пропускающий звук. Вы решили поискать комнату, где не будет слышно соседей; пока это намерение. I am going to look for a soundproof room. — Я собираюсь искать комнату со звукоизоляцией. Передайте заранее принятое намерение через going to.",
-        "uk": "well-lit — добре освітлений. soundproof — зі звукоізоляцією, що не пропускає звук. Ви вирішили пошукати кімнату, де не буде чути сусідів; поки це намір. I am going to look for a soundproof room. — Я збираюся шукати кімнату зі звукоізоляцією. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили искать комнату со звукоизоляцией, чтобы не слышать соседей; поиски пока не начались. Soundproof — не пропускающий звук. Передайте намерение: I am going to look for a soundproof room. Порядок: I + am going to + look for + a soundproof room. С I используем am, после going to — look без -ing. Soundproof перед room описывает нужную комнату.",
+        "uk": "Ви вирішили шукати кімнату зі звукоізоляцією, щоб не чути сусідів; пошуки поки не почалися. Soundproof — той, що не пропускає звук. Передайте намір: I am going to look for a soundproof room. Порядок: I + am going to + look for + a soundproof room. З I використовуємо am, після going to — look без -ing. Soundproof перед room описує потрібну кімнату."
       },
       "question": {
         "interactionId": "en:lesson-16:session-51:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Осмотр квартиры уже согласован",
+        "uk": "Огляд квартири вже узгоджено"
       },
       "bodyByLocale": {
-        "ru": "well-kept — ухоженный, в хорошем состоянии. Вы согласовали с владельцем просмотр квартиры на завтра. We are viewing a well-kept flat tomorrow. — Завтра мы осматриваем ухоженную квартиру. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "well-kept — доглянутий, у доброму стані. Ви узгодили з власником перегляд квартири на завтра. We are viewing a well-kept flat tomorrow. — Завтра ми оглядаємо доглянуту квартиру. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы договорились с владельцем на завтра осмотреть ухоженную квартиру. Well-kept — ухоженный, в хорошем состоянии. Скажите о договорённости: We are viewing a well-kept flat tomorrow. Соберите предложение: We + are viewing + a well-kept flat + tomorrow. С we ставим are, действие выражаем формой viewing. Согласованное время tomorrow показывает, что Present Continuous здесь описывает будущее дело.",
+        "uk": "Ви домовилися з власником на завтра оглянути доглянуту квартиру. Well-kept — доглянутий, у хорошому стані. Скажіть про домовленість: We are viewing a well-kept flat tomorrow. Складіть речення: We + are viewing + a well-kept flat + tomorrow. З we ставимо are, дію виражаємо формою viewing. Узгоджений час tomorrow показує, що Present Continuous тут описує майбутню справу."
       },
       "question": {
         "interactionId": "en:lesson-16:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6366c8f116ec8b45f4240d1b411d43bc9a6f6d628a96011769addc8ff691f55a"
+  "introFingerprint": "3e8df27b977586b22472c679491708eeae23c7c84d9087a9c6cf489583db7029"
 }

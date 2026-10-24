@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Каким получится печенье",
+        "uk": "Яким вийде печиво"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. crumbly — рассыпчатый, легко крошащийся. Вы впервые пробуете рецепт и предполагаете, каким получится печенье. I think the biscuits will be crumbly. — Думаю, печенье будет рассыпчатым. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. crumbly — розсипчастий, такий, що легко кришиться. Ви вперше випробовуєте рецепт і припускаєте, яким вийде печиво. I think the biscuits will be crumbly. — Думаю, печиво буде розсипчастим. Передайте думку-прогноз через will."
+        "ru": "Вы впервые готовите печенье по новому рецепту и предполагаете, что оно получится рассыпчатым. Crumbly — рассыпчатый, легко крошащийся. Передайте мнение: I think the biscuits will be crumbly. Порядок: I think + the biscuits + will be + crumbly. После will ставим be без to даже с множественным biscuits, затем признак crumbly. I think показывает предположение. Здесь тренируем will; другие формы могут быть уместны при другом акценте.",
+        "uk": "Ви вперше готуєте печиво за новим рецептом і припускаєте, що воно вийде розсипчастим. Crumbly — розсипчастий, той, що легко кришиться. Передайте думку: I think the biscuits will be crumbly. Порядок: I think + the biscuits + will be + crumbly. Після will ставимо be без to навіть із множиною biscuits, потім ознаку crumbly. I think показує припущення. Тут тренуємо will; інші форми можуть бути доречними за іншого акценту."
       },
       "question": {
         "interactionId": "en:lesson-16:session-43:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Покупка для ужина",
+        "uk": "Покупка для вечері"
       },
       "bodyByLocale": {
-        "ru": "watery — водянистый, слишком жидкий или со слабым вкусом. boneless — без костей — о мясе или рыбе. Вы решили купить мясо без костей для ужина; это намерение перед походом в магазин. I am going to buy boneless chicken. — Я собираюсь купить курицу без костей. Передайте заранее принятое намерение через going to.",
-        "uk": "watery — водянистий, надто рідкий або зі слабким смаком. boneless — без кісток — про м’ясо або рибу. Ви вирішили купити м’ясо без кісток на вечерю; це намір перед походом до магазину. I am going to buy boneless chicken. — Я збираюся купити курятину без кісток. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Перед походом в магазин вы решили купить на ужин куриное мясо без костей. Boneless — без костей. Скажите о намерении: I am going to buy boneless chicken. Соберите предложение: I + am going to + buy + boneless chicken. С I используем am, после going to — buy в исходной форме. Boneless стоит перед chicken и уточняет, какое мясо вы выбрали.",
+        "uk": "Перед походом до магазину ви вирішили купити на вечерю куряче м'ясо без кісток. Boneless — без кісток. Скажіть про намір: I am going to buy boneless chicken. Складіть речення: I + am going to + buy + boneless chicken. З I використовуємо am, після going to — buy у початковій формі. Boneless стоїть перед chicken та уточнює, яке м'ясо ви обрали."
       },
       "question": {
         "interactionId": "en:lesson-16:session-43:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Совместная готовка вечером",
+        "uk": "Спільне готування ввечері"
       },
       "bodyByLocale": {
-        "ru": "skinless — без кожи — о мясе или рыбе. Вы договорились с другом готовить вместе сегодня вечером и уже выбрали продукты. We are cooking skinless chicken together tonight. — Сегодня вечером мы вместе готовим курицу без кожи. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "skinless — без шкіри — про м’ясо або рибу. Ви домовилися з другом готувати разом сьогодні ввечері й уже вибрали продукти. We are cooking skinless chicken together tonight. — Сьогодні ввечері ми разом готуємо курятину без шкіри. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с другом договорились сегодня вечером вместе приготовить курицу без кожи и уже выбрали продукты. Skinless — без кожи. Передайте согласованный план: We are cooking skinless chicken together tonight. Порядок: We + are cooking + skinless chicken + together + tonight. С we ставим are, к cook добавляем -ing. Together означает «вместе», а tonight и договорённость показывают, что речь о предстоящем вечере.",
+        "uk": "Ви з другом домовилися сьогодні ввечері разом приготувати курку без шкіри й уже обрали продукти. Skinless — без шкіри. Передайте узгоджений план: We are cooking skinless chicken together tonight. Порядок: We + are cooking + skinless chicken + together + tonight. З we ставимо are, до cook додаємо -ing. Together означає «разом», а tonight і домовленість показують, що йдеться про майбутній вечір."
       },
       "question": {
         "interactionId": "en:lesson-16:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2694176c1327cf88dd80b5bb1e2480b14f34d50972bc83628c677eb74ed9c359"
+  "introFingerprint": "d9558e099310481136b8f83886b55978d66a79686a9d4da809d44b12810d7c82"
 }

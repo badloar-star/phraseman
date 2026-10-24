@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Будет ли в квартире мебель",
+        "uk": "Чи будуть у квартирі меблі"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. furnished — с мебелью — о жилье. Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. I think the flat will be furnished. — Думаю, квартира будет с мебелью. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. furnished — з меблями — про житло. Ви ще не бачили квартиру й припускаєте, що меблі в ній уже є. I think the flat will be furnished. — Думаю, квартира буде з меблями. Передайте думку-прогноз через will."
+        "ru": "Вы собираетесь смотреть квартиру и предполагаете, что мебель в ней уже будет. Furnished — с мебелью, когда говорим о жилье. Передайте своё мнение: I think the flat will be furnished. Соберите фразу: I think + the flat + will be + furnished. После will ставим be без to, затем furnished описывает квартиру. I think показывает предположение; здесь отрабатываем will, не объявляя другие формы невозможными во всех контекстах.",
+        "uk": "Ви збираєтеся оглядати квартиру й припускаєте, що меблі в ній уже будуть. Furnished — з меблями, коли говоримо про житло. Передайте свою думку: I think the flat will be furnished. Складіть фразу: I think + the flat + will be + furnished. Після will ставимо be без to, потім furnished описує квартиру. I think показує припущення; тут відпрацьовуємо will, не оголошуючи інші форми неможливими в усіх контекстах."
       },
       "question": {
         "interactionId": "en:lesson-16:session-53:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Искать отдельно стоящий дом",
+        "uk": "Шукати окремий будинок"
       },
       "bodyByLocale": {
-        "ru": "unfurnished — без мебели — о жилье. detached — отдельно стоящий — о доме. Вы решили поискать дом без общей стены с соседями; пока ничего не выбрали. I am going to look for a detached house. — Я собираюсь искать отдельно стоящий дом. Передайте заранее принятое намерение через going to.",
-        "uk": "unfurnished — без меблів — про житло. detached — окремо розташований — про будинок. Ви вирішили пошукати будинок без спільної стіни із сусідами; поки нічого не вибрали. I am going to look for a detached house. — Я збираюся шукати окремо розташований будинок. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили искать дом без общей стены с соседями, но ещё не приступили к поискам. Detached — отдельно стоящий. Скажите о принятом намерении: I am going to look for a detached house. Сначала I + am going to, затем действие look for и объект a detached house. С I нужно am, после going to — look в исходной форме. Detached перед house уточняет тип дома.",
+        "uk": "Ви вирішили шукати будинок без спільної стіни із сусідами, але ще не почали пошуків. Detached — окремо розташований. Скажіть про прийнятий намір: I am going to look for a detached house. Спочатку I + am going to, потім дія look for та об'єкт a detached house. З I потрібне am, після going to — look у початковій формі. Detached перед house уточнює тип будинку."
       },
       "question": {
         "interactionId": "en:lesson-16:session-53:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Завтра посмотреть дом",
+        "uk": "Завтра оглянути будинок"
       },
       "bodyByLocale": {
-        "ru": "terraced — стоящий в ряду домов с общими боковыми стенами. Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. We are viewing a terraced house tomorrow. — Завтра мы осматриваем дом в ряду домов с общими стенами. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "terraced — розташований у ряду будинків зі спільними бічними стінами. Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. We are viewing a terraced house tomorrow. — Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы согласовали с агентом завтрашний просмотр дома в ряду домов с общими боковыми стенами. Terraced описывает такой дом. Передайте договорённость: We are viewing a terraced house tomorrow. Порядок: We + are viewing + a terraced house + tomorrow. С we ставим are, к view добавляем -ing. Согласованный просмотр и tomorrow показывают будущее значение этой формы.",
+        "uk": "Ви узгодили з агентом завтрашній огляд будинку в ряду будинків зі спільними бічними стінами. Terraced описує такий будинок. Передайте домовленість: We are viewing a terraced house tomorrow. Порядок: We + are viewing + a terraced house + tomorrow. З we ставимо are, до view додаємо -ing. Узгоджений огляд і tomorrow показують майбутнє значення цієї форми."
       },
       "question": {
         "interactionId": "en:lesson-16:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8ad9db35148e5dc2ca23236933f04436d106ebfe6a9fa0311a1dfc34cbd0c4cb"
+  "introFingerprint": "96f69463b20b57fc2dd7a4a6468b1f1c4073e42f88662165086eccd07cafb718"
 }

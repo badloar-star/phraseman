@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Задремать по дороге домой",
+        "uk": "Задрімати дорогою додому"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. nod off — задремать, ненадолго уснуть. Вы предполагаете, что после долгого дня можете задремать по дороге домой. I think I will nod off on the train. — Думаю, я задремлю в поезде. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. nod off — задрімати, ненадовго заснути. Ви припускаєте, що після довгого дня можете задрімати дорогою додому. I think I will nod off on the train. — Думаю, я задрімаю в потязі. Передайте думку-прогноз через will."
+        "ru": "После долгого дня вы предполагаете, что задремлете в поезде по дороге домой. Nod off — задремать. Передайте мнение: I think I will nod off on the train. Порядок: I think + I + will + nod off + on the train. После will ставим nod без to, сохраняя off. On the train называет место, а I think показывает предположение. Здесь тренируем will; другая форма может быть уместна при другом акценте.",
+        "uk": "Після довгого дня ви припускаєте, що задрімаєте в потязі дорогою додому. Nod off — задрімати. Передайте думку: I think I will nod off on the train. Порядок: I think + I + will + nod off + on the train. Після will ставимо nod без to, зберігаючи off. On the train називає місце, а I think показує припущення. Тут тренуємо will; інша форма може бути доречною за іншого акценту."
       },
       "question": {
         "interactionId": "en:lesson-16:session-46:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Освежиться перед ужином",
+        "uk": "Освіжитися перед вечерею"
       },
       "bodyByLocale": {
-        "ru": "warm up — размяться перед физической нагрузкой. freshen up — освежиться, умыться или привести себя в порядок. После дороги вы решили умыться перед ужином и сообщаете об этом намерении. I am going to freshen up before dinner. — Я собираюсь освежиться перед ужином. Передайте заранее принятое намерение через going to.",
-        "uk": "warm up — розім’ятися перед фізичним навантаженням. freshen up — освіжитися, вмитися або привести себе до ладу. Після дороги ви вирішили вмитися перед вечерею й повідомляєте про цей намір. I am going to freshen up before dinner. — Я збираюся освіжитися перед вечерею. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "После дороги вы решили умыться перед ужином и сообщаете о намерении, пока ещё этого не сделали. Freshen up — освежиться, привести себя в порядок. Соберите фразу: I + am going to + freshen up + before dinner → I am going to freshen up before dinner. С I используем am, после going to — freshen в исходной форме. Before dinner указывает, когда вы собираетесь это сделать.",
+        "uk": "Після дороги ви вирішили вмитися перед вечерею й повідомляєте про намір, поки ще цього не зробили. Freshen up — освіжитися, привести себе до ладу. Складіть фразу: I + am going to + freshen up + before dinner → I am going to freshen up before dinner. З I використовуємо am, після going to — freshen у початковій формі. Before dinner указує, коли ви збираєтеся це зробити."
       },
       "question": {
         "interactionId": "en:lesson-16:session-46:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Отдых на завтра забронирован",
+        "uk": "Відпочинок на завтра заброньовано"
       },
       "bodyByLocale": {
-        "ru": "wind down — расслабиться после напряжённого дня или дела. Вы с подругой договорились завтра отдохнуть в спа и уже забронировали посещение. У wind down форма с -ing — winding down. We are winding down at the spa tomorrow. — Завтра мы отдыхаем в спа после напряжённых дней. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "wind down — розслабитися після напруженого дня або справи. Ви з подругою домовилися завтра відпочити в спа й уже забронювали відвідування. У wind down форма з -ing — winding down. We are winding down at the spa tomorrow. — Завтра ми відпочиваємо в спа після напружених днів. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с подругой забронировали посещение спа на завтра, чтобы отдохнуть после напряжённых дней. Wind down — расслабиться. Передайте согласованный план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. С we ставим are, к wind добавляем -ing и сохраняем down. Забронированное посещение и tomorrow показывают будущее значение Present Continuous.",
+        "uk": "Ви з подругою забронювали відвідування спа на завтра, щоб відпочити після напружених днів. Wind down — розслабитися. Передайте узгоджений план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. З we ставимо are, до wind додаємо -ing і зберігаємо down. Заброньоване відвідування та tomorrow показують майбутнє значення Present Continuous."
       },
       "question": {
         "interactionId": "en:lesson-16:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "64fb50fd32bb73971b2f77c2e162453d56db2fc89cfe071f88011c8ab5e0301d"
+  "introFingerprint": "c4615f84570b3ea6b01bcaa72cacc48abd0eaf21e38f90cc4a5dd8fadae0a2a8"
 }

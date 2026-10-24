@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Придёт ли Том вовремя",
+        "uk": "Чи прийде Том вчасно"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. show up — прийти, появиться в условленном месте. Вы высказываете предположение о том, вовремя ли Том придёт на встречу. I think Tom will show up on time. — Думаю, Том придёт вовремя. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. show up — прийти, з’явитися в домовленому місці. Ви висловлюєте припущення про те, чи вчасно Том прийде на зустріч. I think Tom will show up on time. — Думаю, Том прийде вчасно. Передайте думку-прогноз через will."
+        "ru": "Вы ждёте Тома на встречу и предполагаете, что он не опоздает. Show up — прийти, появиться в условленном месте. Передайте мнение: I think Tom will show up on time. Соберите фразу: I think + Tom + will + show up + on time. После will ставим show без to и без -s, сохраняя up. On time означает «вовремя». Здесь тренируем предположение с will; другие формы возможны при другом акценте.",
+        "uk": "Ви чекаєте Тома на зустріч і припускаєте, що він не запізниться. Show up — прийти, з'явитися в умовленому місці. Передайте думку: I think Tom will show up on time. Складіть фразу: I think + Tom + will + show up + on time. Після will ставимо show без to та без -s, зберігаючи up. On time означає «вчасно». Тут тренуємо припущення з will; інші форми можливі за іншого акценту."
       },
       "question": {
         "interactionId": "en:lesson-16:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Намерение увидеться с друзьями",
+        "uk": "Намір побачитися з друзями"
       },
       "bodyByLocale": {
-        "ru": "come along — пойти или поехать вместе с кем-то. get together — собраться, встретиться для общения. Вы решили встретиться с друзьями, но день и место пока не согласовали. I am going to get together with friends soon. — Я собираюсь скоро встретиться с друзьями. Передайте заранее принятое намерение через going to.",
-        "uk": "come along — піти або поїхати разом із кимось. get together — зібратися, зустрітися для спілкування. Ви вирішили зустрітися з друзями, але день і місце поки не узгодили. I am going to get together with friends soon. — Я збираюся незабаром зустрітися з друзями. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили скоро встретиться с друзьями, но ещё не согласовали день и место. Get together — собраться для общения. Скажите о намерении: I am going to get together with friends soon. Порядок: I + am going to + get together + with friends + soon. После I ставим am, после going to — get в исходной форме. With friends называет компанию, soon — примерное время.",
+        "uk": "Ви вирішили невдовзі зустрітися з друзями, але ще не узгодили день і місце. Get together — зібратися для спілкування. Скажіть про намір: I am going to get together with friends soon. Порядок: I + am going to + get together + with friends + soon. Після I ставимо am, після going to — get у початковій формі. With friends називає компанію, soon — приблизний час."
       },
       "question": {
         "interactionId": "en:lesson-16:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Выход на прогулку согласован",
+        "uk": "Вихід на прогулянку узгоджено"
       },
       "bodyByLocale": {
-        "ru": "head out — выйти, отправиться куда-либо. Вы с друзьями согласовали время выхода на завтрашнюю прогулку. У head out форма с -ing — heading out. We are heading out at eight tomorrow. — Завтра мы выходим в восемь. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "head out — вийти, вирушити кудись. Ви з друзями узгодили час виходу на завтрашню прогулянку. У head out форма з -ing — heading out. We are heading out at eight tomorrow. — Завтра ми виходимо о восьмій. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с друзьями договорились завтра выйти на прогулку в восемь. Head out — выйти, отправиться куда-либо. Передайте договорённость: We are heading out at eight tomorrow. Соберите предложение: We + are heading out + at eight + tomorrow. С we используем are, к head добавляем -ing, а out сохраняем. At eight tomorrow называет согласованное время и показывает будущее значение Present Continuous.",
+        "uk": "Ви з друзями домовилися завтра вийти на прогулянку о восьмій. Head out — вийти, вирушити кудись. Передайте домовленість: We are heading out at eight tomorrow. Складіть речення: We + are heading out + at eight + tomorrow. З we використовуємо are, до head додаємо -ing, а out зберігаємо. At eight tomorrow називає узгоджений час і показує майбутнє значення Present Continuous."
       },
       "question": {
         "interactionId": "en:lesson-16:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7f496f250a20e829c76ed45da6852b215c8106b8f16645265bbef270f3db83c8"
+  "introFingerprint": "5d5a404df7299b86beafed61a3c5638aaf27b162994a25a414a28b218b091ab0"
 }

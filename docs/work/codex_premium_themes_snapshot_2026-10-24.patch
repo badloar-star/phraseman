@@ -1,0 +1,1017 @@
+diff --git a/app/settings_themes.tsx b/app/settings_themes.tsx
+index 07a866538..3ef115e8a 100644
+--- a/app/settings_themes.tsx
++++ b/app/settings_themes.tsx
+@@ -1,4 +1,4 @@
+-import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
++import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+ import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
+ import BouncyScrollView from '../components/BouncyScrollView';
+ import { useRouter } from 'expo-router';
+@@ -34,6 +34,19 @@ import { DebugLogger } from './debug-logger';
+ import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
+ import BackGlyph from '../components/v2/BackGlyph';
+ import { useScrollToSelectedTheme } from './settings_themes_scroll';
++import {
++  isPremiumThemeId,
++  premiumThemeById,
++  type PremiumThemeProgress,
++  type PremiumThemeProgressByCondition,
++} from './premium_theme_catalog';
++import {
++  premiumThemeProgressLabel,
++  premiumThemeProgressValue,
++  premiumThemeRequirement,
++  premiumThemeRequirementLabel,
++} from './premium_theme_copy';
++import { claimPremiumThemeCondition, usePremiumThemeEntitlements } from './premium_theme_entitlements';
+ 
+ // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
+ // модалка покупки темы за жемчуг удалена целиком (D45).
+@@ -44,7 +57,8 @@ import { useScrollToSelectedTheme } from './settings_themes_scroll';
+ // заменены одним ползунком), затем одна стеклянная карточка с 13 темами.
+ // Подписей «Оформление / Цвет» и блока предпросмотра НЕТ. Тап по теме применяет её сразу —
+ // экран перекрашивается в том же кадре, отдельной кнопки «Применить» больше нет.
+-// Все темы бесплатны («ТЕМЫ ВСЕ ФРИ», владелец 30.09): ни замка, ни Plus, ни пейвола.
++// Обычные темы бесплатны. Шесть утверждённых наградных тем находятся внизу
++// списка и открываются только проверенными сервером достижениями владельца.
+ 
+ type ThemeOption = { mode: LiquidGlassThemeId };
+ 
+@@ -56,6 +70,30 @@ const THEME_OPTIONS: ThemeOption[] = [
+ ];
+ 
+ const GRADIENT_OPTIONS: ThemeOption[] = LIQUID_GLASS_GRADIENT_THEME_IDS.map(mode => ({ mode }));
++const STANDARD_GRADIENT_OPTIONS: ThemeOption[] = GRADIENT_OPTIONS.filter(({ mode }) => !isPremiumThemeId(mode));
++const PREMIUM_GRADIENT_OPTIONS: ThemeOption[] = GRADIENT_OPTIONS.filter(({ mode }) => isPremiumThemeId(mode));
++
++// Visual parity fixture for emulator screenshots only. Production always uses the
++// server-authoritative snapshot below; this branch is unreachable in store builds.
++const DEV_PREMIUM_PROGRESS: PremiumThemeProgressByCondition = Object.freeze({
++  plus_purchase: Object.freeze({ current: 1, target: 1, unit: 'purchase' }),
++  final_coin_rank: Object.freeze({ current: 19, target: 19, unit: 'rank' }),
++  streak_365: Object.freeze({ current: 365, target: 365, unit: 'days' }),
++  final_spire: Object.freeze({ current: 11, target: 11, unit: 'tier' }),
++  video_200_hours: Object.freeze({ current: 200, target: 200, unit: 'hours' }),
++  learning_v2_complete: Object.freeze({ current: 1792, target: 1792, unit: 'sessions' }),
++});
++
++// Даже при временно недоступном сервере условие остаётся понятным: показываем
++// нулевую точку и цель вместо технического текста «прогресс недоступен».
++const FALLBACK_PREMIUM_PROGRESS: PremiumThemeProgressByCondition = Object.freeze({
++  plus_purchase: Object.freeze({ current: 0, target: 1, unit: 'purchase' }),
++  final_coin_rank: Object.freeze({ current: 0, target: 19, unit: 'rank' }),
++  streak_365: Object.freeze({ current: 0, target: 365, unit: 'days' }),
++  final_spire: Object.freeze({ current: 0, target: 11, unit: 'tier' }),
++  video_200_hours: Object.freeze({ current: 0, target: 200, unit: 'hours' }),
++  learning_v2_complete: Object.freeze({ current: 0, target: 1792, unit: 'sessions' }),
++});
+ 
+ // Только для экранного диктора: у ползунка нет видимой подписи (владелец: «только ползунок»).
+ const INTENSITY_LABEL: ThemeDisplayName = {
+@@ -121,39 +159,80 @@ type ThemeRowProps = {
+   applied: boolean;
+   first: boolean;
+   vivid: boolean;
++  available: boolean;
++  expanded: boolean;
++  progress: PremiumThemeProgress | null;
++  lang: Lang;
+   onPress: (mode: LiquidGlassThemeId) => void;
++  onLockedPress: (mode: LiquidGlassThemeId) => void;
+   glass: GlassTokens;
+ };
+ 
+-const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, onPress, glass }: ThemeRowProps) {
++const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, available, expanded, progress, lang, onPress, onLockedPress, glass }: ThemeRowProps) {
+   // Радио выбранной темы: в «Спокойно» — нейтральное (белое в тёмном, чернильное в светлом),
+   // в «Акценте/Максимуме» — цвет темы.
+   const mark = glass.level === 'calm' ? (glass.isLight ? glass.text : glass.lightTint) : glass.accentBorder;
+   // зачем (FONTSCALE2, 05.10): межстрочный растёт с системным шрифтом — иначе низ букв срезается; при 1.0 значение прежнее.
+   const lh = useLineScale();
++  const premium = premiumThemeById(option.mode);
++  const percent = progress ? Math.max(0, Math.min(100, Math.round((progress.current / progress.target) * 100))) : 0;
++  const accessibilityLabel = available || !premium
++    ? label
++    : `${label}. ${premiumThemeRequirement(premium.id, lang)}. ${progress ? premiumThemeProgressValue(progress, lang) : ''}`;
+   return (
+-    <PressableHybrid
+-      testID={`theme-tile-${option.mode}`}
+-      accessibilityRole="radio"
+-      accessibilityState={{ selected: applied, checked: applied }}
+-      accessibilityLabel={label}
+-      onPress={() => onPress(option.mode)}
+-      withHaptic={false}
+-      withSound={false}
+-      variant="card"
+-      contentStyle={styles.row}
+-    >
++    <View>
+       {first ? null : <RowDivider color={glass.dividerTone} />}
+-      <ThemeSwatch id={option.mode} vivid={vivid} />
+-      <View style={styles.rowText}>
+-        {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без усечений) —
+-            длинное имя темы переносится, а не режется троеточием. */}
+-        <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={[styles.rowName, { color: glass.text, lineHeight: lh(styles.rowName.lineHeight) }]}>{label}</FlowText>
+-      </View>
+-      <View style={[styles.radio, { borderColor: applied ? mark : glass.glassEdge }]}>{/* shadow-ok: кольцо радио — индикатор выбора, не контейнер */}
+-        {applied ? <View style={[styles.radioDot, { backgroundColor: mark }]} /> : null}
+-      </View>
+-    </PressableHybrid>
++      <PressableHybrid
++        testID={`theme-tile-${option.mode}`}
++        accessibilityRole={available ? 'radio' : 'button'}
++        accessibilityState={available ? { selected: applied, checked: applied } : { expanded }}
++        accessibilityLabel={accessibilityLabel}
++        onPress={() => { if (available) onPress(option.mode); else onLockedPress(option.mode); }}
++        withHaptic={false}
++        withSound={false}
++        variant="card"
++        contentStyle={styles.row}
++      >
++        <ThemeSwatch id={option.mode} vivid={vivid} />
++        <View style={styles.rowText}>
++          {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без усечений) —
++              длинное имя темы переносится, а не режется троеточием. */}
++          <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={[styles.rowName, { color: glass.text, lineHeight: lh(styles.rowName.lineHeight) }]}>{label}</FlowText>
++        </View>
++        {available ? <View style={[styles.radio, { borderColor: applied ? mark : glass.glassEdge }]}>{/* shadow-ok: кольцо радио — индикатор выбора, не контейнер */}
++          {applied ? <View style={[styles.radioDot, { backgroundColor: mark }]} /> : null}
++        </View> : (
++          <View style={styles.lockCluster}>
++            <Ionicons name="lock-closed" size={18} color={glass.secondary} />
++            <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={16} color={glass.secondary} />
++          </View>
++        )}
++      </PressableHybrid>
++      {!available && expanded && premium ? (
++        <View
++          testID={`theme-tile-details-${option.mode}`}
++          style={[styles.rewardDetails, { backgroundColor: glass.opaqueControl }]}
++        >
++          <FlowText testID={`theme-tile-requirement-label-${option.mode}`} provenance="authored" style={[styles.detailLabel, { color: glass.secondary }]}>
++            {premiumThemeRequirementLabel(lang)}
++          </FlowText>
++          <FlowText testID={`theme-tile-requirement-${option.mode}`} provenance="authored" style={[styles.detailValue, { color: glass.text, lineHeight: lh(styles.detailValue.lineHeight) }]}>
++            {premiumThemeRequirement(premium.id, lang)}
++          </FlowText>
++          <View style={styles.progressHead}>
++            <FlowText testID={`theme-tile-progress-label-${option.mode}`} provenance="authored" style={[styles.detailLabel, { color: glass.secondary }]}>
++              {premiumThemeProgressLabel(lang)}
++            </FlowText>
++            <FlowText testID={`theme-tile-progress-value-${option.mode}`} provenance="authored" style={[styles.progressValue, { color: glass.text }]}>
++              {progress ? premiumThemeProgressValue(progress, lang) : ''}
++            </FlowText>
++          </View>
++          <View style={[styles.progressTrack, { backgroundColor: glass.glassEdge }]}>
++            <View style={[styles.progressFill, { backgroundColor: glass.accentBorder, width: `${percent}%` as `${number}%` }]} />
++          </View>
++        </View>
++      ) : null}
++    </View>
+   );
+ });
+ 
+@@ -164,6 +243,7 @@ export default function SettingsThemes() {
+     appliedLiquidGlassThemeId,
+     setPreviewLiquidGlassThemeId,
+     setLiquidGlassThemeId,
++    isLiquidGlassThemeAvailable,
+     liquidGlassIntensity,
+     setLiquidGlassIntensity,
+     setPreviewLiquidGlassIntensity,
+@@ -171,17 +251,18 @@ export default function SettingsThemes() {
+     setLiquidGlassAppearance,
+   } = useTheme();
+   const { lang } = useLang();
++  const premiumEntitlements = usePremiumThemeEntitlements();
++  // Debug-сборка открывает все темы и показывает выполненные условия: это режим
++  // визуальной сверки на эмуляторе. Store-сборка использует только серверные права.
++  const devProgressPreview = __DEV__;
++  const premiumProgressByCondition: PremiumThemeProgressByCondition = devProgressPreview
++    ? DEV_PREMIUM_PROGRESS
++    : Object.freeze({ ...FALLBACK_PREMIUM_PROGRESS, ...premiumEntitlements.progressByCondition });
++  const [expandedPremiumTheme, setExpandedPremiumTheme] = useState<LiquidGlassThemeId | null>(null);
+   const lh = useLineScale();
+-  // зачем (6 · СВЕРКА §44): список открывается прокрученным к выбранной теме (один раз, без анимации); выбранная берётся на момент открытия экрана
+-  const initialSelected = useRef(
+-    ((): { card: 'main' | 'gradient'; rowCount: number; rowIndex: number } | null => {
+-      const main = THEME_OPTIONS.findIndex((o) => o.mode === appliedLiquidGlassThemeId);
+-      if (main >= 0) return { card: 'main', rowCount: THEME_OPTIONS.length, rowIndex: main };
+-      const grad = GRADIENT_OPTIONS.findIndex((o) => o.mode === appliedLiquidGlassThemeId);
+-      return grad >= 0 ? { card: 'gradient', rowCount: GRADIENT_OPTIONS.length, rowIndex: grad } : null;
+-    })(),
+-  ).current;
+-  const { scrollRef, onCardLayout, onScrollLayout, onContentSizeChange } = useScrollToSelectedTheme(initialSelected);
++  // Экран всегда открывается сверху: особые темы должны быть первым видимым
++  // выбором, даже если раньше была выбрана одна из обычных тем ниже.
++  const { scrollRef, onCardLayout, onScrollLayout, onContentSizeChange } = useScrollToSelectedTheme(null);
+   const onMainCardLayout = useMemo(() => onCardLayout('main'), [onCardLayout]);
+   const onGradientCardLayout = useMemo(() => onCardLayout('gradient'), [onCardLayout]);
+ 
+@@ -211,6 +292,16 @@ export default function SettingsThemes() {
+     setLiquidGlassAppearance(appearance);
+   }, [liquidGlassAppearance, setLiquidGlassAppearance]);
+ 
++  const onLockedThemePress = useCallback((mode: LiquidGlassThemeId) => {
++    const premium = premiumThemeById(mode);
++    if (!premium) return;
++    hapticTap();
++    setExpandedPremiumTheme((current) => current === mode ? null : mode);
++    // Тап одновременно освежает entitlement: если условие было выполнено между
++    // фоновыми синхронизациями, тема откроется без перезапуска экрана.
++    void claimPremiumThemeCondition(premium.condition);
++  }, []);
++
+   const glass = liquidGlassTokens(liquidGlassThemeId);
+   const insets = useStableSafeAreaInsets();
+   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
+@@ -251,42 +342,72 @@ export default function SettingsThemes() {
+               onPreview={setPreviewLiquidGlassIntensity}
+               onCommit={setLiquidGlassIntensity}
+             />
++            {/* Шесть особых тем стоят первыми. В debug они открыты для полной
++                проверки; в store каждая остаётся под серверным условием. */}
+             <View
+               accessibilityRole="radiogroup"
+-              onLayout={onMainCardLayout}
++              onLayout={onGradientCardLayout}
+               style={[settingsGlassCardStyle(glass), styles.list]}
+             >
+               <ThemeGlassSmoke glass={glass} radius={20} />
+-              {THEME_OPTIONS.map((item, index) => (
++              {PREMIUM_GRADIENT_OPTIONS.map((item, index) => {
++                const premium = premiumThemeById(item.mode)!;
++                return (
++                  <ThemeRow
++                    key={item.mode}
++                    option={item}
++                    label={themeDisplayName(item.mode, lang)}
++                    applied={item.mode === appliedLiquidGlassThemeId}
++                    first={index === 0}
++                    vivid
++                    available={__DEV__ || isLiquidGlassThemeAvailable(item.mode)}
++                    expanded={expandedPremiumTheme === item.mode}
++                    progress={premiumProgressByCondition[premium.condition] ?? null}
++                    lang={lang}
++                    onPress={onRowPress}
++                    onLockedPress={onLockedThemePress}
++                    glass={glass}
++                  />
++                );
++              })}
++              {STANDARD_GRADIENT_OPTIONS.map((item) => (
+                 <ThemeRow
+                   key={item.mode}
+                   option={item}
+                   label={themeDisplayName(item.mode, lang)}
+                   applied={item.mode === appliedLiquidGlassThemeId}
+-                  first={index === 0}
+-                  vivid={vivid}
++                  first={false}
++                  vivid
++                  available={isLiquidGlassThemeAvailable(item.mode)}
++                  expanded={false}
++                  progress={null}
++                  lang={lang}
+                   onPress={onRowPress}
++                  onLockedPress={onLockedThemePress}
+                   glass={glass}
+                 />
+               ))}
+             </View>
+-            {/* зачем (владелец 2026-10-04): 10 градиентных тем ДОБАВЛЕНЫ к 13 — отдельной
+-                карточкой ниже, без подписи; набор берётся из одного списка-конфига. */}
+             <View
+               accessibilityRole="radiogroup"
+-              onLayout={onGradientCardLayout}
++              onLayout={onMainCardLayout}
+               style={[settingsGlassCardStyle(glass), styles.list]}
+             >
+               <ThemeGlassSmoke glass={glass} radius={20} />
+-              {GRADIENT_OPTIONS.map((item, index) => (
++              {THEME_OPTIONS.map((item, index) => (
+                 <ThemeRow
+                   key={item.mode}
+                   option={item}
+                   label={themeDisplayName(item.mode, lang)}
+                   applied={item.mode === appliedLiquidGlassThemeId}
+                   first={index === 0}
+-                  vivid
++                  vivid={vivid}
++                  available={isLiquidGlassThemeAvailable(item.mode)}
++                  expanded={false}
++                  progress={null}
++                  lang={lang}
+                   onPress={onRowPress}
++                  onLockedPress={onLockedThemePress}
+                   glass={glass}
+                 />
+               ))}
+@@ -308,6 +429,14 @@ const styles = StyleSheet.create({
+   row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 58, paddingVertical: 8, paddingLeft: 14, paddingRight: 16 },
+   rowText: { flex: 1, minWidth: 0 },
+   rowName: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
++  lockCluster: { flexDirection: 'row', alignItems: 'center', gap: 5 },
++  rewardDetails: { marginHorizontal: 12, marginBottom: 10, paddingHorizontal: 14, paddingVertical: 12, borderRadius: 14 },
++  detailLabel: { fontSize: 11, lineHeight: 15, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.55 },
++  detailValue: { marginTop: 3, fontSize: 14, lineHeight: 19, fontWeight: '600' },
++  progressHead: { marginTop: 11, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 10 },
++  progressValue: { flexShrink: 1, textAlign: 'right', fontSize: 12, lineHeight: 16, fontWeight: '700' },
++  progressTrack: { height: 6, marginTop: 7, borderRadius: 3, overflow: 'hidden' },
++  progressFill: { height: 6, borderRadius: 3 },
+   radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.6, alignItems: 'center', justifyContent: 'center' }, // shadow-ok: кольцо радио — индикатор выбора, не контейнер; guard-ok: кольцо радио
+   radioDot: { width: 12, height: 12, borderRadius: 6 },
+ });
+diff --git a/app/theme_display_names.ts b/app/theme_display_names.ts
+index ea7c18e6b..9213975a9 100644
+--- a/app/theme_display_names.ts
++++ b/app/theme_display_names.ts
+@@ -53,6 +53,12 @@ export const THEME_DISPLAY_NAMES: Readonly<Record<string, ThemeDisplayName>> = O
+   grad_ice: { ru: 'Лёд', uk: 'Лід', en: 'Ice', es: 'Hielo', 'pt-BR': 'Gelo', vi: 'Băng', id: 'Es', tr: 'Buz', pl: 'Lód' },
+   grad_coral: { ru: 'Коралл', uk: 'Корал', en: 'Coral', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
+   grad_lilac: { ru: 'Сирень', uk: 'Бузок', en: 'Lilac', es: 'Lila', 'pt-BR': 'Lilás', vi: 'Tử đinh hương', id: 'Lilak', tr: 'Leylak', pl: 'Bez' },
++  grad_full_olive: { ru: 'Керамика', uk: 'Кераміка', en: 'Ceramic', es: 'Cerámica', 'pt-BR': 'Cerâmica', vi: 'Ceramic', id: 'Keramik', tr: 'Seramik', pl: 'Ceramika' },
++  grad_full_ref_signal_lime: { ru: 'Обсидиан', uk: 'Обсидіан', en: 'Obsidian', es: 'Obsidiana', 'pt-BR': 'Obsidiana', vi: 'Obsidian', id: 'Obsidian', tr: 'Obsidyen', pl: 'Obsydian' },
++  grad_full_ref_storm_violet: { ru: 'Аметист', uk: 'Аметист', en: 'Amethyst', es: 'Amatista', 'pt-BR': 'Ametista', vi: 'Amethyst', id: 'Ametis', tr: 'Ametist', pl: 'Ametyst' },
++  grad_full_titanium: { ru: 'Титан', uk: 'Титан', en: 'Titanium', es: 'Titanio', 'pt-BR': 'Titânio', vi: 'Titan', id: 'Titanium', tr: 'Titanyum', pl: 'Tytan' },
++  grad_full_horizon: { ru: 'Атмосфера', uk: 'Атмосфера', en: 'Atmosphere', es: 'Atmósfera', 'pt-BR': 'Atmosfera', vi: 'Atmosphere', id: 'Atmosfer', tr: 'Atmosfer', pl: 'Atmosfera' },
++  grad_full_ref_gravity_blue: { ru: 'Сингулярность', uk: 'Сингулярність', en: 'Singularity', es: 'Singularidad', 'pt-BR': 'Singularidade', vi: 'Singularity', id: 'Singularitas', tr: 'Tekillik', pl: 'Osobliwość' },
+   indigo: { ru: 'Индиго', uk: 'Індиго', en: 'Indigo', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
+   sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', en: 'Jade', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
+   olive: { ru: 'Саванна', uk: 'Савана', en: 'Savanna', es: 'Sabana', 'pt-BR': 'Savana', vi: 'Thảo nguyên', id: 'Sabana', tr: 'Savan', pl: 'Sawanna' },
+diff --git a/app/youtube_player_seek_bus.ts b/app/youtube_player_seek_bus.ts
+index 2d002ed49..d98e12a31 100644
+--- a/app/youtube_player_seek_bus.ts
++++ b/app/youtube_player_seek_bus.ts
+@@ -13,6 +13,7 @@
+ 
+ import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+ import { noteTodayVideoPlaybackTick } from '../modules/today-tasks/today_tasks_video_ticks';
++import { notePremiumThemeVideoPlaybackTick } from './premium_theme_video_watch';
+ 
+ type SeekHandler = (seconds: number) => void;
+ type PositionListener = (positionSec: number) => void;
+@@ -131,6 +132,7 @@ export function publishYoutubePosition(videoId: string, positionSec: number): vo
+   noteTodayVideoPlaybackTick(videoId, Date.now(), (units, id, _dayKey, unitKey) => {
+     void recordTodayTaskActivity({ kind: 'video', units, unitKey, source: `youtube:${id}` });
+   });
++  notePremiumThemeVideoPlaybackTick(videoId, Date.now());
+ }
+ 
+ export function subscribeYoutubePosition(videoId: string, listener: PositionListener): () => void {
+diff --git a/components/ThemeContext.tsx b/components/ThemeContext.tsx
+index 13ba9c04b..a4cd02b1c 100644
+--- a/components/ThemeContext.tsx
++++ b/components/ThemeContext.tsx
+@@ -1,4 +1,4 @@
+-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
++import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef, useSyncExternalStore } from 'react';
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import { Appearance, useColorScheme, useWindowDimensions } from 'react-native';
+ import { DARK, Theme, ThemeMode } from '../constants/theme';
+@@ -28,9 +28,23 @@ import {
+ } from '../constants/liquidGlassThemePalette';
+ import { createThemePersister, type ThemePersister } from '../app/theme_persist';
+ import { getDevAppearance, getDevThemeChoice, setDevAppearance, setDevThemeChoice, subscribeDevAppearance, subscribeDevThemeChoice } from '../app/dev_appearance_override';
+-import { actionToastTri, emitAppEvent } from '../app/events';
++import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
+ import { FOLLOW_SYSTEM_MARKER_KEY, decideFirstRunTheme, pickSystemDefaultTheme } from '../app/theme_first_run_default';
+ import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
++import { isPremiumThemeId } from '../app/premium_theme_catalog';
++import {
++  claimPremiumThemeCondition,
++  peekPremiumThemeEntitlements,
++  primePremiumThemeEntitlements,
++  usePremiumThemeEntitlements,
++} from '../app/premium_theme_entitlements';
++import {
++  ensurePremiumThemePack,
++  premiumThemePackRevision,
++  primePremiumThemePackCache,
++  setActivePremiumThemeArt,
++  subscribePremiumThemePackCache,
++} from '../app/premium_theme_pack_cache';
+ 
+ // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
+ // Duolingo использует ~16px для основного текста, ~14px для вторичного
+@@ -325,6 +339,8 @@ const logThemeWriteError = (key: string) => (e: unknown) => {
+ };
+ 
+ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
++  const premiumThemeEntitlements = usePremiumThemeEntitlements();
++  const premiumThemePackRev = useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision);
+   const { width: layoutW, height: layoutH } = useWindowDimensions();
+   const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
+ 
+@@ -333,14 +349,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+   // зачем: пока палец на ползунке — перекраска без записи на диск; отпустил — null.
+   const [previewLiquidGlassIntensity, setPreviewIntensityState] = useState<number | null>(null);
+   // зачем (Сверка chain7 12.10): dev_state?theme=&level= — тема и оттенок ТОЛЬКО в памяти (app/dev_appearance_override.ts); сохранённый выбор и запись на диск не меняются
+-  const [devThemeChoice, setDevThemeChoiceState] = useState(() => getDevThemeChoice());
+-  useEffect(() => subscribeDevThemeChoice(setDevThemeChoiceState), []);
++  const devThemeChoice = useSyncExternalStore(subscribeDevThemeChoice, getDevThemeChoice, getDevThemeChoice);
+   const liquidGlassIntensity = previewLiquidGlassIntensity ?? devThemeChoice?.intensity ?? appliedLiquidGlassIntensity;
+   const liquidGlassColorLevel = liquidGlassLevelForIntensity(liquidGlassIntensity);
+   const [savedLiquidGlassAppearance, setAppearanceState] = useState<LiquidGlassAppearance>(() => getActiveLiquidGlassVariant().appearance);
+   // зачем (Макеты 15.10): dev_state?appearance=light|dark — оформление ТОЛЬКО в памяти (app/dev_appearance_override.ts); хранилище и сохранённый выбор не меняются. Без оверрайда — прежнее значение.
+-  const [devAppearance, setDevAppearanceState] = useState<LiquidGlassAppearance | null>(() => getDevAppearance());
+-  useEffect(() => subscribeDevAppearance(setDevAppearanceState), []);
++  const devAppearance = useSyncExternalStore(subscribeDevAppearance, getDevAppearance, getDevAppearance);
+   const systemScheme = useColorScheme();
+   const [followSystem, setFollowSystem] = useState<boolean>(() => followSystemInProcess);
+   const systemDefault = pickSystemDefaultTheme(systemScheme);
+@@ -386,6 +400,26 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+   const [liquidGlassChoiceReady, setLiquidGlassChoiceReady] = useState<boolean>(() => themeHydratedInProcess);
+   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
+   const liquidGlassThemeId = previewLiquidGlassThemeId ?? (devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? (followSystem ? resolveLiquidGlassTheme(systemDefault.themeId) : appliedLiquidGlassThemeId);
++  setActivePremiumThemeArt(liquidGlassThemeId, IS_DEV || Boolean(devThemeChoice?.themeId));
++  useEffect(() => {
++    if (!isPremiumThemeId(liquidGlassThemeId) || (!premiumThemeEntitlements.unlocked.has(liquidGlassThemeId) && !IS_DEV)) return undefined;
++    let cancelled = false;
++    let retryTimer: ReturnType<typeof setTimeout> | null = null;
++    const loadSelectedPack = async (attempt: number): Promise<void> => {
++      const ready = await ensurePremiumThemePack(liquidGlassThemeId, 'selected');
++      if (IS_DEV) console.log('[PREMIUM-THEME-PACK] selected', JSON.stringify({ themeId: liquidGlassThemeId, attempt, ready })); // guard-ok: dev-проверка удалённого пакета выбранной темы
++      if (ready || cancelled || attempt >= 4) return;
++      // Route transitions temporarily close background-network admission. A
++      // selected theme must retry after that short quiet window; otherwise a
++      // one-shot deferred request leaves the standard art on screen forever.
++      retryTimer = setTimeout(() => { void loadSelectedPack(attempt + 1); }, 500 * (attempt + 1));
++    };
++    void loadSelectedPack(0);
++    return () => {
++      cancelled = true;
++      if (retryTimer) clearTimeout(retryTimer);
++    };
++  }, [devThemeChoice?.themeId, liquidGlassThemeId, premiumThemeEntitlements.unlocked]);
+   currentChoiceRef.current = { theme: appliedLiquidGlassThemeId, appearance: liquidGlassAppearance, intensity: String(appliedLiquidGlassIntensity) };
+   // зачем (координатор 18.10, первый запуск: «первый экран, онбординг и первая Главная — правильная тема с первого кадра, без вспышки другой темы»; правило «сперва логи»):
+   // какая пара реально отрисована в каждом из первых кадров и ПОЧЕМУ: системная схема, следование системе, сохранённая/применённая тема (peek или хранилище),
+@@ -405,10 +439,37 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+     setOskolokThemeMode(LEGACY_GRAPHITE_THEME_MODE);
+   }, []);
+ 
+-  // зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ» — любая тема из реестра доступна без Plus.
++  // Store: шесть тем достижений доступны только по серверному entitlement.
++  // Debug: все открыты для ручной сверки каждой темы на эмуляторе.
+   const isLiquidGlassThemeAvailable = useCallback((id: LiquidGlassThemeId) => (
+-    LIQUID_GLASS_THEME_IDS.includes(id)
+-  ), []);
++    LIQUID_GLASS_THEME_IDS.includes(id) && (!isPremiumThemeId(id) || IS_DEV || premiumThemeEntitlements.unlocked.has(id))
++  ), [premiumThemeEntitlements.unlocked]);
++
++  useEffect(() => {
++    void Promise.all([primePremiumThemeEntitlements(), primePremiumThemePackCache()]);
++  }, []);
++
++  useEffect(() => {
++    const retryTimers = new Set<ReturnType<typeof setTimeout>>();
++    const sub = onAppEvent('premium_activated', () => {
++      void claimPremiumThemeCondition('plus_purchase');
++      // RevenueCat webhook/server projection may arrive a few seconds after the
++      // local purchase event. Two bounded retries keep the unlock immediate in
++      // the normal case without trusting the local purchase flag.
++      for (const delayMs of [8_000, 24_000]) {
++        const timer = setTimeout(() => {
++          retryTimers.delete(timer);
++          void claimPremiumThemeCondition('plus_purchase');
++        }, delayMs);
++        retryTimers.add(timer);
++      }
++    });
++    return () => {
++      sub.remove();
++      retryTimers.forEach(clearTimeout);
++      retryTimers.clear();
++    };
++  }, []);
+ 
+   // зачем (владелец 13.10): пока человек ничего не выбирал, пара тема/оформление/насыщенность следует за системным режимом и НЕ лежит в хранилище.
+   // Первый же его выбор (тема, оформление или насыщенность) замораживает ту пару, которую он сейчас видит, и записывает её целиком — дальше это
+@@ -476,7 +537,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+     setAppliedLiquidGlassThemeId(id);
+     persisterRef.current?.commit('theme', id, previous);
+     console.log(`[THEME-SWITCH] тап темы ${JSON.stringify({ from: previous, to: id })}`); // guard-ok: вход цепочки смены темы
+-  }, []);
++  }, [freezeFollowSystem, releaseDevOverrides]);
+ 
+   // зачем (темы 2.0): уровень и оформление меняются мгновенно (локальный state), запись
+   // на диск догоняет фоном; ошибка записи только логируется — выбор на экране остаётся.
+@@ -493,7 +554,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+     setPreviewIntensityState(null);
+     if (IS_DEV) console.log('[THEME-INTENSITY] commit', { requested: intensity, saved: next, level });
+     persisterRef.current?.commit('intensity', String(next), previous);
+-  }, []);
++  }, [freezeFollowSystem, releaseDevOverrides]);
+ 
+   const setPreviewLiquidGlassIntensity = useCallback((intensity: number | null) => {
+     setPreviewIntensityState(intensity === null ? null : quantizeLiquidGlassIntensity(intensity));
+@@ -511,7 +572,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+     touchedRef.current.appearance = true;
+     setAppearanceState(resolved);
+     persisterRef.current?.commit('appearance', resolved, previous);
+-  }, []);
++  }, [freezeFollowSystem, releaseDevOverrides]);
+ 
+   const setLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
+     if (!isLiquidGlassThemeAvailable(id)) return;
+@@ -554,7 +615,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+       console.log(`[THEME-BOOT] hydrate ${JSON.stringify({ msSinceBoot: Date.now() - THEME_BOOT_T0, storedTheme: storedId, storedAppearance: pairs[2]?.[1] ?? null, storedIntensity: pairs[3]?.[1] ?? null, onboardingDone: pairs[4]?.[1] ?? null, followMarker: pairs[5]?.[1] ?? null, bootScheme: String(Appearance.getColorScheme()), decision: `${firstRun.kind}/${firstRun.reason}` })}`); // guard-ok: одна строка на старт
+       console.log(`[THEME-DEFAULT] ${firstRun.kind} ${JSON.stringify({ reason: firstRun.reason, apply: firstRun.apply, ...(firstRun.kind === 'new_user' ? { themeId: firstRun.themeId, intensity: firstRun.intensity } : {}) })}`);
+       const newUserApply = firstRun.kind === 'new_user' && firstRun.apply ? firstRun : null;
+-      const storedResolved = resolveLiquidGlassTheme(storedId);
++      // Право на премиальную тему читает сервер. Пока ответ не пришёл, сплеш
++      // остаётся закрытым; так заблокированная тема не мелькает первым кадром.
++      await primePremiumThemeEntitlements();
++      if (cancelled) return;
++      const storedCandidate = resolveLiquidGlassTheme(storedId);
++      const entitlementSnapshot = peekPremiumThemeEntitlements();
++      const storedResolved = isPremiumThemeId(storedCandidate)
++        && !entitlementSnapshot.unlocked.has(storedCandidate)
++        ? 'graphite'
++        : storedCandidate;
+       // зачем (владелец 13.10): новичку тема не пишется в хранилище — пара «Сумерки/Океан» следует за системным режимом, пока он ничего не выбрал.
+       // В хранилище лежит только метка; первый выбор замораживает пару (freezeFollowSystem). Старые пользователи сюда не попадают.
+       const bootScheme = Appearance.getColorScheme();
+@@ -578,7 +648,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+         peekLiquidGlassThemeId = resolved;
+         setAppliedLiquidGlassThemeId(resolved);
+       }
+-      if (storedId !== null && storedId !== resolved) {
++      const mayRepairStoredTheme = !isPremiumThemeId(storedCandidate) || entitlementSnapshot.authoritative;
++      if (storedId !== null && storedId !== resolved && mayRepairStoredTheme) {
+         AsyncStorage.setItem(THEME_STORAGE_KEY, resolved).catch(logThemeWriteError(THEME_STORAGE_KEY));
+       }
+       // зачем (ползунок 2026-10-04): «Спокойно / Акцент / Максимум» → 0 / 0.5 / 1, на этих
+@@ -718,7 +789,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+   }, [uiScale]);
+ 
+   const value = useMemo<ThemeCtx>(
+-    () => ({
++    () => {
++      // The art registry resolves remote sources outside this object. Reading
++      // the revision here republishes the context when a verified pack arrives.
++      void premiumThemePackRev;
++      return ({
+       theme,
+       isDark,
+       statusBarLight,
+@@ -752,8 +827,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+       uiScale,
+       f,
+       ds,
+-    }),
+-    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassIntensity, setLiquidGlassIntensity, setPreviewLiquidGlassIntensity, liquidGlassAppearance, setLiquidGlassAppearance, liquidGlassChoiceReady, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
++      });
++    },
++    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassIntensity, setLiquidGlassIntensity, setPreviewLiquidGlassIntensity, liquidGlassAppearance, setLiquidGlassAppearance, liquidGlassChoiceReady, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds, premiumThemePackRev],
+   );
+ 
+   // зачем ([THEMES-PERF], dev): причина смены значения контекста, цена сборки темы и число перерисованных подписчиков за 250 мс после неё.
+@@ -767,7 +843,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+       console.log('[THEMES-PERF] first', JSON.stringify({ ...now, buildMs: themeBuildMsRef.current })); // guard-ok: dev-замер первого значения
+       return undefined;
+     }
+-    const changed = (Object.keys(now) as Array<keyof typeof now>).filter((key) => now[key] !== prev[key]);
++    const changed = (Object.keys(now) as (keyof typeof now)[]).filter((key) => now[key] !== prev[key]);
+     const callsAtChange = themePerfConsumerCalls;
+     const writesAtChange = themePerfWrites;
+     const changedAt = Date.now();
+diff --git a/components/home/v2/scene/HomeScene.tsx b/components/home/v2/scene/HomeScene.tsx
+index ce297311f..23a4a55b8 100644
+--- a/components/home/v2/scene/HomeScene.tsx
++++ b/components/home/v2/scene/HomeScene.tsx
+@@ -12,10 +12,11 @@
+ // рисует по готовому решению. /dev_home_scene_preview берёт факты из моков, решение — та же функция, вид — тот же HomeSceneView.
+ // ═══════════════════════════════════════════════════════════════════════════
+ import Ionicons from '@expo/vector-icons/Ionicons';
+-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
++import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+ import { StyleSheet, Text, View } from 'react-native';
+ 
+ import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
++import { premiumThemePackRevision, subscribePremiumThemePackCache } from '../../../../app/premium_theme_pack_cache';
+ import type { Lang } from '../../../../constants/i18n';
+ import { V2 } from '../../../../constants/v2Style';
+ import { useTheme } from '../../../ThemeContext';
+@@ -207,6 +208,7 @@ export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens
+ /** «Сцена» по готовому решению: цвета, картинка, тексты, шапка и строка «Нет сети» поверх. */
+ export function HomeSceneView(p: HomeSceneViewProps) {
+   const { decision } = p;
++  const { liquidGlassThemeId } = useTheme();
+   const [minuteTick, setMinuteTick] = useState(0);
+   const evening = decision.state === 'streak_risk';
+   const fixedClock = p.minutesToMidnight !== undefined;
+@@ -225,7 +227,14 @@ export function HomeSceneView(p: HomeSceneViewProps) {
+     setHomeSceneStatusTint(tokens.sceneTop);
+     return () => setHomeSceneStatusTint(null);
+   }, [tokens.sceneTop, p.statusTint]);
+-  const art = useMemo(() => resolveHomeSceneArt(decision.state, p.artTone), [decision.state, p.artTone]);
++  const premiumArtRevision = useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision);
++  // The active premium pack is selected by theme id. Its cache revision does not
++  // change when switching between two packs that are already installed, so the
++  // theme id itself must invalidate this memo or the previous theme's hero leaks.
++  const art = useMemo(
++    () => resolveHomeSceneArt(decision.state, p.artTone),
++    [decision.state, p.artTone, premiumArtRevision, liquidGlassThemeId],
++  );
+   useEffect(() => {
+     console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, hero512: art.hero512, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)), seam: Number(tokens.seam.toFixed(2)), scrim: tokens.scrim })); // guard-ok: одна строка на смену героя
+   }, [art, decision.state, p.artTone, tokens.whiteContrastTop, tokens.seam, tokens.scrim]);
+diff --git a/components/home/v2/scene/HomeSceneStage.tsx b/components/home/v2/scene/HomeSceneStage.tsx
+index 50771d48e..f7a2230af 100644
+--- a/components/home/v2/scene/HomeSceneStage.tsx
++++ b/components/home/v2/scene/HomeSceneStage.tsx
+@@ -29,6 +29,8 @@ import { homeSceneWarmTone } from './home_scene_warm_tone';
+ import { useShadowGlass } from '../../../v2/ShadowSurface';
+ import type { HomeSceneState } from './home_scene_state';
+ import type { HomeSceneStageTokens } from './home_scene_tokens';
++import { PremiumThemeMotion } from './PremiumThemeMotion';
++import { useTheme } from '../../../ThemeContext';
+ 
+ const LOG = '[HOME-SCENE]';
+ /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
+@@ -91,6 +93,7 @@ export default function HomeSceneStage(props: Props) {
+ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0 }: Props) {
+   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+   const reduceMotion = useReducedMotion();
++  const { liquidGlassThemeId, isDark } = useTheme();
+   const heroReady = useAfterFirstFrame('home:hero'); // зачем (ускорение первого кадра; координатор 22.10): герой — со 2-го кадра тем же FadeIn
+   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
+   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
+@@ -121,6 +124,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
+       }}
+     >
+       <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
++      <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
+       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
+         <Defs>
+           <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
+@@ -149,8 +153,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
+       {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота, поверх текста допустимо), крупный — не выше свободного места */}
+       <View style={s.heroSpace} pointerEvents="none">
+         {art && heroReady ? (
+-          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[heroBounded ? s.heroBounded : s.hero, artDim ? s.heroDim : null]}>
+-            <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
++          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : s.hero}>
++            <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
++              <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
++            </View>
+           </Animated.View>
+         ) : null}
+       </View>
+@@ -226,8 +232,9 @@ const baseStyles = StyleSheet.create({
+   stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden', justifyContent: 'space-between' },
+   // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
+   heroSpace: { flex: 1 },
+-  hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO, padding: HERO_PAD, opacity: 0.96 },
+-  heroBounded: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, bottom: 4, width: HERO, maxHeight: HERO, padding: HERO_PAD, opacity: 0.96 },
++  hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },
++  heroBounded: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, bottom: 4, width: HERO, maxHeight: HERO },
++  heroVisual: { width: '100%', height: '100%', padding: HERO_PAD, opacity: 0.96 },
+   heroDim: { opacity: 0.55 },
+   heroImage: { width: '100%', height: '100%' },
+   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
+diff --git a/components/home/v2/scene/home_scene_tokens.ts b/components/home/v2/scene/home_scene_tokens.ts
+index a096db732..4124cd144 100644
+--- a/components/home/v2/scene/home_scene_tokens.ts
++++ b/components/home/v2/scene/home_scene_tokens.ts
+@@ -10,6 +10,7 @@
+ // удалена 22.10 — её больше никто не звал (Главная, «Сегодня» и dev-входы берут homeSceneTokensForTheme).
+ // ═══════════════════════════════════════════════════════════════════════════
+ import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
++import { premiumSceneTop, premiumThemeVisualSpec } from '../../../../constants/premiumThemeVisualSpecs';
+ 
+ export type HomeSceneTokens = Readonly<{
+   sceneTop: string;
+@@ -183,6 +184,13 @@ export function homeSceneThemeTokens(input: HomeSceneThemeInput, evening = false
+       ...todayRingTokens(accent),
+     });
+   };
++  const premium = premiumThemeVisualSpec(input.themeId);
++  if (premium) {
++    const top = rgbOf(premiumSceneTop(premium)) ?? accent;
++    const bot = rgbOf(premium.sceneBottom) ?? (rgbOf(t.bg) as Rgb);
++    const glow = `${premium.edge}25`;
++    return done(top, bot, glow, top, bot, glow, false, ratioRgb(bot, rgbOf(t.opaqueCard) ?? [0, 0, 0]));
++  }
+   if (input.appearance === 'dark') {
+     const grad = t.accentGradient.length > 0 ? t.accentGradient : [t.accent, t.accent];
+     const first = rgbOf(grad[0]) ?? accent;
+diff --git a/components/stories/StorySlides.tsx b/components/stories/StorySlides.tsx
+index bfe161617..746a93900 100644
+--- a/components/stories/StorySlides.tsx
++++ b/components/stories/StorySlides.tsx
+@@ -1,3 +1,4 @@
++import AnnouncementSlide from './AnnouncementSlide';
+ // ═══════════════════════════════════════════════════════════════════════════
+ // StorySlides.tsx — четыре вида кадра просмотра сторис (D192): итог недели, рубеж серии, ранг монеты, ачивка.
+ //
+@@ -26,6 +27,9 @@ import StreakMomentFlame from '../streak/moments/StreakMomentFlame';
+ import { isStreakMilestone } from '../streak/moments/streak_milestones';
+ import { streakDayWord, streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from '../streak/moments/streak_moments_strings';
+ import { storyText, storyThousands } from './story_strings';
++import { isPremiumThemeId } from '../../app/premium_theme_catalog';
++import { premiumThemeUnlockCopy } from '../../app/premium_theme_copy';
++import { liquidGlassGradientTheme } from '../../constants/liquidGlassGradientThemes';
+ 
+ export type StorySlideProps = Readonly<{
+   event: StoryEvent;
+@@ -142,12 +146,35 @@ function AchievementSlide({ event, lang }: StorySlideProps) {
+   );
+ }
+ 
++// ─── новая премиальная тема ────────────────────────────────────────────────
++function ThemeUnlockSlide({ event, lang }: StorySlideProps) {
++  const p = useSpirePalette();
++  const themeId = event.payload.themeId;
++  if (!isPremiumThemeId(themeId)) return null;
++  const def = liquidGlassGradientTheme(themeId);
++  const copy = premiumThemeUnlockCopy(themeId, lang);
++  return (
++    <>
++      <View testID="story-theme-unlock-mark" style={[s.themeMark, { borderColor: def?.accent ?? p.accentTextSafe }]}> 
++        <View style={[s.themeOrbitLarge, { borderColor: def?.glowA ?? p.accentTextSafe }]} />
++        <View style={[s.themeOrbitSmall, { borderColor: def?.glowB ?? p.textSecondary }]} />
++        <View style={[s.themeCore, { backgroundColor: def?.accent ?? p.accentTextSafe }]} />
++      </View>
++      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'themeOverline')}</Text>
++      <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{copy.title}</Text>
++      <Text style={[s.sub, { color: p.textSecondary }]}>{copy.joke}</Text>
++    </>
++  );
++}
++
+ function StorySlide(props: StorySlideProps) {
+   switch (props.event.type) {
++    case 'announcement': return <AnnouncementSlide event={props.event} />;
+     case 'spire_week': return <WeekSlide {...props} />;
+     case 'streak_milestone': return <StreakSlide {...props} />;
+     case 'coin_rank_up': return <CoinRankSlide {...props} />;
+     case 'achievement': return <AchievementSlide {...props} />;
++    case 'theme_unlock': return <ThemeUnlockSlide {...props} />;
+     default: return null;
+   }
+ }
+@@ -163,6 +190,10 @@ const s = StyleSheet.create({
+   rankRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
+   rankFrom: { opacity: 0.5 },
+   achArt: { width: 120, height: 120, alignItems: 'center', justifyContent: 'center' },
++  themeMark: { width: 132, height: 132, borderRadius: 66, borderWidth: 1, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
++  themeOrbitLarge: { position: 'absolute', width: 154, height: 74, borderRadius: 77, borderWidth: 8, transform: [{ rotate: '-22deg' }], opacity: 0.72 },
++  themeOrbitSmall: { position: 'absolute', width: 88, height: 126, borderRadius: 64, borderWidth: 5, transform: [{ rotate: '31deg' }], opacity: 0.56 },
++  themeCore: { width: 30, height: 30, borderRadius: 15 },
+ });
+ 
+ export default memo(StorySlide);
+diff --git a/components/theme/ThemedArt.tsx b/components/theme/ThemedArt.tsx
+index cd5387aec..b09ef00e9 100644
+--- a/components/theme/ThemedArt.tsx
++++ b/components/theme/ThemedArt.tsx
+@@ -4,7 +4,7 @@
+ // лавандовая, предмет тот же. Пока картинок нет — нынешняя картинка этого места (реестр).
+ //
+ // Только именованный экспорт: файл лежит в app/, и default-экспорт превратил бы его в экран роутера.
+-import React, { memo, useMemo } from 'react';
++import React, { memo, useMemo, useSyncExternalStore } from 'react';
+ import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
+ import { Image } from 'expo-image';
+ import { useTheme } from '../ThemeContext';
+@@ -16,6 +16,7 @@ import {
+   type ThemedArtName,
+ } from './themed_art_registry';
+ import { spireRankSmallAccent } from '../spire/spire_rank_accent_small';
++import { premiumThemePackRevision, subscribePremiumThemePackCache } from '../../app/premium_theme_pack_cache';
+ 
+ export type ThemedArtProps = Readonly<{
+   name: ThemedArtName;
+@@ -36,8 +37,15 @@ function ThemedArtImpl({ name, size = 96, width, height, style, brightness, acce
+   const tokens = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity });
+   // Комплект — по яркости фона темы: светлые → light, тёмные и тёмные градиентные → dark.
+   const tone: ThemedArtBrightness = brightness ?? themedArtBrightnessForBackground(tokens.bg);
++  const premiumArtRevision = useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision);
+   // Источники — из кэша реестра по имени+яркости: ползунок и смена темы их не пересоздают.
+-  const art = useMemo(() => resolveThemedArt(name, tone), [name, tone]);
++  // Installed premium packs share one resolver. Switching between two already
++  // cached themes leaves the pack revision unchanged, therefore theme id is a
++  // required memo dependency to prevent stale art from the previous theme.
++  const art = useMemo(
++    () => resolveThemedArt(name, tone),
++    [name, tone, premiumArtRevision, liquidGlassThemeId],
++  );
+   // зачем (координатор 18.10, R154): у значков рангов Пика маска .accent в реестре 1024² (~4 МБ в памяти ради 25 dp) — берём копию 128²; остальные предметы как были.
+   const accent = art.accent ? spireRankSmallAccent(name, tone) ?? art.accent : null;
+   // Цвет детали. Слоя .accent пока нет ни у одного предмета — тогда рисуется чистый предмет.
+diff --git a/components/theme/themed_art_registry.ts b/components/theme/themed_art_registry.ts
+index 9e5620b2c..485024e8d 100644
+--- a/components/theme/themed_art_registry.ts
++++ b/components/theme/themed_art_registry.ts
+@@ -14,6 +14,7 @@
+ // ═══════════════════════════════════════════════════════════════════════════
+ import type { ImageSourcePropType } from 'react-native';
+ import { THEMED_ART_GENERATED } from './themed_art_assets.generated';
++import { resolveActivePremiumThemeArt } from '../../app/premium_theme_pack_cache';
+ 
+ export const THEMED_ART_NAMES = [
+   // Главная (7)
+@@ -68,7 +69,7 @@ export type ThemedArtSlots = Readonly<{
+   light?: ImageSourcePropType;
+   lightAccent?: ImageSourcePropType;
+ }>;
+-export type ThemedArtOrigin = 'v2art' | 'v2art_other_brightness' | 'fallback' | 'none';
++export type ThemedArtOrigin = 'premium_remote' | 'v2art' | 'v2art_other_brightness' | 'fallback' | 'none';
+ export type ThemedArtResolved = Readonly<{
+   name: ThemedArtName;
+   brightness: ThemedArtBrightness;
+@@ -155,6 +156,8 @@ const cache = new Map<string, ThemedArtResolved>();
+ export const themedArtCacheSize = (): number => cache.size;
+ 
+ export function resolveThemedArt(name: ThemedArtName, brightness: ThemedArtBrightness): ThemedArtResolved {
++  const premium = resolveActivePremiumThemeArt(name);
++  if (premium) return Object.freeze({ name, brightness, base: premium, accent: null, origin: 'premium_remote' });
+   const key = `${name}|${brightness}`;
+   const hit = cache.get(key);
+   if (hit) return hit;
+diff --git a/constants/liquidGlassGradientThemes.ts b/constants/liquidGlassGradientThemes.ts
+index d8bb3eedc..4f94c1599 100644
+--- a/constants/liquidGlassGradientThemes.ts
++++ b/constants/liquidGlassGradientThemes.ts
+@@ -43,6 +43,14 @@ export const LIQUID_GLASS_GRADIENT_THEMES = [
+   { id: 'grad_ice', glowA: '#96DCFF', glowB: '#78A0FF', accent: '#BFE6FF', onAccent: '#0A2A44' },
+   { id: 'grad_coral', glowA: '#FF645A', glowB: '#FFA046', accent: '#FFB0A0', onAccent: '#4A0F0A' },
+   { id: 'grad_lilac', glowA: '#A78BFA', glowB: '#60A5FA', accent: '#D4C8FF', onAccent: '#24164A' },
++  // Премиальные темы достижений. Цвет работает на всём экране через те же
++  // семантические токены; уникальный арт Главной приезжает отдельным remote pack.
++  { id: 'grad_full_olive', glowA: '#778624', glowB: '#151E10', accent: '#C9D880', onAccent: '#10151B' },
++  { id: 'grad_full_ref_signal_lime', glowA: '#101406', glowB: '#020406', accent: '#C2FF46', onAccent: '#081017' },
++  { id: 'grad_full_ref_storm_violet', glowA: '#110C14', glowB: '#020406', accent: '#D697FF', onAccent: '#081017' },
++  { id: 'grad_full_titanium', glowA: '#34383D', glowB: '#0A0C0F', accent: '#FF665B', onAccent: '#10151B' },
++  { id: 'grad_full_horizon', glowA: '#12385A', glowB: '#060E1A', accent: '#FFBB78', onAccent: '#10151B' },
++  { id: 'grad_full_ref_gravity_blue', glowA: '#0B1214', glowB: '#020406', accent: '#86DFFF', onAccent: '#081017' },
+ ] as const satisfies readonly LiquidGlassGradientTheme[];
+ 
+ export type LiquidGlassGradientThemeId = typeof LIQUID_GLASS_GRADIENT_THEMES[number]['id'];
+diff --git a/constants/liquidGlassThemePalette.ts b/constants/liquidGlassThemePalette.ts
+index 1e19fa796..9c2f08f48 100644
+--- a/constants/liquidGlassThemePalette.ts
++++ b/constants/liquidGlassThemePalette.ts
+@@ -24,6 +24,7 @@ import {
+   liquidGlassGradientTheme,
+   type LiquidGlassGradientThemeId,
+ } from './liquidGlassGradientThemes';
++import { premiumThemeTokenOverrides } from './premiumThemeVisualSpecs';
+ 
+ export {
+   DEFAULT_LIQUID_GLASS_VARIANT,
+@@ -77,7 +78,7 @@ type BaseGlassTokens = LiquidGlassBaseTokens;
+  * `intensity` — положение ползунка (0…1, шаг 0.05), `level` — его корзина для старых ветвлений.
+  */
+ // зачем (замечание владельца 10.10): + токены поверхностей для экранов с зашитыми под макет цветами (liquidGlassSurfaceRoles.ts).
+-export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & LiquidGlassButtonRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string }>;
++export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & LiquidGlassButtonRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string; /** Утверждённый отдельный пигмент нижней навигации премиальной темы. */ premiumDock?: string; premiumDockInk?: string; premiumEdge?: string }>;
+ 
+ /** Вариант с проверенными полями: интенсивность квантована, уровень — её корзина. */
+ function normalizeVariant(requested: LiquidGlassVariant): Required<LiquidGlassVariant> {
+@@ -182,7 +183,11 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
+   // зачем (координатор 13.10, разбор diff Темами Г2; решение владельца 12.10 «стиль «Тень» на всё приложение»): подложка шторок и окон в ТЁМНОМ оформлении — нейтральная
+   // (#28282E, shadow-skin.css `.ph .sheet`) при любой теме, а не окрашенная тоном темы (у «Авроры» было #2B3839, у «Ириса» #33353E). Все производные (плашки шторок,
+   // контраст текста на подложке) считаются уже от неё. Светлое оформление не меняется. Откат — git revert коммита с этой строкой.
+-  const built = buildThemeTokens(themeId, variant);
++  const rawBuilt = buildThemeTokens(themeId, variant);
++  // Премиальные коллекции переносятся из утверждённого full-themes без
++  // повторного синтеза оттенков: одни и те же surface pigments красят весь UI.
++  const premiumOverrides = premiumThemeTokenOverrides(themeId, variant.appearance);
++  const built = premiumOverrides ? { ...rawBuilt, ...premiumOverrides } : rawBuilt;
+   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
+   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
+   // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.
+@@ -224,6 +229,9 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
+     ...deriveLiquidGlassButtonRoles({ ...built, bad: paletteRoles.bad }),
+     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.
+     ...paletteRoles,
++    // Последним слоем: derivation общего дизайн-системного набора не должна
++    // сдвинуть ни один утверждённый пигмент премиальной коллекции.
++    ...(premiumOverrides ?? {}),
+     intensity: variant.intensity,
+   });
+   variantCache.set(key, tokens);
+diff --git a/constants/liquidGlassThemeSwatch.ts b/constants/liquidGlassThemeSwatch.ts
+index ac56da789..194ba4043 100644
+--- a/constants/liquidGlassThemeSwatch.ts
++++ b/constants/liquidGlassThemeSwatch.ts
+@@ -11,6 +11,18 @@ export type ThemeSwatchSpec = Readonly<{ kind: 'linear'; stops: ThemeSwatchStops
+  * но узнаваемые (иначе 13 тем не различить); в «Акценте/Максимуме» — фактура семейства.
+  */
+ export function themeSwatchSpec(id: string, vivid: boolean): ThemeSwatchSpec {
++  // Особые темы должны читаться по своему акценту уже в списке. Два тёмных
++  // фоновых stop-а делали аметист, титан и сингулярность почти одинаковыми.
++  const premiumStops: Readonly<Record<string, ThemeSwatchStops>> = Object.freeze({
++    grad_full_olive: [[0, '#E0EAA8'], [0.46, '#778624'], [1, '#151E10']],
++    grad_full_ref_signal_lime: [[0, '#D6FF72'], [0.42, '#638E18'], [1, '#020406']],
++    grad_full_ref_storm_violet: [[0, '#E3B0FF'], [0.45, '#742FA5'], [1, '#07050B']],
++    grad_full_titanium: [[0, '#FF766C'], [0.45, '#5D636B'], [1, '#0A0C0F']],
++    grad_full_horizon: [[0, '#FFC487'], [0.43, '#225F8E'], [1, '#060E1A']],
++    grad_full_ref_gravity_blue: [[0, '#9BE7FF'], [0.42, '#155D74'], [1, '#020406']],
++  });
++  const premium = premiumStops[id];
++  if (premium) return { kind: 'linear', stops: premium };
+   // зачем (владелец 04.10, themes-gradient.html): кружок градиентной темы — два её пятна
+   // по диагонали (как фишка темы в макете), при любой насыщенности.
+   const gradient = liquidGlassGradientTheme(id);
+diff --git a/modules/learning-v2/progress/course_local_progress_v1.ts b/modules/learning-v2/progress/course_local_progress_v1.ts
+index 6d0693deb..3515d433d 100644
+--- a/modules/learning-v2/progress/course_local_progress_v1.ts
++++ b/modules/learning-v2/progress/course_local_progress_v1.ts
+@@ -315,7 +315,11 @@ export function createLearningV2CourseLocalProgressStoreV1(
+           console.log("[LV2-PROGRESS] complete:out_of_chain", JSON.stringify({ courseSessionId, index, chain: current.completedSessionIds.length, wasOpened: before.openedSessionIds.includes(courseSessionId) })); // guard-ok: куда легло прохождение
+         }
+         current = await absorb(accountScopeHash, current, masks);
+-        return viewOf(current, masks);
++        const view = viewOf(current, masks);
++        void import('../../../app/premium_theme_progress').then(({ notePremiumThemeProgress }) => {
++          notePremiumThemeProgress('learning_v2_complete', view.completedSessionIds.length);
++        });
++        return view;
+       });
+     },
+     /** Открыть занятия (экзамен главы, входной тест): не пройдены, без звёзд, играть можно. Пройденное не трогается. */
+diff --git a/modules/story_events/story_event_sources.ts b/modules/story_events/story_event_sources.ts
+index bb5ef9fe6..9409aa0eb 100644
+--- a/modules/story_events/story_event_sources.ts
++++ b/modules/story_events/story_event_sources.ts
+@@ -3,6 +3,8 @@
+ import { isStreakMilestone } from '../../components/streak/moments/streak_milestones';
+ import { DebugLogger } from '../../app/debug-logger';
+ import { recordStoryEvent, type StoryRecordResult } from './story_events_store';
++import { isPremiumThemeId, type PremiumThemeId } from '../../app/premium_theme_catalog';
++import { notePremiumThemeProgress } from '../../app/premium_theme_progress';
+ 
+ type SpireWeekFact = Readonly<{
+   weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number;
+@@ -23,6 +25,7 @@ function spireWeekPayload(result: SpireWeekFact): Readonly<Record<string, string
+ 
+ export function recordSpireWeekStory(result: SpireWeekFact | null): Promise<StoryRecordResult> | undefined {
+   if (!result) return undefined;
++  notePremiumThemeProgress('final_spire', result.newTier);
+   return recordStoryEvent('spire_week', spireWeekPayload(result));
+ }
+ 
+@@ -37,12 +40,14 @@ export function markSpireWeekStoryShown(result: SpireWeekFact | null): Promise<S
+ 
+ /** Рубеж серии — только числа из списка рубежей (streak_milestones.ts); прочие дни молча не пишем. */
+ export function recordStreakMilestoneStory(days: number, dayKey: string): Promise<StoryRecordResult> | undefined {
++  notePremiumThemeProgress('streak_365', days);
+   if (!isStreakMilestone(days)) return undefined;
+   return recordStoryEvent('streak_milestone', { days, dayKey });
+ }
+ 
+ /** Повышение ранга монеты — после состоявшейся покупки (трата и ранг уже на диске). */
+ export function recordCoinRankStory(toRank: number): Promise<StoryRecordResult> {
++  notePremiumThemeProgress('final_coin_rank', toRank);
+   return recordStoryEvent('coin_rank_up', { toRank });
+ }
+ 
+@@ -51,3 +56,9 @@ export function recordAchievementStories(achievementIds: readonly string[]): voi
+   if (achievementIds.length > 4) DebugLogger.info('[STORY-EVENTS]', `achievement: пачка из ${achievementIds.length} — пишем все, лимит 20 вытеснит старые`);
+   for (const achievementId of achievementIds) void recordStoryEvent('achievement', { achievementId });
+ }
++
++/** Новая постоянная тема: запись создаёт красное кольцо у аватара и живёт в недавних 7 дней. */
++export function recordThemeUnlockStory(themeId: PremiumThemeId): Promise<StoryRecordResult> | undefined {
++  if (!isPremiumThemeId(themeId)) return undefined;
++  return recordStoryEvent('theme_unlock', { themeId });
++}
+diff --git a/tests/settings_themes_locked_cta_palette_source_contract.test.mjs b/tests/settings_themes_locked_cta_palette_source_contract.test.mjs
+index 9f361dcbd..7100b74c8 100644
+--- a/tests/settings_themes_locked_cta_palette_source_contract.test.mjs
++++ b/tests/settings_themes_locked_cta_palette_source_contract.test.mjs
+@@ -4,17 +4,24 @@ import assert from 'node:assert/strict';
+ 
+ const source = fs.readFileSync('app/settings_themes.tsx', 'utf8');
+ 
+-// зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ, БЕЗ ПЛЮСА МОЖНО МЕНЯТЬ». Прежний сторож
+-// проверял замок и переход на пейвол — теперь он сторожит, что их больше нет.
+-test('any theme applies on tap without Plus; no apply button, no hardcoded neutrals', () => {
++// Шесть особых тем стоят первыми без отдельного маркетингового заголовка.
++// В store они открываются достижениями; debug открывает их для визуальной сверки.
++test('special themes lead the list and store locks disclose numeric progress', () => {
+   assert.doesNotMatch(source, /candidateLocked/);
+   assert.doesNotMatch(source, /premium_modal/);
+   assert.doesNotMatch(source, /PlusBadge/);
+-  assert.doesNotMatch(source, /isLiquidGlassThemeAvailable/);
+   assert.doesNotMatch(source, /sub=\{item\.mode === 'graphite' \? standardLabel : 'Plus'\}/);
+   // 2026-09-30 (темы 2.0): кнопки «Применить» больше нет — тап по теме применяет её сразу.
+   assert.doesNotMatch(source, /theme-cta/);
+   assert.match(source, /setLiquidGlassThemeId\(mode\)/);
++  assert.match(source, /PREMIUM_GRADIENT_OPTIONS/);
++  assert.doesNotMatch(source, /premium-theme-section-title/);
++  assert.match(source, /useScrollToSelectedTheme\(null\)/);
++  assert.match(source, /available=\{__DEV__ \|\| isLiquidGlassThemeAvailable\(item\.mode\)\}/);
++  assert.match(source, /theme-tile-details-/);
++  assert.match(source, /progressByCondition/);
++  assert.match(source, /claimPremiumThemeCondition/);
++  assert.doesNotMatch(source, /premiumThemeProgressUnavailable/);
+   assert.doesNotMatch(source, /#F2F1F6/);
+   assert.doesNotMatch(source, /#C9CBD2/);
+ });

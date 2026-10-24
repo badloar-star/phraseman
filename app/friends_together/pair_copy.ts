@@ -51,7 +51,8 @@ export const PAIR_COPY = {
   callToStudy: L('Позвать заниматься', 'Покликати займатися', 'Nudge to study', 'Invitar a estudiar', 'Chamar para estudar', 'Rủ cùng học', 'Ajak belajar', 'Çalışmaya çağır', 'Zawołaj do nauki'),
   callRestart: L('Позвать · начать заново', 'Покликати · почати знову', 'Nudge · start again', 'Avisar · empezar de nuevo', 'Chamar · começar de novo', 'Rủ · bắt đầu lại', 'Ajak · mulai lagi', 'Çağır · yeniden başla', 'Zawołaj · zacznij od nowa'),
   highFive: L('Дать пять', 'Дати п’ять', 'High five', 'Chocar los cinco', 'Toca aqui', 'Đập tay', 'Beri tos', 'Çak', 'Przybij piątkę'),
-  highFived: L('Пять отправлено', 'П’ять відправлено', 'High five sent', 'Choque de manos enviado', 'Toque enviado', 'Đã đập tay', 'Tos terkirim', 'Çak gönderildi', 'Piątka wysłana'),
+  // зачем (Переводчик 22.10, docs/work/tasks/fit-report-360dp-2026-10-22.md): es «Choque de manos enviado» не влезает в кнопку на 360 dp — как в тосте
+  highFived: L('Пять отправлено', 'П’ять відправлено', 'High five sent', 'Choque enviado', 'Toque enviado', 'Đã đập tay', 'Tos terkirim', 'Çak gönderildi', 'Piątka wysłana'),
   openCard: L('Открыть визитку', 'Відкрити візитку', 'Open profile card', 'Abrir tarjeta', 'Abrir cartão', 'Mở danh thiếp', 'Buka kartu profil', 'Kartı aç', 'Otwórz wizytówkę'),
   menu: L('Меню друга', 'Меню друга', 'Friend menu', 'Menú del amigo', 'Menu do amigo', 'Menu bạn bè', 'Menu teman', 'Arkadaş menüsü', 'Menu znajomego'),
   pairBroken: L('серия вдвоём прервалась', 'серія вдвох перервалася', 'your streak together ended', 'la racha juntos se cortó', 'a sequência juntos acabou', 'chuỗi cùng nhau đã đứt', 'rangkaian bersama terputus', 'birlikte serin bozuldu', 'wspólna seria przerwana'),

@@ -11,6 +11,7 @@ import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 import { useLang } from '../LangContext';
 import { type Lang, triLang } from '../../constants/i18n';
 import { buttonForegroundForBackground } from '../../constants/color_contrast';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 export interface FriendTogetherDisplay {
   days: number;
@@ -174,8 +175,8 @@ function FriendTogetherSheet({
             <View style={styles.actions}>
               {together && onNudge && <PressableHybrid testID="friend-together-sheet-nudge" onPress={() => onNudge()} disabled={nudgeDisabled} accessibilityLabel={nudgeLabel} variant={nudgeDisabled ? 'secondary' : 'primary'} style={[styles.actionBtn, { backgroundColor: nudgeDisabled ? g.buttonFill : g.cta }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-nudge-label" provenance="authored" style={{ color: nudgeDisabled ? g.secondary : buttonForegroundForBackground(g.accentText), fontSize: f.body, fontWeight: '700' }}>{nudgeLabel}</FlowText></PressableHybrid>}
               <PressableHybrid testID="friend-together-sheet-high-five" onPress={() => onHighFive()} accessibilityLabel={highFiveLabel} accessibilityState={{ selected: highFived }} variant="secondary" style={[styles.actionBtn, { backgroundColor: g.buttonFill }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-high-five-label" provenance="authored" style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{highFiveLabel}</FlowText></PressableHybrid>
-              {onDelete && <PressableHybrid testID="friend-together-sheet-delete" onPress={() => onDelete(requestDismiss)} accessibilityLabel={deleteLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction, { backgroundColor: g.badFill }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-delete-label" provenance="authored" style={{ color: g.bad, fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</FlowText></PressableHybrid>}
-              {onBlock && <PressableHybrid testID="friend-together-sheet-block" onPress={() => onBlock(requestDismiss)} accessibilityLabel={blockLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-block-label" provenance="authored" style={{ color: g.bad, fontSize: f.body, fontWeight: '400' }}>{blockLabel}</FlowText></PressableHybrid>}
+              {onDelete && <PressableHybrid testID="friend-together-sheet-delete" onPress={() => onDelete(requestDismiss)} accessibilityLabel={deleteLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction, { backgroundColor: g.badFill }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-delete-label" provenance="authored" style={{ color: semanticInk(g).badText, fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</FlowText></PressableHybrid>}
+              {onBlock && <PressableHybrid testID="friend-together-sheet-block" onPress={() => onBlock(requestDismiss)} accessibilityLabel={blockLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-block-label" provenance="authored" style={{ color: semanticInk(g).badText, fontSize: f.body, fontWeight: '400' }}>{blockLabel}</FlowText></PressableHybrid>}
             </View>
           </ScrollView>
         </>

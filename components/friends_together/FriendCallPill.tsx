@@ -14,6 +14,7 @@ import { FlowText } from '../text-integrity';
 import { useLang } from '../LangContext';
 import type { FriendsGlass } from '../friends/FriendsGlassKit';
 import { pairCopy } from '../../app/friends_together/pair_copy';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -24,8 +25,8 @@ type PillLook = Readonly<{ fill: string; ink: string; icon: IoniconName | null; 
 
 function pillLook(glass: FriendsGlass, lang: ReturnType<typeof useLang>['lang'], state: FriendCallState): PillLook {
   // зачем (макет): `.pb` — заливка цветом текста, подпись цветом карточки; `.pb.done` — мягкий «успех» темы; `.pb.off` — контрол и вторичный текст
-  if (state === 'called') return { fill: glass.goodSoft, ink: glass.good, icon: 'checkmark', label: pairCopy(lang, 'called') };
-  if (state === 'queued') return { fill: glass.goodSoft, ink: glass.good, icon: 'time-outline', label: pairCopy(lang, 'queued') };
+  if (state === 'called') return { fill: glass.goodSoft, ink: semanticInk(glass).goodText, icon: 'checkmark', label: pairCopy(lang, 'called') };
+  if (state === 'queued') return { fill: glass.goodSoft, ink: semanticInk(glass).goodText, icon: 'time-outline', label: pairCopy(lang, 'queued') };
   if (state === 'limit') return { fill: glass.opaqueControl, ink: glass.secondary, icon: 'checkmark', label: pairCopy(lang, 'alreadyCalled') };
   if (state === 'quiet') return { fill: glass.opaqueControl, ink: glass.secondary, icon: 'moon-outline', label: pairCopy(lang, 'quietHours') };
   return { fill: glass.text, ink: glass.opaqueCard, icon: null, label: pairCopy(lang, 'call') };

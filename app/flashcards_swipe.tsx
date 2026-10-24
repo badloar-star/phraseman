@@ -152,6 +152,7 @@ import { DebugLogger } from './debug-logger';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useSilentLeave } from '../hooks/use_silent_leave';
 import { fitPhraseFontSize } from './flashcards/fit_phrase_font';
+import { semanticInk } from '../constants/liquidGlassSemanticInk';
 
 // зачем: запись черновика сессии не чаще раза в это время (см. эффект сохранения черновика).
 const DRAFT_SAVE_DELAY_MS = 1500;
@@ -3982,11 +3983,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               style={[styles.trueFalseAns, { backgroundColor: verdictCorrect ? swipeGlass.goodSoft : swipeGlass.badSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${verdictCorrect ? swipeGlass.good : swipeGlass.bad}52` }] /* shadow-ok: кольцо исхода ответа «верно/неверно» (состояние) */ }]}
             >
               <View style={[styles.trueFalseVk, { backgroundColor: verdictCorrect ? swipeGlass.goodSoft : swipeGlass.badSoft }]}>
-                <Ionicons name={verdictCorrect ? 'checkmark' : 'close'} size={20} color={verdictCorrect ? swipeGlass.good : swipeGlass.bad} />
+                <Ionicons name={verdictCorrect ? 'checkmark' : 'close'} size={20} color={verdictCorrect ? semanticInk(swipeGlass).goodText : semanticInk(swipeGlass).badText} />
               </View>
               <View style={styles.trueFalseAnsCopy}>
                 <Text style={[styles.trueFalseAnsKicker, { color: swipeGlass.secondary }]}>{verdictCorrect ? resultOk : resultNo}</Text>
-                <FlowText testID="true-false-verdict" provenance="authored" style={[styles.trueFalseAnsValue, { color: verdictCorrect ? swipeGlass.good : swipeGlass.text }]}>{`${s(currentPrompt.card.en)} — ${currentPrompt.trueTranslation}`}</FlowText>
+                <FlowText testID="true-false-verdict" provenance="authored" style={[styles.trueFalseAnsValue, { color: verdictCorrect ? semanticInk(swipeGlass).goodText : swipeGlass.text }]}>{`${s(currentPrompt.card.en)} — ${currentPrompt.trueTranslation}`}</FlowText>
               </View>
             </View>
             <PracticeCta

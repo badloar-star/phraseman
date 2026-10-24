@@ -20,6 +20,7 @@ import FriendSheetButton from './FriendSheetButton';
 import DuelVersus, { type DuelSide } from './DuelVersus';
 import type { DuelOutcome } from '../../app/friends_together/duel_core';
 import { duelCopy, duelReviewLabel } from '../../app/friends_together/duel_copy';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 /** Строка таблицы: фраза, её смысл (если курс его даёт) и отметки — свою и друга (null — друг ещё не ходил). */
 export type DuelPhraseRow = Readonly<{ key: string; target: string; meaning: string | null; mine: boolean; theirs: boolean | null }>;
@@ -40,7 +41,7 @@ export interface FriendDuelResultViewProps {
 /** `.mk`: 28, радиус 9; верно — бледно-зелёный, неверно — тёплый (как разбор заданий), ждём — тон контрола и песочные часы. */
 function Mark({ value, glass, label }: Readonly<{ value: boolean | null; glass: FriendsGlass; label: string }>) {
   const icon = value === null ? 'hourglass-outline' : value ? 'checkmark' : 'close';
-  const color = value === null ? glass.secondary : value ? glass.good : glass.warn;
+  const color = value === null ? glass.secondary : value ? semanticInk(glass).goodText : glass.warn;
   const fill = value === null ? glass.opaqueControl : value ? glass.goodSoft : glass.warnSoft;
   return (
     <View style={[styles.mark, { backgroundColor: fill }]} accessible accessibilityLabel={label}>

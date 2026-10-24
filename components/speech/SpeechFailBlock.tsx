@@ -10,6 +10,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { buildSpeechFailView, speechFailLineParts, speechFailLineText, speechFailDisplayWord } from '../../app/speech_fail_view';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../v2/ShadowSurface';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 
@@ -44,7 +45,7 @@ function SpeechFailBlock({ targetText, missingWords, lang, glass, kicker, textSc
           {view.tokens.map((token, i) => (
             token.missed ? (
               <View key={`w-${i}`} testID={`${testID}-missed`} style={[styles.missChip, { backgroundColor: glass.badSoft }]}>
-                <Text style={{ color: glass.bad, fontSize: phrase, lineHeight: phraseLine, fontWeight: '600' }}>{token.text}</Text>
+                <Text style={{ color: semanticInk(glass).badText, fontSize: phrase, lineHeight: phraseLine, fontWeight: '600' }}>{token.text}</Text>
               </View>
             ) : (
               <Text key={`w-${i}`} style={{ color: glass.text, fontSize: phrase, lineHeight: phraseLine, fontWeight: '600' }}>{token.text}</Text>

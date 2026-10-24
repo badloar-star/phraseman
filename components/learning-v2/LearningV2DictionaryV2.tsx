@@ -29,6 +29,7 @@ import { useLang } from "../LangContext";
 import { actionBoxShadow, nestedBoxShadow } from "../v2/ShadowSurface";
 import { lv2Alpha, Lv2Cta, useLv2Glass, type Lv2Glass } from "./LearningV2Glass";
 import { learningV2DictionaryV2Copy, type LearningV2DictionaryV2Copy } from "./learning_v2_dictionary_v2_copy";
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 const LOG = "[V2-DICT]";
 
@@ -571,7 +572,7 @@ const WordRow = memo(function WordRow({ word, g, copy, lang, selecting, checked,
         <Text style={[styles.m, { color: g.secondary }]}>
           {meaning}
           {saved && !selecting ? (
-            <Text style={[styles.savedTag, { color: g.good }]}>{`  ✓ ${copy.savedTag}`}</Text>
+            <Text style={[styles.savedTag, { color: semanticInk(g).goodText }]}>{`  ✓ ${copy.savedTag}`}</Text>
           ) : null}
         </Text>
       </View>

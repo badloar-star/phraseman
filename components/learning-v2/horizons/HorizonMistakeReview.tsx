@@ -28,6 +28,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { triLang, type Lang } from "../../../constants/i18n";
 import { Lv2Cta, lv2CardStyle, useLv2Glass } from "../LearningV2Glass";
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
+import { semanticInk } from '../../../constants/liquidGlassSemanticInk';
 
 /** Сколько промахов показываем на экране итога. Больше — уже лента стыда. */
 export const HORIZON_MISTAKE_REVIEW_LIMIT = 3;
@@ -121,13 +122,13 @@ export default function HorizonMistakeReview({
             <View style={sx.pair}>
               {item.given ? (
                 <>
-                  <Text style={[sx.given, { color: g.bad, textDecorationColor: g.badEdge }]}>
+                  <Text style={[sx.given, { color: semanticInk(g).badText, textDecorationColor: g.badEdge }]}>
                     {item.given}
                   </Text>
                   <Ionicons name="arrow-forward" size={16} color={g.mutedText} />
                 </>
               ) : null}
-              <Text style={[sx.correct, { color: g.good }]}>{item.correct}</Text>
+              <Text style={[sx.correct, { color: semanticInk(g).goodText }]}>{item.correct}</Text>
               {item.hint ? (
                 <Text style={[sx.hint, { color: g.secondary }]}>{item.hint}</Text>
               ) : null}

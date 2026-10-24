@@ -66,6 +66,7 @@ import type {
   LearningV2ModeChoiceDiagnosticV1,
   LearningV2ModeTextAnalysisV1,
 } from "../modules/learning-v2/contracts/mode_native_payload_v1";
+import { semanticInk } from '../constants/liquidGlassSemanticInk';
 
 const lineText = (line: IntroLine): string =>
   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
@@ -213,11 +214,11 @@ function rolePresentation(
     case "target":
       return { color: g.text, fontWeight: "700", strike: false, size: 17 };
     case "targetWrong":
-      return { color: g.bad, fontWeight: "700", strike: true, size: 17 };
+      return { color: semanticInk(g).badText, fontWeight: "700", strike: true, size: 17 };
     case "gloss":
       return { color: g.secondary, fontWeight: "400", strike: false, size: 16 };
     case "markerCorrect":
-      return { color: g.good, fontWeight: "700", strike: false, size: 16 };
+      return { color: semanticInk(g).goodText, fontWeight: "700", strike: false, size: 16 };
     case "markerWarning":
       return { color: g.cta, fontWeight: "700", strike: false, size: 16 };
     case "formula":
@@ -809,7 +810,7 @@ export default function LearningV2SessionIntro({
                             <Ionicons
                               name="checkmark"
                               size={20}
-                              color={g.good}
+                              color={semanticInk(g).goodText}
                             />
                           )}
                         </PressableHybrid>
@@ -820,7 +821,7 @@ export default function LearningV2SessionIntro({
                   {answered && (
                     <Text
                       accessibilityLiveRegion="polite"
-                      style={[sx.correctMessage, { color: g.good }]}
+                      style={[sx.correctMessage, { color: semanticInk(g).goodText }]}
                     >
                       {copy.correct}
                     </Text>

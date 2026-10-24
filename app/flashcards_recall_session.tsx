@@ -89,6 +89,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { useSilentLeave } from '../hooks/use_silent_leave';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
+import { semanticInk } from '../constants/liquidGlassSemanticInk';
 
 const MAX_INPUT_LENGTH = 220;
 const FEEDBACK_OK_SURFACE = '#185C3A'; // theme-exempt: белый текст обратной связи на цветной плашке верно/неверно
@@ -1090,13 +1091,13 @@ export default function FlashcardsRecallSession() {
                       {(feedback.kind === 'wrong' ? markWrongLetters(input, feedback.expected) : [{ text: input, wrong: false }]).map((part, index) => (
                         <Text
                           key={`${index}:${part.text}` /* guard-ok: части одного ответа, порядок стабилен */}
-                          style={part.wrong ? { color: recallGlass.bad, textDecorationLine: 'underline', textDecorationColor: recallGlass.bad } : undefined}
+                          style={part.wrong ? { color: semanticInk(recallGlass).badText, textDecorationLine: 'underline', textDecorationColor: semanticInk(recallGlass).badText } : undefined}
                         >
                           {part.text}
                         </Text>
                       ))}
                     </Text>
-                    <Ionicons name={feedback.kind === 'wrong' ? 'close' : 'checkmark'} size={20} color={feedback.kind === 'wrong' ? recallGlass.bad : recallGlass.good} />
+                    <Ionicons name={feedback.kind === 'wrong' ? 'close' : 'checkmark'} size={20} color={feedback.kind === 'wrong' ? semanticInk(recallGlass).badText : semanticInk(recallGlass).goodText} />
                   </View>
                 ) : null}
                 {feedback ? null : <TextInput
@@ -1176,21 +1177,21 @@ export default function FlashcardsRecallSession() {
                 accessibilityLiveRegion="polite"
               >
                 <View style={[styles.feedbackVk, { backgroundColor: feedback.kind === 'wrong' ? recallGlass.badSoft : recallGlass.goodSoft }]}>
-                  <Ionicons name={feedback.kind === 'wrong' ? 'close' : 'checkmark'} size={20} color={feedback.kind === 'wrong' ? recallGlass.bad : recallGlass.good} />
+                  <Ionicons name={feedback.kind === 'wrong' ? 'close' : 'checkmark'} size={20} color={feedback.kind === 'wrong' ? semanticInk(recallGlass).badText : semanticInk(recallGlass).goodText} />
                 </View>
                 <View style={styles.feedbackCopy}>
                   <Text style={[styles.feedbackTitle, { color: recallGlass.secondary }]}>
                     {feedback.kind === 'correct' ? copy.correct : feedback.kind === 'typo' ? copy.typo : copy.rightAnswer}
                   </Text>
                   {feedback.kind !== 'correct' ? (
-                    <Text selectable style={[styles.feedbackAnswer, { color: feedback.kind === 'wrong' ? t.textPrimary : recallGlass.good }]}>{feedback.expected}</Text>
+                    <Text selectable style={[styles.feedbackAnswer, { color: feedback.kind === 'wrong' ? t.textPrimary : semanticInk(recallGlass).goodText }]}>{feedback.expected}</Text>
                   ) : (
-                    <Text selectable style={[styles.feedbackAnswer, { color: recallGlass.good }]}>{feedback.expected}</Text>
+                    <Text selectable style={[styles.feedbackAnswer, { color: semanticInk(recallGlass).goodText }]}>{feedback.expected}</Text>
                   )}
                 </View>
                 {feedback.kind !== 'wrong' && lastAward > 0 ? (
                   <View testID="fc-recall-award" style={[styles.feedbackAward, { backgroundColor: recallGlass.goodSoft }]}>
-                    <Text style={[styles.feedbackAwardText, { color: recallGlass.good }]}>{`+${lastAward}`}</Text>
+                    <Text style={[styles.feedbackAwardText, { color: semanticInk(recallGlass).goodText }]}>{`+${lastAward}`}</Text>
                   </View>
                 ) : null}
               </Reanimated.View>

@@ -12,6 +12,7 @@ import type { ViewStyle } from 'react-native';
 import { plateBoxShadow } from '../v2/ShadowSurface';
 import { lv2Alpha, type Lv2Glass } from './LearningV2Glass';
 import { lv2TaskPlateBase, lv2TaskTokens } from './learning_v2_task_theme_tokens';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 export const LV2_TASK_LAYOUT = {
   /** `.tvtop`: gap 12, высота от 54, отступ сверху 2. */
@@ -91,7 +92,7 @@ export type Lv2TaskTileLook = Readonly<{
 
 /** Вид плитки ответа: нейтральная — светлый тон карточки + рельефный край; верная — бледно-зелёный + зелёный текст; неверная — бледно-тёплый. */
 export function lv2TaskTileLook(g: Lv2Glass, verdict: Lv2TaskTileVerdict): Lv2TaskTileLook {
-  if (verdict === 'ok') return { backgroundColor: g.goodSoft, color: g.good, edgeColor: g.goodEdge, boxShadow: undefined, lifted: false };
+  if (verdict === 'ok') return { backgroundColor: g.goodSoft, color: semanticInk(g).goodText, edgeColor: g.goodEdge, boxShadow: undefined, lifted: false };
   if (verdict === 'no') return { backgroundColor: lv2TaskAmber(g).fill, color: g.text, edgeColor: lv2TaskAmber(g).edge, boxShadow: undefined, lifted: false };
   if (verdict === 'selected') {
     return { backgroundColor: g.accentSoft, color: g.text, edgeColor: null, boxShadow: lv2TaskTileRelief(g), lifted: true };

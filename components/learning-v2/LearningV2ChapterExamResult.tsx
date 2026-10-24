@@ -23,6 +23,7 @@ import { learningV2ChapterSceneV1 } from '../../modules/learning-v2/content/sess
 import { CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../modules/learning-v2/exam/chapter_exam_v1';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankSourceForSize } from '../../app/coin_rank_table_v1';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 const WHITE = '#FFFFFF'; // theme-exempt: значок на обложке главы, эталон `.minicard { color: #fff }`
 
@@ -171,10 +172,10 @@ export function LearningV2ChapterExamReviewView(p: ReviewProps) {
             <Text style={[styles.rvYou, { color: g.text }]}>
               {`${learningV2ChapterExamResultCopy(p.lang, 'yourAnswer')} `}
               {/* зачем (закон владельца 22.10: цвета только из текущей темы): неверный ответ — цвет ошибки темы, не фиксированный коричневый */}
-              <Text style={[styles.strike, { color: g.bad }]}>{a.answerText}</Text>
+              <Text style={[styles.strike, { color: semanticInk(g).badText }]}>{a.answerText}</Text>
             </Text>
           ) : null}
-          {a.correctAnswer ? <Text style={[styles.rvOk, { color: g.good }]}>{a.correctAnswer}</Text> : null}
+          {a.correctAnswer ? <Text style={[styles.rvOk, { color: semanticInk(g).goodText }]}>{a.correctAnswer}</Text> : null}
           {a.explanation ? <Text style={[styles.rvWhy, { color: g.secondary }]}>{a.explanation}</Text> : null}
           <V2Pressable onPress={() => p.onRepeatEpisode(a.sessionOrdinal)} style={[styles.rep, { backgroundColor: t.controlSoft }]}>
             <Ionicons name="refresh-outline" size={15} color={g.text} />

@@ -19,6 +19,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import { FlowText } from '../../components/text-integrity/FlowText';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 /** Числа движения из макета (`initSwipe`). */
 export const TF_SWIPE_THRESHOLD = 110;
@@ -150,10 +151,10 @@ function TrueFalseSwipeCardImpl({ g, promptKey, word, translation, stampTrue, st
           <FlowText testID="true-false-translation" provenance="authored" style={[styles.translation, { color: g.text, lineHeight: lh(28) }]}>{translation}</FlowText>
           {/* штампы `.stmp.y` / `.stmp.n`: «Правда» слева сверху, «Ложь» справа сверху */}
           <Animated.View pointerEvents="none" style={[styles.stamp, styles.stampLeft, { backgroundColor: g.goodSoft }, stampTrueStyle]}>
-            <Text style={[styles.stampText, { color: g.good }]}>{stampTrue}</Text>
+            <Text style={[styles.stampText, { color: semanticInk(g).goodText }]}>{stampTrue}</Text>
           </Animated.View>
           <Animated.View pointerEvents="none" style={[styles.stamp, styles.stampRight, { backgroundColor: g.badSoft }, stampFalseStyle]}>
-            <Text style={[styles.stampText, { color: g.bad }]}>{stampFalse}</Text>
+            <Text style={[styles.stampText, { color: semanticInk(g).badText }]}>{stampFalse}</Text>
           </Animated.View>
         </Animated.View>
       </GestureDetector>

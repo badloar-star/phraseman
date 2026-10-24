@@ -111,6 +111,7 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // �
 import { identityErrorCode } from '../app/identity_trace';
 import { authErrorKind, authErrorLogCode, authErrorTextForKind } from '../app/auth_error_copy';
 import { reportSignInOutcome, reportSignInThrew } from '../app/auth_release_reasons';
+import { semanticInk } from '../constants/liquidGlassSemanticInk';
 
 // зачем: владелец 2026-08-22 — было 45 с: почти минута на занятой кнопке без
 // обратной связи и без выхода. После ускорения входа (тёплый authEnsureStableLink,
@@ -2272,7 +2273,7 @@ function RegistrationPromptModal({
                 },
               ]}
             >
-              <Text style={[styles.laterText, { color: glass.bad, fontSize: f.caption }]}>
+              <Text style={[styles.laterText, { color: semanticInk(glass).badText, fontSize: f.caption }]}>
                 DEBUG: Сбросить identity и войти заново
                 {/* i18n-ok: отладочная кнопка, только ENABLE_AUTH_IDENTITY_DEBUG */}
               </Text>

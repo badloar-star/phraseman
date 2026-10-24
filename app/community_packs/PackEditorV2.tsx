@@ -18,6 +18,7 @@ import { shadowSheetGradient } from '../../components/v2/shadow_sheet_paint';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import SheetSwipeClose from '../../components/modal_fx/SheetSwipeClose';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 /** Шапка: круглый «крестик» 42, заголовок слева 20/700, справа необязательное действие. */
 export const EditorHeader = memo(function EditorHeader({ g, title, closeLabel, onClose, right }: Readonly<{ g: GlassTokens; title: string; closeLabel: string; onClose: () => void; right?: React.ReactNode }>) {
@@ -216,7 +217,7 @@ const ReorderRow = memo(function ReorderRow({ g, index, count, row, step, active
           {row.back ? <Text style={[styles.cardRowSub, { color: g.secondary }]}>{row.back}</Text> : null}
         </Pressable>
         <Pressable testID={`ugc-pack-card-delete-${index}`} accessibilityRole="button" accessibilityLabel={deleteLabel} hitSlop={6} onPress={onDelete} style={[styles.erowTrash, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
-          <Ionicons name="trash-outline" size={18} color={g.bad} />
+          <Ionicons name="trash-outline" size={18} color={semanticInk(g).badText} />
         </Pressable>
       </View>
     </Animated.View>

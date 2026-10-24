@@ -24,6 +24,7 @@ import { addCardToLocalPack, loadPackPickerState } from '../community_packs/loca
 import type { LocalAuthorPack } from '../community_packs/localAuthorPacks';
 import { actionToastTri, emitAppEvent } from '../events';
 import type { CardItem } from './types';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 export type ExpandedCardData = Readonly<{
   id: string;
@@ -197,7 +198,7 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
             {actions.map((action) => (
               <Pressable key={action.key} testID={action.testID} accessibilityRole="button" accessibilityLabel={action.label} onPress={action.onPress} style={({ pressed }) => [styles.act, pressed && styles.pressed]}>
                 <View style={[styles.actCircle, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
-                  <Ionicons name={action.icon} size={22} color={action.danger ? g.bad : g.text} />
+                  <Ionicons name={action.icon} size={22} color={action.danger ? semanticInk(g).badText : g.text} />
                 </View>
                 <Text style={[styles.actLabel, { color: g.secondary, lineHeight: lh(17) }]}>{action.label}</Text>
               </Pressable>

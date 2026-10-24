@@ -41,6 +41,7 @@ import PressableHybrid from '../PressableHybrid';
 import { useStudyTarget } from '../StudyTargetContext';
 import { FlowText } from '../text-integrity';
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 const LOG = '[FRIEND-PHRASE]';
 /** Монет у варианта — не больше трёх, остальные — «+N» (вариант остаётся читаемым на узком экране). */
@@ -362,7 +363,7 @@ const FriendPhraseOptionRow = React.memo(function FriendPhraseOptionRow({ index,
           testID={`friend-phrase-mark-${option.mark}`}
           name={option.mark === 'right' ? 'checkmark-circle' : 'close-circle'}
           size={18}
-          color={option.mark === 'right' ? glass.good : glass.secondary}
+          color={option.mark === 'right' ? semanticInk(glass).goodText : glass.secondary}
         />
       ) : null}
       {label}

@@ -24,6 +24,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { V2_TYPE, alphaHex } from '../../constants/v2Style';
 import { LinearGradient } from '../SafeLinearGradient';
 import type { DoneChainAfter, DoneChainBefore } from './done_chain_gate';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 /**
  * Общий экран завершения 2.0 — макет docs/design/v2-app/learn.html раздел E
@@ -255,11 +256,11 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         {hasStats ? beat(3, (
           <View style={[s.stats, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
             <View style={s.stat}>
-              <Text style={[s.statNum, { color: g.good }]}>{correct}</Text>
+              <Text style={[s.statNum, { color: semanticInk(g).goodText }]}>{correct}</Text>
               <Text style={[s.statLabel, { color: g.secondary }]}>{c.correct}</Text>
             </View>
             <View style={[s.stat, s.statDivider, { borderColor: g.dividerTone }]}>
-              <Text style={[s.statNum, { color: g.bad }]}>{wrong}</Text>
+              <Text style={[s.statNum, { color: semanticInk(g).badText }]}>{wrong}</Text>
               <Text style={[s.statLabel, { color: g.secondary }]}>{c.wrong}</Text>
             </View>
             <View style={[s.stat, s.statDivider, { borderColor: g.dividerTone }]}>
@@ -302,9 +303,9 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
               <View key={`${e.label}-${i}`} style={[s.errRow, i === 0 ? null : { borderTopWidth: StyleSheet.hairlineWidth /* shadow-ok: разделитель-линия между строками */, borderTopColor: g.dividerTone }]}>
                 <Text style={[s.errLabel, { color: g.text }]}>{e.label}</Text>
                 <View style={s.errLine}>
-                  <Text style={[s.errWas, { color: g.bad }]}>{e.was}</Text>
+                  <Text style={[s.errWas, { color: semanticInk(g).badText }]}>{e.was}</Text>
                   <Ionicons name="arrow-forward" size={16} color={g.mutedText} />
-                  <Text style={[s.errOk, { color: g.good }]}>{e.ok}</Text>
+                  <Text style={[s.errOk, { color: semanticInk(g).goodText }]}>{e.ok}</Text>
                 </View>
               </View>
             ))}

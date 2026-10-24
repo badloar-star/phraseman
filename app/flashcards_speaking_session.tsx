@@ -139,6 +139,7 @@ import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { NO_ERROR_SCREEN_LOG, useSilentLeave } from '../hooks/use_silent_leave';
+import { semanticInk } from '../constants/liquidGlassSemanticInk';
 
 /** Паузы тихих повторов старта говорения, когда квота не подтвердилась (правило «экранов-ошибок нигде»). */
 const SPEAK_QUOTA_RETRY_DELAYS_MS = [1000, 3000, 8000] as const;
@@ -1774,16 +1775,16 @@ RU: ${card.translation}`}
             {/* макет `.ans.ok`: значок 40 · «Верно» · эталонная фраза · «+N» */}
             <View testID="fc-speak-verdict" accessibilityRole="alert" accessibilityLabel={`${labels.verdictOk}: ${card?.en ?? ''}`} style={[styles.verdictPanel, { backgroundColor: speakingGlass.goodSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${speakingGlass.good}52` }] /* shadow-ok: кольцо исхода ответа (состояние) */ }]}>
               <View style={[styles.verdictVk, { backgroundColor: speakingGlass.goodSoft }]}>
-                <Ionicons name="checkmark" size={20} color={speakingGlass.good} />
+                <Ionicons name="checkmark" size={20} color={semanticInk(speakingGlass).goodText} />
               </View>
               <View style={styles.verdictCopy}>
                 <Text style={[styles.verdictKicker, { color: speakingGlass.secondary }]}>{labels.verdictOk}</Text>
                 {/* зачем (там же): слово в плашке — светло-зелёное как `.ans.ok .v { color: #A6E8B9 }` образца, а не насыщенный токен good; в светлых темах токен прежний (читаемость на светлой плашке) */}
-                <Text style={[styles.verdictValue, { color: speakingGlass.isLight ? speakingGlass.good : mixHex(speakingGlass.good, '#FFFFFF' /* theme-exempt: осветление токена good к образцу #A6E8B9 */, 0.42) }]}>{card?.en ?? ''}</Text>
+                <Text style={[styles.verdictValue, { color: speakingGlass.isLight ? semanticInk(speakingGlass).goodText : mixHex(speakingGlass.good, '#FFFFFF' /* theme-exempt: осветление токена good к образцу #A6E8B9 */, 0.42) }]}>{card?.en ?? ''}</Text>
               </View>
               {lastAward > 0 ? (
                 <View testID="fc-speak-award" style={[styles.verdictAward, { backgroundColor: speakingGlass.goodSoft }]}>
-                  <Text style={[styles.verdictAwardText, { color: speakingGlass.good }]}>{`+${lastAward}`}</Text>
+                  <Text style={[styles.verdictAwardText, { color: semanticInk(speakingGlass).goodText }]}>{`+${lastAward}`}</Text>
                 </View>
               ) : null}
             </View>

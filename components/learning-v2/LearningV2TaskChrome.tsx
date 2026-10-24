@@ -18,6 +18,7 @@ import { useLv2Glass } from './LearningV2Glass';
 import {
   LV2_TASK_LAYOUT, lv2TaskPlateStyle, lv2TaskTitleTileColor, lv2TaskTrackColor,
 } from './learning_v2_task_layout_tokens';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -65,7 +66,7 @@ export const LearningV2HudPill = memo(function LearningV2HudPill({ pill }: Reado
       {pill.image ? (
         <Image source={pill.image} style={styles.pillCoin} accessible={false} accessibilityIgnoresInvertColors />
       ) : pill.icon ? (
-        <Ionicons name={pill.icon} size={L.icon} color={pill.iconTone === 'bad' ? g.bad : g.text} />
+        <Ionicons name={pill.icon} size={L.icon} color={pill.iconTone === 'bad' ? semanticInk(g).badText : g.text} />
       ) : null}
       <Text style={[styles.pillText, { color: g.text }]}>{pill.value}</Text>
     </View>

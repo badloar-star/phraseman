@@ -30,6 +30,7 @@ import { AnimatedCountUpText } from "../../AnimatedCountUpText";
 import { HOME_RUNE_ICON_SOURCE } from "../../home/homeRuneAsset";
 import { Lv2Cta, lv2CardStyle, useLv2Glass, type Lv2Glass } from "../LearningV2Glass";
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
+import { semanticInk } from '../../../constants/liquidGlassSemanticInk';
 
 export type HorizonResultSkillRow = Readonly<{
   id: string;
@@ -200,9 +201,9 @@ export default function HorizonResultGlass({
 
       <Animated.View style={detailsStyle}>
         <View testID="horizons-result-stats" style={[sx.stats, lv2CardStyle(g)]}>
-          <StatCell value={String(safeCorrect)} label={labels.correct} color={g.good} g={g} />
+          <StatCell value={String(safeCorrect)} label={labels.correct} color={semanticInk(g).goodText} g={g} />
           <View style={[sx.statDivider, { backgroundColor: g.line }]} />
-          <StatCell value={String(safeWrong)} label={labels.wrong} color={g.bad} g={g} />
+          <StatCell value={String(safeWrong)} label={labels.wrong} color={semanticInk(g).badText} g={g} />
           <View style={[sx.statDivider, { backgroundColor: g.line }]} />
           <StatCell value={`${accuracy}%`} label={labels.accuracy} color={g.text} g={g} />
         </View>
@@ -224,7 +225,7 @@ export default function HorizonResultGlass({
                 <Ionicons
                   name={row.state === "ok" ? "checkmark-circle-outline" : "refresh-circle-outline"}
                   size={22}
-                  color={row.state === "ok" ? g.good : g.secondary}
+                  color={row.state === "ok" ? semanticInk(g).goodText : g.secondary}
                 />
                 <Text style={[sx.skillLabel, { color: g.text }]}>{row.label}</Text>
                 <Text style={[sx.skillTag, { color: g.secondary }]}>

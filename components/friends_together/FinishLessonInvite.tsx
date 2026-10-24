@@ -33,6 +33,7 @@ import {
   lessonInviteSentLine,
   lessonInviteSentToast,
 } from '../../app/friends_together/lesson_together_copy';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 
 export interface FinishLessonInviteProps {
   /** Ключ занятия, как его записывает засчитывание (sessionId) — по нему сервер сверит «прошёл вместе». */
@@ -117,7 +118,7 @@ export default function FinishLessonInvite({ lessonKey, lesson, sessionOrdinal, 
   if (!on) return null;
   const sent = sentNames !== null;
   const label = sent ? lessonInviteSentLine(lang, sentNames) : lessonInviteButton(lang);
-  const ink = sent ? glass.good : glass.text;
+  const ink = sent ? semanticInk(glass).goodText : glass.text;
   return (
     <>
       <PressableHybrid

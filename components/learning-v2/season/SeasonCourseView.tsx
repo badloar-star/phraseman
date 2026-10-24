@@ -29,6 +29,7 @@ import { seasonHeroTitleSize } from './season_hero_title_metrics';
 import {
   seasonChapterProgress, type SeasonDeck, type SeasonEpisodeCard,
 } from './season_course_model';
+import { SEASON_COUNT_LOG } from '../../home/v2/scene/home_scene_count';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -147,6 +148,10 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   const selectedCard = deck.cards[selected] ?? currentCard;
   const sectionInfo = props.chapterInfo(selectedCard ? selectedCard.chapterOrdinal : heroChapter);
   const progress = selectedCard ? seasonChapterProgress(deck, selectedCard.chapterOrdinal) : { done: 0, total: 0 };
+  // зачем (Сверка 24.10, одно правило числа): «k из n» под каруселью — эпизоды выбранной главы из колоды (прогресс курса на телефоне)
+  useEffect(() => {
+    console.log(`${SEASON_COUNT_LOG} обложка`, JSON.stringify({ chapter: selectedCard ? selectedCard.chapterOrdinal : null, done: progress.done, total: progress.total, source: 'колода главы: выпущенные эпизоды, пройденные по прогрессу курса' })); // guard-ok: одна строка на смену главы/числа
+  }, [progress.done, progress.total, selectedCard?.chapterOrdinal]); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: только номер главы
 
   const renderCard = useCallback((index: number) => {
     const card = deck.cards[index];

@@ -104,6 +104,7 @@ import HomeV2TodayCardBase from '../../components/home/v2/HomeV2TodayCard';
 import { ofLine as todayOfLine } from '../../components/home/v2/today_scene/today_scene_copy';
 // зачем (владелец 21.10 ~23:40, Главная A «Сцена»): шапка и «Продолжить» сведены в сцену — components/home/v2/scene
 import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/HomeScene';
+import { SEASON_COUNT_LOG, homeSceneLessonCount } from '../../components/home/v2/scene/home_scene_count';
 import HomeSceneEnergy from '../../components/home/v2/scene/HomeSceneEnergy';
 import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
@@ -545,6 +546,16 @@ function logHomeFirstRenderTiming(): void {
     renderToCommitMs: committedAt - homeFirstRenderStartedAt,
     committedEpochMs: committedAt,
   })); // guard-ok: одна release-строка за запуск, как [HOME-PAINT] (release вырезает log/info, warn остаётся)
+}
+
+// зачем (Сверка 24.10, [SEASON-COUNT]): одна строка на смену числа «N из M» на «Сцене» — какое число и откуда; рендер Главной
+// частый, поэтому пишем только при смене
+let lastHomeSceneCountKey = '';
+function logHomeSceneCount(lessonNo: number | null, count: ReturnType<typeof homeSceneLessonCount>): void {
+  const key = `${lessonNo}:${count.done}:${count.total}:${count.source}`;
+  if (key === lastHomeSceneCountKey) return;
+  lastHomeSceneCountKey = key;
+  console.log(`${SEASON_COUNT_LOG} Главная`, JSON.stringify({ lesson: lessonNo, done: count.done, total: count.total, source: count.source })); // guard-ok: одна строка на смену числа
 }
 
 export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void } = {}) {
@@ -2715,6 +2726,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // зачем (владелец 21.10 ~23:40, эталон home-new-concepts.html раздел A): «Сцена» — те же данные, что у шапки и «Продолжить»; новых чтений нет
         const homeSceneOnPlace = continuePlace !== null || continueStart;
         const homeSceneLessonNo = continueV2 ? continueV2.lessonOrdinal : lastLesson ? lastLesson.id : continueStart ? 1 : null;
+        // зачем (Сверка 24.10: «0 из 50» до входа в эпизод и «0 из 56» после): одно правило числа — урок V2 считает эпизоды урока
+        // (локальный прогресс курса), пока он читается — числа нет; 50 фраз — только у урока старого курса
+        const homeSceneCount = homeSceneLessonCount({
+          onPlace: homeSceneOnPlace,
+          v2: continueV2 !== null,
+          v2Progress: continueV2Progress,
+          legacyProgress: lastLesson ? lastLesson.progress ?? 0 : null,
+        });
+        if (HOME_SCENE_V2_ENABLED) logHomeSceneCount(homeSceneLessonNo, homeSceneCount);
         const renderHomeScene = () => (
           <HomeScene
             lang={lang}
@@ -2731,8 +2751,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 : homeSceneLessonNo !== null ? triLang(lang, { ru: `Урок ${homeSceneLessonNo}`, uk: `Урок ${homeSceneLessonNo}`, en: `Lesson ${homeSceneLessonNo}`, es: `Lección ${homeSceneLessonNo}`, 'pt-BR': `Lição ${homeSceneLessonNo}`, vi: `Bài ${homeSceneLessonNo}`, id: `Pelajaran ${homeSceneLessonNo}`, tr: `Ders ${homeSceneLessonNo}`, pl: `Lekcja ${homeSceneLessonNo}` }) : null,
               episode: continueV2 && !homeSceneOnPlace ? continueV2.sessionOrdinal : null,
               title: homeSceneOnPlace ? continuePlaceTitle : priorityCardTitle,
-              done: homeSceneOnPlace ? null : continueV2 && continueV2Progress ? continueV2Progress.done : lastLesson ? Math.max(0, Math.min(50, lastLesson.progress ?? 0)) : null,
-              total: homeSceneOnPlace ? null : continueV2 && continueV2Progress ? Math.max(1, continueV2Progress.total) : lastLesson ? 50 : null,
+              done: homeSceneCount.done,
+              total: homeSceneCount.total,
               theoryLessonId: continueV2 && !homeSceneOnPlace ? continueV2.lessonOrdinal : null,
             }}
             courseProgress={continueV2Progress}

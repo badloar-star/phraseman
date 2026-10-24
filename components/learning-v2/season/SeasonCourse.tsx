@@ -21,6 +21,7 @@ import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
 import type { SeasonEpisodeCard } from './season_course_model';
+import { SEASON_COUNT_LOG, seasonEpisodeSubtitle, seasonEpisodeTasksShown } from '../../home/v2/scene/home_scene_count';
 import { hapticWarning } from '../../../hooks/use-haptics';
 
 const LOG = '[SEASON-WIRE]';
@@ -93,10 +94,15 @@ function SeasonCourse(props: SeasonCourseProps) {
     if (props.newcomer && card.state === 'current' && props.onNotFromStart) {
       secondary = { label: seasonText(lang, 'notFromStart'), icon: 'school-outline', onPress: () => { close(); props.onNotFromStart?.(); } };
     }
+    // зачем (Сверка 24.10: «0 заданий», а в сессии 19; подзаголовок повторял заголовок «Первый пропуск»): число заданий — только
+    // известное из данных курса (в лёгком индексе его нет → подписи нет, а не «0»); подзаголовок не повторяет крупную строку
+    const tasksShown = seasonEpisodeTasksShown(info.tasksCount);
+    const subtitle = seasonEpisodeSubtitle(info.title, info.phrase);
+    console.log(`${SEASON_COUNT_LOG} окно эпизода`, JSON.stringify({ card: card.id, state: card.state, tasksCount: info.tasksCount, source: info.tasksCount === null ? 'нет в лёгком индексе курса' : 'данные курса', shown: tasksShown, subtitle: subtitle === null ? (info.title ? 'скрыт: равен заголовку' : 'нет') : 'есть' })); // guard-ok: одна строка на раскрытие карты
     return {
       ...common, kind: 'episode' as const, chipLabel: seasonEpisodeLabel(lang, card.sessionOrdinal),
-      rightLabel: seasonTasksLabel(lang, info.tasksCount ?? 0),
-      phrase: info.phrase, translation: info.translation, title: info.title, words: info.words,
+      rightLabel: tasksShown === null ? null : seasonTasksLabel(lang, tasksShown),
+      phrase: info.phrase, translation: info.translation, title: subtitle, words: info.words,
       primary, secondary,
     };
   }, [artFor, dark, deck, expanded, lang, props]);

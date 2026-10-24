@@ -106,11 +106,6 @@ export type DevStateRequest = Readonly<{
   moments?: 'v3' | 'off' | 'inherit';
   /** Лёгкий режим (только dev-сборки, координатор 22.10): auto — проверить авто-Lite (в dev он выключен: эмулятор Сверки — с тенями), on / off — принудительно. */
   lite?: 'auto' | 'on' | 'off';
-  /** Тень капсулы таб-бара (только dev, координатор 22.10): mask — маска с вырезом вместо elevation, alpha / alphaLight — сила тени
-   *  тёмных / светлых тем (0..1) для подбора Сверкой парой снимков; elevation — прежняя тень. */
-  tabbarShadow?: 'mask' | 'elevation';
-  tabbarShadowAlpha?: number;
-  tabbarShadowAlphaLight?: number;
   /** Оформление light/dark ТОЛЬКО в памяти (хранилище не тронуто); clear — снять оверрайд. Для съёмки светлых образцов ссылкой. */
   appearance?: 'light' | 'dark' | 'clear';
   /** Тема Liquid Glass ТОЛЬКО в памяти (id из LIQUID_GLASS_THEME_IDS); clear — снять. Образец макетов — grad_aurora (Сверка chain7, 12.10). */
@@ -398,18 +393,6 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.soundv2 = pick('soundv2', ['on', 'off'] as const);
   request.moments = pick('moments', ['v3', 'off', 'inherit'] as const);
   request.lite = pick('lite', ['auto', 'on', 'off'] as const);
-  // зачем (координатор 22.10, подбор тени капсулы Сверкой): доля 0..1 из ссылки; иное — в отклонённые с причиной
-  const unitNumber = (key: string): number | undefined => {
-    const value = one(params[key]);
-    if (value === undefined) return undefined;
-    const n = Number(value);
-    if (Number.isFinite(n) && n >= 0 && n <= 1) return n;
-    rejected[key] = `ожидалось число 0..1, пришло ${value}`;
-    return undefined;
-  };
-  request.tabbarShadow = pick('tabbarShadow', ['mask', 'elevation'] as const);
-  request.tabbarShadowAlpha = unitNumber('alpha');
-  request.tabbarShadowAlphaLight = unitNumber('alphaLight');
   request.appearance = pick('appearance', ['light', 'dark', 'clear'] as const);
   // зачем (Сверка chain7 12.10): тема и оттенок образца (Аврора, полная насыщенность) выставляются ссылкой, а не руками в настройках
   const themeRaw = one(params.theme);
@@ -842,13 +825,6 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('lite', request.lite, async () => {
       const { setLiteModeDevLink } = await import('./lite_mode');
       setLiteModeDevLink(request.lite ?? null);
-    });
-  }
-  if (request.tabbarShadow) {
-    // зачем (координатор 22.10): тень капсулы таб-бара — маска или прежний elevation; альфу подбирает Сверка парой снимков
-    await step('tabbarShadow', request.tabbarShadow, async () => {
-      const { setTabbarShadowDevLink } = await import('../components/v2/tabbar_shadow_dev');
-      setTabbarShadowDevLink(request.tabbarShadow ?? null, request.tabbarShadowAlpha ?? null, request.tabbarShadowAlphaLight ?? null);
     });
   }
   if (request.soundv2) {

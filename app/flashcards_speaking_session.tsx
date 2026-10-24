@@ -391,6 +391,9 @@ export default function FlashcardsSpeakingSession() {
   const [flipped, setFlipped] = useState(false);
   // зачем (Карточки 2.0 12.10, «Устно — верно»: пилюля «+10» в панели вердикта): сколько рун дал зачтённый ответ; 0 — пилюли нет
   const [lastAward, setLastAward] = useState(0);
+  // зачем (владелец 24.10, скрин iOS «Hablar» 1/75: блок «Dijiste · фраза · ★★★» и зелёная плашка «Верно … +3» лежали друг на друге): нижняя панель исхода (`okBot`) абсолютная, а запас под неё в прокрутке был фиксирован (170) —
+  // длинная фраза в две строки, крупный системный шрифт и нижний край iPhone делают панель выше; запас теперь берётся с её настоящей высоты. Журнал [SPEAK-OVERLAP].
+  const [okBarHeight, setOkBarHeight] = useState(0);
   /** Микрофон зажат прямо сейчас — SpeakingPanel слушает. */
   const [holdActive, setHoldActive] = useState(false);
   /**
@@ -1616,7 +1619,7 @@ RU: ${card.translation}`}
               снизу (владелец, 2026-08-17): кнопка на самой карточке дублировала
               «Послушать» из транспортного ряда, убрана. */}
           {/* Источник полёта рун (владелец, 2026-08-27) */}
-          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: passedNow ? 170 : 8 }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
+          <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingBottom: passedNow ? Math.max(170, okBarHeight + 16) : 8 }} onLayout={(e) => { if (passedNow) console.log('[SPEAK-OVERLAP] scroll', JSON.stringify({ viewportH: Math.round(e.nativeEvent.layout.height), okBarHeight: Math.round(okBarHeight), padBottom: Math.max(170, okBarHeight + 16), insetsBottom: insets.bottom, textScale })); }} onContentSizeChange={(_w, h) => { if (passedNow) console.log('[SPEAK-OVERLAP] content', JSON.stringify({ contentH: Math.round(h), okBarHeight: Math.round(okBarHeight) })); }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
           <View ref={runeFlight.originRef} collapsable={false} style={styles.cardArea}>
             <CardFlipV2
               g={speakingGlass}
@@ -1770,7 +1773,7 @@ RU: ${card.translation}`}
           </ScrollView>
           {passedNow ? (
             // зачем (`oral('ok')` макета, `.bot`): после зачёта внизу панель «Верно» с эталоном и «Дальше» — переход только по нажатию
-            <View style={styles.okBot} testID="fc-speak-ok-bar">
+            <View style={styles.okBot} testID="fc-speak-ok-bar" onLayout={(e) => { const h = e.nativeEvent.layout.height; console.log('[SPEAK-OVERLAP] okBar', JSON.stringify({ height: Math.round(h), previous: Math.round(okBarHeight), phraseLen: (card?.en ?? '').length, lang })); if (Math.abs(h - okBarHeight) > 1) setOkBarHeight(h); }}>
               <LinearGradient pointerEvents="none" colors={[`${speakingGlass.bgBottom}00`, speakingGlass.bgBottom]} locations={[0, 0.3]} style={StyleSheet.absoluteFill} />
             {/* макет `.ans.ok`: значок 40 · «Верно» · эталонная фраза · «+N» */}
             <View testID="fc-speak-verdict" accessibilityRole="alert" accessibilityLabel={`${labels.verdictOk}: ${card?.en ?? ''}`} style={[styles.verdictPanel, { backgroundColor: speakingGlass.goodSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${speakingGlass.good}52` }] /* shadow-ok: кольцо исхода ответа (состояние) */ }]}>

@@ -352,7 +352,10 @@ test('renders the approved active geometry with stable insets and normalized fon
   assert.match(active, /paddingBottom: insets\.bottom/);
   assert.match(active, /paddingLeft: insets\.left/);
   assert.match(active, /<ScrollView[^>]*style=\{\{ flex: 1, minHeight: 0 \}\}/);
-  assert.match(active, /contentContainerStyle=\{\{ flexGrow: 1, paddingBottom: passedNow \? 170 : 8 \}\}/);
+  // зачем (владелец 24.10, скрин iOS «Hablar»: «Dijiste» и плашка «Верно +3» лежали друг на друге): запас под нижнюю панель исхода — не фиксированные 170, а её настоящая высота (минимум 170), журнал [SPEAK-OVERLAP]
+  assert.match(active, /contentContainerStyle=\{\{ flexGrow: 1, paddingBottom: passedNow \? Math\.max\(170, okBarHeight \+ 16\) : 8 \}\}/);
+  assert.match(active, /testID="fc-speak-ok-bar" onLayout=/);
+  assert.match(sessionSource, /\[SPEAK-OVERLAP\] okBar/);
 
   // зачем (Карточки 2.0 12.10, cards-v2.html «Устно»): карточка RU → EN — переворачиваемая CardFlipV2 высотой 196 (прежняя PhraseCard с геометрией 24/22 ушла из этого экрана)
   assert.match(active, /<CardFlipV2[\s\S]*flipped=\{flipped\}[\s\S]*onFlip=\{setFlipped\}/);

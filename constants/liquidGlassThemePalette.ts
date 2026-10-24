@@ -188,7 +188,7 @@ function pickPremiumPigments(overrides: Readonly<Record<string, string>> | null)
  */
 function premiumLegibleRoles(
   overrides: Readonly<Record<string, string>> | null,
-  built: Readonly<{ text: string; accent: string; accentInk: string; opaqueCard: string; opaqueControl: string }>,
+  built: Readonly<{ text: string; accent: string; accentInk: string; opaqueCard: string; opaqueControl: string; accentGradient?: readonly string[] }>,
   roles: Readonly<{ good: string; bad: string; goodSoft: string; badSoft: string }>,
 ): Record<string, string> {
   if (!overrides) return {};
@@ -199,9 +199,12 @@ function premiumLegibleRoles(
   const accent = overrides.accent ?? built.accent;
   const darkInk = '#000000'; // theme-exempt: крайние чернила для выбора контрастнейших на заливке акцента
   const lightInk = '#FFFFFF'; // theme-exempt: крайние чернила для выбора контрастнейших на заливке акцента
-  const pickInk = (fill: string): string => {
+  // зачем (сторож theme_max_button_matrix, 24.10): чернила лежат не только на accent, но и на градиенте главной кнопки (accentGradient = cta коллекции) —
+  // в светлом оформлении 6 премиум-тем выбор по одному accent давал на градиенте 1,19–2,88. Берём чернила с лучшим ХУДШИМ контрастом ко всем заливкам.
+  const pickInk = (fills: readonly string[]): string => {
     const candidates = [text, built.accentInk, lightInk, darkInk];
-    return candidates.reduce((best, c) => (contrastHex(c, fill) > contrastHex(best, fill) ? c : best), candidates[0]!);
+    const worst = (c: string): number => Math.min(...fills.map((f) => contrastHex(c, f)));
+    return candidates.reduce((best, c) => (worst(c) > worst(best) ? c : best), candidates[0]!);
   };
   const good = legibleOn(roles.good, text, on(roles.goodSoft), 4.55);
   const bad = legibleOn(roles.bad, text, on(roles.badSoft), 4.55);
@@ -213,7 +216,8 @@ function premiumLegibleRoles(
   const onSemantic = (c: string): number => Math.min(Math.max(contrastHex(c, good), contrastHex(lightInk, good)), Math.max(contrastHex(c, bad), contrastHex(lightInk, bad)));
   const score = (c: string): number => Math.min(contrastHex(c, cta) / 4.5, onSemantic(c) / 4.5);
   const ctaInk = inkCandidates.reduce((best, c) => (score(c) > score(best) ? c : best), inkCandidates[0]!);
-  return { good, bad, accentInk: pickInk(accent), ctaInk };
+  const inkFills = [accent, ...(built.accentGradient ?? [])].filter((c) => /^#[0-9a-f]{6}/i.test(c)).map((c) => c.slice(0, 7));
+  return { good, bad, accentInk: pickInk(inkFills), ctaInk };
 }
 const contrastHex = (a: string, b: string): number => {
   const l = (h: string): number => { const n = Number.parseInt(h.slice(1, 7), 16); const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }); return 0.2126 * c[0]! + 0.7152 * c[1]! + 0.0722 * c[2]!; };
@@ -241,7 +245,12 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // повторного синтеза оттенков: одни и те же surface pigments красят весь UI.
   const premiumOverrides = premiumThemeTokenOverrides(themeId, variant.appearance);
   // зачем (4 · ТЕМЫ 24.10): «text» в пигментах — исходные чернила коллекции; кнопочные и акцентные роли из спреда ниже не закрепляем (см. pickPremiumPigments)
-  const built = premiumOverrides ? { ...rawBuilt, ...premiumOverrides } : rawBuilt;
+  // зачем (сторож theme_max_button_matrix, 24.10): у всех тем градиент главной кнопки = [accent, accent]; премиум-коллекция подменяет accent, а градиент
+  // оставался от базовой темы — в storm_violet светлом тёмный акцент и сиреневая кнопка, и ни одни чернила не читались на обоих. Градиент идёт за акцентом коллекции.
+  const premiumAccent = premiumOverrides?.accent;
+  const built = premiumOverrides
+    ? { ...rawBuilt, ...premiumOverrides, ...(premiumAccent ? { accentGradient: Object.freeze([premiumAccent, premiumAccent]) } : {}) }
+    : rawBuilt;
   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
   // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.
@@ -266,9 +275,11 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // accentGraphic = accent, пока он держит ≥ 3:1 на ВСЕХ поверхностях; иначе тот же оттенок, углублённый в сторону текста темы. В тёмном оформлении и там, где accent и так виден, совпадает с accent.
   // зачем (координатор 17.10, «кнопки нигде не сливаются»): графика акцента (точки, полоса прогресса) лежит и на заливке buttonFill (дорожка, пилюля) — держим ≥ 3,2:1 и к ней
   const earlyButtonFill = deriveLiquidGlassButtonRoles({ ...built, bad: (deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles).bad }).buttonFill;
-  const accentGraphic = legibleOn(built.accent, built.text, [
+  const accentGraphicRaw = legibleOn(built.accent, built.text, [
     built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet, earlyButtonFill,
   ], 3.2);
+  // зачем (сторож accent_graphic_token, 24.10): legibleOn отдаёт hex заглавными — у премиум-пигментов (строчные) это «другой» цвет для сравнения; тот же цвет = сам accent
+  const accentGraphic = accentGraphicRaw.toLowerCase() === built.accent.toLowerCase() ? built.accent : accentGraphicRaw;
   // зачем (TS2345, координатор 13.10): `bad` — роль палитры, а не базового токена; считаем роли палитры один раз и отдаём `bad` ролям кнопок (dangerFill/dangerInk).
   const paletteRoles = deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles;
   const tokens: GlassTokens = Object.freeze({

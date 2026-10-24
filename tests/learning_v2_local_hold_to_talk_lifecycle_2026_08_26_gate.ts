@@ -24,12 +24,17 @@ assert.ok(
   "inline transcript callbacks must not change the active press handler",
 );
 
-assert.match(player, /start:\s*startVoiceCapture/u);
-assert.match(player, /stop:\s*stopVoiceCapture/u);
-assert.match(player, /onPressIn=\{startVoiceHold\}/u);
-assert.match(player, /onPressOut=\{stopVoiceCapture\}/u);
+// зачем (24.10, координатор/Ревизор: «удержание микрофона в «Скажи вслух» запускает запись?»): плеер давно не зовёт хук hold-to-talk напрямую — прежние проверки `start: startVoiceCapture` и
+// `onPressIn={startVoiceHold}` устарели ещё до правки подписи 179a8edf7 (её diff трогает только надпись под микрофоном). Запись держит кнопка SpeakHoldButton: onHoldStart → startVoiceHold →
+// setVoiceHoldActive(true) → holdActive у SpeakingPanel; onHoldEnd → stopVoiceCapture → setVoiceHoldActive(false). Зона удержания кнопки (pressRetentionOffset) — в самой SpeakHoldButton.
+assert.match(player, /onHoldStart=\{startVoiceHold\}/u);
+assert.match(player, /onHoldEnd=\{stopVoiceCapture\}/u);
+assert.match(player, /holdActive=\{voiceHoldActive\}/u);
+assert.match(player, /const stopVoiceCapture = useCallback\(\(\) => \{\s*setVoiceHoldActive\(false\);/u);
+assert.match(player, /cancelPreviewSpeech\(\);\s*setVoiceAttemptResult\(null\);\s*void hapticTap\(\);\s*setVoiceHoldActive\(true\);/u);
+const holdButton = readFileSync("app/flashcards/SpeakHoldButton.tsx", "utf8");
 assert.match(
-  player,
+  holdButton,
   /pressRetentionOffset=\{\{\s*top:\s*\d+,\s*right:\s*\d+,\s*bottom:\s*\d+,\s*left:\s*\d+\s*\}\}/u,
 );
 

@@ -25,6 +25,17 @@ function imagesOf(root: JsonNode | null): JsonNode[] {
 }
 
 const styleOf = (n: JsonNode): Record<string, unknown> => Object.assign({}, ...[n.props.style].flat(Infinity).filter(Boolean) as object[]);
+/** Стиль обёртки — родителя картинки маски. */
+function boxOf(root: JsonNode | null, image: JsonNode): Record<string, unknown> {
+  let found: JsonNode | null = null;
+  const walk = (n: JsonNode | string | null): void => {
+    if (!n || typeof n === 'string' || found) return;
+    if ((n.children ?? []).includes(image)) { found = n; return; }
+    (n.children ?? []).forEach(walk);
+  };
+  walk(root);
+  return found ? styleOf(found) : {};
+}
 
 describe('тень плиты сцены Главной — запечённая маска', () => {
   afterEach(() => setLiteModeFlag(false));
@@ -36,7 +47,11 @@ describe('тень плиты сцены Главной — запечённая
     expect(root.props.pointerEvents).toBe('none');
     const images = imagesOf(root);
     expect(images).toHaveLength(1);
-    expect(styleOf(images[0]!)).toMatchObject({ left: -m.margin, right: -m.margin, top: m.offsetY - m.margin, bottom: -m.offsetY - m.margin, tintColor: '#000000' });
+    // зачем (Сверка 22.10, RN Image.android.js: размер из файла важнее отступов): вставки — у обёртки, картинка заполняет её на 100 %
+    const wrapper = boxOf(root, images[0]!);
+    expect(wrapper).toMatchObject({ position: 'absolute', left: -m.margin, right: -m.margin, top: m.offsetY - m.margin, bottom: -m.offsetY - m.margin });
+    expect(styleOf(images[0]!)).toMatchObject({ width: '100%', height: '100%', tintColor: '#000000' });
+    expect(styleOf(images[0]!).left).toBeUndefined();
   });
 
   it('светлая тема: два слоя — light цветом тени и lightSoft мягкой', async () => {

@@ -7,6 +7,9 @@
 // от краёв (размер плиты не меряем — тень уже в первом кадре), сдвиг вниз offsetY. Тёмная тема — слой dark, светлая — light + lightSoft
 // (как прежние два слоя boxShadow). Касаний не принимает: маска выходит за плиту на 44 dp — иначе выросла бы зона нажатия плитки.
 // Лёгкий режим — без тени, как и прежде.
+// зачем (Сверка 22.10, тень капсулы «обрывается справа ступенькой»): Image берёт размер из файла явной шириной (RN Image.android.js:
+// style = [{width: source.width, height: source.height}, …]) — одни отступы картинку не тянут. Вставки задаёт обёртка, картинка
+// заполняет её на 100 % — маска растягивается по фактическому размеру плиты на любом экране.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useSyncExternalStore } from 'react';
 import { Image, View, type ImageStyle, type ViewStyle } from 'react-native';
@@ -26,10 +29,20 @@ type Props = Readonly<{
 
 /** Слой масок — по размеру плиты (маски выходят за него вставками −margin). */
 const FILL: ViewStyle = { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 };
+/** Картинка заполняет обёртку целиком — процент важнее размера из файла. */
+const FULL: ImageStyle = { width: '100%', height: '100%' };
 
-const layer = (m: HomeSceneShadowMask, tint: string): ImageStyle => ({
-  position: 'absolute', left: -m.margin, right: -m.margin, top: m.offsetY - m.margin, bottom: -m.offsetY - m.margin, tintColor: tint,
+const box = (m: HomeSceneShadowMask): ViewStyle => ({
+  position: 'absolute', left: -m.margin, right: -m.margin, top: m.offsetY - m.margin, bottom: -m.offsetY - m.margin,
 });
+
+function MaskLayer({ m, tint }: Readonly<{ m: HomeSceneShadowMask; tint: string }>) {
+  return (
+    <View pointerEvents="none" style={box(m)}>
+      <Image accessible={false} source={m.source} resizeMode="stretch" fadeDuration={0} style={[FULL, { tintColor: tint }]} />
+    </View>
+  );
+}
 
 function HomeScenePlateShadow({ kind, isLight, shadow, shadowSoft }: Props) {
   const lite = useSyncExternalStore(subscribeLiteModeFlag, isLiteModeOn, isLiteModeOn);
@@ -39,11 +52,11 @@ function HomeScenePlateShadow({ kind, isLight, shadow, shadowSoft }: Props) {
     <View pointerEvents="none" style={FILL}>
       {isLight ? (
         <>
-          <Image accessible={false} source={set.light.source} resizeMode="stretch" fadeDuration={0} style={layer(set.light, shadow)} />
-          <Image accessible={false} source={set.lightSoft.source} resizeMode="stretch" fadeDuration={0} style={layer(set.lightSoft, shadowSoft)} />
+          <MaskLayer m={set.light} tint={shadow} />
+          <MaskLayer m={set.lightSoft} tint={shadowSoft} />
         </>
       ) : (
-        <Image accessible={false} source={set.dark.source} resizeMode="stretch" fadeDuration={0} style={layer(set.dark, shadow)} />
+        <MaskLayer m={set.dark} tint={shadow} />
       )}
     </View>
   );

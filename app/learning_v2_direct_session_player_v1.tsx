@@ -1433,9 +1433,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     ru: "Назад", uk: "Назад", en: "Back", es: "Atrás",
     "pt-BR": "Voltar", vi: "Xem lại", id: "Kembali", tr: "Geri", pl: "Wstecz",
   });
-  const footerVoiceLabel = triLang(lang, {
-    ru: "Устно", uk: "Усно", en: "Speak", es: "Hablar",
-    "pt-BR": "Falar", vi: "Nói", id: "Ucap", tr: "Sesli", pl: "Mów",
+  // зачем (макет learning-v2-tasks-review.html «Скажи вслух», `.micl`; замок владельца 22.10 «макет 1:1»): под микрофоном подпись «Удерживай и говори», а не «Устно» — тот же текст, что в «Моих ошибках»
+  const holdToSpeakLabel = triLang(lang, {
+    ru: "Удерживай и говори", uk: "Утримуй і говори", en: "Hold and speak", es: "Mantén pulsado y habla",
+    "pt-BR": "Segure e fale", vi: "Giữ và nói", id: "Tahan dan bicara", tr: "Basılı tut ve konuş", pl: "Przytrzymaj i mów",
   });
   const footerTheoryLabel = triLang(lang, { ru: "Теория", uk: "Теорія", en: "Theory", es: "Teoría", "pt-BR": "Teoria", vi: "Lý thuyết", id: "Teori", tr: "Teori", pl: "Teoria" });
   const footerWordsLabel = triLang(lang, {
@@ -3987,7 +3988,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                         ru: "Ещё раз", uk: "Ще раз", en: "Try again", es: "Otra vez", "pt-BR": "De novo",
                         vi: "Thử lại", id: "Coba lagi", tr: "Tekrar dene", pl: "Jeszcze raz",
                       })
-                    : footerVoiceLabel}
+                    : holdToSpeakLabel}
                 allowance={
                   voiceAllowance.kind === "limited" && voiceAllowance.remaining !== null
                     ? {

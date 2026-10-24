@@ -52,6 +52,7 @@ const KNOWN_GUARDS = [
   'tests/owner_locks_dialogs_hub_2026_10_22.test.ts',
   'tests/owner_locks_words_2026_10_22.test.ts',
   'tests/dialogs_hub_tile_fit_contract.test.ts',
+  'tests/owner_locks_say_aloud_2026_10_24.test.ts',
 ];
 
 // Любой способ выключить тест по тексту файла: jest (skip/x*/todo/only) и node:test ({ skip }, { todo }, t.skip()).

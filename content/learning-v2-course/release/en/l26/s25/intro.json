@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Какой получился пирог",
-        "uk": "Яким вийшов пиріг"
+        "ru": "Попробовать не слишком сладкий пирог",
+        "uk": "Спробувати не надто солодкий пиріг"
       },
       "bodyByLocale": {
-        "ru": "Moist — слегка влажный; о пироге это часто приятная характеристика: не сухой. Gooey — мягкий и липкий, тягучий, например о шоколадной начинке. The cake is moist, and the middle is gooey — пирог влажный, а середина мягкая и тягучая. У всех разные вкусы: I will try it unless it is too sweet — я попробую, если он не слишком сладкий. Unless it is too sweet значит if it is not too sweet.",
-        "uk": "Moist — злегка вологий; про пиріг це часто приємна характеристика: не сухий. Gooey — м’який і липкий, тягучий, наприклад про шоколадну начинку. The cake is moist, and the middle is gooey — пиріг вологий, а середина м’яка й тягуча. У всіх різні смаки: I will try it unless it is too sweet — я спробую, якщо він не надто солодкий. Unless it is too sweet означає if it is not too sweet."
+        "ru": "Друг предлагает пирог. Вы согласны попробовать, но не любите слишком сладкое: I will try it unless it is too sweet — я попробую, если он не слишком сладкий. Собираем: I + will try + it + unless it is too sweet — кто, что сделает, что попробует, какое исключение изменит решение. It заменяет пирог. Unless уже означает если не, поэтому в его части нужна положительная форма is too sweet. Not после is перевернуло бы условие.",
+        "uk": "Друг пропонує пиріг. Ви згодні спробувати, але не любите надто солодке: I will try it unless it is too sweet — я спробую, якщо він не надто солодкий. Складаємо: I + will try + it + unless it is too sweet — хто, що зробить, що спробує, який виняток змінить рішення. It замінює пиріг. Unless уже означає якщо не, тому в його частині потрібна ствердна форма is too sweet. Not після is перевернуло б умову."
       },
       "question": {
         "interactionId": "en:lesson-26:session-25:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Когда, если и если не",
-        "uk": "Коли, якщо та якщо не"
+        "ru": "Не начинать без готовности всех",
+        "uk": "Не починати без готовності всіх"
       },
       "bodyByLocale": {
-        "ru": "Grubby — грязноватый, замаранный: grubby hands — грязные руки. We will start when your hands are clean — начнём, когда руки будут чистыми. When называет ожидаемый момент. We will start if everyone is ready — начнём, если все готовы: if задаёт условие. We will not start unless everyone is ready — мы не начнём, если не все готовы. Последняя фраза ставит обязательное условие готовности; после unless здесь положительная форма is ready.",
-        "uk": "Grubby — бруднуватий, замурзаний: grubby hands — брудні руки. We will start when your hands are clean — почнемо, коли руки будуть чистими. When називає очікуваний момент. We will start if everyone is ready — почнемо, якщо всі готові: if задає умову. We will not start unless everyone is ready — ми не почнемо, якщо не всі готові. Остання фраза ставить обов’язкову умову готовності; після unless тут ствердна форма is ready."
+        "ru": "Вы собираетесь начать совместную игру, но сначала каждый должен приготовиться. Скажите: We will not start unless everyone is ready — мы не начнём, если не все готовы. Собираем: We + will not start + unless everyone is ready — кто, чего не сделает, без какого обязательного условия. Will not start означает не начнём. Unless everyone is ready разрешает начать только при готовности всех. После unless используем положительное is ready без will и без not; everyone требует is.",
+        "uk": "Ви збираєтеся почати спільну гру, але спершу кожен має приготуватися. Скажіть: We will not start unless everyone is ready — ми не почнемо, якщо не всі готові. Складаємо: We + will not start + unless everyone is ready — хто, чого не зробить, без якої обов’язкової умови. Will not start означає не почнемо. Unless everyone is ready дозволяє почати лише за готовності всіх. Після unless використовуємо ствердне is ready без will і без not; everyone потребує is."
       },
       "question": {
         "interactionId": "en:lesson-26:session-25:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b4b5ab96f87342da7f4b19595b2efcedcf6881ecdcd55bb111afb6fd17cf23ac"
+  "introFingerprint": "90770c82f219a2354a4bd5fca551cd17d7f69a8e1d18e29d38f517ab581467d2"
 }

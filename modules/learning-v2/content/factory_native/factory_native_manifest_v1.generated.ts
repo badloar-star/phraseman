@@ -19935,7 +19935,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 24,
-    sourceFingerprint: "5074a6607c43f2e7ebd509a133ecc89e4333e66aba0513bde07f8bb814b5469d",
+    sourceFingerprint: "61d1f39b37b7998f7b9f8bf94aaf8db4684ac2d25e4d9401d7c422d6616187eb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После before здесь leave без will.","С we используем leave без -s."],["После if в условии о будущем gets без will.","После will нужна форма leave без -s."],["После had нужна форма turned.","Called задаёт прошлый момент; более раннее событие — had turned back."]],"uk":[["Після before тут leave без will.","З we вживаємо leave без -s."],["Після if в умові про майбутнє gets без will.","Після will потрібна форма leave без -s."],["Після had потрібна форма turned.","Called задає минулий момент; раніша подія — had turned back."]]}),
@@ -19949,7 +19949,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 25,
-    sourceFingerprint: "4cdbd587c886b5093e5986aa48c6c363995190d2ce2a8c9ca975b54d0da4677b",
+    sourceFingerprint: "97f27f59b7fecdb581a6f4acb1f93ba1400dcc22891cbc3898dd06175396981b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После unless в этом будущем условии нужен Present Simple: rains.","Дополнительное not меняет смысл: получится исключение, когда дождя нет."],["После unless здесь is без will.","Not после unless здесь перевернёт условие: слишком сладкий пирог станет допустимым."],["После unless в этом условии is без will.","Дополнительное not меняет обязательное условие на противоположное."]],"uk":[["Після unless у цій майбутній умові потрібен Present Simple: rains.","Додаткове not змінює зміст: вийде виняток, коли дощу немає."],["Після unless тут is без will.","Not після unless тут переверне умову: надто солодкий пиріг стане допустимим."],["Після unless у цій умові is без will.","Додаткове not змінює обов’язкову умову на протилежну."]]}),
@@ -19963,7 +19963,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 26,
-    sourceFingerprint: "622f5d1da864c26886b518d382aedc531998cd294b8b40952ddae2dd641cc28e",
+    sourceFingerprint: "7fd44a912412317b36de1a047dff80c3bb9f0c96fa7e49a782b9455b320773cc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После when здесь get без will.","После I нужен глагол get, а не отдельное getting."],["Came задаёт прошлый момент; более ранняя работа — had repaired.","Для действия, которое выполнил я, здесь нужно had repaired."],["После unless здесь say без will.","С I используется say без -s."]],"uk":[["Після when тут get без will.","Після I потрібне дієслово get, а не окреме getting."],["Came задає минулий момент; раніша робота — had repaired.","Для дії, яку виконав я, тут потрібно had repaired."],["Після unless тут say без will.","З I вживається say без -s."]]}),

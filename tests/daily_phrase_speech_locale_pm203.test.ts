@@ -16,7 +16,8 @@ describe('PM-203: язык озвучки фразы дня = язык изуч�
   it('DailyPhraseCard: все speak(...) фразы дня передают language по studyTarget', () => {
     const src = fs.readFileSync(path.join(process.cwd(), 'components', 'DailyPhraseCard.tsx'), 'utf8');
     const calls = src.match(/\bspeak\((?:english|en)\b[^)]*\)/gu) ?? [];
-    expect(calls.length).toBe(3);
+    // зачем: 867e8108d, кнопка «Озвучить» у фразы дня снята владельцем 18.10 — осталось два вызова (озвучка по ссылке и тап по фразе)
+    expect(calls.length).toBe(2);
     for (const call of calls) {
       expect(call).toContain('inferExpoSpeechLanguage(');
       expect(call).toContain('studyTarget');

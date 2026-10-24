@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; would + base; present perfect / past simple",
+    "uk": "wish + past; if I were; would + base; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда мешает шум",
+        "uk": "Коли заважає шум"
+      },
+      "bodyByLocale": {
+        "ru": "Tolerate — терпеть, переносить что-либо неприятное. I cannot tolerate this noise — я не могу терпеть этот шум. Это сильное высказывание; конкретная просьба звучит спокойнее: Could you turn the music down? — можешь сделать музыку тише? I wish the room were quieter — хотелось бы, чтобы в комнате было тише. Were после wish описывает желаемую ситуацию сейчас.",
+        "uk": "Tolerate — терпіти, зносити щось неприємне. I cannot tolerate this noise — я не можу терпіти цей шум. Це сильне висловлювання; конкретне прохання звучить спокійніше: Could you turn the music down? — можеш зробити музику тихішою? I wish the room were quieter — хотілося б, щоб у кімнаті було тихіше. Were після wish описує бажану ситуацію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-34:intro1:r1",
+              "text": "I wish the room were quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro1:r2",
+              "text": "I wish the room is quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro1:r3",
+              "text": "I wish the room be quieter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-34:intro1:r1",
+              "text": "I wish the room were quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro1:r2",
+              "text": "I wish the room is quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro1:r3",
+              "text": "I wish the room be quieter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записка и домашние дела",
+        "uk": "Записка й домашні справи"
+      },
+      "bodyByLocale": {
+        "ru": "Overlook — не заметить, упустить из внимания. I overlooked your note — я не заметил твою записку. Это не обязательно намеренное игнорирование. Resent — испытывать обиду или недовольство из-за того, что кажется несправедливым. I resent doing all the cleaning — мне обидно, что вся уборка на мне. Здесь после resent стоит doing. Можно перейти к решению: Which jobs can you do? — какие дела ты можешь взять на себя?",
+        "uk": "Overlook — не помітити, випустити з уваги. I overlooked your note — я не помітив твоєї записки. Це не обов’язково навмисне ігнорування. Resent — відчувати образу або невдоволення через те, що здається несправедливим. I resent doing all the cleaning — мені прикро, що все прибирання на мені. Тут після resent стоїть doing. Можна перейти до рішення: Which jobs can you do? — які справи ти можеш узяти на себе?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-34:intro2:r1",
+              "text": "I overlooked your note."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro2:r2",
+              "text": "I overlook your note yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro2:r3",
+              "text": "I did overlooked your note."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-34:intro2:r1",
+              "text": "I overlooked your note."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro2:r2",
+              "text": "I overlook your note yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro2:r3",
+              "text": "I did overlooked your note."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Начать трудный разговор",
+        "uk": "Почати складну розмову"
+      },
+      "bodyByLocale": {
+        "ru": "Dread — очень бояться чего-то предстоящего, ждать с тревогой. I dread this conversation — я очень боюсь этого разговора. Слово описывает ожидание, а не опасность, которую точно установили. If I were you, I would choose a quiet moment — на твоём месте я бы выбрал спокойный момент. I would feel better if we shared the chores — мне было бы легче, если бы мы делили домашние дела. Would feel — результат, shared — условие.",
+        "uk": "Dread — дуже боятися чогось майбутнього, чекати з тривогою. I dread this conversation — я дуже боюся цієї розмови. Слово описує очікування, а не небезпеку, яку точно встановили. If I were you, I would choose a quiet moment — на твоєму місці я б вибрав спокійний момент. I would feel better if we shared the chores — мені було б легше, якби ми ділили домашні справи. Would feel — результат, shared — умова."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-34:intro3:r1",
+              "text": "I would feel better if we shared the chores."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro3:r2",
+              "text": "I would felt better if we shared the chores."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro3:r3",
+              "text": "I would to feel better if we shared the chores."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-34:intro3:r1",
+              "text": "I would feel better if we shared the chores."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro3:r2",
+              "text": "I would felt better if we shared the chores."
+            },
+            {
+              "responseId": "en:lesson-27:session-34:intro3:r3",
+              "text": "I would to feel better if we shared the chores."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c52f9f223ba287fe884dc0e61fc59240f95fffd69c2d8222354a13e406ea9e5c"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-34",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-34:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-34:intro1:r2": {
+          "ru": "Здесь нужна were после wish.",
+          "uk": "Тут потрібна were після wish."
+        },
+        "en:lesson-27:session-34:intro1:r3": {
+          "ru": "В этом пожелании ставим were.",
+          "uk": "У цьому побажанні ставимо were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-34:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-34:intro2:r2": {
+          "ru": "Для законченного случая в прошлом нужна overlooked.",
+          "uk": "Для завершеного випадку в минулому потрібна overlooked."
+        },
+        "en:lesson-27:session-34:intro2:r3": {
+          "ru": "После did была бы overlook без окончания.",
+          "uk": "Після did була б overlook без закінчення."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-34:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-34:intro3:r2": {
+          "ru": "После would нужна feel.",
+          "uk": "Після would потрібна feel."
+        },
+        "en:lesson-27:session-34:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2e435b5c1cf3adde0d354ae50351090ac39189a4aa23e2de1a005b24a0e8a90e"
+}

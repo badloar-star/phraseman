@@ -30,7 +30,7 @@ const CONCEPTS: Readonly<Record<SayHintGoalKind, readonly Concept[]>> = {
       meaning: m('Привет!', 'Привіт!', 'Hello!', '¡Hola!', 'Olá!', 'Xin chào!', 'Halo!', 'Merhaba!', 'Cześć!') },
     { text: t("Hi! How's your day going?", '¡Hola! ¿Qué tal tu día?', 'Salut ! Ta journée se passe bien ?', 'Hallo! Wie läuft dein Tag?'),
       meaning: m('Привет! Как проходит день?', 'Привіт! Як минає день?', "Hi! How's your day going?", '¡Hola! ¿Qué tal tu día?', 'Oi! Como está sendo o seu dia?', 'Chào bạn! Hôm nay của bạn thế nào?', 'Hai! Bagaimana harimu?', 'Selam! Günün nasıl geçiyor?', 'Cześć! Jak mija dzień?') },
-    { text: t('Nice to meet you.', 'Mucho gusto.', "C'est un plaisir de vous rencontrer.", 'Freut mich, dich kennenzulernen.'),
+    { text: t('Nice to meet you.', 'Mucho gusto.', "Ça me fait plaisir de te rencontrer.", 'Freut mich, dich kennenzulernen.'),
       meaning: m('Приятно познакомиться.', 'Приємно познайомитися.', 'Nice to meet you.', 'Mucho gusto.', 'Prazer em conhecer você.', 'Rất vui được gặp bạn.', 'Senang bertemu denganmu.', 'Tanıştığımıza memnun oldum.', 'Miło mi cię poznać.') },
   ],
   introduce: [

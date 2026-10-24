@@ -65,12 +65,12 @@
       "pageId": "en:lesson-21:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Лампа и раковина",
-        "uk": "Лампа й раковина"
+        "ru": "Подключить лампу",
+        "uk": "Під’єднати лампу"
       },
       "bodyByLocale": {
-        "ru": "Plug in — включить прибор в розетку. Это обратное действие к знакомому unplug. Unblock — устранить засор, освободить проход; unblock the sink означает устранить засор в раковине. В I need you to… действие выполняет собеседник: «мне нужно, чтобы ты…». После you ставим to + начальную форму. Без you фраза I need to… говорит о действии самого говорящего.",
-        "uk": "Plug in — увімкнути прилад у розетку. Це зворотна дія до знайомого unplug. Unblock — усунути засмічення, звільнити прохід; unblock the sink означає усунути засмічення в раковині. У I need you to… дію виконує співрозмовник: «мені потрібно, щоб ти…». Після you ставимо to + початкову форму. Без you фраза I need to… говорить про дію самого мовця."
+        "ru": "Вы переставили настольную лампу и хотите, чтобы помощник подключил её к розетке: I want you to plug in the lamp. После I want ставим you — кто должен действовать. Затем to plug in — «подключить к розетке», и the lamp — какой предмет. To стоит перед plug, а in сохраняется как часть plug in. Здесь нужна форма you, а не your: речь о человеке, выполняющем действие.",
+        "uk": "Ви переставили настільну лампу й хочете, щоб помічник під’єднав її до розетки: I want you to plug in the lamp. Після I want ставимо you — хто має діяти. Потім to plug in — «під’єднати до розетки», і the lamp — який предмет. To стоїть перед plug, а in зберігається як частина plug in. Тут потрібна форма you, а не your: йдеться про людину, яка виконує дію."
       },
       "question": {
         "interactionId": "en:lesson-21:session-26:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b6a54d896d6100a11bca96b4972f192361d89e6c5d224bc2e5ecc52789eb55dc"
+  "introFingerprint": "e5d68897ba779fc959bd7da7a298637f64596805dcaab73e6e5500086efa49e2"
 }

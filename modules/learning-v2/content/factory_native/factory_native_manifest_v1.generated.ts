@@ -16015,7 +16015,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 24,
-    sourceFingerprint: "9f0ecee88c5c3cf89063712e06aca37fc4b5704da7faa45c3f534e4b8f919b1e",
+    sourceFingerprint: "5bd0768275fbc0a190458b3a39601a3bd89c508a29586e5299b278138535e40f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь после to нужна начальная форма, без -ing.","После to не добавляем -s к глаголу."],["Здесь после to нужна начальная форма, без -ing.","После to не добавляем -s к глаголу."],["Здесь после to нужна начальная форма, без -ing.","После to не добавляем -s к глаголу."]],"uk":[["Тут після to потрібна початкова форма, без -ing.","Після to не додаємо -s до дієслова."],["Тут після to потрібна початкова форма, без -ing.","Після to не додаємо -s до дієслова."],["Тут після to потрібна початкова форма, без -ing.","Після to не додаємо -s до дієслова."]]}),
@@ -16029,7 +16029,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 25,
-    sourceFingerprint: "e81ebdf0abf7174b1493eedbc286012c758ed6bdffd97bc745198dae6fe43ede",
+    sourceFingerprint: "d02e7a31fd2143d53c97e53b3d33943503071f8684e2752085e0636941c5a6cc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."]],"uk":[["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."]]}),
@@ -16043,7 +16043,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 26,
-    sourceFingerprint: "3bada3826ca4d56ccf452964fc49058bd262ddb0607d8ecff0a2ac6fe0c3e067",
+    sourceFingerprint: "0d0bd5afb2aaee27cce4c681ab1c6ec06a9c9517c31ebdaeccf27d62e0275a6d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."]],"uk":[["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."]]}),
@@ -16057,7 +16057,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 27,
-    sourceFingerprint: "e34f133535ff1b8bfcf4f72258ce4c55c9d7eb3fcc6ff9298f02c0bd5e53062f",
+    sourceFingerprint: "17db9a339e6133ff60e734b1b9bb7f14171c2a124a6c004955bc5c0327b9372b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь после to нужна начальная форма, без -ing.","После to не добавляем -s к глаголу."],["Здесь после to нужна начальная форма, без -ing.","После to не добавляем -s к глаголу."],["Здесь после to нужна начальная форма, без -ing.","После to не добавляем -s к глаголу."]],"uk":[["Тут після to потрібна початкова форма, без -ing.","Після to не додаємо -s до дієслова."],["Тут після to потрібна початкова форма, без -ing.","Після to не додаємо -s до дієслова."],["Тут після to потрібна початкова форма, без -ing.","Після to не додаємо -s до дієслова."]]}),
@@ -16071,7 +16071,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 28,
-    sourceFingerprint: "acdaa638e3785f219b09ae8f5a4f0e8d6d830858cf166d83d83f6605085983a6",
+    sourceFingerprint: "5086a82e17b72a00c06b168e4830bf8fbcc1a4b345d3d40892528197cd431d36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."]],"uk":[["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."]]}),
@@ -16085,7 +16085,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 29,
-    sourceFingerprint: "5b9578ffa6a5171fc46db849d82291ea4f77b971542d55e3c5157fe0fb967aa4",
+    sourceFingerprint: "b3402c54c3810aa2dd8e1a4daf6dce45a75a526c4d312583dde57b5ca7a917c9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."]],"uk":[["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."]]}),
@@ -16099,7 +16099,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 30,
-    sourceFingerprint: "ba26fd1b3cb78ff06a09cb3f3eea00fc7e840423bec5f3ae6454eee2784e72a3",
+    sourceFingerprint: "62b39d8e275c04db656c5d4b8efed9f9b8c0fedb4594f1a71c8338d9123e96e4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед одним прилагательным здесь нужно so, а не such.","С одним автобусом употребляем is."],["Room — одна комната, поэтому is.","Перед прилагательным здесь нужен is."],["С rent здесь употребляем is.","Перед прилагательным здесь нужен is."]],"uk":[["Перед одним прикметником тут потрібне so, а не such.","З одним автобусом уживаємо is."],["Room — одна кімната, тому is.","Перед прикметником тут потрібне is."],["З rent тут уживаємо is.","Перед прикметником тут потрібне is."]]}),
@@ -16113,7 +16113,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 31,
-    sourceFingerprint: "c9c43811f6ca17389f87f8f4ad8f75e236657a556cfcb746ccd0ba473e6d9260",
+    sourceFingerprint: "f192d3303ed633bcdb9003747c3956321f2fafddecd65ad382cfd298771b86bc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."]],"uk":[["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."]]}),
@@ -16127,7 +16127,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 32,
-    sourceFingerprint: "5c237a3d2e1fc4d4a021be2be586771372013407225787b57dc5f79c39cce68b",
+    sourceFingerprint: "4e9f3760e90e8eee4592ccae6a56a804b8b4819b481c55d7b5114733efc66caf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."],["Здесь нужен человек you, а не слово your — «твой».","После человека перед действием нужен to."]],"uk":[["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."],["Тут потрібна людина you, а не слово your — «твій».","Після людини перед дією потрібне to."]]}),
@@ -16141,7 +16141,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 33,
-    sourceFingerprint: "4bda4e285e0ee6b88b75cea229a68d139da0a3b1364331d405e29cd2402237e7",
+    sourceFingerprint: "00281ea240e757aeff7af6408be371fbe759e1ca6103338975b61d2069c93702",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16155,7 +16155,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 34,
-    sourceFingerprint: "cf7b0297322e2e766d9813faad07c06bd9ea7d9bc39e81646440ae3597e5c7af",
+    sourceFingerprint: "f0440cfc806d95dc5d7d4fcddb4af73a5de8f8df1b00525dcddf7f85b8d7f261",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16169,7 +16169,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 35,
-    sourceFingerprint: "6aa9c02efb7e179e6a0efffcd4d33350c982a54244f303730e30d3bbdae99894",
+    sourceFingerprint: "1a3036fa9dcde0da1440daaaec2b24679623eb77ee951650154bc62048bce437",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16183,7 +16183,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 36,
-    sourceFingerprint: "140789b7f43e203bc63c929a27b99a0bd5fb06f69e8ff305e0d44b84c5d21fcc",
+    sourceFingerprint: "e194a1ebbf0e489d41a6f3d694b5ed164053d93e9703038b8164d3bd35197ab3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16197,7 +16197,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 37,
-    sourceFingerprint: "594f119576a7d6d8a4ce9dab583b9fed6842deeef69012c9c99dd37bbe29675e",
+    sourceFingerprint: "21ca1e54bc2920d8455359112e31e8c4fb82f6112d119ec6b6dbdd664a8b31f6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16211,7 +16211,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 38,
-    sourceFingerprint: "946942dc3d61a4845387812b5a1ab1ba3f0ab9dbb943b8fc648fa37c049d3f9d",
+    sourceFingerprint: "dc07727297b95d156f6fd38ef148afb45cde70b0c6e19b982b4814087b86934f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16225,7 +16225,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 39,
-    sourceFingerprint: "c564f2c7fed25a32fa3a10de061e4a6415d2f17d016a623a9e3a936259ed68e9",
+    sourceFingerprint: "1a129566ddef010193c58dd1f1813cfc6d8525adba0c3429edae84f2cc404637",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16239,7 +16239,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 40,
-    sourceFingerprint: "7a5827588dab28517c3e7a3eea5d5ffe473bc765159f2dbb45af1a952b07cfcd",
+    sourceFingerprint: "139b5da5f03b9842f0f8cee0edfaaceaaf64148197185344365fb0944815bcb3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16253,7 +16253,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 41,
-    sourceFingerprint: "25a05e1b69c1905b9fdd5d47fbb5a39f820dd1fa44d4c6e1ecbbc155d64cc516",
+    sourceFingerprint: "f64c411807ae2c234d7ddfabe9c47bdb98c5846d9c1ada7a99b7e8a341bcaf1c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16267,7 +16267,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 42,
-    sourceFingerprint: "3d3f9842dc6825970ee1aae81cc255bb912ebdaee6b031bf5499d7a73520f46a",
+    sourceFingerprint: "426f8a326bd2ee86233211dfcd09507782b51919284db3b73aef63b1e2c5df8a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to в этой конструкции нужна начальная форма.","Перед начальной формой здесь нужно to, а не for."],["После to в этой конструкции нужна начальная форма.","Перед начальной формой здесь нужно to, а не for."],["После to в этой конструкции нужна начальная форма.","Перед начальной формой здесь нужно to, а не for."]],"uk":[["Після to у цій конструкції потрібна початкова форма.","Перед початковою формою тут потрібне to, а не for."],["Після to у цій конструкції потрібна початкова форма.","Перед початковою формою тут потрібне to, а не for."],["Після to у цій конструкції потрібна початкова форма.","Перед початковою формою тут потрібне to, а не for."]]}),
@@ -16281,7 +16281,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 43,
-    sourceFingerprint: "62afa4d9a292ffa40cea299d84ac3aac98a568f02eb7611b32c0b6c0d7f79965",
+    sourceFingerprint: "18bf09f2a8952def9feb46068a91fa794fcd01460d0453b8c5b6dd45de5b0f4a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),
@@ -16295,7 +16295,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 44,
-    sourceFingerprint: "2105597e73ceca292e23df177e2ba3e4290889eeb9c7bd57725a558baa5283ac",
+    sourceFingerprint: "c97efaab3ee0860449ed2f1262277a3744d45759241f4caa09a6b03d48cfde52",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."],["После to для цели нужна начальная форма.","For с начальной формой глагола здесь не выражает цель: нужно to."]],"uk":[["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."],["Після to для мети потрібна початкова форма.","For з початковою формою дієслова тут не виражає мету: потрібне to."]]}),

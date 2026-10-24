@@ -7853,7 +7853,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 1,
-    sourceFingerprint: "355ec2e8294b4b85226e2446cd8ab0badaf2c9331f12c1b1e35f254a2c8c39ff",
+    sourceFingerprint: "c6a635901e0a385123a779913c26b5b78c0d80f1794ebd238e6b14c6046cb23a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Am говорит о настоящем, а yesterday — вчера. Нужна was.","С I в этой фразе нужна was."],["С we нужна were.","Were уже означает «были». Are перед ней не нужна."],["С she нужна was.","Перед last year не добавляем in."]],"uk":[["Am говорить про теперішнє, а yesterday — учора. Потрібна was.","З I у цій фразі потрібна was."],["З we потрібна were.","Were вже означає «були». Are перед нею не потрібна."],["З she потрібна was.","Перед last year не додаємо in."]]}),
@@ -7867,7 +7867,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 2,
-    sourceFingerprint: "92d62f586101ce2c3819eac7f92b894b2a22cbdf5f25786e8ab9a055022cabe6",
+    sourceFingerprint: "9ea0357561b9a6b66e35fb076e674b0a4087a473c7d5e4e53f820bd01d875968",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С soap здесь нужна was.","Yesterday обозначает прошлое: нужна was."],["С toilet paper нужна was.","Am подходит к I в настоящем. Здесь was."],["Одна раковина: was.","Clean — чистый. Cleaning означало бы действие уборки, а не состояние."]],"uk":[["Із soap тут потрібна was.","Yesterday позначає минуле: потрібна was."],["Із toilet paper потрібна was.","Am підходить до I в теперішньому. Тут was."],["Один умивальник: was.","Clean — чистий. Cleaning означало б дію прибирання, а не стан."]]}),
@@ -7881,7 +7881,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 3,
-    sourceFingerprint: "d09d90bc691c765b5cbb39ed119f43226efdf9901bc6aec455c83b97bfc4b52e",
+    sourceFingerprint: "3c29edf8bb21597d542cccefd3168f00e21e502cdfd09ce2fab86c66f9901e08",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Powder здесь неисчисляемое: нужна was.","Yesterday требует прошедшего времени: was."],["С gloves нужна were.","Is не подходит к множественному числу и прошлому времени."],["После don’t нужна move без -ing.","В просьбе используется don’t, а не doesn’t."]],"uk":[["Powder тут незлічуване: потрібна was.","Yesterday потребує минулого часу: was."],["Із gloves потрібна were.","Is не підходить до множини й минулого часу."],["Після don’t потрібна move без -ing.","У проханні використовується don’t, а не doesn’t."]]}),
@@ -7895,7 +7895,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 4,
-    sourceFingerprint: "f3670066b82c56c706c9d19605854f7cdec5b087ef75999f80477a123d522f98",
+    sourceFingerprint: "d75317b786afc5bcab3c49d7a9bbbcf459aedd5f8c48a644e8e57818cfc29ecc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С we нужна were.","Yesterday — прошлое: were, не are."],["Один центр: was.","Am относится к I в настоящем. Здесь was."],["Один человек: was.","Yesterday — прошлое, нужна was."]],"uk":[["З we потрібна were.","Yesterday — минуле: were, не are."],["Один центр: was.","Am стосується I в теперішньому. Тут was."],["Одна людина: was.","Yesterday — минуле, потрібна was."]]}),
@@ -7909,7 +7909,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 5,
-    sourceFingerprint: "6c5e18adc9e4c8089a14e96005da930e22658551883571aba07b4356c875ffc3",
+    sourceFingerprint: "2812b43550789832c31050f557eda604e63d62e6e368c28ccb6a693ae1219047",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Ago ставим после two hours.","С I нужна was."],["С we нужна were.","Вчерашнее состояние описываем were, а не are."],["Перед конечным временем нужна until, не during.","Ago ставим после длительности, например two hours ago. Здесь until six."]],"uk":[["Ago ставимо після two hours.","З I потрібна was."],["З we потрібна were.","Учорашній стан описуємо were, а не are."],["Перед кінцевим часом потрібна until, не during.","Ago ставимо після тривалості, наприклад two hours ago. Тут until six."]]}),
@@ -7923,7 +7923,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 6,
-    sourceFingerprint: "3f68e21dbecb3048065dac58b6b80787038cfaff2b724d76fdb3653c5494bbc4",
+    sourceFingerprint: "2e15fc041d083e5fcbe3fa001be5524ac67367539dc42a1223cf72571efbcd35",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна was.","Перед названием дня нужна on, не in."],["С we нужна were.","Wednesday — среда, а речь о четверге: Thursday."],["С they нужна were.","Перед Saturday здесь нужна on."]],"uk":[["З I потрібна was.","Перед назвою дня потрібна on, не in."],["З we потрібна were.","Wednesday — середа, а йдеться про четвер: Thursday."],["З they потрібна were.","Перед Saturday тут потрібна on."]]}),
@@ -7937,7 +7937,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 7,
-    sourceFingerprint: "4557d83a9924513dbaa1ba91132b21387dd22233803b81afb27894268541732c",
+    sourceFingerprint: "56a881cfdb539aa221c3cd4c0440ec15cde96c5b2e71513b9035633932cb4b9e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна was.","Перед Sunday здесь нужна on."],["С we нужна were.","Easter — Пасха. Здесь речь о Christmas."],["С they нужна were.","Am относится к I в настоящем. Здесь were."]],"uk":[["З I потрібна was.","Перед Sunday тут потрібна on."],["З we потрібна were.","Easter — Великдень. Тут ідеться про Christmas."],["З they потрібна were.","Am стосується I в теперішньому. Тут were."]]}),
@@ -7951,7 +7951,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 8,
-    sourceFingerprint: "3696d7da47e5944736926f7191200b111aebaa9ea1d62d68adede241b3643296",
+    sourceFingerprint: "77a7c2871a2cbb0e77d15d264088a62820d45dd664aca6b7bda2cb9e0d5c0874",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С it нужна was.","Перед названием месяца нужна in."],["С we нужна were.","Эта фраза о сентябре. Нужна фраза о December."],["Один парк: was.","С summer здесь нужна in."]],"uk":[["З it потрібна was.","Перед назвою місяця потрібна in."],["З we потрібна were.","Ця фраза про вересень. Потрібна фраза про December."],["Один парк: was.","Із summer тут потрібна in."]]}),
@@ -7965,7 +7965,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 9,
-    sourceFingerprint: "4d24599b75dc92a886d1c94582451efb63d05f300039a46339e78a30f647403c",
+    sourceFingerprint: "3fc79d3c42d6ec49a0e6287aa146189cfc3f9bb716c0dca354b0da8de71ee94f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С it нужна was.","Вопрос с was уже строится без did: Was it…?"],["С you нужна were.","Did не добавляем к вопросу с were."],["Not ставим после was.","С it нужна was."]],"uk":[["З it потрібна was.","Запитання з was вже будується без did: Was it…?"],["З you потрібна were.","Did не додаємо до запитання з were."],["Not ставимо після was.","З it потрібна was."]]}),
@@ -7979,7 +7979,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 10,
-    sourceFingerprint: "26fe9c70f245b2a888775d1aa19f8fec24a8c7a8e756ac1072ff254d9b18b8dd",
+    sourceFingerprint: "8fafcf418eff1c1b3c70d34442e60e7b05a3c6629594768c56d212073e869251",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Fever здесь единственное число: was.","Вопрос с was строится без did."],["Одна боль, единственное число: was.","Этот вопрос о насморке. Здесь нужен stomach ache."],["Not ставим после was.","С pain здесь нужна was."]],"uk":[["Fever тут однина: was.","Запитання з was будується без did."],["Один біль, однина: was.","Це запитання про нежить. Тут потрібне stomach ache."],["Not ставимо після was.","Із pain тут потрібна was."]]}),
@@ -7993,7 +7993,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 11,
-    sourceFingerprint: "303cbe39dac8173e66b6d31dc9c51be9f4a0dc4a850820467deb1f341c0ebf59",
+    sourceFingerprint: "56b07f7b614e8669ab9e10396bee86ae48aa10ff8dfc0da6da8f5825a0cb5bac",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Один центр: was.","Вопрос с was не требует did."],["Один сотрудник: was.","Этот вопрос о зале ожидания, а не о сотруднике."],["Один осмотр: was.","В вопросе с was не добавляем did."]],"uk":[["Один центр: was.","Запитання з was не потребує did."],["Один працівник: was.","Це запитання про залу очікування, а не про працівника."],["Один огляд: was.","У запитанні з was не додаємо did."]]}),
@@ -8007,7 +8007,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 12,
-    sourceFingerprint: "81701a07d302b7d1d0c85d868454f332d258d032f375af752276a024b974c8ac",
+    sourceFingerprint: "acda3c8e5d9d77a780d7249dda79c19f83badc0a99480aefc58b6485a591a729",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Один pancake: was.","В вопрос с was не добавляем did."],["С eggs нужна were.","В вопрос с were не добавляем did."],["Одно яйцо: was.","Not ставим после was."]],"uk":[["Один pancake: was.","До запитання з was не додаємо did."],["Із eggs потрібна were.","До запитання з were не додаємо did."],["Одне яйце: was.","Not ставимо після was."]]}),
@@ -8021,7 +8021,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 13,
-    sourceFingerprint: "9e37f1895ef233494f67ed5b8496231f569a6388736c33054e4ff8ffe090d63c",
+    sourceFingerprint: "61cba2ea409034cc3374f2b52dffc93fe048ea2bba7fca86b5eb0003399a5119",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С mustard здесь нужна was.","В вопросе с was не нужен did."],["Not ставим после was.","С mayonnaise нужна was."],["С vinegar здесь нужна was.","Вопрос с was строится без did."]],"uk":[["Із mustard тут потрібна was.","У запитанні з was не потрібен did."],["Not ставимо після was.","Із mayonnaise потрібна was."],["Із vinegar тут потрібна was.","Запитання з was будується без did."]]}),
@@ -8035,7 +8035,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 14,
-    sourceFingerprint: "de51fec4200645ef81ce7aa88ce8e1b63041b05af8d87cb5d0ac101a4b809632",
+    sourceFingerprint: "e660d1295b04bb93b73977c8e9b33f423e0eabc0b2046dab048d594048aeeee9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Crisps — множественное число: were.","Вопрос с were строится без did."],["Один cracker: was.","Для crackers нужна were. Здесь вопрос об одном cracker."],["Один almond: was.","Для almonds нужна were. Здесь один almond."]],"uk":[["Crisps — множина: were.","Запитання з were будується без did."],["Один cracker: was.","Для crackers потрібна were. Тут запитання про один cracker."],["Один almond: was.","Для almonds потрібна were. Тут один almond."]]}),
@@ -8049,7 +8049,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 15,
-    sourceFingerprint: "f66d695c3fa23b4c8e501e5e73db12bc0a09dfcf3660e57db80ca4b5c50005de",
+    sourceFingerprint: "f877e4de2479c8128a2eb73cfee8998f7d1dee043cec3c9907a9abdcd9013d8b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь нужна was.","С was не добавляем did."],["Not ставим после was.","С peanut butter нужна was."],["С it нужна was.","На вопрос с was отвечаем was."]],"uk":[["Тут потрібна was.","Із was не додаємо did."],["Not ставимо після was.","Із peanut butter потрібна was."],["З it потрібна was.","На запитання з was відповідаємо was."]]}),
@@ -8063,7 +8063,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 11, sessionOrdinal: 16,
-    sourceFingerprint: "400b44031bfc0fa13a137005eb430eb0eb4f3f9afd534563f3ecd8acdca69338",
+    sourceFingerprint: "bf8fdffa74c22b61fd19d956afc36f79762efe99c0d784ef3566967028bfd08e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Один предмет: was.","С was не нужен did."],["Множественное число: were.","В вопросе с were не нужен did."],["Not ставим после was.","Один предмет: was."]],"uk":[["Один предмет: was.","Із was не потрібен did."],["Множина: were.","У запитанні з were не потрібен did."],["Not ставимо після was.","Один предмет: was."]]}),

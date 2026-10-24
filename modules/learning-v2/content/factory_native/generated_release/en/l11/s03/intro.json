@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Средства для стирки и посуды",
-        "uk": "Засоби для прання й посуду"
+        "ru": "Где вчера был порошок",
+        "uk": "Де вчора був порошок"
       },
       "bodyByLocale": {
-        "ru": "Washing powder — «стиральный порошок», washing-up liquid — «средство для мытья посуды». Учим названия целиком. Вчера порошок был в шкафу: The washing powder was in the cupboard yesterday. Сегодня он на полке: The washing powder is on the shelf right now. Для вчерашнего места используйте was.",
-        "uk": "Washing powder — «пральний порошок», washing-up liquid — «засіб для миття посуду». Вчимо назви цілком. Учора порошок був у шафці: The washing powder was in the cupboard yesterday. Сьогодні він на полиці: The washing powder is on the shelf right now. Для вчорашнього місця використовуйте was."
+        "ru": "После уборки вы вспоминаете, что вчера стиральный порошок был в шкафу. Скажите: The washing powder was in the cupboard yesterday. Начните с конкретного средства the washing powder, затем поставьте was. Powder здесь неисчисляемое, поэтому для прошлого нужна was, а не were. Добавьте место in the cupboard и время yesterday. Так вы сообщаете, где средство находилось вчера.",
+        "uk": "Після прибирання ви згадуєте, що вчора пральний порошок був у шафі. Скажіть: The washing powder was in the cupboard yesterday. Почніть із конкретного засобу the washing powder, потім поставте was. Powder тут незлічуване, тому для минулого потрібне was, а не were. Додайте місце in the cupboard і час yesterday. Так ви повідомляєте, де засіб перебував учора."
       },
       "question": {
         "interactionId": "en:lesson-11:session-03:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одна тряпка, несколько перчаток",
-        "uk": "Одна ганчірка, кілька рукавичок"
+        "ru": "Мокрые перчатки после уборки",
+        "uk": "Мокрі рукавички після прибирання"
       },
       "bodyByLocale": {
-        "ru": "Cleaning cloth — «тряпка для уборки», rubber gloves — «резиновые перчатки». После уборки тряпка была мокрой: The cleaning cloth was wet. Перчатки тоже были мокрыми: The rubber gloves were wet. Gloves — множественное число, поэтому were. Выберите фразу о перчатках.",
-        "uk": "Cleaning cloth — «ганчірка для прибирання», rubber gloves — «гумові рукавички». Після прибирання ганчірка була мокрою: The cleaning cloth was wet. Рукавички теж були мокрими: The rubber gloves were wet. Gloves — множина, тому were. Виберіть фразу про рукавички."
+        "ru": "Вы вспоминаете резиновые перчатки после вчерашней уборки: они были мокрыми. Скажите: The rubber gloves were wet. Сначала назовите предметы the rubber gloves. Gloves — множественное число, поэтому дальше поставьте were для прошлого. Затем добавьте состояние wet — «мокрые». Даже если речь об одной паре, английское gloves требует were.",
+        "uk": "Ви згадуєте гумові рукавички після вчорашнього прибирання: вони були мокрі. Скажіть: The rubber gloves were wet. Спочатку назвіть предмети the rubber gloves. Gloves — множина, тому далі поставте were для минулого. Потім додайте стан wet — «мокрі». Навіть якщо йдеться про одну пару, англійське gloves потребує were."
       },
       "question": {
         "interactionId": "en:lesson-11:session-03:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Попросить не двигать вещь",
-        "uk": "Попросити не рухати річ"
+        "ru": "Попросить не двигать стол",
+        "uk": "Попросити не рухати стіл"
       },
       "bodyByLocale": {
-        "ru": "Друг хочет передвинуть стол во время уборки. Попросите: Please don’t move the table — «Пожалуйста, не двигай стол». После don’t нужна обычная форма move. Вчера этот стол был у окна: The table was by the window yesterday. Сейчас выберите просьбу не двигать стол.",
-        "uk": "Друг хоче пересунути стіл під час прибирання. Попросіть: Please don’t move the table — «Будь ласка, не рухай стіл». Після don’t потрібна звичайна форма move. Учора цей стіл був біля вікна: The table was by the window yesterday. Зараз виберіть прохання не рухати стіл."
+        "ru": "Друг хочет передвинуть стол во время уборки, а вы просите оставить его на месте: Please don’t move the table. Начните с please, затем поставьте don’t для отрицательной просьбы. После don’t нужен глагол в начальной форме move, без -ing и -s. В конце назовите предмет the table. Здесь используем don’t, а не doesn’t; слово you в начале просьбы не требуется.",
+        "uk": "Друг хоче пересунути стіл під час прибирання, а ви просите залишити його на місці: Please don’t move the table. Почніть із please, потім поставте don’t для заперечного прохання. Після don’t потрібне дієслово в початковій формі move, без -ing та -s. Наприкінці назвіть предмет the table. Тут використовуємо don’t, а не doesn’t; слово you на початку прохання не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-11:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d92612757ebee73d813c11fd7f13cd5392f73fd4d6a6cf2a42e66c4b34a6b8d3"
+  "introFingerprint": "5bc1311a49a7615b3eff7bc630cd2af8c37e5033e0ef3998419447da9b471000"
 }

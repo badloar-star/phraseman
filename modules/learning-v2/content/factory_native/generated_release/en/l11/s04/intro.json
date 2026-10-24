@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вокзал",
-        "uk": "Вокзал"
+        "ru": "Вчера на вокзале",
+        "uk": "Учора на вокзалі"
       },
       "bodyByLocale": {
-        "ru": "Train station — «железнодорожная станция, вокзал». Вчера вы с другом были на вокзале: We were at the train station yesterday. Were относится к we: нас несколько. Теперь вы дома: We are at home right now. В рассказе о вчерашней поездке нужна were.",
-        "uk": "Train station — «залізнична станція, вокзал». Учора ви з другом були на вокзалі: We were at the train station yesterday. Were стосується we: нас кілька. Тепер ви вдома: We are at home right now. У розповіді про вчорашню поїздку потрібна were."
+        "ru": "Вы рассказываете, где вчера были вместе с другом. Скажите: We were at the train station yesterday — вчера мы были на вокзале. Начните с we — «мы», затем поставьте were для прошлого. Добавьте место at the train station и время yesterday. Форму were выбираем по we: она относится к вам с другом, а не к одному зданию вокзала.",
+        "uk": "Ви розповідаєте, де вчора були разом із другом. Скажіть: We were at the train station yesterday — учора ми були на вокзалі. Почніть із we — «ми», потім поставте were для минулого. Додайте місце at the train station і час yesterday. Форму were обираємо за we: вона стосується вас із другом, а не однієї будівлі вокзалу."
       },
       "question": {
         "interactionId": "en:lesson-11:session-04:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Два центра",
-        "uk": "Два центри"
+        "ru": "Закрытый спортивный центр",
+        "uk": "Зачинений спортивний центр"
       },
       "bodyByLocale": {
-        "ru": "Shopping centre — «торговый центр», sports centre — «спортивный центр». Учим названия целиком: в sports сохраняем s. Вчера спортивный центр был закрыт: The sports centre was closed yesterday. Это один центр, поэтому was.",
-        "uk": "Shopping centre — «торговий центр», sports centre — «спортивний центр». Вчимо назви цілком: у sports зберігаємо s. Учора спортивний центр був зачинений: The sports centre was closed yesterday. Це один центр, тому was."
+        "ru": "Вчера вы подошли к спортивному центру, но он был закрыт. Скажите: The sports centre was closed yesterday. Сначала назовите конкретное здание the sports centre, затем поставьте was и состояние closed — «закрыт». В конце добавьте время yesterday. Центр один, поэтому нужна форма was. Буква s в слове sports — часть названия, она не означает, что центров несколько.",
+        "uk": "Учора ви підійшли до спортивного центру, але він був зачинений. Скажіть: The sports centre was closed yesterday. Спочатку назвіть конкретну будівлю the sports centre, потім поставте was і стан closed — «зачинений». Наприкінці додайте час yesterday. Центр один, тому потрібна форма was. Літера s у слові sports — частина назви, вона не означає, що центрів кілька."
       },
       "question": {
         "interactionId": "en:lesson-11:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Парикмахер был занят",
-        "uk": "Перукар був зайнятий"
+        "ru": "Занятый парикмахер",
+        "uk": "Зайнятий перукар"
       },
       "bodyByLocale": {
-        "ru": "Hairdresser — «парикмахер»: человек, который стрижёт волосы. Вчера знакомый парикмахер был занят: The hairdresser was busy yesterday. Это человек, а не название помещения. Пока друг разговаривает с ним, попросите не спешить: Please don’t hurry — «Пожалуйста, не спеши». Сейчас выберите фразу о вчерашней занятости парикмахера.",
-        "uk": "Hairdresser — «перукар»: людина, яка стриже волосся. Учора знайомий перукар був зайнятий: The hairdresser was busy yesterday. Це людина, а не назва приміщення. Поки друг розмовляє з ним, попросіть не поспішати: Please don’t hurry — «Будь ласка, не поспішай». Зараз виберіть фразу про вчорашню зайнятість перукаря."
+        "ru": "Вы вспоминаете вчерашний визит: знакомый парикмахер был занят. Скажите: The hairdresser was busy yesterday. Начните с the hairdresser — так вы называете конкретного человека, который стрижёт волосы. Затем поставьте was, потому что человек один и речь о прошлом. Добавьте состояние busy — «занят» — и время yesterday. Получается: человек, was, состояние, время.",
+        "uk": "Ви згадуєте вчорашній візит: знайомий перукар був зайнятий. Скажіть: The hairdresser was busy yesterday. Почніть із the hairdresser — так ви називаєте конкретну людину, яка стриже волосся. Потім поставте was, бо людина одна й ідеться про минуле. Додайте стан busy — «зайнятий» — і час yesterday. Виходить: людина, was, стан, час."
       },
       "question": {
         "interactionId": "en:lesson-11:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "71e6704348006977afd12381ef6ae13dd04ee71f151a6eb9f93285647d415b5a"
+  "introFingerprint": "16d418468be512389906b0b13826b2a8dd3b20e8e3ddbf5cd2fc620908a27872"
 }

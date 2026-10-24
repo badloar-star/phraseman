@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Во вторник",
-        "uk": "У вівторок"
+        "ru": "Дома во вторник",
+        "uk": "Удома у вівторок"
       },
       "bodyByLocale": {
-        "ru": "Tuesday — «вторник». Названия дней недели пишем с заглавной буквы. Во вторник вы были дома: I was at home on Tuesday. Перед названием дня здесь нужна on. Мы вспоминаем прошлую неделю, поэтому was. Для того, где вы сейчас, говорим I am at home right now.",
-        "uk": "Tuesday — «вівторок». Назви днів тижня пишемо з великої літери. У вівторок ви були вдома: I was at home on Tuesday. Перед назвою дня тут потрібна on. Ми згадуємо минулий тиждень, тому was. Для того, де ви зараз, кажемо I am at home right now."
+        "ru": "Вы рассказываете другу, где были во вторник на прошлой неделе: дома. Скажите: I was at home on Tuesday. Начните с I, затем поставьте was для прошлого. Добавьте место at home и время on Tuesday. Перед названием дня недели нужен on. Tuesday означает «вторник» и пишется с заглавной буквы. С I используем was, а не were.",
+        "uk": "Ви розповідаєте другові, де були у вівторок минулого тижня: удома. Скажіть: I was at home on Tuesday. Почніть із I, потім поставте was для минулого. Додайте місце at home і час on Tuesday. Перед назвою дня тижня потрібне on. Tuesday означає «вівторок» і пишеться з великої літери. З I використовуємо was, а не were."
       },
       "question": {
         "interactionId": "en:lesson-11:session-06:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Среда и четверг",
-        "uk": "Середа й четвер"
+        "ru": "Свободный четверг",
+        "uk": "Вільний четвер"
       },
       "bodyByLocale": {
-        "ru": "Wednesday — «среда», Thursday — «четверг». В среду вы с другом были заняты: We were busy on Wednesday. В четверг были свободны: We were free on Thursday. С we нужна were. Сейчас выберите фразу о свободном четверге.",
-        "uk": "Wednesday — «середа», Thursday — «четвер». У середу ви з другом були зайняті: We were busy on Wednesday. У четвер були вільні: We were free on Thursday. З we потрібна were. Зараз виберіть фразу про вільний четвер."
+        "ru": "Вы с другом вспоминаете прошлый четверг: тогда вы оба были свободны. Скажите: We were free on Thursday. Сначала поставьте we — «мы», затем were для прошлого и состояние free — «свободны». Завершите фразу временем on Thursday. Перед днём недели нужен on, а Thursday пишется с заглавной буквы. Здесь речь именно о четверге.",
+        "uk": "Ви з другом згадуєте минулий четвер: тоді ви обоє були вільні. Скажіть: We were free on Thursday. Спочатку поставте we — «ми», потім were для минулого й стан free — «вільні». Завершіть фразу часом on Thursday. Перед днем тижня потрібне on, а Thursday пишеться з великої літери. Тут ідеться саме про четвер."
       },
       "question": {
         "interactionId": "en:lesson-11:session-06:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "В субботу",
-        "uk": "У суботу"
+        "ru": "Друзья на вокзале в субботу",
+        "uk": "Друзі на вокзалі в суботу"
       },
       "bodyByLocale": {
-        "ru": "Saturday — «суббота». В субботу друзья были на вокзале: They were at the train station on Saturday. Если перед днём стоит last, on не добавляем: last Saturday — «в прошлую субботу». В этом занятии отрабатываем on Saturday. Друг торопит вас вспомнить время поездки; попросите Please don’t hurry me — «Пожалуйста, не торопи меня». Выберите фразу о друзьях на вокзале.",
-        "uk": "Saturday — «субота». У суботу друзі були на вокзалі: They were at the train station on Saturday. Якщо перед днем стоїть last, on не додаємо: last Saturday — «минулої суботи». У цьому занятті відпрацьовуємо on Saturday. Друг квапить вас згадати час поїздки; попросіть Please don’t hurry me — «Будь ласка, не квап мене». Виберіть фразу про друзів на вокзалі."
+        "ru": "Вы вспоминаете друзей, которые в прошлую субботу были на вокзале. Скажите: They were at the train station on Saturday. Начните с they, затем поставьте were и добавьте место at the train station. В конце укажите день: on Saturday. Если перед названием дня уже стоит last, предлог on не нужен: last Saturday. В выбранной фразе last нет, поэтому используем on Saturday.",
+        "uk": "Ви згадуєте друзів, які минулої суботи були на вокзалі. Скажіть: They were at the train station on Saturday. Почніть із they, потім поставте were і додайте місце at the train station. Наприкінці вкажіть день: on Saturday. Якщо перед назвою дня вже стоїть last, прийменник on не потрібен: last Saturday. У вибраній фразі last немає, тому використовуємо on Saturday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5592938eca88c8e32f7d258dc978615ae3d9bdf98eb950e5ed05bbf64847f1fc"
+  "introFingerprint": "a9ffde8100d6b948a9e472292c8bef0c52b68f851ae370573dee1067c175c26c"
 }

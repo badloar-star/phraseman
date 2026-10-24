@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два разных столика",
-        "uk": "Два різні столики"
+        "ru": "Где стояла тумбочка",
+        "uk": "Де стояла тумбочка"
       },
       "bodyByLocale": {
-        "ru": "Bedside table — «прикроватная тумбочка», coffee table — «журнальный столик». Вчера тумбочка стояла у кровати. Вопрос: Was the bedside table next to the bed? — «Тумбочка была рядом с кроватью?» У одного предмета используем was. Выберите этот вопрос.",
-        "uk": "Bedside table — «приліжкова тумбочка», coffee table — «журнальний столик». Учора тумбочка стояла біля ліжка. Запитання: Was the bedside table next to the bed? — «Тумбочка була поруч із ліжком?» Для одного предмета використовуємо was. Виберіть це запитання."
+        "ru": "После уборки вы уточняете, стояла ли вчера прикроватная тумбочка рядом с кроватью. Спросите: Was the bedside table next to the bed? Начните с was, затем назовите один предмет the bedside table и добавьте место next to the bed. В вопросе о прошлом was стоит перед предметом. Дополнительное did не нужно.",
+        "uk": "Після прибирання ви уточнюєте, чи стояла вчора приліжкова тумбочка поруч із ліжком. Запитайте: Was the bedside table next to the bed? Почніть із was, потім назвіть один предмет the bedside table і додайте місце next to the bed. У запитанні про минуле was стоїть перед предметом. Додаткове did не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-11:session-16:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вешалка-плечики",
-        "uk": "Вішалка-плічка"
+        "ru": "Где были вешалки",
+        "uk": "Де були вішаки"
       },
       "bodyByLocale": {
-        "ru": "Coat hanger — «вешалка-плечики» для одежды. Это один предмет: The coat hanger was in the wardrobe. Несколько таких вешалок — coat hangers: Were the coat hangers in the wardrobe? — «Вешалки были в шкафу?» Выберите вопрос о нескольких вешалках.",
-        "uk": "Coat hanger — «вішалка-плічка» для одягу. Це один предмет: The coat hanger was in the wardrobe. Кілька таких вішалок — coat hangers: Were the coat hangers in the wardrobe? — «Вішалки були в шафі?» Виберіть запитання про кілька вішалок."
+        "ru": "После уборки вы спрашиваете, были ли вешалки-плечики в шкафу. Спросите: Were the coat hangers in the wardrobe? Начните с were, потому что вешалок несколько. Затем назовите их — the coat hangers — и добавьте место in the wardrobe. В названии множественное число получает последнее слово hangers. Were само начинает вопрос о прошлом; did перед ним не ставим.",
+        "uk": "Після прибирання ви запитуєте, чи були вішаки-плічка в шафі. Запитайте: Were the coat hangers in the wardrobe? Почніть із were, бо вішаків кілька. Потім назвіть їх — the coat hangers — і додайте місце in the wardrobe. У назві множини набуває останнє слово hangers. Were саме починає запитання про минуле; did перед ним не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-11:session-16:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Полка для обуви",
-        "uk": "Полиця для взуття"
+        "ru": "Полки не было в спальне",
+        "uk": "Полиці не було в спальні"
       },
       "bodyByLocale": {
-        "ru": "Shoe rack — «полка для обуви». Вчера она стояла в коридоре, не в спальне: The shoe rack was not in the bedroom. В отрицании not идёт после was. Сейчас вы убираете: I am cleaning right now. Просьба: Please don’t move my shoes — «Пожалуйста, не двигай мою обувь». Выберите отрицание о спальне.",
-        "uk": "Shoe rack — «полиця для взуття». Учора вона стояла в коридорі, не в спальні: The shoe rack was not in the bedroom. У запереченні not іде після was. Зараз ви прибираєте: I am cleaning right now. Прохання: Please don’t move my shoes — «Будь ласка, не рухай моє взуття». Виберіть заперечення про спальню."
+        "ru": "Вы уточняете вчерашнее место полки для обуви: в спальне её не было. Скажите: The shoe rack was not in the bedroom. Сначала назовите один предмет the shoe rack, затем поставьте was для прошлого. Сразу после was добавьте отрицание not, а в конце — место in the bedroom. Порядок was not показывает, что вы отрицаете нахождение полки в спальне.",
+        "uk": "Ви уточнюєте вчорашнє місце полиці для взуття: у спальні її не було. Скажіть: The shoe rack was not in the bedroom. Спочатку назвіть один предмет the shoe rack, потім поставте was для минулого. Одразу після was додайте заперечення not, а наприкінці — місце in the bedroom. Порядок was not показує, що ви заперечуєте перебування полиці в спальні."
       },
       "question": {
         "interactionId": "en:lesson-11:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1ac0b1c989f0ff34ceaa703c85f061d067499466fdb29c0882e6ab772396cb8b"
+  "introFingerprint": "0a2c5b2cd0862b64197f2c42bb6d8ac949c5398616de24b3d04384cd4477694e"
 }

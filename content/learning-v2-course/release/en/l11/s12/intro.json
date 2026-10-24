@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Блинчик",
-        "uk": "Млинець"
+        "ru": "Горячий ли был ваш блинчик",
+        "uk": "Чи був ваш млинець гарячим"
       },
       "bodyByLocale": {
-        "ru": "Pancake — «блин, блинчик». Друг спрашивает, был ли ваш блинчик горячим: Was your pancake hot? Один pancake — форма was. Если говорим о нескольких, pancakes, нужна were: Were the pancakes hot? Выберите вопрос об одном блинчике.",
-        "uk": "Pancake — «млинець». Друг запитує, чи був ваш млинець гарячим: Was your pancake hot? Один pancake — форма was. Якщо говоримо про кілька, pancakes, потрібна were: Were the pancakes hot? Виберіть запитання про один млинець."
+        "ru": "После завтрака друг спрашивает о вашем блинчике: Was your pancake hot? — твой блинчик был горячим? Вопрос начинается с was, потому что речь об одном блинчике в прошлом. Затем назовите предмет your pancake и добавьте признак hot. Your показывает, чей это блинчик. Was стоит перед предметом, а did в таком вопросе не нужен.",
+        "uk": "Після сніданку друг запитує про ваш млинець: Was your pancake hot? — твій млинець був гарячим? Запитання починається з was, бо йдеться про один млинець у минулому. Потім назвіть предмет your pancake і додайте ознаку hot. Your показує, чий це млинець. Was стоїть перед предметом, а did у такому запитанні не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-11:session-12:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Круассан и яичница-болтунья",
-        "uk": "Круасан і яєчня-бовтанка"
+        "ru": "Температура яичницы-болтуньи",
+        "uk": "Температура яєчні-бовтанки"
       },
       "bodyByLocale": {
-        "ru": "Croissant — «круассан», scrambled eggs — «яичница-болтунья». Scrambled eggs учим целиком; eggs — множественное число, поэтому Were the scrambled eggs hot? — «Болтунья была горячей?» По-русски здесь один вид блюда, но английское eggs требует were. Выберите этот вопрос.",
-        "uk": "Croissant — «круасан», scrambled eggs — «яєчня-бовтанка». Scrambled eggs вчимо цілком; eggs — множина, тому Were the scrambled eggs hot? — «Бовтанка була гарячою?» Українською тут одна страва, але англійське eggs потребує were. Виберіть це запитання."
+        "ru": "Вы обсуждаете завтрак в кафе и спрашиваете о температуре яичницы-болтуньи: Were the scrambled eggs hot? Начните с were, затем назовите блюдо the scrambled eggs и добавьте hot — «горячие». В английском eggs имеет форму множественного числа, поэтому выбираем were, хотя по-русски «яичница» — единственное число. Were само образует вопрос о прошлом, без did.",
+        "uk": "Ви обговорюєте сніданок у кафе й запитуєте про температуру яєчні-бовтанки: Were the scrambled eggs hot? Почніть із were, потім назвіть страву the scrambled eggs і додайте hot — «гарячі». В англійській eggs має форму множини, тому обираємо were, хоча українською «яєчня» — однина. Were саме утворює запитання про минуле, без did."
       },
       "question": {
         "interactionId": "en:lesson-11:session-12:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Жареное яйцо",
-        "uk": "Смажене яйце"
+        "ru": "Яйцо не было холодным",
+        "uk": "Яйце не було холодним"
       },
       "bodyByLocale": {
-        "ru": "Fried egg — «жареное яйцо». Здесь одно яйцо: The fried egg was not cold — «Жареное яйцо не было холодным». Для нескольких: The fried eggs were not cold. Если друг тянется к вашей тарелке, попросите Please don’t touch my plate — «Пожалуйста, не трогай мою тарелку». Выберите отрицание об одном яйце.",
-        "uk": "Fried egg — «смажене яйце». Тут одне яйце: The fried egg was not cold — «Смажене яйце не було холодним». Для кількох: The fried eggs were not cold. Якщо друг тягнеться до вашої тарілки, попросіть Please don’t touch my plate — «Будь ласка, не чіпай мою тарілку». Виберіть заперечення про одне яйце."
+        "ru": "После завтрака вы уточняете: жареное яйцо не было холодным. Скажите: The fried egg was not cold. Начните с конкретного блюда the fried egg. Яйцо одно, поэтому поставьте was, затем сразу not и признак cold. Именно порядок was not образует отрицание; not перед was не ставим. Вы описываете состояние одного яйца в прошлом.",
+        "uk": "Після сніданку ви уточнюєте: смажене яйце не було холодним. Скажіть: The fried egg was not cold. Почніть із конкретної страви the fried egg. Яйце одне, тому поставте was, потім одразу not і ознаку cold. Саме порядок was not утворює заперечення; not перед was не ставимо. Ви описуєте стан одного яйця в минулому."
       },
       "question": {
         "interactionId": "en:lesson-11:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3a9451bebafb55e464284e7b00c749d70193100c47cc4b8f28901fcbfd1f7d59"
+  "introFingerprint": "40679226c392463d696318538d9b02551fb36b8f9c9015bf11bfe5587b0e7308"
 }

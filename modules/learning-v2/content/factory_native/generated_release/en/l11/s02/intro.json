@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вчера и сейчас",
-        "uk": "Учора й зараз"
+        "ru": "Где вчера было мыло",
+        "uk": "Де вчора було мило"
       },
       "bodyByLocale": {
-        "ru": "Soap — «мыло», shower gel — «гель для душа». Мыло сейчас у раковины, но вчера было на полке: The soap was on the shelf yesterday. Was показывает прошлое; для места сейчас говорим The soap is here right now. Не говорим the soap were: здесь soap — неисчисляемое существительное, форма единственного числа. Выберите фразу о вчерашнем месте мыла.",
-        "uk": "Soap — «мило», shower gel — «гель для душу». Мило зараз біля раковини, але вчора було на полиці: The soap was on the shelf yesterday. Was показує минуле; для місця зараз кажемо The soap is here right now. Не кажемо the soap were: тут soap — незлічуваний іменник, форма однини. Виберіть фразу про вчорашнє місце мила."
+        "ru": "Вы вспоминаете, где лежало мыло во время вчерашней уборки: The soap was on the shelf yesterday — «Мыло вчера было на полке». Сначала называем вещь — the soap, затем ставим was, после него место — on the shelf, а в конце время — yesterday. Soap здесь неисчисляемое, поэтому нужна was, не were. Yesterday относит сообщение к прошлому: настоящее is здесь не подходит.",
+        "uk": "Ви згадуєте, де лежало мило під час учорашнього прибирання: The soap was on the shelf yesterday — «Мило вчора було на полиці». Спочатку називаємо річ — the soap, потім ставимо was, після нього місце — on the shelf, а наприкінці час — yesterday. Soap тут незлічуване, тому потрібна was, не were. Yesterday відносить повідомлення до минулого: теперішнє is тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-11:session-02:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Де був папір"
       },
       "bodyByLocale": {
-        "ru": "Toilet paper — «туалетная бумага». Бумага была в шкафу: The toilet paper was in the cupboard. Здесь paper — неисчисляемое существительное: was, а не were. Вы говорите о знакомой вам бумаге, поэтому используете the.",
-        "uk": "Toilet paper — «туалетний папір». Папір був у шафці: The toilet paper was in the cupboard. Тут paper — незлічуваний іменник: was, а не were. Ви говорите про відомий вам папір, тому використовуєте the."
+        "ru": "Друг спрашивает, куда вы положили туалетную бумагу во время уборки. Вы вспоминаете её место: The toilet paper was in the cupboard — «Туалетная бумага была в шкафу». Собираем предложение: the toilet paper + was + in the cupboard. Paper здесь неисчисляемое, поэтому используем was. The показывает, что речь о той самой бумаге, которую вы убирали; in означает, что она находилась внутри шкафа.",
+        "uk": "Друг запитує, куди ви поклали туалетний папір під час прибирання. Ви згадуєте його місце: The toilet paper was in the cupboard — «Туалетний папір був у шафці». Складаємо речення: the toilet paper + was + in the cupboard. Paper тут незлічуване, тому використовуємо was. The показує, що йдеться про той самий папір, який ви прибирали; in означає, що він був усередині шафки."
       },
       "question": {
         "interactionId": "en:lesson-11:session-02:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Раковина и полотенца",
-        "uk": "Раковина й рушники"
+        "ru": "Раковина после уборки",
+        "uk": "Умивальник після прибирання"
       },
       "bodyByLocale": {
-        "ru": "Washbasin — «раковина для умывания». После уборки она была чистой: The washbasin was clean. Полотенца тоже были чистыми: The towels were clean. Один предмет — was, несколько — were. Если друг тянется к свежей краске на стене, попросите: Please don’t touch the wall — «Пожалуйста, не трогай стену». Сейчас выберите фразу о чистой раковине.",
-        "uk": "Washbasin — «умивальник». Після прибирання він був чистим: The washbasin was clean. Рушники теж були чистими: The towels were clean. Один предмет — was, кілька — were. Якщо друг тягнеться до свіжої фарби на стіні, попросіть: Please don’t touch the wall — «Будь ласка, не чіпай стіну». Зараз виберіть фразу про чистий умивальник."
+        "ru": "Вы рассказываете, какой была раковина сразу после вчерашней уборки: The washbasin was clean — «Раковина была чистой». Сначала называем предмет — the washbasin, затем ставим was и признак — clean. Раковина одна, поэтому нужна was, не were. Clean означает «чистый» и описывает состояние; cleaning обозначало бы действие, а вы сообщаете о результате уборки.",
+        "uk": "Ви розповідаєте, яким був умивальник одразу після вчорашнього прибирання: The washbasin was clean — «Умивальник був чистим». Спочатку називаємо предмет — the washbasin, потім ставимо was і ознаку — clean. Умивальник один, тому потрібна was, не were. Clean означає «чистий» і описує стан; cleaning позначало б дію, а ви повідомляєте про результат прибирання."
       },
       "question": {
         "interactionId": "en:lesson-11:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8010a633e59235907de9dd543d0aa7674623942bc57fb2b1f3c049b982d99a44"
+  "introFingerprint": "dd42094d98dab8deffe159da9bd4246061f94c022e2a8b4256719ded35e4114d"
 }

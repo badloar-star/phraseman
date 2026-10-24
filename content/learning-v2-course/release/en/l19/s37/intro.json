@@ -11,12 +11,12 @@
       "pageId": "en:lesson-19:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Неудобное время встречи",
+        "uk": "Незручний час зустрічі"
       },
       "bodyByLocale": {
-        "ru": "inconvenient — неудобный по времени или обстоятельствам. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "inconvenient — незручний за часом або обставинами. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вам предлагают встретиться, когда вы забираете ребёнка из школы: This time is so inconvenient — «это время такое неудобное». This time называет предложенное время, is связывает его с оценкой inconvenient — «неудобное». Перед прилагательным ставим so, чтобы усилить оценку. После so inconvenient существительного нет, поэтому здесь выбираем so, а не such.",
+        "uk": "Вам пропонують зустрітися, коли ви забираєте дитину зі школи: This time is so inconvenient — «цей час такий незручний». This time називає запропонований час, is пов’язує його з оцінкою inconvenient — «незручний». Перед прикметником ставимо so, щоб підсилити оцінку. Після so inconvenient іменника немає, тому тут вибираємо so, а не such."
       },
       "question": {
         "interactionId": "en:lesson-19:session-37:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-19:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Нечестный ответ",
+        "uk": "Нечесна відповідь"
       },
       "bodyByLocale": {
-        "ru": "dishonest — нечестный. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "dishonest — нечесний. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг отрицает, что разбил чашку, хотя вы видели, как это случилось: That is such a dishonest answer — «это такой нечестный ответ». После That is называем ответ целиком: a dishonest answer. Чтобы усилить оценку этой группы, ставим such перед a. Получаем such + a + dishonest + answer. Артикль нужен перед одним исчисляемым answer, а such идёт перед артиклем.",
+        "uk": "Друг заперечує, що розбив чашку, хоча ви бачили, як це сталося: That is such a dishonest answer — «це така нечесна відповідь». Після That is називаємо відповідь цілком: a dishonest answer. Щоб підсилити оцінку цієї групи, ставимо such перед a. Отримуємо such + a + dishonest + answer. Артикль потрібен перед одним злічуваним answer, а such іде перед артиклем."
       },
       "question": {
         "interactionId": "en:lesson-19:session-37:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-19:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Оценить вероятность",
-        "uk": "Оцінити ймовірність"
+        "ru": "Маловероятный результат",
+        "uk": "Малоймовірний результат"
       },
       "bodyByLocale": {
-        "ru": "unhealthy — вредный для здоровья, нездоровый. unlikely — маловероятный. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "unhealthy — шкідливий для здоров’я, нездоровий. unlikely — малоймовірний. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Перед матчем друг предсказывает победу со счётом десять-ноль. Вы сомневаетесь: That result is so unlikely — «такой результат настолько маловероятен». That result называет предсказанный счёт. После is ставим so для усиления, затем unlikely — «маловероятный». Здесь после so идёт только прилагательное, без существительного: so unlikely.",
+        "uk": "Перед матчем друг передбачає перемогу з рахунком десять-нуль. Ви сумніваєтеся: That result is so unlikely — «такий результат настільки малоймовірний». That result називає передбачений рахунок. Після is ставимо so для підсилення, потім unlikely — «малоймовірний». Тут після so йде лише прикметник, без іменника: so unlikely."
       },
       "question": {
         "interactionId": "en:lesson-19:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7353aef521edfed9f78ef4ebe18f98de29521f76962f4d58fd5a6b3fffeb93e3"
+  "introFingerprint": "c8b390085f10bd01049c96e982184d35dea79d5ed4a13828705d5473e0011cd4"
 }

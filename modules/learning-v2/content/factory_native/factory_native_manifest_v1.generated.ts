@@ -14461,7 +14461,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 25,
-    sourceFingerprint: "294db39870e95a2c8eb9de080c42c44b321660660ba6bc662f65cf5be6bf049d",
+    sourceFingerprint: "65ea67daeb0a36379c1d1a5b252c07f8d0d63bd824a0442b8bb02f8c05366bcb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14475,7 +14475,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 26,
-    sourceFingerprint: "f2c3f14f740b21696cd42f2f5c3ccd37a761cb58ca165b8d8518f8f329e75c93",
+    sourceFingerprint: "70337f475af442b585629374265667ba25d5ded226d419f5044f77ca3ae1aeb8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14489,7 +14489,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 27,
-    sourceFingerprint: "70f3bc0f1354d9bf59496e6503e1036751004d2f7c3c2b5a8559ba3cfaa89ae7",
+    sourceFingerprint: "486684e593fd9830bdb467bd1bb17da0a34810250fe06e2a33cb3685f7d17df9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14503,7 +14503,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 28,
-    sourceFingerprint: "87af6c3fe2d348caa54ebc1a589eed15b3b925676ce3fffe6710fd7d4d96916e",
+    sourceFingerprint: "5bffddc46442b1203432bd9171e38158135b0f591a8cadbe7efe9542d1748b16",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14517,7 +14517,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 29,
-    sourceFingerprint: "2623b989fe0f524548b6418cf3158e2f237938fe3c7ebcb248a3bc5c95a3fc5d",
+    sourceFingerprint: "e2234cea8be2661f184c79dab25486116ec8ea2585139d9b322161fcd3dbf4fd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14531,7 +14531,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 30,
-    sourceFingerprint: "01ea490560881d8d571af1aac1cfce1c460d3b90f511b205d197791f3ded1476",
+    sourceFingerprint: "7e155cb2e394165155e6b34fb565ec47564a12cd5c35100c78b918e317712cdd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14545,7 +14545,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 31,
-    sourceFingerprint: "eb7a696c40031a8ac052d060f1668d7322ea7cc241e6947a1f890eaf7faf0df8",
+    sourceFingerprint: "0727860fc0f58135347efaca9ec46bc57ce6b12e1a50b7b330dbb27db1bbf95e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14559,7 +14559,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 32,
-    sourceFingerprint: "739b534b477577cb54e408b686bbc03d58977cc732dff0511dc23e9f3dc8a3a3",
+    sourceFingerprint: "7e9a59d1dce82b3a51fbaabdc590b4cd19e685d22af1c38074a88472f159b9b3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14573,7 +14573,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 33,
-    sourceFingerprint: "7c87a95b786599f7593d9e38335c41d174ea84b457f157b5dae9e0127415072c",
+    sourceFingerprint: "a23a82a44df4ee979d5ae76f82f8e959d1fe1951b09f8482344e9d60464fd4d4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),
@@ -14587,7 +14587,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 34,
-    sourceFingerprint: "e4eb2d4e2778caf7f29a02776c4301d95d8c6b068bf0212e9a1c88a0673955ee",
+    sourceFingerprint: "130574fa81882e4a12add7de06f5e5c6a4ad9121c98e5f2944196b7f06b9b4b6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),
@@ -14601,7 +14601,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 35,
-    sourceFingerprint: "90976b1fb208fd3f1ee5c4e4e741ecbab9b2e3859e3eacd4d3b2b8aa26632dad",
+    sourceFingerprint: "91602ee280a8a3e04817ce5b9fb2232bb7fcc7f507242c4d85bc6c9b86f4cdd6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),
@@ -14615,7 +14615,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 36,
-    sourceFingerprint: "c415e269d3b9b73df1b01c9299d018103a8322f92320996ba9acde268afbae4c",
+    sourceFingerprint: "c9dddb1a792e560d0b3aa73c3a888b7cf8d54041b04eaaa0ac78ef3e71876f8e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма am: I am able to.","После able нужно to."],["С she нужна форма is.","После able нужно to."],["После will нельзя ставить can; используйте will be able to.","В конструкции нужна be: will be able to."]],"uk":[["З I потрібна форма am: I am able to.","Після able потрібне to."],["З she потрібна форма is.","Після able потрібне to."],["Після will не можна ставити can; використайте will be able to.","У конструкції потрібне be: will be able to."]]}),
@@ -14629,7 +14629,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 37,
-    sourceFingerprint: "3432971e2ad234e3d2efe6b17ce642b380f9673987e9e803e983650401661d19",
+    sourceFingerprint: "f1f5de188b0b0762bfa048a41c1cade27dbc2c92b2618f1ebc61c30287854381",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."]]}),
@@ -14643,7 +14643,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 38,
-    sourceFingerprint: "0d1345b7157c2c8ff84a9feabac30f79709e016701542b1dff7b5a64899484f6",
+    sourceFingerprint: "ef01bb4e459408aa6ac08e6546e45fed30e985ef3521214af1b555c426e9f51e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),

@@ -23,7 +23,8 @@ assert.match(hook, /transcribePcmWithSystem/u);
 assert.match(hook, /resolveLearningV2SystemHoldTerminalActionV1/u);
 assert.match(
   hook,
-  /const endSub = speechModule\.addListener\("end", \(\) => \{\s*if \(current\(\)\) scheduleSystemRestart\(\);/u,
+  // зачем (жалоба №6, 24.10): перезапуск теперь несёт причину для журнала [LESSON-MIC] — scheduleSystemRestart("end")
+  /const endSub = speechModule\.addListener\("end", \(\) => \{\s*if \(current\(\)\) scheduleSystemRestart\("end"\);/u,
 );
 assert.doesNotMatch(
   hook,

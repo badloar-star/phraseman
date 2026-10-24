@@ -32,6 +32,7 @@ import {
   resolveLearningV2SystemRestartStatusV1,
 } from "../modules/learning-v2/runtime/hold_capture_route_v1";
 import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { DebugLogger } from "../app/debug-logger";
 
 export type LearningV2LocalHoldToTalkStatusV1 =
   | "idle"
@@ -43,6 +44,23 @@ export type LearningV2LocalHoldToTalkStatusV1 =
   | "error";
 
 type Subscription = { remove?: () => void } | undefined;
+
+// зачем (жалоба 23.10 №6 «теряет связь с микрофоном», координатор 24.10): путь голосового задания был немым — ни код ошибки
+// распознавателя, ни отказ записи нигде не оставались, а ошибка распознавателя молча перезапускала его каждые 140 мс.
+// [LESSON-MIC] пишет каждую ветку; конечные отказы уходят в прод-журнал сбоев — одна запись на причину (дедуп по отпечатку).
+const MIC_LOG = "[LESSON-MIC]";
+function micLog(event: string, data: Record<string, unknown> = {}): void {
+  console.log(MIC_LOG, event, JSON.stringify(data)); // guard-ok: трасса голосового задания
+}
+function micFailure(reason: string, data: Record<string, unknown> = {}): void {
+  console.warn(MIC_LOG, `fail:${reason}`, JSON.stringify(data)); // guard-ok: конечный отказ с причиной
+  DebugLogger.error(`lesson_mic:${reason}`, new Error(`${reason} ${JSON.stringify(data).slice(0, 300)}`), "critical");
+}
+function speechErrorFields(event: unknown): Record<string, unknown> {
+  if (typeof event !== "object" || event === null) return { raw: String(event) };
+  const value = event as { error?: unknown; code?: unknown; message?: unknown };
+  return { error: value.error ?? null, code: value.code ?? null, message: typeof value.message === "string" ? value.message.slice(0, 160) : null };
+}
 
 export function useLearningV2LocalHoldToTalkV1(
   input: Readonly<{
@@ -173,6 +191,7 @@ export function useLearningV2LocalHoldToTalkV1(
       return;
     cancel();
     const generation = generationRef.current;
+    micLog("system:start", { interactionId, locale, generation, hasTarget: targetText.trim().length > 0 });
     captureRouteRef.current = "system";
     systemHasListenedRef.current = false;
     holdPressRef.current = true;
@@ -180,19 +199,23 @@ export function useLearningV2LocalHoldToTalkV1(
     finalTranscriptDeliveredRef.current = false;
     onTranscriptRef.current("");
     if (!speechModule || !isSpeechRecognitionAvailable(speechModule)) {
+      micFailure("system_unavailable", { hasModule: Boolean(speechModule) });
       setStatus("local_recognition_unavailable");
       return;
     }
     setStatus("requesting");
     const permission = await requestSpeechPermissionForHold(speechModule);
+    micLog("system:permission", { permission, stale: !mountedRef.current || generation !== generationRef.current, holding: holdPressRef.current });
     if (!mountedRef.current || generation !== generationRef.current) return;
     if (permission === "denied") {
       holdPressRef.current = false;
+      micLog("system:permission_denied → shown", {});
       setStatus("permission_denied");
       return;
     }
     if (permission === "granted_after_prompt" || !holdPressRef.current) {
       holdPressRef.current = false;
+      micLog("system:not_started", { reason: permission === "granted_after_prompt" ? "granted_after_prompt" : "released_before_start" });
       setStatus("idle");
       return;
     }
@@ -200,7 +223,8 @@ export function useLearningV2LocalHoldToTalkV1(
     try {
       localRecognition =
         (await speechModule.supportsOnDeviceRecognition?.()) === true;
-    } catch {
+    } catch (error) {
+      micLog("system:on_device_check_failed", { reason: error instanceof Error ? error.message : String(error) });
       localRecognition = false;
     }
     if (!mountedRef.current || generation !== generationRef.current) return;
@@ -223,19 +247,26 @@ export function useLearningV2LocalHoldToTalkV1(
       if (!current() || !holdPressRef.current || !speechModule) return;
       try {
         speechModule.start(startOptions);
-      } catch {
-        scheduleSystemRestart();
+        micLog("system:recognizer_started", { onDevice: localRecognition, restarts });
+      } catch (error) {
+        micLog("system:start_threw", { reason: error instanceof Error ? error.message : String(error), restarts });
+        scheduleSystemRestart("start_threw");
       }
     }
-    function scheduleSystemRestart() {
+    let restarts = 0;
+    function scheduleSystemRestart(cause: string) {
       const action = resolveLearningV2SystemHoldTerminalActionV1({
         holdActive: holdPressRef.current,
       });
       if (action === "finish") {
+        micLog("system:finish", { cause, restarts, heard: systemHasListenedRef.current, transcriptChars: transcriptRef.current.trim().length });
+        if (!transcriptRef.current.trim() && restarts > 0) micFailure("system_no_transcript_after_restarts", { cause, restarts, heard: systemHasListenedRef.current });
         finishCapture();
         return;
       }
       if (systemRestartTimerRef.current !== null) return;
+      restarts += 1;
+      if (restarts === 1 || restarts % 10 === 0) micLog("system:restart", { cause, restarts, heard: systemHasListenedRef.current });
       setStatus(resolveLearningV2SystemRestartStatusV1({
         hasListened: systemHasListenedRef.current,
       }));
@@ -281,28 +312,32 @@ export function useLearningV2LocalHoldToTalkV1(
       if (holdPressRef.current) setStatus("listening");
     });
     const endSub = speechModule.addListener("end", () => {
-      if (current()) scheduleSystemRestart();
+      if (current()) scheduleSystemRestart("end");
     });
-    const errorSub = speechModule.addListener("error", () => {
+    const errorSub = speechModule.addListener("error", (event: unknown) => {
       if (!current()) return;
-      scheduleSystemRestart();
+      const fields = speechErrorFields(event);
+      micLog("system:recognizer_error", { ...fields, restarts, holding: holdPressRef.current });
+      // зачем: код ошибки распознавателя — главный факт по жалобе №6; одна прод-запись на код
+      if (restarts === 0 || restarts === 5) micFailure(`system_error_${String(fields.error ?? fields.code ?? "unknown")}`, { ...fields, restarts });
+      scheduleSystemRestart("error");
     });
     const noMatchSub = speechModule.addListener("nomatch", () => {
       if (!current()) return;
-      scheduleSystemRestart();
+      scheduleSystemRestart("nomatch");
     });
     listenersRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub];
     try {
-      if (
-        !(await recordingAudio.begin()) ||
-        !current() ||
-        !holdPressRef.current
-      ) {
+      const audioReady = await recordingAudio.begin();
+      if (!audioReady || !current() || !holdPressRef.current) {
+        micLog("system:audio_session_not_ready", { audioReady, current: current(), holding: holdPressRef.current });
+        if (!audioReady) micFailure("system_audio_session_begin_false", {});
         cancel();
         return;
       }
       launchSystemRecognition();
-    } catch {
+    } catch (error) {
+      micFailure("system_audio_session_threw", { reason: error instanceof Error ? error.message : String(error) });
       cleanupListeners();
       restoreLoudPlaybackMode();
       if (mountedRef.current) setStatus("error");
@@ -328,9 +363,11 @@ export function useLearningV2LocalHoldToTalkV1(
     )
       return;
     setStatus("finishing");
+    micLog("system:stop", { transcriptChars: transcriptRef.current.trim().length });
     try {
       speechModule?.stop();
-    } catch {
+    } catch (error) {
+      micLog("system:stop_threw", { reason: error instanceof Error ? error.message : String(error) });
       finishCapture();
       return;
     }
@@ -341,8 +378,10 @@ export function useLearningV2LocalHoldToTalkV1(
     if (!enabled || !runtimeActiveRef.current) return;
     if (statusRef.current === "requesting" || statusRef.current === "listening")
       return;
+    const previousStillFinishing = pcmFinishingRef.current;
     cancel();
     const generation = generationRef.current;
+    micLog("pcm:start", { interactionId, locale, generation, previousStillFinishing });
     captureRouteRef.current = "pcm";
     holdPressRef.current = true;
     pcmFinishingRef.current = false;
@@ -352,19 +391,23 @@ export function useLearningV2LocalHoldToTalkV1(
     if (!speechModule) {
       captureRouteRef.current = null;
       holdPressRef.current = false;
+      micFailure("pcm_no_speech_module", {});
       setStatus("local_recognition_unavailable");
       return;
     }
     setStatus("requesting");
     const permission = await requestSpeechPermissionForHold(speechModule);
+    micLog("pcm:permission", { permission, stale: !mountedRef.current || generation !== generationRef.current, holding: holdPressRef.current });
     if (!mountedRef.current || generation !== generationRef.current) return;
     if (permission === "denied") {
       captureRouteRef.current = null;
       holdPressRef.current = false;
+      micLog("pcm:permission_denied → shown", {});
       setStatus("permission_denied");
       return;
     }
     if (permission === "granted_after_prompt" || !holdPressRef.current) {
+      micLog("pcm:not_started", { reason: permission === "granted_after_prompt" ? "granted_after_prompt" : "released_before_start" });
       captureRouteRef.current = null;
       holdPressRef.current = false;
       setStatus("idle");
@@ -387,9 +430,12 @@ export function useLearningV2LocalHoldToTalkV1(
     if (!recording.isActive()) {
       captureRouteRef.current = null;
       holdPressRef.current = false;
+      // зачем: кандидат на «микрофон пропал» — новая запись не поднялась (прежняя ещё освобождала микрофон?)
+      micFailure("pcm_recorder_not_active", { previousStillFinishing });
       setStatus("error");
       return;
     }
+    micLog("pcm:recording", {});
     pcmRecordingRef.current = recording;
   }, [cancel, enabled, speechModule]);
 
@@ -483,6 +529,7 @@ export function useLearningV2LocalHoldToTalkV1(
     let wavUri: string | null = null;
     try {
       wavUri = await recording.stop();
+      micLog("pcm:stopped", { hasFile: Boolean(wavUri), stale: generation !== generationRef.current });
       if (
         !mountedRef.current ||
         !runtimeActiveRef.current ||
@@ -490,6 +537,7 @@ export function useLearningV2LocalHoldToTalkV1(
       )
         return;
       if (!wavUri) {
+        micFailure("pcm_no_file", {});
         setStatus("error");
         return;
       }
@@ -516,14 +564,17 @@ export function useLearningV2LocalHoldToTalkV1(
       )
         return;
       if (!value) {
+        micLog("pcm:empty_transcript → error shown", { neural: verdict ? "empty" : neuralJudgeSupported ? "failed" : "unsupported", androidApi: Number(Platform.Version) });
         setStatus("error");
         return;
       }
+      micLog("pcm:transcript", { chars: value.length, source: verdict?.transcript.trim() ? "neural" : "system_file" });
       transcriptRef.current = value;
       onTranscriptRef.current(value);
       deliverFinalTranscript();
       setStatus("idle");
-    } catch {
+    } catch (error) {
+      micFailure("pcm_stop_threw", { reason: error instanceof Error ? error.message : String(error) });
       if (mountedRef.current && generation === generationRef.current)
         setStatus("error");
     } finally {

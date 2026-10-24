@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Вспомнить хлопотный день",
+        "uk": "Згадати клопіткий день"
       },
       "bodyByLocale": {
-        "ru": "busy day — насыщенный делами день. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "busy day — насичений справами день. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы с другом весь день помогали с переездом и только вечером закончили. Busy day — насыщенный делами день. We had such a busy day. — У нас был такой насыщенный день. We had относит рассказ к прошедшему дню, затем идёт such a busy day. Such усиливает группу с существительным day. Порядок внутри неё: such + a + busy + day; a сохраняем, потому что говорим об одном дне.",
+        "uk": "Ви з другом увесь день допомагали з переїздом і лише ввечері закінчили. Busy day — насичений справами день. We had such a busy day. — У нас був такий насичений день. We had відносить розповідь до минулого дня, потім іде such a busy day. Such підсилює групу з іменником day. Порядок усередині неї: such + a + busy + day; a зберігаємо, тому що говоримо про один день."
       },
       "question": {
         "interactionId": "en:lesson-18:session-43:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Насладиться тихим вечером",
+        "uk": "Насолодитися тихим вечором"
       },
       "bodyByLocale": {
-        "ru": "quiet evening — тихий, спокойный вечер. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "quiet evening — тихий, спокійний вечір. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы отдыхаете дома с книгой, никто не звонит и никуда не нужно спешить. Quiet evening — спокойный вечер. This quiet evening is so nice. — Этот спокойный вечер такой приятный. Сначала This quiet evening — вечер, который оцениваем, затем is и so nice. So ставим прямо перед nice: усиливаем прилагательное без существительного после него.",
+        "uk": "Ви відпочиваєте вдома з книжкою, ніхто не телефонує й нікуди не потрібно поспішати. Quiet evening — спокійний вечір. This quiet evening is so nice. — Цей спокійний вечір такий приємний. Спочатку This quiet evening — вечір, який оцінюємо, потім is і so nice. So ставимо прямо перед nice: підсилюємо прикметник без іменника після нього."
       },
       "question": {
         "interactionId": "en:lesson-18:session-43:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Наконец пообедать",
+        "uk": "Нарешті пообідати"
       },
       "bodyByLocale": {
-        "ru": "long weekend — длинные выходные, включая дополнительный день. late lunch — поздний обед. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "long weekend — довгі вихідні, включно з додатковим днем. late lunch — пізній обід. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы долго гуляли и сели обедать позже обычного. Еда вам очень нравится. Late lunch — поздний обед. This late lunch is so tasty. — Этот поздний обед такой вкусный. This late lunch называет нынешний обед, is связывает его с оценкой tasty. Перед tasty ставим so. Слово lunch стоит в начале предложения, а после tasty существительного нет, поэтому используем so, не such.",
+        "uk": "Ви довго гуляли й сіли обідати пізніше, ніж зазвичай. Їжа вам дуже подобається. Late lunch — пізній обід. This late lunch is so tasty. — Цей пізній обід такий смачний. This late lunch називає теперішній обід, is пов’язує його з оцінкою tasty. Перед tasty ставимо so. Слово lunch стоїть на початку речення, а після tasty іменника немає, тому використовуємо so, не such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0ddecf268dbe18133b18a17b2a8764ebbec598a0e86bd429c740c2aaf0a11dc8"
+  "introFingerprint": "b0d9ccc1ff70865e801ee70c042e947f7db5c3e6b8ef984e607424320de85048"
 }

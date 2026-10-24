@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Рассказать о тёплом приёме",
+        "uk": "Розповісти про теплий прийом"
       },
       "bodyByLocale": {
-        "ru": "warm welcome — тёплый приём. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "warm welcome — теплий прийом. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы впервые приехали к родственникам друга, и вас встретили очень радушно. We received such a warm welcome — нас так тепло приняли. Начните с We received — мы получили, затем назовите то, что получили: a warm welcome. Чтобы подчеркнуть впечатление, поставьте such перед всей этой группой: such a warm welcome. Артикль остаётся после such, а warm — перед welcome.",
+        "uk": "Ви вперше приїхали до родичів друга, і вас зустріли дуже привітно. We received such a warm welcome — нас так тепло прийняли. Почніть із We received — ми отримали, потім назвіть те, що отримали: a warm welcome. Щоб підкреслити враження, поставте such перед усією цією групою: such a warm welcome. Артикль залишається після such, а warm — перед welcome."
       },
       "question": {
         "interactionId": "en:lesson-18:session-38:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Оценить помощь",
+        "uk": "Оцінити допомогу"
       },
       "bodyByLocale": {
-        "ru": "helping hand — помощь, протянутая рука помощи. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "helping hand — допомога, простягнута рука допомоги. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы собираете шкаф, а сосед придерживает тяжёлую дверцу. A helping hand is so useful — помощь так полезна. A helping hand здесь означает помощь, а не буквально отдельную руку. Назовите её в начале предложения, затем поставьте is и so useful. So усиливает прилагательное useful; перед ним не нужна группа с существительным.",
+        "uk": "Ви складаєте шафу, а сусід притримує важкі дверцята. A helping hand is so useful — допомога така корисна. A helping hand тут означає допомогу, а не буквально окрему руку. Назвіть її на початку речення, потім поставте is та so useful. So підсилює прикметник useful; перед ним не потрібна група з іменником."
       },
       "question": {
         "interactionId": "en:lesson-18:session-38:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Обрадоваться приветливому человеку",
+        "uk": "Зрадіти привітній людині"
       },
       "bodyByLocale": {
-        "ru": "big smile — широкая улыбка. friendly face — дружелюбное лицо, приветливый человек. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "big smile — широка усмішка. friendly face — доброзичливе обличчя, привітна людина. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы пришли на занятие в незнакомую группу, и один человек приветливо вам улыбается. A friendly face is so welcome — как приятно видеть приветливое лицо. Сначала A friendly face называет то, чему вы рады. Затем is связывает эту группу с прилагательным welcome — желанный, приятный. Поставьте so перед welcome, чтобы подчеркнуть, насколько вы этому рады.",
+        "uk": "Ви прийшли на заняття до незнайомої групи, і одна людина привітно вам усміхається. A friendly face is so welcome — як приємно бачити привітне обличчя. Спочатку A friendly face називає те, чому ви раді. Потім is пов’язує цю групу з прикметником welcome — бажаний, приємний. Поставте so перед welcome, щоб підкреслити, наскільки ви цьому раді."
       },
       "question": {
         "interactionId": "en:lesson-18:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "73ab3ec30096d9b095793f2cfe1a5191cd028b62af945c57d4d4ed6c1d7eb002"
+  "introFingerprint": "36d1a758b314d44280f6594724304f66c99cc44269ea6f704a754cb5a66654ff"
 }

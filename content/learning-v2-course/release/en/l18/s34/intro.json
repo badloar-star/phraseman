@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Описать шумную вечеринку",
+        "uk": "Описати гучну вечірку"
       },
       "bodyByLocale": {
-        "ru": "birthday party — вечеринка в честь дня рождения. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "birthday party — вечірка з нагоди дня народження. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "На дне рождения все громко разговаривают, и вам трудно расслышать собеседника. The birthday party is so noisy — вечеринка в честь дня рождения такая шумная. Назовите вечеринку: The birthday party. После is поставьте so noisy: noisy описывает её, а so усиливает это качество. Здесь после so идёт только прилагательное, без существительного.",
+        "uk": "На дні народження всі голосно розмовляють, і вам важко розчути співрозмовника. The birthday party is so noisy — вечірка з нагоди дня народження така гучна. Назвіть вечірку: The birthday party. Після is поставте so noisy: noisy описує її, а so підсилює цю якість. Тут після so йде лише прикметник, без іменника."
       },
       "question": {
         "interactionId": "en:lesson-18:session-34:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Подчеркнуть важность годовщины",
+        "uk": "Підкреслити важливість річниці"
       },
       "bodyByLocale": {
-        "ru": "wedding anniversary — годовщина свадьбы. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "wedding anniversary — річниця весілля. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы обсуждаете с супругом, как отметить годовщину свадьбы, и объясняете, почему этот день важен для вас. Our wedding anniversary is such a special day — наша годовщина свадьбы — такой особенный день. Начните с Our wedding anniversary is, затем поставьте оценку such a special day. Such относится ко всей группе с day; a стоит после such, а special — перед day.",
+        "uk": "Ви обговорюєте з чоловіком, як відзначити річницю весілля, і пояснюєте, чому цей день важливий для вас. Our wedding anniversary is such a special day — наша річниця весілля — такий особливий день. Почніть із Our wedding anniversary is, потім поставте оцінку such a special day. Such стосується всієї групи з day; a стоїть після such, а special — перед day."
       },
       "question": {
         "interactionId": "en:lesson-18:session-34:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Порядок слов с such",
-        "uk": "Порядок слів із such"
+        "ru": "Порадоваться встрече семьи",
+        "uk": "Зрадіти зустрічі родини"
       },
       "bodyByLocale": {
-        "ru": "family dinner — семейный ужин. family reunion — встреча родственников после разлуки. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "family dinner — сімейна вечеря. family reunion — зустріч родичів після розлуки. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Родственники впервые за несколько лет собрались вместе, и вы рассказываете об этом по телефону прямо со встречи. We are having such a happy family reunion — у нас такая радостная семейная встреча. We are having показывает, что встреча проходит сейчас. Дальше идёт such a happy family reunion: such + a, затем happy и название события family reunion.",
+        "uk": "Родичі вперше за кілька років зібралися разом, і ви розповідаєте про це телефоном просто із зустрічі. We are having such a happy family reunion — у нас така радісна родинна зустріч. We are having показує, що зустріч відбувається зараз. Далі йде such a happy family reunion: such + a, потім happy і назва події family reunion."
       },
       "question": {
         "interactionId": "en:lesson-18:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "613cfe4a7c02265d2d2376f13301657c2f37b683a405ce2554650c8987ab3c36"
+  "introFingerprint": "93eb9280ffa658eb4970f13e8998a0c7eb21b1f24a3db6e0ea5aeedbf321a8b6"
 }

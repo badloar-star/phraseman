@@ -13719,7 +13719,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 28,
-    sourceFingerprint: "5aeb19331ed70787786acc17617c734e668690f3d4547d47fb13562b843bd637",
+    sourceFingerprint: "0969c4dd11b06508100cac0f49e7928136f2c81accb6290cab051e8e2c34918b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too wide.","По ситуации требуется too wide: условие либо мешает, либо выполнено."],["Правильный порядок: large enough.","По ситуации требуется large enough: условие либо мешает, либо выполнено."],["Правильный порядок: clean enough.","По ситуации требуется clean enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too wide.","За ситуацією потрібне too wide: умова або заважає, або виконана."],["Правильний порядок: large enough.","За ситуацією потрібне large enough: умова або заважає, або виконана."],["Правильний порядок: clean enough.","За ситуацією потрібне clean enough: умова або заважає, або виконана."]]}),
@@ -13733,7 +13733,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 29,
-    sourceFingerprint: "00071fd8398c09ea29bbbbd669dc14fc426ad3547ec5738264c9702ab737c79a",
+    sourceFingerprint: "75ebb46d1aec90f450aa0b1ada3f267f407bc67e7e817b91c15c519e6713c52b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too old.","По ситуации требуется too old: условие либо мешает, либо выполнено."],["Правильный порядок: wide enough.","По ситуации требуется wide enough: условие либо мешает, либо выполнено."],["Правильный порядок: wide enough.","По ситуации требуется wide enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too old.","За ситуацією потрібне too old: умова або заважає, або виконана."],["Правильний порядок: wide enough.","За ситуацією потрібне wide enough: умова або заважає, або виконана."],["Правильний порядок: wide enough.","За ситуацією потрібне wide enough: умова або заважає, або виконана."]]}),
@@ -13747,7 +13747,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 30,
-    sourceFingerprint: "47dd5334aa20d1b7ff8843077a394e7bf5e1c6abe129a5a6f562484d7cde92f5",
+    sourceFingerprint: "6fe3b95b60bef684fddac56b7f11ce1514ca12b70fcc309db122880294318fed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too narrow.","По ситуации требуется too narrow: условие либо мешает, либо выполнено."],["Правильный порядок: wide enough.","По ситуации требуется wide enough: условие либо мешает, либо выполнено."],["Правильный порядок: high enough.","По ситуации требуется high enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too narrow.","За ситуацією потрібне too narrow: умова або заважає, або виконана."],["Правильний порядок: wide enough.","За ситуацією потрібне wide enough: умова або заважає, або виконана."],["Правильний порядок: high enough.","За ситуацією потрібне high enough: умова або заважає, або виконана."]]}),
@@ -13761,7 +13761,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 31,
-    sourceFingerprint: "ea2d4a090618fcc3046bc477fdae27fa4a9c63ca8d30f7694a94b9b847611fd9",
+    sourceFingerprint: "48cf6043c203e4f99deacb2420092eec1f71d5c79901ad7197d949071e984935",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too high.","По ситуации требуется too high: условие либо мешает, либо выполнено."],["Правильный порядок: low enough.","По ситуации требуется low enough: условие либо мешает, либо выполнено."],["Правильный порядок: low enough.","По ситуации требуется low enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too high.","За ситуацією потрібне too high: умова або заважає, або виконана."],["Правильний порядок: low enough.","За ситуацією потрібне low enough: умова або заважає, або виконана."],["Правильний порядок: low enough.","За ситуацією потрібне low enough: умова або заважає, або виконана."]]}),
@@ -13775,7 +13775,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 32,
-    sourceFingerprint: "0073a1ed9a5e0b76e827ecf5b7c04bb7d9b9f15c89cbb1fc7bc7f8e3fe20375c",
+    sourceFingerprint: "dad6e686f958ee2222be0145f78e983da5f210437929c8322a708a52895dd9be",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too heavy.","По ситуации требуется too heavy: условие либо мешает, либо выполнено."],["Правильный порядок: light enough.","По ситуации требуется light enough: условие либо мешает, либо выполнено."],["Правильный порядок: wide enough.","По ситуации требуется wide enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too heavy.","За ситуацією потрібне too heavy: умова або заважає, або виконана."],["Правильний порядок: light enough.","За ситуацією потрібне light enough: умова або заважає, або виконана."],["Правильний порядок: wide enough.","За ситуацією потрібне wide enough: умова або заважає, або виконана."]]}),
@@ -13789,7 +13789,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 33,
-    sourceFingerprint: "0f0a68e20ae0b9446a42c37e0792c9a059b48d751df5406190c7b3004de02e3f",
+    sourceFingerprint: "af4065328ebe47eadee15d9ba71785c1211acabd0b3b07dc4d70d45a16b54d9c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."]]}),
@@ -13803,7 +13803,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 34,
-    sourceFingerprint: "907a14141982936d35ca89aeca236335b4d6224448ba20f811815560b15c1556",
+    sourceFingerprint: "7942f78d1648ea117f5868931637527a2e8cc3ab58e7d86b4c5ba1f7686811b1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."]]}),
@@ -13817,7 +13817,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 35,
-    sourceFingerprint: "7a01e454839b91b8ffeb9ec974ba077100a0276fb25913d9d6d28cf0da4c3ebe",
+    sourceFingerprint: "01087a5b25e7b2fb0a9bd87b40f396486679c2809831eff64d62bb171c2e42aa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."]]}),
@@ -13831,7 +13831,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 36,
-    sourceFingerprint: "225b73457073c56ba83c475e72d6c95a55eac8c0fb5275891d4f1cfc62b78efd",
+    sourceFingerprint: "4ff76e998c8d45bffb84b0619c4a51a289340e6b08a2544d0c1cbe705c1248a7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."]]}),
@@ -13845,7 +13845,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 37,
-    sourceFingerprint: "11e15fa6a3ea1bc694c40235ff1eeaebe3ad0b53812ec00229ef233b465160de",
+    sourceFingerprint: "67cabc0f0ee4338f901a9784b202128592e63c65b4e15d748eb0cebb6b20247e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["Здесь неисчисляемое значение: such без a.","В этом неисчисляемом значении артикль a не нужен."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Тут незлічуване значення: such без a.","У цьому незлічуваному значенні артикль a не потрібен."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."]]}),
@@ -13859,7 +13859,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 38,
-    sourceFingerprint: "f52279fcca9f8848e24bb2016e7205d6cfc3cbde4393e2d475780a20f6ce85a5",
+    sourceFingerprint: "273fa4175826bca232460f28d51036a2ee79fab63fec4cbc2625ad769170fd95",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."]],"uk":[["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."]]}),
@@ -13873,7 +13873,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 39,
-    sourceFingerprint: "1b151f0ded768ad8eb2f329a2812821475af31b93ccfb55160ba3a3bf83200a7",
+    sourceFingerprint: "b2b19f793a60154d1a8e64d66edcb0059686c060560d578d90103edbc7676eda",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."]],"uk":[["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."]]}),
@@ -13887,7 +13887,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 40,
-    sourceFingerprint: "32c4067da549367dfcd0ba129d176cf0d4bee9ec3431c9a8bac11387ad192807",
+    sourceFingerprint: "81751d229a5ed930a11044256718b43cea6a14f0904742adeb94e0b2a12e66f7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."]]}),
@@ -13901,7 +13901,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 41,
-    sourceFingerprint: "0cf3e06d7e68abcdb6ab6581cc7fdd91ead12cfd945b352173e5a65833c75108",
+    sourceFingerprint: "81236023138ea111ab1f90b9ad6b8bc60972db00a0084bb31018d755676614b0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."]]}),
@@ -13915,7 +13915,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 42,
-    sourceFingerprint: "eb00d098a9943b2a55ca4c971ae39898a5a1baf716924ccc88b22d05529589e2",
+    sourceFingerprint: "ea9c3c1a71cc3b5d5bafc0f3edd2fded2ea6813b01baa7986d8cb4b70158afe8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."]],"uk":[["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."]]}),
@@ -13929,7 +13929,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 43,
-    sourceFingerprint: "956a0df6bcfc6444f3dfe367430a4e013b5f22860b94649915191181ec11266a",
+    sourceFingerprint: "e2757f49fe84c43daf0a848bb7fad0b32a249d49316860201d893a2052b652e4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."],["После пропуска прилагательное без существительного: so.","Перед обычным прилагательным здесь нужно so, не much."]],"uk":[["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."],["Після пропуску прикметник без іменника: so.","Перед звичайним прикметником тут потрібне so, не much."]]}),
@@ -13943,7 +13943,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 44,
-    sourceFingerprint: "099dcd0a4b7348fc0ddf7eb9adbbf1746834f23592ab1e8ffd18ccf4f7472a41",
+    sourceFingerprint: "c1e7d68e3921f41b44d4409357bc48b8bcf4000f3f4238442f6fe25ddc3036a2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.","Порядок: such a, не a such."],["Здесь множественное число: such без a.","Перед существительным во множественном числе артикль a не нужен."]],"uk":[["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.","Порядок: such a, не a such."],["Тут множина: such без a.","Перед іменником у множині артикль a не потрібен."]]}),

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Оценить бесплатный вход",
+        "uk": "Оцінити безкоштовний вхід"
       },
       "bodyByLocale": {
-        "ru": "free entry — бесплатный вход. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "free entry — безкоштовний вхід. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы часто заходите в музей ненадолго, поэтому бесплатный вход вам очень удобен. Free entry is so useful — бесплатный вход так полезен. Начните с Free entry, затем поставьте is. После is назовите качество useful, усилив его словом so: so useful. Здесь useful — прилагательное, поэтому перед ним выбираем so.",
+        "uk": "Ви часто заходите до музею ненадовго, тому безкоштовний вхід вам дуже зручний. Free entry is so useful — безкоштовний вхід такий корисний. Почніть із Free entry, потім поставте is. Після is назвіть якість useful, підсиливши її словом so: so useful. Тут useful — прикметник, тому перед ним обираємо so."
       },
       "question": {
         "interactionId": "en:lesson-18:session-40:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Поблагодарить за бесплатную парковку",
+        "uk": "Подякувати за безкоштовне паркування"
       },
       "bodyByLocale": {
-        "ru": "free parking — бесплатная парковка. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "free parking — безкоштовне паркування. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы каждый день привозите родственника в больницу и рады, что за парковку платить не нужно. Free parking is such a great help — бесплатная парковка так выручает. Free parking называет то, что помогает; дальше ставим is и оценку such a great help. В выражении a great help слово help означает то, что очень помогает. Сохраняем a и ставим such перед ним: such a great help.",
+        "uk": "Ви щодня привозите родича до лікарні й раді, що за паркування платити не потрібно. Free parking is such a great help — безкоштовне паркування так виручає. Free parking називає те, що допомагає; далі ставимо is та оцінку such a great help. У виразі a great help слово help означає те, що дуже допомагає. Зберігаємо a і ставимо such перед ним: such a great help."
       },
       "question": {
         "interactionId": "en:lesson-18:session-40:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Удивиться числу посетителей",
+        "uk": "Здивуватися кількості відвідувачів"
       },
       "bodyByLocale": {
-        "ru": "public event — открытое для публики мероприятие. charity event — благотворительное мероприятие. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "public event — відкритий для публіки захід. charity event — благодійний захід. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы пришли на благотворительную ярмарку, и у каждого прилавка стоят люди. The charity event is so busy — на благотворительном мероприятии так многолюдно. Начните с The charity event — того мероприятия, о котором говорите. Затем поставьте is и so busy. Busy здесь описывает оживлённость мероприятия; so стоит непосредственно перед этим прилагательным.",
+        "uk": "Ви прийшли на благодійний ярмарок, і біля кожного прилавка стоять люди. The charity event is so busy — на благодійному заході так людно. Почніть із The charity event — того заходу, про який говорите. Потім поставте is та so busy. Busy тут описує пожвавлення на заході; so стоїть безпосередньо перед цим прикметником."
       },
       "question": {
         "interactionId": "en:lesson-18:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e7b33017481b920cb565ed4c6f403a31da95b35745a33247f9ec189c3aed0660"
+  "introFingerprint": "79b4232032fa0d49b146dc27073deed3f7d5669f722eed7cf6dbaec63dbf8b9a"
 }

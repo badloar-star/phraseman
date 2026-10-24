@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Возмутиться потерей времени",
+        "uk": "Обуритися втратою часу"
       },
       "bodyByLocale": {
-        "ru": "waste of time — пустая трата времени. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "waste of time — марна трата часу. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы полчаса ждёте у закрытого магазина и узнаёте, что сегодня он не откроется. This is such a waste of time — это такая пустая трата времени. Начните с This is, затем добавьте оценку such a waste of time. Здесь усиливаем выражение с существительным waste, поэтому ставим such перед a. Слова of time уточняют, что именно тратится впустую; они остаются после waste.",
+        "uk": "Ви пів години чекаєте біля зачиненого магазину й дізнаєтеся, що сьогодні він не відчиниться. This is such a waste of time — це така марна трата часу. Почніть із This is, потім додайте оцінку such a waste of time. Тут підсилюємо вираз з іменником waste, тому ставимо such перед a. Слова of time уточнюють, що саме марнується; вони залишаються після waste."
       },
       "question": {
         "interactionId": "en:lesson-18:session-39:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Объяснить важность изменения",
+        "uk": "Пояснити важливість зміни"
       },
       "bodyByLocale": {
-        "ru": "change of plan — изменение плана. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "change of plan — зміна плану. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы перенесли семейный ужин на более позднее время, чтобы сестра успела приехать. This change of plan is so important — это изменение плана так важно. This change of plan называет изменение целиком. После него ставим is, затем so important. Усиливаем прилагательное important, поэтому so находится непосредственно перед ним, а не перед change.",
+        "uk": "Ви перенесли сімейну вечерю на пізніший час, щоб сестра встигла приїхати. This change of plan is so important — ця зміна плану така важлива. This change of plan називає зміну цілком. Після нього ставимо is, потім so important. Підсилюємо прикметник important, тому so стоїть безпосередньо перед ним, а не перед change."
       },
       "question": {
         "interactionId": "en:lesson-18:session-39:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Успокоить человека, который просит помощи",
+        "uk": "Заспокоїти людину, яка просить допомоги"
       },
       "bodyByLocale": {
-        "ru": "long wait — долгое ожидание. small favour — небольшая услуга, небольшая просьба о помощи. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "long wait — довге очікування. small favour — невелика послуга, невелике прохання про допомогу. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Сосед просит вас подержать дверь, пока он заносит сумки, и извиняется за беспокойство. It is such a small favour — это такая небольшая услуга. It обозначает эту просьбу, is связывает её с оценкой. После is поставьте such a small favour: such усиливает группу, a относится к одной услуге, а small стоит перед favour.",
+        "uk": "Сусід просить вас притримати двері, поки він заносить сумки, і вибачається за клопіт. It is such a small favour — це така невелика послуга. It позначає це прохання, is пов’язує його з оцінкою. Після is поставте such a small favour: such підсилює групу, a стосується однієї послуги, а small стоїть перед favour."
       },
       "question": {
         "interactionId": "en:lesson-18:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "07bae900220ea36a8238b6378f8d9c4e7a90b12ea961365a3b68486ae6088d6f"
+  "introFingerprint": "1c54f182126ded452266c96ea284bcc8118dff82064b20df14995e4b9b4a1043"
 }

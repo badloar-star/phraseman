@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Порадоваться свежему воздуху",
+        "uk": "Зрадіти свіжому повітрю"
       },
       "bodyByLocale": {
-        "ru": "fresh air — свежий воздух. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "fresh air — свіже повітря. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы вышли из душной комнаты в сад и с удовольствием глубоко вдыхаете. The fresh air is so nice — свежий воздух такой приятный. The fresh air называет воздух, который вы сейчас ощущаете. Затем поставьте is и оценку so nice: so усиливает прилагательное nice. Собираем фразу в порядке: о чём говорим + is + so + качество.",
+        "uk": "Ви вийшли із задушливої кімнати до саду й із задоволенням глибоко вдихаєте. The fresh air is so nice — свіже повітря таке приємне. The fresh air називає повітря, яке ви зараз відчуваєте. Потім поставте is та оцінку so nice: so підсилює прикметник nice. Складаємо фразу в порядку: про що говоримо + is + so + якість."
       },
       "question": {
         "interactionId": "en:lesson-18:session-37:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Пожаловаться на тяжёлую работу",
+        "uk": "Поскаржитися на важку роботу"
       },
       "bodyByLocale": {
-        "ru": "hard work — тяжёлая работа, большой труд. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "hard work — важка робота, велика праця. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы вручную отмываете большой ковёр и уже устали. This is such hard work — это такая тяжёлая работа. Начните с This is, затем поставьте such hard work. Such усиливает группу hard work, где work обозначает труд и не считается по отдельным предметам. Поэтому здесь нет a: such + hard + work.",
+        "uk": "Ви вручну відмиваєте великий килим і вже втомилися. This is such hard work — це така важка робота. Почніть із This is, потім поставте such hard work. Such підсилює групу hard work, де work позначає працю й не рахується окремими предметами. Тому тут немає a: such + hard + work."
       },
       "question": {
         "interactionId": "en:lesson-18:session-37:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Насладиться тишиной",
+        "uk": "Насолодитися тишею"
       },
       "bodyByLocale": {
-        "ru": "good company — приятная компания, приятный собеседник. peace and quiet — тишина и покой. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "good company — приємна компанія, приємний співрозмовник. peace and quiet — тиша і спокій. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы сидите в тихом саду вдали от дороги и наслаждаетесь покоем. The peace and quiet is so lovely — тишина и покой так прекрасны. Выражение peace and quiet здесь описывает одно общее состояние, поэтому после него стоит is. Дальше ставим so lovely: so усиливает прилагательное lovely. Получается: The peace and quiet + is + so lovely.",
+        "uk": "Ви сидите в тихому саду далеко від дороги й насолоджуєтеся спокоєм. The peace and quiet is so lovely — тиша й спокій такі чудові. Вираз peace and quiet тут описує один загальний стан, тому після нього стоїть is. Далі ставимо so lovely: so підсилює прикметник lovely. Виходить: The peace and quiet + is + so lovely."
       },
       "question": {
         "interactionId": "en:lesson-18:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "64c9b53e974ba43f2ec2c492ddf7129dcd2a6d39662260d1021543c9504300ba"
+  "introFingerprint": "adca3f9b8eccb33f2e94c739f2c637f2ebfab62cbcd3abe3e2574c67e9a732c6"
 }

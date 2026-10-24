@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Похвалить лёгкий обед",
+        "uk": "Похвалити легкий обід"
       },
       "bodyByLocale": {
-        "ru": "light lunch — лёгкий обед. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "light lunch — легкий обід. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы пробуете салат за обедом и хотите подчеркнуть, какой он свежий. This light lunch is so fresh — этот лёгкий обед такой свежий. Начните с This light lunch — о чём говорим, затем поставьте is. Качество выражает fresh, а so перед ним усиливает впечатление: is so fresh. После so здесь стоит прилагательное без существительного.",
+        "uk": "Ви куштуєте салат за обідом і хочете підкреслити, який він свіжий. This light lunch is so fresh — цей легкий обід такий свіжий. Почніть із This light lunch — про що говоримо, потім поставте is. Якість передає fresh, а so перед ним підсилює враження: is so fresh. Після so тут стоїть прикметник без іменника."
       },
       "question": {
         "interactionId": "en:lesson-18:session-42:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Рассказать о сытном завтраке",
+        "uk": "Розповісти про ситний сніданок"
       },
       "bodyByLocale": {
-        "ru": "big breakfast — обильный завтрак. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "big breakfast — ситний сніданок. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "После большой порции за завтраком вы ещё долго не голодны. We had such a big breakfast — мы так плотно позавтракали. Сначала We had — у нас был, затем such a big breakfast — такой обильный завтрак. Здесь усиливаем всю группу с существительным breakfast, поэтому выбираем such. Порядок внутри группы: such + a + big + breakfast; речь об одном конкретном завтраке.",
+        "uk": "Після великої порції за сніданком ви ще довго не голодні. We had such a big breakfast — ми так ситно поснідали. Спочатку We had — у нас був, потім such a big breakfast — такий ситний сніданок. Тут підсилюємо всю групу з іменником breakfast, тому обираємо such. Порядок усередині групи: such + a + big + breakfast; ідеться про один конкретний сніданок."
       },
       "question": {
         "interactionId": "en:lesson-18:session-42:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Похвалить горячий напиток",
+        "uk": "Похвалити гарячий напій"
       },
       "bodyByLocale": {
-        "ru": "quick snack — быстрый перекус. hot drink — горячий напиток. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "quick snack — швидкий перекус. hot drink — гарячий напій. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы согрелись чашкой какао и хотите похвалить напиток. This is such a nice hot drink — это такой приятный горячий напиток. После This is поставьте such, затем a nice hot drink. Drink здесь обозначает одну порцию напитка, поэтому нужен a. Прилагательные nice и hot идут перед drink; such ставим перед всей группой, включая артикль.",
+        "uk": "Ви зігрілися чашкою какао й хочете похвалити напій. This is such a nice hot drink — це такий приємний гарячий напій. Після This is поставте such, потім a nice hot drink. Drink тут позначає одну порцію напою, тому потрібен a. Прикметники nice і hot стоять перед drink; such ставимо перед усією групою, включно з артиклем."
       },
       "question": {
         "interactionId": "en:lesson-18:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2817299a09d28a656139fbfdf49ebe211025fd35b2593d3e4043d942a152a4e1"
+  "introFingerprint": "390966bc78aefabf505da3792305d20bbf5f5354508364b64a23a31ee89ec3a9"
 }

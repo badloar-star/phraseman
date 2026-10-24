@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Похвалить доброту друга",
+        "uk": "Похвалити доброту друга"
       },
       "bodyByLocale": {
-        "ru": "close friend — близкий друг. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "close friend — близький друг. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы заболели, и близкий друг привёз вам продукты. My close friend is so kind — мой близкий друг такой добрый. Начните с My close friend, затем поставьте is и so kind. Kind называет качество друга, а so усиливает его. После is здесь стоит прилагательное без существительного, поэтому выбираем so.",
+        "uk": "Ви захворіли, і близький друг привіз вам продукти. My close friend is so kind — мій близький друг такий добрий. Почніть із My close friend, потім поставте is та so kind. Kind називає рису друга, а so підсилює її. Після is тут стоїть прикметник без іменника, тому обираємо so."
       },
       "question": {
         "interactionId": "en:lesson-18:session-33:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Похвалить общего друга",
+        "uk": "Похвалити спільного друга"
       },
       "bodyByLocale": {
-        "ru": "mutual friend — общий друг двух людей. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "mutual friend — спільний друг двох людей. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы с сестрой обсуждаете общего друга, который помог вам обоим с переездом. Our mutual friend is such a helpful person — наш общий друг — такой отзывчивый человек. После Our mutual friend is идёт such a helpful person. Здесь главное слово person, поэтому усиливаем всю группу словом such. Артикль a ставим после such, а helpful — перед person.",
+        "uk": "Ви із сестрою обговорюєте спільного друга, який допоміг вам обом із переїздом. Our mutual friend is such a helpful person — наш спільний друг — така чуйна людина. Після Our mutual friend is йде such a helpful person. Тут головне слово person, тому підсилюємо всю групу словом such. Артикль a ставимо після such, а helpful — перед person."
       },
       "question": {
         "interactionId": "en:lesson-18:session-33:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Порядок слов с such",
-        "uk": "Порядок слів із such"
+        "ru": "Тепло отозваться о соседе",
+        "uk": "Тепло відгукнутися про сусіда"
       },
       "bodyByLocale": {
-        "ru": "childhood friend — друг детства. next-door neighbour — сосед из соседнего дома или квартиры. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "childhood friend — друг дитинства. next-door neighbour — сусід із сусіднього будинку або квартири. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Сосед из квартиры рядом поливал ваши растения, пока вы были в отъезде. My next-door neighbour is such a kind person — мой сосед — такой добрый человек. Сначала назовите соседа: My next-door neighbour. Затем is и оценка such a kind person. Порядок оценки: such + a + kind + person; such стоит перед артиклем, а не после него.",
+        "uk": "Сусід із квартири поруч поливав ваші рослини, поки ви були у від’їзді. My next-door neighbour is such a kind person — мій сусід — така добра людина. Спочатку назвіть сусіда: My next-door neighbour. Потім is та оцінка such a kind person. Порядок оцінки: such + a + kind + person; such стоїть перед артиклем, а не після нього."
       },
       "question": {
         "interactionId": "en:lesson-18:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3151265a47e0997e9d6b8d880d4d98c2dd75d227dd76e68ceee8f54b6fdd34b5"
+  "introFingerprint": "bc485e930d535ab517af5d8aed51903682824b236da44730cf8ff14f98d4af32"
 }

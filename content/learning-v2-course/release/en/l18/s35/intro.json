@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Услышать сильный дождь",
+        "uk": "Почути сильний дощ"
       },
       "bodyByLocale": {
-        "ru": "heavy rain — сильный дождь. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "heavy rain — сильний дощ. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы сидите под металлической крышей, и дождь громко стучит над головой. The heavy rain is so loud — сильный дождь такой громкий. Назовите то, что слышите: The heavy rain. Затем поставьте is и so loud. Loud описывает звук дождя, а so усиливает это прилагательное. После is здесь нужна оценка качества: so + loud.",
+        "uk": "Ви сидите під металевим дахом, і дощ гучно стукає над головою. The heavy rain is so loud — сильний дощ такий гучний. Назвіть те, що чуєте: The heavy rain. Потім поставте is та so loud. Loud описує звук дощу, а so підсилює цей прикметник. Після is тут потрібна оцінка якості: so + loud."
       },
       "question": {
         "interactionId": "en:lesson-18:session-35:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Пожаловаться на ветер",
+        "uk": "Поскаржитися на вітер"
       },
       "bodyByLocale": {
-        "ru": "strong wind — сильный ветер. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "strong wind — сильний вітер. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы пытаетесь поставить палатку, но сильный ветер мешает её закрепить. The strong wind is such a problem — сильный ветер — такая проблема. После The strong wind is поставьте such a problem. Problem — существительное, поэтому выбираем such. Артикль a остаётся непосредственно перед problem, а such ставится перед a; прилагательное в этой группе не обязательно.",
+        "uk": "Ви намагаєтеся поставити намет, але сильний вітер заважає його закріпити. The strong wind is such a problem — сильний вітер — така проблема. Після The strong wind is поставте such a problem. Problem — іменник, тому обираємо such. Артикль a залишається безпосередньо перед problem, а such ставимо перед a; прикметник у цій групі не обов’язковий."
       },
       "question": {
         "interactionId": "en:lesson-18:session-35:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Порядок слов с such",
-        "uk": "Порядок слів із such"
+        "ru": "Удивиться снегу утром",
+        "uk": "Здивуватися снігу вранці"
       },
       "bodyByLocale": {
-        "ru": "thick fog — густой туман. deep snow — глубокий снег. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "thick fog — густий туман. deep snow — глибокий сніг. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы открыли дверь утром и обнаружили глубокий снег, которого совсем не ожидали. The deep snow is such a surprise — глубокий снег — такая неожиданность. Начните с The deep snow, затем поставьте is. Оценка выражена существительным surprise, поэтому дальше идёт such a surprise. Порядок: such + a + surprise, а не a such surprise.",
+        "uk": "Ви відчинили двері вранці й побачили глибокий сніг, якого зовсім не очікували. The deep snow is such a surprise — глибокий сніг — така несподіванка. Почніть із The deep snow, потім поставте is. Оцінку передає іменник surprise, тому далі йде such a surprise. Порядок: such + a + surprise, а не a such surprise."
       },
       "question": {
         "interactionId": "en:lesson-18:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "76c8b294834de00b124a79748d0c71a56ebbb689293cd0e460e273f0eb97faaa"
+  "introFingerprint": "c98e95930f522c7e3a75d9c4c5a4e4379a3d4412eeafe49b55b6f152183d5090"
 }

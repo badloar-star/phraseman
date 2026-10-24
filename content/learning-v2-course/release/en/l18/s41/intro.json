@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Обрадоваться перерыву",
+        "uk": "Зрадіти перерві"
       },
       "bodyByLocale": {
-        "ru": "short break — короткий перерыв. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "short break — коротка перерва. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы долго занимались уборкой и наконец можете присесть. This short break is so welcome — этот короткий перерыв так кстати. Сначала назовите перерыв: This short break. Затем is связывает его с качеством welcome — желанный, приятный. Чтобы усилить это качество, поставьте so непосредственно перед welcome: is so welcome.",
+        "uk": "Ви довго прибирали й нарешті можете присісти. This short break is so welcome — ця коротка перерва така доречна. Спочатку назвіть перерву: This short break. Потім is пов’язує її з якістю welcome — бажаний, приємний. Щоб підсилити цю якість, поставте so безпосередньо перед welcome: is so welcome."
       },
       "question": {
         "interactionId": "en:lesson-18:session-41:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Согласиться принять душ",
+        "uk": "Погодитися прийняти душ"
       },
       "bodyByLocale": {
-        "ru": "quick shower — быстрый душ. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "quick shower — швидкий душ. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "После прогулки в жару вам предлагают быстро принять душ. A quick shower is such a good idea — быстро принять душ — такая хорошая идея. Начните с A quick shower, затем поставьте is. Дальше идёт оценка such a good idea: such + a + прилагательное good + существительное idea. Such усиливает всю группу, а a нужен, потому что речь об одной идее.",
+        "uk": "Після прогулянки у спеку вам пропонують швидко прийняти душ. A quick shower is such a good idea — швидко прийняти душ — така хороша ідея. Почніть із A quick shower, потім поставте is. Далі йде оцінка such a good idea: such + a + прикметник good + іменник idea. Such підсилює всю групу, а a потрібен, бо йдеться про одну ідею."
       },
       "question": {
         "interactionId": "en:lesson-18:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Рассказать о позднем вечере",
+        "uk": "Розповісти про пізній вечір"
       },
       "bodyByLocale": {
-        "ru": "early start — раннее начало дня или дела. late night — поздний отход ко сну, вечер допоздна. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "early start — ранній початок дня або справи. late night — пізнє засинання, вечір допізна. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы засиделись с друзьями и легли спать далеко за полночь. We had such a late night — мы так поздно легли. Начните с We had: had показывает, что вечер уже прошёл. После него поставьте such a late night. Здесь night — существительное с определением late, поэтому нужны such и артикль a в порядке such a late night.",
+        "uk": "Ви засиділися з друзями й лягли спати далеко за північ. We had such a late night — ми так пізно лягли. Почніть із We had: had показує, що вечір уже минув. Після нього поставте such a late night. Тут night — іменник з означенням late, тому потрібні such і артикль a в порядку such a late night."
       },
       "question": {
         "interactionId": "en:lesson-18:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5992bfab6dc17584834e3945d3c391e8e206087a9e3f1c4b242c77730fa7b0bf"
+  "introFingerprint": "7014fe44fe49ae0b779c9891beb76988aa3af534e06e6ae7adebe698d2a4e7ad"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Хорошее настроение после встречи",
+        "uk": "Гарний настрій після зустрічі"
       },
       "bodyByLocale": {
-        "ru": "good mood — хорошее настроение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "good mood — гарний настрій. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы встретились со старым другом и весь вечер улыбаетесь. Good mood — хорошее настроение. I am in such a good mood. — У меня такое хорошее настроение. По-английски о настроении говорят be in a mood: сначала I am in, затем such a good mood. Such усиливает группу с существительным mood; порядок — such + a + good + mood. Предлог in перед этой группой сохраняем.",
+        "uk": "Ви зустрілися зі старим другом і весь вечір усміхаєтеся. Good mood — гарний настрій. I am in such a good mood. — У мене такий гарний настрій. Англійською про настрій кажуть be in a mood: спочатку I am in, потім such a good mood. Such підсилює групу з іменником mood; порядок — such + a + good + mood. Прийменник in перед цією групою зберігаємо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-44:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Друг не в настроении",
+        "uk": "Друг не в настрої"
       },
       "bodyByLocale": {
-        "ru": "bad mood — плохое настроение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "bad mood — поганий настрій. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг опоздал на автобус и теперь отвечает раздражённо. Bad mood — плохое настроение. He is in such a bad mood. — У него такое плохое настроение. С he выбираем is, затем in и группа such a bad mood. Mood — существительное, поэтому усиление строим с such. Артикль a остаётся после such, перед bad; порядок a such неверен.",
+        "uk": "Друг запізнився на автобус і тепер відповідає роздратовано. Bad mood — поганий настрій. He is in such a bad mood. — У нього такий поганий настрій. Із he вибираємо is, потім in і група such a bad mood. Mood — іменник, тому підсилення будуємо із such. Артикль a залишається після such, перед bad; порядок a such неправильний."
       },
       "question": {
         "interactionId": "en:lesson-18:session-44:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Радость и грусть перед переездом",
+        "uk": "Радість і смуток перед переїздом"
       },
       "bodyByLocale": {
-        "ru": "high hopes — большие надежды. mixed feelings — смешанные чувства. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "high hopes — великі надії. mixed feelings — змішані почуття. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы переезжаете в более удобную квартиру, но вам грустно расставаться с соседями. Mixed feelings — смешанные чувства. I have such mixed feelings. — У меня такие смешанные чувства. После I have ставим such mixed feelings. Such усиливает группу с существительным feelings; оно во множественном числе, поэтому a здесь не нужен. Радость и грусть относятся к одному переезду.",
+        "uk": "Ви переїжджаєте до зручнішої квартири, але вам сумно розлучатися із сусідами. Mixed feelings — змішані почуття. I have such mixed feelings. — У мене такі змішані почуття. Після I have ставимо such mixed feelings. Such підсилює групу з іменником feelings; він у множині, тому a тут не потрібен. Радість і смуток стосуються одного переїзду."
       },
       "question": {
         "interactionId": "en:lesson-18:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1bfcd54c54de7b75e34b45245ab7a9ba6ccf275e4bb455c6b5b6c53943b40cf0"
+  "introFingerprint": "32fb302d037e2d55cb154cc22ee01d2b384c32beda213a2d71947020f7b6b8c1"
 }

@@ -1,0 +1,1002 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-22:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо привлеките внимание официанта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i01:audio"
+      ],
+      "accessibilityLabel": "Вежливо привлеките внимание официанта.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i01:audio",
+          "transcript": "Excuse me, could you help us?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Excuse me, could you help us?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:word:overcooked",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overcooked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:word:overcooked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overcooked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:word:overcooked:audio",
+          "transcript": "overcooked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-22:word:overcooked:r1",
+            "targetText": "overcooked",
+            "meaningByLocale": {
+              "ru": "Переваренный или пережаренный, готовившийся слишком долго.",
+              "uk": "Переварений або пересмажений, той, який готували надто довго."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overcooked",
+          "definitionByLocale": {
+            "ru": "Переваренный или пережаренный, готовившийся слишком долго.",
+            "uk": "Переварений або пересмажений, той, який готували надто довго."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-22:i02:r1",
+          "text": "The vegetables are overcooked."
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i02:r2",
+          "text": "The vegetables are cold."
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i02:r3",
+          "text": "The potatoes are overcooked."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i02:audio",
+          "transcript": "The vegetables are overcooked."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-22:i02:r1",
+            "targetText": "The vegetables are overcooked.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i02:r2",
+            "targetText": "The vegetables are cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i02:r3",
+            "targetText": "The potatoes are overcooked.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vegetables are overcooked.",
+              "uk": "У записі звучить The vegetables are overcooked."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The vegetables are overcooked.",
+              "uk": "У записі звучить The vegetables are overcooked."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:word:undercooked",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undercooked",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:word:undercooked:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undercooked",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:word:undercooked:audio",
+          "transcript": "undercooked"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-22:word:undercooked:r1",
+            "targetText": "undercooked",
+            "meaningByLocale": {
+              "ru": "Недостаточно приготовленный, недоваренный или недожаренный.",
+              "uk": "Недостатньо приготований, недоварений або недосмажений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undercooked",
+          "definitionByLocale": {
+            "ru": "Недостаточно приготовленный, недоваренный или недожаренный.",
+            "uk": "Недостатньо приготований, недоварений або недосмажений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что рис недоварен.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что рис недоварен.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This rice is undercooked.",
+        "localizedMeaning": {
+          "ru": "Объясните, что рис недоварен.",
+          "uk": "Поясніть, що рис недоварений."
+        },
+        "orderedTokens": [
+          "This",
+          "rice",
+          "is",
+          "undercooked"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите заменить блюдо.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите заменить блюдо.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have something else?",
+        "localizedMeaning": {
+          "ru": "Попросите заменить блюдо.",
+          "uk": "Попросіть замінити страву."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "something",
+          "else"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-22:i05:r1",
+          "text": "Would you like soup instead?"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i05:r2",
+          "text": "Would you like salad instead?"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i05:r3",
+          "text": "Would you like rice instead?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i05:audio",
+          "transcript": "Would you like soup instead?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-22:i05:r1",
+            "targetText": "Would you like soup instead?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i05:r2",
+            "targetText": "Would you like salad instead?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i05:r3",
+            "targetText": "Would you like rice instead?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Would you like soup instead?",
+              "uk": "У записі звучить Would you like soup instead?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Would you like soup instead?",
+              "uk": "У записі звучить Would you like soup instead?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:word:uneaten",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — uneaten",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:word:uneaten:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — uneaten",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:word:uneaten:audio",
+          "transcript": "uneaten"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-22:word:uneaten:r1",
+            "targetText": "uneaten",
+            "meaningByLocale": {
+              "ru": "Несъеденный.",
+              "uk": "Нез’їдений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "uneaten",
+          "definitionByLocale": {
+            "ru": "Несъеденный.",
+            "uk": "Нез’їдений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что половина сэндвича осталась несъеденной.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что половина сэндвича осталась несъеденной.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Half of the sandwich is uneaten.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что половина сэндвича осталась несъеденной.",
+          "uk": "Повідомте, що половина сендвіча залишилася нез’їденою."
+        },
+        "orderedTokens": [
+          "Half",
+          "of",
+          "the",
+          "sandwich",
+          "is",
+          "uneaten"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы выбрали бы суп, если бы были голодны.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-22:i07:r1",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i07:r2",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i07:r3",
+          "text": "to choose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы выбрали бы суп, если бы были голодны.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы выбрали бы суп, если бы были голодны.",
+          "uk": "Ви обрали б суп, якби були голодні."
+        },
+        "gappedTargetPhrase": "I would ___ the soup if I were hungry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-22:i07:r1",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i07:r2",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i07:r3",
+            "text": "to choose"
+          }
+        ],
+        "testedDimension": "Вы выбрали бы суп, если бы были голодны.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-22:i07:r2",
+            "correct": false,
+            "testedDimension": "Вы выбрали бы суп, если бы были голодны.",
+            "feedbackByLocale": {
+              "ru": "После would нужна форма choose.",
+              "uk": "Після would потрібна форма choose."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i07:r3",
+            "correct": false,
+            "testedDimension": "Вы выбрали бы суп, если бы были голодны.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Откажитесь от дополнительного хлеба.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Откажитесь от дополнительного хлеба.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i08:audio",
+          "transcript": "No more bread for me, thank you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No more bread for me, thank you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение принести воду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i09:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение принести воду.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i09:audio",
+          "transcript": "I can bring you some water."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I can bring you some water.",
+        "orderedTokens": [
+          "I",
+          "can",
+          "bring",
+          "you",
+          "some",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:word:caffeine",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — caffeine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:word:caffeine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — caffeine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:word:caffeine:audio",
+          "transcript": "caffeine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-22:word:caffeine:r1",
+            "targetText": "caffeine",
+            "meaningByLocale": {
+              "ru": "Кофеин.",
+              "uk": "Кофеїн."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "caffeine",
+          "definitionByLocale": {
+            "ru": "Кофеин.",
+            "uk": "Кофеїн."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, содержит ли напиток кофеин.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-22:i10:r1",
+          "text": "contain"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i10:r2",
+          "text": "contains"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i10:r3",
+          "text": "containing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, содержит ли напиток кофеин.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, содержит ли напиток кофеин.",
+          "uk": "Уточніть, чи містить напій кофеїн."
+        },
+        "gappedTargetPhrase": "Does this ___ caffeine?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-22:i10:r1",
+            "text": "contain"
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i10:r2",
+            "text": "contains"
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i10:r3",
+            "text": "containing"
+          }
+        ],
+        "testedDimension": "Уточните, содержит ли напиток кофеин.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-22:i10:r2",
+            "correct": false,
+            "testedDimension": "Уточните, содержит ли напиток кофеин.",
+            "feedbackByLocale": {
+              "ru": "После does нужна форма contain.",
+              "uk": "Після does потрібна форма contain."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i10:r3",
+            "correct": false,
+            "testedDimension": "Уточните, содержит ли напиток кофеин.",
+            "feedbackByLocale": {
+              "ru": "В этом вопросе нужно contain.",
+              "uk": "У цьому запитанні потрібне contain."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-22:i11:r1",
+          "text": "I would like a small cup."
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i11:r2",
+          "text": "I would like a large cup."
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i11:r3",
+          "text": "I would like a small glass."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i11:audio",
+          "transcript": "I would like a small cup."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-22:i11:r1",
+            "targetText": "I would like a small cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i11:r2",
+            "targetText": "I would like a large cup.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i11:r3",
+            "targetText": "I would like a small glass.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-22:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would like a small cup.",
+              "uk": "У записі звучить I would like a small cup."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I would like a small cup.",
+              "uk": "У записі звучить I would like a small cup."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Сообщите, что уже сделали заказ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i12:audio"
+      ],
+      "accessibilityLabel": "Сообщите, что уже сделали заказ.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i12:audio",
+          "transcript": "I have already ordered."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I have already ordered.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите время: вы заказали десять минут назад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-22:i13:r1",
+          "text": "ordered"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i13:r2",
+          "text": "have ordered"
+        },
+        {
+          "responseId": "en:lesson-27:session-22:i13:r3",
+          "text": "order"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите время: вы заказали десять минут назад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите время: вы заказали десять минут назад.",
+          "uk": "Назвіть час: ви замовили десять хвилин тому."
+        },
+        "gappedTargetPhrase": "I ___ ten minutes ago.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-22:i13:r1",
+            "text": "ordered"
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i13:r2",
+            "text": "have ordered"
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i13:r3",
+            "text": "order"
+          }
+        ],
+        "testedDimension": "Назовите время: вы заказали десять минут назад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-22:i13:r2",
+            "correct": false,
+            "testedDimension": "Назовите время: вы заказали десять минут назад.",
+            "feedbackByLocale": {
+              "ru": "С ten minutes ago здесь past simple.",
+              "uk": "Із ten minutes ago тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-22:i13:r3",
+            "correct": false,
+            "testedDimension": "Назовите время: вы заказали десять минут назад.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма ordered.",
+              "uk": "Потрібна минула форма ordered."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите проверить заказ.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите проверить заказ.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you check my order?",
+        "localizedMeaning": {
+          "ru": "Попросите проверить заказ.",
+          "uk": "Попросіть перевірити замовлення."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "check",
+          "my",
+          "order"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If it were warmer, we would sit outside.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If it were warmer, we would sit outside.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would sit outside if it were warmer.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If it were warmer, we would sit outside.",
+          "uk": "Почніть із результату: If it were warmer, we would sit outside."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "sit",
+          "outside",
+          "if",
+          "it",
+          "were",
+          "warmer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, где можно заплатить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i16:audio"
+      ],
+      "accessibilityLabel": "Услышьте, где можно заплатить.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i16:audio",
+          "transcript": "You can pay at the counter."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You can pay at the counter.",
+        "orderedTokens": [
+          "You",
+          "can",
+          "pay",
+          "at",
+          "the",
+          "counter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите счёт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите счёт.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-22:i17:audio",
+          "transcript": "Could we have the bill, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we have the bill, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1acee56929e272b0707472a062e7838e9cc1ff378aff0e468d39c944b6c1bb47"
+}

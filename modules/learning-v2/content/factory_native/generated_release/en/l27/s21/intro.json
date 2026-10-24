@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; if + subject + were; present perfect / past simple",
+    "uk": "if + past simple, would + base verb; if + subject + were; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кому оставить ключи",
+        "uk": "Кому залишити ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Trustworthy — заслуживающий доверия. She is trustworthy — ей можно доверять. Вы знаете соседку и можете попросить её полить цветы. I would leave her a key if she were free — я бы оставил ей ключ, если бы она была свободна. Здесь would leave — воображаемое решение, were — условие. Это стандартная форма такого примера; в разговоре с she также встречается was. Теперь можно попросить о помощи: Could you water the plants? — можешь полить растения?",
+        "uk": "Trustworthy — той, кому можна довіряти. She is trustworthy — їй можна довіряти. Ви знаєте сусідку й можете попросити її полити квіти. I would leave her a key if she were free — я б залишив їй ключ, якби вона була вільна. Тут would leave — уявне рішення, were — умова. Це стандартна форма такого прикладу; у розмові з she також трапляється was. Тепер можна попросити про допомогу: Could you water the plants? — можеш полити рослини?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-21:intro1:r1",
+              "text": "I would leave her a key if she were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro1:r2",
+              "text": "I would left her a key if she were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro1:r3",
+              "text": "I would leave her a key if she would were free."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-21:intro1:r1",
+              "text": "I would leave her a key if she were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro1:r2",
+              "text": "I would left her a key if she were free."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro1:r3",
+              "text": "I would leave her a key if she would were free."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Неудачная реплика",
+        "uk": "Невдала репліка"
+      },
+      "bodyByLocale": {
+        "ru": "Thoughtless — невнимательный к чужим чувствам или нуждам, необдуманный. That was thoughtless of me — это было невнимательно с моей стороны. Вы забыли предупредить друга, что опоздаете. Tactless — бестактный. That comment was tactless — тот комментарий был бестактным. Здесь дело именно в неудачно сказанных словах. Можно признать ошибку и извиниться: I did not mean to upset you — я не хотел тебя расстроить. Оценивать конкретный поступок обычно точнее, чем объявлять человека плохим.",
+        "uk": "Thoughtless — неуважний до чужих почуттів або потреб, необдуманий. That was thoughtless of me — це було неуважно з мого боку. Ви забули попередити друга, що запізнитеся. Tactless — нетактовний. That comment was tactless — той коментар був нетактовним. Тут ідеться саме про невдало сказані слова. Можна визнати помилку й вибачитися: I did not mean to upset you — я не хотів тебе засмутити. Оцінювати конкретний вчинок зазвичай точніше, ніж оголошувати людину поганою."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-21:intro2:r1",
+              "text": "I did not mean to upset you."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro2:r2",
+              "text": "I did not meant to upset you."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro2:r3",
+              "text": "I did not meaning to upset you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-21:intro2:r1",
+              "text": "I did not mean to upset you."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro2:r2",
+              "text": "I did not meant to upset you."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro2:r3",
+              "text": "I did not meaning to upset you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Помощь без выгоды",
+        "uk": "Допомога без вигоди"
+      },
+      "bodyByLocale": {
+        "ru": "Selfless — бескорыстный, заботящийся о других без личной выгоды. That was a selfless act — это был бескорыстный поступок. Это сильная похвала; не обязательно использовать её за каждую мелкую услугу. Друг помог вам в трудный день. I have already thanked him — я уже поблагодарил его. I called him last night — я позвонил ему вчера вечером. Already подчёркивает результат сейчас, last night называет законченное время. Если бы у вас было больше времени, вы бы тоже помогли: I would help if I had more time.",
+        "uk": "Selfless — безкорисливий, такий, що дбає про інших без особистої вигоди. That was a selfless act — це був безкорисливий вчинок. Це сильна похвала; не обов’язково використовувати її за кожну дрібну послугу. Друг допоміг вам у важкий день. I have already thanked him — я вже подякував йому. I called him last night — я зателефонував йому вчора ввечері. Already підкреслює результат зараз, last night називає завершений час. Якби ви мали більше часу, ви б теж допомогли: I would help if I had more time."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-21:intro3:r1",
+              "text": "I called him last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro3:r2",
+              "text": "I have called him last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro3:r3",
+              "text": "I call him last night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-21:intro3:r1",
+              "text": "I called him last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro3:r2",
+              "text": "I have called him last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-21:intro3:r3",
+              "text": "I call him last night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f98b583939cc5e6a7617c5b3a01161c488e248a07369939f5d9d7dfb222b1cd3"
+}

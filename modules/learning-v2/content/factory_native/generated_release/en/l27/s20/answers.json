@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-20:i01",
+    "correctText": "The bus is not running today.",
+    "correctResponseId": "en:lesson-27:session-20:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:word:unfortunate",
+    "correctText": "unfortunate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i02",
+    "correctText": "That is unfortunate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i03",
+    "correctText": "Is there another way to get there?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-20:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:word:roadside",
+    "correctText": "roadside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i05",
+    "correctText": "We stopped at the roadside.",
+    "correctResponseId": "en:lesson-27:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i06",
+    "correctText": "I can take you to the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:word:unwise",
+    "correctText": "unwise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i07",
+    "correctText": "It would be unwise to rush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i08",
+    "correctText": "When is the next bus?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i09",
+    "correctText": "It leaves in half an hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i10",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-27:session-20:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:word:dissatisfied",
+    "correctText": "dissatisfied",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i11",
+    "correctText": "I am dissatisfied with the service.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i12",
+    "correctText": "I asked for a window seat.",
+    "correctResponseId": "en:lesson-27:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i13",
+    "correctText": "Have you checked the timetable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i14",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-27:session-20:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i15",
+    "correctText": "They would join us if they knew the way.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i16",
+    "correctText": "Bring a bottle of water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-20:i17",
+    "correctText": "I will wait by the entrance.",
+    "correctResponseId": null
+  }
+]

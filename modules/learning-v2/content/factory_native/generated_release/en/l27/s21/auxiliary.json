@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-21:intro1:r2": {
+          "ru": "После would нужна форма leave.",
+          "uk": "Після would потрібна форма leave."
+        },
+        "en:lesson-27:session-21:intro1:r3": {
+          "ru": "В этом условии ставим were без would.",
+          "uk": "У цій умові ставимо were без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-21:intro2:r2": {
+          "ru": "После did not нужна форма mean.",
+          "uk": "Після did not потрібна форма mean."
+        },
+        "en:lesson-27:session-21:intro2:r3": {
+          "ru": "После did not ставим mean.",
+          "uk": "Після did not ставимо mean."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-21:intro3:r2": {
+          "ru": "С last night здесь called без have.",
+          "uk": "Із last night тут called без have."
+        },
+        "en:lesson-27:session-21:intro3:r3": {
+          "ru": "Здесь речь о прошлом: called.",
+          "uk": "Тут ідеться про минуле: called."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c6fa1c2981241a4308795b9ccd8846e1e5cc45acdb60ef1410dc4203eed02c86"
+}

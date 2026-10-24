@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-20:i01:r1",
+          "text": "The bus is not running today."
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i01:r2",
+          "text": "The bus is not running tomorrow."
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i01:r3",
+          "text": "The train is not running today."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i01:audio",
+          "transcript": "The bus is not running today."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-20:i01:r1",
+            "targetText": "The bus is not running today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i01:r2",
+            "targetText": "The bus is not running tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i01:r3",
+            "targetText": "The train is not running today.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-20:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus is not running today.",
+              "uk": "У записі звучить The bus is not running today."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus is not running today.",
+              "uk": "У записі звучить The bus is not running today."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:word:unfortunate",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unfortunate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:word:unfortunate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unfortunate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:word:unfortunate:audio",
+          "transcript": "unfortunate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-20:word:unfortunate:r1",
+            "targetText": "unfortunate",
+            "meaningByLocale": {
+              "ru": "Досадный, неудачный.",
+              "uk": "Прикрий, невдалий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unfortunate",
+          "definitionByLocale": {
+            "ru": "Досадный, неудачный.",
+            "uk": "Прикрий, невдалий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Отреагируйте на досадную новость.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Отреагируйте на досадную новость.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i02:audio",
+          "transcript": "That is unfortunate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That is unfortunate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите о другом способе добраться.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите о другом способе добраться.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is there another way to get there?",
+        "localizedMeaning": {
+          "ru": "Спросите о другом способе добраться.",
+          "uk": "Запитайте про інший спосіб дістатися."
+        },
+        "orderedTokens": [
+          "Is",
+          "there",
+          "another",
+          "way",
+          "to",
+          "get",
+          "there"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы остались бы дольше при наличии времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-20:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i04:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы остались бы дольше при наличии времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы остались бы дольше при наличии времени.",
+          "uk": "Ви залишилися б довше, якби мали час."
+        },
+        "gappedTargetPhrase": "We would stay longer if we ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-20:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i04:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Вы остались бы дольше при наличии времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-20:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы остались бы дольше при наличии времени.",
+            "feedbackByLocale": {
+              "ru": "В условии здесь had.",
+              "uk": "В умові тут had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы остались бы дольше при наличии времени.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма had.",
+              "uk": "Потрібна форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:word:roadside",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — roadside",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:word:roadside:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — roadside",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:word:roadside:audio",
+          "transcript": "roadside"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-20:word:roadside:r1",
+            "targetText": "roadside",
+            "meaningByLocale": {
+              "ru": "Обочина, край дороги.",
+              "uk": "Узбіччя, край дороги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roadside",
+          "definitionByLocale": {
+            "ru": "Обочина, край дороги.",
+            "uk": "Узбіччя, край дороги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-20:i05:r1",
+          "text": "We stopped at the roadside."
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i05:r2",
+          "text": "We stopped at the riverside."
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i05:r3",
+          "text": "We stopped at the station."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i05:audio",
+          "transcript": "We stopped at the roadside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-20:i05:r1",
+            "targetText": "We stopped at the roadside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i05:r2",
+            "targetText": "We stopped at the riverside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i05:r3",
+            "targetText": "We stopped at the station.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We stopped at the roadside.",
+              "uk": "У записі звучить We stopped at the roadside."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We stopped at the roadside.",
+              "uk": "У записі звучить We stopped at the roadside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите подвезти человека до станции.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите подвезти человека до станции.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can take you to the station.",
+        "localizedMeaning": {
+          "ru": "Предложите подвезти человека до станции.",
+          "uk": "Запропонуйте підвезти людину до станції."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "take",
+          "you",
+          "to",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:word:unwise",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unwise",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:word:unwise:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unwise",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:word:unwise:audio",
+          "transcript": "unwise"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-20:word:unwise:r1",
+            "targetText": "unwise",
+            "meaningByLocale": {
+              "ru": "Неразумный, неосмотрительный.",
+              "uk": "Нерозумний, необачний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unwise",
+          "definitionByLocale": {
+            "ru": "Неразумный, неосмотрительный.",
+            "uk": "Нерозумний, необачний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что спешка была бы неразумной.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что спешка была бы неразумной.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It would be unwise to rush.",
+        "localizedMeaning": {
+          "ru": "Объясните, что спешка была бы неразумной.",
+          "uk": "Поясніть, що поспіх був би нерозумним."
+        },
+        "orderedTokens": [
+          "It",
+          "would",
+          "be",
+          "unwise",
+          "to",
+          "rush"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните время следующего автобуса.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Уточните время следующего автобуса.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i08:audio",
+          "transcript": "When is the next bus?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "When is the next bus?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, сколько осталось до отправления.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Услышьте, сколько осталось до отправления.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i09:audio",
+          "transcript": "It leaves in half an hour."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It leaves in half an hour.",
+        "orderedTokens": [
+          "It",
+          "leaves",
+          "in",
+          "half",
+          "an",
+          "hour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На месте друга вы выбрали бы более ранний автобус.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-20:i10:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i10:r2",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i10:r3",
+          "text": "to take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На месте друга вы выбрали бы более ранний автобус.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На месте друга вы выбрали бы более ранний автобус.",
+          "uk": "На місці друга ви обрали б раніший автобус."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ the earlier bus.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-20:i10:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i10:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i10:r3",
+            "text": "to take"
+          }
+        ],
+        "testedDimension": "На месте друга вы выбрали бы более ранний автобус.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-20:i10:r2",
+            "correct": false,
+            "testedDimension": "На месте друга вы выбрали бы более ранний автобус.",
+            "feedbackByLocale": {
+              "ru": "После would ставим take.",
+              "uk": "Після would ставимо take."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i10:r3",
+            "correct": false,
+            "testedDimension": "На месте друга вы выбрали бы более ранний автобус.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:word:dissatisfied",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dissatisfied",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:word:dissatisfied:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dissatisfied",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:word:dissatisfied:audio",
+          "transcript": "dissatisfied"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-20:word:dissatisfied:r1",
+            "targetText": "dissatisfied",
+            "meaningByLocale": {
+              "ru": "Недовольный, неудовлетворённый.",
+              "uk": "Незадоволений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dissatisfied",
+          "definitionByLocale": {
+            "ru": "Недовольный, неудовлетворённый.",
+            "uk": "Незадоволений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что недовольны обслуживанием.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите, что недовольны обслуживанием.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i11:audio",
+          "transcript": "I am dissatisfied with the service."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am dissatisfied with the service.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-20:i12:r1",
+          "text": "I asked for a window seat."
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i12:r2",
+          "text": "I asked for an aisle seat."
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i12:r3",
+          "text": "I asked for a cheaper seat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i12:audio",
+          "transcript": "I asked for a window seat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-20:i12:r1",
+            "targetText": "I asked for a window seat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i12:r2",
+            "targetText": "I asked for an aisle seat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i12:r3",
+            "targetText": "I asked for a cheaper seat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I asked for a window seat.",
+              "uk": "У записі звучить I asked for a window seat."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I asked for a window seat.",
+              "uk": "У записі звучить I asked for a window seat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, проверил ли друг расписание.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, проверил ли друг расписание.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Have you checked the timetable?",
+        "localizedMeaning": {
+          "ru": "Спросите, проверил ли друг расписание.",
+          "uk": "Запитайте, чи перевірив друг розклад."
+        },
+        "orderedTokens": [
+          "Have",
+          "you",
+          "checked",
+          "the",
+          "timetable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас вечер. Вы проверили расписание утром.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-20:i14:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i14:r2",
+          "text": "have checked"
+        },
+        {
+          "responseId": "en:lesson-27:session-20:i14:r3",
+          "text": "check"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас вечер. Вы проверили расписание утром.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас вечер. Вы проверили расписание утром.",
+          "uk": "Зараз вечір. Ви перевірили розклад уранці."
+        },
+        "gappedTargetPhrase": "I ___ it this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-20:i14:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i14:r2",
+            "text": "have checked"
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i14:r3",
+            "text": "check"
+          }
+        ],
+        "testedDimension": "Сейчас вечер. Вы проверили расписание утром.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-20:i14:r2",
+            "correct": false,
+            "testedDimension": "Сейчас вечер. Вы проверили расписание утром.",
+            "feedbackByLocale": {
+              "ru": "Утро в этой сцене завершилось: checked.",
+              "uk": "Ранок у цій сцені завершився: checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-20:i14:r3",
+            "correct": false,
+            "testedDimension": "Сейчас вечер. Вы проверили расписание утром.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно прошедшее время checked.",
+              "uk": "Тут потрібен минулий час checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If they knew the way, they would join us.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If they knew the way, they would join us.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They would join us if they knew the way.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If they knew the way, they would join us.",
+          "uk": "Почніть із результату: If they knew the way, they would join us."
+        },
+        "orderedTokens": [
+          "They",
+          "would",
+          "join",
+          "us",
+          "if",
+          "they",
+          "knew",
+          "the",
+          "way"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу взять бутылку воды.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу взять бутылку воды.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i16:audio",
+          "transcript": "Bring a bottle of water."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Bring a bottle of water.",
+        "orderedTokens": [
+          "Bring",
+          "a",
+          "bottle",
+          "of",
+          "water"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подтвердите место ожидания.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Подтвердите место ожидания.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-20:i17:audio",
+          "transcript": "I will wait by the entrance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will wait by the entrance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "837b8992e5e75b005de8adb4787d55ed04a461b1f5cda00d6dae3b20f648ddb3"
+}

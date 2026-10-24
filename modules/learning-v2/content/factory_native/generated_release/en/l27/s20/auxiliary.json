@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-20:intro1:r2": {
+          "ru": "После would нужна форма stay.",
+          "uk": "Після would потрібна форма stay."
+        },
+        "en:lesson-27:session-20:intro1:r3": {
+          "ru": "В условии нужно had без would.",
+          "uk": "В умові потрібне had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-20:intro2:r2": {
+          "ru": "После would нужна форма take.",
+          "uk": "Після would потрібна форма take."
+        },
+        "en:lesson-27:session-20:intro2:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-20:intro3:r2": {
+          "ru": "В этой вечерней сцене утро завершилось: checked без have.",
+          "uk": "У цій вечірній сцені ранок завершився: checked без have."
+        },
+        "en:lesson-27:session-20:intro3:r3": {
+          "ru": "Здесь речь о прошлом: checked.",
+          "uk": "Тут ідеться про минуле: checked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9e9942274d8605e478972c0edeabee8ba5fa21c68be4fea671b814290765bbf5"
+}

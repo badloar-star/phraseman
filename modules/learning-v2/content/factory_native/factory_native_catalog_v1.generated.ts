@@ -10332,4 +10332,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if + past simple, would + base verb; if I were you; present perfect / past simple","uk":"if + past simple, would + base verb; if I were you; present perfect / past simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 20,
+    sourceFingerprint: "43ea53d8924ef0c6636cfb28d0880b682cf1463fc7eedef654b89711311bf3bb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if + past simple, would + base verb; if I were you; present perfect / past simple","uk":"if + past simple, would + base verb; if I were you; present perfect / past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 21,
+    sourceFingerprint: "aacb91094f5a57d157016e2472198121c706a0ba2c449a1a12d48afb7190214b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if + past simple, would + base verb; if + subject + were; present perfect / past simple","uk":"if + past simple, would + base verb; if + subject + were; present perfect / past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 22,
+    sourceFingerprint: "55e9d3c63c1d1daa77a7ee9674df626c2e423caa958a90ea096928f3a2b0f572",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"if + past simple, would + base verb; if + subject + were; present perfect / past simple","uk":"if + past simple, would + base verb; if + subject + were; present perfect / past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
 ]);

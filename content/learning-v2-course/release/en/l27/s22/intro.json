@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; if + subject + were; present perfect / past simple",
+    "uk": "if + past simple, would + base verb; if + subject + were; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "С блюдом что-то не так",
+        "uk": "Зі стравою щось не так"
+      },
+      "bodyByLocale": {
+        "ru": "Overcooked — готовившийся слишком долго, переваренный или пережаренный. The vegetables are overcooked — овощи переварены. Undercooked — недостаточно приготовленный, недоваренный или недожаренный. This rice is undercooked — этот рис недоварен. Оба слова описывают приготовление, а не просто то, нравится ли вам вкус. Вы обращаетесь к официанту: Could I have something else? — можно мне что-нибудь другое? Официант предлагает суп: Would you like soup instead? — хотите вместо этого суп?",
+        "uk": "Overcooked — той, який готували надто довго, переварений або пересмажений. The vegetables are overcooked — овочі переварені. Undercooked — недостатньо приготований, недоварений або недосмажений. This rice is undercooked — цей рис недоварений. Обидва слова описують приготування, а не просто те, чи подобається вам смак. Ви звертаєтеся до офіціанта: Could I have something else? — можна мені щось інше? Офіціант пропонує суп: Would you like soup instead? — хочете замість цього суп?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-22:intro1:r1",
+              "text": "Could I have something else?"
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro1:r2",
+              "text": "Could I had something else?"
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro1:r3",
+              "text": "Could I to have something else?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-22:intro1:r1",
+              "text": "Could I have something else?"
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro1:r2",
+              "text": "Could I had something else?"
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro1:r3",
+              "text": "Could I to have something else?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Другой выбор",
+        "uk": "Інший вибір"
+      },
+      "bodyByLocale": {
+        "ru": "Uneaten — несъеденный. Half of the sandwich is uneaten — половина сэндвича осталась несъеденной. Half of the sandwich здесь обозначает одну часть, поэтому is. Вам уже не хочется большого блюда: I would choose the soup if I were hungry — я бы выбрал суп, если бы был голоден. Это воображаемый выбор сейчас, а не заказ: would choose описывает результат, were — условие. Чтобы действительно заказать суп, достаточно I will have the soup — я возьму суп.",
+        "uk": "Uneaten — нез’їдений. Half of the sandwich is uneaten — половина сендвіча залишилася нез’їденою. Half of the sandwich тут позначає одну частину, тому is. Вам уже не хочеться великої страви: I would choose the soup if I were hungry — я б обрав суп, якби був голодний. Це уявний вибір зараз, а не замовлення: would choose описує результат, were — умову. Щоб справді замовити суп, достатньо I will have the soup — я візьму суп."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-22:intro2:r1",
+              "text": "I would choose the soup if I were hungry."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro2:r2",
+              "text": "I would chose the soup if I were hungry."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro2:r3",
+              "text": "I would choose the soup if I would were hungry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-22:intro2:r1",
+              "text": "I would choose the soup if I were hungry."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro2:r2",
+              "text": "I would chose the soup if I were hungry."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro2:r3",
+              "text": "I would choose the soup if I would were hungry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить состав напитка",
+        "uk": "Уточнити склад напою"
+      },
+      "bodyByLocale": {
+        "ru": "Caffeine — кофеин. Does this contain caffeine? — здесь есть кофеин? Вы уточняете состав напитка, а затем выбираете подходящий вам вариант. В вопросе после does стоит contain без -s. Заказ уже сделан: I have already ordered — я уже заказал. Но если называете время, скажите I ordered ten minutes ago — я заказал десять минут назад. Ten minutes ago относится к законченному времени, поэтому ordered без have. Напиток ещё не принесли: Could you check my order? — можете проверить мой заказ?",
+        "uk": "Caffeine — кофеїн. Does this contain caffeine? — тут є кофеїн? Ви уточнюєте склад напою, а потім обираєте варіант, який вам підходить. У запитанні після does стоїть contain без -s. Замовлення вже зроблено: I have already ordered — я вже замовив. Але якщо називаєте час, скажіть I ordered ten minutes ago — я замовив десять хвилин тому. Ten minutes ago стосується завершеного часу, тому ordered без have. Напій ще не принесли: Could you check my order? — можете перевірити моє замовлення?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-22:intro3:r1",
+              "text": "I ordered ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro3:r2",
+              "text": "I have ordered ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro3:r3",
+              "text": "I order ten minutes ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-22:intro3:r1",
+              "text": "I ordered ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro3:r2",
+              "text": "I have ordered ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-22:intro3:r3",
+              "text": "I order ten minutes ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b85b30c80cf03d3cc33e2d246213afa5f4b714c96f77b093f5662f303019e1bd"
+}

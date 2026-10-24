@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-22:i01",
+    "correctText": "Excuse me, could you help us?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:word:overcooked",
+    "correctText": "overcooked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i02",
+    "correctText": "The vegetables are overcooked.",
+    "correctResponseId": "en:lesson-27:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:word:undercooked",
+    "correctText": "undercooked",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i03",
+    "correctText": "This rice is undercooked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i04",
+    "correctText": "Could I have something else?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i05",
+    "correctText": "Would you like soup instead?",
+    "correctResponseId": "en:lesson-27:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:word:uneaten",
+    "correctText": "uneaten",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i06",
+    "correctText": "Half of the sandwich is uneaten.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i07",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-27:session-22:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i08",
+    "correctText": "No more bread for me, thank you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i09",
+    "correctText": "I can bring you some water.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:word:caffeine",
+    "correctText": "caffeine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i10",
+    "correctText": "contain",
+    "correctResponseId": "en:lesson-27:session-22:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i11",
+    "correctText": "I would like a small cup.",
+    "correctResponseId": "en:lesson-27:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i12",
+    "correctText": "I have already ordered.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i13",
+    "correctText": "ordered",
+    "correctResponseId": "en:lesson-27:session-22:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i14",
+    "correctText": "Could you check my order?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i15",
+    "correctText": "We would sit outside if it were warmer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i16",
+    "correctText": "You can pay at the counter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-22:i17",
+    "correctText": "Could we have the bill, please?",
+    "correctResponseId": null
+  }
+]

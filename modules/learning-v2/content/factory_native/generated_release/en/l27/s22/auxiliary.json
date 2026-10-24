@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-22:intro1:r2": {
+          "ru": "После could ставим have.",
+          "uk": "Після could ставимо have."
+        },
+        "en:lesson-27:session-22:intro1:r3": {
+          "ru": "После could не ставим to.",
+          "uk": "Після could не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-22:intro2:r2": {
+          "ru": "После would нужна форма choose.",
+          "uk": "Після would потрібна форма choose."
+        },
+        "en:lesson-27:session-22:intro2:r3": {
+          "ru": "В этом условии were без would.",
+          "uk": "У цій умові were без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-22:intro3:r2": {
+          "ru": "С ten minutes ago здесь ordered без have.",
+          "uk": "Із ten minutes ago тут ordered без have."
+        },
+        "en:lesson-27:session-22:intro3:r3": {
+          "ru": "Здесь нужна прошедшая форма ordered.",
+          "uk": "Тут потрібна минула форма ordered."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "400859dab2dc8b13f222eb2eb6d7950b033357a60f3d5277d9487ef4df301223"
+}

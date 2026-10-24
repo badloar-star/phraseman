@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; if I were you; present perfect / past simple",
+    "uk": "if + past simple, would + base verb; if I were you; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Планы изменились",
+        "uk": "Плани змінилися"
+      },
+      "bodyByLocale": {
+        "ru": "Unfortunate — неудачный, досадный. That is unfortunate — как досадно. Так можно отреагировать на неприятную новость: нужный автобус сегодня не ходит. Это оценка обстоятельств, а не обвинение человека. Is there another way to get there? — есть другой способ туда добраться? Вы обсуждаете поездку: We would stay longer if we had more time — мы бы остались дольше, если бы у нас было больше времени. Would stay стоит в результате, had — в воображаемом условии.",
+        "uk": "Unfortunate — невдалий, прикрий. That is unfortunate — як прикро. Так можна відреагувати на неприємну новину: потрібний автобус сьогодні не ходить. Це оцінка обставин, а не звинувачення людини. Is there another way to get there? — є інший спосіб туди дістатися? Ви обговорюєте поїздку: We would stay longer if we had more time — ми б залишилися довше, якби мали більше часу. Would stay стоїть у результаті, had — в уявній умові."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-20:intro1:r1",
+              "text": "We would stay longer if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro1:r2",
+              "text": "We would stayed longer if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro1:r3",
+              "text": "We would stay longer if we would had more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-20:intro1:r1",
+              "text": "We would stay longer if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro1:r2",
+              "text": "We would stayed longer if we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro1:r3",
+              "text": "We would stay longer if we would had more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Решить, как добраться",
+        "uk": "Вирішити, як дістатися"
+      },
+      "bodyByLocale": {
+        "ru": "Roadside — обочина, край дороги. We stopped at the roadside — мы остановились у обочины. Рядом с другим существительным слово может описывать место: a roadside café — придорожное кафе. Unwise — неразумный, неосмотрительный. It would be unwise to rush — торопиться было бы неразумно. Это оценка решения; она не означает, что человек глупый. Друг предлагает более ранний автобус: If I were you, I would take the earlier bus — на твоём месте я бы сел на более ранний автобус.",
+        "uk": "Roadside — узбіччя, край дороги. We stopped at the roadside — ми зупинилися на узбіччі. Поруч з іншим іменником слово може описувати місце: a roadside café — придорожнє кафе. Unwise — нерозумний, необачний. It would be unwise to rush — поспішати було б нерозумно. Це оцінка рішення; вона не означає, що людина дурна. Друг пропонує раніший автобус: If I were you, I would take the earlier bus — на твоєму місці я б сів на раніший автобус."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-20:intro2:r1",
+              "text": "If I were you, I would take the earlier bus."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro2:r2",
+              "text": "If I were you, I would took the earlier bus."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro2:r3",
+              "text": "If I were you, I would to take the earlier bus."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-20:intro2:r1",
+              "text": "If I were you, I would take the earlier bus."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro2:r2",
+              "text": "If I were you, I would took the earlier bus."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro2:r3",
+              "text": "If I were you, I would to take the earlier bus."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Объяснить, что не устраивает",
+        "uk": "Пояснити, що не влаштовує"
+      },
+      "bodyByLocale": {
+        "ru": "Dissatisfied — недовольный, неудовлетворённый. I am dissatisfied with the service — я недоволен обслуживанием. With связывает оценку с её причиной. Это прямое, довольно сдержанное выражение жалобы; дальше полезно назвать конкретную проблему. I asked for a window seat — я просил место у окна. Затем вы уточняете расписание: Have you checked the timetable? — ты проверил расписание? Если называете законченное время, скажите I checked it this morning — я проверил его сегодня утром. Сейчас в нашей сцене уже вечер.",
+        "uk": "Dissatisfied — незадоволений. I am dissatisfied with the service — я незадоволений обслуговуванням. With пов’язує оцінку з її причиною. Це прямий, досить стриманий спосіб поскаржитися; далі корисно назвати конкретну проблему. I asked for a window seat — я просив місце біля вікна. Потім ви уточнюєте розклад: Have you checked the timetable? — ти перевірив розклад? Якщо називаєте завершений час, скажіть I checked it this morning — я перевірив його сьогодні вранці. Зараз у нашій сцені вже вечір."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-20:intro3:r1",
+              "text": "I checked it this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro3:r2",
+              "text": "I have checked it this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro3:r3",
+              "text": "I check it this morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-20:intro3:r1",
+              "text": "I checked it this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro3:r2",
+              "text": "I have checked it this morning."
+            },
+            {
+              "responseId": "en:lesson-27:session-20:intro3:r3",
+              "text": "I check it this morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "52da507d88d0b38bcf0c6af42ce28c7e7ba777505a08b45099154755789c4e28"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-21:word:trustworthy",
+    "correctText": "trustworthy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i01",
+    "correctText": "Our neighbour is trustworthy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i02",
+    "correctText": "Could you water the plants?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i03",
+    "correctText": "Leave the key with me.",
+    "correctResponseId": "en:lesson-27:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i04",
+    "correctText": "leave",
+    "correctResponseId": "en:lesson-27:session-21:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:word:thoughtless",
+    "correctText": "thoughtless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i05",
+    "correctText": "That was thoughtless of me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i06",
+    "correctText": "I forgot to call you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i07",
+    "correctText": "I waited for half an hour.",
+    "correctResponseId": "en:lesson-27:session-21:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:word:tactless",
+    "correctText": "tactless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i08",
+    "correctText": "That comment was tactless.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i09",
+    "correctText": "mean",
+    "correctResponseId": "en:lesson-27:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i10",
+    "correctText": "Please do not say that again.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i11",
+    "correctText": "I will be more careful next time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:word:selfless",
+    "correctText": "selfless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i12",
+    "correctText": "That was a selfless act.",
+    "correctResponseId": "en:lesson-27:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i13",
+    "correctText": "I have already thanked him.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i14",
+    "correctText": "called",
+    "correctResponseId": "en:lesson-27:session-21:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i15",
+    "correctText": "I would help if I had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i16",
+    "correctText": "You can come over tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-21:i17",
+    "correctText": "Shall I bring something to eat?",
+    "correctResponseId": null
+  }
+]

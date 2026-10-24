@@ -74,3 +74,25 @@ Governance-ID: TG-60B4AE2168B8
 Владелец через координатора: хотфикс на старой базе отменён, OTA не выпускаем, папка экспорта забыта. Очередь: (1) TTL ~30 дней на friend_lesson_invite_receipts и friend_duel_receipts — поле expireAt (Timestamp) в квитанциях + политика TTL на группы коллекций (команда — координатору); (2) пуши «Друзей» на 9 языках — прогоны, коммит, команда выкладки; (3) итог наблюдения за 10 функциями.
 
 Governance-ID: TG-EC3F85D869DA
+
+Governance-ID: TG-178BE2E803C8
+
+## Ревизор 3b435a1b3: (1) 🔴 согласие на ИИ на сервере диалогов; (2) 🟡 старые report_reward_* без promotionEligibility
+
+(1) dialogue_v2_freeform_callable (и сценарии/репетитор) отказывают без записанного согласия (record_ai_dialog_consent): понятная причина в ответе, лог. Клиентский шлюз — 5 · ВХОД. (2) Кошелёк: report_reward_* без поля → excluded_compensation (ожидаемое значение источника), явное gameplay — по-прежнему отказ; сторож.
+
+Governance-ID: TG-9F36119FDAB4
+
+## Согласие на ИИ: права восстановлены координатором (владелец «да»); шлюз под выключателем; сторож invoker
+
+(1) Замеры: 200 у recordAiDialogConsent и рост granted — через час и утром. (2) Шлюз functions/src/ai_dialog_consent_gate.ts во всех ИИ-входах: кэш granted 60 с, ai_consent_required, журнал [AI-CONSENT], отказ только при remote_config/app.bools.ai_dialog_consent_enforced, иначе would_refuse. (3) Причина пропажи привязки (журнал аудита) + проверка после выкладки: у каждой вызываемой функции allUsers/run.invoker.
+
+Governance-ID: TG-4FF1B1F7067F
+
+Причина: 12.08 CreateFunction recordAiDialogConsent/recordAiExplainConsent упал (Container Healthcheck); firebase CLI ставит invoker только при успешном создании, дальше были только UpdateFunction — права не было никогда.
+
+Governance-ID: TG-4B338972A3CA
+
+## 24.10 — продолжение после смены аккаунта
+
+Шлюз согласия не закоммичен; прогон bsfjneidm: 3 теста premiumDialogReview красные (поддельная база без doc().get) — в тесте подменить шлюз. Дальше: замер после починки invoker, сторож invoker в коммит, снять серверный вердикт дуэли (лимит вызовов оставить), ревью friendCourse, один список команд пакета.

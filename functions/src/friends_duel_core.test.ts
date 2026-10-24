@@ -3,9 +3,7 @@ import {
   duelCorrect,
   duelDayKey,
   duelDocumentId,
-  duelOutcome,
   duelPairKey,
-  invertDuelOutcome,
   isDuelExpired,
   parseDuelMove,
   parseDuelPhraseIds,
@@ -35,17 +33,8 @@ describe('friends duel core', () => {
     expect(parseDuelMove(null)).toBeNull();
   });
 
-  test('outcome: accuracy first, then less time, then draw; inverse for the other side', () => {
-    const four = { results: [true, true, true, true, false], elapsedMs: 50_000 };
-    const fourFast = { results: [true, false, true, true, true], elapsedMs: 40_000 };
-    const three = { results: [true, true, true, false, false], elapsedMs: 10_000 };
-    expect(duelCorrect(four)).toBe(4);
-    expect(duelOutcome(four, three)).toBe('win');
-    expect(duelOutcome(three, four)).toBe('loss');
-    expect(duelOutcome(fourFast, four)).toBe('win');
-    expect(duelOutcome(four, { ...four })).toBe('draw');
-    expect(invertDuelOutcome('win')).toBe('loss');
-    expect(invertDuelOutcome('draw')).toBe('draw');
+  test('correct count for the move summary (the outcome itself is computed on the phone)', () => {
+    expect(duelCorrect({ results: [true, true, true, true, false], elapsedMs: 50_000 })).toBe(4);
   });
 
   test('pair key is order-independent and shared with friend_pairs; duel id carries the sequence', () => {

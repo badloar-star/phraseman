@@ -5,6 +5,8 @@ import { defineSecret } from 'firebase-functions/params';
 import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+// зачем (Ревизор 22.10, 🔴): ИИ-диалог шлёт текст человека в OpenAI — сервер сверяет записанное согласие (под выключателем)
+import { checkAiDialogConsent } from './ai_dialog_consent_gate';
 import { resolvePremiumAccess } from './premium_status';
 import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
@@ -1128,6 +1130,7 @@ export const premiumDialogSend = onCall({
     console.warn('[AI-KILL-SWITCH] rejected', JSON.stringify({ callable: 'premiumDialog' }));
     throw new HttpsError('failed-precondition', 'ai_globally_disabled');
   }
+  await checkAiDialogConsent({ db, stableUid, callable: 'premiumDialogSend' });
 
   const history = sanitizeHistory(data.history);
   // Сервер сам резолвит подписку: поле isPremium из тела запроса недоверенное.
@@ -1693,6 +1696,7 @@ export const premiumDialogTranslate = onCall({
   ]);
   timer.mark('prechecksMs');
   const { stableUid, isPremium } = identity;
+  await checkAiDialogConsent({ db, stableUid, callable: 'premiumDialogTranslate' });
 
   // Кэш ПЕРЕД любой платной работой: одинаковая реплика+язык переводится один раз
   // на всё приложение. Повторный флип/повтор с другого устройства — бесплатно.

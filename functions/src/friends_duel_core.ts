@@ -41,18 +41,8 @@ export function duelCorrect(move: DuelMove): number {
   return move.results.filter(Boolean).length;
 }
 
-/** Итог глазами `mine`: больше верных — победа; поровну — меньше время; равны и они — ничья. */
-export function duelOutcome(mine: DuelMove, theirs: DuelMove): DuelOutcome {
-  const a = duelCorrect(mine);
-  const b = duelCorrect(theirs);
-  if (a !== b) return a > b ? 'win' : 'loss';
-  if (mine.elapsedMs !== theirs.elapsedMs) return mine.elapsedMs < theirs.elapsedMs ? 'win' : 'loss';
-  return 'draw';
-}
-
-export function invertDuelOutcome(outcome: DuelOutcome): DuelOutcome {
-  return outcome === 'win' ? 'loss' : outcome === 'loss' ? 'win' : 'draw';
-}
+// зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «сервер для сохранения, а не решений»; координатор 24.10): итог дуэли считает телефон
+// (duelOutcomeByScore, 8 · МОМЕНТЫ) по двум ходам — серверный вердикт снят вместе с duelOutcome/invertDuelOutcome.
 
 /** Тот же ключ пары, что у friend_pairs (friends_together.ts::pairId): оба stableUid по возрастанию. */
 export function duelPairKey(a: string, b: string): string {

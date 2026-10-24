@@ -52,6 +52,12 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 22.10 «сервер хранит, те�
     }
   });
 
+  test('сервер дуэли хранит ходы и не выносит вердикт: ни в документ, ни в уведомление, ни в ответ (итог — на телефоне)', () => {
+    const code = src('friends_duel.ts');
+    expect(code).not.toMatch(/duelOutcome|invertDuelOutcome|outcomeForChallenger|\boutcome\s*:/);
+    expect(src('friends_duel_core.ts')).not.toMatch(/export function (duelOutcome|invertDuelOutcome)\b/);
+  });
+
   test('серверного claim награды нет в экспортах функций', () => {
     expect(src('index.ts')).not.toMatch(/friendsLessonTogetherClaim/);
   });

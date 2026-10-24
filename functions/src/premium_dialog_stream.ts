@@ -3,6 +3,8 @@ import { onRequest } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 
 import { resolveStableUidForAuth } from './auth_identity';
+// зачем (Ревизор 22.10, 🔴): ИИ-диалог шлёт текст человека в OpenAI — сервер сверяет записанное согласие (под выключателем)
+import { AI_DIALOG_CONSENT_REQUIRED, checkAiDialogConsent } from './ai_dialog_consent_gate';
 import { resolvePremiumAccess } from './premium_status';
 import {
   createPaidAiAbortScope,
@@ -319,6 +321,16 @@ export const premiumDialogStream = onRequest({
 
   if (gates.aiOff) {
     res.status(503).json({ error: 'ai_globally_disabled' });
+    return;
+  }
+
+  try {
+    await checkAiDialogConsent({ db, stableUid, callable: 'premiumDialogStream' });
+  } catch (error) {
+    // зачем: у потокового ответа свой формат ошибок — отказ согласия отдаём тем же кодом, что у callable
+    const refused = error instanceof Error && error.message === AI_DIALOG_CONSENT_REQUIRED;
+    console.warn('[AI-CONSENT] stream: check stopped the request', { refused, reason: String(error instanceof Error ? error.message : error).slice(0, 120) });
+    res.status(refused ? 403 : 500).json({ error: refused ? AI_DIALOG_CONSENT_REQUIRED : 'consent_check_failed' });
     return;
   }
 

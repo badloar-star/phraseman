@@ -30,9 +30,7 @@ import {
   duelDayKey,
   duelDocumentId,
   duelMoveSummary,
-  duelOutcome,
   duelPairKey,
-  invertDuelOutcome,
   isDuelExpired,
   parseDuelMove,
   parseDuelPhraseIds,
@@ -306,8 +304,8 @@ export const friendsDuelMove = onCall(CALLABLE_BASE, async (request) => {
     const challengerUid = String(duel?.challengerUid);
     const phraseIds = Array.isArray(duel?.phraseIds) ? duel?.phraseIds as string[] : [];
 
-    const opponentOutcome = duelOutcome(move, challengerMove);
-    const challengerOutcome = invertDuelOutcome(opponentOutcome);
+    // ЗАМОК ВЛАДЕЛЬЦА 22.10: «сервер для сохранения, а не решений» — итог дуэли считает телефон (duelOutcomeByScore у 8 · МОМЕНТЫ)
+    // по двум ходам; сервер хранит ходы и отдаёт оба, своего вердикта не пишет и не возвращает.
     const opponentSummary = duelMoveSummary(move);
     const challengerSummary = duelMoveSummary(challengerMove);
     const opponentProfile = await tx.get(db.collection('public_profiles').doc(stableUid));
@@ -318,7 +316,6 @@ export const friendsDuelMove = onCall(CALLABLE_BASE, async (request) => {
     tx.set(duelRef, {
       opponentMove: { results: [...move.results], elapsedMs: move.elapsedMs },
       status: 'finished',
-      outcomeForChallenger: challengerOutcome,
       finishedAtMs: now,
     }, { merge: true });
     if (releaseLock) tx.set(pairRef, { duel: { openDuelId: null, openExpiresAtMs: 0 }, updatedAt: now }, { merge: true });
@@ -329,17 +326,16 @@ export const friendsDuelMove = onCall(CALLABLE_BASE, async (request) => {
       text: friendsPushText(friendsPushLangOf(challengerSnap.data()), 'duelResultTitle'),
       nav: {
         kind: 'friend_event', action: 'duel_result', actorStableUid: stableUid, eventId, duelId,
-        outcome: challengerOutcome, mine: challengerSummary, theirs: opponentSummary, phraseIds,
+        mine: challengerSummary, theirs: opponentSummary, phraseIds,
       },
     }, now));
     const response = {
       ok: true,
-      outcome: opponentOutcome,
       mine: { correct: opponentSummary.correct, elapsedMs: opponentSummary.elapsedMs },
       theirs: challengerSummary,
     };
     tx.set(receiptRef, { kind: 'move', duelId, response, createdAt: now, expireAt: new Date(now + RECEIPT_TTL_MS) });
-    console.log(`${LOG} move:finished ${JSON.stringify({ ...ctx, opponentOutcome, mine: opponentSummary.correct, theirs: challengerSummary.correct, releaseLock })}`);
+    console.log(`${LOG} move:finished ${JSON.stringify({ ...ctx, mine: opponentSummary.correct, theirs: challengerSummary.correct, releaseLock })}`);
     const challengerData = challengerSnap.data();
     return {
       error: null,

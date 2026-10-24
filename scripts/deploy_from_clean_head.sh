@@ -127,4 +127,12 @@ echo "[DEPLOY-CLEAN] Если CLI спросит про УДАЛЕНИЕ фун�
 "${CMD[@]}"
 rc=$?
 echo "[DEPLOY-CLEAN] firebase deploy exit=$rc"
+# зачем (координатор 22.10, 🔴 согласие на ИИ): упавшее ПЕРВОЕ создание функции оставляет её без allUsers/run.invoker навсегда
+# (firebase CLI ставит право только при успешном создании) — приложение молча получает 401. Проверяем выложенные функции сразу.
+if [[ "$ONLY" == *functions:* ]]; then
+  FN_NAMES=$(echo "$ONLY" | tr ',' '\n' | sed -n 's/^functions:default:\([A-Za-z0-9_]*\)$/\1/p' | paste -sd, -)
+  if [ -n "$FN_NAMES" ]; then node "$ROOT/scripts/check_callable_invoker.mjs" --only "$FN_NAMES"; else node "$ROOT/scripts/check_callable_invoker.mjs"; fi
+  irc=$?
+  [ $irc -eq 0 ] || echo "[DEPLOY-CLEAN] 🔴 ПРОВЕРКА ПРАВА ВЫЗОВА: exit=$irc — см. строки [INVOKER-CHECK] выше (выкладка уже прошла, починка — по «да» владельца)"
+fi
 exit $rc

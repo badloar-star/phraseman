@@ -39,6 +39,8 @@ jest.mock('./premium_dialog', () => ({
 }));
 jest.mock('./premium_status', () => ({ resolvePremiumAccess: mockResolvePremiumAccess }));
 jest.mock('./remote_gates', () => ({ resolveRemoteBool: jest.fn(async () => true) }));
+// зачем: шлюз согласия на ИИ (ai_dialog_consent_gate) проверяется своими тестами; здесь — только лимит бесплатных разборов
+jest.mock('./ai_dialog_consent_gate', () => ({ checkAiDialogConsent: jest.fn(async () => undefined) }));
 jest.mock('./explain/explain_budget', () => ({
   enforceFreeJobGenLimit: mockEnforceFreeJobGenLimit,
   refundFreeJobGenLimit: mockRefundFreeJobGenLimit,

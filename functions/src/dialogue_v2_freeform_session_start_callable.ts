@@ -2,6 +2,8 @@ import { createHmac, randomBytes } from 'node:crypto';
 import { types as nodeTypes } from 'node:util';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+// зачем (Ревизор 22.10, 🔴): ИИ-диалог шлёт текст человека в OpenAI — сервер сверяет записанное согласие (под выключателем)
+import { withAiDialogConsent } from './ai_dialog_consent_gate';
 import { withAiKillSwitch } from './ai_kill_switch';
 
 import {
@@ -267,5 +269,5 @@ export const DIALOGUE_V2_FREEFORM_SESSION_START_OPTIONS = Object.freeze({
 // зачем (Q102): аварийный стоп ИИ «Пульта» закрывает и свободный разговор.
 export const dialogueV2FreeformSessionStart = onCall(
   DIALOGUE_V2_FREEFORM_SESSION_START_OPTIONS,
-  withAiKillSwitch('dialogueV2FreeformSessionStart', createDialogueV2FreeformSessionStartHandler(productionDependencies())),
+  withAiKillSwitch('dialogueV2FreeformSessionStart', withAiDialogConsent('dialogueV2FreeformSessionStart', createDialogueV2FreeformSessionStartHandler(productionDependencies()))),
 );

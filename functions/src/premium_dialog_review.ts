@@ -3,6 +3,8 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+// зачем (Ревизор 22.10, 🔴): ИИ-диалог шлёт текст человека в OpenAI — сервер сверяет записанное согласие (под выключателем)
+import { checkAiDialogConsent } from './ai_dialog_consent_gate';
 import { ADMIN_ALERT_BOT_TOKEN } from './admin_alerts';
 import { resolveConfiguredDialogModel, modelSupportsJsonObject } from './openai_dialog_model_config';
 import { enforceRateLimit, asInterfaceLang } from './premium_dialog';
@@ -641,6 +643,7 @@ export const premiumDialogReview = onCall({
   const db = admin.firestore();
   const authUid = request.auth.uid;
   const stableUid = await resolveStableUidForAuth(db, authUid);
+  await checkAiDialogConsent({ db, stableUid, callable: 'premiumDialogReview' });
   const cefr = asCefr(data.cefr);
 
   // зачем: аудит безопасности 2026-08-22 — разбор диалога (заведомо платный

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Собраться перемешать карты",
+        "uk": "Зібратися перемішати карти"
       },
       "bodyByLocale": {
-        "ru": "shuffle — перемешать игральные карты. Повторим going to для намерения. Вы решили сначала перемешать колоду перед семейной игрой. I am going to shuffle the cards. — Я собираюсь перемешать карты. Передайте намерение через going to.",
-        "uk": "shuffle — перемішати гральні карти. Повторімо going to для наміру. Ви вирішили спочатку перемішати колоду перед сімейною грою. I am going to shuffle the cards. — Я збираюся перемішати карти. Передайте намір через going to."
+        "ru": "Перед семейной игрой вы решили сначала перемешать колоду. I am going to shuffle the cards. — Я собираюсь перемешать карты. Для намерения соберите I + am going to + shuffle. С I используем am, а после going to — shuffle без изменений. Затем добавьте the cards — что перемешаете. Здесь выразите намерение через going to; форма am shuffling тоже возможна, но в этом задании тренируем going to.",
+        "uk": "Перед сімейною грою ви вирішили спочатку перемішати колоду. I am going to shuffle the cards. — Я збираюся перемішати карти. Для наміру складіть I + am going to + shuffle. З I використовуємо am, а після going to — shuffle без змін. Потім додайте the cards — що перемішаєте. Тут висловіть намір через going to; форма am shuffling також можлива, але в цьому завданні тренуємо going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-56:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Рассказать о записи на тренировку",
+        "uk": "Розповісти про запис на тренування"
       },
       "bodyByLocale": {
-        "ru": "aim — целиться, направлять бросок в выбранную цель. deal — раздать игральные карты. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на завтрашнее занятие бросками мяча в цель. We are learning to aim tomorrow. — Мы учимся целиться завтра. Передайте договорённость через Present Continuous.",
-        "uk": "aim — цілитися, спрямовувати кидок у вибрану ціль. deal — роздати гральні карти. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на завтрашнє заняття кидками м’яча в ціль. We are learning to aim tomorrow. — Ми вчимося цілитися завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с другом записались на завтрашнюю тренировку по броскам мяча в цель; время подтверждено. We are learning to aim tomorrow. — Завтра мы будем учиться целиться. Для договорённости используйте Present Continuous: we + are + learning. Затем добавьте to aim — чему будете учиться — и tomorrow. Получается we are learning + to aim + tomorrow. С we нужен are, а завтра указывает tomorrow. Здесь тренируем Present Continuous; going to также может описывать этот будущий план.",
+        "uk": "Ви з другом записалися на завтрашнє тренування з кидків м'яча в ціль; час підтверджено. We are learning to aim tomorrow. — Завтра ми будемо вчитися цілитися. Для домовленості використайте Present Continuous: we + are + learning. Потім додайте to aim — чого вчитиметеся — і tomorrow. Виходить we are learning + to aim + tomorrow. З we потрібне are, а на завтра вказує tomorrow. Тут тренуємо Present Continuous; going to також може описувати цей майбутній план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Рассказать о занятии детей",
+        "uk": "Розповісти про заняття дітей"
       },
       "bodyByLocale": {
-        "ru": "bounce — отбивать мяч от пола или другой поверхности. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. They are learning to bounce a ball tomorrow. — Они учатся отбивать мяч от пола завтра. Передайте договорённость через Present Continuous.",
-        "uk": "bounce — відбивати м’яч від підлоги чи іншої поверхні. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші діти записані на завтрашнє заняття, де навчаться відбивати м’яч від підлоги. They are learning to bounce a ball tomorrow. — Вони вчаться відбивати м’яч від підлоги завтра. Передайте домовленість через Present Continuous."
+        "ru": "Ваши дети записаны на завтрашнее занятие, где будут учиться отбивать мяч от пола. They are learning to bounce a ball tomorrow. — Завтра они будут учиться отбивать мяч от пола. Назовите детей словом they, затем поставьте are learning. Добавьте to bounce a ball — чему они будут учиться — и tomorrow — когда. Соберите they + are learning + to bounce a ball + tomorrow. Для согласованного занятия здесь используйте Present Continuous; going to тоже возможно, но отрабатываем указанную форму.",
+        "uk": "Ваші діти записані на завтрашнє заняття, де вчитимуться відбивати м'яч від підлоги. They are learning to bounce a ball tomorrow. — Завтра вони вчитимуться відбивати м'яч від підлоги. Назвіть дітей словом they, потім поставте are learning. Додайте to bounce a ball — чого вони вчитимуться — і tomorrow — коли. Складіть they + are learning + to bounce a ball + tomorrow. Для узгодженого заняття тут використайте Present Continuous; going to також можливе, але відпрацьовуємо вказану форму."
       },
       "question": {
         "interactionId": "en:lesson-15:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e1d7e5ebba48db9fdd4d3be09b29427d120707f521fd12f783865f48f12421b0"
+  "introFingerprint": "0b404f1120df6c96ff1a85bc4a2bd77f2ca58f92e9895bfad45374d1254d920e"
 }

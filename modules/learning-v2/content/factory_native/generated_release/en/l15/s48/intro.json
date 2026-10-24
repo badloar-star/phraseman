@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Наметить поворот ручки",
+        "uk": "Намітити поворот ручки"
       },
       "bodyByLocale": {
-        "ru": "clockwise — по часовой стрелке. Повторим going to для намерения. Вы решили повернуть ручку в направлении движения стрелок часов. I am going to turn the handle clockwise. — Я собираюсь повернуть ручку по часовой стрелке. Передайте намерение через going to.",
-        "uk": "clockwise — за годинниковою стрілкою. Повторімо going to для наміру. Ви вирішили повернути ручку в напрямку руху стрілок годинника. I am going to turn the handle clockwise. — Я збираюся повернути ручку за годинниковою стрілкою. Передайте намір через going to."
+        "ru": "Вы решили повернуть ручку по часовой стрелке, но ещё не начали. I am going to turn the handle clockwise. — Я собираюсь повернуть ручку по часовой стрелке. Для намерения соберите I + am going to + turn. Затем добавьте the handle — что повернёте — и clockwise — в какую сторону. После going to нужен turn без изменений. Здесь используйте going to; am turning возможно в другом контексте, но сейчас тренируем выражение намерения.",
+        "uk": "Ви вирішили повернути ручку за годинниковою стрілкою, але ще не почали. I am going to turn the handle clockwise. — Я збираюся повернути ручку за годинниковою стрілкою. Для наміру складіть I + am going to + turn. Потім додайте the handle — що повернете — і clockwise — у який бік. Після going to потрібне turn без змін. Тут використайте going to; am turning можливе в іншому контексті, але зараз тренуємо вираження наміру."
       },
       "question": {
         "interactionId": "en:lesson-15:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Договориться встретиться внизу",
+        "uk": "Домовитися зустрітися внизу"
       },
       "bodyByLocale": {
-        "ru": "downstairs — внизу, на нижнем этаже. anticlockwise — против часовой стрелки. Если время уже согласовано, потренируем Present Continuous. Вы с друзьями договорились встретиться завтра на нижнем этаже дома. We are meeting downstairs tomorrow. — Мы встречаемся внизу завтра. Передайте договорённость через Present Continuous.",
-        "uk": "downstairs — внизу, на нижньому поверсі. anticlockwise — проти годинникової стрілки. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. We are meeting downstairs tomorrow. — Ми зустрічаємося внизу завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с друзьями договорились встретиться завтра на нижнем этаже дома. We are meeting downstairs tomorrow. — Завтра мы встречаемся внизу. Для договорённости поставьте we are meeting: к meet добавляем -ing. Затем укажите место downstairs и время tomorrow. Соберите we + are meeting + downstairs + tomorrow. Перед downstairs не нужен предлог. Здесь тренируем Present Continuous; going to также возможно.",
+        "uk": "Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. We are meeting downstairs tomorrow. — Завтра ми зустрічаємося внизу. Для домовленості поставте we are meeting: до meet додаємо -ing. Потім укажіть місце downstairs і час tomorrow. Складіть we + are meeting + downstairs + tomorrow. Перед downstairs не потрібен прийменник. Тут тренуємо Present Continuous; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Рассказать об украшении зала",
+        "uk": "Розповісти про прикрашання зали"
       },
       "bodyByLocale": {
-        "ru": "overhead — над головой, сверху. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья согласовали завтрашнее украшение зала: огни будут висеть над гостями. They are hanging lights overhead tomorrow. — Они вешают огни над головой завтра. Передайте договорённость через Present Continuous.",
-        "uk": "overhead — над головою, згори. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі узгодили завтрашнє прикрашання зали: вогні висітимуть над гостями. They are hanging lights overhead tomorrow. — Вони вішають вогні над головою завтра. Передайте домовленість через Present Continuous."
+        "ru": "Друзья договорились завтра украсить зал: они повесят огни над местом, где будут стоять гости. They are hanging lights overhead tomorrow. — Завтра они вешают огни над головами гостей. Назовите друзей словом they, затем поставьте are hanging: к hang добавляем -ing. Добавьте lights — что вешают — overhead — где — и tomorrow — когда. Порядок такой: they + are hanging + lights + overhead + tomorrow. Здесь используйте Present Continuous для согласованного дела; going to тоже возможно.",
+        "uk": "Друзі домовилися завтра прикрасити залу: вони повісять вогники над місцем, де стоятимуть гості. They are hanging lights overhead tomorrow. — Завтра вони вішають вогники над головами гостей. Назвіть друзів словом they, потім поставте are hanging: до hang додаємо -ing. Додайте lights — що вішають — overhead — де — і tomorrow — коли. Порядок такий: they + are hanging + lights + overhead + tomorrow. Тут використайте Present Continuous для узгодженої справи; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4e801324ba33d34925494c3d4351b8a3ba984001754a946a9706cafd58bc6d35"
+  "introFingerprint": "fc56f8c2191c60d1a7eb29ab3581a6a3c20ae50b2e7fbc4178952f32dabd6890"
 }

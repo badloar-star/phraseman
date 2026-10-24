@@ -11633,7 +11633,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 47,
-    sourceFingerprint: "a054488b32fb434c493c3cabcc9ba857ece6abaf58cbb6aa603ff5073d5c2513",
+    sourceFingerprint: "408ec9029fc59b369f2ab8735319ed4c99d413ef26ea8417a23197dae52bfa39",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11647,7 +11647,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 48,
-    sourceFingerprint: "3f82ff6d12e707bff44f4fcaa9d994b76e8e6b36c006810784c0dea91b4e403a",
+    sourceFingerprint: "924cf988b162970dad7df1f41b59df1b995887ca0ea001cdc091f2c8f3c07e2c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11661,7 +11661,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 49,
-    sourceFingerprint: "16e7e4f757a9aba9e61e8525015bad8ec20f09852d8a70b0c6d58d67e10df841",
+    sourceFingerprint: "30f6b63c7408b0010133714998521378c0a151147108ed1462b2af3f57b3473c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11675,7 +11675,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 50,
-    sourceFingerprint: "bf7258c61bd1cffb6db3bc0feb5744b8e23d20216194f9296f97cd645983c3a6",
+    sourceFingerprint: "914228c9b997b7fb4818f8b35aabb25ae525e18c2246915380435d4bc27e9296",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11689,7 +11689,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 51,
-    sourceFingerprint: "db766d071c4c88ed126d5f181d0230e38bcf4c7ada371d3e51f9eb746d8a0435",
+    sourceFingerprint: "c262c83409062d4520c152b0cad2376cb1eeed0f0a0e7b6a8e30c532626c5cc3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11703,7 +11703,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 52,
-    sourceFingerprint: "ec070fbd902f517431842ef32db0f223cd66e2e77d253a67d60d81bc3c235624",
+    sourceFingerprint: "525534e0ad2ed83dcdee6213b5a88bb1307ee7b94c7294a653e4f90802e28ccf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11717,7 +11717,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 53,
-    sourceFingerprint: "cd46aa254f2c1eeb558b664066410f6c3d5d8681f1fc2ddb9ecd3e6ac75caf84",
+    sourceFingerprint: "d2d0113d0c6bd7229dbc7130c8aab65ed80efc0ddaecb83737e5d1cbacfca393",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11731,7 +11731,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 54,
-    sourceFingerprint: "5556837e5dee09a11345f81e993864df4d8d10103272f1d3e541ee56a71daf45",
+    sourceFingerprint: "9227825361aef4204a7e1a521bb75b973db67bc37232a97c15c701bca73a915b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11745,7 +11745,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 55,
-    sourceFingerprint: "8f5ca4152931621fe409914d44071dba9b07d6084c8ff6ef46c6568171b5a467",
+    sourceFingerprint: "df38bf4843987b4ad85b2fa00c22895110bef254665476c935edda27b4d07209",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),
@@ -11759,7 +11759,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 56,
-    sourceFingerprint: "1d0a9db8d838288adb7f1a7862858a94bd5b0673b5483542ea35be58b9b71525",
+    sourceFingerprint: "231615731c010ab4300171f7adbfb3bbdd5b4a984522c1af69eccba48f1a03fe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."],["Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.","Форма be не согласована с подлежащим."]],"uk":[["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."],["Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.","Форма be не узгоджена з підметом."]]}),

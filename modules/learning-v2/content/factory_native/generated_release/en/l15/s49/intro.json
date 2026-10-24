@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Наметить поездку к морю",
+        "uk": "Намітити поїздку до моря"
       },
       "bodyByLocale": {
-        "ru": "coastal — расположенный у морского побережья. Повторим going to для намерения. Вы решили съездить в город у моря, но ещё не выбрали даты. I am going to visit a coastal town. — Я собираюсь посетить приморский город. Передайте намерение через going to.",
-        "uk": "coastal — розташований біля морського узбережжя. Повторімо going to для наміру. Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. I am going to visit a coastal town. — Я збираюся відвідати приморське місто. Передайте намір через going to."
+        "ru": "Вы решили съездить в приморский город, но даты ещё не выбраны. I am going to visit a coastal town. — Я собираюсь посетить приморский город. Для намерения поставьте I am going to, затем visit без изменений. Добавьте a coastal town — куда хотите поехать. Соберите I + am going to + visit + a coastal town. Здесь используйте going to; am visiting тоже может описывать будущую поездку, но сейчас тренируем намерение через going to.",
+        "uk": "Ви вирішили поїхати до приморського міста, але дати ще не вибрані. I am going to visit a coastal town. — Я збираюся відвідати приморське місто. Для наміру поставте I am going to, потім visit без змін. Додайте a coastal town — куди хочете поїхати. Складіть I + am going to + visit + a coastal town. Тут використайте going to; am visiting також може описувати майбутню поїздку, але зараз тренуємо намір через going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-49:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Рассказать о брони за городом",
+        "uk": "Розповісти про бронювання за містом"
       },
       "bodyByLocale": {
-        "ru": "rural — сельский, относящийся к местности за городами. inland — расположенный в глубине страны, вдали от побережья. Если время уже согласовано, потренируем Present Continuous. Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. We are staying in a rural area next week. — Мы останавливаемся в сельской местности на следующей неделе. Передайте договорённость через Present Continuous.",
-        "uk": "rural — сільський, що стосується місцевості поза містами. inland — розташований усередині країни, далеко від узбережжя. Якщо час уже узгоджено, потренуймо Present Continuous. Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. We are staying in a rural area next week. — Ми зупиняємося в сільській місцевості наступного тижня. Передайте домовленість через Present Continuous."
+        "ru": "Вы с семьёй забронировали дом в сельской местности на следующую неделю. Хозяин подтвердил бронь. We are staying in a rural area next week. — На следующей неделе мы будем жить в сельской местности. Для согласованного плана соберите we + are + staying, затем добавьте in a rural area — где — и next week — когда. В staying к stay добавляем -ing, сохраняя y. Здесь тренируем Present Continuous; going to также может описывать этот будущий план.",
+        "uk": "Ви з родиною забронювали будинок у сільській місцевості на наступний тиждень. Господар підтвердив бронювання. We are staying in a rural area next week. — Наступного тижня ми житимемо в сільській місцевості. Для узгодженого плану складіть we + are + staying, потім додайте in a rural area — де — і next week — коли. У staying до stay додаємо -ing, зберігаючи y. Тут тренуємо Present Continuous; going to також може описувати цей майбутній план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-49:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Рассказать о прогулке друзей",
+        "uk": "Розповісти про прогулянку друзів"
       },
       "bodyByLocale": {
-        "ru": "urban — городской, относящийся к городу. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья договорились о завтрашней прогулке в парке внутри города. They are visiting an urban park tomorrow. — Они посещают городской парк завтра. Передайте договорённость через Present Continuous.",
-        "uk": "urban — міський, що стосується міста. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. They are visiting an urban park tomorrow. — Вони відвідують міський парк завтра. Передайте домовленість через Present Continuous."
+        "ru": "Друзья договорились завтра сходить в городской парк. They are visiting an urban park tomorrow. — Завтра они идут в городской парк. Назовите друзей словом they, затем поставьте are visiting: к visit добавляется -ing. Добавьте an urban park — куда идут — и tomorrow — когда. Порядок такой: they + are visiting + an urban park + tomorrow. Здесь используйте Present Continuous для договорённости; going to тоже возможно.",
+        "uk": "Друзі домовилися завтра сходити до міського парку. They are visiting an urban park tomorrow. — Завтра вони йдуть до міського парку. Назвіть друзів словом they, потім поставте are visiting: до visit додається -ing. Додайте an urban park — куди йдуть — і tomorrow — коли. Порядок такий: they + are visiting + an urban park + tomorrow. Тут використайте Present Continuous для домовленості; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "377987f05115c9b1f9d565df724836e5da4baef57874e364bad6d4e4ae18bfe8"
+  "introFingerprint": "7edada204f63815ee852097f06605175b66afa3759fa085bd0d6bca6606be306"
 }

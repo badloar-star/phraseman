@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Наметить поиск тихого пляжа",
+        "uk": "Намітити пошук тихого пляжу"
       },
       "bodyByLocale": {
-        "ru": "secluded — уединённый, вдали от других людей и оживлённых мест. Повторим going to для намерения. Вы решили поискать тихий пляж вдали от людей; место ещё не выбрано. I am going to find a secluded beach. — Я собираюсь найти уединённый пляж. Передайте намерение через going to.",
-        "uk": "secluded — відокремлений, далеко від інших людей і жвавих місць. Повторімо going to для наміру. Ви вирішили пошукати тихий пляж далеко від людей; місце ще не вибрано. I am going to find a secluded beach. — Я збираюся знайти відокремлений пляж. Передайте намір через going to."
+        "ru": "Вы решили найти пляж вдали от толпы, но место ещё не выбрано. I am going to find a secluded beach. — Я собираюсь найти уединённый пляж. Для намерения соберите I + am going to + find. С I нужен am; после going to ставим find без изменений. Затем добавьте a secluded beach — что ищете. Здесь используйте going to для намерения; форма am finding в другом контексте возможна, но сейчас отрабатываем указанную конструкцию.",
+        "uk": "Ви вирішили знайти пляж подалі від натовпу, але місце ще не вибране. I am going to find a secluded beach. — Я збираюся знайти відокремлений пляж. Для наміру складіть I + am going to + find. З I потрібне am; після going to ставимо find без змін. Потім додайте a secluded beach — що шукаєте. Тут використайте going to для наміру; форма am finding в іншому контексті можлива, але зараз відпрацьовуємо вказану конструкцію."
       },
       "question": {
         "interactionId": "en:lesson-15:session-50:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Рассказать о подтверждённой брони",
+        "uk": "Розповісти про підтверджене бронювання"
       },
       "bodyByLocale": {
-        "ru": "leafy — с множеством деревьев и зелени. airy — светлый и хорошо проветриваемый. Если время уже согласовано, потренируем Present Continuous. Бронь дома на улице с деревьями подтверждена на следующую неделю. We are staying on a leafy street next week. — Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе. Передайте договорённость через Present Continuous.",
-        "uk": "leafy — із багатьма деревами й зеленню. airy — світлий і добре провітрюваний. Якщо час уже узгоджено, потренуймо Present Continuous. Бронювання будинку на вулиці з деревами підтверджено на наступний тиждень. We are staying on a leafy street next week. — Ми зупиняємося на зеленій вулиці з багатьма деревами наступного тижня. Передайте домовленість через Present Continuous."
+        "ru": "Вы с семьёй забронировали дом на улице с множеством деревьев на следующую неделю. We are staying on a leafy street next week. — На следующей неделе мы будем жить на улице с множеством деревьев. Для согласованного проживания соберите we + are + staying. К stay добавляем -ing, сохраняя y. Затем добавьте on a leafy street — где — и next week — когда. Здесь тренируем Present Continuous; going to тоже может описывать этот будущий план.",
+        "uk": "Ви з родиною забронювали будинок на вулиці з багатьма деревами на наступний тиждень. We are staying on a leafy street next week. — Наступного тижня ми житимемо на вулиці з багатьма деревами. Для узгодженого проживання складіть we + are + staying. До stay додаємо -ing, зберігаючи y. Потім додайте on a leafy street — де — і next week — коли. Тут тренуємо Present Continuous; going to також може описувати цей майбутній план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-50:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Рассказать о встрече друзей",
+        "uk": "Розповісти про зустріч друзів"
       },
       "bodyByLocale": {
-        "ru": "sheltered — защищённый от ветра и непогоды. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. They are meeting in a sheltered garden tomorrow. — Они встречаются в защищённом от ветра саду завтра. Передайте договорённость через Present Continuous.",
-        "uk": "sheltered — захищений від вітру й негоди. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі домовилися зустрітися завтра в саду, де стіни затуляють вітер. They are meeting in a sheltered garden tomorrow. — Вони зустрічаються в захищеному від вітру саду завтра. Передайте домовленість через Present Continuous."
+        "ru": "Друзья договорились встретиться завтра в саду, защищённом стенами от ветра. They are meeting in a sheltered garden tomorrow. — Завтра они встречаются в защищённом от ветра саду. Назовите друзей словом they, затем поставьте are meeting: к meet добавляем -ing. Добавьте in a sheltered garden и время tomorrow. Порядок такой: they + are meeting + in a sheltered garden + tomorrow. Здесь используйте Present Continuous для договорённости; going to также возможно.",
+        "uk": "Друзі домовилися зустрітися завтра в саду, захищеному стінами від вітру. They are meeting in a sheltered garden tomorrow. — Завтра вони зустрічаються в захищеному від вітру саду. Назвіть друзів словом they, потім поставте are meeting: до meet додаємо -ing. Додайте in a sheltered garden і час tomorrow. Порядок такий: they + are meeting + in a sheltered garden + tomorrow. Тут використайте Present Continuous для домовленості; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "12b852a95f78ad82a2ee1ba205f201ed303b57a09dd592688c17cebf0e609bd9"
+  "introFingerprint": "a08329f74bcfc31d50f119ea29499107e242e274ec1b72284be8a1fb0eb067b3"
 }

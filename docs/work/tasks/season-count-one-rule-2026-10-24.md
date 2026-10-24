@@ -30,3 +30,7 @@ V2 с прогрессом → эпизоды урока (локальный п�
 ## Rollback
 git revert коммита.
 Governance-ID: TG-CE589A730988
+
+Governance-ID: TG-EE182356C991
+
+Продолжение 24.10: Learning V2 добавил число заданий в лёгкий индекс (af51c41b2, factoryNativeLearningV2TaskCountV1) — окно эпизода берёт его; null (содержимое поменялось после пересчёта) — подписи нет.

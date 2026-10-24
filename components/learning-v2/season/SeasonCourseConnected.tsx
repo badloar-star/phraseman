@@ -25,6 +25,7 @@ import { getStableId, peekStableId } from '../../../app/stable_id';
 import { LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../../../modules/learning-v2/content/course_topology_v1';
 import { learningV2ChapterSceneV1 } from '../../../modules/learning-v2/content/session_titles_v1.generated';
 import { learningV2SessionTitleForLocaleV1 } from '../../../modules/learning-v2/titles/session_titles_i18n_v1';
+import { factoryNativeLearningV2TaskCountV1 } from '../../../modules/learning-v2/content/factory_native/factory_native_catalog_v1';
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
@@ -148,11 +149,14 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     // зачем (координатор 22.10): названия эпизодов на 8 языках — learningV2SessionTitleForLocaleV1 (10 · ПЕРЕВОДЧИК), нет перевода — null → «Эпизод N»
     const authored = learningV2SessionTitleForLocaleV1(card.lessonOrdinal, card.sessionOrdinal, lang);
     const label = seasonEpisodeLabel(lang, card.sessionOrdinal);
-    // фразы с переводом, слов и числа заданий в лёгком индексе нет — не выдумываем: карта показывает название занятия (или «Эпизод N»)
+    // фразы с переводом и слов в лёгком индексе нет — не выдумываем: карта показывает название занятия (или «Эпизод N»)
+    // зачем (Сверка 24.10: «0 заданий» при 19 в сессии; Learning V2 af51c41b2): число заданий — из лёгкого индекса курса тем же сборщиком,
+    // что плеер; null (содержимое поменялось после пересчёта) — подписи нет, лучше чем неверное число
+    const tasksCount = factoryNativeLearningV2TaskCountV1(card.lessonOrdinal, card.sessionOrdinal);
     // зачем (владелец 22.10): звёзды пройденного эпизода — из уже поднятых вкладкой «Уроки» звёзд занятий (память, без чтений); правило карты курса: у пройденного не меньше одной звезды, если результата нет
     // зачем (владелец/координатор 22.10): пока вкладка не подняла звёзды в память — 'pending' (звёзд нет, не «1»), потом число; без прыжка 1 → 3
     const stars = card.state === 'done' ? (starsReady ? Math.max(1, props.stars[card.id] ?? 1) : 'pending' as const) : null;
-    return { title: authored ?? label, phrase: authored ?? label, progress: null, taskLine: null, translation: null, words: [], tasksCount: null, stars };
+    return { title: authored ?? label, phrase: authored ?? label, progress: null, taskLine: null, translation: null, words: [], tasksCount, stars };
   }, [lang, props.stars, starsReady]);
   const chapterInfo = useCallback((chapterOrdinal: number): SeasonChapterInfo => ({
     scene: (ruAuthored ? learningV2ChapterSceneV1(lesson, chapterOrdinal) : null) ?? seasonText(lang, 'chapterOf', { n: chapterOrdinal, m: chapterCount }),

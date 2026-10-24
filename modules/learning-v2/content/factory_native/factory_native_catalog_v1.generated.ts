@@ -1808,7 +1808,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 34,
-    sourceFingerprint: "644b43ce27be423fe735096e7ed112ef5e1b2e03fa5a81785f6ce825f90b3776",
+    sourceFingerprint: "5bd9fccdfc878d76b2635730e6a0e4a152228a5a466227cc7dba6e021da8ffc5",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать владельца найденной вещи: hers, his, имя с 's, и коротко ответить No, it isn't mine","uk":"назвати власника знайденої речі: hers, his, ім’я з 's, і коротко відповісти No, it isn't mine"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 5","uk":"Англійська · Урок 5"}),
@@ -1822,14 +1822,14 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 36,
-    sourceFingerprint: "2e057153b6c3b1aa68c245c28b8c3853c420a3380a086c12d11d92b411957efd",
+    sourceFingerprint: "99cd33b942e9b1a4e22746f5e42b3f4ed7a342efc856441411198205e354195f",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о владельце нескольких вещей: whose + вещь + are these, и ответить: they are, these are","uk":"спитати про власника кількох речей: whose + річ + are these, і відповісти: they are, these are"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 5","uk":"Англійська · Урок 5"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 37,
-    sourceFingerprint: "d5b787050ec7b2eb24907c9db864807fbd4fc497c3fe1a7372af69ca40916bfb",
+    sourceFingerprint: "c4be5ee51a076594855aba4810aa5620667cb9628744a11501de8e5e96b36ac0",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самому выбрать форму по числу вещей и назвать хозяина: is this или are these, hers, his, mine, 's","uk":"самому вибрати форму за кількістю речей і назвати господаря: is this чи are these, hers, his, mine, 's"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 5","uk":"Англійська · Урок 5"}),

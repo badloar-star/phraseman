@@ -3611,7 +3611,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 34,
-    sourceFingerprint: "644b43ce27be423fe735096e7ed112ef5e1b2e03fa5a81785f6ce825f90b3776",
+    sourceFingerprint: "5bd9fccdfc878d76b2635730e6a0e4a152228a5a466227cc7dba6e021da8ffc5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Подруга спрашивает, чья брошь. Она вашей сестры. Скажите: «Брошь её».","Под стулом лежит кулон. Спросите сестру, чей он.","Подруга спрашивает, ваш ли этот напульсник. Он не ваш. Скажите коротко: «Нет, он не мой»."],"uk":["Подруга питає, чия брошка. Вона вашої сестри. Скажіть: «Брошка її».","Під стільцем лежить кулон. Спитайте сестру, чий він.","Подруга питає, чи ваш цей напульсник. Він не ваш. Скажіть коротко: «Ні, він не мій»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["his — его, а брошь принадлежит сестре: нужно hers.","Без названия вещи нужно hers, а не her."],["Это «Где кулон?». О хозяине спрашиваем с whose.","Кулон один, поэтому нужно is this."],["Без названия вещи нужно mine, а не my.","Ответ «нет» начинаем с No, а не с Yes."]],"uk":[["his — його, а брошка належить сестрі: потрібно hers.","Без назви речі потрібно hers, а не her."],["Це «Де кулон?». Про господаря питаємо з whose.","Кулон один, тому потрібно is this."],["Без назви речі потрібно mine, а не my.","Відповідь «ні» починаємо з No, а не з Yes."]]}),
@@ -3639,7 +3639,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 36,
-    sourceFingerprint: "2e057153b6c3b1aa68c245c28b8c3853c420a3380a086c12d11d92b411957efd",
+    sourceFingerprint: "99cd33b942e9b1a4e22746f5e42b3f4ed7a342efc856441411198205e354195f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["На подоконнике лежит бинокль. Спросите дядю, чей он.","Сестра спрашивает, чьи наушники на диване. Они ваши. Скажите: «Они мои».","Вы нашли в коробке запонки дяди. Скажите двоюродному брату: «Это запонки моего дяди»."],"uk":["На підвіконні лежить бінокль. Спитайте дядька, чий він.","Сестра питає, чиї навушники на дивані. Вони ваші. Скажіть: «Вони мої».","Ви знайшли в коробці запонки дядька. Скажіть двоюрідному братові: «Це запонки мого дядька»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["binoculars — множественное число, поэтому нужно are these.","Это «Где бинокль?». О хозяине спрашиваем с whose."],["Наушников несколько, поэтому нужно They are, а не It is.","Без названия вещи нужно mine, а не my."],["Запонок несколько, поэтому нужно These are.","После слова uncle нужно 's: my uncle's cufflinks."]],"uk":[["binoculars — множина, тому потрібно are these.","Це «Де бінокль?». Про господаря питаємо з whose."],["Навушників кілька, тому потрібно They are, а не It is.","Без назви речі потрібно mine, а не my."],["Запонок кілька, тому потрібно These are.","Після слова uncle потрібно 's: my uncle's cufflinks."]]}),
@@ -3653,7 +3653,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 37,
-    sourceFingerprint: "d5b787050ec7b2eb24907c9db864807fbd4fc497c3fe1a7372af69ca40916bfb",
+    sourceFingerprint: "c4be5ee51a076594855aba4810aa5620667cb9628744a11501de8e5e96b36ac0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Подруга спрашивает, чьи серьги на сиденье. Они вашей сестры. Скажите: «Серьги её».","В багажнике лежит скейтборд. Спросите двоюродного брата, чей он.","Вы достали штатив. Спросите подругу, не её ли брата он."],"uk":["Подруга питає, чиї сережки на сидінні. Вони вашої сестри. Скажіть: «Сережки її».","У багажнику лежить скейтборд. Спитайте двоюрідного брата, чий він.","Ви дістали штатив. Спитайте подругу, чи не її брата він."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["earrings — множественное число, поэтому нужно are.","his — его, а серьги принадлежат сестре: нужно hers."],["Скейтборд один, поэтому нужно is this.","Это «Где скейтборд?». О хозяине спрашиваем с whose."],["Так получилось бы, что штатив — это сам брат. Хозяина называем через 's: your brother's.","Штатив один, поэтому вопрос начинаем с Is."]],"uk":[["earrings — множина, тому потрібно are.","his — його, а сережки належать сестрі: потрібно hers."],["Скейтборд один, тому потрібно is this.","Це «Де скейтборд?». Про господаря питаємо з whose."],["Так вийшло б, що штатив — це сам брат. Господаря називаємо через 's: your brother's.","Штатив один, тому питання починаємо з Is."]]}),
